@@ -1,0 +1,57 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+
+ul.collapsible{
+    li.active{
+        .collapsible-header{
+            background-color: #2d7bbf!important;
+            color: #ffffff!important;
+            .fas{
+                color: #ffffff!important;
+            }
+        }
+    }
+}
+
+
+button,a{
+    &:focus{
+        outline: none;
+    }
+}
+
+#cart{
+    .material-icons{
+        color: #2d7bbf;
+    }
+
+    &:focus, &:hover{
+        background-color: #2d7bbf;
+        .material-icons{
+            color: #ffffff;
+        }
+    }
+}
+
+
+.img-thumb-lg{
+    width: 100%;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .img-thumb-lg{
+        width: 100%;
+        height: 297px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+}
