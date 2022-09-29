@@ -17,7 +17,7 @@ class CreateShopeesTable extends Migration
             $table->bigIncrements('id');
             $table->string("order_id")->index();
             $table->string("store")->index();
-            $table->string("order_status");
+            $table->string("order_status")->default();
             $table->string("cancel_reason");
             $table->string("return_refund_status");
             $table->string("tracking_number");
@@ -66,7 +66,7 @@ class CreateShopeesTable extends Migration
             $table->string("region");
             $table->string("country");
             $table->string("zip_code");
-            $table->longText("remark_from_buyer")->default('N/A');
+            $table->longText("remark_from_buyer");
             $table->dateTime("order_complete_time");
             $table->string("note");
             $table->string("original_file_name");
