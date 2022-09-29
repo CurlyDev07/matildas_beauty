@@ -10,3 +10,16 @@ sudo apt install python3-certbot-apache &&
 
 RM-110596-011684
 curlydev07
+
+
+
+sudo apt install mysql-client-core-8.0     # version 8.0.30-0ubuntu0.20.04.2, or
+sudo apt install mariadb-client-core-10.3 
+
+CREATE DATABASE matildas_beauty;
+
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY PASSWORD '123456789';
+GRANT ALL PRIVILEGES ON *.* TO 'db_user@localhost' IDENTIFIED BY '123456789';
+CREATE USER 'user'@'localhost' IDENTIFIED BY '123456789';
+
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' WITH GRANT OPTION;
