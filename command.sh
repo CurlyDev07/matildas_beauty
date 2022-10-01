@@ -25,6 +25,7 @@ CREATE USER 'user'@'localhost' IDENTIFIED BY '123456789';
 GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' WITH GRANT OPTION;
 
 
+ssh -i "C:/Users/Leoneex/Documents/PrivateKeys/mb.pem" ubuntu@34.214.172.85
 
 <VirtualHost *:80>
     ServerAdmin support@ahtcloud.com
@@ -41,3 +42,19 @@ GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' WITH GRANT OPTION;
         Options Indexes Multiviews FollowSymLinks
     </Directory>
 </VirtualHost>
+
+
+
+
+
+
+niacinamide 170,744
+Niacinamide Cream 29,925
+
+
+
+ Shampoo and  Conditioner Lifusha Sakura Shampoo
+
+mysql -u user -p matildasbeauty < products.sql
+
+CREATE USER 'local'@'%' IDENTIFIED  BY '123456';
