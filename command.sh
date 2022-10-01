@@ -23,3 +23,21 @@ GRANT ALL PRIVILEGES ON *.* TO 'db_user@localhost' IDENTIFIED BY '123456789';
 CREATE USER 'user'@'localhost' IDENTIFIED BY '123456789';
 
 GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' WITH GRANT OPTION;
+
+
+
+<VirtualHost *:80>
+    ServerAdmin support@ahtcloud.com
+    ServerName 34.214.172.85.ca
+    ServerAlias www.34.214.172.85.ca
+    DocumentRoot /var/www/matildas_beauty/public
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    <Directory /var/www/matildas_beauty>
+        Require all granted
+        AllowOverride All
+        Options Indexes Multiviews FollowSymLinks
+    </Directory>
+</VirtualHost>
