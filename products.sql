@@ -409,7 +409,7 @@ CREATE TABLE IF NOT EXISTS `product_images` (
   KEY `product_images_product_id_index` (`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=363 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table shopickers.product_images: ~210 rows (approximately)
+-- Dumping data for table shopickers.product_images: ~208 rows (approximately)
 INSERT INTO `product_images` (`id`, `product_id`, `img`, `size`, `primary`) VALUES
 	(3, 1, '/images/products/small-3fcf64605971428585ae63f4f8582522.jpg', 'small', 1),
 	(5, 2, '/images/products/small-884fc90521454cfa8bc16322b2d7ce04.jpg', 'small', 1),
@@ -671,7 +671,7 @@ CREATE TABLE IF NOT EXISTS `purchases` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table shopickers.purchases: ~0 rows (approximately)
+-- Dumping data for table shopickers.purchases: ~1 rows (approximately)
 INSERT INTO `purchases` (`id`, `supplier`, `total_qty`, `total_price`, `shipping_fee`, `transaction_fee`, `tax`, `created_at`, `updated_at`) VALUES
 	(1, 'Rolly Meru', 200, 11500, 98, 0, 0, '2022-09-02 17:24:14', '2022-09-02 17:24:14');
 
@@ -749,7 +749,7 @@ CREATE TABLE IF NOT EXISTS `shopees` (
   `region` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `zip_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remark_from_buyer` longtext COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N/A',
+  `remark_from_buyer` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `order_complete_time` datetime NOT NULL,
   `note` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `original_file_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -765,7 +765,7 @@ CREATE TABLE IF NOT EXISTS `shopees` (
   KEY `shopees_store_index` (`store`)
 ) ENGINE=InnoDB AUTO_INCREMENT=904 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table shopickers.shopees: ~880 rows (approximately)
+-- Dumping data for table shopickers.shopees: ~903 rows (approximately)
 INSERT INTO `shopees` (`id`, `order_id`, `store`, `order_status`, `cancel_reason`, `return_refund_status`, `tracking_number`, `shipping_option`, `shipment_method`, `estimated_ship_out_date`, `ship_time`, `order_creation_date`, `order_paid_time`, `parent_sku_reference_no`, `product_name`, `sku_reference_no`, `variation_name`, `original_price`, `deal_price`, `quantity`, `product_subtotal`, `total_discount`, `price_discount_from_seller`, `shopee_rebate`, `sku_total_weight`, `number_of_items_in_order`, `order_total_weight`, `seller_voucher`, `seller_absorbed_coin_cashback`, `shopee_voucher`, `bundle_deals_indicator`, `shopee_bundle_discount`, `seller_bundle_discount`, `shopee_coins_offset`, `credit_card_discount_total`, `products_price_paid_by_buyer`, `buyer_paid_shipping_fee`, `shipping_rebate_estimate`, `reverse_shipping_fee`, `service_fee`, `grand_total`, `estimated_shipping_fee`, `username_buyer`, `receiver_name`, `phone_number`, `delivery_address`, `town`, `district`, `province`, `region`, `country`, `zip_code`, `remark_from_buyer`, `order_complete_time`, `note`, `original_file_name`, `profit`, `is_seller_voucher_fix`, `transaction_fee`, `comission_fee`, `power_up`, `created_at`, `updated_at`) VALUES
 	(1, '220909A7X3V24F', 'matilda007', 'Shipping', '', '', 'SPEPH028734346069', 'Standard Local-Shopee Xpress', 'pickup', '2022-09-13 00:38:00', '2022-09-09 15:14:00', '2022-09-09 00:02:00', '2022-09-09 00:38:00', '', 'Lishou Slimming Capsule Original Authentic Fat Burner Weigth Loss Pampapayat Slimming Pills Be Sexy', 'L_COFFEE', 'Coffee', '558', '259', '1', '259', '299', '299', '0', '0.010', '1', '0.010', '5', '0', '0', 'N', '0', '0', '0', '0', '254', '36', '22', '0', '0', '290', '58', 'lala_bayang', 'Sherilyn bayang', '******95', '#447 casoy st., Calaocan, Santiago City, North Luzon, Isabela, 3311', 'Calaocan', 'Santiago City', 'Isabela', 'North Luzon', 'PH', '3311', '', '1970-01-01 00:00:00', '', 'Order.all.20220909_20220910.xlsx', 68, 0, 6, 5, 0, '2022-09-12 00:31:32', '2022-09-12 00:31:32'),
 	(2, '220909A80CBH96', 'matilda007', 'Cancelled', 'Cancelled by buyer. Reason: Payment procedure too troublesome', '', '', 'Standard Local', '', '1970-01-01 00:00:00', '1970-01-01 00:00:00', '2022-09-09 00:03:00', '1970-01-01 00:00:00', 'DS_CORRECTOR', 'Check Out Dark Spot Corrector Collagen Cream (Pampaputi ng Singit) Tuhod  | Kilikili Whitening Cream', 'DS_CORRECTOR', '', '286', '129', '1', '129', '157', '157', '0', '0.010', '1', '0.010', '0', '0', '0', 'N', '0', '0', '0', '0', '124', '0', '0', '0', '0', '0', '38', 'lhorie_adriano', 'L******o', '******96', '******idro, Rodriguez, South Luzon, Rizal, 1860', 'San Isidro', 'Rodriguez', 'Rizal', 'South Luzon', 'PH', '1860', '', '1970-01-01 00:00:00', '', 'Order.all.20220909_20220910.xlsx', 69, 0, 3, 3, 0, '2022-09-12 00:31:32', '2022-09-12 00:31:32'),
@@ -1755,7 +1755,7 @@ CREATE TABLE IF NOT EXISTS `transactions` (
   KEY `transactions_user_id_index` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table shopickers.transactions: ~0 rows (approximately)
+-- Dumping data for table shopickers.transactions: ~1 rows (approximately)
 INSERT INTO `transactions` (`id`, `sold_from_id`, `payment_method_id`, `user_id`, `order_number`, `first_name`, `last_name`, `phone_number`, `email`, `address`, `barangay`, `city`, `province`, `zip_code`, `fb_link`, `status`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, 0, 'LX2209031', NULL, NULL, NULL, '', NULL, '', '', '', '', NULL, 'completed', '2022-09-28 16:00:00', '2022-09-02 16:06:13');
 
@@ -1778,7 +1778,7 @@ CREATE TABLE IF NOT EXISTS `transaction_payments` (
   KEY `transaction_payments_payment_id_index` (`payment_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table shopickers.transaction_payments: ~0 rows (approximately)
+-- Dumping data for table shopickers.transaction_payments: ~1 rows (approximately)
 INSERT INTO `transaction_payments` (`id`, `transaction_id`, `payment_id`, `payer_id`, `payer_email`, `shipping_fee`, `subtotal`, `total`, `currency`, `payment_status`, `created_at`, `updated_at`) VALUES
 	(1, 1, 'LX-5DMBBGOCWMHAHNBBKH3M', 'N/A', 'N/A', 0.00, 60.00, 60.00, 'PHP', 'completed', '2022-09-02 16:06:14', '2022-09-02 16:06:14');
 
@@ -1797,7 +1797,7 @@ CREATE TABLE IF NOT EXISTS `transaction_products` (
   KEY `transaction_products_product_id_index` (`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table shopickers.transaction_products: ~0 rows (approximately)
+-- Dumping data for table shopickers.transaction_products: ~1 rows (approximately)
 INSERT INTO `transaction_products` (`id`, `transaction_id`, `product_id`, `qty`, `price`, `subtotal`, `created_at`, `updated_at`) VALUES
 	(1, 1, 2, 1, 60, 60, '2022-09-02 16:06:13', '2022-09-02 16:06:13');
 
@@ -1827,7 +1827,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table shopickers.users: ~5 rows (approximately)
+-- Dumping data for table shopickers.users: ~7 rows (approximately)
 INSERT INTO `users` (`id`, `provider_name`, `provider_id`, `first_name`, `last_name`, `email`, `phone_number`, `address`, `barangay`, `city`, `province`, `zip`, `about_me`, `picture`, `role`, `password`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(1, 'email', NULL, 'Reggie', 'Frias', 'reggie.frias1105@gmail.com', '09550090156', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '$2y$10$0ziWKGEG1YRLk4oce6PTSubzIgYz.fWJnarVBXspBjWnW.7wcN04O', NULL, NULL, '2022-08-02 23:16:06', '2022-08-02 23:16:06'),
 	(2, 'email', NULL, 'tae', 'tae', 'tae123@gmail.com', '09550090156', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'admin', '$2y$10$GexHbB6Ayzdi0D4GBjCCD.PPHLGb5W14CKObU1c6s0i/OCQPT6Jnq', NULL, NULL, '2022-09-13 17:32:07', '2022-09-13 17:32:07'),
