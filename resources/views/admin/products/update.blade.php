@@ -75,11 +75,19 @@
             </div>
             <div class="tflex tpx-5">
                 <div class="tw-1/2 tflex tflex-col tmr-3">
-                    <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price</label>
+                    <label for="selling_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Selling Price</label>
+                    <input type="number" onkeyup="allnumeric(this)" id="selling_price" class="browser-default form-control" value="{{ $products['selling_price'] }}" style="padding: 6px;">
+                </div>
+                <div class="tw-1/2 tflex tflex-col tmr-3">
+                    <label for="campaign_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Campaign Price</label>
+                    <input type="number" onkeyup="allnumeric(this)" id="campaign_price" class="browser-default form-control" value="{{ $products['campaign_price'] }}"  style="padding: 6px;">
+                </div>
+                <div class="tw-1/2 tflex tflex-col tmr-3">
+                    <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Cogs</label>
                     <input type="number" onkeyup="allnumeric(this)" id="price" class="browser-default form-control" value="{{ $products['price'] }}" style="padding: 6px;">
                 </div>
                 <div class="tw-1/2 tflex tflex-col tml-3">
-                    <label for="compare_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Compare at price</label>
+                    <label for="compare_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Website Price <small class="ttext-blue-500">(x2 of Cogs)</small></label>
                     <input type="number" onkeyup="allnumeric(this)" id="compare_price" class="browser-default form-control" value="{{ $products['compare_price'] }}" style="padding: 6px;">
                 </div>
             </div>
@@ -390,6 +398,8 @@
             let title = $('#title').val();
             let short_description = CKEDITOR.instances.short_description.getData();
             let description = CKEDITOR.instances.description.getData();
+            let selling_price = $('#selling_price').val();
+            let campaign_price = $('#campaign_price').val();
             let price = $('#price').val();
             let compare_price = $('#compare_price').val();
             
@@ -413,6 +423,8 @@
                 title:title,
                 short_description:short_description,
                 description:description,
+                selling_price:selling_price,
+                campaign_price:campaign_price,
                 price:price,
                 compare_price:compare_price,
                 sku:sku,
@@ -453,7 +465,7 @@
                     title: 'Awesome',
                     text: 'Update Successfuly',
                 });
-                window.location.reload();
+                window.location.href = "/admin/products";
             });
         }
     </script>   

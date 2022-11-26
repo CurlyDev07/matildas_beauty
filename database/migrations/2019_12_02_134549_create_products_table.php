@@ -18,6 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('title')->nullable();
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
+            $table->integer('selling_price')->nullable();
+            $table->integer('campaign_price')->nullable();
             $table->integer('price')->nullable();
             $table->integer('compare_price')->nullable()->default(0);
             $table->integer('qty')->nullable()->default(0);

@@ -78,12 +78,20 @@
         </div>
         <div class="tflex tpx-5">
             <div class="tw-1/2 tflex tflex-col tmr-3">
-                <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Discounted Price</label>
+                <label for="selling_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Selling Price</label>
+                <input type="number" onkeyup="allnumeric(this)" id="selling_price" class="browser-default form-control"  style="padding: 6px;">
+            </div>
+            <div class="tw-1/2 tflex tflex-col tmr-3">
+                <label for="campaign_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Campaign Price</label>
+                <input type="number" onkeyup="allnumeric(this)" id="campaign_price" class="browser-default form-control"  style="padding: 6px;">
+            </div>
+            <div class="tw-1/2 tflex tflex-col tmr-3">
+                <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Cogs</label>
                 <input type="number" onkeyup="allnumeric(this)" id="price" class="browser-default form-control" style="padding: 6px;">
             </div>
             <div class="tw-1/2 tflex tflex-col tml-3">
-                <label for="compare_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price</label>
-                <input type="number" onkeyup="allnumeric(this)" value="300" id="compare_price" class="browser-default form-control" style="padding: 6px;">
+                <label for="compare_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Website Price <small class="ttext-blue-500">(x2 of Cogs)</small></label>
+                <input type="number" onkeyup="allnumeric(this)" value="0" id="compare_price" class="browser-default form-control" style="padding: 6px;">
             </div>
         </div>
     </div>
@@ -105,7 +113,7 @@
         <div class="tflex tpx-5 tpt-4">
             <div class="tw-1/2 tflex tflex-col tmr-3 tpr-3">
                 <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
-                <input type="number" onkeyup="allnumeric(this)" value="999999" id="qty" class="browser-default form-control" style="padding: 6px;">
+                <input type="number" onkeyup="allnumeric(this)" value="0" id="qty" class="browser-default form-control" style="padding: 6px;">
             </div>
             <div class="tw-1/2 tflex tflex-col tml-3">
                 <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Threshold</label>
@@ -446,6 +454,8 @@
             let title = $('#title').val();
             let short_description = '--';
             let description = '--';
+            let selling_price = $('#selling_price').val();
+            let campaign_price = $('#campaign_price').val();
             let price = $('#price').val();
             let compare_price = $('#compare_price').val();
             
@@ -499,6 +509,8 @@
                 title:title,
                 short_description:short_description,
                 description:description,
+                selling_price:selling_price,
+                campaign_price:campaign_price,
                 price:price,
                 compare_price:compare_price,
                 sku:sku,

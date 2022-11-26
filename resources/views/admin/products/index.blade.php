@@ -28,18 +28,20 @@
             <table class="tmb-4 tbg-white ttext-md tw-full centered">
                 <tbody>
                     <tr class="tborder-0">
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">ID</th>
+                        {{-- <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">ID</th> --}}
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Photo</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Name</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Sku</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Price</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Selling Price</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Campaign Price</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Cogs</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Qty</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">status</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Status</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium"><i class="fas fa-cog"></i></th>
                     </tr>
                     @foreach ($products as $product)
                         <tr class="tborder-0 hover:tbg-gray-100">
-                            <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#{{ $product['id'] }}</td>
+                            {{-- <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#{{ $product['id'] }}</td> --}}
                             <td class="tp-3 tpx-5">
                                 <img src="{{ $product['primary_image'] }}" class="tmx-auto" style="height: 50px;width: 50px;">
                             </td>
@@ -47,6 +49,8 @@
                                 <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500">{{ $product['title'] }}</a>
                             </td>
                             <td class="tp-3 tpx-5"> {{ $product['sku'] }} </td>
+                            <td class="tp-3 tpx-5">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
+                            <td class="tp-3 tpx-5">{{ currency() }}{{ number_format($product['campaign_price']) }}</td>
                             <td class="tp-3 tpx-5">{{ currency() }}{{ number_format($product['price']) }}</td>
                             <td class="tp-3 tpx-5">{{ $product['qty'] ?? 'N/A'  }}</td>
                             <td class="tp-3 tpx-5">

@@ -67,6 +67,12 @@
                     </a>
                 </li>
                 <li class="tab col">
+                    <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'expenses', 'active') }}" onclick="location.href = '/admin/expenses'">
+                       <i class="fas fa-users tmr-1 fa-lg"></i>
+                        Expenses
+                    </a> 
+                </li>
+                <li class="tab col">
                     <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'suppliers', 'active') }}" onclick="location.href = '/admin/suppliers'">
                        <i class="fas fa-users tmr-1 fa-lg"></i>
                         Suppliers

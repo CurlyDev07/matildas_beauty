@@ -118,6 +118,25 @@ Route::namespace('Admin')->group(function () {
         Route::post('/patch', 'SuppliersCon@patch')->name('suppliers.patch');
     });
 
+         /*
+    |--------------------------------------------------------------------------
+    | Expenses Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('expenses')->group(function () {
+        Route::get('/', 'ExpensesCon@index')->name('expenses.index');
+        Route::get('/create', 'ExpensesCon@create');
+        Route::post('/store', 'ExpensesCon@store')->name('expenses.store');
+        Route::get('/view/{supplier_id}', 'ExpensesCon@view')->name('expenses.view');
+        Route::get('/update/{id}', 'ExpensesCon@update')->name('expenses.update');
+        Route::post('/patch', 'ExpensesCon@patch')->name('expenses.patch');
+        
+        Route::get('/category', 'ExpensesCon@category')->name('expenses.category');
+        Route::post('/category-store', 'ExpensesCon@category_store')->name('expenses.category.store');
+        Route::get('/category-delete/{id}', 'ExpensesCon@category_delete')->name('expenses.category.delete');
+
+    });
+
 });
 
 

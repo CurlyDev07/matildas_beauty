@@ -58,10 +58,8 @@
                             @if ($order->profit > 0 )
                                 class="tborder-0 hover:tbg-green-100"
                             @elseif($order->power_up == true)
-                            {{-- #fefeb2 --}}
                                 class="tooltipped hover:tbg-yellow-300 tbg-yellow-200 tborder-0"
                                 data-tooltip="POWER UP"
-
                             @else
                                 class="tooltipped tborder-1 tbg-red-300 hover:tbg-red-400"
                                 data-tooltip="WRONG SKU"
