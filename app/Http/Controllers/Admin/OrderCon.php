@@ -61,18 +61,7 @@ class OrderCon extends Controller
     }
 
     public function store(Request $request){
-            // if($request->hasFile('file')){
-            //     return json_encode('a');
-            // }
-            // return json_encode('x');
 
-        $file = $request->file('file');
-        $file_orig_name = $file->getClientOriginalName();
-        $file_path = public_path('storage');
-        $file_name = 'picklist/'.uuid().'.'. $file_orig_name;
-        $file->move($file_path, $file_name);
-        
-        return json_encode(request()->all());
         // CREATE TRANSACTION 
         $transaction = Transaction::create([
             'sold_from_id' => $request->sold_from,

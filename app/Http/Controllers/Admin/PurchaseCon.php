@@ -39,6 +39,7 @@ class PurchaseCon extends Controller
             "transaction_fee" => $request->transaction_fee,
             "tax" => $request->tax
         ]);
+        // dd($request->products);
 
         foreach ($request->products as $product) {
             // purchase_product
@@ -46,8 +47,8 @@ class PurchaseCon extends Controller
 
             // Add stocks/Update Inventory
             $get_product = Product::select('id', 'sku', 'qty')->find($product['product_id']);
-            $new_stock = ($get_product->first()['qty'] + $product['qty']);// Calculate new sock
 
+            $new_stock = ($get_product['qty'] + $product['qty']);// Calculate new sock
             $get_product->update(['qty' => $new_stock]);
 
         }
