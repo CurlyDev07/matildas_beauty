@@ -17,7 +17,7 @@
             <div class="">
                 <img src="http://www.urbanui.com/cloudui/light/images/logo.svg" alt="">
             </div>
-            <a href="{{ url('/') }}" class="ttext-blue-400 tunderline">Back to site</a>
+            <a href="{{ url('/') }}" class="ttext-white tunderline">Back to site</a>
             <a class="dropdown-trigger" href="#!" data-target="dropdown1">
                 <i class="fas fa-user-secret fa-2x ttext-white"></i>
                 <i class="material-icons right ttext-white" style="margin:0!important">arrow_drop_down</i>

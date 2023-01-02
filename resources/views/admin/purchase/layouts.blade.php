@@ -16,7 +16,7 @@
                     </li>
                     <li onclick="window.location.href = '/admin/purchase/create'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/purchase/create', 'tborder-primary tborder-l-4') }}">
                         <div class="ttext-md ttext-black-100 tmy-1 ">
-                            Add Purchase Order
+                            Make a Purchase Order
                             <a class="secondary-content">
                                 <i class="fas fa-cart-plus ttext-primary"></i>
                             </a>

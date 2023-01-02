@@ -53,7 +53,7 @@ class OrderCon extends Controller
     }
 
     public function create(){
-        $products = $this->products->active()->get(['id', 'title', 'price']);
+        $products = $this->products->active()->get(['id', 'title', 'selling_price', 'price']);
         $payment_method = PaymentMethod::all();
         $sold_from = SoldFrom::all();
 
@@ -61,6 +61,18 @@ class OrderCon extends Controller
     }
 
     public function store(Request $request){
+            // if($request->hasFile('file')){
+            //     return json_encode('a');
+            // }
+            // return json_encode('x');
+
+        $file = $request->file('file');
+        $file_orig_name = $file->getClientOriginalName();
+        $file_path = public_path('storage');
+        $file_name = 'picklist/'.uuid().'.'. $file_orig_name;
+        $file->move($file_path, $file_name);
+        
+        return json_encode(request()->all());
         // CREATE TRANSACTION 
         $transaction = Transaction::create([
             'sold_from_id' => $request->sold_from,
@@ -77,7 +89,7 @@ class OrderCon extends Controller
             "province" => '',
             "zip_code" => '',
             'status' => 'completed',
-            'created_at' => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now()
+            'created_at' => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now(),
         ]);
 
         $transaction->update([

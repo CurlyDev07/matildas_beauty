@@ -25,8 +25,15 @@
 @section('content')
     <h1>DASHBOARD</h1>
 
-	<div class="container tbg-white tflex"></div>
-
+	<br><br>
+	<br><br>
+	<h2>Active Products: {{ $active_products }}</h2>
+	<br>
+	<h2>COMMODITY COST: {{ $commodity_cost }}</h2>
+	
+	<div class="container tbg-white tflex">
+	</div>
+	
 @endsection
 
 @section('js')

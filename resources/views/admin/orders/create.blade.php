@@ -28,13 +28,14 @@
                         <select class="product tcursor-pointer browser-default form-control" style="padding: 6px;">
                             <option value="" data-price="" selected>Choose product ...</option>
                             @foreach ($products as $product)
-                                <option value="{{ $product->id }}" data-price="{{ $product->price }}">{{ $product->title }}</option>
+                            {{ ($product->selling_price) }}
+                                <option value="{{ $product->id }}" data-price="{{ $product->selling_price }}">{{ $product->title }}</option>
                             @endforeach
                         </select>
                     </div><!-- Product -->
                     <div class="tw-1/6 tflex tflex-col tmr-3">
                         <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price</label>
-                        <input type="text" onkeyup="allnumeric(this)" value="0" class="price browser-default form-control" style="padding: 6px;">
+                        <input type="text" onkeyup="allnumeric(this)" disabled value="0" class="price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
                     </div><!-- Price -->
                     <div class="tw-1/6 tflex tflex-col tmr-3">
                         <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
@@ -47,7 +48,7 @@
                     </div><!-- QTY -->
                     <div class="tw-1/6 tflex tflex-col tmr-3">
                         <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Subtotal</label>
-                        <input type="text" disabled class="subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9;cursor: not-allowed;">
+                        <input type="text" disabled class="subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
                     </div><!-- Sub Total -->
                 </div>
             </div><!-- Items -->
@@ -99,7 +100,7 @@
         <div class="tflex tpx-5">
             <div class="tw-1/3 tflex tflex-col tmr-3">
                 <label for="first_name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Name</label>
-                <input type="text" id="first_name" class="browser-default form-control" style="padding: 6px;">
+                <input type="text" id="first_name" value="Picklist" class="browser-default form-control" style="padding: 6px;">
             </div><!-- Name -->
             <div class="tw-1/3 tflex tflex-col tmr-3">
                 <label for="last_name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Surname</label>
