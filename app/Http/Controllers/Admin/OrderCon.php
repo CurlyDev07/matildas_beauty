@@ -53,7 +53,7 @@ class OrderCon extends Controller
     }
 
     public function create(){
-        $products = $this->products->active()->get(['id', 'title', 'selling_price', 'price'])->sortBy('title');
+        $products = $this->products->active()->get(['id', 'title', 'sku', 'selling_price', 'price'])->sortBy('title');
         $payment_method = PaymentMethod::all();
         $sold_from = SoldFrom::all();
 

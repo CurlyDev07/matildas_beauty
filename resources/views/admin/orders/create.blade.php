@@ -33,7 +33,7 @@
                             <option value="" data-price="" selected>Choose product ...</option>
                             @foreach ($products as $product)
                             {{ ($product->selling_price) }}
-                                <option value="{{ $product->id }}" data-price="{{ $product->selling_price }}">{{ $product->title }}</option>
+                                <option value="{{ $product->id }}" data-price="{{ $product->selling_price }}">{{ $product->title }} - ({{ $product->sku }})</option>
                             @endforeach
                         </select>
                     </div><!-- Product -->
