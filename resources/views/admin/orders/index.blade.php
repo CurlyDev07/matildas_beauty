@@ -42,6 +42,7 @@
 
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">SKU Qty</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Total Items</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Package Qty</th>
 
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Status</th>
@@ -55,6 +56,7 @@
                             {{-- <td class="tp-3 ttext-center tpx-5">₱{{ number_format($order['payments']['total']) }}</td> --}}
                             <td class="tp-3 ttext-center tpx-5">{{ number_format($order->products()->count()) }}</td>
                             <td class="tp-3 ttext-center tpx-5">{{ number_format($order->products()->sum('qty')) }}</td>
+                            <td class="tp-3 ttext-center tpx-5">{{ number_format($order['package_qty']) }}</td>
                             <td class="tp-3 ttext-center tpx-5">{{ $order['created_at']->format('M d, Y') }}</td>
                             <td class="tp-3 ttext-center tpx-5">
                                 @if ($order['payments']['payment_status'] == 'completed')

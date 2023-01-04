@@ -13,8 +13,8 @@ class PurchaseCon extends Controller
 {
     public function index(){
 
-        $purchases = Purchase::all();
-
+        $purchases = Purchase::with(['suppliers'])->orderBy('created_at', 'desc')->get();
+        // dd($purchases);
         return view('admin.purchase.index', ['purchases' => $purchases]);
     }
 

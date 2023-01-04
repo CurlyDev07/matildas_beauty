@@ -31,7 +31,7 @@ class OrderCon extends Controller
         ->when($request->search, function($q){
             return $q->where('order_number', 'like', request()->search.'%');
         })// search
-        ->select('id', 'order_number', 'first_name', 'last_name', 'created_at')
+        ->select('id', 'order_number', 'package_qty', 'first_name', 'last_name', 'created_at')
         ->OrderBy('id', 'desc')
         ->paginate(100);
     //    dd($orders);
@@ -67,6 +67,7 @@ class OrderCon extends Controller
             'sold_from_id' => $request->sold_from,
             'payment_method_id' => $request->payment_method,
             'user_id' => 0,
+            'package_qty' => $request->package_qty,
             "first_name" => $request->first_name,
             "last_name" => $request->last_name, 
             "phone_number" => $request->phone_number,  

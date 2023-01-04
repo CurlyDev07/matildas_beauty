@@ -26,10 +26,10 @@
                         <div class="tfont-medium">Name:</div>
                         <div class="">{{ $orders['first_name'] .' '. $orders['last_name'] }}</div>
                     </div>
-                    <div class="tmb-2">
+                    {{-- <div class="tmb-2">
                         <div class="tfont-medium">Phone number:</div>
                         <div class="">{{ $orders['phone_number'] }}</div>
-                    </div>
+                    </div> --}}
                 </div>
                
                 <div class="tw-1/3">
@@ -38,9 +38,15 @@
                         <div class="">{{ date_f($orders['created_at'], 'M d, Y - ga') }}</div>
                     </div>
                 </div>
-
+                
                 <div class="tw-1/3">
-                    
+                    <div class="tmb-2">
+                        <div class="tfont-medium">Package Qty</div>
+                        <div class="">{{ number_format($orders['package_qty']) }}</div>
+                    </div>
+                </div>
+
+                {{-- <div class="tw-1/3">
                     <div class="tmr-4 tfont-medium tmb-1">Shipping Address:</div>
                     <div class="tleading-loose ttracking-wide">
                         {{ $orders['address'] }}
@@ -49,7 +55,7 @@
                         {{ $orders['province'] }}
                         {{ $orders['zip_code'] }}
                     </div>
-                </div>
+                </div> --}}
             </div>{{-- Customer's Details --}}
            
 

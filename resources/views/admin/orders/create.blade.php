@@ -74,22 +74,26 @@
             Transaction
         </div>
         <div class="tflex tpx-5">
-            <div class="tw-2/5 tflex tflex-col tmr-3">
+            <div class="tw-2/5 tflex tflex-col tmr-3 thidden">
                 <label for="sold_from" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Sold from</label>
                 <select name="" id="sold_from" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
                     @foreach ($sold_from as $item)
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
                 </select>
-            </div>
-            <div class="tw-2/5 tflex tflex-col tmr-3">
+            </div><!-- thidden-->
+            <div class="tw-2/5 tflex tflex-col tmr-3 thidden">
                 <label for="payment_method" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Payment method</label>
                 <select name="" id="payment_method" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
                     @foreach ($payment_method as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div><!-- thidden-->
+            <div class="tw-1/5 tflex tflex-col tmr-3">
+                <label for="package_qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Package Qty</label>
+                <input type="number" id="package_qty" class="browser-default form-control" style="padding: 6px;" >
+            </div><!-- package Qty -->
             <div class="tw-1/5 tflex tflex-col tmr-3">
                 <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date</label>
                 <input type="text" class="datepicker browser-default form-control">
@@ -264,6 +268,7 @@
                     'sold_from': $('#sold_from').val(),
                     'payment_method': $('#payment_method').val(),
                     'date': $('.datepicker').val(),
+                    'package_qty': $('#package_qty').val(),
 
                     'first_name': $('#first_name').val(),
                     'last_name': $('#last_name').val(),

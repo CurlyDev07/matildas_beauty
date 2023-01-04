@@ -11,4 +11,8 @@ class Purchase extends Model
     public function purchase_product(){
         return $this->hasMany(PurchaseProduct::class);
     }
+
+    public function suppliers(){
+        return $this->hasOne(Suppliers::class, 'id', 'supplier');
+    }
 }
