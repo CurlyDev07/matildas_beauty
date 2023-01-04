@@ -36,22 +36,27 @@
             <table class="tmb-4 tbg-white ttext-md tw-full">
                 <tbody>
                     <tr class="tborder-0">
-                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Order#</th>
-                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Name</th>
-                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Total</th>
-                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
-                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Status</th>
-                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Actions</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Order#</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Name</th>
+                        {{-- <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Total</th> --}}
+
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">SKU Qty</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Total Items</th>
+
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Status</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Actions</th>
                     </tr>
                     
                     @foreach ($orders as $order)
-                    {{-- {{ dd($order) }} --}}
                         <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#{{ $order['order_number'] }}</td>
-                            <td class="tp-3 tpx-5">{{ $order['first_name'] .' '. $order['last_name'] }}</td>
-                            <td class="tp-3 tpx-5">₱{{ number_format($order['payments']['total']) }}</td>
-                            <td class="tp-3 tpx-5">{{ $order['created_at']->format('M d, Y g:i a') }}</td>
-                            <td class="tp-3 tpx-5">
+                            <td class="tp-3 ttext-center tpx-5 ttext-black-100 tfont-medium">#{{ $order['order_number'] }}</td>
+                            <td class="tp-3 ttext-center tpx-5">{{ $order['first_name'] .' '. $order['last_name'] }}</td>
+                            {{-- <td class="tp-3 ttext-center tpx-5">₱{{ number_format($order['payments']['total']) }}</td> --}}
+                            <td class="tp-3 ttext-center tpx-5">{{ number_format($order->products()->count()) }}</td>
+                            <td class="tp-3 ttext-center tpx-5">{{ number_format($order->products()->sum('qty')) }}</td>
+                            <td class="tp-3 ttext-center tpx-5">{{ $order['created_at']->format('M d, Y') }}</td>
+                            <td class="tp-3 ttext-center tpx-5">
                                 @if ($order['payments']['payment_status'] == 'completed')
                                     <span class="chip green lighten-5">
                                         <span class="green-text">{{ ucwords($order['payments']['payment_status']) }}</span>
@@ -62,12 +67,12 @@
                                     </span>
                                 @endif
                             </td>
-                            <td class="tp-3 tpx-5">
+                            <td class="tp-3 ttext-center tpx-5">
                                 <a href="orders/view/{{ $order->id }}">
                                     <i class="fa-external-link-alt fas gray-text tcursor-pointer tooltipped" data-position="left" data-tooltip="view transaction"></i>
-                                    <a class="modal-trigger" href="#modal-{{ $order['order_number'] }}">
+                                    {{-- <a class="modal-trigger" href="#modal-{{ $order['order_number'] }}">
                                         <i class="fa-cog fas gray-text tcursor-pointer tooltipped" data-position="top" data-tooltip="settings"></i>
-                                    </a>
+                                    </a> --}}
 
                                     <div id="modal-{{ $order['order_number'] }}" class="modal modal-fixed-footer">
                                         <div class="modal-content">

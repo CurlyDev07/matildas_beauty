@@ -57,27 +57,27 @@
                 <thead>
                     <tr class="">
                         <th class="ttext-left ttext-title tpt-0 tinvisible">Item</th>
-                        <th class="ttext-center ttext-title tpt-0">Price</th>
+                        {{-- <th class="ttext-center ttext-title tpt-0">Price</th> --}}
                         <th class="ttext-center ttext-title tpt-0">Quantity</th>
-                        <th class="ttext-center ttext-title tpt-0">Subtotal</th>
+                        {{-- <th class="ttext-center ttext-title tpt-0">Subtotal</th> --}}
                     </tr>
                 </thead>
         
                 <tbody>
                     @foreach ($orders['products'] as $item)
                         <tr>
-                            <td style="width: 55%;!important">
+                            <td style="width: 55%;!important" class="tpy-1">
                                 <div class="tflex titems-center">
-                                    <img src="{{ $item['product']['images'][0]['img'] }}" style="height: 80px;width: 80px;" alt="">
+                                    <img src="{{ $item['product']['images'][0]['img'] }}" style="height: 55px;width: 55px;" alt="">
                                     <span class="ttext-primary hover:tunderline"></span>
                                     <a href="{{ item_show_slug($item['product']['title'], $item['product']['id']) }}" class="hover:tunderline tmax-w-sm tml-3 ttext-primary truncate">
                                         {{ $item['product']['title'] }}
                                     </a>
                                 </div>
                             </td>
-                            <td style="width: 15%;!important">{{ currency() }}{{ number_format($item['price'], 2) }}</td>
+                            {{-- <td style="width: 15%;!important">{{ currency() }}{{ number_format($item['price'], 2) }}</td> --}}
                             <td style="width: 15%;!important">{{ $item['qty'] }}</td>
-                            <td style="width: 15%;!important">{{ currency() }}{{ number_format($item['subtotal'], 2) }}</td>
+                            {{-- <td style="width: 15%;!important">{{ currency() }}{{ number_format($item['subtotal'], 2) }}</td> --}}
                         </tr>
                     @endforeach
                 </tbody>
@@ -85,7 +85,7 @@
             
             <div class="tborder-b tflex">
                 <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Subtotal</div>
-                <div class="tw-1/5 ttext-center tp-4">{{ currency() }}{{ number_format($orders['payments']['subtotal'], 2) }}</div>
+                {{-- <div class="tw-1/5 ttext-center tp-4">{{ currency() }}{{ number_format($orders['payments']['subtotal'], 2) }}</div> --}}
             </div>  
             <div class="tborder-b tflex">
                 <div class="tw-4/5 ttext-right tp-4 tborder-r-2 tborder-gray-400">Shipping Fee</div>

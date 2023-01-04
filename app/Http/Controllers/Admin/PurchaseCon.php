@@ -24,7 +24,7 @@ class PurchaseCon extends Controller
 
     public function create(){
         
-        $products = Product::select('id', 'title', 'price')->get('primary_image')->toArray();
+        $products = Product::select('id', 'title', 'price')->get('primary_image')->sortBy('title')->toArray();
         $suppliers = Suppliers::select('id', 'name', 'surname')->get();
 
         return view('admin.purchase.create', ['products' => $products, 'suppliers' => $suppliers]);

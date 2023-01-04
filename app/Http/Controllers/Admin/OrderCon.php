@@ -33,8 +33,8 @@ class OrderCon extends Controller
         })// search
         ->select('id', 'order_number', 'first_name', 'last_name', 'created_at')
         ->OrderBy('id', 'desc')
-        ->paginate(10);
-       
+        ->paginate(100);
+    //    dd($orders);
         return view('admin.orders.index', compact('orders'));
     }
 
@@ -53,7 +53,7 @@ class OrderCon extends Controller
     }
 
     public function create(){
-        $products = $this->products->active()->get(['id', 'title', 'selling_price', 'price']);
+        $products = $this->products->active()->get(['id', 'title', 'selling_price', 'price'])->sortBy('title');
         $payment_method = PaymentMethod::all();
         $sold_from = SoldFrom::all();
 
