@@ -34,7 +34,6 @@ class OrderCon extends Controller
         ->select('id', 'order_number', 'package_qty', 'first_name', 'last_name', 'created_at')
         ->OrderBy('id', 'desc')
         ->paginate(100);
-    //    dd($orders);
         return view('admin.orders.index', compact('orders'));
     }
 
@@ -60,7 +59,21 @@ class OrderCon extends Controller
         return view('admin.orders.create', compact('products', 'payment_method', 'sold_from'));
     }
 
-    public function store(Request $request){
+    public function store(CreateOrderRequest $request){
+        
+        if ($request->products[0]['product_id'] == null) {
+
+            $errormsg = [
+                "message" => "The given data was invalid.",
+                "errors" => [
+                    "Product" => ["Please choose a <b>Product</b>"],
+                ]
+            ];
+
+            return response()->json($errormsg, 422);
+        }// Check if first Product is existing
+
+        // ==========================================
 
         // CREATE TRANSACTION 
         $transaction = Transaction::create([
@@ -91,18 +104,23 @@ class OrderCon extends Controller
 
         // CREATE TRANSACTION PRODUCTS
         foreach ($request->products as $product) {
-            // dd($product);
-            $transaction->products()->create([
-                'product_id' => $product['product_id'],
-                'price' => $product['price'],
-                'qty' => $product['qty'],
-                'subtotal' => $product['subtotal'],
-            ]); // save product
-            
-            $total += $product['subtotal'];// add subtotal
 
-            // UPDATE PRODUCT STOCKS
-            $this->products->updateStocks($product['product_id'], $product['qty']);
+            // check if user all selected products has Product ID
+            // if ID is present Create a record of product : dont create
+
+            if ($product['product_id']) {
+                $transaction->products()->create([
+                    'product_id' => $product['product_id'],
+                    'price' => $product['price'],
+                    'qty' => $product['qty'],
+                    'subtotal' => $product['subtotal'],
+                ]); // save product
+                
+                $total += $product['subtotal'];// add subtotal
+    
+                // UPDATE PRODUCT STOCKS
+                $this->products->updateStocks($product['product_id'], $product['qty']);
+            }
         }
 
         // CREATE TRANSACTION PAYMENT

@@ -28,7 +28,7 @@
             <table class="tmb-4 tbg-white ttext-md tw-full centered">
                 <tbody>
                     <tr class="tborder-0">
-                        {{-- <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">ID</th> --}}
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">ID</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Photo</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Name</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Sku</th>
@@ -41,7 +41,7 @@
                     </tr>
                     @foreach ($products as $product)
                         <tr class="tborder-0 hover:tbg-gray-100">
-                            {{-- <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#{{ $product['id'] }}</td> --}}
+                            <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#{{ $product['id'] }}</td>
                             <td class="tp-3 tpx-5">
                                 <img src="{{ $product['primary_image'] }}" class="tmx-auto" style="height: 50px;width: 50px;">
                             </td>

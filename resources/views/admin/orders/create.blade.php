@@ -308,7 +308,7 @@
                         title: 'Awesome',
                         text: 'Added Successfuly',
                     });
-                    location.href = '/admin/orders';
+                    // location.href = '/admin/orders';
                 });
             })// Submit
         });  
