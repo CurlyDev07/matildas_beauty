@@ -29,7 +29,7 @@
 <div class="row tshadow-md tm-0">
     <div class="tcontainer">
         <div class="col s12">
-            <ul class="tabs">
+            <ul class="tabs tabs tflex tjustify-between">
                 <li class="tab col">
                     <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'dashboard', 'active') }}" onclick="location.href = '/admin/dashboard'">
                         <i class="fas fa-desktop tmr-1 fa-lg"></i>
@@ -42,12 +42,12 @@
                         Orders
                     </a>
                 </li>
-                <li class="tab col">
+                {{-- <li class="tab col">
                     <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'shopee', 'active') }}" onclick="location.href = '/admin/shopee'">
                         <i class="fas fa-shopping-cart tmr-1 fa-lg"></i>
                         Shopee Orders
                     </a>
-                </li>
+                </li> --}}
                 <li class="tab col">
                     <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'products', 'active') }}" onclick="location.href = '/admin/products'">
                         <i class="fas fa-leaf tmr-1 fa-lg"></i> 
@@ -78,12 +78,12 @@
                         Suppliers
                     </a>
                 </li>
-                <li class="tab col">
+                {{-- <li class="tab col">
                     <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'users', 'active') }}" onclick="location.href = '/admin/users'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 
                         Users
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="tab col">
                     <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'categories', 'active') }}" onclick="location.href = '/admin/categories'">
                         <i class="fas fa-comment tmr-1 fa-lg"></i> 

@@ -39,7 +39,7 @@
                     </div><!-- Product -->
                     <div class="tw-1/6 tflex tflex-col tmr-3">
                         <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price</label>
-                        <input type="text" onkeyup="allnumeric(this)" disabled value="0" class="price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
+                        <input type="text" onkeyup="allnumeric(this)"  value="0" class="price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
                     </div><!-- Price -->
                     <div class="tw-1/6 tflex tflex-col tmr-3">
                         <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
