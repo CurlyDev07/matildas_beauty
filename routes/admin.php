@@ -118,6 +118,10 @@ Route::namespace('Admin')->group(function () {
         Route::post('/patch', 'SuppliersCon@patch')->name('suppliers.patch');
     });
 
+    Route::prefix('return-refund')->group(function () {
+        Route::get('/', 'ReturnRefundCon@index');
+    });
+
          /*
     |--------------------------------------------------------------------------
     | Expenses Routes

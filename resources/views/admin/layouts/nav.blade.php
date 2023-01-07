@@ -78,6 +78,12 @@
                         Suppliers
                     </a>
                 </li>
+                <li class="tab col">
+                    <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'return-refund', 'active') }}" onclick="location.href = '/admin/return-refund'">
+                       <i class="fas fa-users tmr-1 fa-lg"></i>
+                        Return/Refund
+                    </a>
+                </li>
                 {{-- <li class="tab col">
                     <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'users', 'active') }}" onclick="location.href = '/admin/users'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 
@@ -98,7 +104,6 @@
                 </li> --}}
                
                 
-
                 {{-- <li class="tab col">
                     <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'inventory', 'active') }}" onclick="location.href = '/admin/inventory'">
                         <i class="fas fa-cogs tmr-1 fa-lg"></i> 
