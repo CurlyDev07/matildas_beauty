@@ -3,9 +3,7 @@ use App\ProductImage;
 // DD('TODO: Minus all item out to product stocks');
 Route::namespace('Admin')->group(function () {
 
-    // Route::get('/', function(){
-    //     return redirect('/admin/products');
-    // });
+
 
     Route::get('dashboard', 'DashboardCon@index');
     
@@ -120,6 +118,7 @@ Route::namespace('Admin')->group(function () {
 
     Route::prefix('return-refund')->group(function () {
         Route::get('/', 'ReturnRefundCon@index');
+        Route::get('/create', 'ReturnRefundCon@create');
     });
 
          /*
