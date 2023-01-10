@@ -84,66 +84,7 @@
         </div>
      
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
-            {{-- <section>
-                <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-                    Basic Information
-                </div>
-                <div class="tflex tpx-5">
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Name</label>
-                        <input type="text" name="name" id="name" value="{{ old('name') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('name')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Name -->
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="surname" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Surname</label>
-                        <input type="text" name="surname" id="surname" value="{{ old('surname') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('surname')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Surname -->
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="phone_number" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Phone number</label>
-                        <input type="text" onkeyup="allnumeric(this)" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('phone_number')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Phone number -->
-                </div>
-                <div class="tflex tpx-5 tmt-3">
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="province" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Province</label>
-                        <input type="text" name="province" id="province" value="{{ old('province') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('province')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="city" class="tfont-normal ttext-sm tmb-2 ttext-black-100">City</label>
-                        <input type="text" name="city" id="city" value="{{ old('city') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('city')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="barangay" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barangay</label>
-                        <input type="text" name="barangay" id="barangay" value="{{ old('barangay') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('barangay')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                </div>
-                <div class="tflex tpx-5 tmt-3">
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="complete_address" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Complete Address</label>
-                        <input type="text" name="complete_address" id="complete_address" value="{{ old('complete_address') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('complete_address')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                </div>
-            </section><!-- Basic Information --> --}}
+
             <div class="tflex tpx-5 tmt-5">
                 <div class="tw-2/5 tborder-r tpr-2">
 
@@ -176,6 +117,10 @@
                 </div>
                    
                 <div id="products_container" class="tw-3/5 tborder-l tpl-2 toverflow-scroll toverflow-x-hidden tpr-6" style="height: 450px">
+                    <div action="?" class="tflex titems-center tmb-4 trelative">
+                        <input autofocus type="text" id="search" height: 58px; onkeyup="Search()" class="browser-default focus:tborder-blue-400 tborder tborder-gray-200 toutline-none tpx-3 tpy-2 tw-full" placeholder="Scan/Type tracking number...">
+                        <img src="{{ asset('/icons/barcode.png') }}" class="tabsolute tright-0 tp-2" style="height: auto;width: 49px;">
+                    </div>
                     <div class="product tborder-b tflex tmx-1 trelative thidden tpy-1" id="hidden_product">
                         <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
                             <div class="tflex titems-center tpy-1">
