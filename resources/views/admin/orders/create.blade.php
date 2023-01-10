@@ -299,7 +299,7 @@
         $('.datepicker').datepicker();// initiate datepicker
 
 
-        let height = 240;
+        let height = 478;
         $('.add-search-product').click(function () {
             // Get All Data
             let id = $(this).attr('id');
@@ -323,7 +323,9 @@
 
             // Scroll to bottom
             height += 62;
-            $('#products_container').append(selected_product).animate({ scrollTop: height }, height);
+            // $('#products_container').append(selected_product).animate({ scrollTop: height }, height);
+
+            $("#products_container").append(selected_product).animate({ scrollTop: 99999999999 }, 1);
 
             getTotal();
         }) // Add product by search
