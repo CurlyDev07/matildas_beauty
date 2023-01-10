@@ -311,13 +311,17 @@
             let selected_product = $('#hidden_product').clone(true, true); // clone hidden product sample model
             selected_product.removeClass('thidden'); // remove hidden class
 
+            // Get Last product QTY
+            let last_product_qty = $("#products_container").children().last().find('.product_quantity').val();
+
+
             // Fillout all fields
             selected_product.attr('id', id);// add ID
             selected_product.find('.product_img').attr('src', img);// add IMG
             selected_product.find('.product_title').html(title);// add ID
             selected_product.find('.product_sku').html(sku);// add SKU
             selected_product.find('.product_price').val(price);// add Price
-            selected_product.find('.product_quantity').val(1);// add QTY
+            selected_product.find('.product_quantity').val(last_product_qty);// add QTY
             selected_product.find('.product_subtotal').val(price);// add product_subtotal
 
 
