@@ -1,4 +1,4 @@
-@extends('admin.return_refund.layouts')
+@extends('admin.return.layouts')
 
 @section('css')
 
@@ -96,7 +96,7 @@
                     </div>
 
 
-                    <ul id="products" style="height: 400px" class="toverflow-scroll toverflow-x-hidden">
+                    <ul id="products" style="height: 200px" class="toverflow-scroll toverflow-x-hidden">
                         @foreach ($products as $product)
                             <li>
                                 <a href="javascript:void(0)" class="add-search-product" id="{{ $product->id }}" aria-disabled="true">
@@ -106,7 +106,6 @@
                                         <div class="tpx-2">
                                             <p class="search-title ttext-md">{{ $product->title }}</p>
                                             <small class="search-sku">{{ $product->sku }}</small>
-                                            <input type="hidden" class="search-price" value="{{ $product->selling_price }}">
                                         </div>
                                     </div>
                                 </a>
@@ -116,13 +115,13 @@
 
                 </div>
                    
-                <div id="products_container" class="tw-3/5 tborder-l tpl-2 toverflow-scroll toverflow-x-hidden tpr-6" style="height: 450px">
+                <div id="products_container" class="tw-3/5 tborder-l tpl-2 toverflow-scroll toverflow-x-hidden tpr-6" style="height: 250px">
                     <div action="?" class="tflex titems-center tmb-4 trelative">
-                        <input autofocus type="text" id="search" height: 58px; onkeyup="Search()" class="browser-default focus:tborder-blue-400 tborder tborder-gray-200 toutline-none tpx-3 tpy-2 tw-full" placeholder="Scan/Type tracking number...">
+                        <input autofocus type="text" id="transaction_id" height: 58px; class="browser-default focus:tborder-blue-400 tborder tborder-gray-200 toutline-none tpx-3 tpy-2 tw-full" placeholder="Scan/Type tracking number...">
                         <img src="{{ asset('/icons/barcode.png') }}" class="tabsolute tright-0 tp-2" style="height: auto;width: 49px;">
                     </div>
                     <div class="product tborder-b tflex tmx-1 trelative thidden tpy-1" id="hidden_product">
-                        <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
+                        <div class="tw-4/6 tw-full tflex tflex-col tmr-2">
                             <div class="tflex titems-center tpy-1">
                                 <img src="https://cf.shopee.ph/file/d8966eff56f6714d423e261828353033" class="product_img" style="height: 50px; width: 50px;" alt="">
                                 <div class="tpx-2">
@@ -131,19 +130,13 @@
                                 </div>
                             </div>
                         </div><!-- Product -->
-                        <div class="tw-1/6 tflex tflex-col tmr-3">
-                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
-                            <input type="text" onkeyup="allnumeric(this)" value="0" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
+                        <div class="tw-2/6 tflex tflex-col tjustify-center tmr-3">
+                            <select class="condition browser-default form-control cursor: not-allowed;" style="padding: 6px;">
+                                <option value="good">Good</option>
+                                <option value="damaged">Damaged</option>
+                            </select>
                         </div><!-- Price -->
-                        <div class="tw-1/6 tflex tflex-col tmr-3">
-                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Quantity</label>
-                            <input type="number" onkeyup="allnumeric(this)" value="0" class="product_quantity browser-default form-control" style="padding: 6px;">
-                        </div><!-- QTY -->
-                        <div class="tw-1/6 tflex tflex-col tmr-3">
-                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Subtotal</label>
-                            <input type="text" onkeyup="allnumeric(this)" disabled="" value="0" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
-                        </div><!-- Sub Total -->
-                        <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
+                        <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error" style="top: -2px;">close</i>
                     </div>
                 </div>
             </div>
@@ -152,70 +145,62 @@
 
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-5">
         <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-            Transaction
+            Package Information
         </div>
         <div class="tflex tpx-5">
-            <div class="tw-2/5 tflex tflex-col tmr-3 thidden">
-                <label for="sold_from" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Sold from</label>
-                <select name="" id="sold_from" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
-                    @foreach ($sold_from as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endforeach
-                </select>
-            </div><!-- thidden-->
-            <div class="tw-2/5 tflex tflex-col tmr-3 thidden">
-                <label for="payment_method" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Payment method</label>
-                <select name="" id="payment_method" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
-                    @foreach ($payment_method as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endforeach
-                </select>
-            </div><!-- thidden-->
             <div class="tw-1/5 tflex tflex-col tmr-3">
-                <label for="package_qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Package Qty</label>
-                <input type="number" id="package_qty" class="browser-default form-control" style="padding: 6px;" >
-            </div><!-- package Qty -->
+                <label for="status" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Status</label>
+                <select id="status" class="browser-default form-control" style="padding: 6px;" >
+                    <option value="complete">Complete</option>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="request_a_refund">Request for Refund</option>
+                    <option value="refund_complete">Refund Complete</option>
+                    <option value="refund_rejected">Refund Rejected</option>
+                </select>
+            </div><!-- Status -->
             <div class="tw-1/5 tflex tflex-col tmr-3">
-                <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date</label>
-                <input type="text" class="datepicker browser-default form-control">
-            </div>
+                <label for="platform" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Platform</label>
+                <select id="platform" class="browser-default form-control" style="padding: 6px;" >
+                    <option value="shopee">Shopee</option>
+                    <option value="tiktok">Tiktok</option>
+                    <option value="lazada">Lazada</option>
+                </select>
+            </div><!-- Platform -->
+            <div class="tw-1/5 tflex tflex-col tmr-3">
+                <label for="courier" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Courier</label>
+                <select id="courier" class="browser-default form-control" style="padding: 6px;" >
+                    <option value="j&t">J&T</option>
+                    <option value="spx">Shopee Express</option>
+                    <option value="lex">Lazada</option>
+                    <option value="xde">XDE/XIMEX</option>
+                    <option value="ninjavan">Ninja Van</option>
+                    <option value="gogo">Gogo Express</option>
+                </select>
+            </div><!-- Courier -->
+            <div class="tw-1/5 tflex tflex-col tmr-3">
+                <label for="store" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Store</label>
+                <select id="store" class="browser-default form-control" style="padding: 6px;" >
+                    <option value="">Choose ...</option>
+                </select>
+            </div><!-- Pouch Size -->
+            <div class="tw-1/5 tflex tflex-col">
+                <label for="pouch_size" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Pouch Size</label>
+                <select id="pouch_size" class="browser-default form-control" style="padding: 6px;" >
+                    <option value="sm">Small</option>
+                    <option value="md">Medium</option>
+                    <option value="lg">Large</option>
+                    <option value="xl">XL</option>
+                    <option value="xxl">XXL</option>
+                    <option value="nopouch">No Pouch</option>
+                </select>
+            </div><!-- Pouch Size -->
         </div>
-    </div><!-- Transaction -->
+        <div class="tw-full tpx-5 tmt-3">
+            <textarea id="comment" class="browser-default form-control" style="padding: 6px;"  rows="1" maxlength="250"></textarea>
+        </div>
+    </div><!-- Package Information -->
 
-    <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-5">
-        <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-            Customer Information
-        </div>
-        <div class="tflex tpx-5">
-            <div class="tw-1/3 tflex tflex-col tmr-3">
-                <label for="first_name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Name</label>
-                <input type="text" id="first_name" value="Picklist" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- Name -->
-            <div class="tw-1/3 tflex tflex-col tmr-3">
-                <label for="last_name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Surname</label>
-                <input type="text" id="last_name" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- Surname -->
-            <div class="tw-1/3 tflex tflex-col tmr-3">
-                <label for="phone_number" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Phone number</label>
-                <input type="text" onkeyup="allnumeric(this)" id="phone_number" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- Phone number -->
-        </div>
-        <div class="tflex tpx-5 tmt-3">
-            <div class="tw-full tflex tflex-col tmr-3">
-                <label for="address" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Address</label>
-                <input type="text" id="address" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- Address -->
-        </div>
-        <div class="tflex tpx-5 tmt-3">
-            <div class="tw-full tflex tflex-col tmr-3">
-                <label for="fb_link" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Facebook_link</label>
-                <input type="text" id="fb_link" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- FB LINK -->
-        </div>
-
-    </div><!-- Customer Information -->
-
-    <div class="tflex tjustify-end tpy-5 trounded-lg 100 tmt-5">
+    <div class="tflex tjustify-end tpy-5 trounded-lg 100">
         <button class="focus:tbg-primary tbg-primary tml-auto tpy-2 trounded ttext-white tw-24 waves-effect" id="submit_btn">Save</button>
     </div><!-- Save -->
 
@@ -243,7 +228,6 @@
         $('.modal').modal();// initiate modal
         $('.datepicker').datepicker();// initiate datepicker
 
-
         let height = 240;
         $('.add-search-product').click(function () {
             // Get All Data
@@ -251,7 +235,6 @@
             let img = $(this).find('.search-img').attr('src');
             let title = $(this).find('.search-title').html();
             let sku = $(this).find('.search-sku').html();
-            let price = $(this).find('.search-price').val();
 
             let selected_product = $('#hidden_product').clone(true, true); // clone hidden product sample model
             selected_product.removeClass('thidden'); // remove hidden class
@@ -261,83 +244,30 @@
             selected_product.find('.product_img').attr('src', img);// add IMG
             selected_product.find('.product_title').html(title);// add ID
             selected_product.find('.product_sku').html(sku);// add SKU
-            selected_product.find('.product_price').val(price);// add Price
-            selected_product.find('.product_quantity').val(1);// add QTY
-            selected_product.find('.product_subtotal').val(price);// add product_subtotal
 
 
             // Scroll to bottom
             height += 62;
             $('#products_container').append(selected_product).animate({ scrollTop: height }, height);
 
-            getTotal();
         }) // Add product by search
-
-        $('.product_quantity').change(function () {
-            let price = $(this).parent().parent().find('.product_price').val();
-            let qty = $(this).parent().parent().find('.product_quantity').val();
-            let subtotal = $(this).parent().parent().find('.product_subtotal');
-
-            subtotal.val(price * qty);
-
-            changeSubtotal($(this).parent().parent());
-            getTotal();
-        });// On Change Qty
-
-        $('.product_price').change(function () {
-            changeSubtotal($(this).parent().parent());
-            getTotal();
-        });// On Change Price
-
-        function changeSubtotal(parent) {
-            let price = parent.find('.product_price').val();
-            let qty = parent.find('.product_quantity').val();
-            let subtotal = parent.find('.product_subtotal');
-
-            subtotal.val(price * qty);
-        }// Change Sub Total
-
-        function getTotal() {
-            let subtotal = 0;
-            let quantity = 0;
-
-            $('.product_subtotal').each(function () {
-
-                subtotal += parseInt($(this).val());
-            });
-            $('.product_quantity').each(function () {
-                quantity += parseInt($(this).val());
-            });
-
-            $('#total').html(numberWithCommas(subtotal));
-            $('#total_items').html(numberWithCommas(quantity));
-        }// Get Total
-
-        function numberWithCommas(x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }// numberWithCommas
 
         $('.closeItem').click(function () {
             $(this).parent().remove();
-            getTotal();
         })// Remove item
 
         function getAllProducts() {
             let products = [];
 
-            $('#products_container').children().each(function (i) {
+            $('#products_container').find('.product').each(function (i) {
 
                 let product_id = $(this).attr('id');
-                let price = $(this).find('.product_price').val();
-                let qty = $(this).find('.product_quantity').val();
-                let subtotal = $(this).find('.product_subtotal').val();
-
-                if (i != 0) {
+                let condition = $(this).find('.condition').val();
+              
+                if (product_id != "hidden_product") {
                     products.push({
                         product_id: product_id,
-                        price: price,
-                        qty: qty,
-                        subtotal: subtotal,
+                        condition: condition,
                     })
                 }// if product is not the sample clone push
             });
@@ -351,20 +281,16 @@
                 progress_loading(true);// show loader
 
                 let products = getAllProducts();
-
-                $.post( "/admin/orders/store", {
+  
+                $.post( "/admin/rts/store", {
+                    'transaction_id': $('#transaction_id').val(),
                     'products': products,
-
-                    'sold_from': $('#sold_from').val(),
-                    'payment_method': $('#payment_method').val(),
-                    'date': $('.datepicker').val(),
-                    'package_qty': $('#package_qty').val(),
-
-                    'first_name': $('#first_name').val(),
-                    'last_name': $('#last_name').val(),
-                    'phone_number': $('#phone_number').val(),
-                    'address': $('#address').val(),
-                    'fb_link': $('#fb_link').val(),
+                    'status': $('#status').val(),
+                    'platform': $('#platform').val(),
+                    'courier': $('#courier').val(),
+                    'store': $('#store').val(),
+                    'pouch_size': $('#pouch_size').val(),
+                    'comment': $('#comment').val(),
                 })
                 .fail(function(response) {
                     $('#submit_btn').removeAttr('disabled');
@@ -396,7 +322,7 @@
                         title: 'Awesome',
                         text: 'Added Successfuly',
                     });
-                    location.href = '/admin/orders';
+                    // location.reload();
                 });
             })// Submit
 

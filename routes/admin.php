@@ -116,9 +116,11 @@ Route::namespace('Admin')->group(function () {
         Route::post('/patch', 'SuppliersCon@patch')->name('suppliers.patch');
     });
 
-    Route::prefix('return-refund')->group(function () {
-        Route::get('/', 'ReturnRefundCon@index');
-        Route::get('/create', 'ReturnRefundCon@create');
+    Route::prefix('rts')->group(function () {
+        Route::get('/', 'RtsCon@index');
+        Route::get('/create', 'RtsCon@create');
+        Route::post('/store', 'RtsCon@store');
+        Route::post('/view/{transaction_id}', 'RtsCon@view')->name('rts.view');
     });
 
          /*

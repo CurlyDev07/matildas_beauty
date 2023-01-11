@@ -11,6 +11,11 @@ use App\PurchaseProduct;
 
 class PurchaseCon extends Controller
 {
+
+    public function __construct(Product $products) {
+        $this->products = $products;
+    }
+
     public function index(){
 
         $purchases = Purchase::with(['suppliers'])->orderBy('created_at', 'desc')->get();
@@ -23,8 +28,7 @@ class PurchaseCon extends Controller
     }
 
     public function create(){
-        
-        $products = Product::select('id', 'title', 'price')->get('primary_image')->sortBy('title')->toArray();
+        $products = $this->products->active()->select('id', 'title', 'price')->get('primary_image')->sortBy('title')->toArray();
         $suppliers = Suppliers::select('id', 'name', 'surname')->get();
 
         return view('admin.purchase.create', ['products' => $products, 'suppliers' => $suppliers]);

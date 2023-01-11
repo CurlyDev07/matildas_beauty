@@ -79,9 +79,9 @@
                     </a>
                 </li>
                 <li class="tab col">
-                    <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'return-refund', 'active') }}" onclick="location.href = '/admin/return-refund'">
+                    <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'rts', 'active') }}" onclick="location.href = '/admin/rts'">
                        <i class="fas fa-users tmr-1 fa-lg"></i>
-                        Return/Refund
+                        RTS
                     </a>
                 </li>
                 {{-- <li class="tab col">
