@@ -301,6 +301,9 @@
 
         let height = 478;
         $('.add-search-product').click(function () {
+
+            $('#search').val('');
+
             // Get All Data
             let id = $(this).attr('id');
             let img = $(this).find('.search-img').attr('src');
