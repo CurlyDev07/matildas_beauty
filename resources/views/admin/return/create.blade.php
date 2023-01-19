@@ -322,7 +322,7 @@
                         title: 'Awesome',
                         text: 'Added Successfuly',
                     });
-                    // location.reload();
+                    location.reload();
                 });
             })// Submit
 

@@ -7,7 +7,6 @@
         }
     </style>
 @endsection
-
 @section('page')
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-4">

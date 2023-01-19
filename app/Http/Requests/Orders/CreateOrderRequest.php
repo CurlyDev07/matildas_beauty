@@ -32,9 +32,9 @@ class CreateOrderRequest extends FormRequest
             
             'date' => 'required',
             'package_qty' => 'required',
-            'first_name' => 'required',
-            'sold_from'=> 'required|integer',
-            'payment_method'=> 'required|integer',
+            // 'first_name' => 'required',
+            // 'sold_from'=> 'required|integer',
+            // 'payment_method'=> 'required|integer',
         ];
     }
 
