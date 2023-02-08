@@ -14,11 +14,16 @@ use App\Http\Requests\Products\UploadProductsRequest;
 
 class ProductsCon extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        // dd($request->selling_price);
         $products = Product::with(array('images' => function($query){
                 $query->where('primary', 1);
             })
-        )->latest()->get()->toArray();
+        )
+        ->when($request->selling_price, function ($query, $selling_price) {
+            return $query->where('selling_price', 0);
+        })
+        ->latest()->get()->toArray();
         return view('admin.products.index', compact('products'));
     }
     

@@ -69,26 +69,3 @@ Route::get('payment-success', 'PaymentController@payment_success');// for cash o
 Route::get('payment-success-paypal', 'PaymentController@payment_success_paypal');// for paypal not used
 Route::get('payment-error', 'PaymentController@payment_error');
 Auth::routes();
-
-
-Route::get('download', function(){
-
-
-    $img = public_path('/images/products/original-0be2aa303e0640c594ba1e5073f2c6cd.jpg');
-
-    $headers = array(
-        "Content-Type: image/jpeg"
-    );
-
-
-    return response()->download($img, 'original-0be2aa303e0640c594ba1e5073f2c6cd.jpg', $headers);
-
-    // header("Content-Disposition: attachment; filename=" . $img)
-    // $ch = curl_init('http://matildasbeauty.com/images/products/small-09ed1f03ae9e4b899e04b4e24c9c4aa7.jpg');
-    // $fp = fopen('/public/test.jpg', 'wb');
-    // curl_setopt($ch, CURLOPT_FILE, $fp);
-    // curl_setopt($ch, CURLOPT_HEADER, 0);
-    // curl_exec($ch);
-    // curl_close($ch);
-    // fclose($fp);
-});
