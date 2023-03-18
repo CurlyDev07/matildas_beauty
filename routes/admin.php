@@ -38,6 +38,7 @@ Route::namespace('Admin')->group(function () {
         Route::get('/view/{transaction_id}', 'OrderCon@show');
         Route::get('/create', 'OrderCon@create');
         Route::post('/store', 'OrderCon@store');
+        Route::get('/update/{order_id}', 'OrderCon@update');
         Route::post('/change-status', 'OrderCon@change_status');
     });
     

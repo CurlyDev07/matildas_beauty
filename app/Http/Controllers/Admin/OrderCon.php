@@ -141,6 +141,15 @@ class OrderCon extends Controller
         return response()->json(['status' => true]);
     }
 
+    public function update($order_id){
+        $products = $this->products->active()->get(['id', 'title', 'sku', 'selling_price', 'price'])->sortBy('title');
+        $orders = Transaction::find($order_id);
+        $payment_method = PaymentMethod::all();
+        $sold_from = SoldFrom::all();
+
+        return view('admin.orders.update', compact('products', 'payment_method', 'sold_from', 'orders'));
+    }
+
 
     public function change_status(Request $request){
         $transaction = Transaction::find($request->id);
