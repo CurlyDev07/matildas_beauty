@@ -81,6 +81,7 @@ class OrderCon extends Controller
             'payment_method_id' => $request->payment_method,
             'user_id' => 0,
             'package_qty' => $request->package_qty,
+            'total_items' => $request->total_items,
             "first_name" => $request->first_name,
             "last_name" => $request->last_name, 
             "phone_number" => $request->phone_number,  
@@ -136,8 +137,6 @@ class OrderCon extends Controller
             'payment_status' => 'completed',
         ]);
 
-
-
         return response()->json(['status' => true]);
     }
 
@@ -148,6 +147,95 @@ class OrderCon extends Controller
         $sold_from = SoldFrom::all();
 
         return view('admin.orders.update', compact('products', 'payment_method', 'sold_from', 'orders'));
+    }
+
+    public function patch(CreateOrderRequest $request){
+
+        // Delete Previous Record
+        TransactionProducts::where('transaction_id', $request->transaction_id)->delete();
+        TransactionPayment::where('transaction_id', $request->transaction_id)->delete();
+        Transaction::find($request->transaction_id)->delete();
+        
+        // this code is just a copy paste of store method
+
+        if ($request->products[0]['product_id'] == null) {
+
+            $errormsg = [
+                "message" => "The given data was invalid.",
+                "errors" => [
+                    "Product" => ["Please choose a <b>Product</b>"],
+                ]
+            ];
+
+            return response()->json($errormsg, 422);
+        }// Check if first Product is existing
+
+        // ==========================================
+
+        // CREATE TRANSACTION 
+        $transaction = Transaction::create([
+            'sold_from_id' => $request->sold_from,
+            'payment_method_id' => $request->payment_method,
+            'user_id' => 0,
+            'package_qty' => $request->package_qty,
+            'total_items' => $request->total_items,
+            "first_name" => $request->first_name,
+            "last_name" => $request->last_name, 
+            "phone_number" => $request->phone_number,  
+            "email" => '', 
+            'fb_link' => $request->fb_link,
+            "address" => $request->address,   
+            "barangay" => '', 
+            "city" =>'', 
+            "province" => '',
+            "zip_code" => '',
+            'status' => 'completed',
+            'created_at' => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now(),
+        ]);
+
+        $transaction->update([
+            'order_number' => generateOrderNumber($transaction['id'])
+        ]);// Add transaction id
+
+        
+        $total = 0;
+
+        // CREATE TRANSACTION PRODUCTS
+        foreach ($request->products as $product) {
+
+            // check if user all selected products has Product ID
+            // if ID is present Create a record of product : dont create
+
+            if ($product['product_id']) {
+                $transaction->products()->create([
+                    'product_id' => $product['product_id'],
+                    'price' => $product['price'],
+                    'qty' => $product['qty'],
+                    'subtotal' => $product['subtotal'],
+                ]); // save product
+                
+                $total += $product['subtotal'];// add subtotal
+    
+                // UPDATE PRODUCT STOCKS
+                $this->products->updateStocks($product['product_id'], $product['qty']);
+            }
+        }
+
+        // CREATE TRANSACTION PAYMENT
+        TransactionPayment::create([
+            'transaction_id' => $transaction['id'],
+            'payment_id' => "LX-".strtoupper(Str::random(20)),
+            'payer_id' => 'N/A',
+            'payer_email' => 'N/A',
+            'shipping_fee' => 0,
+            'subtotal' => $total,
+            'total' => $total,
+            'currency' => 'PHP',
+            'payment_status' => 'completed',
+        ]);
+
+        return response()->json(['status' => true]);
+
     }
 
 

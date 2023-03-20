@@ -25,18 +25,18 @@ class CreateSupplierRequest extends FormRequest
     {
         return [
             "name" => 'required',
-            "surname" => 'required',
-            "phone_number" => 'required',
-            "province" => 'required',
-            "city" => 'required',
-            "barangay" => 'required',
-            "complete_address" => 'required',
-            "social_media" => 'required',
-            "social_media_link" => 'required',
-            "bank" => 'required',
-            "contact_number" => 'required',
-            "account_name" => 'required',
-            "account_number" => 'required'
+            // "surname" => 'required',
+            // "phone_number" => 'required',
+            // "province" => 'required',
+            // "city" => 'required',
+            // "barangay" => 'required',
+            // "complete_address" => 'required',
+            // "social_media" => 'required',
+            // "social_media_link" => 'required',
+            // "bank" => 'required',
+            // "contact_number" => 'required',
+            // "account_name" => 'required',
+            // "account_number" => 'required'
         ];
     }
 }

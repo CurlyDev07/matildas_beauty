@@ -72,78 +72,20 @@
     </div>
 @endif
 
-    <div class="tbg-white  trounded-lg tshadow-lg ttext-black-100">
+<div class="tbg-white  trounded-lg tshadow-lg ttext-black-100">
         <div class="tflex tjustify-between tborder-b ">
             <div class="ttext-base tfont-medium tpx-5 tpy-4 ttext-title">
                 Orders
             </div>
+            <input type="hidden" name="transaction_id" id="transaction_id" value="{{ $orders->id }}">
             <div class="tflex titems-center tjustify-end tmx-5 tpr-3 tpy-3">
-                <div class="tpr-5 tborder-r"><small class="ttext-gray-500"><span id="total_items">0</span> item(s)</small> TOTAL</div>
-                <div class="tpx-6" style="font-size: 24px;">₱<span id="total">0</span> </div>
+                <div class="tpr-5 tborder-r"><small class="ttext-gray-500"><span id="total_items">{{ $orders->total_items }}</span> item(s)</small> TOTAL</div>
+                <div class="tpx-6" style="font-size: 24px;">₱<span id="total">{{ $orders->payments->total }}</span> </div>
             </div>
         </div>
      
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
-            {{-- <section>
-                <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-                    Basic Information
-                </div>
-                <div class="tflex tpx-5">
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Name</label>
-                        <input type="text" name="name" id="name" value="{{ old('name') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('name')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Name -->
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="surname" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Surname</label>
-                        <input type="text" name="surname" id="surname" value="{{ old('surname') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('surname')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Surname -->
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="phone_number" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Phone number</label>
-                        <input type="text" onkeyup="allnumeric(this)" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('phone_number')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Phone number -->
-                </div>
-                <div class="tflex tpx-5 tmt-3">
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="province" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Province</label>
-                        <input type="text" name="province" id="province" value="{{ old('province') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('province')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="city" class="tfont-normal ttext-sm tmb-2 ttext-black-100">City</label>
-                        <input type="text" name="city" id="city" value="{{ old('city') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('city')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="barangay" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barangay</label>
-                        <input type="text" name="barangay" id="barangay" value="{{ old('barangay') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('barangay')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                </div>
-                <div class="tflex tpx-5 tmt-3">
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="complete_address" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Complete Address</label>
-                        <input type="text" name="complete_address" id="complete_address" value="{{ old('complete_address') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('complete_address')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                </div>
-            </section><!-- Basic Information --> --}}
+
             <div class="tflex tpx-5 tmt-5">
                 <div class="tw-2/5 tborder-r tpr-2">
 
@@ -202,13 +144,13 @@
                     </div>
 
                     @foreach ($orders->products as $order)
-                        <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="{{ $order->id }}">
+                        <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="{{ $order->product->id }}">
                             <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
                                 <div class="tflex titems-center tpy-1">
-                                    <img src="/images/products/small-ebc19cc26cec475eac1c1dcc66b3f46c.jpg" class="product_img" style="height: 50px; width: 50px;" alt="">
+                                    <img src="{{ $order->product->primary_image }}" class="product_img" style="height: 50px; width: 50px;" alt="">
                                     <div class="tpx-2">
-                                        <p class="product_title truncate ttext-sm">{{ $order->title }}</p>
-                                        <small class="product_sku">{{ $order->sku }}</small>
+                                        <p class="product_title truncate ttext-sm">{{ $order->product->title }}</p>
+                                        <small class="product_sku">{{ $order->product->sku }}</small>
                                     </div>
                                 </div>
                             </div><!-- Product -->
@@ -255,11 +197,11 @@
             </div><!-- thidden-->
             <div class="tw-1/5 tflex tflex-col tmr-3">
                 <label for="package_qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Package Qty</label>
-                <input type="number" id="package_qty" class="browser-default form-control" style="padding: 6px;" >
+                <input type="number" id="package_qty" class="browser-default form-control" style="padding: 6px;" value="{{ $orders->package_qty }}">
             </div><!-- package Qty -->
             <div class="tw-1/5 tflex tflex-col tmr-3">
                 <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date</label>
-                <input type="text" class="datepicker browser-default form-control">
+                <input type="text" class="datepicker browser-default form-control" value="{{ $orders->created_at->format('M d, Y') }}">
             </div>
         </div>
     </div><!-- Transaction -->
@@ -350,7 +292,7 @@
             selected_product.find('.product_title').html(title);// add ID
             selected_product.find('.product_sku').html(sku);// add SKU
             selected_product.find('.product_price').val(price);// add Price
-            selected_product.find('.product_quantity').val(last_product_qty);// add QTY
+            selected_product.find('.product_quantity').val(1);// add QTY
             selected_product.find('.product_subtotal').val(price);// add product_subtotal
 
             // Scroll to bottom
@@ -441,13 +383,15 @@
 
                 let products = getAllProducts();
 
-                $.post( "/admin/orders/store", {
+                $.post( "/admin/orders/patch", {
+                    'transaction_id': $('#transaction_id').val(),
                     'products': products,
 
                     'sold_from': $('#sold_from').val(),
                     'payment_method': $('#payment_method').val(),
                     'date': $('.datepicker').val(),
                     'package_qty': $('#package_qty').val(),
+                    'total_items': $('#total_items').html(),
 
                     'first_name': $('#first_name').val(),
                     'last_name': $('#last_name').val(),

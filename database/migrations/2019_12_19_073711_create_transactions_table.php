@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->bigInteger('user_id')->index()->default(0)->comment('0 = guest login');
             $table->string('order_number')->nullable();
             $table->string('package_qty')->nullable();
+            $table->string('total_items')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('phone_number')->nullable();

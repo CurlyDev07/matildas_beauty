@@ -309,9 +309,9 @@
 
                 $.post( "/admin/purchase/store", {
                     'products': products.products,
-                    'supplier': $('.supplier').val(),
                     'total_price': products.sub_total,
                     'total_qty': products.qty,
+                    'supplier': $('.supplier').val(),
                     'shipping_fee': $('.shipping_fee').val(),
                     'transaction_fee': $('.transaction_fee').val(),
                     'tax': $('.tax').val(),

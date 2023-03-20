@@ -8,6 +8,11 @@ use App\Product;
 use App\Suppliers;
 use App\Purchase;
 use App\PurchaseProduct;
+use App\PaymentMethod;
+use App\SoldFrom;
+
+
+use App\Http\Requests\Purchase\CreatePurchaseRequest;
 
 class PurchaseCon extends Controller
 {
@@ -28,22 +33,25 @@ class PurchaseCon extends Controller
     }
 
     public function create(){
-        $products = $this->products->active()->select('id', 'title', 'price')->get('primary_image')->sortBy('title')->toArray();
+        $products = $this->products->active()->get(['id', 'title', 'sku', 'selling_price', 'price'])->sortBy('title');
         $suppliers = Suppliers::select('id', 'name', 'surname')->get();
 
-        return view('admin.purchase.create', ['products' => $products, 'suppliers' => $suppliers]);
+        return view('admin.purchase.create_new', [
+            'products' => $products,
+            'suppliers' => $suppliers,
+        ]);
     }
 
-    public function store(Request $request){
+    public function store(CreatePurchaseRequest $request){
+
         $purchase = Purchase::create([
             "supplier" => $request->supplier, 
-            "total_price" => $request->total_price,
+            "total_price" => (int)str_replace(',', '', $request->total_price),
             "total_qty" => $request->total_qty,
             "shipping_fee" => $request->shipping_fee,
             "transaction_fee" => $request->transaction_fee,
             "tax" => $request->tax
         ]);
-        // dd($request->products);
 
         foreach ($request->products as $product) {
             // purchase_product

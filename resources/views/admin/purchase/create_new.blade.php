@@ -1,4 +1,4 @@
-@extends('admin.orders.layouts')
+@extends('admin.purchase.layouts')
 
 @section('css')
 
@@ -84,66 +84,7 @@
         </div>
      
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
-            {{-- <section>
-                <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-                    Basic Information
-                </div>
-                <div class="tflex tpx-5">
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Name</label>
-                        <input type="text" name="name" id="name" value="{{ old('name') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('name')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Name -->
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="surname" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Surname</label>
-                        <input type="text" name="surname" id="surname" value="{{ old('surname') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('surname')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Surname -->
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="phone_number" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Phone number</label>
-                        <input type="text" onkeyup="allnumeric(this)" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('phone_number')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Phone number -->
-                </div>
-                <div class="tflex tpx-5 tmt-3">
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="province" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Province</label>
-                        <input type="text" name="province" id="province" value="{{ old('province') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('province')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="city" class="tfont-normal ttext-sm tmb-2 ttext-black-100">City</label>
-                        <input type="text" name="city" id="city" value="{{ old('city') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('city')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="barangay" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barangay</label>
-                        <input type="text" name="barangay" id="barangay" value="{{ old('barangay') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('barangay')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                </div>
-                <div class="tflex tpx-5 tmt-3">
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="complete_address" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Complete Address</label>
-                        <input type="text" name="complete_address" id="complete_address" value="{{ old('complete_address') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('complete_address')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                </div>
-            </section><!-- Basic Information --> --}}
+          
             <div class="tflex tpx-5 tmt-5">
                 <div class="tw-2/5 tborder-r tpr-2">
 
@@ -209,9 +150,9 @@
         <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
             Transaction
         </div>
-        <div class="tflex tpx-5">
+        {{-- <div class="tflex tpx-5">
             <div class="tw-2/5 tflex tflex-col tmr-3 thidden">
-                <label for="sold_from" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Sold from</label>
+                <label for="sold_from" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Shipping Fee (Optional, You can add this later.)</label>
                 <select name="" id="sold_from" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
                     @foreach ($sold_from as $item)
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -234,41 +175,38 @@
                 <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date</label>
                 <input type="text" class="datepicker browser-default form-control">
             </div>
+        </div> --}}
+
+        <div class="tflex tpx-5 tmt-5">
+            <div class="tw-1/2 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Shipping Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
+                <input type="text" class="shipping_fee tcursor-pointer browser-default form-control">
+            </div><!-- Shipping Fee -->
+            
+            <div class="tw-1/2 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Transaction Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
+                <input type="text" class="transaction_fee tcursor-pointer browser-default form-control">
+            </div><!-- Transaction Fee -->
         </div>
+
+        <div class="tflex tpx-5 tmt-5">
+            <div class="tw-1/2 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Tax <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
+                <input type="text" class="tax tcursor-pointer browser-default form-control">
+            </div><!-- Tax -->
+
+            <div class="tw-1/2 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Suppliers </label>
+                <select class="supplier tcursor-pointer browser-default form-control" style="padding: 6px;">
+                    <option value="" data-price="" selected="">Choose supplier ...</option>
+                    @foreach ($suppliers as $supplier)
+                        <option value="{{ $supplier['id'] }}" >{{ $supplier['name'] }} {{ $supplier['surname'] }}</option>
+                    @endforeach
+                </select>
+            </div><!-- suppliers -->
+        </div>
+        
     </div><!-- Transaction -->
-
-    <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-5">
-        <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-            Customer Information
-        </div>
-        <div class="tflex tpx-5">
-            <div class="tw-1/3 tflex tflex-col tmr-3">
-                <label for="first_name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Name</label>
-                <input type="text" id="first_name" value="Picklist" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- Name -->
-            <div class="tw-1/3 tflex tflex-col tmr-3">
-                <label for="last_name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Surname</label>
-                <input type="text" id="last_name" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- Surname -->
-            <div class="tw-1/3 tflex tflex-col tmr-3">
-                <label for="phone_number" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Phone number</label>
-                <input type="text" onkeyup="allnumeric(this)" id="phone_number" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- Phone number -->
-        </div>
-        <div class="tflex tpx-5 tmt-3">
-            <div class="tw-full tflex tflex-col tmr-3">
-                <label for="address" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Address</label>
-                <input type="text" id="address" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- Address -->
-        </div>
-        <div class="tflex tpx-5 tmt-3">
-            <div class="tw-full tflex tflex-col tmr-3">
-                <label for="fb_link" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Facebook_link</label>
-                <input type="text" id="fb_link" class="browser-default form-control" style="padding: 6px;">
-            </div><!-- FB LINK -->
-        </div>
-
-    </div><!-- Customer Information -->
 
     <div class="tflex tjustify-end tpy-5 trounded-lg 100 tmt-5">
         <button class="focus:tbg-primary tbg-primary tml-auto tpy-2 trounded ttext-white tw-24 waves-effect" id="submit_btn">Save</button>
@@ -401,7 +339,7 @@
                         product_id: product_id,
                         price: price,
                         qty: qty,
-                        subtotal: subtotal,
+                        sub_total: subtotal,
                     })
                 }// if product is not the sample clone push
             });
@@ -416,20 +354,14 @@
 
                 let products = getAllProducts();
 
-                $.post( "/admin/orders/store", {
+                $.post( "/admin/purchase/store", {
                     'products': products,
-
-                    'sold_from': $('#sold_from').val(),
-                    'payment_method': $('#payment_method').val(),
-                    'date': $('.datepicker').val(),
-                    'package_qty': $('#package_qty').val(),
-                    'total_items': $('#total_items').html(),
-
-                    'first_name': $('#first_name').val(),
-                    'last_name': $('#last_name').val(),
-                    'phone_number': $('#phone_number').val(),
-                    'address': $('#address').val(),
-                    'fb_link': $('#fb_link').val(),
+                    'total_price': $('#total').html(),
+                    'total_qty': $('#total_items').html(),
+                    'supplier': $('.supplier').val(),
+                    'shipping_fee': $('.shipping_fee').val(),
+                    'transaction_fee': $('.transaction_fee').val(),
+                    'tax': $('.tax').val(),
                 })
                 .fail(function(response) {
                     $('#submit_btn').removeAttr('disabled');
@@ -454,14 +386,14 @@
                 })
                 .done(function( res ) {
                     $('#submit_btn').removeAttr('disabled');
-                    progress_loading(false);// show loader
+                    // progress_loading(false);// show loader
 
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Awesome',
-                        text: 'Added Successfuly',
-                    });
-                    location.href = '/admin/orders';
+                    // Swal.fire({
+                    //     icon: 'success',
+                    //     title: 'Awesome',
+                    //     text: 'Added Successfuly',
+                    // });
+                    // location.href = '/admin/purchase';
                 });
             })// Submit
 
