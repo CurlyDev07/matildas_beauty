@@ -54,6 +54,9 @@
                                 <a href="/admin/purchase/view/{{ $purchase->id }}" >
                                     <i class="fa-external-link-alt fas gray-text tcursor-pointer tooltipped" data-position="left" data-tooltip="view transaction"></i>
                                 </a>
+                                <a href="/admin/purchase/update/{{ $purchase->id }}" >
+                                    <i class="fas fa-edit hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Edit"></i>       
+                                </a>
                             </td>
                         </tr>
                     @endforeach

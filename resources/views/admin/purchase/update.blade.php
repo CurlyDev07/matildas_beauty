@@ -112,7 +112,7 @@
                                 </a>
                             </li>
                         @endforeach
-                    </ul>
+                    </ul><!-- Product Pick list -->
 
                 </div>
                    
@@ -141,6 +141,40 @@
                         </div><!-- Sub Total -->
                         <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
                     </div>
+
+                    {{-- {{ dd($purchase->purchase_product) }} --}}
+
+                    @foreach ($purchase->purchase_product as $purchase_product)
+
+                        {{-- {{ dd($purchase_product->product) }} --}}
+
+                        <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="178">
+                            <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
+                                <div class="tflex titems-center tpy-1">
+                                    <img src="/images/products/small-ebc19cc26cec475eac1c1dcc66b3f46c.jpg" class="product_img" style="height: 50px; width: 50px;" alt="">
+                                    <div class="tpx-2">
+                                        <p class="product_title truncate ttext-sm">AMBER ROMANCE NOIR</p>
+                                        <small class="product_sku">VS_ARN</small>
+                                    </div>
+                                </div>
+                            </div><!-- Product -->
+                            <div class="tw-1/6 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
+                                <input type="text" onkeyup="allnumeric(this)" value="0" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
+                            </div><!-- Price -->
+                            <div class="tw-1/6 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Quantity</label>
+                                <input type="number" onkeyup="allnumeric(this)" value="0" class="product_quantity browser-default form-control" style="padding: 6px;">
+                            </div><!-- QTY -->
+                            <div class="tw-1/6 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Subtotal</label>
+                                <input type="text" onkeyup="allnumeric(this)" disabled="" value="0" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
+                            </div><!-- Sub Total -->
+                            <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
+                        </div>
+
+                        
+                    @endforeach
                 </div>
             </div>
         </div>

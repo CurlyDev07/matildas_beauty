@@ -36,7 +36,7 @@ class PurchaseCon extends Controller
         $products = $this->products->active()->get(['id', 'title', 'sku', 'selling_price', 'price'])->sortBy('title');
         $suppliers = Suppliers::select('id', 'name', 'surname')->get();
 
-        return view('admin.purchase.create_new', [
+        return view('admin.purchase.create', [
             'products' => $products,
             'suppliers' => $suppliers,
         ]);
@@ -67,6 +67,19 @@ class PurchaseCon extends Controller
 
         return response()->json(['code' => 200]);
 
+    }
+
+    public function update($purchase_id){
+        $products = $this->products->active()->get(['id', 'title', 'sku', 'selling_price', 'price'])->sortBy('title');
+        $suppliers = Suppliers::select('id', 'name', 'surname')->get();
+        $purchase = Purchase::find($purchase_id);
+        // dd($purchase);
+
+        return view('admin.purchase.update', [
+            'products' => $products,
+            'suppliers' => $suppliers,
+            'purchase' => $purchase
+        ]);
     }
 
     public function view($id){
