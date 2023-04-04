@@ -15,6 +15,16 @@
             <span class="ttext-base ttext-title tfont-medium">Product List</span>
             <ul class="tflex">
                 <li class="">
+                    <a href="{{ request()->fullUrlWithQuery(['no_selling_price' => 'true']) }}" class="tooltipped" data-position="top" data-tooltip="Filter Products with no Selling Price">
+                        <i class="material-icons grey-text">monetization_on</i>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{{ request()->fullUrlWithQuery(['no_cogs' => 'true']) }}" class="tooltipped" data-position="top" data-tooltip="Filter Products with no cogs">
+                        <i class="material-icons grey-text">monetization_on</i>
+                    </a>
+                </li>
+                <li class="">
                     <i class="material-icons grey-text">delete</i>
                 </li>
                 <li class="ttext-center">
@@ -23,6 +33,9 @@
                 <li class="ttext-center">
                     <i class="material-icons grey-text">more_vert</i>
                 </li>
+                <a href="/admin/products">
+                    <img src="{{ asset('icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
+                </a>
             </ul>
         </div>
         <div class="tpx-3 tpy-4 tflex tjustify-center">

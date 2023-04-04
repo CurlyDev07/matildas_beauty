@@ -15,7 +15,7 @@ use App\Http\Requests\Products\UploadProductsRequest;
 class ProductsCon extends Controller
 {
     public function index(Request $request){
-        // dd($request->selling_price);
+        // dd($request->no_cogs);
         $products = Product::with(array('images' => function($query){
                 $query->where('primary', 1);
             })
@@ -23,6 +23,12 @@ class ProductsCon extends Controller
         ->when($request->selling_price, function ($query, $selling_price) {
             return $query->where('selling_price', 0);
         })
+        ->when($request->no_cogs, function($query){
+            return $query->where('price', 0);
+        })// filter all product with no price
+        ->when($request->no_selling_price, function($query){
+            return $query->where('selling_price', 0);
+        })// filter all product with no no_selling_price
         ->latest()->get()->toArray();
         return view('admin.products.index', compact('products'));
     }
