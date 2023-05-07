@@ -25,9 +25,6 @@ class CreatePurchaseRequest extends FormRequest
     {
         return [
             "supplier" => 'required',
-            "shipping_fee" => 'numeric',
-            "transaction_fee" => 'numeric',
-            "tax" => 'numeric',
         ];
     }
 }
