@@ -396,6 +396,7 @@
                     'phone_number': $('#phone_number').val(),
                     'address': $('#address').val(),
                     'fb_link': $('#fb_link').val(),
+                    
                     'products': products,
                 })
                 .fail(function(response) {
