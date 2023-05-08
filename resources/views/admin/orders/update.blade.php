@@ -385,19 +385,19 @@
 
                 $.post( "/admin/orders/patch", {
                     'transaction_id': $('#transaction_id').val(),
-                    'products': products,
-
                     'sold_from': $('#sold_from').val(),
                     'payment_method': $('#payment_method').val(),
                     'date': $('.datepicker').val(),
                     'package_qty': $('#package_qty').val(),
                     'total_items': $('#total_items').html(),
-
+                    
                     'first_name': $('#first_name').val(),
                     'last_name': $('#last_name').val(),
                     'phone_number': $('#phone_number').val(),
                     'address': $('#address').val(),
                     'fb_link': $('#fb_link').val(),
+                    
+                    'products': products,
                 })
                 .fail(function(response) {
                     $('#submit_btn').removeAttr('disabled');
