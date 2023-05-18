@@ -103,6 +103,7 @@ Route::namespace('Admin')->group(function () {
         Route::post('/store', 'PurchaseCon@store');
         Route::get('/view/{id}', 'PurchaseCon@view');
         Route::get('/update/{id}', 'PurchaseCon@update');
+        Route::post('/patch', 'PurchaseCon@patch');
     });
 
 

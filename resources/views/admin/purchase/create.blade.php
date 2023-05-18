@@ -106,7 +106,7 @@
                                         <div class="tpx-2">
                                             <p class="search-title ttext-md">{{ $product->title }}</p>
                                             <small class="search-sku">{{ $product->sku }}</small>
-                                            <input type="hidden" class="search-price" value="{{ $product->selling_price }}">
+                                            <input type="hidden" class="search-price" value="{{ $product->price }}">
                                         </div>
                                     </div>
                                 </a>
