@@ -102,6 +102,8 @@ Route::namespace('Admin')->group(function () {
         Route::get('/create', 'PurchaseCon@create');
         Route::post('/store', 'PurchaseCon@store');
         Route::get('/view/{id}', 'PurchaseCon@view');
+        Route::get('/report', 'PurchaseCon@report');
+        Route::post('/report-data', 'PurchaseCon@report_data');
         Route::get('/update/{id}', 'PurchaseCon@update');
         Route::post('/patch', 'PurchaseCon@patch');
     });

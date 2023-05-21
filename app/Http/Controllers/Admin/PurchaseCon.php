@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Suppliers;
@@ -10,7 +11,7 @@ use App\Purchase;
 use App\PurchaseProduct;
 use App\PaymentMethod;
 use App\SoldFrom;
-
+use Carbon\Carbon;
 
 use App\Http\Requests\Purchase\CreatePurchaseRequest;
 
@@ -100,6 +101,10 @@ class PurchaseCon extends Controller
             // purchase_product
             $purchase->purchase_product()->create($product);
 
+            // ======================================================
+            // Stocks are not yet updated after editing the purchase
+            // ======================================================
+
             // // Add stocks/Update Inventory
             // $get_product = Product::select('id', 'sku', 'qty')->find($product['product_id']);
 
@@ -115,6 +120,26 @@ class PurchaseCon extends Controller
     public function view($id){
         $purchase = Purchase::where('id', $id)->with(['purchase_product', 'purchase_product.product:id,title'])->first()->toArray();
         return view('admin.purchase.view', ['purchase' => $purchase]);
+    }
+    
+    public function report(){
+        return view('admin.purchase.report');
+    }
+
+    public function report_data(Request $request){
+
+        if ($request->filter == 'day') {
+            $day = Purchase::select('total_price', 'created_at')->whereMonth('created_at', Carbon::now()->month)->get();
+            return $day;
+        }
+
+
+        $month = DB::table('purchases')
+            ->select(DB::raw('sum(total_price) as total'), DB::raw('DATE_FORMAT(created_at, "%M-%Y") as month'))
+            ->groupBy('month')
+            ->get();
+
+        return $month;
     }
 
 }
