@@ -123,13 +123,30 @@ class PurchaseCon extends Controller
     }
     
     public function report(){
+        // $month = DB::table('purchases')
+        // ->select(DB::raw('sum(total_price) as total'), DB::raw('DATE_FORMAT(created_at, "%d-%M") as day'))
+        // ->whereMonth('created_at', Carbon::now()->month)
+        // ->groupBy('day')
+        // ->get();
+
+        // dd($month);
+
         return view('admin.purchase.report');
     }
 
     public function report_data(Request $request){
 
         if ($request->filter == 'day') {
-            $day = Purchase::select('total_price', 'created_at')->whereMonth('created_at', Carbon::now()->month)->get();
+            // $day = Purchase::select('total_price', 'created_at')->whereMonth('created_at', Carbon::now()->month)->get();
+
+            $day = DB::table('purchases')
+            ->select(DB::raw('sum(total_price) as total'), DB::raw('DATE_FORMAT(created_at, "%d-%M") as day'))
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->groupBy('day')
+            ->get();
+
+
+
             return $day;
         }
 

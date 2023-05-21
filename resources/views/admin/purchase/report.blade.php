@@ -44,8 +44,8 @@
                 let dates = [];
 
                 $.each(data, function (index, value) { 
-                    total_prices.push(value.total_price);
-                    dates.push(moment(value.created_at).format('DD'));
+                    total_prices.push(value.total);
+                    dates.push(moment(value.day).format('DD'));
                 });// arrange data 
 
                 var dailychart = {
