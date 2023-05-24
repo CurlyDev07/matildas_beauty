@@ -41,6 +41,7 @@ Route::namespace('Admin')->group(function () {
         Route::get('/update/{order_id}', 'OrderCon@update');
         Route::post('/patch', 'OrderCon@patch');
         Route::post('/change-status', 'OrderCon@change_status');
+        Route::get('/history', 'OrderCon@history');
     });
     
     /*
