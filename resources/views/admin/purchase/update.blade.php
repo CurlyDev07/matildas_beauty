@@ -81,10 +81,11 @@
                 <div class="tpr-5 tborder-r"><small class="ttext-gray-500"><span id="total_items">0</span> item(s)</small> TOTAL</div>
                 <div class="tpx-6" style="font-size: 24px;">₱<span id="total">0</span> </div>
             </div>
+          <input type="hidden" id="purchase_id" value="{{ request()->id }}">
+
         </div>
      
-        <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
-          
+        <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3" >
             <div class="tflex tpx-5 tmt-5">
                 <div class="tw-2/5 tborder-r tpr-2">
 
@@ -142,33 +143,33 @@
                         <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
                     </div>
 
-                    {{-- {{ dd($purchase->purchase_product) }} --}}
 
+
+                    
                     @foreach ($purchase->purchase_product as $purchase_product)
 
-                        {{-- {{ dd($purchase_product->product) }} --}}
 
-                        <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="178">
+                        <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="{{ $purchase_product->product['id'] }}">
                             <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
                                 <div class="tflex titems-center tpy-1">
-                                    <img src="/images/products/small-ebc19cc26cec475eac1c1dcc66b3f46c.jpg" class="product_img" style="height: 50px; width: 50px;" alt="">
+                                    <img src="{{ $purchase_product->product['primary_image'] }}" class="product_img" style="height: 50px; width: 50px;" alt="">
                                     <div class="tpx-2">
-                                        <p class="product_title truncate ttext-sm">AMBER ROMANCE NOIR</p>
-                                        <small class="product_sku">VS_ARN</small>
+                                        <p class="product_title truncate ttext-sm">{{ $purchase_product->product['title'] }}</p>
+                                        <small class="product_sku">{{ $purchase_product->product['sku'] }}</small>
                                     </div>
                                 </div>
                             </div><!-- Product -->
                             <div class="tw-1/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
-                                <input type="text" onkeyup="allnumeric(this)" value="0" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
+                                <input type="text" onkeyup="allnumeric(this)" value="{{ $purchase_product->product['price'] }}" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
                             </div><!-- Price -->
                             <div class="tw-1/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Quantity</label>
-                                <input type="number" onkeyup="allnumeric(this)" value="0" class="product_quantity browser-default form-control" style="padding: 6px;">
+                                <input type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['qty'] }}" class="product_quantity browser-default form-control" style="padding: 6px;">
                             </div><!-- QTY -->
                             <div class="tw-1/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Subtotal</label>
-                                <input type="text" onkeyup="allnumeric(this)" disabled="" value="0" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
+                                <input type="text" onkeyup="allnumeric(this)" disabled="" value="{{ $purchase_product->sub_total }}" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
                             </div><!-- Sub Total -->
                             <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
                         </div>
@@ -179,6 +180,7 @@
             </div>
         </div>
     </div><!-- Create Order -->
+
 
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-5">
         <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
@@ -214,19 +216,19 @@
         <div class="tflex tpx-5 tmt-5">
             <div class="tw-1/2 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Shipping Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
-                <input type="text" class="shipping_fee tcursor-pointer browser-default form-control">
+                <input type="text" class="shipping_fee tcursor-pointer browser-default form-control" value="{{ ($purchase->shipping_fee) }}"> 
             </div><!-- Shipping Fee -->
             
             <div class="tw-1/2 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Transaction Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
-                <input type="text" class="transaction_fee tcursor-pointer browser-default form-control">
+                <input type="text" class="transaction_fee tcursor-pointer browser-default form-control" value="{{ ($purchase->transaction_fee) }}">
             </div><!-- Transaction Fee -->
         </div>
 
         <div class="tflex tpx-5 tmt-5">
             <div class="tw-1/2 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Tax <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
-                <input type="text" class="tax tcursor-pointer browser-default form-control">
+                <input type="text" class="tax tcursor-pointer browser-default form-control" value="{{ ($purchase->tax) }}">
             </div><!-- Tax -->
 
             <div class="tw-1/2 tmr-2">
@@ -234,7 +236,13 @@
                 <select class="supplier tcursor-pointer browser-default form-control" style="padding: 6px;">
                     <option value="" data-price="" selected="">Choose supplier ...</option>
                     @foreach ($suppliers as $supplier)
-                        <option value="{{ $supplier['id'] }}" >{{ $supplier['name'] }} {{ $supplier['surname'] }}</option>
+                        <option value="{{ $supplier['id'] }}"
+
+                        @if ($supplier['id'] == $purchase->supplier)
+                            {{ 'selected' }}
+                        @endif
+
+                        >{{ $supplier['name'] }} {{ $supplier['surname'] }}</option>
                     @endforeach
                 </select>
             </div><!-- suppliers -->
@@ -269,7 +277,7 @@
     <script>
         $('.modal').modal();// initiate modal
         $('.datepicker').datepicker();// initiate datepicker
-
+        getTotal(); // Display Saved 
 
         let height = 478;
         $('.add-search-product').click(function () {
@@ -388,7 +396,8 @@
 
                 let products = getAllProducts();
 
-                $.post( "/admin/purchase/store", {
+                $.post( "/admin/purchase/patch", {
+                    'purchase_id': $('#purchase_id').val(),
                     'products': products,
                     'total_price': $('#total').html(),
                     'total_qty': $('#total_items').html(),
@@ -420,14 +429,14 @@
                 })
                 .done(function( res ) {
                     $('#submit_btn').removeAttr('disabled');
-                    // progress_loading(false);// show loader
+                    progress_loading(false);// show loader
 
-                    // Swal.fire({
-                    //     icon: 'success',
-                    //     title: 'Awesome',
-                    //     text: 'Added Successfuly',
-                    // });
-                    // location.href = '/admin/purchase';
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Awesome',
+                        text: 'Added Successfuly',
+                    });
+                    location.href = '/admin/purchase';
                 });
             })// Submit
 

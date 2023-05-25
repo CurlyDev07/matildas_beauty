@@ -79,15 +79,15 @@
         <div class="tflex tpx-5">
             <div class="tw-1/2 tflex tflex-col tmr-3">
                 <label for="selling_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Selling Price</label>
-                <input type="number" onkeyup="allnumeric(this)" id="selling_price" class="browser-default form-control"  style="padding: 6px;">
+                <input type="number" onkeyup="allnumeric(this)" id="selling_price" class="browser-default form-control" value="0"  style="padding: 6px;">
             </div>
             <div class="tw-1/2 tflex tflex-col tmr-3">
                 <label for="campaign_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Campaign Price</label>
-                <input type="number" onkeyup="allnumeric(this)" id="campaign_price" class="browser-default form-control"  style="padding: 6px;">
+                <input type="number" onkeyup="allnumeric(this)" id="campaign_price" class="browser-default form-control" value="0" style="padding: 6px;">
             </div>
             <div class="tw-1/2 tflex tflex-col tmr-3">
                 <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Cogs</label>
-                <input type="number" onkeyup="allnumeric(this)" id="price" class="browser-default form-control" style="padding: 6px;">
+                <input type="number" onkeyup="allnumeric(this)" id="price" class="browser-default form-control" value="0" style="padding: 6px;">
             </div>
             <div class="tw-1/2 tflex tflex-col tml-3">
                 <label for="compare_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Website Price <small class="ttext-blue-500">(x2 of Cogs)</small></label>

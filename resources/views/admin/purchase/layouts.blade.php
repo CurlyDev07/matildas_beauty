@@ -14,6 +14,14 @@
                             </a>
                         </div>
                     </li>
+                    <li onclick="window.location.href = '/admin/purchase/report'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/purchase/report', 'tborder-primary tborder-l-4') }}">
+                        <div class="ttext-md ttext-black-100 tmy-1 ">
+                            Purchase Report
+                            <a class="secondary-content">
+                                <i class="fas fa-shopping-basket ttext-primary"></i>
+                            </a>
+                        </div>
+                    </li>
                     <li onclick="window.location.href = '/admin/purchase/create'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/purchase/create', 'tborder-primary tborder-l-4') }}">
                         <div class="ttext-md ttext-black-100 tmy-1 ">
                             Make a Purchase Order
@@ -27,14 +35,6 @@
                             Purchase Suggestions
                             <a class="secondary-content">
                                 <i class="fas fa-cash-register ttext-primary"></i>
-                            </a>
-                        </div>
-                    </li>
-                    <li onclick="window.location.href = '/admin/purchase/supplier'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/purchase/supplier', 'tborder-primary tborder-l-4') }}">
-                        <div class="ttext-md ttext-black-100 tmy-1 ">
-                            Supplier List
-                            <a class="secondary-content">
-                                <i class="fas fa-th-list ttext-primary"></i>
                             </a>
                         </div>
                     </li>

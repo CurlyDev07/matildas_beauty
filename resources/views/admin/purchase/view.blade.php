@@ -40,7 +40,7 @@
                 <tbody>
                     @foreach ($purchase['purchase_product'] as $product)
                         <tr>
-                            <td style="width: 55%;!important">
+                            <td style="width: 55%;!important" class="tpy-0">
                                 <div class="tflex titems-center">
                                     <img src="{{ $product['product']['primary_image'] }}" style="height: 80px;width: 80px;" alt="">
                                     <span class="ttext-primary hover:tunderline"></span>
