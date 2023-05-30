@@ -20,7 +20,7 @@ class CreatePurchaseProductsTable extends Migration
             $table->string('price')->nullable();
             $table->integer('qty')->nullable();
             $table->integer('sub_total')->nullable();
-            $table->string('received')->default('false')->comment('is product received or not? true | false');
+            $table->string('received')->default('no')->comment('is product received or not? yes | no | incomplete');
             $table->integer('received_qty')->nullable()->comment('The Received Quantity');
             $table->timestamps();
         });
