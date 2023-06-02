@@ -51,7 +51,8 @@ class PurchaseCon extends Controller
             "total_qty" => (int)str_replace(',', '', $request->total_qty),
             "shipping_fee" => $request->shipping_fee,
             "transaction_fee" => $request->transaction_fee,
-            "tax" => $request->tax
+            "tax" => $request->tax,
+            "date" => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now()
         ]);
 
         foreach ($request->products as $product) {

@@ -178,12 +178,16 @@
         </div> --}}
 
         <div class="tflex tpx-5 tmt-5">
-            <div class="tw-1/2 tmr-2">
+            <div class="tw-1/5 tmr-3">
+                <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date <small class="ttext-gray-600"> (Date of purchased)</small></label>
+                <input type="text" class="datepicker browser-default form-control" value="">
+            </div><!-- Date -->
+            <div class="tw-2/5 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Shipping Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
                 <input type="text" class="shipping_fee tcursor-pointer browser-default form-control">
             </div><!-- Shipping Fee -->
             
-            <div class="tw-1/2 tmr-2">
+            <div class="tw-2/5 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Transaction Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
                 <input type="text" class="transaction_fee tcursor-pointer browser-default form-control">
             </div><!-- Transaction Fee -->
@@ -362,6 +366,7 @@
                     'shipping_fee': $('.shipping_fee').val(),
                     'transaction_fee': $('.transaction_fee').val(),
                     'tax': $('.tax').val(),
+                    'date': $('.datepicker').val(),
                 })
                 .fail(function(response) {
                     $('#submit_btn').removeAttr('disabled');
