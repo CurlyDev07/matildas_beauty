@@ -141,8 +141,7 @@
                             <input type="text" onkeyup="allnumeric(this)" disabled="" value="0" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
                         </div><!-- Sub Total -->
                         <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
-                    </div>
-
+                    </div><!-- Test -->
                     
                     @foreach ($purchase->purchase_product as $purchase_product)
 
