@@ -24,7 +24,7 @@ class PurchaseCon extends Controller
 
     public function index(){
 
-        $purchases = Purchase::with(['suppliers'])->orderBy('created_at', 'desc')->get();
+        $purchases = Purchase::with(['suppliers'])->orderBy('date', 'desc')->get();
         // dd($purchases);
         return view('admin.purchase.index', ['purchases' => $purchases]);
     }
