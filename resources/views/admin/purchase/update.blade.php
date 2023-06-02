@@ -207,12 +207,16 @@
         </div>
 
         <div class="tflex tpx-5 tmt-5">
-            <div class="tw-1/2 tmr-2">
+            <div class="tw-1/5 tmr-3">
+                <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date <small class="ttext-gray-600"> (Date of purchased)</small></label>
+                <input type="text" class="datepicker browser-default form-control" value="{{ date_f($purchase->date, 'M d, Y') }}">
+            </div><!-- Date -->
+            <div class="tw-2/5 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Shipping Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
                 <input type="text" class="shipping_fee tcursor-pointer browser-default form-control" value="{{ ($purchase->shipping_fee) }}"> 
             </div><!-- Shipping Fee -->
             
-            <div class="tw-1/2 tmr-2">
+            <div class="tw-2/5 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Transaction Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
                 <input type="text" class="transaction_fee tcursor-pointer browser-default form-control" value="{{ ($purchase->transaction_fee) }}">
             </div><!-- Transaction Fee -->
@@ -225,7 +229,7 @@
             </div><!-- Tax -->
 
             <div class="tw-1/2 tmr-2">
-                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Suppliers </label>
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Supplier </label>
                 <select class="supplier tcursor-pointer browser-default form-control" style="padding: 6px;">
                     <option value="" data-price="" selected="">Choose supplier ...</option>
                     @foreach ($suppliers as $supplier)
@@ -420,7 +424,8 @@
                     'shipping_fee': $('.shipping_fee').val(),
                     'transaction_fee': $('.transaction_fee').val(),
                     'tax': $('.tax').val(),
-                    'order_recieved': orderReceived()
+                    'order_recieved': orderReceived(),
+                    'date': $('.datepicker').val(),
                 })
                 .fail(function(response) {
                     $('#submit_btn').removeAttr('disabled');

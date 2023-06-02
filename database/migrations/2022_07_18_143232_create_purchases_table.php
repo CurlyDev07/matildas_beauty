@@ -22,6 +22,7 @@ class CreatePurchasesTable extends Migration
             $table->integer('transaction_fee')->nullable();
             $table->integer('tax')->nullable();
             $table->string('status')->default('OTW')->comments('VALUES: OTW|INCOMPLETE|COMPLETED');
+            $table->date('date')->comment('date of purchase');
             $table->timestamps();
         });
     }

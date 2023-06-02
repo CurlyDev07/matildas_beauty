@@ -87,6 +87,7 @@ class PurchaseCon extends Controller
 
     public function patch(Request $request){
 
+
         Purchase::find($request->purchase_id)->delete();
         PurchaseProduct::where('purchase_id', $request->purchase_id)->delete();
 
@@ -96,7 +97,8 @@ class PurchaseCon extends Controller
             "total_qty" => (int)str_replace(',', '', $request->total_qty),
             "shipping_fee" => $request->shipping_fee,
             "transaction_fee" => $request->transaction_fee,
-            "status" => $request->tax
+            "status" => $request->tax,
+            "date" => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now()
         ]);
 
         // These Variables are used to get the Purchase Status
