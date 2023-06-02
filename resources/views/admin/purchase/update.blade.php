@@ -158,7 +158,7 @@
                             </div><!-- Product -->
                             <div class="tw-1/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
-                                <input type="text" onkeyup="allnumeric(this)" value="{{ $purchase_product->product['price'] }}" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
+                                <input type="text" onkeyup="allnumeric(this)" value="{{ $purchase_product['price'] }}" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
                             </div><!-- Price -->
                             <div class="tw-1/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Quantity</label>
