@@ -10,6 +10,7 @@ use App\TransactionPayment;
 use App\TransactionProducts;
 use App\Product;
 use App\PaymentMethod;
+use App\TransactionPorductSummary;
 use App\SoldFrom;
 use App\Http\Requests\Orders\CreateOrderRequest;
 use Illuminate\Support\Str;
@@ -139,6 +140,16 @@ class OrderCon extends Controller
             'payment_status' => 'completed',
         ]);
 
+        //CREATE TRANSACTION PRODUCTS SUMMARY
+        foreach (request()->product_sum as $summary) {
+            TransactionPorductSummary::create([
+                'transaction_id' => $transaction['id'],
+                'product_id' => $summary['product_id'],
+                'qty' => $summary['qty'],
+                'date' => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now(),
+            ]);
+        }
+
         return response()->json(['status' => true]);
     }
 
@@ -239,7 +250,6 @@ class OrderCon extends Controller
         return response()->json(['status' => true]);
 
     }
-
 
     public function change_status(Request $request){
         $transaction = Transaction::find($request->id);

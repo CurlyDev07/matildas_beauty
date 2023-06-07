@@ -84,66 +84,6 @@
         </div>
      
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
-            {{-- <section>
-                <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-                    Basic Information
-                </div>
-                <div class="tflex tpx-5">
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Name</label>
-                        <input type="text" name="name" id="name" value="{{ old('name') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('name')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Name -->
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="surname" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Surname</label>
-                        <input type="text" name="surname" id="surname" value="{{ old('surname') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('surname')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Surname -->
-                    <div class="tw-1/3 tflex tflex-col tmr-3">
-                        <label for="phone_number" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Phone number</label>
-                        <input type="text" onkeyup="allnumeric(this)" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('phone_number')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Phone number -->
-                </div>
-                <div class="tflex tpx-5 tmt-3">
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="province" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Province</label>
-                        <input type="text" name="province" id="province" value="{{ old('province') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('province')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="city" class="tfont-normal ttext-sm tmb-2 ttext-black-100">City</label>
-                        <input type="text" name="city" id="city" value="{{ old('city') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('city')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="barangay" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barangay</label>
-                        <input type="text" name="barangay" id="barangay" value="{{ old('barangay') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('barangay')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                </div>
-                <div class="tflex tpx-5 tmt-3">
-                    <div class="tw-full tflex tflex-col tmr-3">
-                        <label for="complete_address" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Complete Address</label>
-                        <input type="text" name="complete_address" id="complete_address" value="{{ old('complete_address') }}" class="browser-default form-control" style="padding: 6px;">
-                        @error('complete_address')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
-                    </div><!-- Address -->
-                </div>
-            </section><!-- Basic Information --> --}}
             <div class="tflex tpx-5 tmt-5">
                 <div class="tw-2/5 tborder-r tpr-2">
 
@@ -410,15 +350,37 @@
         }// get getAllProducts
 
 
+        function groupAndSumProducts(){
+            var products = getAllProducts();
+
+            var result = [];
+            
+            products.reduce(function(res, value) {
+                if (!res[value.product_id]) {
+                    res[value.product_id] = { product_id: value.product_id, qty: 0 };
+                    result.push(res[value.product_id])
+                }
+
+                res[value.product_id].qty += parseInt(value.qty);
+
+                return res;
+
+            }, {});
+
+            return result;
+        }// Group Products By Product ID and Sum its value
+
         $('#submit_btn').click(()=>{
+
                 $('#submit_btn').attr('disabled', 'true');
                 progress_loading(true);// show loader
 
                 let products = getAllProducts();
+                let product_sum = groupAndSumProducts();
 
                 $.post( "/admin/orders/store", {
                     'products': products,
-
+                    'product_sum': product_sum,
                     'sold_from': $('#sold_from').val(),
                     'payment_method': $('#payment_method').val(),
                     'date': $('.datepicker').val(),
@@ -453,15 +415,15 @@
                     $('.modal_err_msg').html(markup);
                 })
                 .done(function( res ) {
-                    $('#submit_btn').removeAttr('disabled');
-                    progress_loading(false);// show loader
+                    // $('#submit_btn').removeAttr('disabled');
+                    // progress_loading(false);// show loader
 
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Awesome',
-                        text: 'Added Successfuly',
-                    });
-                    location.href = '/admin/orders';
+                    // Swal.fire({
+                    //     icon: 'success',
+                    //     title: 'Awesome',
+                    //     text: 'Added Successfuly',
+                    // });
+                    // location.href = '/admin/orders';
                 });
             })// Submit
 
