@@ -24,8 +24,8 @@ class PurchaseCon extends Controller
 
     public function index(){
 
-        $purchases = Purchase::with(['suppliers'])->orderBy('created_at', 'desc')->get();
-        // dd($purchases);
+        $purchases = Purchase::with(['suppliers'])->orderBy('date', 'desc')->get();
+
         return view('admin.purchase.index', ['purchases' => $purchases]);
     }
 
@@ -51,7 +51,8 @@ class PurchaseCon extends Controller
             "total_qty" => (int)str_replace(',', '', $request->total_qty),
             "shipping_fee" => $request->shipping_fee,
             "transaction_fee" => $request->transaction_fee,
-            "tax" => $request->tax
+            "tax" => $request->tax,
+            "date" => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now()
         ]);
 
         foreach ($request->products as $product) {
@@ -75,15 +76,18 @@ class PurchaseCon extends Controller
         $products = $this->products->active()->get(['id', 'title', 'sku', 'selling_price', 'price'])->sortBy('title');
         $suppliers = Suppliers::select('id', 'name', 'surname')->get();
         $purchase = Purchase::find($purchase_id);
+        $receive_status = ['no','yes','incomplete'];
 
         return view('admin.purchase.update', [
             'products' => $products,
             'suppliers' => $suppliers,
-            'purchase' => $purchase
+            'purchase' => $purchase,
+            'receive_status' => $receive_status
         ]);
     }
 
     public function patch(Request $request){
+
 
         Purchase::find($request->purchase_id)->delete();
         PurchaseProduct::where('purchase_id', $request->purchase_id)->delete();
@@ -94,12 +98,35 @@ class PurchaseCon extends Controller
             "total_qty" => (int)str_replace(',', '', $request->total_qty),
             "shipping_fee" => $request->shipping_fee,
             "transaction_fee" => $request->transaction_fee,
-            "tax" => $request->tax
+            "status" => $request->tax,
+            "date" => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now()
         ]);
+
+        // These Variables are used to get the Purchase Status
+        $status = 'OTW';
+        $product_count = count($request->products);
+        $OTW = 0;
+        $COMPLETED = 0;
+        $INCOMPLETE = 0;
+        // -------------------------------------------------
 
         foreach ($request->products as $product) {
             // purchase_product
             $purchase->purchase_product()->create($product);
+
+            // These IF/ELSE are used to get the Purchase Status
+
+            if ($product['received'] == 'no') {
+                $OTW++;
+            }
+            if ($product['received'] == 'yes') {
+                $COMPLETED++;
+            }
+            if ($product['received'] == 'incomplete') {
+                $INCOMPLETE++;
+            }
+            // -------------------------------------------------
+
 
             // ======================================================
             // Stocks are not yet updated after editing the purchase
@@ -112,6 +139,18 @@ class PurchaseCon extends Controller
             // $get_product->update(['qty' => $new_stock]);
 
         }
+
+        if ($product_count == $OTW) {
+            $status = 'OTW';
+        }elseif ($product_count == $COMPLETED) {
+            $status = 'COMPLETED';
+        }elseif ($INCOMPLETE > 0) {
+            $status = 'INCOMPLETE';
+        }elseif ($COMPLETED > 0 && $OTW > 0 ) {
+            $status = 'INCOMPLETE';
+        }
+
+        $purchase->update(['status' => $status]);// Update status
 
         return response()->json(['code' => 200]);
 

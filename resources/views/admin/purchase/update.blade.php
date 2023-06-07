@@ -86,8 +86,8 @@
         </div>
      
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3" >
-            <div class="tflex tpx-5 tmt-5">
-                <div class="tw-2/5 tborder-r tpr-2">
+            <div class="tflex tpx-5 tmt-5 tpr-0 t-mr-16">
+                <div class="tw-2/7 tborder-r tpr-2">
 
                     <div action="?" class="tflex titems-center tmb-4">
                         <input type="text" id="search" onkeyup="Search()" class="browser-default tw-full tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
@@ -117,9 +117,9 @@
 
                 </div>
                    
-                <div id="products_container" class="tw-3/5 tborder-l tpl-2 toverflow-scroll toverflow-x-hidden tpr-6" style="height: 450px">
+                <div id="products_container" class="tw-4/6 tborder-l tpl-2 toverflow-scroll toverflow-x-hidden tpr-6" style="height: 450px">
                     <div class="product tborder-b tflex tmx-1 trelative thidden tpy-1" id="hidden_product">
-                        <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
+                        <div class="tw-5/7 tw-full tflex tflex-col tmr-2">
                             <div class="tflex titems-center tpy-1">
                                 <img src="https://cf.shopee.ph/file/d8966eff56f6714d423e261828353033" class="product_img" style="height: 50px; width: 50px;" alt="">
                                 <div class="tpx-2">
@@ -141,13 +141,9 @@
                             <input type="text" onkeyup="allnumeric(this)" disabled="" value="0" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
                         </div><!-- Sub Total -->
                         <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
-                    </div>
-
-
-
+                    </div><!-- Test -->
                     
                     @foreach ($purchase->purchase_product as $purchase_product)
-
 
                         <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="{{ $purchase_product->product['id'] }}">
                             <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
@@ -161,16 +157,38 @@
                             </div><!-- Product -->
                             <div class="tw-1/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
-                                <input type="text" onkeyup="allnumeric(this)" value="{{ $purchase_product->product['price'] }}" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
+                                <input type="text" onkeyup="allnumeric(this)" value="{{ $purchase_product['price'] }}" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
                             </div><!-- Price -->
                             <div class="tw-1/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Quantity</label>
                                 <input type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['qty'] }}" class="product_quantity browser-default form-control" style="padding: 6px;">
                             </div><!-- QTY -->
-                            <div class="tw-1/6 tflex tflex-col tmr-3">
+                            <div class="tw-/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Subtotal</label>
                                 <input type="text" onkeyup="allnumeric(this)" disabled="" value="{{ $purchase_product->sub_total }}" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
                             </div><!-- Sub Total -->
+
+                            <div class="tborder-l tmr-3"></div>
+
+                            <div class="tw-1/6 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active"> Received? </label>
+                                <select class="product_received tcursor-pointer browser-default form-control" style="padding: 6px;">
+        
+                                    @foreach ($receive_status as $status)
+                                        <option value="{{ $status }}" class=""
+                                        @if ($purchase_product->received == $status)
+                                            {{ 'selected' }}
+                                        @endif
+                                        >{{ $status }}</option>
+                                    @endforeach
+                                </select>
+                            </div><!-- Received Status -->
+
+                            <div class="tw-2/6 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">R-QTY</label>
+                                <input type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['received_qty']?? $purchase_product['qty'] }}" class="product_received_qty browser-default form-control" style="padding: 6px;">
+                            </div><!-- Recieved QTY -->
+
                             <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
                         </div>
 
@@ -186,40 +204,18 @@
         <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
             Transaction
         </div>
-        {{-- <div class="tflex tpx-5">
-            <div class="tw-2/5 tflex tflex-col tmr-3 thidden">
-                <label for="sold_from" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Shipping Fee (Optional, You can add this later.)</label>
-                <select name="" id="sold_from" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
-                    @foreach ($sold_from as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endforeach
-                </select>
-            </div><!-- thidden-->
-            <div class="tw-2/5 tflex tflex-col tmr-3 thidden">
-                <label for="payment_method" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Payment method</label>
-                <select name="" id="payment_method" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
-                    @foreach ($payment_method as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endforeach
-                </select>
-            </div><!-- thidden-->
-            <div class="tw-1/5 tflex tflex-col tmr-3">
-                <label for="package_qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Package Qty</label>
-                <input type="number" id="package_qty" class="browser-default form-control" style="padding: 6px;" >
-            </div><!-- package Qty -->
-            <div class="tw-1/5 tflex tflex-col tmr-3">
-                <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date</label>
-                <input type="text" class="datepicker browser-default form-control">
-            </div>
-        </div> --}}
 
         <div class="tflex tpx-5 tmt-5">
-            <div class="tw-1/2 tmr-2">
+            <div class="tw-1/5 tmr-3">
+                <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date <small class="ttext-gray-600"> (Date of purchased)</small></label>
+                <input type="text" class="datepicker browser-default form-control" value="{{ date_f($purchase->date, 'M d, Y') }}">
+            </div><!-- Date -->
+            <div class="tw-2/5 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Shipping Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
                 <input type="text" class="shipping_fee tcursor-pointer browser-default form-control" value="{{ ($purchase->shipping_fee) }}"> 
             </div><!-- Shipping Fee -->
             
-            <div class="tw-1/2 tmr-2">
+            <div class="tw-2/5 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Transaction Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
                 <input type="text" class="transaction_fee tcursor-pointer browser-default form-control" value="{{ ($purchase->transaction_fee) }}">
             </div><!-- Transaction Fee -->
@@ -232,7 +228,7 @@
             </div><!-- Tax -->
 
             <div class="tw-1/2 tmr-2">
-                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Suppliers </label>
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Supplier </label>
                 <select class="supplier tcursor-pointer browser-default form-control" style="padding: 6px;">
                     <option value="" data-price="" selected="">Choose supplier ...</option>
                     @foreach ($suppliers as $supplier)
@@ -375,6 +371,8 @@
                 let price = $(this).find('.product_price').val();
                 let qty = $(this).find('.product_quantity').val();
                 let subtotal = $(this).find('.product_subtotal').val();
+                let received = $(this).find('.product_received').val();
+                let received_qty = $(this).find('.product_received_qty').val();
 
                 if (i != 0) {
                     products.push({
@@ -382,6 +380,8 @@
                         price: price,
                         qty: qty,
                         sub_total: subtotal,
+                        received: received,
+                        received_qty: received_qty,
                     })
                 }// if product is not the sample clone push
             });
@@ -389,8 +389,26 @@
             return products;
         }// get getAllProducts
 
+        function orderReceived() {
+            let order_recieved = [];
+
+            $('#products_received_container').children().each(function (i) {
+            let received_product_id = $(this).find('.received_product_id').val();
+            let received_product_quantity = $(this).find('.received_product_quantity').val();
+            let received_status = $(this).find('.received_status').val();
+
+                order_recieved.push({
+                    received_product_id: received_product_id,
+                    received_product_quantity: received_product_quantity,
+                    received_status: received_status,
+                })
+            });
+
+            return order_recieved;
+        }
 
         $('#submit_btn').click(()=>{
+
                 $('#submit_btn').attr('disabled', 'true');
                 progress_loading(true);// show loader
 
@@ -405,6 +423,8 @@
                     'shipping_fee': $('.shipping_fee').val(),
                     'transaction_fee': $('.transaction_fee').val(),
                     'tax': $('.tax').val(),
+                    'order_recieved': orderReceived(),
+                    'date': $('.datepicker').val(),
                 })
                 .fail(function(response) {
                     $('#submit_btn').removeAttr('disabled');

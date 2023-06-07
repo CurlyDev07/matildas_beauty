@@ -36,20 +36,37 @@
             <table class="tmb-4 tbg-white ttext-md tw-full">
                 <tbody>
                     <tr class="tborder-0">
-                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Order#</th>
+                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
                         <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Supplier</th>
                         <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Total</th>
-                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
+                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Status</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Actions</th>
                     </tr>
 
                     @foreach ($purchases as $purchase)
                     
                         <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#MBP{{ date_format($purchase->created_at, "dmy") }}{{ $purchase->id }}</td>
+                            <td class="tp-3 tpx-5">{{ date('M d, Y',strtotime($purchase['date'])) }}</td>
                             <td class="tp-3 tpx-5">{{ $purchase->suppliers->name }} {{ $purchase->suppliers->surname }}</td>
                             <td class="tp-3 tpx-5">{{ currency() }}{{ number_format($purchase->total_price + $purchase->shipping_fee + $purchase->transaction_fee + $purchase->tax, 2) }}</td>
-                            <td class="tp-3 tpx-5">{{ date('M d, Y',strtotime($purchase['created_at'])) }}</td>
+                            <td class="tp-3 tpx-5">
+                                @if ($purchase->status == 'OTW')
+                                    <span class="chip orange lighten-5 waves-effect waves-orange status" data-status="inactive" data-id="1" style="cursor: pointer;">
+                                        <span class="orange-text" style="cursor: pointer;">{{ $purchase->status }}</span>
+                                    </span>
+                                @elseif($purchase->status == 'INCOMPLETE')
+                                    <span class="chip red lighten-5 waves-effect waves-red status" data-status="active" data-id="2" style="cursor: pointer;">
+                                        <span class="red-text" style="cursor: pointer;">{{ $purchase->status }}</span>
+                                    </span>
+                                @elseif($purchase->status == 'COMPLETED')
+                                    <span class="chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="1" style="cursor: pointer;">
+                                        <span class="green-text" style="cursor: pointer;">{{ $purchase->status }}</span>
+                                    </span>
+                                @endif
+
+                                
+                                
+                            </td>
                             <td class="tp-3 tpx-5 ttext-center">
                                 <a href="/admin/purchase/view/{{ $purchase->id }}" >
                                     <i class="fa-external-link-alt fas gray-text tcursor-pointer tooltipped" data-position="left" data-tooltip="view transaction"></i>
