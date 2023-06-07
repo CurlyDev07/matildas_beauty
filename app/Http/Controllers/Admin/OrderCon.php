@@ -249,56 +249,26 @@ class OrderCon extends Controller
     }
 
     public function history(Request $request){
-        // DD(date('Y'));
-
-        $dates = TransactionProducts::select(
-                DB::raw("(DATE_FORMAT(created_at, '%Y')) as year"),
-                DB::raw("(DATE_FORMAT(created_at, '%M')) as month"),
-                DB::raw("(DATE_FORMAT(created_at, '%d')) as day")
-            )
-            ->orderBy(DB::raw("DATE_FORMAT(created_at, '%d')"))
-            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y')"))
-            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M')"))
-            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%d')"))
-            ->where(DB::raw("(DATE_FORMAT(created_at, '%Y'))"), date('Y')) // get data of the current year
-            ->where(DB::raw("(DATE_FORMAT(created_at, '%M'))"), date('M')) // get data of the current month
-            ->get();
         
-        $orders = TransactionProducts::select(
-            "product_id" ,
-                DB::raw("(sum(qty)) as total_qty"),
-                DB::raw("(DATE_FORMAT(created_at, '%Y')) as year"),
-                DB::raw("(DATE_FORMAT(created_at, '%M')) as month"),
-                DB::raw("(DATE_FORMAT(created_at, '%d')) as day")
-            )
-            ->orderBy(DB::raw("DATE_FORMAT(created_at, '%d')"))
+        // $orders = TransactionProducts::select(
+            //     "product_id" ,
+            //         DB::raw("(sum(qty)) as total_qty"),
+            //         DB::raw("(DATE_FORMAT(created_at, '%Y')) as year"),
+            //         DB::raw("(DATE_FORMAT(created_at, '%M')) as month"),
+            //         DB::raw("(DATE_FORMAT(created_at, '%d')) as day")
+            //     )
+            //     ->orderBy(DB::raw("DATE_FORMAT(created_at, '%d')"))
 
-            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y')"))
-            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M')"))
-            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%d')"))
-            ->groupBy('product_id')
-            ->with('product:id,title,sku')
-            ->where(DB::raw("(DATE_FORMAT(created_at, '%Y'))"), date('Y')) // get data of the current year
-            ->where(DB::raw("(DATE_FORMAT(created_at, '%M'))"), date('M')) // get data of the current month
-            ->get();
+            //     ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y')"))
+            //     ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M')"))
+            //     ->groupBy(DB::raw("DATE_FORMAT(created_at, '%d')"))
+            //     ->groupBy('product_id')
+            //     ->with('product:id,title,sku')
+            //     ->where(DB::raw("(DATE_FORMAT(created_at, '%Y'))"), date('Y')) // get data of the current year
+            //     ->where(DB::raw("(DATE_FORMAT(created_at, '%M'))"), date('M')) // get data of the current month
+        //     ->get();
 
-
-            foreach ($orders as $order) {
-                echo('Product ID: '. $order->product_id);
-                echo('<br/>');
-                echo('total_qty: '. $order->total_qty);
-                echo('<br/>');
-
-                echo($order->day.'/');
-                echo($order->month.'/');
-                echo($order->year.'/');
-                echo('<br/>');
-                echo('<br/>..........................................................<br/>');
-
-            }
-        // dd($orders);
-
-        return view('admin.orders.history', ['orders' => $orders, 'dates' => $dates]);
+        return view('admin.orders.history', ['orders' => $orders, 'products' => $products]);
     }
 
 }
