@@ -57,7 +57,7 @@
                         <tr class="tborder-0 hover:tbg-gray-100">
                             <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#{{ $product['id'] }}</td>
                             <td class="tp-3 tpx-5">
-                                <img src="{{ $product['primary_image'] }}" class="tmx-auto" style="height: 50px;width: 50px;">
+                                <img src="{{ $product['primary_image'] }}" data-src="{{ $product['primary_image'] }}" class="tmx-auto" style="height: 50px;width: 50px;">
                             </td>
                             <td class="tp-3 tpx-5">
                                 <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500">{{ $product['title'] }}</a>
@@ -112,6 +112,15 @@
 
 
 @section('js')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/unveil/1.3.0/jquery.unveil.min.js" integrity="sha512-smKadbDZ1g5bsWtP1BuWxgBq1WeP3Se1DLxeeBB+4Wf/HExJsJ3OV6lzravxS0tFd43Tp4x+zlT6/yDTtr+mew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function() {
+        $("img").unveil();
+    });
+</script>
+
+
     <script>
         $('.delete').click(function (e) {
             $.ajax({
