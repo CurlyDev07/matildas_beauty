@@ -3,6 +3,8 @@
         <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
         <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
         <script src="{{ asset('js/main.js') }}"  crossorigin="anonymous"></script>
+        <script src="{{ asset('js/jquery.unveil.min.js') }}"  crossorigin="anonymous"></script>
+
 
         <script>
             $(document).ready(function(){
@@ -29,6 +31,10 @@
                 }
                 $('#progress').hide();
             }
+
+            $(document).ready(function() {
+                $("img").unveil();
+            });// lazy loading
         </script>
 
         @yield('js')

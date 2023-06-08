@@ -46,7 +46,7 @@
                     @foreach ($products as $product)
                         <tr class="tborder-0 hover:tbg-gray-100">
                             <td class="tp-3 tpx-5">
-                                <img src="{{ $product['images'][0]['img'] }}" class="tmx-auto" style="height: 50px;width: 50px;">
+                                <img src="{{ $product['images'][0]['img'] }}" data-src="{{ $product['images'][0]['img'] }}" class="tmx-auto" style="height: 50px;width: 50px;">
                             </td>
                             <td class="tp-3 tpx-5 ttext-sm">{{ $product['sku'] }}</td>
                             <td class="tp-3 tpx-5 ttext-sm">
@@ -103,7 +103,5 @@
 @endsection
 
 @section('js')
-    <script>
 
-    </script>
 @endsection
