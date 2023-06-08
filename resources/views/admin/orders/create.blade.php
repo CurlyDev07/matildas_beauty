@@ -415,15 +415,15 @@
                     $('.modal_err_msg').html(markup);
                 })
                 .done(function( res ) {
-                    // $('#submit_btn').removeAttr('disabled');
-                    // progress_loading(false);// show loader
+                    $('#submit_btn').removeAttr('disabled');
+                    progress_loading(false);// show loader
 
-                    // Swal.fire({
-                    //     icon: 'success',
-                    //     title: 'Awesome',
-                    //     text: 'Added Successfuly',
-                    // });
-                    // location.href = '/admin/orders';
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Awesome',
+                        text: 'Added Successfuly',
+                    });
+                    location.href = '/admin/orders';
                 });
             })// Submit
 

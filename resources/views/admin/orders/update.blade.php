@@ -376,12 +376,33 @@
             return products;
         }// get getAllProducts
 
+        function groupAndSumProducts(){
+            var products = getAllProducts();
+
+            var result = [];
+            
+            products.reduce(function(res, value) {
+                if (!res[value.product_id]) {
+                    res[value.product_id] = { product_id: value.product_id, qty: 0 };
+                    result.push(res[value.product_id])
+                }
+
+                res[value.product_id].qty += parseInt(value.qty);
+
+                return res;
+
+            }, {});
+
+            return result;
+        }// Group Products By Product ID and Sum its value
+
 
         $('#submit_btn').click(()=>{
                 $('#submit_btn').attr('disabled', 'true');
                 progress_loading(true);// show loader
 
                 let products = getAllProducts();
+                let product_sum = groupAndSumProducts();
 
                 $.post( "/admin/orders/patch", {
                     'transaction_id': $('#transaction_id').val(),
@@ -398,6 +419,7 @@
                     'fb_link': $('#fb_link').val(),
                     
                     'products': products,
+                    'product_sum': product_sum,
                 })
                 .fail(function(response) {
                     $('#submit_btn').removeAttr('disabled');

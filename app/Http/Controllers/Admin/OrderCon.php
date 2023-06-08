@@ -167,6 +167,7 @@ class OrderCon extends Controller
         // Delete Previous Record
         TransactionProducts::where('transaction_id', $request->transaction_id)->delete();
         TransactionPayment::where('transaction_id', $request->transaction_id)->delete();
+        TransactionPorductSummary::where('transaction_id', $request->transaction_id)->delete();
         Transaction::find($request->transaction_id)->delete();
         
         // this code is just a copy paste of store method
@@ -247,6 +248,16 @@ class OrderCon extends Controller
             'payment_status' => 'completed',
         ]);
 
+         //CREATE TRANSACTION PRODUCTS SUMMARY
+         foreach (request()->product_sum as $summary) {
+            TransactionPorductSummary::create([
+                'transaction_id' => $transaction['id'],
+                'product_id' => $summary['product_id'],
+                'qty' => $summary['qty'],
+                'date' => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now(),
+            ]);
+        }
+
         return response()->json(['status' => true]);
 
     }
@@ -259,26 +270,12 @@ class OrderCon extends Controller
     }
 
     public function history(Request $request){
-        
-        // $orders = TransactionProducts::select(
-            //     "product_id" ,
-            //         DB::raw("(sum(qty)) as total_qty"),
-            //         DB::raw("(DATE_FORMAT(created_at, '%Y')) as year"),
-            //         DB::raw("(DATE_FORMAT(created_at, '%M')) as month"),
-            //         DB::raw("(DATE_FORMAT(created_at, '%d')) as day")
-            //     )
-            //     ->orderBy(DB::raw("DATE_FORMAT(created_at, '%d')"))
 
-            //     ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y')"))
-            //     ->groupBy(DB::raw("DATE_FORMAT(created_at, '%M')"))
-            //     ->groupBy(DB::raw("DATE_FORMAT(created_at, '%d')"))
-            //     ->groupBy('product_id')
-            //     ->with('product:id,title,sku')
-            //     ->where(DB::raw("(DATE_FORMAT(created_at, '%Y'))"), date('Y')) // get data of the current year
-            //     ->where(DB::raw("(DATE_FORMAT(created_at, '%M'))"), date('M')) // get data of the current month
-        //     ->get();
 
-        return view('admin.orders.history', ['orders' => $orders, 'products' => $products]);
+        $dates = TransactionPorductSummary::select('date')->whereMonth('date', Carbon::now()->month)->orderBy('date', 'asc')->groupBy('date')->get();
+        $products = Product::select('id', 'title', 'sku')->get();
+
+        return view('admin.orders.history', ['dates' => $dates, 'products' => $products]);
     }
 
 }
