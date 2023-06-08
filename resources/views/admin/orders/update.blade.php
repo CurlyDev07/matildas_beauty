@@ -147,7 +147,7 @@
                         <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="{{ $order->product->id }}">
                             <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
                                 <div class="tflex titems-center tpy-1">
-                                    <img src="{{ $order->product->primary_image }}" class="product_img" style="height: 50px; width: 50px;" alt="">
+                                    <img src="{{ $order->product->primary_image }}" data-src="{{ $order->product->primary_image }}" class="product_img" style="height: 50px; width: 50px;" alt="">
                                     <div class="tpx-2">
                                         <p class="product_title truncate ttext-sm">{{ $order->product->title }}</p>
                                         <small class="product_sku">{{ $order->product->sku }}</small>
