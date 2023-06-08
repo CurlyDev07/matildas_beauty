@@ -46,20 +46,25 @@
                         <tr>
                             <td>{{ $product->title }}</td> <!-- Foreach Product -->
 
-                            @foreach ($dates as $date)
-                                <td class="tfont-semibold ttext-xs">
-                                    {{ \App\TransactionPorductSummary::select('qty')->where(['product_id' => $product->id ,'date' => $date['date']])->first()['qty']?? '0' }}
-                                </td>
+                            @if (count($dates) > 0)
+                                @foreach ($dates as $date)
+                                    <td class="tfont-semibold ttext-xs">
+                                        {{ \App\TransactionPorductSummary::select('qty')->where(['product_id' => $product->id ,'date' => $date['date']])->first()['qty']?? '0' }}
+                                    </td>
+                                @endforeach
+                            @endif
 
-                            @endforeach
 
                             <td class="tfont-semibold ttext-md">
-                                @php
-                                    $sum = \App\TransactionPorductSummary::select('qty')->where('product_id', $product->id)->whereBetween('date', [$dates[0]['date'], $dates[(count($dates) - 1)]['date']])->sum('qty');
-                                    $date_count = count($dates);
+                                @if (count($dates) > 0)
+                                    @php
+                                        $sum = \App\TransactionPorductSummary::select('qty')->where('product_id', $product->id)->whereBetween('date', [$dates[0]['date'], $dates[(count($dates) - 1)]['date']])->sum('qty');
+                                        $date_count = count($dates);
 
-                                    echo number_format($sum/$date_count);
-                                @endphp
+                                        echo number_format($sum/$date_count);
+                                    @endphp
+                                @endif
+
                             </td>
                         </tr>
                     @endforeach
