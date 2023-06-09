@@ -75,7 +75,7 @@
 <div class="tbg-white  trounded-lg tshadow-lg ttext-black-100">
         <div class="tflex tjustify-between tborder-b ">
             <div class="ttext-base tfont-medium tpx-5 tpy-4 ttext-title">
-                Orders
+                Orders ({{ count($orders->products) }} rows) 
             </div>
             <input type="hidden" name="transaction_id" id="transaction_id" value="{{ $orders->id }}">
             <div class="tflex titems-center tjustify-end tmx-5 tpr-3 tpy-3">
@@ -83,7 +83,6 @@
                 <div class="tpx-6" style="font-size: 24px;">₱<span id="total">{{ $orders->payments->total }}</span> </div>
             </div>
         </div>
-     
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
 
             <div class="tflex tpx-5 tmt-5">
@@ -142,8 +141,9 @@
                         </div><!-- Sub Total -->
                         <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
                     </div>
-
+                    
                     @foreach ($orders->products as $order)
+
                         <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="{{ $order->product->id }}">
                             <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
                                 <div class="tflex titems-center tpy-1">
