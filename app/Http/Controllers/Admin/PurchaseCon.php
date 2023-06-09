@@ -44,7 +44,7 @@ class PurchaseCon extends Controller
     }
 
     public function store(CreatePurchaseRequest $request){
-
+        
         $purchase = Purchase::create([
             "supplier" => $request->supplier, 
             "total_price" => (int)str_replace(',', '', $request->total_price),
@@ -98,7 +98,7 @@ class PurchaseCon extends Controller
             "total_qty" => (int)str_replace(',', '', $request->total_qty),
             "shipping_fee" => $request->shipping_fee,
             "transaction_fee" => $request->transaction_fee,
-            "status" => $request->tax,
+            "tax" => $request->tax,
             "date" => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now()
         ]);
 
