@@ -75,7 +75,8 @@
 <div class="tbg-white  trounded-lg tshadow-lg ttext-black-100">
         <div class="tflex tjustify-between tborder-b ">
             <div class="ttext-base tfont-medium tpx-5 tpy-4 ttext-title">
-                Orders ({{ count($orders->products) }} rows) 
+                Orders 
+                <span class="ttext-pink-600 ttext-sm">({{ count($orders->products) }} Products) </span>
             </div>
             <input type="hidden" name="transaction_id" id="transaction_id" value="{{ $orders->id }}">
             <div class="tflex titems-center tjustify-end tmx-5 tpr-3 tpy-3">
