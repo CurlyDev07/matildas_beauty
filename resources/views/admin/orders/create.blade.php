@@ -71,6 +71,8 @@
         </div>
     </div>
 @endif
+    
+    <h1> PHP INI max_input_vars: {{ (ini_get('max_input_vars')) }}</h1>
 
     <div class="tbg-white  trounded-lg tshadow-lg ttext-black-100">
         <div class="tflex tjustify-between tborder-b ">
