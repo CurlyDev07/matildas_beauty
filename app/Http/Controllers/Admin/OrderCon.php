@@ -213,7 +213,6 @@ class OrderCon extends Controller
 
         
         $total = 0;
-        ini_set('max_input_vars', 7500);
         // CREATE TRANSACTION PRODUCTS
         foreach ($request->products as $product) {
 
