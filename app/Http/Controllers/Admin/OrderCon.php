@@ -34,8 +34,8 @@ class OrderCon extends Controller
         ->when($request->search, function($q){
             return $q->where('order_number', 'like', request()->search.'%');
         })// search
-        ->select('id', 'order_number', 'package_qty', 'first_name', 'last_name', 'created_at')
-        ->OrderBy('id', 'desc')
+        ->select('id', 'order_number', 'package_qty', 'first_name', 'last_name', 'date')
+        ->OrderBy('date', 'desc')
         ->paginate(100);
         return view('admin.orders.index', compact('orders'));
     }
@@ -96,7 +96,7 @@ class OrderCon extends Controller
             "province" => '',
             "zip_code" => '',
             'status' => 'completed',
-            'created_at' => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now(),
+            'date' => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now(),
         ]);
 
         $transaction->update([
@@ -204,7 +204,7 @@ class OrderCon extends Controller
             "province" => '',
             "zip_code" => '',
             'status' => 'completed',
-            'created_at' => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now(),
+            'date' => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now(),
         ]);
 
         $transaction->update([

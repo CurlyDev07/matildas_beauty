@@ -30,7 +30,7 @@ class CreateOrderRequest extends FormRequest
             // 'quantity'=> 'required|integer',
             // 'total'=> 'required|integer',
             
-            'date' => 'required',
+            'date' => 'required|unique:transactions,date,'.request()->transaction_id,
             'package_qty' => 'required',
             // 'first_name' => 'required',
             // 'sold_from'=> 'required|integer',

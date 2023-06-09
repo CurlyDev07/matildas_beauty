@@ -51,7 +51,7 @@
                     
                     @foreach ($orders as $order)
                         <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="tp-3 ttext-center tpx-5">{{ $order['created_at']->format('M d, Y') }}</td>
+                            <td class="tp-3 ttext-center tpx-5">{{ date_f($order->date, 'd M, Y') }}</td>
 
                             <td class="tp-3 ttext-center tpx-5">{{ $order['first_name'] .' '. $order['last_name'] }}</td>
                             {{-- <td class="tp-3 ttext-center tpx-5">₱{{ number_format($order['payments']['total']) }}</td> --}}

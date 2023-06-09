@@ -232,7 +232,7 @@
 
 @section('js')
     <script src="{{ asset('js/plugins/sweatalert.js') }}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script>
         $('.modal').modal();// initiate modal
         $('.datepicker').datepicker();// initiate datepicker
@@ -370,7 +370,6 @@
         }// Group Products By Product ID and Sum its value
 
         $('#submit_btn').click(()=>{
-
                 $('#submit_btn').attr('disabled', 'true');
                 progress_loading(true);// show loader
 
@@ -382,7 +381,7 @@
                     'product_sum': product_sum,
                     'sold_from': $('#sold_from').val(),
                     'payment_method': $('#payment_method').val(),
-                    'date': $('.datepicker').val(),
+                    'date': moment($('.datepicker').val()).format('YYYY-MM-DD'),
                     'package_qty': $('#package_qty').val(),
                     'total_items': $('#total_items').html(),
 

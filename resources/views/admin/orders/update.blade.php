@@ -201,7 +201,7 @@
             </div><!-- package Qty -->
             <div class="tw-1/5 tflex tflex-col tmr-3">
                 <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date</label>
-                <input type="text" class="datepicker browser-default form-control" value="{{ $orders->created_at->format('M d, Y') }}">
+                <input type="text" class="datepicker browser-default form-control" value="{{ date_f($orders->date, 'M d, Y') }}">
             </div>
         </div>
     </div><!-- Transaction -->
@@ -262,6 +262,7 @@
 
 @section('js')
     <script src="{{ asset('js/plugins/sweatalert.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
     <script>
         $('.modal').modal();// initiate modal
@@ -408,7 +409,7 @@
                     'transaction_id': $('#transaction_id').val(),
                     'sold_from': $('#sold_from').val(),
                     'payment_method': $('#payment_method').val(),
-                    'date': $('.datepicker').val(),
+                    'date': moment($('.datepicker').val()).format('YYYY-MM-DD'),
                     'package_qty': $('#package_qty').val(),
                     'total_items': $('#total_items').html(),
                     
