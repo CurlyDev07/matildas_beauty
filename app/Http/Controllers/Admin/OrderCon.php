@@ -224,7 +224,7 @@ class OrderCon extends Controller
                 $transaction->products()->create([
                     'product_id' => $product['product_id'],
                     'price' => $product['price'],
-                    'qty' => $product['qty'],
+                    'qty' => int($product['qty']),
                     'subtotal' => $product['subtotal'],
                 ]); // save product
                 
