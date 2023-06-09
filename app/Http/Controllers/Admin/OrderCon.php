@@ -27,7 +27,6 @@ class OrderCon extends Controller
     }
 
     public function index(Request $request){
-        phpinfo();
         $orders = Transaction::with('payments:id,transaction_id,total,payment_status')
         ->when($request->sort, function($q){
             return $q->orderBy('id', request()->sort);
