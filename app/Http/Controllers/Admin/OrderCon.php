@@ -212,19 +212,6 @@ class OrderCon extends Controller
         ]);// Add transaction id
 
         
-        // CREATE TRANSACTION PAYMENT
-        TransactionPayment::create([
-            'transaction_id' => $transaction['id'],
-            'payment_id' => "LX-".strtoupper(Str::random(20)),
-            'payer_id' => 'N/A',
-            'payer_email' => 'N/A',
-            'shipping_fee' => 0,
-            'subtotal' => $total,
-            'total' => $total,
-            'currency' => 'PHP',
-            'payment_status' => 'completed',
-        ]);
-
         $total = 0;
 
         // CREATE TRANSACTION PRODUCTS
@@ -247,6 +234,19 @@ class OrderCon extends Controller
                 $this->products->updateStocks($product['product_id'], $product['qty']);
             }
         }
+
+        // CREATE TRANSACTION PAYMENT
+        TransactionPayment::create([
+            'transaction_id' => $transaction['id'],
+            'payment_id' => "LX-".strtoupper(Str::random(20)),
+            'payer_id' => 'N/A',
+            'payer_email' => 'N/A',
+            'shipping_fee' => 0,
+            'subtotal' => $total,
+            'total' => $total,
+            'currency' => 'PHP',
+            'payment_status' => 'completed',
+        ]);
 
          //CREATE TRANSACTION PRODUCTS SUMMARY
          foreach (request()->product_sum as $summary) {
