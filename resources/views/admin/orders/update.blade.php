@@ -368,7 +368,7 @@
                     products.push({
                         product_id: product_id,
                         price: price,
-                        qty: qty,
+                        qty: Number(qty),
                         subtotal: subtotal,
                     })
                 }// if product is not the sample clone push
