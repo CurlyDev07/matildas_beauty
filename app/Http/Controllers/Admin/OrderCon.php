@@ -62,7 +62,7 @@ class OrderCon extends Controller
         return view('admin.orders.create', compact('products', 'payment_method', 'sold_from'));
     }
 
-    public function store(Request $request){
+    public function store(CreateOrderRequest $request){
         
         if ($request->products[0]['product_id'] == null) {
 
