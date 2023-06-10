@@ -39,7 +39,7 @@
             <table class="tmb-4 tbg-white ttext-md tw-full">
                 <tbody>
                     <tr class="tborder-0">
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Transaction ID</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Name</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Category</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Quantity</th>
@@ -51,7 +51,7 @@
 
                 @foreach ($expenses as $expense)
                     <tr>
-                        <td class="ttext-sm ttext-center">MB{{ $expense->id }}</td>
+                        <td class="ttext-sm ttext-center">{{ date_f($expense->date, 'd M, Y') }}</td>
                         <td class="ttext-sm ttext-center">{{ $expense->name }}</td>
                         <td class="ttext-sm ttext-center">{{ $expense->category->category }}</td>
                         <td class="ttext-sm ttext-center">{{ $expense->quantity }}</td>
