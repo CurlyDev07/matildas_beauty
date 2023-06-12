@@ -398,7 +398,7 @@ function s3_upload_image($path_and_file_name, $base64_string){
 function upload_resize_product_image($image_name, $base64, $size){
     if ($size == 'small') {
         $small = Image::make($base64);
-        return Storage::disk('public')->put($image_name, $small->fit(320, 320)->save($base64));
+        return Storage::disk('s3')->put($image_name, $small->fit(320, 320)->save($base64));
 
         // $make = Image::make($base64);
         // return Storage::disk('public')->put($image_name, $make->fit(320, 320)->save($base64));
@@ -406,7 +406,7 @@ function upload_resize_product_image($image_name, $base64, $size){
 
     if ($size == 'original') {
         $original = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64));
-        return Storage::disk('public')->put($image_name, $original);
+        return Storage::disk('s3')->put($image_name, $original);
     }// Retain original image
 }
 
