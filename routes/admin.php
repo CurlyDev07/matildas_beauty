@@ -1,7 +1,29 @@
 <?php
 use App\ProductImage;
 // DD('TODO: Minus all item out to product stocks');
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
+use League\Flysystem\MountManager;
+use Intervention\Image\ImageManagerStatic as Image;
+
+
+
 Route::namespace('Admin')->group(function () {
+
+    Route::get('s3', function(){
+        $images = ProductImage::select('img')->pluck('img');
+
+        foreach ($images as $image) {
+            $contents = fopen($_SERVER['DOCUMENT_ROOT'].$image, 'r+');
+
+            if ($contents) {
+                Storage::disk('s3')->put($image, $contents);
+            }
+        }
+
+        // $contents = fopen($_SERVER['DOCUMENT_ROOT'].'/images/products/original-0be2aa303e0640c594ba1e5073f2c6cd.jpg', 'r+');
+        // Storage::disk('s3')->put('books/20.png',$contents);
+    });
 
 
 
