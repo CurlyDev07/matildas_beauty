@@ -102,24 +102,14 @@ class ProductsCon extends Controller
             |--------------------------------------------------------------------------*/
             if (!in_array($value['base64_image'], $old_imgs)) {
                 $img = uuid().'.jpg';
-                $small_image = 'small-'.$img;
-                $original_image = 'original-'.$img;
+                $path = '/images/products';
+                $small_image = $path.'small-'.$img;
+                $original_image = $path.'original-'.$img;
                 
-                // s3_upload_image($img, $value['base64_image']);
-                // ProductImage::create([
-                //     'product_id' => $product->id,
-                //     'img' => '/images/products/'.$img,
-                //     'primary' => $value['primary']
-                // ]);
-
-                $img = uuid().'.jpg';
-                $small_image = 'small-'.$img;
-                $original_image = 'original-'.$img;
-    
                 // small image
                 upload_resize_product_image($small_image, $value['base64_image'], 'small');
                 $product->images()->create([
-                    'img' => "/images/products/".$small_image,
+                    'img' => $small_image,
                     'primary' => $value['primary'],
                     'size' => 'small'
                 ]);
@@ -127,7 +117,7 @@ class ProductsCon extends Controller
                 // original image
                 upload_resize_product_image($original_image, $value['base64_image'], 'original');
                 $product->images()->create([
-                    'img' => "/images/products/".$original_image,
+                    'img' => $original_image,
                     'primary' => $value['primary'],
                     'size' => 'original'
                 ]);
