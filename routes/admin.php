@@ -12,20 +12,24 @@ use Illuminate\Http\Request;
 
 Route::namespace('Admin')->group(function () {
 
-    Route::get('s3', function(){
-        $images = ProductImage::select('img')->pluck('img');
 
-        foreach ($images as $image) {
+     /*
+    |--------------------------------------------------------------------------
+    | This code is used to transfer local files to s3 storage
+    |--------------------------------------------------------------------------
+    */
 
-            if(file_exists($_SERVER['DOCUMENT_ROOT'].$image)) {
-                $contents = fopen($_SERVER['DOCUMENT_ROOT'].$image, 'r+');
-                Storage::disk('s3')->put($image, $contents);
-            }
-        }
+    // Route::get('s3', function(){
+    //     $images = ProductImage::select('img')->pluck('img');
 
-        // $contents = fopen($_SERVER['DOCUMENT_ROOT'].'/images/products/original-0be2aa303e0640c594ba1e5073f2c6cd.jpg', 'r+');
-        // Storage::disk('s3')->put('books/20.png',$contents);
-    });
+    //     foreach ($images as $image) {
+
+    //         if(file_exists($_SERVER['DOCUMENT_ROOT'].$image)) {
+    //             $contents = fopen($_SERVER['DOCUMENT_ROOT'].$image, 'r+');
+    //             Storage::disk('s3')->put($image, $contents);
+    //         }
+    //     }
+    // });
 
 
 

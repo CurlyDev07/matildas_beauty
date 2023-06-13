@@ -3,6 +3,7 @@
 return [
 
     'cloudfront' => env('CLOUDFRONT'),
+    
     //*****************************
     // FACEBOOK CREDENTIALS
     //*****************************

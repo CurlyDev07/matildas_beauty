@@ -8,7 +8,7 @@
     </style>
 @endsection
 
-
+    
 @section('page')
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-4">
@@ -57,7 +57,7 @@
                         <tr class="tborder-0 hover:tbg-gray-100">
                             <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#{{ $product['id'] }}</td>
                             <td class="tp-3 tpx-5">
-                                <img src="{{ $product['primary_image'] }}" data-src="{{ $product['primary_image'] }}" class="tmx-auto" style="height: 50px;width: 50px;">
+                                <img src="{{ ($product['primary_image']) }}" data-src="{{ ($product['primary_image']) }}" class="tmx-auto" style="height: 50px;width: 50px;">
                             </td>
                             <td class="tp-3 tpx-5">
                                 <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500">{{ $product['title'] }}</a>
