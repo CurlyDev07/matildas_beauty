@@ -5,6 +5,8 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\MountManager;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Http\Request;
+
 
 
 
@@ -14,9 +16,9 @@ Route::namespace('Admin')->group(function () {
         $images = ProductImage::select('img')->pluck('img');
 
         foreach ($images as $image) {
-            $contents = fopen($_SERVER['DOCUMENT_ROOT'].$image, 'r+');
 
-            if ($contents) {
+            if(file_exists($_SERVER['DOCUMENT_ROOT'].$image)) {
+                $contents = fopen($_SERVER['DOCUMENT_ROOT'].$image, 'r+');
                 Storage::disk('s3')->put($image, $contents);
             }
         }
