@@ -9,25 +9,84 @@
             <ul class="tflex titems-center">
                 <li class="tmr-4">
                     <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
-                        <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
-                        <button type="submit" class="focus:tbg-white focus:toutline-none grey-text tborder tborder-gray-200 tborder-l-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-r-full waves-effect">
-                            <i class="fa-flip-horizontal fa-lg fa-search fas"></i>
+                        <button type="submit" style="height: 40px; border-right-style: dashed;" class="focus:tbg-white focus:toutline-none tborder-r grey-text tborder tborder-gray-200 tborder-r-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-l-full waves-effect">
+                            <img class="" src="{{ asset('icons/store.png') }}" alt="">
                         </button>
+                        
+                        <input type="text" placeholder="Not working yet. . ." name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-r-full trounded-tl" placeholder="Search order number">
                     </form>
                 </li><!-- SEARCH -->
-                <li class="tmr-4 tpt-1">
-                    @if (request()->sort == 'asc')
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by newest">
-                            <i class="material-icons grey-text tmr-3">sort_by_alpha</i>
-                        </a>
+
+                <li>    
+                    @if (request()->orders == 'desc')
+                        <a href="?orders=asc" class="tooltipped" data-position="top" data-tooltip="Sort by orders">
+                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                                <span class="tpl-1">Orders: &nbsp;</span>
+                                <img class="tpr-1" src="{{ asset('icons/number_sort_down.png') }}" alt="">
+                            </div>
+                        </a> 
                     @else
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'asc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by oldest">
-                            <i class="material-icons grey-text">sort_by_alpha</i>
+                        <a href="?orders=desc" class="tooltipped" data-position="top" data-tooltip="Sort by orders">
+                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                                <span class="tpl-1">Orders: &nbsp;</span>
+                                <img class="tpr-1" src="{{ asset('icons/number_sort_up.png') }}" alt="">
+                            </div>
                         </a>
                     @endif
-                </li><!-- SORT -->
-                <li>
-                    <a href="/admin/shopee/">
+                </li><!-- SORT ORDERS-->
+                <li class="tml-1">    
+                    @if (request()->sales == 'desc')
+                    <a href="?sales=asc" class="tooltipped" data-position="top" data-tooltip="Sort by sales">
+                        <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                            <span class="tpl-1">Sales: &nbsp;</span>
+                            <img class="tpr-1" src="{{ asset('icons/number_sort_down.png') }}" alt="">
+                        </div>
+                    </a> 
+                @else
+                    <a href="?sales=desc" class="tooltipped" data-position="top" data-tooltip="Sort by sales">
+                        <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                            <span class="tpl-1">Sales: &nbsp;</span>
+                            <img class="tpr-1" src="{{ asset('icons/number_sort_up.png') }}" alt="">
+                        </div>
+                    </a>
+                @endif
+                </li><!-- SORT SALES-->
+                <li class="tml-1">    
+                    @if (request()->conversion_rate == 'desc')
+                        <a href="?conversion_rate=asc" class="tooltipped" data-position="top" data-tooltip="Sort by conversion rate">
+                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                                <span class="tpl-1">Conversion rate: &nbsp;</span>
+                                <img class="tpr-1" src="{{ asset('icons/number_sort_down.png') }}" alt="">
+                            </div>
+                        </a> 
+                    @else
+                        <a href="?conversion_rate=desc" class="tooltipped" data-position="top" data-tooltip="Sort by conversion rate">
+                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                                <span class="tpl-1">Conversion rate: &nbsp;</span>
+                                <img class="tpr-1" src="{{ asset('icons/number_sort_up.png') }}" alt="">
+                            </div>
+                        </a>
+                    @endif
+                </li><!-- SORT CONVERSION RATE-->
+                <li class="tml-1">    
+                    @if (request()->visitors == 'desc')
+                        <a href="?visitors=asc" class="tooltipped" data-position="top" data-tooltip="Sort by Visitors">
+                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                                <span class="tpl-1">Visitors: &nbsp;</span>
+                                <img class="tpr-1" src="{{ asset('icons/number_sort_down.png') }}" alt="">
+                            </div>
+                        </a> 
+                    @else
+                        <a href="?visitors=desc" class="tooltipped" data-position="top" data-tooltip="Sort by Visitors">
+                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                                <span class="tpl-1">Visitors: &nbsp;</span>
+                                <img class="tpr-1" src="{{ asset('icons/number_sort_up.png') }}" alt="">
+                            </div>
+                        </a>
+                    @endif
+                </li><!-- SORT VISITORS-->
+                <li class="tml-2">
+                    <a href="/admin/store-metrics">
                         <img src="{{ asset('icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li>
@@ -55,7 +114,7 @@
                             <td class="ttext-sm ttext-center">{{ $metric->conversion_rate }} %</td>
                             <td class="ttext-sm ttext-center">{{ $metric->visitors }}</td>
                             <td class="ttext-sm ttext-center">
-                                <a href="/admin/stores/update/{{ $metric->id }}">
+                                <a href="/admin/store-metrics/update/{{ $metric->id }}">
                                     <i class="fas fa-edit hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Edit"></i>       
                                 </a>
                             </td>

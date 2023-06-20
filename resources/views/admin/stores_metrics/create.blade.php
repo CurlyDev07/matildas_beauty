@@ -64,13 +64,13 @@
                         </div><!-- Store -->
 
                         <div class="tw-1/4 tflex tflex-col tmr-3">
-                            <input type="hidden" name="date" id="date">
-                            <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date</label>
-                            <div class="modal datepicker-modal" id="modal-dac2a79c-dbe3-234b-87ee-7ec0fe33ac96" tabindex="0"><div class="modal-content datepicker-container"><div class="datepicker-date-display"><span class="year-text"></span><span class="date-text"></span></div><div class="datepicker-calendar-container"><div class="datepicker-calendar"></div><div class="datepicker-footer"><button class="btn-flat datepicker-clear waves-effect" style="visibility: hidden;" type="button"></button><div class="confirmation-btns"><button class="btn-flat datepicker-cancel waves-effect" type="button">Cancel</button><button class="btn-flat datepicker-done waves-effect" type="button">Ok</button></div></div></div></div></div><input type="text" class="datepicker browser-default form-control">
+                            <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date <small class="ttext-gray-600"> (Metrics Date)</small></label>
+                            <input type="text" name="date" id="date" class="datepicker browser-default form-control" value="">
                             @error('date')
-                            <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
-                        @enderror
+                                <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
+                            @enderror
                         </div><!-- Date -->
+
 
                     </div>
 

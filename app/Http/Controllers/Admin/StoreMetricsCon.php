@@ -10,13 +10,29 @@ use App\Http\Requests\StoresMetrics\StoresMetricsCreateRequest;
 
 class StoreMetricsCon extends Controller
 {
-    public function index(){
-        $metrics = StoreMetrics::with(['store'])->get();
+    public function index(Request $request){
+        $metrics = StoreMetrics::with(['store'])
+        ->when($request->orders, function($q){
+            return $q->orderBy('orders', request()->orders);
+        })// sort orders
+        ->when($request->sales, function($q){
+            return $q->orderBy('sales', request()->sales);
+        })// sort sales
+        ->when($request->conversion_rate, function($q){
+            return $q->orderBy('conversion_rate', request()->conversion_rate);
+        })// sort conversion_rate
+        ->when($request->visitors, function($q){
+            return $q->orderBy('visitors', request()->visitors);
+        })// sort visitors
+        ->get();
+
+        // dd($metrics);
 
         return view('admin.stores_metrics.index', ['metrics' => $metrics]);
     }
 
     public function create(){
+
         $stores = Store::all();
 
         return view('admin.stores_metrics.create', ['stores' => $stores]);
@@ -35,5 +51,29 @@ class StoreMetricsCon extends Controller
 
         return redirect()->back()->with('success', 'Success');
     }
+
+    public function update($id){
+        $stores = Store::all();
+
+        $metrics = StoreMetrics::find($id);
+
+        return view('admin.stores_metrics.update', ['metrics' => $metrics, 'stores' => $stores]);
+    }
+    
+    public function patch(StoresMetricsCreateRequest $request){
+
+        $patch = StoreMetrics::find($request->id);
+        $patch->update([
+            "store_id" => $request->store_id,
+            "date" => date_f($request->date, 'Y-m-d H:i:s'),
+            "sales" => $request->sales,
+            "orders" => $request->orders,
+            "visitors" => $request->visitors,
+            "conversion_rate" => $request->conversion_rate,
+        ]);
+
+        return redirect()->back()->with('success', 'Success');
+    }
+
 
 }

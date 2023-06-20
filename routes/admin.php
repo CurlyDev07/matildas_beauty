@@ -196,6 +196,8 @@ Route::namespace('Admin')->group(function () {
         Route::get('/', 'StoreMetricsCon@index')->name('store.metrics.index');
         Route::get('/create', 'StoreMetricsCon@create');
         Route::post('/store', 'StoreMetricsCon@store')->name('store.metrics.store');
+        Route::get('/update/{id}', 'StoreMetricsCon@update')->name('store.metrics.update');
+        Route::post('/patch', 'StoreMetricsCon@patch')->name('store.metrics.patch');
     });
 
 });

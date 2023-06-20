@@ -31,55 +31,91 @@
             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
         </svg>
         <div>
-            <span class="tfont-medium">{{ session()->get('success') }}! </span> New supplier added
+            <span class="tfont-medium">{{ session()->get('success') }}! </span> Metrics Updated
         </div>
     </div>
 @endif
 
     <div class="tbg-white  trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b text-base tfont-medium tpx-5 tpy-4 ttext-title">
-            Create Store
+            Add Metrics
         </div>
      
-        <form action="{{ route('store.patch') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('store.metrics.patch') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
+                <input type="hidden" name="id" value="{{ request()->id }}">
                 <section>
                     <div class="text-sm tfont-medium tpx-5 tpy-4 tmt-4 ttext-title">
                         Details
                     </div>
 
-                    <input type="hidden" name="id" value="{{ request()->id }}">
                     <div class="tflex tpx-5 ">
                         <div class="tw-1/4 tflex tflex-col tmr-3">
-                            <label for="platform" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Platform</label>
-                            <select name="platform" id="platform" class="browser-default form-control tcapitalize"  style="padding: 6px;">
-                                @foreach ($platforms as $platform)
-                                    <option value="{{ $platform }}">{{ $platform }}</option>
+                            <label for="store_id" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Stores</label>
+                            <select name="store_id" id="store_id" class="browser-default form-control"  style="padding: 6px;">
+                                @foreach ($stores as $store)
+
+                                    @if ($metrics->store_id == $store->id)
+                                        <option selected value="{{ $store->id }}">{{ $store->store_name }}</option>
+                                    @endif
+
+                                    <option value="{{ $store->id }}">{{ $store->store_name }}</option>
+
                                 @endforeach
                             </select>
                             @error('bank')
                                 <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
                             @enderror
-                        </div><!-- Platform -->
+                        </div><!-- Store -->
+
+                        
+
+                        <div class="tw-1/4 tflex tflex-col tmr-3">
+                            <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date <small class="ttext-gray-600"> (Date of purchased)</small></label>
+                            <input type="text" name="date" id="date" class="datepicker browser-default form-control" value="{{ date_f($metrics->date, 'M d, Y')  }}">
+                            @error('date')
+                                <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
+                            @enderror
+                        </div><!-- Date -->
+
                     </div>
 
                     <div class="tflex tpx-5 tmt-5">
                         <div class="tw-1/2 tflex tflex-col tmr-3">
-                            <label for="store_name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Store Name</label>
-                            <input type="text" name="store_name" id="store_name" value="{{ $store->store_name }}" class="browser-default form-control" style="padding: 6px;">
-                            @error('store_name')
+                            <label for="sales" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Sales/Revenue</label>
+                            <input type="text" name="sales" id="sales" value="{{ $metrics->sales }}" class="browser-default form-control" style="padding: 6px;">
+                            @error('sales')
                                 <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
                             @enderror
-                        </div><!-- Store Name -->
+                        </div><!-- Sales/Revenue -->
+
                         <div class="tw-1/2 tflex tflex-col tmr-3">
-                            <label for="username" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Username</label>
-                            <input type="text" name="username" id="username" value="{{ $store->username }}" class="browser-default form-control" style="padding: 6px;">
-                            @error('username')
+                            <label for="orders" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Orders</label>
+                            <input type="text" name="orders" id="orders" value="{{ $metrics->orders }}" class="browser-default form-control" style="padding: 6px;">
+                            @error('orders')
                                 <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
                             @enderror
                         </div><!-- Username -->
+                    </div>
+
+                    <div class="tflex tpx-5 tmt-5">
+                        <div class="tw-1/2 tflex tflex-col tmr-3">
+                            <label for="visitors" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Visitors</label>
+                            <input type="text" name="visitors" id="visitors" value="{{ $metrics->visitors }}" class="browser-default form-control" style="padding: 6px;">
+                            @error('visitors')
+                                <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
+                            @enderror
+                        </div><!-- Visitors -->
+
+                        <div class="tw-1/2 tflex tflex-col tmr-3">
+                            <label for="conversion_rate" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Conversion Rate</label>
+                            <input type="text" name="conversion_rate" id="conversion_rate" value="{{ $metrics->conversion_rate }}" class="browser-default form-control" style="padding: 6px;">
+                            @error('conversion_rate')
+                                <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
+                            @enderror
+                        </div><!-- Sales/Revenue -->
                     </div>
 
                 </section>
@@ -105,11 +141,10 @@
             
      {{-- UPLOAD IMAGES JS CONTROLS --}}
     <script>
-         
-         $('#file').change(function () {
-            let file_name = $(this).val().split("\\").pop();
-            
-         });
-            
+
+        let datepicker = $('.datepicker').datepicker({
+            autoClose: true
+        });// initiate datepicker
+    
     </script>
 @endsection

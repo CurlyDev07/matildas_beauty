@@ -23,14 +23,6 @@
                             </a>
                         </div>
                     </li>
-                    <li onclick="window.location.href = '/admin/stores-metrics/create'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/suppliers/create', 'tborder-primary tborder-l-4') }}">
-                        <div class="ttext-md ttext-black-100 tmy-1 ">
-                            Metrics
-                            <a class="secondary-content">
-                                <i class="fas fa-user-plus ttext-primary"></i>
-                            </a>
-                        </div>
-                    </li>
                 </ul>
             </div><!-- NAV -->
             <div class="tw-3/4">
