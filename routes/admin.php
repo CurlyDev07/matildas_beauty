@@ -193,7 +193,7 @@ Route::namespace('Admin')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('store-metrics')->group(function () {
-        Route::get('/', 'StoreMetricsCon@index');
+        Route::get('/', 'StoreMetricsCon@index')->name('store.metrics.index');
         Route::get('/create', 'StoreMetricsCon@create');
         Route::post('/store', 'StoreMetricsCon@store')->name('store.metrics.store');
     });

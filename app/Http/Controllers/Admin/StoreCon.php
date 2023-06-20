@@ -21,7 +21,8 @@ class StoreCon extends Controller
 
     public function store(StoreStoreRequest $request){
         Store::create($request->all());
-        return request()->all();
+        
+        return redirect()->route('store.index');
     }
 
     public function update($id){
