@@ -17,9 +17,10 @@ class CreateStoreMetricsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('store_id')->index();
             $table->integer('sales');
-            $table->integer('order');
+            $table->integer('orders');
             $table->double('conversion_rate', 8, 2);
             $table->integer('visitors');
+            $table->date('date')->comment('date of metrics');
             $table->timestamps();
         });
     }

@@ -177,6 +177,27 @@ Route::namespace('Admin')->group(function () {
 
     });
 
+
+    Route::prefix('stores')->group(function () {
+        Route::get('/', 'StoreCon@index')->name('store.index');
+        Route::get('/create', 'StoreCon@create');
+        Route::post('/store', 'StoreCon@store')->name('store.store');
+        Route::get('/update/{id}', 'StoreCon@update')->name('store.update');
+        Route::post('/patch', 'StoreCon@patch')->name('store.patch');
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SHOPEE & LAZADA STORE METRICS Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('store-metrics')->group(function () {
+        Route::get('/', 'StoreMetricsCon@index');
+        Route::get('/create', 'StoreMetricsCon@create');
+        Route::post('/store', 'StoreMetricsCon@store')->name('store.metrics.store');
+    });
+
 });
 
 
