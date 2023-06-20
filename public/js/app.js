@@ -181,8 +181,8 @@ $('#mobile_login_form').submit(function (e) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Leoneex\Desktop\Web Dev\shopickers.inventory.com\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Leoneex\Desktop\Web Dev\shopickers.inventory.com\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\MSI\Desktop\Web Dev\matildas_beauty\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\MSI\Desktop\Web Dev\matildas_beauty\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
