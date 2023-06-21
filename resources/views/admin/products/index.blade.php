@@ -34,7 +34,7 @@
                     <i class="material-icons grey-text">more_vert</i>
                 </li>
                 <a href="/admin/products">
-                    <img src="{{ asset('icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
+                    <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                 </a>
             </ul>
         </div>
