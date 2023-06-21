@@ -4,7 +4,7 @@
         <div class="thidden lg:tblock tw-1/3 tbg-white tmr-16 trounded-lg tshadow-lg">
             <div class="tflex tflex-col tborder-b tp-5">
                 <div class="tmt-5 tmb-4">
-                    <img class="trounded-full tmx-auto" src="{{ asset('icons/user.png') }}" width="110px" alt="">
+                    <img class="trounded-full tmx-auto" src="{{ asset('images/icons/user.png') }}" width="110px" alt="">
                 </div>
                 <div class="ttext-center">
                     <span class="ttext-2xl ttext-title tmx-auto tfont-semibold">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</span>

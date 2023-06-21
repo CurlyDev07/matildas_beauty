@@ -10,7 +10,7 @@
                 <li class="tmr-4">
                     <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
                         <button type="submit" style="height: 40px; border-right-style: dashed;" class="focus:tbg-white focus:toutline-none tborder-r grey-text tborder tborder-gray-200 tborder-r-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-l-full waves-effect">
-                            <img class="" src="{{ asset('icons/store.png') }}" alt="">
+                            <img class="" src="{{ asset('images/icons/store.png') }}" alt="">
                         </button>
                         
                         <input type="text" placeholder="Not working yet. . ." name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-r-full trounded-tl" placeholder="Search order number">
@@ -22,14 +22,14 @@
                         <a href="?orders=asc" class="tooltipped" data-position="top" data-tooltip="Sort by orders">
                             <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
                                 <span class="tpl-1">Orders: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('icons/number_sort_down.png') }}" alt="">
+                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_down.png') }}" alt="">
                             </div>
                         </a> 
                     @else
                         <a href="?orders=desc" class="tooltipped" data-position="top" data-tooltip="Sort by orders">
                             <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
                                 <span class="tpl-1">Orders: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('icons/number_sort_up.png') }}" alt="">
+                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_up.png') }}" alt="">
                             </div>
                         </a>
                     @endif
@@ -39,14 +39,14 @@
                     <a href="?sales=asc" class="tooltipped" data-position="top" data-tooltip="Sort by sales">
                         <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
                             <span class="tpl-1">Sales: &nbsp;</span>
-                            <img class="tpr-1" src="{{ asset('icons/number_sort_down.png') }}" alt="">
+                            <img class="tpr-1" src="{{ asset('images/icons/number_sort_down.png') }}" alt="">
                         </div>
                     </a> 
                 @else
                     <a href="?sales=desc" class="tooltipped" data-position="top" data-tooltip="Sort by sales">
                         <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
                             <span class="tpl-1">Sales: &nbsp;</span>
-                            <img class="tpr-1" src="{{ asset('icons/number_sort_up.png') }}" alt="">
+                            <img class="tpr-1" src="{{ asset('images/icons/number_sort_up.png') }}" alt="">
                         </div>
                     </a>
                 @endif
@@ -56,14 +56,14 @@
                         <a href="?conversion_rate=asc" class="tooltipped" data-position="top" data-tooltip="Sort by conversion rate">
                             <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
                                 <span class="tpl-1">Conversion rate: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('icons/number_sort_down.png') }}" alt="">
+                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_down.png') }}" alt="">
                             </div>
                         </a> 
                     @else
                         <a href="?conversion_rate=desc" class="tooltipped" data-position="top" data-tooltip="Sort by conversion rate">
                             <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
                                 <span class="tpl-1">Conversion rate: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('icons/number_sort_up.png') }}" alt="">
+                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_up.png') }}" alt="">
                             </div>
                         </a>
                     @endif
@@ -73,21 +73,21 @@
                         <a href="?visitors=asc" class="tooltipped" data-position="top" data-tooltip="Sort by Visitors">
                             <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
                                 <span class="tpl-1">Visitors: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('icons/number_sort_down.png') }}" alt="">
+                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_down.png') }}" alt="">
                             </div>
                         </a> 
                     @else
                         <a href="?visitors=desc" class="tooltipped" data-position="top" data-tooltip="Sort by Visitors">
                             <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
                                 <span class="tpl-1">Visitors: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('icons/number_sort_up.png') }}" alt="">
+                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_up.png') }}" alt="">
                             </div>
                         </a>
                     @endif
                 </li><!-- SORT VISITORS-->
                 <li class="tml-2">
                     <a href="/admin/store-metrics">
-                        <img src="{{ asset('icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
+                        <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li>
             </ul>

@@ -267,7 +267,7 @@
             $.each(files, function(i, file){
                 var reader = new FileReader();
                 var img_key = i+random_string_generator();
-                let main_image_badge = `<img src="{{ asset('icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">`;
+                let main_image_badge = `<img src="{{ asset('images/icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">`;
                 
                 reader.readAsDataURL(file);
                 reader.onload = function(e){
@@ -298,7 +298,7 @@
                 let last_maing_img = $(document).find('#main_image_badge'); // find the last primary image
                 last_maing_img.next().next().attr('primary', 0)// set the last primary image primary attr to false
                 last_maing_img.remove();// remove the main image badge
-                let main_image_badge = `<img src="{{ asset('icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">`;// main image badge markup
+                let main_image_badge = `<img src="{{ asset('images/icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">`;// main image badge markup
                 $(this).parent().prepend(main_image_badge);// prepend the image badge markup to new selected image
                 $(this).attr('primary', 1); // select the primary attr to true to make this image primary
             })

@@ -84,7 +84,7 @@
                     </li><!-- SORT -->
                     <li>
                         <a href="/admin/shopee/">
-                            <img src="{{ asset('icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
+                            <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                         </a>
                     </li><!-- REMOVE FILTER -->
                 </ul>
@@ -141,7 +141,7 @@
                 @foreach ($status as $stats)
                     <div class="">
                         <div class="" style="width: 118px;">
-                            <img src="<?= asset('icons/'.str_replace(' ', '_', strtolower($stats["order_status"])).'.gif') ?>" alt="{{ $stats['order_status'] }}">
+                            <img src="<?= asset('images/icons/'.str_replace(' ', '_', strtolower($stats["order_status"])).'.gif') ?>" alt="{{ $stats['order_status'] }}">
                             <div class="order-value">{{ $stats['total_orders'] }}</div>
                             <div class="order-text tborder-b-2 tmb-2 tpb-2">{{ $stats['order_status'] }}</div>
                             

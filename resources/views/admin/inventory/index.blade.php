@@ -27,7 +27,7 @@
                 </li><!-- SORT -->
                 <li>
                     <a href="/admin/inventory">
-                        <img src="{{ asset('icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
+                        <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li>
             </ul>

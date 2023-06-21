@@ -29,7 +29,7 @@
                 </li><!-- SORT -->
                 <li>
                     <a href="/admin/shopee/view/{{ $filename }}">
-                        <img src="{{ asset('icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
+                        <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li>
                 <li>

@@ -172,7 +172,7 @@
                     // getBase64Image("{{ $img['img'] }}", function (base64image) {
                         $('#image_container').prepend(`
                             <div class="tw-1/5 tmb-3 tpr-1 trelative">
-                                <img src="{{ asset('icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">
+                                <img src="{{ asset('images/icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">
                                 <i class="delete_image fa-backspace fa-lg fas tabsolute tcursor-pointer" style="color: tomato;margin-top: 1px;right: 11px;"></i>
                                 <img src="{{ $img['img'] }}" class="image tborder" primary="1" style="height:148px; width: 164px;">
                             </div>
@@ -211,7 +211,7 @@
             $.each(files, function(i, file){
                 var reader = new FileReader();
                 var img_key = i+random_string_generator();
-                let main_image_badge = `<img src="{{ asset('icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">`;
+                let main_image_badge = `<img src="{{ asset('images/icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">`;
                 
                 reader.readAsDataURL(file);
                 reader.onload = function(e){
@@ -242,7 +242,7 @@
                 let last_maing_img = $(document).find('#main_image_badge'); // find the last primary image
                 last_maing_img.next().next().attr('primary', 0)// set the last primary image primary attr to false
                 last_maing_img.remove();// remove the main image badge
-                let main_image_badge = `<img src="{{ asset('icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">`;// main image badge markup
+                let main_image_badge = `<img src="{{ asset('images/icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">`;// main image badge markup
                 $(this).parent().prepend(main_image_badge);// prepend the image badge markup to new selected image
                 $(this).attr('primary', 1); // select the primary attr to true to make this image primary
             })
