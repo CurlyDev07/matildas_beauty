@@ -46,16 +46,16 @@
                         <tr>
                             <td class="ttext-sm ttext-center tpy-1">
                                 @if ($store->platform == 'shopee')
-                                    <img src="{{ asset('images\icons\shopee.png') }}" style="width: 35px;" alt="">
+                                    <img src="{{ asset('images\icons\shopee.png') }}" class="tmx-auto" style="width: 35px;" alt="">
                                 @endif
                                 @if ($store->platform == 'lazada')
-                                    <img src="{{ asset('images\icons\lazada.png') }}" style="width: 35px;" alt="">
+                                    <img src="{{ asset('images\icons\lazada.png') }}" class="tmx-auto" style="width: 35px;" alt="">
                                 @endif
                                 @if ($store->platform == 'tiktok')
-                                    <img src="{{ asset('images\icons\tiktok.png') }}" style="width: 35px;" alt="">
+                                    <img src="{{ asset('images\icons\tiktok.png') }}" class="tmx-auto" style="width: 35px;" alt="">
                                 @endif
                                 @if ($store->platform == 'fb')
-                                    <img src="{{ asset('images\icons\fb.png') }}" style="width: 35px;" alt="">
+                                    <img src="{{ asset('images\icons\fb.png') }}" class="tmx-auto" style="width: 35px;" alt="">
                                 @endif
 
                             </td>
