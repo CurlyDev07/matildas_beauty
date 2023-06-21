@@ -56,7 +56,13 @@
                             <label for="platform" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Platform</label>
                             <select name="platform" id="platform" class="browser-default form-control tcapitalize"  style="padding: 6px;">
                                 @foreach ($platforms as $platform)
+                                    @if ($platform == $store->platform)
+                                        <option value="{{ $platform }}"
+                                            {{'selected'}}
+                                        >{{ $platform }}</option>
+                                    @endif
                                     <option value="{{ $platform }}">{{ $platform }}</option>
+                                    
                                 @endforeach
                             </select>
                             @error('bank')

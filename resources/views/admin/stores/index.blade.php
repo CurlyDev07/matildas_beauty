@@ -44,10 +44,24 @@
 
                     @foreach ($stores as $store)
                         <tr>
-                            <td class="ttext-sm ttext-center">{{ $store->platform }}</td>
-                            <td class="ttext-sm ttext-center">{{ $store->store_name }}</td>
-                            <td class="ttext-sm ttext-center">{{ $store->username }}</td>
-                            <td class="ttext-sm ttext-center">
+                            <td class="ttext-sm ttext-center tpy-1">
+                                @if ($store->platform == 'shopee')
+                                    <img src="{{ asset('images\icons\shopee.png') }}" style="width: 35px;" alt="">
+                                @endif
+                                @if ($store->platform == 'lazada')
+                                    <img src="{{ asset('images\icons\lazada.png') }}" style="width: 35px;" alt="">
+                                @endif
+                                @if ($store->platform == 'tiktok')
+                                    <img src="{{ asset('images\icons\tiktok.png') }}" style="width: 35px;" alt="">
+                                @endif
+                                @if ($store->platform == 'fb')
+                                    <img src="{{ asset('images\icons\fb.png') }}" style="width: 35px;" alt="">
+                                @endif
+
+                            </td>
+                            <td class="ttext-sm ttext-center tpy-1">{{ $store->store_name }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">{{ $store->username }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">
                                 <a href="/admin/stores/update/{{ $store->id }}">
                                     <i class="fas fa-edit hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Edit"></i>       
                                 </a>
