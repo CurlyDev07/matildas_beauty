@@ -151,6 +151,7 @@
             <table class="tmb-4 tbg-white ttext-md tw-full">
                     <tr class="tborder-0">
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Platform</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Store</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Sales</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Orders</th>
@@ -162,7 +163,21 @@
                     @foreach ($metrics as $metric)
 
                         <tr>
-                            <td class="ttext-sm ttext-center">{{ $metric->date }}</td>
+                            <td class="ttext-sm ttext-center">{{ date_f($metric->date, 'd M (D)') }}</td>
+                            <td class="ttext-sm ttext-center">
+                                @if ($metric->store->platform == 'shopee')
+                                    <img src="{{ asset('images\icons\shopee.png') }}" class="tmx-auto" style="width: 35px;" alt="">
+                                @endif
+                                @if ($metric->store->platform == 'lazada')
+                                    <img src="{{ asset('images\icons\lazada.png') }}" class="tmx-auto" style="width: 35px;" alt="">
+                                @endif
+                                @if ($metric->store->platform == 'tiktok')
+                                    <img src="{{ asset('images\icons\tiktok.png') }}" class="tmx-auto" style="width: 35px;" alt="">
+                                @endif
+                                @if ($metric->store->platform == 'fb')
+                                    <img src="{{ asset('images\icons\fb.png') }}" class="tmx-auto" style="width: 35px;" alt="">
+                                @endif
+                            </td>
                             <td class="ttext-sm ttext-center">{{ $metric->store->store_name }}</td>
                             <td class="ttext-sm ttext-center">{{ $metric->sales }}</td>
                             <td class="ttext-sm ttext-center">{{ $metric->orders }}</td>
