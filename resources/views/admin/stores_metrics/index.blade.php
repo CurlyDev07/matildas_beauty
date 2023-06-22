@@ -1,13 +1,39 @@
 @extends('admin.stores_metrics.layouts')
 
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+@section('css')
+
+    <style>
+        select:focus, input:focus{
+            outline: none;
+            border:none;
+            -webkit-box-shadow: none!important;
+            -moz-box-shadow: none!important;
+            box-shadow: none!important;
+        }
+
+        .select-dropdown{
+            border-bottom: none!important;
+            margin-bottom: 0px;
+        }
+        .select-wrapper{
+            height: 31px;
+        }
+        .caret{
+            display: none;
+        }
+    </style>
+@endsection
 
 @section('page')
 
+
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
-        <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
-            <span class="ttext-base ttext-title tfont-medium">Stores</span>
+        <div class="tborder-b tpx-5 tpy-3">
+            {{-- <span class="ttext-base ttext-title tfont-medium">Stores</span> --}}
             <ul class="tflex titems-center">
-                <li class="tmr-4">
+                {{-- <li class="tmr-1">
                     <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
                         <button type="submit" style="height: 40px; border-right-style: dashed;" class="focus:tbg-white focus:toutline-none tborder-r grey-text tborder tborder-gray-200 tborder-r-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-l-full waves-effect">
                             <img class="" src="{{ asset('images/icons/store.png') }}" alt="">
@@ -15,8 +41,35 @@
                         
                         <input type="text" placeholder="Not working yet. . ." name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-r-full trounded-tl" placeholder="Search order number">
                     </form>
-                </li><!-- SEARCH -->
+                </li><!-- SEARCH --> --}}
+                <li class="tmr-1">
+                    <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
+                        <img class="tpr-1" src="{{ asset('images/icons/platform.png') }}" alt="">
 
+                        <select id="platform" class="platform tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
+                            <option value="shopee">Shopee</option>
+                            <option value="lazada">Lazada</option>
+                            <option value="tiktok">Tiktok</option>
+                            <option value="fb">FB</option>
+                        </select> 
+                    </div>
+                </li><!-- Platform Filter-->
+                <li class="tmr-1">
+                    <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
+                        <img class="tpr-1" src="{{ asset('images/icons/store.png') }}" alt="">
+                        <select id="stores" class="stores tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
+                            @foreach ($stores as $store)
+                                <option value="{{ $store->id }}" selected>{{ $store->store_name }}</option>
+                            @endforeach
+                        </select> 
+                    </div>
+                </li><!-- Store Filter-->
+                <li class="tmr-1">
+                    <div class="tborder tflex titems-center tpx-2 tpy-1 trounded ttext-sm" >
+                        <img class="tpr-1" src="{{ asset('images/icons/calendar.png') }}" alt="">
+                        <input type="text" name="dates" id="dates" value="{{ request()->dates }}" class="browser-default tooltipped" data-position="top" data-tooltip="Filter by date"/>
+                    </div>
+                </li><!-- Dates Filter-->
                 <li>    
                     @if (request()->orders == 'desc')
                         <a href="?orders=asc" class="tooltipped" data-position="top" data-tooltip="Sort by orders">
@@ -42,14 +95,14 @@
                             <img class="tpr-1" src="{{ asset('images/icons/number_sort_down.png') }}" alt="">
                         </div>
                     </a> 
-                @else
-                    <a href="?sales=desc" class="tooltipped" data-position="top" data-tooltip="Sort by sales">
-                        <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                            <span class="tpl-1">Sales: &nbsp;</span>
-                            <img class="tpr-1" src="{{ asset('images/icons/number_sort_up.png') }}" alt="">
-                        </div>
-                    </a>
-                @endif
+                    @else
+                        <a href="?sales=desc" class="tooltipped" data-position="top" data-tooltip="Sort by sales">
+                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                                <span class="tpl-1">Sales: &nbsp;</span>
+                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_up.png') }}" alt="">
+                            </div>
+                        </a>
+                    @endif
                 </li><!-- SORT SALES-->
                 <li class="tml-1">    
                     @if (request()->conversion_rate == 'desc')
@@ -85,11 +138,11 @@
                         </a>
                     @endif
                 </li><!-- SORT VISITORS-->
-                <li class="tml-2">
+                <li class="tml-1">
                     <a href="/admin/store-metrics">
                         <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
-                </li>
+                </li><!-- REMOVE FILTER -->
             </ul>
         </div>
         <div class="tpx-3 tpy-4 tflex tjustify-center">
@@ -128,7 +181,53 @@
 
 
 @section('js')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <script>
+
+    $('input[name="dates"]').daterangepicker({
+        maxDate: moment(),
+        ranges: {
+           'Today': [moment(), moment()],
+           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+           'This Month': [moment().startOf('month'), moment().endOf('month')],
+           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    });
+
+    $('#dates').change(function () {
+        const parser = new URL(window.location.href);
+        parser.searchParams.set("dates", $(this).val());
+        window.location = parser.href;
+    });
+
+    $('#stores').change(function (e) {
+        e.preventDefault();
+
+        const parser = new URL(window.location.href);
+        parser.searchParams.set("stores", $(this).val());
+        window.location = parser.href;
+
+        return false;
+
+    });
+
+
+    $('#platform').change(function (e) {
+        e.preventDefault();
+
+        const parser = new URL(window.location.href);
+        parser.searchParams.set("platform", $(this).val());
+        window.location = parser.href;
+
+        return false;
+
+    });
+
+
     $(document).ready(function(){
         $('.modal').modal();
         $('.dropdown-trigger').dropdown();

@@ -11,7 +11,19 @@ use App\Http\Requests\StoresMetrics\StoresMetricsCreateRequest;
 class StoreMetricsCon extends Controller
 {
     public function index(Request $request){
+        $stores = Store::all();
+
         $metrics = StoreMetrics::with(['store'])
+        ->when($request->dates, function ($q) {
+            $date = explode(" - ",request()->dates);
+            $from = date_format(date_create($date[0]), "Y-m-d") .' 00:00:00';
+            $to = date_format(date_create($date[1]),"Y-m-d") .' 23:59:59';
+            // dd([$from, $to]);
+            return $q->whereBetween('date', [$from, $to]);
+        })// filter by date
+        ->when($request->stores, function($q){
+            return $q->where('store_id', request()->stores);
+        })// Filter by stores
         ->when($request->orders, function($q){
             return $q->orderBy('orders', request()->orders);
         })// sort orders
@@ -24,11 +36,14 @@ class StoreMetricsCon extends Controller
         ->when($request->visitors, function($q){
             return $q->orderBy('visitors', request()->visitors);
         })// sort visitors
+        ->when($request->platform, function($q){
+            $platform_ids = Store::where('platform', request()->platform)->pluck('id')->toArray();
+            return $q->whereIn('id', $platform_ids);
+        })// sort visitors
         ->get();
 
-        // dd($metrics);
 
-        return view('admin.stores_metrics.index', ['metrics' => $metrics]);
+        return view('admin.stores_metrics.index', ['metrics' => $metrics, 'stores' => $stores]);
     }
 
     public function create(){
