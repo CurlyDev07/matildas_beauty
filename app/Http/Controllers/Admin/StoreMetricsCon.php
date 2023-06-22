@@ -6,19 +6,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Store;
 use App\StoreMetrics;
+use Illuminate\Support\Collection;
 use App\Http\Requests\StoresMetrics\StoresMetricsCreateRequest;
 
 class StoreMetricsCon extends Controller
 {
     public function index(Request $request){
+      
         $stores = Store::all();
 
         $metrics = StoreMetrics::with(['store'])
+        ->when(!$request->dates, function($q){
+            $yesterday = date('Y-m-d',strtotime("-1 days"));
+            return $q->where('date', $yesterday);
+        })// Show Yesterday's Datas
         ->when($request->dates, function ($q) {
             $date = explode(" - ",request()->dates);
             $from = date_format(date_create($date[0]), "Y-m-d") .' 00:00:00';
             $to = date_format(date_create($date[1]),"Y-m-d") .' 23:59:59';
-            // dd([$from, $to]);
             return $q->whereBetween('date', [$from, $to]);
         })// filter by date
         ->when($request->stores, function($q){
@@ -42,8 +47,20 @@ class StoreMetricsCon extends Controller
         })// sort visitors
         ->get();
 
+        $collection = new Collection($metrics->toArray());
+        $data = [
+            'orders' => number_format($collection->sum('orders')),
+            'sales' => number_format($collection->sum('sales')),
+            'conversion_rate' => number_format($collection->avg('conversion_rate')),
+            'visitors' => number_format($collection->sum('visitors')),
+            'results' => $collection->count(),
+        ];
 
-        return view('admin.stores_metrics.index', ['metrics' => $metrics, 'stores' => $stores]);
+        // dd($data);
+        // dd($collection);
+
+
+        return view('admin.stores_metrics.index', ['metrics' => $metrics, 'stores' => $stores, 'data' => $data]);
     }
 
     public function create(){
