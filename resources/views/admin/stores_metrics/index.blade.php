@@ -47,10 +47,10 @@
                         <img class="tpr-1" src="{{ asset('images/icons/platform.png') }}" alt="">
 
                         <select id="platform" class="platform tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
+                            <option value="fb">FB</option>
                             <option value="shopee">Shopee</option>
                             <option value="lazada">Lazada</option>
                             <option value="tiktok">Tiktok</option>
-                            <option value="fb">FB</option>
                         </select> 
                     </div>
                 </li><!-- Platform Filter-->
@@ -58,8 +58,10 @@
                     <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
                         <img class="tpr-1" src="{{ asset('images/icons/store.png') }}" alt="">
                         <select id="stores" class="stores tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
+                            <option value="#" selected>Choose ...</option>
+
                             @foreach ($stores as $store)
-                                <option value="{{ $store->id }}" selected>{{ $store->store_name }}</option>
+                                <option value="{{ $store->id }}">{{ $store->store_name }}</option>
                             @endforeach
                         </select> 
                     </div>
