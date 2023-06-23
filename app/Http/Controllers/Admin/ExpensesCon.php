@@ -10,7 +10,7 @@ use App\ExpensesCategory;
 class ExpensesCon extends Controller
 {
     public function index(){
-        $expenses = Expenses::with(['category'])->get();
+        $expenses = Expenses::with(['category'])->orderBy('date', 'asc')->get();
         return view('admin.expenses.index', ['expenses' => $expenses]);
     }
 
