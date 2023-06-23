@@ -190,9 +190,9 @@
 
                     @foreach ($metrics as $metric)
 
-                        <tr>
-                            <td class="ttext-sm ttext-center">{{ date_f($metric->date, 'd M (D)') }}</td>
-                            <td class="ttext-sm ttext-center">
+                        <tr class="hover:tshadow-2xl">
+                            <td class="ttext-sm ttext-center tpy-1">{{ date_f($metric->date, 'd M (D)') }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">
                                 @if ($metric->store->platform == 'shopee')
                                     <img src="{{ asset('images\icons\shopee.png') }}" class="tmx-auto" style="width: 35px;" alt="">
                                 @endif
@@ -206,12 +206,12 @@
                                     <img src="{{ asset('images\icons\fb.png') }}" class="tmx-auto" style="width: 35px;" alt="">
                                 @endif
                             </td>
-                            <td class="ttext-sm ttext-center">{{ $metric->store->store_name }}</td>
-                            <td class="ttext-sm ttext-center">{{ $metric->sales }}</td>
-                            <td class="ttext-sm ttext-center">{{ $metric->orders }}</td>
-                            <td class="ttext-sm ttext-center">{{ $metric->conversion_rate }} %</td>
-                            <td class="ttext-sm ttext-center">{{ $metric->visitors }}</td>
-                            <td class="ttext-sm ttext-center">
+                            <td class="ttext-sm ttext-center tpy-1">{{ $metric->store->store_name }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">{{ $metric->sales }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">{{ $metric->orders }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">{{ $metric->conversion_rate }} %</td>
+                            <td class="ttext-sm ttext-center tpy-1">{{ $metric->visitors }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">
                                 <a href="/admin/store-metrics/update/{{ $metric->id }}">
                                     <i class="fas fa-edit hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Edit"></i>       
                                 </a>
