@@ -68,4 +68,13 @@ Route::post('charge', 'PaymentController@charge')->name('charge');
 Route::get('payment-success', 'PaymentController@payment_success');// for cash on delivery
 Route::get('payment-success-paypal', 'PaymentController@payment_success_paypal');// for paypal not used
 Route::get('payment-error', 'PaymentController@payment_error');
+
+
+// FB ADS 
+Route::get('kasoy-oil', 'FbAdsCon@index');
+Route::post('kasoy-oil-store', 'FbAdsCon@store')->name('kasoy_oil_store');
+Route::post('get-cities', 'FbAdsCon@cities');
+Route::post('get-barangay', 'FbAdsCon@barangay');
+
+
 Auth::routes();
