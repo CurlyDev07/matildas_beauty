@@ -78,3 +78,7 @@ Route::post('get-barangay', 'FbAdsCon@barangay');
 
 
 Auth::routes();
+
+
+// http://127.0.0.1:8000/
+// php artisan serve --host 0.0.0.0 --port 80

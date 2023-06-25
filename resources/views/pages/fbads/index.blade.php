@@ -17,47 +17,55 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <style>
-        /* select option {
-            margin: 40px;
-            background: rgba(0, 0, 0, 0.3);
-            color: #fff;
-            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-        } */
+       .input-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            border: 1px solid #e1e5eb;
+            font-weight: 400;
+            will-change: border-color,box-shadow;
+            border-radius: 0.25rem;
+            box-shadow: none;
+            transition: box-shadow 250ms cubic-bezier(.27,.01,.38,1.06),border 250ms cubic-bezier(.27,.01,.38,1.06);
+        }
     </style>
 
 </head>
 <body>
     
 
-    <div style="scroll-behavior: smooth;max-width: 480px;" id="body" class="tmx-auto tborder tpx-3 tpy-5">
+    <div style="scroll-behavior: smooth;max-width: 480px;" id="body" class="tmx-auto tborder tpx-5 tpy-5">
         <form action="{{ route('kasoy_oil_store') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="tw-full tflex tmb-2">
+            <div class="tw-full tflex tmb-3">
                 <div class="tw-1/2 tmr-1">
                     <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Full Name</label>
-                    <input required type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="browser-default form-control" style="padding: 6px;">
+                    <input required type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="browser-default input-control">
                 </div>
                 <div class="tw-1/2 tml-1 trelative">
                     @error('phone_number')
                         <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 1%;">{{ $message }}</span>
                     @enderror
                     <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Phone Number</label>
-                    <input required type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default form-control" style="padding: 6px;">
+                    <input required type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default input-control">
                 </div>
             </div><!--Fullname & Phone Number -->
-            <div class="tw-full tflex tmb-2">
+            <div class="tw-full tflex tmb-3">
                 <div class="tw-auto tmr-1">
                     <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
                         <span class="tfont-medium">Address</span>
                         <small class="ttext-gray-600">(Street Name/Building/House No./Subdv/Landmark)</small>
                     </label>
-                    <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default form-control" style="padding: 6px;">
+                    <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
                 </div>
             </div><!--Address -->
-            <div class="tw-full tflex tmb-2">
+            <div class="tw-full tflex tmb-5">
                 <div class="tw-1/3">
                     <label for="province" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Province</label>
-                    <select required name="province" id="province" class="browser-default form-control" style="padding: 6px 0px 6px 0px; font-size: 12px; border-radius: 0px; border-right: none;">
+                    <select required name="province" id="province" class="browser-default input-control" style="font-size: 12px; border-radius: 0px; border-right: none;">
                         <option value="">Province</option>
                         @foreach ($provinces as $province)
                             <option value="{{ $province }}">{{ $province }}</option>
@@ -66,13 +74,13 @@
                 </div><!--province -->
                 <div class="tw-1/3">
                     <label for="city" class="tfont-medium ttext-sm tmb-2 ttext-black-100">City</label>
-                    <select required name="city" id="city" disabled class="browser-default form-control" style="border-left: none;padding: 6px 0px 6px 0px;font-size: 12px;border-radius: 0px;border-right: 0px;">
+                    <select required name="city" id="city" disabled class="browser-default input-control" style="border-left: none; font-size: 12px;border-radius: 0px;border-right: 0px;">
                         <option value="">City</option>
                     </select>
                 </div><!--city -->
                 <div class="tw-1/3">
                     <label for="barangay" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Barangay</label>
-                    <select required name="barangay" disabled id="barangay" class="browser-default form-control" style="padding: 6px 0px 6px 0px;font-size: 12px;border-left: none;border-radius: 0px;">
+                    <select required name="barangay" disabled id="barangay" class="browser-default input-control" style=" font-size: 12px;border-left: none;border-radius: 0px;">
                         <option value="">Barangay</option>
                     </select>
                 </div><!--barangay -->
@@ -126,7 +134,7 @@
 
             <div class="tw-full trelative">
                 <img src="{{ asset('/images/icons/loader.gif') }}" id="loader" class="thidden t-mt-2 tabsolute tmb-2" style="height: 20px; left: 46%;">
-                <button class="focus:tbg-red-500 tbg-red-500 tml-auto tmt-4 tpy-2 trounded ttext-white tw-full waves-effect" id="submit_btn">Submit Order</button>
+                <button class="focus:tbg-red-500 tbg-red-500 tml-auto tmt-4 tpy-3 trounded ttext-white tw-full waves-effect" id="submit_btn">Submit Order</button>
             </div>
         </form>
 
