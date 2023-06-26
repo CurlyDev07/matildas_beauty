@@ -19,7 +19,7 @@
     <style>
        .input-control {
             width: 100%;
-            padding: 10px;
+            padding: 12px!important;
             font-size: 14px;
             line-height: 1.5;
             color: #495057;
@@ -48,23 +48,102 @@
             }
         }
 
+        li{
+            list-style-type: disc !important;
+        }
+
     </style>
 
 </head>
 <body>
 
-    <div style="scroll-behavior: smooth;max-width: 480px;" id="body">
-        <img src="{{ asset('images/kasoy_oil/kasoy_oil.webp') }}" class="tw-full" alt="kasoy_oil_promo">
+    <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
+        <h3 class="tborder-2 tborder-b tfont-medium tpb-5 tpt-5 trounded tshadow-md ttext-3xl ttext-center">KASOY OIL WARTS REMOVER</h3>
 
-        <video class="tw-full" controls autoplay>
+        <img src="{{ asset('images/kasoy_oil/benefits.png') }}" class="tw-full tmb-5" alt="kasoy_oil_promo">
+
+
+        <div class="tmx-auto trelative tp-5">
+            <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
+
+            <p style="font-size: 20px;" class="ttext-center tmb-4">
+                The ultimate solution for your skin concerns.
+            </p><br>
+
+            <h4 class="tfont-medium tmb-4 ttext-xl">CURE SKIN PROBLEM SUCH AS:</h4>
+            
+            <ul class="tpx-5 tml-8">
+                <li class="ttext-xl">All Types of Warts</li>
+                <li class="ttext-xl">Skin Tags</li>
+                <li class="ttext-xl">Moles</li>
+                <li class="ttext-xl">Kulugo</li>
+                <li class="ttext-xl">Kalyo</li>
+                <li class="ttext-xl">Nunal</li>
+                <li class="ttext-xl">Buni</li>
+                <li class="ttext-xl">Syringoma</li>
+            </ul><br><!-- CURE SKIN PROBLEM SUCH AS: -->
+            
+
+            <h4 class="tfont-medium tmb-4 ttext-xl">INGREDIENTS:</h4>
+            
+            <ul class="tpx-5 tml-8">
+                <li class="ttext-xl">Pure Kasoy Oil</li>
+                <li class="ttext-xl">Garlic Extract</li>
+                <li class="ttext-xl">Pineapple Extract</li>
+                <li class="ttext-xl">Aloe Vera</li>
+            </ul><br><!--INGREDIENTS: -->
+            
+ 
+            <h4 class="tfont-medium tmb-4 ttext-xl">WHAT TO EXPECT:</h4>
+            
+            <ul class="tpx-5 tml-8">
+                <li class="ttext-xl">You will feel a burning effect that is not too painful</li>
+                <li class="ttext-xl">You will feel that it is taking effect</li>
+                <li class="ttext-xl">in 3 to 7 days you will see results up to the final result</li>
+            </ul><br><!--WHAT TO EXPECT: -->
+            
+            
+            <h4 class="tfont-medium tmb-4 ttext-xl">HOW TO USE:</h4>
+            
+            <ul class="tpx-5 tml-8">
+                <li class="ttext-xl">Use the dropper to place 3 to 4 drops of the oil to your skin insecurities</li>
+                <li class="ttext-xl">Let the oil sit on the skin for 10 to 15 minutes</li>
+                <li class="ttext-xl">Repeat 2x a day</li>
+            </ul><br><!--HOW TO USE: -->
+            
+            <p style="font-size: 20px;" class="ttext-center">
+                Experience the confidence of flawless skin with Kasoy Oil Warts Remover. 
+            </p>
+        </div>
+
+        <div class="tp-5 tmb-5" style="border: 5px solid #ff6100;">
+            <h4 class="tfont-medium tmb-4 ttext-xl ttext-center">BEFORE AND AFTER</h4>
+            <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full"  alt="kasoy_oil_promo">
+        </div>
+
+        <h4 class="tfont-medium tpy-3 tmb-5 ttext-xl ttext-center">WATCH OUR CUSTOMER VIDEO  FEEDBACK</h4>
+        <video class="tw-full" controls playsinline webkit-playsinline autoplay muted loop>
             <source src="{{ asset('images/kasoy_oil/testimonial_vid.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
+        <video class="tw-full" controls playsinline webkit-playsinline autoplay muted loop>
+            <source src="{{ asset('images/kasoy_oil/testimonial_vid3.mp4') }}" type="video/mp4">
+            <source src="movie.ogg" type="video/ogg">
+        </video>
+        <video class="tw-full" controls playsinline webkit-playsinline autoplay muted loop>
+            <source src="{{ asset('images/kasoy_oil/testimonial_vid2.mp4') }}" type="video/mp4">
+            <source src="movie.ogg" type="video/ogg">
+        </video>
+
+        <img src="{{ asset('images/kasoy_oil/doc_willie.png') }}" class="tw-full tmy-5" alt="doc_willie">
+        <img src="{{ asset('images/kasoy_oil/testimonial1.png') }}" class="tw-full" alt="kasoy_oil_promo">
+        <img src="{{ asset('images/kasoy_oil/testimonial2.png') }}" class="tw-full" alt="kasoy_oil_promo">
+        <img src="{{ asset('images/kasoy_oil/testimonial3.png') }}" class="tw-full" alt="kasoy_oil_promo">
+        <img src="{{ asset('images/kasoy_oil/testimonial4.png') }}" class="tw-full" alt="kasoy_oil_promo">
 
         <img src="{{ asset('images/kasoy_oil/kasoy_oil_promo.png') }}" class="tw-full" alt="kasoy_oil_promo">
 
-        <div  class="tmx-auto trelative tborder tpx-5 tpb-5">
-
+        <div class="tmx-auto trelative tborder tpx-5 tpb-5">
 
             <form action="{{ route('kasoy_oil_store') }}" id="form" method="post" enctype="multipart/form-data">
                 <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3>
@@ -164,7 +243,7 @@
 
                 <div class="tw-full trelative">
                     <img src="{{ asset('/images/icons/loader.gif') }}" id="loader" class="thidden t-mt-2 tabsolute tmb-2" style="height: 20px; left: 46%;">
-                    <button class="focus:tbg-red-500 tbg-red-500 tml-auto tmt-4 tpy-3 trounded ttext-white tw-full waves-effect" id="submit_btn">Submit Order</button>
+                    <button class="z-depth-5 focus:tbg-red-500 tbg-red-500 tml-auto tmt-4 tpy-3 trounded ttext-white tw-full waves-effect" id="submit_btn">Submit Order</button>
                 </div><!-- Submit Order -->
             </form><!-- ORDER PROMO -->
 
@@ -201,6 +280,8 @@
         <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
 
         <script type="text/javascript">
+        console.log($(document).height());
+        console.log($('#body').height());
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -211,6 +292,7 @@
         <script>
 
             // ONCLICKS
+            
             $('#province').change(function () {
                 $('#loader').removeClass('thidden');// Show Loader
 
@@ -249,7 +331,6 @@
                 });
             });
             
-
             $('#promo1').change(function () {
                 $("#promo2").prop('checked', false);
                 $("#promo3").prop('checked', false);
@@ -274,19 +355,18 @@
                 $("#promo3").prop('checked', false);
             });
 
-            var $window = $(window),
+            var $window = $(window),x
                 $document = $(document),
                 button = $('#order_now');
-
                 
                 $window.on('scroll', function () {
                 if ($window.scrollTop() + ($window.height()) > ($document.height() - 350)) {
                 
-                    button.stop(true).animate({
+                    button.stop(true).css('z-index', 0).animate({
                         opacity: 0
                     }, 150);
                 } else {
-                    button.stop(true).animate({
+                    button.stop(true).css('z-index', 999).animate({
                         opacity: 1
                     }, 150);
                 }
@@ -305,7 +385,15 @@
                 $(document).ready(function(){
                     $('.modal').modal();
                     $('.modal').modal('open');
-                });
+                });// OPEN THANK YOU MODAL
+            </script>
+        @endif
+
+        @if(session()->get('errors'))
+            <script>
+                $('html, body').animate({
+                    scrollTop: $('#form').offset().top + 9999
+                }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
             </script>
         @endif
     </footer>
