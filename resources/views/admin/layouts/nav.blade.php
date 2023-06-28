@@ -96,6 +96,12 @@
                         Store Metrics
                     </a>
                 </li>
+                <li class="tab col">
+                    <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'fbads', 'active') }}" onclick="location.href = '/admin/fbads'">
+                        <i class="fas fa-users tmr-1 fa-lg"></i> 
+                        FB
+                    </a>
+                </li>
                 {{-- <li class="tab col">
                     <a href="#" class="{{ is_matched_return_class(admin_parent_nav(), 'categories', 'active') }}" onclick="location.href = '/admin/categories'">
                         <i class="fas fa-comment tmr-1 fa-lg"></i> 

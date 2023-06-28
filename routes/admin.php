@@ -200,6 +200,16 @@ Route::namespace('Admin')->group(function () {
         Route::post('/patch', 'StoreMetricsCon@patch')->name('store.metrics.patch');
     });
 
+    /*
+    |--------------------------------------------------------------------------
+    | FB ADS ORDERS
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('fbads')->group(function () {
+        Route::get('/', 'FbAdsCon@index')->name('fbads.index');
+     
+    });
+
 });
 
 

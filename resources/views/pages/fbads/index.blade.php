@@ -191,13 +191,13 @@
                 <div class="tflex tmb-5">
                     <div class="tw-1/2">
                         <label for="city" class="tfont-medium ttext-sm tmb-2 ttext-black-100">City</label>
-                        <select required name="city" id="city" disabled class="browser-default input-control" style="font-size: 12px;border-radius: 0px;border-right: 0px;">
+                        <select required name="city" id="city" disabled class="browser-default input-control" style="font-size: 12px;border-right: 0px;">
                             <option value="">City</option>
                         </select>
                     </div><!--city -->
                     <div class="tw-1/2">
                         <label for="barangay" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Barangay</label>
-                        <select required name="barangay" disabled id="barangay" class="browser-default input-control" style=" font-size: 12px;border-left: none;border-radius: 0px;">
+                        <select required name="barangay" disabled id="barangay" class="browser-default input-control" style=" font-size: 12px;border-left: none;">
                             <option value="">Barangay</option>
                         </select>
                     </div><!--barangay -->
@@ -389,7 +389,7 @@
         </script>
 
     </footer>
-    
+
     @if(session()->has('success'))
     <script>
         $(document).ready(function(){
