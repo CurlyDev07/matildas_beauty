@@ -270,6 +270,13 @@
              
                 <img src="{{ asset('loader/four_dots_loader.svg') }}" id="loader" style="bottom: 83%;left: 38%;" class="tabsolute thidden" alt="four_dots_loader">
 
+                <div class="tmt-3 ttext-right tw-full">
+                    <span class="ttext-gray-900" style="font-size: 16px;">
+                        <span class="tfont-medium">TOTAL:</span>
+                        <span class="tfont-medium">₱</span>
+                        <span id="total" class="tfont-medium t-ml-1">749</span>
+                    </span>
+                </div>
                 <div class="tw-full ">
                     <button class="z-depth-5 focus:tbg-red-500 tbg-red-500 tml-auto tmt-4 tpy-3 trounded ttext-white tw-full waves-effect" id="submit_btn">Submit Order</button>
                 </div><!-- Submit Order -->
@@ -358,24 +365,28 @@
             });
             
             $('#promo1').change(function () {
+                $('#total').html($(this).val().split('|')[1]);
                 $("#promo2").prop('checked', false);
                 $("#promo3").prop('checked', false);
                 $("#promo4").prop('checked', false);
             });
 
             $('#promo2').change(function () {
+                $('#total').html($(this).val().split('|')[1]);
                 $("#promo1").prop('checked', false);
                 $("#promo3").prop('checked', false);
                 $("#promo4").prop('checked', false);
             });
 
             $('#promo3').change(function () {
+                $('#total').html($(this).val().split('|')[1]);
                 $("#promo1").prop('checked', false);
                 $("#promo2").prop('checked', false);
                 $("#promo4").prop('checked', false);
             });
 
             $('#promo4').change(function () {
+                $('#total').html($(this).val().split('|')[1]);
                 $("#promo1").prop('checked', false);
                 $("#promo2").prop('checked', false);
                 $("#promo3").prop('checked', false);
