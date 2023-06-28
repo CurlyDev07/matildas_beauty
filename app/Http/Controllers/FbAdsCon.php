@@ -40,7 +40,9 @@ class FbAdsCon extends Controller
             "product" => 'Kasoy Oil',
         ]);
         
-        return redirect()->back()->with('success', 'Success');
+        // return redirect()->back(['a'=>'s'])->with('success', 'Success');
+        return redirect()->route('kasoy_oil', ['purchase' => 1, 'amount' => $promo[1]])->with('success', 'Success');
+
     }
 
     public function cities(Request $request){
