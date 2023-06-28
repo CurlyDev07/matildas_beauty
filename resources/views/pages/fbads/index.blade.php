@@ -58,22 +58,7 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/main.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
-    @if(session()->has('success'))
-        <script>
-            $(document).ready(function(){
-                $('.modal').modal();
-                $('.modal').modal('open');
-            });// OPEN THANK YOU MODAL
-        </script>
-        @endif
 
-        @if(session()->get('errors'))
-        <script>
-            $('html, body').animate({
-                scrollTop: $('#form').offset().top + 9999
-            }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
-        </script>
-    @endif
 </head>
 <body>
 
@@ -404,7 +389,23 @@
         </script>
 
     </footer>
+    
+    @if(session()->has('success'))
+    <script>
+        $(document).ready(function(){
+            $('.modal').modal();
+            $('.modal').modal('open');
+        });// OPEN THANK YOU MODAL
+    </script>
+    @endif
 
+    @if(session()->get('errors'))
+    <script>
+        $('html, body').animate({
+            scrollTop: $('#form').offset().top + 9999
+        }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
+    </script>
+@endif
 
 
    
