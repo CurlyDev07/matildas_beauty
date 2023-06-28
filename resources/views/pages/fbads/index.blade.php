@@ -71,6 +71,8 @@
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '1393765810823713');
             fbq('track', 'PageView');
+            fbq('track', 'InitiateCheckout');
+
         </script>
         <noscript>
             <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1614979632011184&ev=PageView&noscript=1"/>
@@ -303,7 +305,9 @@
                 </div>
             </div> <!-- Modal  -->
 
-            <button id="order_now" class="focus:tbg-red-500 tabsolute tbg-red-500 tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="left: 8%; position: fixed; max-width: 480px;">ORDER NOW!</button>
+            <button id="order_now"
+            class="focus:tbg-red-500 tabsolute tbg-red-500 tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
+            style="margin-left: 4px;left: 20%;position: fixed;max-width: 480px;z-index: 999;opacity: 1;">ORDER NOW!</button>
         </div>
 
        
