@@ -54,6 +54,26 @@
 
     </style>
 
+
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
+    <script src="{{ asset('js/main.js') }}"  crossorigin="anonymous"></script>
+    <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
+    @if(session()->has('success'))
+        <script>
+            $(document).ready(function(){
+                $('.modal').modal();
+                $('.modal').modal('open');
+            });// OPEN THANK YOU MODAL
+        </script>
+        @endif
+
+        @if(session()->get('errors'))
+        <script>
+            $('html, body').animate({
+                scrollTop: $('#form').offset().top + 9999
+            }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
+        </script>
+    @endif
 </head>
 <body>
 
@@ -145,7 +165,7 @@
 
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
 
-            <form action="{{ route('kasoy_oil_store') }}" id="form" method="post" enctype="multipart/form-data">
+            <form action="{{ route('kasoy_oil_store') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
                 <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3>
 
                 @csrf
@@ -171,23 +191,26 @@
                         <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
                     </div>
                 </div><!--Address -->
-                <div class="tw-full tflex tmb-5">
-                    <div class="tw-1/3">
+
+                <div class="tflex tmb-3">
+                    <div class="tw-full">
                         <label for="province" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Province</label>
-                        <select required name="province" id="province" class="browser-default input-control" style="font-size: 12px; border-radius: 0px; border-right: none;">
+                        <select required name="province" id="province" class="browser-default input-control" style="font-size: 12px;">
                             <option value="">Province</option>
                             @foreach ($provinces as $province)
                                 <option value="{{ $province }}">{{ $province }}</option>
                             @endforeach
                         </select>
                     </div><!--province -->
-                    <div class="tw-1/3">
+                </div><!--province -->
+                <div class="tflex tmb-5">
+                    <div class="tw-1/2">
                         <label for="city" class="tfont-medium ttext-sm tmb-2 ttext-black-100">City</label>
-                        <select required name="city" id="city" disabled class="browser-default input-control" style="border-left: none; font-size: 12px;border-radius: 0px;border-right: 0px;">
+                        <select required name="city" id="city" disabled class="browser-default input-control" style="font-size: 12px;border-radius: 0px;border-right: 0px;">
                             <option value="">City</option>
                         </select>
                     </div><!--city -->
-                    <div class="tw-1/3">
+                    <div class="tw-1/2">
                         <label for="barangay" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Barangay</label>
                         <select required name="barangay" disabled id="barangay" class="browser-default input-control" style=" font-size: 12px;border-left: none;border-radius: 0px;">
                             <option value="">Barangay</option>
@@ -241,8 +264,10 @@
                     @enderror
                 </div><!-- ORDER PROMO -->
 
-                <div class="tw-full trelative">
-                    <img src="{{ asset('/images/icons/loader.gif') }}" id="loader" class="thidden t-mt-2 tabsolute tmb-2" style="height: 20px; left: 46%;">
+             
+                <img src="{{ asset('loader/four_dots_loader.svg') }}" id="loader" style="bottom: 83%;left: 38%;" class="tabsolute thidden" alt="four_dots_loader">
+
+                <div class="tw-full ">
                     <button class="z-depth-5 focus:tbg-red-500 tbg-red-500 tml-auto tmt-4 tpy-3 trounded ttext-white tw-full waves-effect" id="submit_btn">Submit Order</button>
                 </div><!-- Submit Order -->
             </form><!-- ORDER PROMO -->
@@ -268,16 +293,14 @@
                 </div>
             </div> <!-- Modal  -->
 
-            <button id="order_now" class="focus:tbg-red-500 t tabsolute tbg-red-500 tbottom-0 tfixed tfont-medium tleft-0 tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="margin-left: 31px; position: fixed;">ORDER NOW!</button>
+            <button id="order_now" class="focus:tbg-red-500 tabsolute tbg-red-500 tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="left: 8%; position: fixed; max-width: 480px;">ORDER NOW!</button>
         </div>
 
        
     </div>
 
     <footer>
-        <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
-        <script src="{{ asset('js/main.js') }}"  crossorigin="anonymous"></script>
-        <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
+
 
         <script type="text/javascript">
         console.log($(document).height());
@@ -380,22 +403,6 @@
 
         </script>
 
-        @if(session()->has('success'))
-            <script>
-                $(document).ready(function(){
-                    $('.modal').modal();
-                    $('.modal').modal('open');
-                });// OPEN THANK YOU MODAL
-            </script>
-        @endif
-
-        @if(session()->get('errors'))
-            <script>
-                $('html, body').animate({
-                    scrollTop: $('#form').offset().top + 9999
-                }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
-            </script>
-        @endif
     </footer>
 
 

@@ -236,19 +236,19 @@
 @endsection
 
 @section('js')
-    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
     <script src="{{ asset('js/helpers.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('input_counter/script.js') }}"></script>
 
     <script>
-        $(document).ready(function () {
-            $('.modal').modal();
+        // $(document).ready(function () {
+        //     $('.modal').modal();
 
-           let description = CKEDITOR.replace( 'description' );
-           let short_description = CKEDITOR.replace( 'short_description' );
-        });
+        //    let description = CKEDITOR.replace( 'description' );
+        //    let short_description = CKEDITOR.replace( 'short_description' );
+        // });
     </script>
 
     {{-- UPLOAD IMAGES JS CONTROLS --}}
