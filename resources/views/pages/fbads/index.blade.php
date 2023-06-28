@@ -274,7 +274,7 @@
                     <span class="ttext-gray-900" style="font-size: 16px;">
                         <span class="tfont-medium">TOTAL:</span>
                         <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">749</span>
+                        <span id="total" class="tfont-medium t-ml-1">999</span>
                     </span>
                 </div>
                 <div class="tw-full ">
