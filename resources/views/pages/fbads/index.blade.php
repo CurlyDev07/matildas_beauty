@@ -328,15 +328,15 @@
         @endif
 
         <script>
-            $('#submit_btn').click(function(){
-                fbq('track', 'InitiateCheckout');
-            });// Track InitiateCheckout on checkout click
+            // $('#submit_btn').click(function(){
+            //     fbq('track', 'InitiateCheckout');
+            // });// Track InitiateCheckout on checkout click
 
-            $('#order_now').click(function(){
-                fbq('track', 'AddPaymentInfo');
-            });// Track InitiateCheckout on checkout click
+            // $('#order_now').click(function(){
+            //     fbq('track', 'AddPaymentInfo');
+            // });// Track InitiateCheckout on checkout click
         </script>
-        
+
         <script type="text/javascript">
           
             $.ajaxSetup({
