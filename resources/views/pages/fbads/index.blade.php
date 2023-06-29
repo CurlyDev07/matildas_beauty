@@ -71,7 +71,6 @@
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '1393765810823713');
             fbq('track', 'PageView');
-            fbq('track', 'InitiateCheckout');
         </script>
         <noscript>
             <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1614979632011184&ev=PageView&noscript=1"/>
@@ -320,9 +319,17 @@
 
     <footer>
 
+        @if (request()->amount)
+            <script>
+                let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
+                fbq('track', 'Purchase', {currency: "PHP", value: fb_purchase_value});
+            </script>
+        @endif
+
         <script>
-            let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
-            fbq('track', 'Purchase', {currency: "PHP", value: fb_purchase_value});
+            $('#submit_btn').click(function(){
+                fbq('track', 'InitiateCheckout');
+            });// Track InitiateCheckout on checkout click
         </script>
         
         <script type="text/javascript">
