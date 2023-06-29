@@ -72,7 +72,6 @@
             fbq('init', '1393765810823713');
             fbq('track', 'PageView');
             fbq('track', 'InitiateCheckout');
-
         </script>
         <noscript>
             <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1614979632011184&ev=PageView&noscript=1"/>
@@ -171,6 +170,7 @@
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
 
             <form action="{{ route('kasoy_oil_store') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
                 <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3>
 
                 @csrf
@@ -320,10 +320,13 @@
 
     <footer>
 
-
+        <script>
+            let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
+            fbq('track', 'Purchase', {currency: "PHP", value: fb_purchase_value});
+        </script>
+        
         <script type="text/javascript">
-        console.log($(document).height());
-        console.log($('#body').height());
+          
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
