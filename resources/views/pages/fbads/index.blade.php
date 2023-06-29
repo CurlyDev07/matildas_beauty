@@ -70,6 +70,8 @@
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '1393765810823713');
+            fbq('track', 'ViewContent');
+
         </script>
         <noscript>
             <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1614979632011184&ev=PageView&noscript=1"/>
@@ -326,9 +328,13 @@
         @endif
 
         <script>
-            // $('#submit_btn').click(function(){
-            //     fbq('track', 'InitiateCheckout');
-            // });// Track InitiateCheckout on checkout click
+            $('#submit_btn').click(function(){
+                fbq('track', 'InitiateCheckout');
+            });// Track InitiateCheckout on checkout click
+
+            $('#order_now').click(function(){
+                fbq('track', 'AddPaymentInfo');
+            });// Track InitiateCheckout on checkout click
         </script>
         
         <script type="text/javascript">
