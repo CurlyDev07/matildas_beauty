@@ -8,6 +8,7 @@ use App\Province;
 use App\City;
 use App\Barangay;
 use App\FbAds;
+use App\FbEventListener;
 use App\Http\Requests\FbAds\StoreFbAdsRequest;
 
 class FbAdsCon extends Controller
@@ -51,6 +52,44 @@ class FbAdsCon extends Controller
    
     public function barangay(Request $request){
         return json_encode(Barangay::select('barangay')->orderBy('barangay', 'asc')->where('city', $request->city)->get());
+    }
+
+    public function event_listener(Request $request){
+        if ($request->visitors) {
+            FbEventListener::create([
+                'data' => 'visitors',
+                'value' => 1,
+            ]);
+        }
+        if ($request->order_form) {
+            FbEventListener::create([
+                'data' => 'order_form',
+                'value' => 1,
+            ]);
+        }
+        if ($request->submit_order) {
+            FbEventListener::create([
+                'data' => 'submit_order',
+                'value' => 1,
+            ]);
+        }
+
+        if ($request->order_success) {
+            FbEventListener::create([
+                'data' => 'order_success',
+                'value' => 1,
+            ]);
+        }
+        
+        if ($request->form_validation_error) {
+            FbEventListener::create([
+                'data' => 'form_validation_error',
+                'value' => $request->form_validation_error,
+            ]);
+        }
+
+        // FbEventListener::create([$data]);
+        return $request->all();
     }
 
 }

@@ -321,25 +321,14 @@
 
     <footer>
 
-        @if (request()->amount)
+        {{-- @if (request()->amount)
             <script>
-                let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
-                fbq('track', 'Purchase', {currency: "USD", value: fb_purchase_value});
+                // let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
+                // fbq('track', 'Purchase', {currency: "USD", value: fb_purchase_value});
             </script>
-        @endif
-
-        <script>
-            // $('#submit_btn').click(function(){
-            //     fbq('track', 'InitiateCheckout');
-            // });// Track InitiateCheckout on checkout click
-
-            // $('#order_now').click(function(){
-            //     fbq('track', 'AddPaymentInfo');
-            // });// Track InitiateCheckout on checkout click
-        </script>
+        @endif --}}
 
         <script type="text/javascript">
-          
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -434,11 +423,25 @@
                 }
             });// hide show ORDER BUTTON on Scroll
 
-            $('#order_now').click(function (e) { //#A_ID is an example. Use the id of your Anchor
+            $('#order_now').click(function (e) {
                 $('html, body').animate({
                     scrollTop: $('#form').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
                 }, 'slow');
+
+                $.post("/event-listener",{
+                    order_form: 1
+                });// EVENT LISTENER Track ORDER FORM
             });
+
+            $('#submit_btn').click(function () {
+                $.post("/event-listener",{
+                    submit_order: 1
+                });//  EVENT LISTENER Track SUBMIT ORDER
+            })
+
+            $.post("/event-listener",{
+                visitors: 1
+            });//  EVENT LISTENER Track VIEW
 
         </script>
 
@@ -450,14 +453,23 @@
             $('.modal').modal();
             $('.modal').modal('open');
         });// OPEN THANK YOU MODAL
+
+        $.post("/event-listener",{
+            order_success: 1
+        });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
     </script>
     @endif
 
     @if(session()->get('errors'))
+    
     <script>
         $('html, body').animate({
             scrollTop: $('#form').offset().top + 9999
         }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
+
+        $.post("/event-listener",{
+            form_validation_error: "{{ $errors->first() }}"
+        });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
     </script>
 @endif
 

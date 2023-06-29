@@ -76,6 +76,9 @@ Route::post('kasoy-oil-store', 'FbAdsCon@store')->name('kasoy_oil_store');
 Route::post('get-cities', 'FbAdsCon@cities');
 Route::post('get-barangay', 'FbAdsCon@barangay');
 
+// FB ADS EVENT LISTENER
+Route::post('event-listener', 'FbAdsCon@event_listener')->name('event.listener');
+
 
 Auth::routes();
 
