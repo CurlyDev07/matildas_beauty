@@ -86,6 +86,15 @@
 
         <img src="{{ asset('images/kasoy_oil/benefits.png') }}" class="tw-full tmb-5" alt="kasoy_oil_promo">
 
+        <div class="tp-5 tmb-5" style="border: 5px solid #ff6100;">
+            <h4 class="tfont-medium tmb-4 ttext-xl ttext-center">BEFORE AND AFTER</h4>
+            <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full"  alt="kasoy_oil_promo">
+        </div>
+
+        <video class="tw-full" controls playsinline webkit-playsinline autoplay muted loop>
+            <source src="{{ asset('images/kasoy_oil/testimonial_vid.mp4') }}" type="video/mp4">
+            <source src="movie.ogg" type="video/ogg">
+        </video>
 
         <div class="tmx-auto trelative tp-5">
             <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
@@ -140,16 +149,8 @@
             </p>
         </div>
 
-        <div class="tp-5 tmb-5" style="border: 5px solid #ff6100;">
-            <h4 class="tfont-medium tmb-4 ttext-xl ttext-center">BEFORE AND AFTER</h4>
-            <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full"  alt="kasoy_oil_promo">
-        </div>
-
         <h4 class="tfont-medium tpy-3 tmb-5 ttext-xl ttext-center">WATCH OUR CUSTOMER VIDEO  FEEDBACK</h4>
-        <video class="tw-full" controls playsinline webkit-playsinline autoplay muted loop>
-            <source src="{{ asset('images/kasoy_oil/testimonial_vid.mp4') }}" type="video/mp4">
-            <source src="movie.ogg" type="video/ogg">
-        </video>
+       
         <video class="tw-full" controls playsinline webkit-playsinline autoplay muted loop>
             <source src="{{ asset('images/kasoy_oil/testimonial_vid3.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
