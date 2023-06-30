@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 class FbAdsCon extends Controller
 {
     public function index(){
+
         $orders = FbAds::orderBy('created_at', 'desc')->get();
         return view('admin.fbads.index', ['orders' => $orders]);
     }

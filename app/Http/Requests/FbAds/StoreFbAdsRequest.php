@@ -27,9 +27,9 @@ class StoreFbAdsRequest extends FormRequest
             "full_name" => "required",
             "phone_number" => "required|digits:11",
             "address" => "required",
-            "province" => "required",
-            "city" => "required",
-            "barangay" => "required",
+            // "province" => "required",
+            // "city" => "required",
+            // "barangay" => "required",
             "promo" => "required",
         ];
     }

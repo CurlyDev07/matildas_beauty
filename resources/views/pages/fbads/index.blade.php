@@ -61,16 +61,16 @@
 
     <!-- Facebook Pixel Code -->
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1393765810823713');
-        fbq('track', 'ViewContent');
+        // !function(f,b,e,v,n,t,s)
+        // {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        // n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        // if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        // n.queue=[];t=b.createElement(e);t.async=!0;
+        // t.src=v;s=b.getElementsByTagName(e)[0];
+        // s.parentNode.insertBefore(t,s)}(window, document,'script',
+        // 'https://connect.facebook.net/en_US/fbevents.js');
+        // fbq('init', '1393765810823713');
+        // fbq('track', 'ViewContent');
 
     </script>
     <noscript>
@@ -191,14 +191,14 @@
                 <div class="tw-full tflex tmb-3">
                     <div class="tw-auto tmr-1">
                         <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
-                            <span class="tfont-medium">Address</span>
-                            <small class="ttext-gray-600">(Street Name/Building/House No./Subdv/Landmark)</small>
+                            <span class="tfont-medium">Complete Address</span>
+                            <small class="ttext-gray-600">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</small>
                         </label>
                         <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
                     </div>
                 </div><!--Address -->
 
-                <div class="tflex tmb-3">
+                {{-- <div class="tflex tmb-3">
                     <div class="tw-full">
                         <label for="province" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Province</label>
                         <select required name="province" id="province" class="browser-default input-control" style="font-size: 12px;">
@@ -222,7 +222,7 @@
                             <option value="">Barangay</option>
                         </select>
                     </div><!--barangay -->
-                </div><!--province/city/barangay -->
+                </div><!--province/city/barangay --> --}}
 
                 <div class="tborder tmb-2 tp-2 trelative">
                     <div class="talign-middle tflex tjustify-around tw-full">
