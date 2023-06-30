@@ -228,7 +228,7 @@
                     <div class="talign-middle tflex tjustify-around tw-full">
                         <div class="tflex titems-center">
                             <label>
-                                <input type="checkbox" id="promo1" name="promo" checked="" value="6pc_kasoy_oil|999">
+                                <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="6pc_kasoy_oil|999">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-medium">₱999</span>
                                     6pcs Kasoy Oil
@@ -237,7 +237,7 @@
                         </div><!-- PROMO 1 -->
                         <div class="tflex titems-center">
                             <label>
-                                <input type="checkbox" id="promo2" name="promo" value="4pc_kasoy_oil|749">
+                                <input type="checkbox" id="promo2" name="promo" class="promo" value="4pc_kasoy_oil|749">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-medium">₱749</span>
                                     4pc Kasoy Oil
@@ -248,7 +248,7 @@
                     <div class="talign-middle tflex tjustify-around tw-full">
                         <div class="tflex titems-center">
                             <label>
-                                <input type="checkbox" id="promo3" name="promo" value="2pc_kasoy_oil|399">
+                                <input type="checkbox" id="promo3" name="promo" class="promo" value="2pc_kasoy_oil|399">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-medium">₱399</span>
                                     2pcs Kasoy Oil
@@ -257,7 +257,7 @@
                         </div><!-- PROMO 3 -->
                         <div class="tflex titems-center">
                             <label>
-                                <input type="checkbox" id="promo4" name="promo" value="1pc_kasoy_oil|299">
+                                <input type="checkbox" id="promo4" name="promo" class="promo" value="1pc_kasoy_oil|299">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-medium">₱299</span>
                                     1pc Kasoy Oil
@@ -432,6 +432,31 @@
                     order_form: 1
                 });// EVENT LISTENER Track ORDER FORM
             });
+
+            $('#full_name').click(function (e) {
+                $.post("/event-listener",{
+                    full_name: 1
+                });// EVENT LISTENER Track ENTER FULL NAME
+            });
+            
+            $('#phone_number').click(function (e) {
+                $.post("/event-listener",{
+                    phone_number: 1
+                });// EVENT LISTENER Track ENTER CONTACT NUMBER
+            });
+
+            $('#address').click(function (e) {
+                $.post("/event-listener",{
+                    address: 1
+                });// EVENT LISTENER Track ENTER CONTACT NUMBER
+            });
+
+            $('.promo').click(function (e) {
+                $.post("/event-listener",{
+                    promo: 1
+                });// EVENT LISTENER Track ENTER CONTACT NUMBER
+            });
+
 
             $('#submit_btn').click(function () {
                 $.post("/event-listener",{

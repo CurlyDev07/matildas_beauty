@@ -33,11 +33,11 @@
                 </li>
             </ul>
         </div>
-        <div class="tpx-3 tpy-4 tflex tjustify-around ">
+        <div class="tflex tflex-wrap tjustify-between tpx-3">
             
             @foreach ($events as $event)
             <tr>
-                <div class="tborder trounded tp-5">
+                <div class="tborder trounded tp-5 tmt-4">
                     <td class="ttext-sm ttext-center tcapitalize">{{ $event->data }} : {{ $event->total }}</td>
                 </div>
             </tr>

@@ -87,6 +87,34 @@ class FbAdsCon extends Controller
                 'value' => $request->form_validation_error,
             ]);
         }
+        
+        if ($request->full_name) {
+            FbEventListener::create([
+                'data' => 'full_name',
+                'value' => $request->full_name,
+            ]);
+        }
+
+        if ($request->phone_number) {
+            FbEventListener::create([
+                'data' => 'phone_number',
+                'value' => $request->phone_number,
+            ]);
+        }
+
+        if ($request->address) {
+            FbEventListener::create([
+                'data' => 'address',
+                'value' => $request->address,
+            ]);
+        }
+       
+        if ($request->promo) {
+            FbEventListener::create([
+                'data' => 'promo',
+                'value' => $request->promo,
+            ]);
+        }
 
         // FbEventListener::create([$data]);
         return $request->all();
