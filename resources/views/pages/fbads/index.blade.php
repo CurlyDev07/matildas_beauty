@@ -281,7 +281,7 @@
                     </span>
                 </div>
                 <div class="tw-full ">
-                    <button class="z-depth-5 focus:tbg-red-500 tbg-red-500 tml-auto tmt-4 tpy-3 trounded ttext-white tw-full waves-effect" id="submit_btn">Submit Order</button>
+                    <button class="z-depth-5 focus:tbg-red-500 tbg-red-500 tml-auto tmt-4 tpy-3 trounded ttext-white tw-full waves-effect" id="submit_btn">Checkout Order</button>
                 </div><!-- Submit Order -->
             </form><!-- ORDER PROMO -->
 
