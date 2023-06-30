@@ -323,8 +323,8 @@
 
         @if (request()->amount)
             <script>
-                // let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
-                // fbq('track', 'Purchase', {currency: "USD", value: fb_purchase_value});
+                let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
+                fbq('track', 'Purchase', {currency: "USD", value: fb_purchase_value});
             </script>
         @endif
 
