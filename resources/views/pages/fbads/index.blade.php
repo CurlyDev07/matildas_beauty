@@ -240,7 +240,7 @@
 
                 <div class="tborder tmb-2 tp-2 trelative">
                     <div class="talign-middle tflex tjustify-around tw-full">
-                        <div class="tflex titems-center">
+                        {{-- <div class="tflex titems-center">
                             <label>
                                 <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="6pc_kasoy_oil|999">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
@@ -268,13 +268,13 @@
                                     2pcs Kasoy Oil
                                 </span>
                             </label>
-                        </div><!-- PROMO 3 -->
+                        </div><!-- PROMO 3 --> --}}
                         <div class="tflex titems-center">
                             <label>
-                                <input type="checkbox" id="promo4" name="promo" class="promo" value="1pc_kasoy_oil|299">
+                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="1pc_kasoy_oil|299">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-medium">₱299</span>
-                                    1pc Kasoy Oil
+                                    Buy 1 Take 1 Kasoy Oil 
                                 </span>
                             </label>
                         </div><!-- PROMO 4-->
@@ -283,7 +283,6 @@
                         <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 32%;">{{ $message }}</span>
                     @enderror
                 </div><!-- ORDER PROMO -->
-
              
                 <img src="{{ asset('loader/four_dots_loader.svg') }}" id="loader" style="bottom: 83%;left: 38%;" class="tabsolute thidden" alt="four_dots_loader">
 
@@ -291,7 +290,7 @@
                     <span class="ttext-gray-900" style="font-size: 16px;">
                         <span class="tfont-medium">TOTAL:</span>
                         <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">999</span>
+                        <span id="total" class="tfont-medium t-ml-1">299</span>
                     </span>
                 </div>
                 <div class="tw-full ">
@@ -485,7 +484,6 @@
                     promo: 1
                 });// EVENT LISTENER Track ENTER CONTACT NUMBER
             });
-
 
             $('#submit_btn').click(function () {
                 $.post("/event-listener",{
