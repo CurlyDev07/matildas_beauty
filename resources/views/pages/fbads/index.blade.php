@@ -52,8 +52,15 @@
             list-style-type: disc !important;
         }
 
-    </style>
+        .gredient-border{
+            border: linear-gradient(180deg, rgba(255, 106, 0, 1) 0%, rgba(238, 9, 9, 1) 100%);
+            background: linear-gradient(#fff, #fff), linear-gradient(to right, #f63705, #fc5b01);
+            background-origin: padding-box, border-box;
+            background-repeat: no-repeat;
+            border: 5px solid transparent;
+        }
 
+    </style>
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/main.js') }}"  crossorigin="anonymous"></script>
@@ -82,11 +89,18 @@
 <body>
 
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
-        <h3 class="tborder-2 tborder-b tfont-medium tpb-5 tpt-5 trounded tshadow-md ttext-3xl ttext-center">KASOY OIL WARTS REMOVER</h3>
+        <div class="tflex tfont-medium titems-center tjustify-between trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgba(255, 106, 0, 1) 0%, rgba(238, 9, 9, 1) 100%)">
+            <div style="margin-left: 4%;">
+                <s class="ttext-sm ttext-white">Orig Price ₱1,000</s>
+                <p class="t-mt-2 tfont-medium tshadow-2xl ttext-4xl ttext-white"><u>Promo ₱299</u></p>
+            </div>
+            <button class="order_now focus:tbg-red-500 tabsolute tbg-white tbottom-0 tfixed tfont-black tpy-3 trounded-full ttext-xl tw-10/12 waves-effect zoom-in-out-box" style="bottom: 18%;max-width: 240px;width: 41%;right: 4%;color: #f63604;">ORDER NOW!
+            </button>
+        </div>
 
-        <img src="{{ asset('images/kasoy_oil/benefits.png') }}" class="tw-full tmb-5" alt="kasoy_oil_promo">
+        <img src="{{ asset('images/kasoy_oil/benefits.png') }}" class="tw-full tmt-2 tmb-5" alt="kasoy_oil_promo">
 
-        <div class="tp-5 tmb-5" style="border: 5px solid #ff6100;">
+        <div class="tp-5 tmb-5 gredient-border">
             <h4 class="tfont-medium tmb-4 ttext-xl ttext-center">BEFORE AND AFTER</h4>
             <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full"  alt="kasoy_oil_promo">
         </div>
@@ -285,6 +299,32 @@
                 </div><!-- Submit Order -->
             </form><!-- ORDER PROMO -->
 
+            <p class="tmt-12 tfont-medium tmt-12 ttext-center">When completing this form and clicking the Submit My Order button, your order will be processed ASAP and cannot be cancelled.</p>
+
+            <section class="tflex tmt-5">
+                <div class="ttext-center">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/fast_delivery.png') }}" alt="fast_delivery">
+                    <span>Fast delivery nationwide</span>
+                </div>
+                <div class="ttext-center">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/money_back.png') }}" alt="cash_on_delivery">
+                    <span>Moneyback Guarantee</span>
+                </div>
+                <div class="ttext-center">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/cash_on_delivery.png') }}" alt="cash_on_delivery">
+                    <span>Cash on Delivery</span>
+                </div>
+                <div class="ttext-center">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/customer_service.png') }}" alt="customer_service">
+                    <span>Aftersales Support</span>
+                </div>
+            </section>
+
+            <p class="tmt-6 ttext-2xl ttext-center">Pweding ibalik ang bayad kong hindi effective.</p>
+
+            <img class="th-48 tmx-auto" src="{{ asset('images\icons\promises\money_back_guarantee.png') }}" alt="money_back_guarantee">
+
+            <img class="" src="{{ asset('images\icons\promises\fda.jpg') }}" alt="fda">
 
             <div id="modal1" class="modal">
                 <div class="modal-content" style="padding-bottom: 0px;">
@@ -306,21 +346,14 @@
                 </div>
             </div> <!-- Modal  -->
 
-            <button id="order_now" class="focus:tbg-red-500 tabsolute tbg-red-500 tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="    position: fixed;
-            max-width: 480px;
-            z-index: 999;
-            opacity: 1;
-            margin-left: auto;
-            margin-right: auto;
-            left: 0;
-            right: 0;">ORDER NOW!</button>
+            <button class="order_now focus:tbg-red-500 tabsolute tbg-red-500 tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
+                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;">
+                ORDER NOW!
+            </button>
         </div>
-
-       
     </div>
 
     <footer>
-
         @if (request()->amount)
             <script>
                 let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
@@ -328,18 +361,14 @@
             </script>
         @endif
 
-        <script type="text/javascript">
-            $.ajaxSetup({
+        <script>
+             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-        </script>
-
-        <script>
 
             // ONCLICKS
-            
             $('#province').change(function () {
                 $('#loader').removeClass('thidden');// Show Loader
 
@@ -408,7 +437,7 @@
 
             var $window = $(window),x
                 $document = $(document),
-                button = $('#order_now');
+                button = $('.order_now');
                 
                 $window.on('scroll', function () {
                 if ($window.scrollTop() + ($window.height()) > ($document.height() - 350)) {
@@ -423,7 +452,7 @@
                 }
             });// hide show ORDER BUTTON on Scroll
 
-            $('#order_now').click(function (e) {
+            $('.order_now').click(function (e) {
                 $('html, body').animate({
                     scrollTop: $('#form').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
                 }, 'slow');
@@ -469,7 +498,6 @@
             });//  EVENT LISTENER Track VIEW
 
         </script>
-
     </footer>
 
     @if(session()->has('success'))
@@ -486,17 +514,16 @@
     @endif
 
     @if(session()->get('errors'))
-    
-    <script>
-        $('html, body').animate({
-            scrollTop: $('#form').offset().top + 9999
-        }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
+        <script>
+            $('html, body').animate({
+                scrollTop: $('#form').offset().top + 9999
+            }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
 
-        $.post("/event-listener",{
-            form_validation_error: "{{ $errors->first() }}"
-        });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
-    </script>
-@endif
+            $.post("/event-listener",{
+                form_validation_error: "{{ $errors->first() }}"
+            });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
+        </script>
+    @endif
 
 
    
