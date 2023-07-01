@@ -320,7 +320,7 @@
                 </div>
             </section>
 
-            <p class="tmt-6 ttext-2xl ttext-center">Pweding ibalik ang bayad kong hindi effective.</p>
+            <p class="tmt-6 ttext-2xl ttext-center">Pweding ibalik ang bayad if hindi effective.</p>
 
             <img class="th-48 tmx-auto" src="{{ asset('images\icons\promises\money_back_guarantee.png') }}" alt="money_back_guarantee">
 
