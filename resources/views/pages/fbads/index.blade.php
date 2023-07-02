@@ -115,23 +115,28 @@
                         <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
                         <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
                     </div>
-                </div>
+                </div>    
                 <div class="tflex titems-center tjustify-between">
 
-                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d; background: #ee4d2d; color: white;">
-                        5 <i class="fa-solid fa-star" style="color: white;"></i> (879)
+                    <div class="tflex tflex-wrap tjustify-center tpy-2 tpx-1 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d; background: #ee4d2d; color: white;">
+                        <div class="">5 <i class="fa-solid fa-star" style="color: white;"></i></div>
+                        <div class="">(879)</div>
                     </div>
-                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        4 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
+                    <div class="tflex tflex-wrap tjustify-center tpy-2 tpx-1 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                        <div class="">4 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i></div>
+                        <div class="">(0)</div>
                     </div>
-                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        3 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
+                    <div class="tflex tflex-wrap tjustify-center tpy-2 tpx-1 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                        <div class="">3 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i></div>
+                        <div class="">(0)</div>
                     </div>
-                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        2 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
+                    <div class="tflex tflex-wrap tjustify-center tpy-2 tpx-1 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                        <div class="">2 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i></div>
+                        <div class="">(0)</div>
                     </div>
-                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        1 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
+                    <div class="tflex tflex-wrap tjustify-center tpy-2 tpx-1 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                        <div class="">1 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i></div>
+                        <div class="">(0)</div>
                     </div>
                 </div>
                 
