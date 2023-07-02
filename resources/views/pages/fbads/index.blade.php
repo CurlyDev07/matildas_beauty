@@ -439,8 +439,28 @@
 
         {{-- REVIEWS --}}
 
-        <div class="tmx-auto trelative tborder tpx-5 tpb-5">
+            <img class="" src="{{ asset('images\icons\promises\fda.jpg') }}" alt="fda">
 
+            <div class="tmx-auto trelative tborder tpx-5 tpb-5">
+
+            <section class="tflex titems-baseline tmt-5">
+                <div class="ttext-center">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/fast_delivery.png') }}" alt="fast_delivery">
+                    <span>Fast delivery nationwide</span>
+                </div>
+                <div class="ttext-center">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/money_back.png') }}" alt="cash_on_delivery">
+                    <span>Moneyback Guarantee</span>
+                </div>
+                <div class="ttext-center">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/cash_on_delivery.png') }}" alt="cash_on_delivery">
+                    <span>Cash on Delivery</span>
+                </div>
+                <div class="ttext-center">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/customer_service.png') }}" alt="customer_service">
+                    <span>Aftersales Support</span>
+                </div>
+            </section>
             <form action="{{ route('kasoy_oil_store') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
                 <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
                 <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3>
@@ -559,30 +579,6 @@
 
             <img class="th-48 tmx-auto" src="{{ asset('images\icons\promises\money_back_guarantee.png') }}" alt="money_back_guarantee">
 
-            <section class="tflex tmt-5">
-                <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/fast_delivery.png') }}" alt="fast_delivery">
-                    <span>Fast delivery nationwide</span>
-                </div>
-                <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/money_back.png') }}" alt="cash_on_delivery">
-                    <span>Moneyback Guarantee</span>
-                </div>
-                <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/cash_on_delivery.png') }}" alt="cash_on_delivery">
-                    <span>Cash on Delivery</span>
-                </div>
-                <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/customer_service.png') }}" alt="customer_service">
-                    <span>Aftersales Support</span>
-                </div>
-            </section>
-
-            <p class="tmt-12 tfont-medium tmt-12 ttext-center">When completing this form and clicking the Submit My Order button, your order will be processed ASAP and cannot be cancelled.</p>
-          
-
-            <img class="" src="{{ asset('images\icons\promises\fda.jpg') }}" alt="fda">
-
             <div id="modal1" class="modal">
                 <div class="modal-content" style="padding-bottom: 0px;">
                     <h4 class="tfont-medium ttext-3xl">Thank you</h4>
@@ -695,17 +691,24 @@
             var $window = $(window),x
                 $document = $(document),
                 button = $('.order_now');
+
+              
                 
-                $window.on('scroll', function () {
-                if (height > ($document.height() - 350)) {
+            $window.on('scroll', function () {
+                let scrollH = $(window).height() + $(window).scrollTop();
+                let H = ($document.height() - 550);
+                console.log('croll:' + scrollH)
+                console.log('H:' +H)
+
+                if (scrollH > H) {
                     
                     button.stop(true).css('z-index', 0).animate({
                         opacity: 0
-                    }, 150);
+                    }, 50);
                 } else {
                     button.stop(true).css('z-index', 999).animate({
                         opacity: 1
-                    }, 150);
+                    }, 50);
                 }
             });// hide show ORDER BUTTON on Scroll
 
