@@ -119,19 +119,19 @@
                 <div class="tflex titems-center tjustify-between">
 
                     <div class="tpy-2 tpx-2 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d; background: #ee4d2d; color: white;">
-                        5 Star (879)
+                        5 <i class="fa-solid fa-star" style="color: white;"></i> (879)
                     </div>
                     <div class="tpy-2 tpx-2 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        4 Star (0)
+                        4 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
                     </div>
                     <div class="tpy-2 tpx-2 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        3 Star (0)
+                        3 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
                     </div>
                     <div class="tpy-2 tpx-2 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        2 Star (0)
+                        2 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
                     </div>
                     <div class="tpy-2 tpx-2 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        1 Star (0)
+                        1 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
                     </div>
                 </div>
                 
