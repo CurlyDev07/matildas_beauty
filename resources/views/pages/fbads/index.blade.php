@@ -94,7 +94,7 @@
                 <s class="ttext-sm ttext-white">Orig Price ₱1,000</s>
                 <p class="t-mt-2 tfont-medium tshadow-2xl ttext-4xl ttext-white"><u>Promo ₱299</u></p>
             </div>
-            <button class="order_now focus:tbg-red-500 tabsolute tbg-white tbottom-0 tfixed tfont-black tpy-3 trounded-full ttext-xl tw-10/12 waves-effect zoom-in-out-box" style="bottom: 18%;max-width: 240px;width: 41%;right: 4%;color: #f63604;">ORDER NOW!
+            <button class="focus:tbg-red-500 order_now tabsolute tbg-white tbottom-0 tfixed tfont-black tpy-2 trounded-full tw-10/12 waves-effect zoom-in-out-box" style="bottom: 18%;max-width: 240px;width: 34%;right: 4%;color: #f63604;">ORDER NOW!
             </button>
         </div>
 
