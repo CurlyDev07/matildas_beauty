@@ -101,7 +101,7 @@
         <img src="{{ asset('images/kasoy_oil/benefits.png') }}" class="tw-full tmt-2 tmb-5" alt="kasoy_oil_promo">
 
         <div class="tmt-8 tmb-5" >
-            <div class="tborder tp-5">
+            <div class="tborder tpx-4 tpy-5">
                 <h1 class="tmb-3 ttext-2xl">Product Ratings</h1>
                 <div class="tflex titems-center tjustify-between tmb-3">
                     <p>
@@ -117,22 +117,20 @@
                     </div>
                 </div>
                 <div class="tflex titems-center tjustify-between">
-                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        All
+
+                    <div class="tpy-2 tpx-2 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d; background: #ee4d2d; color: white;">
+                        5 Star (879)
                     </div>
-                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d; background: #ee4d2d; color: white;">
-                        5 Star (3521)
-                    </div>
-                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                    <div class="tpy-2 tpx-2 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
                         4 Star (0)
                     </div>
-                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                    <div class="tpy-2 tpx-2 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
                         3 Star (0)
                     </div>
-                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                    <div class="tpy-2 tpx-2 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
                         2 Star (0)
                     </div>
-                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                    <div class="tpy-2 tpx-2 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
                         1 Star (0)
                     </div>
                 </div>
