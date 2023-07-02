@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kasoy Oil | Great Life</title>
     {{-- STYLE SHEETS --}}
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> --}}
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -65,7 +65,7 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/main.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
-
+    <script src="https://kit.fontawesome.com/8d4a8c4bc9.js" crossorigin="anonymous"></script>
     <!-- Facebook Pixel Code -->
     <script>
         !function(f,b,e,v,n,t,s)
@@ -99,6 +99,281 @@
         </div>
 
         <img src="{{ asset('images/kasoy_oil/benefits.png') }}" class="tw-full tmt-2 tmb-5" alt="kasoy_oil_promo">
+
+        <div class="tmt-8 tmb-5" >
+            <div class="tborder tp-5">
+                <h1 class="tmb-3 ttext-2xl">Product Ratings</h1>
+                <div class="tflex titems-center tjustify-between tmb-3">
+                    <p>
+                        <span class="ttext-2xl tfont-semibold" style="color: #ee4d2d">5.0</span>
+                        <span class="ttext-xl tfont-medium" style="color: #ee4d2d"> out of 5</span>
+                    </p>
+                    <div class="">
+                        <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                        <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                        <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                        <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                        <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                    </div>
+                </div>
+                <div class="tflex titems-center tjustify-between">
+                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                        All
+                    </div>
+                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d; background: #ee4d2d; color: white;">
+                        5 Star (3521)
+                    </div>
+                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                        4 Star (0)
+                    </div>
+                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                        3 Star (0)
+                    </div>
+                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                        2 Star (0)
+                    </div>
+                    <div class="tpy-2 tpx-3 trounded ttext-sm" style="border: #ee4d2d 1px solid; color: #ee4d2d;">
+                        1 Star (0)
+                    </div>
+                </div>
+                
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="https://down-ph.img.susercontent.com/file/718815ca359b01a19d455b41782dc93a_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Sunshine Sauqillo</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">April 14, 2023 09:07AM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" style="margin-left: 45px">
+                        Grabe effective nya, nakakatanggal talaga sya ng nunal. At first nag w-worry ako baka kasi di matanggal at mag stay lang sya,
+                        <b>pero after ilang days and pag tumigas na dun mo na sya pwede i-peel off.</b> For now gumagamit ako ng cebo de macho para mawala ang scar
+                    </div>
+                    <div class="tflex" style="margin-left: 45px">
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/5c3098a962345d66031140824b53c38c.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/0bf1a3abec23e8e3ad7eb92f99c9a5c5.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/f15f66b2c8b4821ca943ceb62c655b51.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/90f17c20e59002c82f0581373f64361c.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-7qul9-leznmwk0j8usb0.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                    </div>
+                </div><!-- 5 STARS -->
+
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="https://down-ph.img.susercontent.com/file/c245932fb8207140fb36221c278834dd_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Aiza Melina</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 14, 2023 12:48PM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" style="margin-left: 45px">
+                        I received correct and complete order Ang bilis ng Shipping. <b>Wala pang 1 week natangal na agad ung warts ko sa paa.</b>
+                        Grabe Highly recommended itong product na to. Kudos kay seller
+                    </div>
+                    <div class="tflex" style="margin-left: 45px">
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23010-ing1pvevkhmvd5_tn.webp" class="tmr-1 trounded" style="height: auto;width: 100%; max-height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23010-dua4rtevkhmv2e.webp" class="tmr-1 trounded" style="height: auto;width: 100%; max-height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-7qul5-lf11wsheonpq91.webp" class="tmr-1 trounded" style="height: auto;width: 100%; max-height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-7quky-lf11wsgkratw46.webp" class="tmr-1 trounded" style="height: auto;width: 100%; max-height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23020-88hxchir0nnve1.webp" class="tmr-1 trounded" style="height: auto;width: 100%; max-height: 97px;" alt="">
+                        </div>
+                    </div>
+                </div><!-- 5 STARS -->
+
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="https://down-ph.img.susercontent.com/file/6c5ce453d8cc6b1d60ce389b24a595f4_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Cynthia Sariolacasia</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" style="margin-left: 45px">
+                        Matagal ko na Problem ang warts ko sa kamay Nakaka Irita kasi lalo kapag mag luluto ako
+                        Ang dami ko na din na subukan na ibang product pero
+                        <b>Ito lang talaga ang nag work sakin. Lessthan 1 week lang Tangal na warts ko</b>
+                        Ang bait pa ng Seller.
+                    </div>
+                    <div class="tflex" style="margin-left: 45px">
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-7qul0-lfnmcgx6z8xgda.webp" class="tmr-1 trounded" style="height: auto;width: 100%; max-height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-7qul9-lfnmchf88ufz4d.webp" class="tmr-1 trounded" style="height: auto;width: 100%; max-height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-7qukx-lfnmch12tkac3f.webp" class="tmr-1 trounded" style="height: auto;width: 100%; max-height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23010-mekky0pvehmv23.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23010-2sxi3aqvehmvcb.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                    </div>
+                </div><!-- 5 STARS -->
+                
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="https://down-ph.img.susercontent.com/file/b0f1e1ab8148360fcdaeae8e692ea7f1_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Melanie Paz</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 25, 2023 04:22PM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" style="margin-left: 45px">
+                        <b>Picture nalang mag explain ng effect</b> Super Thankful ako sa Friend ko na nag recommend sakin nito
+                        Mas malaki kasi Nunal nya kesa sakin sa Nuo pa hahaha pero
+                        Ang Galing ng product na to FDA Approved <b>4days kusa nalang bumagsak ung warts ko sa gilid ng ilong</b>
+                        Natuyo nalang bigya ung warts ko
+                    </div>
+                    <div class="tflex" style="margin-left: 45px">
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23030-m7pancueevov9f.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23030-i4pancueevovd9.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23030-3ib0mcueevovfa.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23030-7lb0mcueevov0b.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23030-yjkcfaueevov21.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                    </div>
+                </div><!-- 5 STARS -->
+
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="https://down-ph.img.susercontent.com/file/39dc0c6845820a47f9053fae10036078_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Emilita Rorasio</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 02, 2023 07:27AM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" style="margin-left: 45px">
+                        Nag try lang naman ako bumili. Nag babaka sakali lang na mag effect
+                        <b>Nakaka inis kasi kapag kiniKISS ako ng asawa ko sa leeg May warts hahaha.</b>
+                        Buti nalang Nag try ako EFFECTIVE Talaga sya. Ngayon smooth na ang hali ng asawa ko sa leeg ko 
+                    </div>
+                    <div class="tflex" style="margin-left: 45px">
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23010-mahrye1kqhmv1f.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23010-x6grye1kqhmv19.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23030-d9iampdsmfov2c.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23030-r813kvfsmfovc6.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-23030-3m0od9pxnsov3c.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                    </div>
+                </div><!-- 5 STARS -->
+
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="https://down-ph.img.susercontent.com/file/fc787aa4a2cde90abf3b7e70edb239a8_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Robert Atienza</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 16, 2023 01:29PM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" style="margin-left: 45px">
+                        Hindi naman ako masyado concious sa Warts ko. Pero ung asawa ko kasi nag pupumilit Kaya nag order na ako.
+                        Madami na kasi ako na try dati pero hindi nag effect. Dito sa Product nato
+                        <b> wala pang 4 Days na tuyo na agad ung warts ko sa batok</b>
+                        Ang Bilis pa ng shipping.
+                    </div>
+                    <div class="tflex" style="margin-left: 45px">
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-7qul6-ley0l8y3j2tq7a.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-7qul7-ley0l8ydlhcef7.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-7quky-ley0l8y3ki38a9.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-7qula-li8ljy98lj469d.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                        <div class="tmr-2" style="width: 72px;">
+                            <img src="https://down-aka-ph.img.susercontent.com/ph-11134103-7qukw-limjyrv34b2e79.webp" class="tmr-1 trounded" style="height: auto;width: 100%; height: 97px;" alt="">
+                        </div>
+                    </div>
+                </div><!-- 5 STARS -->
+
+            </div>  <!-- RATINGS DIV -->
+        </div> <!-- RATINGS -->
 
         <div class="tp-5 tmb-5 gredient-border">
             <h4 class="tfont-medium tmb-4 ttext-xl ttext-center">BEFORE AND AFTER</h4>
@@ -175,12 +450,14 @@
         </video>
 
         <img src="{{ asset('images/kasoy_oil/doc_willie.png') }}" class="tw-full tmy-5" alt="doc_willie">
-        <img src="{{ asset('images/kasoy_oil/testimonial1.png') }}" class="tw-full" alt="kasoy_oil_promo">
+        {{-- <img src="{{ asset('images/kasoy_oil/testimonial1.png') }}" class="tw-full" alt="kasoy_oil_promo">
         <img src="{{ asset('images/kasoy_oil/testimonial2.png') }}" class="tw-full" alt="kasoy_oil_promo">
         <img src="{{ asset('images/kasoy_oil/testimonial3.png') }}" class="tw-full" alt="kasoy_oil_promo">
-        <img src="{{ asset('images/kasoy_oil/testimonial4.png') }}" class="tw-full" alt="kasoy_oil_promo">
+        <img src="{{ asset('images/kasoy_oil/testimonial4.png') }}" class="tw-full" alt="kasoy_oil_promo"> --}}
 
-        <img src="{{ asset('images/kasoy_oil/kasoy_oil_promo.png') }}" class="tw-full" alt="kasoy_oil_promo">
+        {{-- <img src="{{ asset('images/kasoy_oil/kasoy_oil_promo.png') }}" class="tw-full" alt="kasoy_oil_promo"> --}}
+
+        {{-- REVIEWS --}}
 
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
 
@@ -294,11 +571,13 @@
                     </span>
                 </div>
                 <div class="tw-full ">
-                    <button class="z-depth-5 focus:tbg-red-500 tbg-red-500 tml-auto tmt-4 tpy-3 trounded ttext-white tw-full waves-effect" id="submit_btn">Checkout Order</button>
+                    <button class="focus:tbg-red-500 tbg-red-500 tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">Checkout Order</button>
                 </div><!-- Submit Order -->
             </form><!-- ORDER PROMO -->
 
-            <p class="tmt-12 tfont-medium tmt-12 ttext-center">When completing this form and clicking the Submit My Order button, your order will be processed ASAP and cannot be cancelled.</p>
+            <p class="tmt-6 ttext-2xl ttext-center">Pweding ibalik ang bayad if hindi effective.</p>
+
+            <img class="th-48 tmx-auto" src="{{ asset('images\icons\promises\money_back_guarantee.png') }}" alt="money_back_guarantee">
 
             <section class="tflex tmt-5">
                 <div class="ttext-center">
@@ -319,9 +598,8 @@
                 </div>
             </section>
 
-            <p class="tmt-6 ttext-2xl ttext-center">Pweding ibalik ang bayad if hindi effective.</p>
-
-            <img class="th-48 tmx-auto" src="{{ asset('images\icons\promises\money_back_guarantee.png') }}" alt="money_back_guarantee">
+            <p class="tmt-12 tfont-medium tmt-12 ttext-center">When completing this form and clicking the Submit My Order button, your order will be processed ASAP and cannot be cancelled.</p>
+          
 
             <img class="" src="{{ asset('images\icons\promises\fda.jpg') }}" alt="fda">
 
@@ -439,8 +717,8 @@
                 button = $('.order_now');
                 
                 $window.on('scroll', function () {
-                if ($window.scrollTop() + ($window.height()) > ($document.height() - 350)) {
-                
+                if (height > ($document.height() - 350)) {
+                    
                     button.stop(true).css('z-index', 0).animate({
                         opacity: 0
                     }, 150);
