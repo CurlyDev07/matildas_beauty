@@ -116,7 +116,7 @@
                         <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
                     </div>
                 </div>    
-                <div class="tflex titems-center tjustify-center">
+                <div class="tflex titems-center tjustify-between">
 
                     <div class="trounded ttext-sm tmr-1 ttext-center trelative" style="padding: 5px 5px; border: #ee4d2d 1px solid; color: #ee4d2d; background: #ee4d2d; color: white;">
                         <p>5 <i class="fa-solid fa-star" style="color: white;"></i> (9.5k)</p>
