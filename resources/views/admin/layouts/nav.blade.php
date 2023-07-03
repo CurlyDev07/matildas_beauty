@@ -54,12 +54,12 @@
                         Products
                     </a>
                 </li>
-                <li class="tab col">
+                {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'inventory', 'active') }}" onclick="location.href = '/admin/inventory'">
                         <i class="fas fa-comment tmr-1 fa-lg"></i> 
                         Inventory
                     </a>
-                </li>
+                </li> --}}
                 <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'purchase', 'active') }}" onclick="location.href = '/admin/purchase'">
                        <i class="fas fa-shopping-bag tmr-1 fa-lg"></i>
@@ -78,12 +78,12 @@
                         Suppliers
                     </a>
                 </li>
-                {{-- <li class="tab col">
+                <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'rts', 'active') }}" onclick="location.href = '/admin/rts'">
                        <i class="fas fa-users tmr-1 fa-lg"></i>
                         RTS
                     </a>
-                </li> --}}
+                </li>
                 <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'stores', 'active') }}" onclick="location.href = '/admin/stores'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 
@@ -94,6 +94,12 @@
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'store-metrics', 'active') }}" onclick="location.href = '/admin/store-metrics'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 
                         Store Metrics
+                    </a>
+                </li>
+                <li class="tab col">
+                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'powerup', 'active') }}" onclick="location.href = '/admin/powerup'">
+                        <i class="fas fa-users tmr-1 fa-lg"></i> 
+                        Power Up
                     </a>
                 </li>
                 <li class="tab col">

@@ -56,10 +56,6 @@ class StoreMetricsCon extends Controller
             'results' => $collection->count(),
         ];
 
-        // dd($data);
-        // dd($collection);
-
-
         return view('admin.stores_metrics.index', ['metrics' => $metrics, 'stores' => $stores, 'data' => $data]);
     }
 

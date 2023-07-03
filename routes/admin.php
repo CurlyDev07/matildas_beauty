@@ -210,6 +210,15 @@ Route::namespace('Admin')->group(function () {
         Route::get('/event-listener', 'FbAdsCon@event_listener')->name('fbads.event_listener');
     });
 
+
+    Route::prefix('powerup')->group(function () {
+        Route::get('/', 'PowerUpCon@index');
+        Route::get('/create', 'PowerUpCon@create');
+        Route::post('/store', 'PowerUpCon@store')->name('powerup.store');
+
+    });
+
+
 });
 
 
