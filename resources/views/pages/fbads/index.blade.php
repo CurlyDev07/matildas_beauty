@@ -516,46 +516,45 @@
                 </div><!--province/city/barangay --> --}}
 
                 <div class="tborder tmb-2 tp-2 trelative">
-                    <div class="talign-middle tflex tjustify-around tw-full">
-                        {{-- <div class="tflex titems-center">
+                    <div class="tflex tflex-wrap tjustify-center">
+                        <div class="tflex titems-center tw-1/2">
                             <label>
-                                <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="6pc_kasoy_oil|999">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium">₱999</span>
-                                    6pcs Kasoy Oil
-                                </span>
-                            </label>
-                        </div><!-- PROMO 1 -->
-                        <div class="tflex titems-center">
-                            <label>
-                                <input type="checkbox" id="promo2" name="promo" class="promo" value="4pc_kasoy_oil|749">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium">₱749</span>
-                                    4pc Kasoy Oil
-                                </span>
-                            </label>
-                        </div><!-- PROMO 2-->
-                    </div>
-                    <div class="talign-middle tflex tjustify-around tw-full">
-                        <div class="tflex titems-center">
-                            <label>
-                                <input type="checkbox" id="promo3" name="promo" class="promo" value="2pc_kasoy_oil|399">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium">₱399</span>
-                                    2pcs Kasoy Oil
-                                </span>
-                            </label>
-                        </div><!-- PROMO 3 --> --}}
-                        <div class="tflex titems-center">
-                            <label>
-                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="1pc_kasoy_oil|299">
+                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="2pcs_kasoy_oil|399">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-medium">₱399</span>
                                     Buy 1 Take 1 Kasoy Oil 
                                 </span>
                             </label>
                         </div><!-- PROMO 4-->
+                        <div class="tflex titems-center tw-1/2">
+                            <label>
+                                <input type="checkbox" id="promo3" name="promo" class="promo" value="5pcs_kasoy_oil|749">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-medium">₱749</span>
+                                    5pcs Kasoy Oil
+                                </span>
+                            </label>
+                        </div><!-- PROMO 3 -->
+                        <div class="tflex titems-center tw-1/2">
+                            <label>
+                                <input type="checkbox" id="promo2" name="promo" class="promo" value="7pcs_kasoy_oil|1099">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-medium">₱1099</span>
+                                    7pcs Kasoy Oil
+                                </span>
+                            </label>
+                        </div><!-- PROMO 2-->
+                        <div class="tflex titems-center tw-1/2">
+                            <label>
+                                <input type="checkbox" id="promo1" name="promo" class="promo" value="10pc_kasoy_oil|1399">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-medium">₱1399</span>
+                                    10 pcs Kasoy Oil
+                                </span>
+                            </label>
+                        </div><!-- PROMO 1 -->
                     </div>
+                   
                     @error('promo')
                         <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 32%;">{{ $message }}</span>
                     @enderror
