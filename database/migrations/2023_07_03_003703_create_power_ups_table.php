@@ -17,15 +17,15 @@ class CreatePowerUpsTable extends Migration
             $table->bigIncrements('id');
             $table->string('user_id')->index();
             $table->string('store_id')->index();
-            $table->string('phone');
-            $table->string('email');
-            $table->string('password');
-            $table->integer('sf');
-            $table->integer('total');
-            $table->date('purchase_date')->comment('date of purchase');
-            $table->date('review_date')->comment('date of review');
-            $table->string('status');
-            $table->string('notes');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('password')->nullable();
+            $table->integer('sf')->nullable();
+            $table->integer('total')->nullable();
+            $table->date('purchase_date')->nullable()->comment('date of purchase');
+            $table->date('review_date')->nullable()->comment('date of review');
+            $table->string('status')->nullable()->comment('Shipping | Ready to Review | Done');
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

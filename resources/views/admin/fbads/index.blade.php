@@ -52,7 +52,7 @@
                             <td class="ttext-sm ttext-center tpy-1 tcapitalize">{{ $order->full_name }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->phone_number }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->created_at->format('d M, Y') }}</td>
-                            <td class="ttext-sm ttext-center tpy-1">{{ $order->address }}, {{ $order->barangay }}, {{ $order->city }}, {{ $order->province }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">{{ $order->address }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->product }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->promo }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->total }}</td>

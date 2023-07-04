@@ -215,7 +215,10 @@ Route::namespace('Admin')->group(function () {
         Route::get('/', 'PowerUpCon@index');
         Route::get('/create', 'PowerUpCon@create');
         Route::post('/store', 'PowerUpCon@store')->name('powerup.store');
-
+        Route::get('/update/{id}', 'PowerUpCon@update');
+        Route::post('/patch', 'PowerUpCon@patch')->name('powerup.patch');
+        Route::post('/mark-as-reviewed', 'PowerUpCon@mark_as_reviewed');
+        Route::get('/duplicate', 'PowerUpCon@duplicate');
     });
 
     Route::prefix('admin-panel')->group(function () {

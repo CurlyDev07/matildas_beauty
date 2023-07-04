@@ -3,7 +3,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 @section('css')
-
     <style>
         select:focus, input:focus{
             outline: none;
@@ -30,8 +29,20 @@
 
 
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
+
+        @if(session()->has('duplicate'))
+            <div class="tbg-green-100 tborder-b tflex titems-center tmb-4 tp-4 tshadow ttext-green-700 txt-sm" role="alert">
+                <svg class="tw-5 th-5 tinline tmr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+                <div class="">
+                    <span class="tfont-medium">Duplicate:</span> New item duplicated successfully
+                </div>
+            </div>
+        @endif<!-- Duplicate SUCCESSFULL MESSAGE -->
+
         <div class="tborder-b tpx-5 tpy-3">
-            <ul class="tflex titems-center tjustify-center">
+            <ul class="tflex titems-center">
                 {{-- <li class="tmr-2">
                     <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
                         <button type="submit" style="height: 40px; border-right-style: dashed;" class="focus:tbg-white focus:toutline-none tborder-r grey-text tborder tborder-gray-200 tborder-r-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-l-full waves-effect">
@@ -41,7 +52,7 @@
                         <input type="text" placeholder="Not working yet. . ." name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-r-full trounded-tl" placeholder="Search order number">
                     </form>
                 </li><!-- SEARCH --> --}}
-                <li class="tmr-2">
+                {{-- <li class="tmr-2">
                     <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
                         <img class="tpr-1" src="{{ asset('images/icons/platform.png') }}" alt="">
 
@@ -52,108 +63,89 @@
                             <option value="tiktok">Tiktok</option>
                         </select> 
                     </div>
-                </li><!-- Platform Filter-->
+                </li><!-- Platform Filter--> --}}
                 <li class="tmr-2">
                     <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
                         <img class="tpr-1" src="{{ asset('images/icons/store.png') }}" alt="">
                         <select id="stores" class="stores tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
                             <option value="#" selected>Choose ...</option>
 
-                            {{-- @foreach ($stores as $store)
+                            @foreach ($stores as $store)
                                 <option value="{{ $store->id }}">{{ $store->store_name }}</option>
-                            @endforeach --}}
+                            @endforeach
                         </select> 
                     </div>
                 </li><!-- Store Filter-->
                 <li class="tmr-2">
                     <div class="tborder tflex titems-center tpx-2 tpy-1 trounded ttext-sm" >
                         <img class="tpr-1" src="{{ asset('images/icons/calendar.png') }}" alt="">
-                        <input type="text" name="dates" id="dates" value="{{ request()->dates }}" class="browser-default tooltipped" data-position="top" data-tooltip="Filter by date"/>
+                        <input type="text" name="purchase_date" id="purchase_date" value="{{ request()->purchase_date }}" class="browser-default tooltipped" data-position="top" data-tooltip="Filter by purchase date"/>
                     </div>
-                </li><!-- Dates Filter-->
-                <li>    
-                    @if (request()->orders == 'desc')
-                        <a href="?orders=asc" class="tooltipped" data-position="top" data-tooltip="Sort by orders">
-                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                                <span class="tpl-1">Orders: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_down.png') }}" alt="">
-                            </div>
-                        </a> 
-                    @else
-                        <a href="?orders=desc" class="tooltipped" data-position="top" data-tooltip="Sort by orders">
-                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                                <span class="tpl-1">Orders: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_up.png') }}" alt="">
-                            </div>
-                        </a>
-                    @endif
-                </li><!-- SORT ORDERS-->
-                <li class="tml-2">    
-                    @if (request()->sales == 'desc')
-                    <a href="?sales=asc" class="tooltipped" data-position="top" data-tooltip="Sort by sales">
-                        <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                            <span class="tpl-1">Sales: &nbsp;</span>
-                            <img class="tpr-1" src="{{ asset('images/icons/number_sort_down.png') }}" alt="">
-                        </div>
-                    </a> 
-                    @else
-                        <a href="?sales=desc" class="tooltipped" data-position="top" data-tooltip="Sort by sales">
-                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                                <span class="tpl-1">Sales: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_up.png') }}" alt="">
-                            </div>
-                        </a>
-                    @endif
-                </li><!-- SORT SALES-->
-                <li class="tml-2">    
-                    @if (request()->conversion_rate == 'desc')
-                        <a href="?conversion_rate=asc" class="tooltipped" data-position="top" data-tooltip="Sort by conversion rate">
-                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                                <span class="tpl-1">Conversion rate: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_down.png') }}" alt="">
-                            </div>
-                        </a> 
-                    @else
-                        <a href="?conversion_rate=desc" class="tooltipped" data-position="top" data-tooltip="Sort by conversion rate">
-                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                                <span class="tpl-1">Conversion rate: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_up.png') }}" alt="">
-                            </div>
-                        </a>
-                    @endif
-                </li><!-- SORT CONVERSION RATE-->
-                <li class="tml-2">    
-                    @if (request()->visitors == 'desc')
-                        <a href="?visitors=asc" class="tooltipped" data-position="top" data-tooltip="Sort by Visitors">
-                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                                <span class="tpl-1">Visitors: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_down.png') }}" alt="">
-                            </div>
-                        </a> 
-                    @else
-                        <a href="?visitors=desc" class="tooltipped" data-position="top" data-tooltip="Sort by Visitors">
-                            <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                                <span class="tpl-1">Visitors: &nbsp;</span>
-                                <img class="tpr-1" src="{{ asset('images/icons/number_sort_up.png') }}" alt="">
-                            </div>
-                        </a>
-                    @endif
-                </li><!-- SORT VISITORS-->
+                </li><!-- purchase_date Filter-->
+                <li class="tmr-2">
+                    <div class="tborder tflex titems-center tpx-2 tpy-1 trounded ttext-sm" >
+                        <img class="tpr-1" src="{{ asset('images/icons/calendar.png') }}" alt="">
+                        <input type="text" name="review_date" id="review_date" value="{{ request()->review_date }}" class="browser-default tooltipped" data-position="top" data-tooltip="Filter by review date"/>
+                    </div>
+                </li><!-- review_date Filter-->
                 <li class="tml-3">
-                    <a href="/admin/store-metrics">
+                    <a href="/admin/powerup">
                         <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li><!-- REMOVE FILTER -->
             </ul>
             <ul class="tflex titems-center tjustify-center tmt-2">
+                @if (!request()->purchase_date && !request()->review_date)
+                    <li class="tmr-2">
+                        <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                            <span class="tpl-1 ttext-red-500">
+                                <i class="fas fa-bookmark"></i>
+                                Past 7 Days
+                            </span>
+                        </div>
+                    </li>
+                @endif <!-- Default Date |  Past 7 Days-->
+
+                @if (request()->purchase_date)
+                    <li class="tmr-2">
+                        <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                            <span class="tpl-1 ttext-red-500">
+                                <i class="fas fa-bookmark"></i>
+                                Purchase: {{ request()->purchase_date }}
+                            </span>
+                        </div>
+                    </li>
+                @endif <!--PURCHASE Date-->
+
+                @if (request()->review_date)
                 <li class="tmr-2">
                     <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                        <span class="tpl-1">Results:  &nbsp;</span>
+                        <span class="tpl-1 ttext-red-500">
+                            <i class="fas fa-bookmark"></i>
+                            Review: {{ request()->review_date }}
+                        </span>
                     </div>
-                </li><!-- Results -->
+                </li>
+            @endif <!--REVIEW Date-->
+
+                @if (request()->stores)
+                    <li class="tmr-2">
+                        <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                            <span class="tpl-1 ttext-red-500">
+                                <i class="fas fa-bookmark"></i>
+                                @foreach ($stores as $store)
+                                    @if ($store->id == request()->stores)
+                                        {{ $store->store_name }}
+                                    @endif
+                                @endforeach
+                            </span>
+                        </div>
+                    </li>
+                @endif <!--STORE FILTER -->
+              
                 <li class="tmr-2">
                     <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                        <span class="tpl-1">Orders:  &nbsp;</span>
+                        <span class="tpl-1">Stores:  &nbsp;</span>
                     </div>
                 </li><!-- Orders -->
                 <li>    
@@ -171,6 +163,7 @@
                         <span class="tpl-1">Visitors:  &nbsp;</span>
                     </div>
                 </li><!-- Visitors --> 
+                
              
             </ul>
 
@@ -182,68 +175,84 @@
                     <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">User</th>
                     <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Account</th>
                     <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Device</th>
-                    <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Amount(sf/total)</th>
+                    <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">(Sf/Total)</th>
                     <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Purchase</th>
                     <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Review</th>
                     <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Status</th>
                     <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
                 </tr>
-
+                
                 @foreach ($power_up as $data)
-                    <tr class="hover:tshadow-2xl">
+                    <tr class="hover:tshadow-2xl row" id="{{ $data->id }}">
                         <td class="ttext-sm ttext-center tpy-1">{{ $data->store->store_name  }}</td>
-                        <td class="ttext-sm ttext-center tpy-1">{{ ( auth()->user()->first_name ) }}</td>
+                        <td class="ttext-sm ttext-center tpy-1">{{  auth()->user()->first_name  }}</td>
                         <td class="ttext-sm ttext-center tpy-1">{{ $data->email }} | {{ $data->password }}</td>
                         <td class="ttext-sm ttext-center tpy-1">{{ $data->phone ?? '--' }}</td>
-                        <td class="ttext-sm ttext-center tpy-1">{{ $data->sf }}</td>
-                        <td class="ttext-sm ttext-center tpy-1">{{ $data->total }}</td>
+                        <td class="ttext-sm ttext-center tpy-1">{{ $data->sf }} | {{ $data->total }}</td>
                         <td class="ttext-sm ttext-center tpy-1">
-                            @if (!$data->review_date)
-                                <span class="tm-0 chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="20" style="cursor: pointer;">
-                                    <span class="green-text" style="cursor: pointer;">pending</span>
+                            <span class="tfont-medium">{{ date_f($data->purchase_date, 'd, M')  }}</span>
+                        </td>
+                        <td class="ttext-sm ttext-center tpy-1">
+                            @if ($data->review_date == '1970-01-01')
+                                <span class="chip red lighten-5 waves-effect waves-red" data-id="{{ $data->id }}" style="cursor: pointer;">
+                                    <span class="red-text tooltipped" style="cursor: pointer;" data-position="right" data-tooltip="mark as reviewed">--</span>
                                 </span>
                             @else
-                                <span class="tm-0 chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="20" style="cursor: pointer;">
-                                    <span class="green-text tooltipped" data-position="right" data-tooltip="Reviewed Date" style="cursor: pointer;" >{{ date_f($data->review_date, 'd M') }} </span>
+                                <span class="chip green lighten-5 waves-effect waves-green tooltipped" style="cursor: pointer;"  data-position="right" data-tooltip="Reviewed">
+                                    <span class="green-text" style="cursor: pointer;">{{  date_f($data->purchase_date, 'd M') }}</span>
                                 </span>
                             @endif
                         </td>
                         <td class="ttext-sm ttext-center tpy-1">
+                            <span class="tfont-medium">
+                                @if ($data->status == 'Shipping')
+                                    <span class="chip orange lighten-5 waves-effect waves-orange review-chip" data-id="{{ $data->id }}" style="cursor: pointer;">
+                                        <span class="orange-text tooltipped" style="cursor: pointer;" data-position="right" data-tooltip="mark as reviewed">{{ $data->status }}</span>
+                                    </span>
+                                @endif
 
-                            @if (!$data->review_date)
-                            <span class="tm-0 chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="20" style="cursor: pointer;">
-                                <span class="green-text" style="cursor: pointer;">pending</span>
+                                @if ($data->status == 'Done')
+                                    <span class="chip green lighten-5 waves-effect waves-green tooltipped" style="cursor: pointer;"  data-position="right" data-tooltip="Reviewed">
+                                        <span class="green-text" style="cursor: pointer;">{{ $data->status }}</span>
+                                    </span>
+                                @endif
+                                
+                                {{-- @if ($data->status == 'Done')
+                                    <span class="chip green lighten-5 waves-effect waves-green tooltipped" style="cursor: pointer;"  data-position="right" data-tooltip="Reviewed">
+                                        <span class="green-text" style="cursor: pointer;">{{ $data->status }}</span>
+                                    </span>
+                                @endif --}}
                             </span>
-                        @else
-                            <span class="tm-0 chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="20" style="cursor: pointer;">
-                                <span class="green-text tooltipped" data-position="right" data-tooltip="Reviewed Date" style="cursor: pointer;" >{{ date_f($data->review_date, 'd M') }} </span>
-                            </span>
-                        @endif
-                            
-                            {{ $data->status }}</td>
-
-
-                        {{-- <td class="ttext-sm ttext-center tpy-1">{{ date_f($metric->date, 'd M (D)') }}</td> --}}
-                        
-                        {{-- <a href="/admin/store-metrics/update/{{ $metric->id }}">
-                            <i class="fas fa-edit hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Edit"></i>       
-                        </a> --}}
+                        </td>
+                        <td class="ttext-sm ttext-center tpy-1">
+                            <a href="/admin/powerup/update/{{ $data->id }}">
+                                <i class="fas fa-edit hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Edit"></i>       
+                            </a>
+                            <a href="/admin/powerup/duplicate?id={{ $data->id }}">
+                                <i class="fas fa-copy hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Duplicate"></i>       
+                            </a>
+                        </td>
                     </tr>
                 @endforeach
             </table>
         </div><!-- TABLE -->
-
     </div>
 @endsection
-
 
 @section('js')
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session()->has('duplicate'))
+    <script>
+        $("#{{ session()->get('id') }}").addClass('tbg-green-100');
+    </script>
+@endif<!-- Duplicate SUCCESSFULL MESSAGE -->
 
 <script>
 
-    $('input[name="dates"]').daterangepicker({
+    $('input[name="purchase_date"]').daterangepicker({
         maxDate: moment(),
         ranges: {
            'Today': [moment(), moment()],
@@ -255,9 +264,27 @@
         }
     });
 
-    $('#dates').change(function () {
+    $('#purchase_date').change(function () {
         const parser = new URL(window.location.href);
-        parser.searchParams.set("dates", $(this).val());
+        parser.searchParams.set("purchase_date", $(this).val());
+        window.location = parser.href;
+    });
+
+    $('input[name="review_date"]').daterangepicker({
+        maxDate: moment(),
+        ranges: {
+           'Today': [moment(), moment()],
+           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+           'This Month': [moment().startOf('month'), moment().endOf('month')],
+           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    });
+
+    $('#review_date').change(function () {
+        const parser = new URL(window.location.href);
+        parser.searchParams.set("review_date", $(this).val());
         window.location = parser.href;
     });
 
@@ -307,5 +334,45 @@
             });
         });
     });
+
+    $('.review-chip').click(function(){
+        let self = $(this);
+        
+        Swal.fire({
+            title: 'Mark as Reviewed?',
+            text: "You won't be able to revert this!",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Mark as Reviewed!',
+                    'Your power-up has been updated.',
+                    'success'
+                )// success prompt
+
+                $.ajax({
+                    url: '/admin/powerup/mark-as-reviewed',
+                    type: 'POST',
+                    data: { id: $(this).data('id') },
+                    success: ()=>{
+                        var date = moment();
+
+                         // Change Button text and color
+                        self.attr('class', 'chip green lighten-5 waves-effect waves-green status');
+                        self.children().html('Done')
+                        self.children().attr('class', 'green-text')
+                        self.parent().parent().prev().children().attr('class', 'chip green lighten-5 waves-effect waves-green')
+                        self.parent().parent().prev().children().children().attr('class', 'green-text')
+                        self.parent().parent().prev().children().children().html(date.format('DD MMM'))
+                    }
+                });// update via Ajax request
+            }
+        })// swal
+    });
+    
 </script>
 @endsection

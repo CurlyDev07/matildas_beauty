@@ -26,7 +26,6 @@ class PowerUpCreateRequest extends FormRequest
         return [
             'email'=> 'required',
             'purchase_date'=> 'required',
-            'review_date'=> 'required',
             'sf'=> 'required|integer',
             'total'=> 'required|integer',
         ];
