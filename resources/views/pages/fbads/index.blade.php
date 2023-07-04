@@ -82,6 +82,8 @@
     </script>
     <script>
         $("img").lazyload();
+        $(".video-testimonial").lazyload();
+
     </script>
     <noscript>
         <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1614979632011184&ev=PageView&noscript=1"/>
@@ -363,7 +365,7 @@
             <img src="{{ asset('images/kasoy_oil/before_after.webp') }}" class="tw-full"  alt="kasoy_oil_promo">
         </div>
 
-        <video class="tw-full" controls playsinline webkit-playsinline autoplay muted loop>
+        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay muted loop>
             <source src="{{ asset('images/kasoy_oil/testimonial_vid.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
@@ -423,11 +425,11 @@
 
         <h4 class="tfont-medium tpy-3 tmb-5 ttext-xl ttext-center">WATCH OUR CUSTOMER VIDEO  FEEDBACK</h4>
        
-        <video class="tw-full" controls playsinline webkit-playsinline autoplay muted loop>
+        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay muted loop>
             <source src="{{ asset('images/kasoy_oil/testimonial_vid3.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
-        <video class="tw-full" controls playsinline webkit-playsinline autoplay muted loop>
+        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay muted loop>
             <source src="{{ asset('images/kasoy_oil/testimonial_vid2.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
