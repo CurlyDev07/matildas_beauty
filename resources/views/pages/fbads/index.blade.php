@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/icons/favicon.ico') }}" >
 
-
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <style>
@@ -609,7 +608,7 @@
         @if (request()->amount)
             <script>
                 let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
-                fbq('track', 'Purchase', {currency: "USD", value: fb_purchase_value});
+                fbq('track', 'Purchase', {currency: "PHP", value: fb_purchase_value});
             </script>
         @endif
 
