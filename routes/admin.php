@@ -218,6 +218,11 @@ Route::namespace('Admin')->group(function () {
 
     });
 
+    Route::prefix('admin-panel')->group(function () {
+        Route::get('/', function(){
+            return view('admin_panel.index');
+        });
+    });
 
 });
 

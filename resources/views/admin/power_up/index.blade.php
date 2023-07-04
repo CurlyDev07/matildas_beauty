@@ -177,28 +177,59 @@
         </div>
         <div class="tpx-3 tpy-4 tflex tjustify-center">
             <table class="tmb-4 tbg-white ttext-md tw-full">
-                    <tr class="tborder-0">
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Store</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">User</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Account</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Device</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Amount(sf/total)</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Purchase</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Review</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Status</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
-                    </tr>
+                <tr class="tborder-0">
+                    <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Store</th>
+                    <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">User</th>
+                    <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Account</th>
+                    <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Device</th>
+                    <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Amount(sf/total)</th>
+                    <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Purchase</th>
+                    <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Review</th>
+                    <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Status</th>
+                    <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
+                </tr>
 
-                    @foreach ($metrics as $metric)
+                @foreach ($power_up as $data)
+                    <tr class="hover:tshadow-2xl">
+                        <td class="ttext-sm ttext-center tpy-1">{{ $data->store->store_name  }}</td>
+                        <td class="ttext-sm ttext-center tpy-1">{{ ( auth()->user()->first_name ) }}</td>
+                        <td class="ttext-sm ttext-center tpy-1">{{ $data->email }} | {{ $data->password }}</td>
+                        <td class="ttext-sm ttext-center tpy-1">{{ $data->phone ?? '--' }}</td>
+                        <td class="ttext-sm ttext-center tpy-1">{{ $data->sf }}</td>
+                        <td class="ttext-sm ttext-center tpy-1">{{ $data->total }}</td>
+                        <td class="ttext-sm ttext-center tpy-1">
+                            @if (!$data->review_date)
+                                <span class="tm-0 chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="20" style="cursor: pointer;">
+                                    <span class="green-text" style="cursor: pointer;">pending</span>
+                                </span>
+                            @else
+                                <span class="tm-0 chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="20" style="cursor: pointer;">
+                                    <span class="green-text tooltipped" data-position="right" data-tooltip="Reviewed Date" style="cursor: pointer;" >{{ date_f($data->review_date, 'd M') }} </span>
+                                </span>
+                            @endif
+                        </td>
+                        <td class="ttext-sm ttext-center tpy-1">
 
-                        <tr class="hover:tshadow-2xl">
-                            <td class="ttext-sm ttext-center tpy-1">{{ date_f($metric->date, 'd M (D)') }}</td>
+                            @if (!$data->review_date)
+                            <span class="tm-0 chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="20" style="cursor: pointer;">
+                                <span class="green-text" style="cursor: pointer;">pending</span>
+                            </span>
+                        @else
+                            <span class="tm-0 chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="20" style="cursor: pointer;">
+                                <span class="green-text tooltipped" data-position="right" data-tooltip="Reviewed Date" style="cursor: pointer;" >{{ date_f($data->review_date, 'd M') }} </span>
+                            </span>
+                        @endif
                             
-                                {{-- <a href="/admin/store-metrics/update/{{ $metric->id }}">
-                                    <i class="fas fa-edit hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Edit"></i>       
-                                </a> --}}
-                        </tr>
-                    @endforeach
+                            {{ $data->status }}</td>
+
+
+                        {{-- <td class="ttext-sm ttext-center tpy-1">{{ date_f($metric->date, 'd M (D)') }}</td> --}}
+                        
+                        {{-- <a href="/admin/store-metrics/update/{{ $metric->id }}">
+                            <i class="fas fa-edit hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Edit"></i>       
+                        </a> --}}
+                    </tr>
+                @endforeach
             </table>
         </div><!-- TABLE -->
 

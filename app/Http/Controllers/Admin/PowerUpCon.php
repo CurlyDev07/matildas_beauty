@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Store;
 use App\PowerUp;
+use App\Http\Requests\PowerUp\PowerUpCreateRequest;
 
 class PowerUpCon extends Controller
 {
@@ -21,7 +22,7 @@ class PowerUpCon extends Controller
         return view('admin.power_up.create', ['stores' => $stores,]);
     }
 
-    public function store(Request $request){
+    public function store(PowerUpCreateRequest $request){
         PowerUp::create([
             'user_id' => auth()->id(),
             'store_id'=> $request->store_id,
@@ -35,6 +36,8 @@ class PowerUpCon extends Controller
             'status'=> 'PENDING',
             'notes'=> 'N/A'
         ]);
+
+        return redirect()->back()->with('success', 'Success');
     }
 }
 

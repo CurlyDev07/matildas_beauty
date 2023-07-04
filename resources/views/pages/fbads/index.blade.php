@@ -65,6 +65,7 @@
     <script src="{{ asset('js/main.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/8d4a8c4bc9.js" crossorigin="anonymous"></script>
+
     <!-- Facebook Pixel Code -->
     <script>
         !function(f,b,e,v,n,t,s)
@@ -97,7 +98,7 @@
             </button>
         </div>
 
-        <img src="{{ asset('images/kasoy_oil/benefits.png') }}" class="tw-full tmt-2 tmb-5" alt="kasoy_oil_promo">
+        <img src="{{ asset('images/kasoy_oil/benefits.webp') }}" class="tw-full tmt-2 tmb-5" alt="kasoy_oil_promo">
 
         <div class="tmt-8 tmb-5" >
             <div class="tborder tpx-4 tpy-5">
@@ -155,16 +156,16 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/1.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/2.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/3.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/4.webp') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 1 -->
@@ -190,16 +191,16 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/1.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/2.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/3.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/4.webp') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 2 -->
@@ -227,16 +228,16 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/1.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/2.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/3.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/4.webp') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 3 -->
@@ -264,16 +265,16 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/1.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/2.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/3.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/4.webp') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 4 -->
@@ -300,16 +301,16 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/1.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/2.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/3.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/4.webp') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 5 -->
@@ -337,16 +338,16 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/1.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/2.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/3.webp') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/4.webp') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 6 -->
@@ -356,7 +357,7 @@
 
         <div class="tp-5 tmb-5 gredient-border">
             <h4 class="tfont-medium tmb-4 ttext-xl ttext-center">BEFORE AND AFTER</h4>
-            <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full"  alt="kasoy_oil_promo">
+            <img src="{{ asset('images/kasoy_oil/before_after.webp') }}" class="tw-full"  alt="kasoy_oil_promo">
         </div>
 
         <video class="tw-full" controls playsinline webkit-playsinline autoplay muted loop>
@@ -428,7 +429,7 @@
             <source src="movie.ogg" type="video/ogg">
         </video>
 
-        <img src="{{ asset('images/kasoy_oil/doc_willie.png') }}" class="tw-full tmy-5" alt="doc_willie">
+        <img src="{{ asset('images/kasoy_oil/doc_willie.webp') }}" class="tw-full tmy-5" alt="doc_willie">
         {{-- <img src="{{ asset('images/kasoy_oil/testimonial1.png') }}" class="tw-full" alt="kasoy_oil_promo">
         <img src="{{ asset('images/kasoy_oil/testimonial2.png') }}" class="tw-full" alt="kasoy_oil_promo">
         <img src="{{ asset('images/kasoy_oil/testimonial3.png') }}" class="tw-full" alt="kasoy_oil_promo">
@@ -438,25 +439,25 @@
 
         {{-- REVIEWS --}}
 
-            <img class="" src="{{ asset('images\icons\promises\fda.jpg') }}" alt="fda">
+            <img class="" src="{{ asset('images\icons\promises\fda.webp') }}" alt="fda">
 
             <div class="tmx-auto trelative tborder tpx-5 tpb-5">
 
             <section class="tflex titems-baseline tmt-5">
                 <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/fast_delivery.png') }}" alt="fast_delivery">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/fast_delivery.webp') }}" alt="fast_delivery">
                     <span>Fast delivery nationwide</span>
                 </div>
                 <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/money_back.png') }}" alt="cash_on_delivery">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/money_back.webp') }}" alt="cash_on_delivery">
                     <span>Moneyback Guarantee</span>
                 </div>
                 <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/cash_on_delivery.png') }}" alt="cash_on_delivery">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/cash_on_delivery.webp') }}" alt="cash_on_delivery">
                     <span>Cash on Delivery</span>
                 </div>
                 <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/customer_service.png') }}" alt="customer_service">
+                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/customer_service.webp') }}" alt="customer_service">
                     <span>Aftersales Support</span>
                 </div>
             </section>
@@ -575,7 +576,7 @@
 
             <p class="tmt-6 ttext-2xl ttext-center">Pweding ibalik ang bayad if hindi effective.</p>
 
-            <img class="th-48 tmx-auto" src="{{ asset('images\icons\promises\money_back_guarantee.png') }}" alt="money_back_guarantee">
+            <img class="th-48 tmx-auto" src="{{ asset('images\icons\promises\money_back_guarantee.webp') }}" alt="money_back_guarantee">
 
             <div id="modal1" class="modal">
                 <div class="modal-content" style="padding-bottom: 0px;">
@@ -695,8 +696,6 @@
             $window.on('scroll', function () {
                 let scrollH = $(window).height() + $(window).scrollTop();
                 let H = ($document.height() - 550);
-                console.log('croll:' + scrollH)
-                console.log('H:' +H)
 
                 if (scrollH > H) {
                     

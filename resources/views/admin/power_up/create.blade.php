@@ -1,29 +1,6 @@
-@extends('admin.stores_metrics.layouts')
-
-@section('css')
-
-    <style>
-        .autocomplete-content img {
-            display: none;
-        }
-        .modal .modal-content {
-            height: 50vh;
-        }
-        .dropzone {
-            background: white;
-            border-radius: 5px;
-            border: 2px dashed #919eab;
-            border-image: none;
-        }
-        .dropzone .dz-message {
-            text-align: center;
-            margin: 0;
-        }
-    </style>
-@endsection
+@extends('admin.power_up.layouts')
 
 @section('page')
-
 
 @if(session()->has('success'))
     <div class="tflex tbg-green-100 trounded-lg tp-4 tmb-4 txt-sm ttext-green-700" role="alert">
@@ -66,7 +43,7 @@
                         <div class="tw-1/3 tflex tflex-col tmr-3">
                             <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Purchase Date</label>
                             <input type="text" name="purchase_date" id="purchase_date" class="purchase_date browser-default form-control" value="">
-                            @error('date')
+                            @error('purchase_date')
                                 <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
                             @enderror
                         </div><!-- Purchase Date -->
@@ -74,7 +51,7 @@
                         <div class="tw-1/3 tflex tflex-col tmr-3">
                             <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Review Date</label>
                             <input type="text" name="review_date" id="review_date" class="review_date browser-default form-control" value="">
-                            @error('date')
+                            @error('review_date')
                                 <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
                             @enderror
                         </div><!-- Purchase Date -->
