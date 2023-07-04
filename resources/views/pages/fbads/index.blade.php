@@ -6,13 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kasoy Oil | Great Life</title>
     {{-- STYLE SHEETS --}}
-    {{-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> --}}
-    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/icons/favicon.ico') }}" >
-
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <style>
@@ -62,10 +58,8 @@
     </style>
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
-    <script src="{{ asset('js/main.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/8d4a8c4bc9.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 
     <!-- Facebook Pixel Code -->
     <script>
@@ -79,11 +73,7 @@
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1393765810823713');
         fbq('track', 'ViewContent');
-    </script>
-    <script>
-        $("img").lazyload();
-        $(".video-testimonial").lazyload();
-
+        
     </script>
     <noscript>
         <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1614979632011184&ev=PageView&noscript=1"/>
@@ -435,15 +425,9 @@
         </video>
 
         <img src="{{ asset('images/kasoy_oil/doc_willie.webp') }}" class="tw-full tmy-5" alt="doc_willie">
-        {{-- <img src="{{ asset('images/kasoy_oil/testimonial1.png') }}" class="tw-full" alt="kasoy_oil_promo">
-        <img src="{{ asset('images/kasoy_oil/testimonial2.png') }}" class="tw-full" alt="kasoy_oil_promo">
-        <img src="{{ asset('images/kasoy_oil/testimonial3.png') }}" class="tw-full" alt="kasoy_oil_promo">
-        <img src="{{ asset('images/kasoy_oil/testimonial4.png') }}" class="tw-full" alt="kasoy_oil_promo"> --}}
-
-        {{-- <img src="{{ asset('images/kasoy_oil/kasoy_oil_promo.png') }}" class="tw-full" alt="kasoy_oil_promo"> --}}
+     
 
         {{-- REVIEWS --}}
-
             <img class="" src="{{ asset('images\icons\promises\fda.webp') }}" alt="fda">
 
             <div class="tmx-auto trelative tborder tpx-5 tpb-5">
@@ -527,7 +511,7 @@
                                 <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="2pcs_kasoy_oil|399">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-medium">₱399</span>
-                                    Buy 1 Take 1 Kasoy Oil 
+                                    Buy 1 Take 1
                                 </span>
                             </label>
                         </div><!-- PROMO 4-->
@@ -536,7 +520,7 @@
                                 <input type="checkbox" id="promo3" name="promo" class="promo" value="5pcs_kasoy_oil|749">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-medium">₱749</span>
-                                    5pcs Kasoy Oil
+                                    5pcs
                                 </span>
                             </label>
                         </div><!-- PROMO 3 -->
@@ -545,7 +529,7 @@
                                 <input type="checkbox" id="promo2" name="promo" class="promo" value="7pcs_kasoy_oil|1099">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-medium">₱1099</span>
-                                    7pcs Kasoy Oil
+                                    7pcs 
                                 </span>
                             </label>
                         </div><!-- PROMO 2-->
@@ -554,7 +538,7 @@
                                 <input type="checkbox" id="promo1" name="promo" class="promo" value="10pc_kasoy_oil|1399">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-medium">₱1399</span>
-                                    10 pcs Kasoy Oil
+                                    10 pcs
                                 </span>
                             </label>
                         </div><!-- PROMO 1 -->
@@ -564,8 +548,6 @@
                         <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 32%;">{{ $message }}</span>
                     @enderror
                 </div><!-- ORDER PROMO -->
-             
-                {{-- <img src="{{ asset('loader/four_dots_loader.svg') }}" id="loader" style="bottom: 83%;left: 38%;" class="tabsolute thidden" alt="four_dots_loader"> --}}
 
                 <div class="tmt-3 ttext-right tw-full">
                     <span class="ttext-gray-900" style="font-size: 16px;">
@@ -627,8 +609,6 @@
 
             // ONCLICKS
             $('#province').change(function () {
-                // $('#loader').removeClass('thidden');// Show Loader
-
                 $.post("/get-cities",{
                     province: $(this).val()
                 },
@@ -642,13 +622,10 @@
                     $('#city').html(html);
 
                     $('#city').removeAttr("disabled");// Enable City
-                    // $('#loader').addClass('thidden');// Hide Loader
                 });
             });
 
             $('#city').change(function () {
-                // $('#loader').removeClass('thidden');// Show Loader
-
                 $.post("/get-barangay",{
                     city: $(this).val()
                 },
@@ -660,7 +637,6 @@
                     $('#barangay').html(html);
 
                     $('#barangay').removeAttr("disabled");// Enable City
-                    // $('#loader').addClass('thidden');// Hide Loader
                 });
             });
             
@@ -786,7 +762,5 @@
         </script>
     @endif
 
-
-   
 </body>
 </html>
