@@ -65,6 +65,7 @@
     <script src="{{ asset('js/main.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/8d4a8c4bc9.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 
     <!-- Facebook Pixel Code -->
     <script>
@@ -78,7 +79,9 @@
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1393765810823713');
         fbq('track', 'ViewContent');
-
+    </script>
+    <script>
+        $("img").lazyload();
     </script>
     <noscript>
         <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1614979632011184&ev=PageView&noscript=1"/>
@@ -560,7 +563,7 @@
                     @enderror
                 </div><!-- ORDER PROMO -->
              
-                <img src="{{ asset('loader/four_dots_loader.svg') }}" id="loader" style="bottom: 83%;left: 38%;" class="tabsolute thidden" alt="four_dots_loader">
+                {{-- <img src="{{ asset('loader/four_dots_loader.svg') }}" id="loader" style="bottom: 83%;left: 38%;" class="tabsolute thidden" alt="four_dots_loader"> --}}
 
                 <div class="tmt-3 ttext-right tw-full">
                     <span class="ttext-gray-900" style="font-size: 16px;">
@@ -622,7 +625,7 @@
 
             // ONCLICKS
             $('#province').change(function () {
-                $('#loader').removeClass('thidden');// Show Loader
+                // $('#loader').removeClass('thidden');// Show Loader
 
                 $.post("/get-cities",{
                     province: $(this).val()
@@ -637,12 +640,12 @@
                     $('#city').html(html);
 
                     $('#city').removeAttr("disabled");// Enable City
-                    $('#loader').addClass('thidden');// Hide Loader
+                    // $('#loader').addClass('thidden');// Hide Loader
                 });
             });
 
             $('#city').change(function () {
-                $('#loader').removeClass('thidden');// Show Loader
+                // $('#loader').removeClass('thidden');// Show Loader
 
                 $.post("/get-barangay",{
                     city: $(this).val()
@@ -655,7 +658,7 @@
                     $('#barangay').html(html);
 
                     $('#barangay').removeAttr("disabled");// Enable City
-                    $('#loader').addClass('thidden');// Hide Loader
+                    // $('#loader').addClass('thidden');// Hide Loader
                 });
             });
             
