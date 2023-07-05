@@ -431,9 +431,9 @@
         <img class="" src="{{ asset('images\icons\promises\fda.webp') }}" alt="fda">
 
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
-            <div class="tflex tfont-medium titems-center ttext-center">
-                <img src="{{ asset('images\icons\free-shipping.png') }}" style="height: 120px;" alt="">
-                <span>Nationwide <br> Luzon, Visayas & Mindanao </span>
+            <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
+                <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmt-3" style="height: ;" alt="">
+                <span>Nationwide Luzon, Visayas & Mindanao </span>
             </div>
             {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nisi, quod, porro temporibus asperiores, dolore exercitationem omnis incidunt molestias dolores similique quibusdam cum at illum dolor cupiditate quia molestiae eius. --}}
 
