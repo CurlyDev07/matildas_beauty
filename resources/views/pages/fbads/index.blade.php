@@ -433,11 +433,11 @@
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
                 <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmt-3" style="height: ;" alt="">
-                <span>Nationwide Luzon, Visayas & Mindanao </span>
+                <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
             </div>
             {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nisi, quod, porro temporibus asperiores, dolore exercitationem omnis incidunt molestias dolores similique quibusdam cum at illum dolor cupiditate quia molestiae eius. --}}
 
-            <section class="tflex titems-baseline tmt-5">
+            <section class="tflex titems-baseline tmt-5 tmb-3">
                 <div class="ttext-center">
                     <img class="tmx-auto" src="{{ asset('/images/icons/promises/fast_delivery.webp') }}" alt="fast_delivery">
                     <span>Fast delivery nationwide</span>
