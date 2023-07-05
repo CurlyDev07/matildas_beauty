@@ -12,7 +12,7 @@ class FbAdsCon extends Controller
 {
     public function index(){
 
-        $orders = FbAds::orderBy('created_at', 'desc')->get();
+        $orders = FbAds::orderBy('created_at', 'desc')->distinct()->get();
         return view('admin.fbads.index', ['orders' => $orders]);
     }
 

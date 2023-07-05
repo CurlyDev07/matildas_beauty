@@ -37,6 +37,7 @@
             <table class="tmb-4 tbg-white ttext-md tw-full">
                     <tr class="tborder-0">
 
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">#</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Customer</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">CP#</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Address</th>
@@ -49,6 +50,7 @@
                     @foreach ($orders as $order)
                         <tr>
 
+                            <td class="ttext-sm ttext-center tpy-1 tcapitalize">{{ $order->id }}</td>
                             <td class="ttext-sm ttext-center tpy-1 tcapitalize">{{ $order->full_name }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->phone_number }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->created_at->format('d M, Y') }}</td>
