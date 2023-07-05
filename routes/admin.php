@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 
 
-Route::namespace('Admin')->group(function () {
+Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
 
      /*
