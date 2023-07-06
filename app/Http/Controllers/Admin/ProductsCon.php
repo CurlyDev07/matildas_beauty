@@ -15,7 +15,6 @@ use App\Http\Requests\Products\UploadProductsRequest;
 class ProductsCon extends Controller
 {
     public function index(Request $request){
-        // dd($request->no_cogs);
         $products = Product::with(array('images' => function($query){
                 $query->where('primary', 1);
             })
@@ -38,8 +37,6 @@ class ProductsCon extends Controller
     }
 
     public function store(UploadProductsRequest $request){
-        // return json_encode($request->all());
-
         $product = Product::create($request->all());
 
         $primary = 0;
@@ -94,7 +91,6 @@ class ProductsCon extends Controller
             }
         }
 
-       
         $primary = 0;
         foreach ($request->images as $key => $value) {
             /*--------------------------------------------------------------------------

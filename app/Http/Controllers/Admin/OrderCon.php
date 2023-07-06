@@ -230,7 +230,8 @@ class OrderCon extends Controller
                 $total += $product['subtotal'];// add subtotal
     
                 // UPDATE PRODUCT STOCKS
-                $this->products->updateStocks($product['product_id'], $product['qty']);
+                
+                $this->products->update_stocks_on_order_update($product['product_id'], $product['prev_qty'], $product['qty']);
             }
         }
 

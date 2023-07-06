@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\TransactionProducts;
 
 class Product extends Model
 {
@@ -36,5 +37,11 @@ class Product extends Model
     public function updateStocks($id, $purchasedQty){
         $product = $this->find($id);
         $product->update(['qty' => ($product->qty - $purchasedQty)]);
+    }
+
+    public function update_stocks_on_order_update($id, $product_order_stocks, $request_qty){
+        $product = $this->find($id);
+        // $transaction_products = TransactionProducts::find()
+        $product->update(['qty' => (($product->qty + $product_order_stocks) - $request_qty)]);
     }
 }
