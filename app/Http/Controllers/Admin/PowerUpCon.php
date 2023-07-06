@@ -25,6 +25,9 @@ class PowerUpCon extends Controller
             $from = date_format(date_create($date[0]), "Y-m-d");
             $to = date_format(date_create($date[1]),"Y-m-d");
 
+            if ($from == $to) {
+                return $q->whereDate('purchase_date', $from);
+            }
             return $q->whereBetween('purchase_date', [$from, $to]);
         })// FILTER PURCHASE DATE
 
@@ -32,6 +35,10 @@ class PowerUpCon extends Controller
             $date = explode(" - ",request()->review_date);
             $from = date_format(date_create($date[0]), "Y-m-d");
             $to = date_format(date_create($date[1]),"Y-m-d");
+
+            if ($from == $to) {
+                return $q->whereDate('review_date', $from);
+            }
 
             return $q->whereBetween('review_date', [$from, $to]);
         })// FILTER REVIEW DATE

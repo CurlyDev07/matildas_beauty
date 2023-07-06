@@ -12,6 +12,7 @@ use App\Store;
 class FbAdsCon extends Controller
 {
     public function index(Request $request){
+
         $stores = Store::all();
 
         $orders = FbAds::orderBy('created_at', 'desc')
@@ -22,6 +23,11 @@ class FbAdsCon extends Controller
             $date = explode(" - ",request()->date);
             $from = carbon($date[0]);
             $to = carbon($date[1]);
+
+            if ($from == $to) {
+                return $q->whereDate('created_at', $from);
+            }
+
             return $q->whereBetween('created_at', [$from, $to]);
         })// FILTER DATE
         ->when($request->status, function($q){
