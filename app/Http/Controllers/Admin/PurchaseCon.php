@@ -56,15 +56,7 @@ class PurchaseCon extends Controller
         ]);
 
         foreach ($request->products as $product) {
-            // purchase_product
             $purchase->purchase_product()->create($product);
-
-            // Add stocks/Update Inventory
-            $get_product = Product::select('id', 'sku', 'qty')->find($product['product_id']);
-
-            $new_stock = ($get_product['qty'] + $product['qty']);// Calculate new sock
-            $get_product->update(['qty' => $new_stock]);
-
         }
 
         return response()->json(['code' => 200]);

@@ -115,7 +115,6 @@
                     </ul><!-- Product Pick list -->
 
                 </div>
-                   
                 <div id="products_container" class="tw-4/6 tborder-l tpl-2 toverflow-scroll toverflow-x-hidden tpr-6" style="height: 450px">
                     <div class="product tborder-b tflex tmx-1 trelative thidden tpy-1" id="hidden_product">
                         <div class="tw-5/7 tw-full tflex tflex-col tmr-2">
@@ -139,7 +138,9 @@
                             <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Subtotal</label>
                             <input type="text" onkeyup="allnumeric(this)" disabled="" value="0" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
                         </div><!-- Sub Total -->
-                        <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
+                        <i class="fas fa-plus-circle"></i>
+                        <i class="fas fa-plus-circle hover:tunderline material-icons t-mr-4 tabsolute ttop-0 tcursor-pointer tmt-6 tooltipped tright-0 ttext-green-700"></i>
+                        <i class="fas fa-plus-circle hover:tunderline material-icons t-mr-4 tabsolute ttop-0 tcursor-pointer tmt-6 tooltipped tright-0 ttext-green-700"></i>
                     </div><!-- Test -->
                     
                     @foreach ($purchase->purchase_product as $purchase_product)
@@ -188,7 +189,11 @@
                                 <input type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['received_qty']?? $purchase_product['qty'] }}" class="product_received_qty browser-default form-control" style="padding: 6px;">
                             </div><!-- Recieved QTY -->
 
-                            <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
+                            <i class=" hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tbottom-0 tooltipped"  data-position="right" data-tooltip="Remove Product">close</i>
+                            <i class="hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tooltipped"  data-position="right" data-tooltip="Reflect Stocks to Inventory">
+                                <i class="fas fa-plus-circle"></i>
+                            </i>
+
                         </div>
 
                         
