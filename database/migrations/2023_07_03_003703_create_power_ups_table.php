@@ -24,7 +24,7 @@ class CreatePowerUpsTable extends Migration
             $table->integer('total')->nullable();
             $table->date('purchase_date')->nullable()->comment('date of purchase');
             $table->date('review_date')->nullable()->comment('date of review');
-            $table->string('status')->nullable()->comment('Shipping | Ready to Review | Done');
+            $table->string('status')->nullable()->comment('Shipping | Done');
             $table->string('notes')->nullable();
             $table->timestamps();
         });

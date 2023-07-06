@@ -208,6 +208,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     Route::prefix('fbads')->group(function () {
         Route::get('/', 'FbAdsCon@index')->name('fbads.index');
         Route::get('/event-listener', 'FbAdsCon@event_listener')->name('fbads.event_listener');
+        Route::post('/change-status', 'FbAdsCon@change_status');
     });
 
 

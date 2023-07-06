@@ -86,7 +86,7 @@ class PowerUpCon extends Controller
             'total'=> $request->total,
             'purchase_date'=> date_f($request->purchase_date, 'Y-m-d H:i:s'),
             'review_date'=> date_f($request->review_date, 'Y-m-d H:i:s'),
-            'status'=> 'PENDING',
+            'status'=> 'Shipping',
             'notes'=> 'N/A'
         ]);
 
