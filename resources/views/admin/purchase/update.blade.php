@@ -172,7 +172,12 @@
 
                             <div class="tw-1/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active"> Received? </label>
-                                <select class="product_received tcursor-pointer browser-default form-control" style="padding: 6px;">
+                                <select 
+                                    @if ($purchase_product->received == 'yes' && $purchase_product['received_qty'] >= $purchase_product['qty'])
+                                        {{-- If received status == 'yes' and If the purchase qty is equal to purchase qty --}}
+                                        {{ 'disabled' }}
+                                    @endif
+                                class="product_received tcursor-pointer browser-default form-control" style="padding: 6px;">
         
                                     @foreach ($receive_status as $status)
                                         <option value="{{ $status }}" class=""
@@ -186,10 +191,35 @@
 
                             <div class="tw-2/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">R-QTY</label>
-                                <input type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['received_qty']?? $purchase_product['qty'] }}" class="product_received_qty browser-default form-control" style="padding: 6px;">
+                                <input 
+
+                                @if ($purchase_product->received == 'yes' && $purchase_product['received_qty'] >= $purchase_product['qty'])
+                                    {{-- If received status == 'yes' and If the purchase qty is equal to purchase qty --}}
+                                    {{ 'disabled' }}
+                                    style="padding: 6px; background: #f9f9f9;"
+                                    class="product_received_qty tcursor-not-allowed browser-default form-control"
+                                @elseif($purchase_product->received == 'no')
+                                    {{ 'disabled' }}
+                                    style="padding: 6px; background: #f9f9f9;"
+                                    class="product_received_qty tcursor-not-allowed browser-default form-control"
+                                @else
+                                    style="padding: 6px; background: #ffffff;"
+                                    class="product_received_qty browser-default form-control"
+                                @endif
+
+
+                                type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['received_qty'] }}" >
                             </div><!-- Recieved QTY -->
 
-                            <i class="hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 tooltipped reflect-stocks"
+                            
+
+                            <i 
+                                @if ($purchase_product->received == 'incomplete')
+                                    class="hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 tooltipped reflect-stocks"
+                                @else
+                                    class="thidden hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 tooltipped reflect-stocks"
+                                @endif
+                                
                                style="top: -28%;" 
                                data-position="right" 
                                data-tooltip="Reflect Stocks to Inventory"
@@ -198,7 +228,9 @@
                                 <i class="fa-plus-circle fas ttext-green-500"></i>
                             </i>
 
-                            <i class=" hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tbottom-0 tooltipped" data-position="right" data-tooltip="Remove Product">close</i>
+                            @if ($purchase_product->stock_in != 'yes')
+                                <i class=" hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tbottom-0 tooltipped" data-position="right" data-tooltip="Remove Product">close</i>
+                            @endif <!-- if purchase product is added to stocks. Cannot remove it anymore --> 
                         </div>
                     @endforeach
                 </div>
@@ -467,6 +499,37 @@
             });
         })// Submit
 
+
+        $('.product_received').change(function () {
+            let received = $(this).val();
+
+            if (received == 'yes' || received == 'incomplete') {
+                let rqty = $(this).parent().next().children().last();
+                rqty.removeAttr('disabled'); // remove R-QTY disabled
+                rqty.removeClass('tcursor-not-allowed');// remove cursur disabled
+                rqty.css("background-color", "#ffffff");// remove bg-gray 
+                let reflectStock = $(this).parent().next().next().removeClass('thidden ');// Show reflect stocks button
+
+                if (received == 'yes') {// If received == yes. RQTY = QTY
+                    let purchase_qty = $(this).parent().prev().prev().prev().children().last().val();
+                    $(this).parent().next().children().last().val(purchase_qty);
+                }else{
+                    $(this).parent().next().children().last().val(0);// remove RQTY QTY
+                }
+                
+            }else{
+                let rqty = $(this).parent().next().children().last();
+                rqty.attr('disabled', 'true');
+                rqty.addClass('tcursor-not-allowed');// remove cursur disabled
+                rqty.css("background-color", "#f9f9f9");// remove bg-gray 
+                let reflectStock = $(this).parent().next().next().addClass('thidden ');// Show reflect stocks button
+
+                $(this).parent().next().children().last().val(0);// remove RQTY QTY
+            }
+
+
+        });
+
         $('.reflect-stocks').click(function(){
             let self = $(this);
             
@@ -485,6 +548,7 @@
                     let purchase_product_id = self.attr('purchase_product_id');
                     let product_id = self.attr('product_id');
                     let received_qty = self.prev().children().last().val();
+                    let received = self.prev().prev().children().last().val();
 
                     $.ajax({
                         url: '/admin/purchase/reflect-stocks',
@@ -493,13 +557,9 @@
                             purchase_product_id: purchase_product_id,
                             product_id: product_id,
                             received_qty: received_qty,
+                            received: received
                         },
                         success: ()=>{
-                             // Change Button text and color
-                            // self.attr('class', 'tm-0 chip green lighten-5 waves-effect waves-green');
-                            // self.children().html('SHIPPED')
-                            // self.children().attr('class', 'green-text')
-
                             Swal.fire(
                                 'Purchase added to stocks',
                                 'Inventory purchase recorded. Stocks updated',

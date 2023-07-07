@@ -188,8 +188,35 @@ class PurchaseCon extends Controller
         return $month;
     }
 
-    public function reflect_stocks(){
-        return request()->all();
+    public function reflect_stocks(Request $request){
+        $product = Product::find($request->product_id);
+        $product_purchase = PurchaseProduct::find($request->purchase_product_id);
+        $prevRQTY = $product_purchase->received_qty;
+        $receivedStatus = $request->received;
+        $stock_in = 'no';
+
+        if ($request->received_qty >= $product_purchase->qty) {
+            $receivedStatus = 'yes';
+            $stock_in = 'yes';
+        }else{
+            $receivedStatus = 'incomplete';
+            $stock_in = 'partial';
+        }
+
+        $product_purchase->update([
+            'received' => $receivedStatus,
+            'received_qty' => $request->received_qty,
+            'stock_in' => $stock_in,
+        ]);
+
+        if ($prevRQTY == NULL) {
+            $product->update(['qty' => ($product->qty + $request->received_qty)]);
+        }else{
+            $product->update(['qty' => (($product->qty - $prevRQTY) + $request->received_qty) ]);
+        }
+
+        
+        return response()->json(['code' => 200]);
     }
 
 }

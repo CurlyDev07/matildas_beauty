@@ -22,6 +22,7 @@ class CreatePurchaseProductsTable extends Migration
             $table->integer('sub_total')->nullable();
             $table->string('received')->default('no')->comment('is product received or not? yes | no | incomplete');
             $table->integer('received_qty')->nullable()->comment('The Received Quantity');
+            $table->string('stock_in')->default('no')->nullable()->comment('Values: yes | no | partial');
             $table->timestamps();
         });
     }
