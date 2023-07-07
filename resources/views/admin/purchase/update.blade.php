@@ -189,14 +189,17 @@
                                 <input type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['received_qty']?? $purchase_product['qty'] }}" class="product_received_qty browser-default form-control" style="padding: 6px;">
                             </div><!-- Recieved QTY -->
 
-                            <i class=" hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tbottom-0 tooltipped"  data-position="right" data-tooltip="Remove Product">close</i>
-                            <i class="hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tooltipped"  data-position="right" data-tooltip="Reflect Stocks to Inventory">
-                                <i class="fas fa-plus-circle"></i>
+                            <i class="hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 tooltipped reflect-stocks"
+                               style="top: -28%;" 
+                               data-position="right" 
+                               data-tooltip="Reflect Stocks to Inventory"
+                               purchase_product_id="{{ $purchase_product->id }}"
+                               product_id="{{ $purchase_product->product['id'] }}">
+                                <i class="fa-plus-circle fas ttext-green-500"></i>
                             </i>
 
+                            <i class=" hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tbottom-0 tooltipped" data-position="right" data-tooltip="Remove Product">close</i>
                         </div>
-
-                        
                     @endforeach
                 </div>
             </div>
@@ -272,7 +275,7 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/plugins/sweatalert.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $('.modal').modal();// initiate modal
@@ -413,56 +416,100 @@
 
         $('#submit_btn').click(()=>{
 
-                $('#submit_btn').attr('disabled', 'true');
-                progress_loading(true);// show loader
+            $('#submit_btn').attr('disabled', 'true');
+            progress_loading(true);// show loader
 
-                let products = getAllProducts();
+            let products = getAllProducts();
 
-                $.post( "/admin/purchase/patch", {
-                    'purchase_id': $('#purchase_id').val(),
-                    'products': products,
-                    'total_price': $('#total').html(),
-                    'total_qty': $('#total_items').html(),
-                    'supplier': $('.supplier').val(),
-                    'shipping_fee': $('.shipping_fee').val(),
-                    'transaction_fee': $('.transaction_fee').val(),
-                    'tax': $('.tax').val(),
-                    'order_recieved': orderReceived(),
-                    'date': $('.datepicker').val(),
-                })
-                .fail(function(response) {
-                    $('#submit_btn').removeAttr('disabled');
-                    progress_loading(false);// show loader
+            $.post( "/admin/purchase/patch", {
+                'purchase_id': $('#purchase_id').val(),
+                'products': products,
+                'total_price': $('#total').html(),
+                'total_qty': $('#total_items').html(),
+                'supplier': $('.supplier').val(),
+                'shipping_fee': $('.shipping_fee').val(),
+                'transaction_fee': $('.transaction_fee').val(),
+                'tax': $('.tax').val(),
+                'order_recieved': orderReceived(),
+                'date': $('.datepicker').val(),
+            })
+            .fail(function(response) {
+                $('#submit_btn').removeAttr('disabled');
+                progress_loading(false);// show loader
 
-                    let errDecoded = JSON.parse(response.responseText);
-                    let markup = '';
+                let errDecoded = JSON.parse(response.responseText);
+                let markup = '';
 
-                    if (errDecoded.errors < 1) {
-                        return;
-                    }
+                if (errDecoded.errors < 1) {
+                    return;
+                }
 
-                    $('#err_msg_modal').modal('open'); 
-                    $.each(errDecoded.errors, function (key, val) {
-                        markup +=   `<li class="tmb-3" style="color:#f65656;">
-                                        <i class="fas fa-dot-circle tmr-3"></i>
-                                        ${val}
-                                    </li>`;
+                $('#err_msg_modal').modal('open'); 
+                $.each(errDecoded.errors, function (key, val) {
+                    markup +=   `<li class="tmb-3" style="color:#f65656;">
+                                    <i class="fas fa-dot-circle tmr-3"></i>
+                                    ${val}
+                                </li>`;
 
-                    });
-                    $('.modal_err_msg').html(markup);
-                })
-                .done(function( res ) {
-                    $('#submit_btn').removeAttr('disabled');
-                    progress_loading(false);// show loader
-
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Awesome',
-                        text: 'Added Successfuly',
-                    });
-                    location.href = '/admin/purchase';
                 });
-            })// Submit
+                $('.modal_err_msg').html(markup);
+            })
+            .done(function( res ) {
+                $('#submit_btn').removeAttr('disabled');
+                progress_loading(false);// show loader
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Awesome',
+                    text: 'Added Successfuly',
+                });
+                location.href = '/admin/purchase';
+            });
+        })// Submit
+
+        $('.reflect-stocks').click(function(){
+            let self = $(this);
+            
+            Swal.fire({
+                title: 'Reflect to Stocks?',
+                html:
+                "Add this purchase quantity to current product stocks.</br>" +
+                "<small class='tfont-medium ttext-error'>You won't be able to revert this!</small>",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let purchase_product_id = self.attr('purchase_product_id');
+                    let product_id = self.attr('product_id');
+                    let received_qty = self.prev().children().last().val();
+
+                    $.ajax({
+                        url: '/admin/purchase/reflect-stocks',
+                        type: 'POST',
+                        data: {
+                            purchase_product_id: purchase_product_id,
+                            product_id: product_id,
+                            received_qty: received_qty,
+                        },
+                        success: ()=>{
+                             // Change Button text and color
+                            // self.attr('class', 'tm-0 chip green lighten-5 waves-effect waves-green');
+                            // self.children().html('SHIPPED')
+                            // self.children().attr('class', 'green-text')
+
+                            Swal.fire(
+                                'Purchase added to stocks',
+                                'Inventory purchase recorded. Stocks updated',
+                                'success'
+                            )// success prompt
+                        }
+                    });// update via Ajax request
+                }
+            })// swal
+        });// Reflect Stocks
 
     </script>
 

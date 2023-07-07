@@ -135,6 +135,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::post('/report-data', 'PurchaseCon@report_data');
         Route::get('/update/{id}', 'PurchaseCon@update');
         Route::post('/patch', 'PurchaseCon@patch');
+        Route::post('/reflect-stocks', 'PurchaseCon@reflect_stocks');
     });
 
 

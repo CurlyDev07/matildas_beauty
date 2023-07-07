@@ -188,4 +188,8 @@ class PurchaseCon extends Controller
         return $month;
     }
 
+    public function reflect_stocks(){
+        return request()->all();
+    }
+
 }
