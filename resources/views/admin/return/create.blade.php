@@ -148,7 +148,7 @@
             Package Information
         </div>
         <div class="tflex tpx-5">
-            <div class="tw-1/5 tflex tflex-col tmr-3">
+            <div class="tw-1/4 tflex tflex-col tmr-3">
                 <label for="status" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Status</label>
                 <select id="status" class="browser-default form-control" style="padding: 6px;" >
                     <option value="complete">Complete</option>
@@ -158,7 +158,7 @@
                     <option value="refund_rejected">Refund Rejected</option>
                 </select>
             </div><!-- Status -->
-            <div class="tw-1/5 tflex tflex-col tmr-3">
+            <div class="tw-1/4 tflex tflex-col tmr-3">
                 <label for="platform" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Platform</label>
                 <select id="platform" class="browser-default form-control" style="padding: 6px;" >
                     <option value="shopee">Shopee</option>
@@ -166,24 +166,17 @@
                     <option value="lazada">Lazada</option>
                 </select>
             </div><!-- Platform -->
-            <div class="tw-1/5 tflex tflex-col tmr-3">
+            <div class="tw-1/4 tflex tflex-col tmr-3">
                 <label for="courier" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Courier</label>
                 <select id="courier" class="browser-default form-control" style="padding: 6px;" >
                     <option value="j&t">J&T</option>
                     <option value="spx">Shopee Express</option>
-                    <option value="lex">Lazada</option>
+                    <option value="lex">LEX/Lazada Express</option>
                     <option value="xde">XDE/XIMEX</option>
                     <option value="ninjavan">Ninja Van</option>
-                    <option value="gogo">Gogo Express</option>
                 </select>
             </div><!-- Courier -->
-            <div class="tw-1/5 tflex tflex-col tmr-3">
-                <label for="store" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Store</label>
-                <select id="store" class="browser-default form-control" style="padding: 6px;" >
-                    <option value="">Choose ...</option>
-                </select>
-            </div><!-- Pouch Size -->
-            <div class="tw-1/5 tflex tflex-col">
+            <div class="tw-1/4 tflex tflex-col">
                 <label for="pouch_size" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Pouch Size</label>
                 <select id="pouch_size" class="browser-default form-control" style="padding: 6px;" >
                     <option value="sm">Small</option>
@@ -228,7 +221,6 @@
         $('.modal').modal();// initiate modal
         $('.datepicker').datepicker();// initiate datepicker
 
-        let height = 240;
         $('.add-search-product').click(function () {
             // Get All Data
             let id = $(this).attr('id');
@@ -247,8 +239,7 @@
 
 
             // Scroll to bottom
-            height += 62;
-            $('#products_container').append(selected_product).animate({ scrollTop: height }, height);
+            $("#products_container").append(selected_product).animate({ scrollTop: 99999999999 }, 1);
 
         }) // Add product by search
 
@@ -275,6 +266,58 @@
             return products;
         }// get getAllProducts
 
+        $('#transaction_id').change(function(){
+            let search = $('#transaction_id').val();
+
+            if (search.startsWith("MP")) {
+                $('#platform option[value="lazada"]').prop('selected', true)
+                $('#courier option[value="lex"]').prop('selected', true)
+                // Lazada-PH-LEX PH
+                // MP0599139654
+            }
+
+            if (search.startsWith("NLPHMP")) {
+                $('#platform option[value="lazada"]').prop('selected', true)
+                $('#courier option[value="ninjavan"]').prop('selected', true)
+                // Lazada-PH-Ninja Van PH
+                // NLPHMP0072555801
+            }
+
+            if (search.startsWith("XSM")) {
+                $('#platform option[value="lazada"]').prop('selected', true)
+                $('#courier option[value="xde"]').prop('selected', true)
+                // Lazada-PH-Ximex Delivery Express
+                // XSM000008131196
+            }
+
+            if (search.startsWith("8200")) {
+                $('#platform option[value="lazada"]').prop('selected', true)
+                $('#courier option[value="j&t"]').prop('selected', true)
+                // Lazada-PH-J&T Express PH
+                // 820047127024
+            }
+            
+            if (search.startsWith("9712")) {
+                $('#platform option[value="tiktok"]').prop('selected', true)
+                $('#courier option[value="j&t"]').prop('selected', true)
+                // TikTok-PH-J&T Express
+                // 971202861030
+            }
+
+            if (search.startsWith("SPEPH")) {
+                $('#platform option[value="shopee"]').prop('selected', true)
+                $('#courier option[value="spx"]').prop('selected', true)
+                // Shopee-PH-Shopee Xpress
+                // SPEPH037962123347
+            }
+            
+            if (search.startsWith("7867")) {
+                $('#platform option[value="shopee"]').prop('selected', true)
+                $('#courier option[value="j&t"]').prop('selected', true)
+                // Shopee-PH-J&T Express
+                // 786702672484
+            }
+        })
 
         $('#submit_btn').click(()=>{
                 $('#submit_btn').attr('disabled', 'true');

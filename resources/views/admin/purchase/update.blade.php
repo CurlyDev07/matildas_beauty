@@ -211,8 +211,6 @@
                                 type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['received_qty'] }}" >
                             </div><!-- Recieved QTY -->
 
-                            
-
                             <i 
                                 @if ($purchase_product->received == 'incomplete')
                                     class="hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 tooltipped reflect-stocks"

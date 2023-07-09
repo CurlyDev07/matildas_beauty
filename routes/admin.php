@@ -156,7 +156,8 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/', 'RtsCon@index');
         Route::get('/create', 'RtsCon@create');
         Route::post('/store', 'RtsCon@store');
-        Route::post('/view/{transaction_id}', 'RtsCon@view')->name('rts.view');
+        Route::get('/update/{transaction_id}', 'RtsCon@update')->name('rts.update');
+        Route::post('/patch', 'RtsCon@patch')->name('rts.patch');
     });
 
          /*
