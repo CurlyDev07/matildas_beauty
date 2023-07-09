@@ -388,12 +388,12 @@
                     $('#submit_btn').removeAttr('disabled');
                     progress_loading(false);// show loader
 
-                    // Swal.fire({
-                    //     icon: 'success',
-                    //     title: 'Awesome',
-                    //     text: 'Added Successfuly',
-                    // });
-                    // location.reload();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Awesome',
+                        text: 'Added Successfuly',
+                    });
+                    location.reload();
                 });
             })// Submit
 
