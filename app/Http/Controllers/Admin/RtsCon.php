@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use App\RtsProducts;
 use App\Http\Requests\RTS\StoreReturnRequest;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Cache;
 class RtsCon extends Controller
 {
 
