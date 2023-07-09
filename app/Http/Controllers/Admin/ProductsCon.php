@@ -84,10 +84,11 @@ class ProductsCon extends Controller
         | CHECK IF NEW IMAGES IS EXIST IN DATABASE ELSE DELETE IMAGE
         |--------------------------------------------------------------------------*/
         $get_image_names_from_req_img = Arr::pluck($request->images, 'base64_image');
+
         foreach ($old_imgs as $old_img) {
             if (!in_array($old_img, $get_image_names_from_req_img)) {
-                ProductImage::where('img', $old_img)->delete();
-                // Storage::disk('public')->delete($old_img);
+                $old_images_removed_cloud_front = str_replace(config('app.cloudfront'),"", $old_img);
+                ProductImage::where('img', $old_images_removed_cloud_front)->delete();
             }
         }
 
@@ -98,7 +99,7 @@ class ProductsCon extends Controller
             |--------------------------------------------------------------------------*/
             if (!in_array($value['base64_image'], $old_imgs)) {
                 $img = uuid().'.jpg';
-                $path = '/images/products';
+                $path = '/images/products/';
                 $small_image = $path.'small-'.$img;
                 $original_image = $path.'original-'.$img;
                 
