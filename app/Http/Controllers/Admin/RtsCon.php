@@ -8,6 +8,7 @@ use App\Product;
 use App\SoldFrom;
 use App\PaymentMethod;
 use App\Rts;
+use Carbon\Carbon;
 use App\RtsProducts;
 use App\Http\Requests\RTS\StoreReturnRequest;
 use Illuminate\Support\Str;
@@ -41,10 +42,13 @@ class RtsCon extends Controller
     }
 
     public function create(){
-        $products = $this->products->active()->with(array('images' => function($query){
+        $expire = Carbon::now()->addMinutes(15);
+        $products = Cache::remember('rts_products', $expire, function() {
+            return $products = $this->products->active()->with(array('images' => function($query){
                 $query->where('primary', 1);
-            })
-        )->latest()->get();
+            }))->latest()->get();
+        });
+
 
         $payment_method = PaymentMethod::all();
         $sold_from = SoldFrom::all();
