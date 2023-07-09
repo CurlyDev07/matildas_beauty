@@ -38,9 +38,4 @@ class Product extends Model
         $product = $this->find($id);
         $product->update(['qty' => ($product->qty - $purchasedQty)]);
     }
-
-    public function update_stocks_on_order_update($id, $product_order_stocks, $request_qty){
-        $product = $this->find($id);
-        $product->update(['qty' => (($product->qty + $product_order_stocks) - $request_qty)]);
-    }
 }

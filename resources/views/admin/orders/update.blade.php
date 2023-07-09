@@ -267,7 +267,7 @@
 
     <script>
         $('.modal').modal();// initiate modal
-        $('.datepicker').datepicker();// initiate datepicker
+        $('.datepicker').datepicker({autoClose: true});// initiate datepicker
 
 
         let height = 478;

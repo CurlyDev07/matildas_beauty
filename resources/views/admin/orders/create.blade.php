@@ -235,7 +235,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script>
         $('.modal').modal();// initiate modal
-        $('.datepicker').datepicker();// initiate datepicker
+        $('.datepicker').datepicker({autoClose: true});// initiate datepicker
 
 
         let height = 478;
