@@ -24,7 +24,7 @@ class RtsCon extends Controller
             return $q->where('transaction_id', 'like', '%'.request()->search.'%');
         })->when($request->sort, function($q){
             return $q->orderBy('created_at', request()->sort);
-        })->get();
+        })->paginate(2);
 
         $rts_count = Rts::count();
         $potential_profit = RtsProducts::sum('potential_profit');

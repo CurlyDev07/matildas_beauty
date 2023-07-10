@@ -94,6 +94,12 @@
                     </tr>
                 @endforeach
             </table>
+
+            @if ($rts->hasMorePages())
+                <div class="tbg-white tflex tjustify-end tpb-1 tpt-5">
+                    {{ $rts->onEachSide(1)->appends(request()->except('page'))->links() }}
+                </div>
+            @endif
         </div><!-- TABLE -->
     </div>
 @endsection
