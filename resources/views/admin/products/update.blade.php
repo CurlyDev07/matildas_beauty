@@ -460,12 +460,12 @@
                 $('#submit_btn').removeAttr('disabled');
                 progress_loading(false);// show loader
 
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Awesome',
-                    text: 'Update Successfuly',
-                });
-                window.location.href = "/admin/products";
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'Awesome',
+                //     text: 'Update Successfuly',
+                // });
+                // window.location.href = "/admin/products";
             });
         }
     </script>   

@@ -115,7 +115,6 @@
                     </ul><!-- Product Pick list -->
 
                 </div>
-                   
                 <div id="products_container" class="tw-4/6 tborder-l tpl-2 toverflow-scroll toverflow-x-hidden tpr-6" style="height: 450px">
                     <div class="product tborder-b tflex tmx-1 trelative thidden tpy-1" id="hidden_product">
                         <div class="tw-5/7 tw-full tflex tflex-col tmr-2">
@@ -139,7 +138,9 @@
                             <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Subtotal</label>
                             <input type="text" onkeyup="allnumeric(this)" disabled="" value="0" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
                         </div><!-- Sub Total -->
-                        <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
+                        <i class="fas fa-plus-circle"></i>
+                        <i class="fas fa-plus-circle hover:tunderline material-icons t-mr-4 tabsolute ttop-0 tcursor-pointer tmt-6 tooltipped tright-0 ttext-green-700"></i>
+                        <i class="fas fa-plus-circle hover:tunderline material-icons t-mr-4 tabsolute ttop-0 tcursor-pointer tmt-6 tooltipped tright-0 ttext-green-700"></i>
                     </div><!-- Test -->
                     
                     @foreach ($purchase->purchase_product as $purchase_product)
@@ -171,7 +172,12 @@
 
                             <div class="tw-1/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active"> Received? </label>
-                                <select class="product_received tcursor-pointer browser-default form-control" style="padding: 6px;">
+                                <select 
+                                    @if ($purchase_product->received == 'yes' && $purchase_product['received_qty'] >= $purchase_product['qty'])
+                                        {{-- If received status == 'yes' and If the purchase qty is equal to purchase qty --}}
+                                        {{ 'disabled' }}
+                                    @endif
+                                class="product_received tcursor-pointer browser-default form-control" style="padding: 6px;">
         
                                     @foreach ($receive_status as $status)
                                         <option value="{{ $status }}" class=""
@@ -185,13 +191,45 @@
 
                             <div class="tw-2/6 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">R-QTY</label>
-                                <input type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['received_qty']?? $purchase_product['qty'] }}" class="product_received_qty browser-default form-control" style="padding: 6px;">
+                                <input 
+
+                                @if ($purchase_product->received == 'yes' && $purchase_product['received_qty'] >= $purchase_product['qty'])
+                                    {{-- If received status == 'yes' and If the purchase qty is equal to purchase qty --}}
+                                    {{ 'disabled' }}
+                                    style="padding: 6px; background: #f9f9f9;"
+                                    class="product_received_qty tcursor-not-allowed browser-default form-control"
+                                @elseif($purchase_product->received == 'no')
+                                    {{ 'disabled' }}
+                                    style="padding: 6px; background: #f9f9f9;"
+                                    class="product_received_qty tcursor-not-allowed browser-default form-control"
+                                @else
+                                    style="padding: 6px; background: #ffffff;"
+                                    class="product_received_qty browser-default form-control"
+                                @endif
+
+
+                                type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['received_qty'] }}" >
                             </div><!-- Recieved QTY -->
 
-                            <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
-                        </div>
+                            <i 
+                                @if ($purchase_product->received == 'incomplete')
+                                    class="hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 tooltipped reflect-stocks"
+                                @else
+                                    class="thidden hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 tooltipped reflect-stocks"
+                                @endif
+                                
+                               style="top: -28%;" 
+                               data-position="right" 
+                               data-tooltip="Reflect Stocks to Inventory"
+                               purchase_product_id="{{ $purchase_product->id }}"
+                               product_id="{{ $purchase_product->product['id'] }}">
+                                <i class="fa-plus-circle fas ttext-green-500"></i>
+                            </i>
 
-                        
+                            @if ($purchase_product->stock_in != 'yes')
+                                <i class=" hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tbottom-0 tooltipped" data-position="right" data-tooltip="Remove Product">close</i>
+                            @endif <!-- if purchase product is added to stocks. Cannot remove it anymore --> 
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -267,7 +305,7 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/plugins/sweatalert.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $('.modal').modal();// initiate modal
@@ -408,56 +446,128 @@
 
         $('#submit_btn').click(()=>{
 
-                $('#submit_btn').attr('disabled', 'true');
-                progress_loading(true);// show loader
+            $('#submit_btn').attr('disabled', 'true');
+            progress_loading(true);// show loader
 
-                let products = getAllProducts();
+            let products = getAllProducts();
 
-                $.post( "/admin/purchase/patch", {
-                    'purchase_id': $('#purchase_id').val(),
-                    'products': products,
-                    'total_price': $('#total').html(),
-                    'total_qty': $('#total_items').html(),
-                    'supplier': $('.supplier').val(),
-                    'shipping_fee': $('.shipping_fee').val(),
-                    'transaction_fee': $('.transaction_fee').val(),
-                    'tax': $('.tax').val(),
-                    'order_recieved': orderReceived(),
-                    'date': $('.datepicker').val(),
-                })
-                .fail(function(response) {
-                    $('#submit_btn').removeAttr('disabled');
-                    progress_loading(false);// show loader
+            $.post( "/admin/purchase/patch", {
+                'purchase_id': $('#purchase_id').val(),
+                'products': products,
+                'total_price': $('#total').html(),
+                'total_qty': $('#total_items').html(),
+                'supplier': $('.supplier').val(),
+                'shipping_fee': $('.shipping_fee').val(),
+                'transaction_fee': $('.transaction_fee').val(),
+                'tax': $('.tax').val(),
+                'order_recieved': orderReceived(),
+                'date': $('.datepicker').val(),
+            })
+            .fail(function(response) {
+                $('#submit_btn').removeAttr('disabled');
+                progress_loading(false);// show loader
 
-                    let errDecoded = JSON.parse(response.responseText);
-                    let markup = '';
+                let errDecoded = JSON.parse(response.responseText);
+                let markup = '';
 
-                    if (errDecoded.errors < 1) {
-                        return;
-                    }
+                if (errDecoded.errors < 1) {
+                    return;
+                }
 
-                    $('#err_msg_modal').modal('open'); 
-                    $.each(errDecoded.errors, function (key, val) {
-                        markup +=   `<li class="tmb-3" style="color:#f65656;">
-                                        <i class="fas fa-dot-circle tmr-3"></i>
-                                        ${val}
-                                    </li>`;
+                $('#err_msg_modal').modal('open'); 
+                $.each(errDecoded.errors, function (key, val) {
+                    markup +=   `<li class="tmb-3" style="color:#f65656;">
+                                    <i class="fas fa-dot-circle tmr-3"></i>
+                                    ${val}
+                                </li>`;
 
-                    });
-                    $('.modal_err_msg').html(markup);
-                })
-                .done(function( res ) {
-                    $('#submit_btn').removeAttr('disabled');
-                    progress_loading(false);// show loader
-
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Awesome',
-                        text: 'Added Successfuly',
-                    });
-                    location.href = '/admin/purchase';
                 });
-            })// Submit
+                $('.modal_err_msg').html(markup);
+            })
+            .done(function( res ) {
+                $('#submit_btn').removeAttr('disabled');
+                progress_loading(false);// show loader
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Awesome',
+                    text: 'Added Successfuly',
+                });
+                location.href = '/admin/purchase';
+            });
+        })// Submit
+
+
+        $('.product_received').change(function () {
+            let received = $(this).val();
+
+            if (received == 'yes' || received == 'incomplete') {
+                let rqty = $(this).parent().next().children().last();
+                rqty.removeAttr('disabled'); // remove R-QTY disabled
+                rqty.removeClass('tcursor-not-allowed');// remove cursur disabled
+                rqty.css("background-color", "#ffffff");// remove bg-gray 
+                let reflectStock = $(this).parent().next().next().removeClass('thidden ');// Show reflect stocks button
+
+                if (received == 'yes') {// If received == yes. RQTY = QTY
+                    let purchase_qty = $(this).parent().prev().prev().prev().children().last().val();
+                    $(this).parent().next().children().last().val(purchase_qty);
+                }else{
+                    $(this).parent().next().children().last().val(0);// remove RQTY QTY
+                }
+                
+            }else{
+                let rqty = $(this).parent().next().children().last();
+                rqty.attr('disabled', 'true');
+                rqty.addClass('tcursor-not-allowed');// remove cursur disabled
+                rqty.css("background-color", "#f9f9f9");// remove bg-gray 
+                let reflectStock = $(this).parent().next().next().addClass('thidden ');// Show reflect stocks button
+
+                $(this).parent().next().children().last().val(0);// remove RQTY QTY
+            }
+
+
+        });
+
+        $('.reflect-stocks').click(function(){
+            let self = $(this);
+            
+            Swal.fire({
+                title: 'Reflect to Stocks?',
+                html:
+                "Add this purchase quantity to current product stocks.</br>" +
+                "<small class='tfont-medium ttext-error'>You won't be able to revert this!</small>",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let purchase_product_id = self.attr('purchase_product_id');
+                    let product_id = self.attr('product_id');
+                    let received_qty = self.prev().children().last().val();
+                    let received = self.prev().prev().children().last().val();
+
+                    $.ajax({
+                        url: '/admin/purchase/reflect-stocks',
+                        type: 'POST',
+                        data: {
+                            purchase_product_id: purchase_product_id,
+                            product_id: product_id,
+                            received_qty: received_qty,
+                            received: received
+                        },
+                        success: ()=>{
+                            Swal.fire(
+                                'Purchase added to stocks',
+                                'Inventory purchase recorded. Stocks updated',
+                                'success'
+                            )// success prompt
+                        }
+                    });// update via Ajax request
+                }
+            })// swal
+        });// Reflect Stocks
 
     </script>
 

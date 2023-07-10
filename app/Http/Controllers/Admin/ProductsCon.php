@@ -15,7 +15,6 @@ use App\Http\Requests\Products\UploadProductsRequest;
 class ProductsCon extends Controller
 {
     public function index(Request $request){
-        // dd($request->no_cogs);
         $products = Product::with(array('images' => function($query){
                 $query->where('primary', 1);
             })
@@ -38,8 +37,6 @@ class ProductsCon extends Controller
     }
 
     public function store(UploadProductsRequest $request){
-        // return json_encode($request->all());
-
         $product = Product::create($request->all());
 
         $primary = 0;
@@ -87,14 +84,14 @@ class ProductsCon extends Controller
         | CHECK IF NEW IMAGES IS EXIST IN DATABASE ELSE DELETE IMAGE
         |--------------------------------------------------------------------------*/
         $get_image_names_from_req_img = Arr::pluck($request->images, 'base64_image');
+
         foreach ($old_imgs as $old_img) {
             if (!in_array($old_img, $get_image_names_from_req_img)) {
-                ProductImage::where('img', $old_img)->delete();
-                // Storage::disk('public')->delete($old_img);
+                $old_images_removed_cloud_front = str_replace(config('app.cloudfront'),"", $old_img);
+                ProductImage::where('img', $old_images_removed_cloud_front)->delete();
             }
         }
 
-       
         $primary = 0;
         foreach ($request->images as $key => $value) {
             /*--------------------------------------------------------------------------
@@ -102,7 +99,7 @@ class ProductsCon extends Controller
             |--------------------------------------------------------------------------*/
             if (!in_array($value['base64_image'], $old_imgs)) {
                 $img = uuid().'.jpg';
-                $path = '/images/products';
+                $path = '/images/products/';
                 $small_image = $path.'small-'.$img;
                 $original_image = $path.'original-'.$img;
                 

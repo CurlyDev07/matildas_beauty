@@ -145,7 +145,7 @@
                     
                     @foreach ($orders->products as $order)
 
-                        <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="{{ $order->product->id }}">
+                        <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="{{ $order->product->id }}" prev_qty="{{ $order->qty }}">
                             <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
                                 <div class="tflex titems-center tpy-1">
                                     <img src="{{ $order->product->primary_image }}" data-src="{{ $order->product->primary_image }}" class="product_img" style="height: 50px; width: 50px;" alt="">
@@ -267,7 +267,7 @@
 
     <script>
         $('.modal').modal();// initiate modal
-        $('.datepicker').datepicker();// initiate datepicker
+        $('.datepicker').datepicker({autoClose: true});// initiate datepicker
 
 
         let height = 478;
@@ -361,6 +361,7 @@
             $('#products_container').children().each(function (i) {
 
                 let product_id = $(this).attr('id');
+                let prev_qty = $(this).attr('prev_qty');
                 let price = $(this).find('.product_price').val();
                 let qty = $(this).find('.product_quantity').val();
                 let subtotal = $(this).find('.product_subtotal').val();
@@ -368,6 +369,7 @@
                 if (i != 0) {
                     products.push({
                         product_id: product_id,
+                        prev_qty: prev_qty,
                         price: price,
                         qty: Number(qty),
                         subtotal: subtotal,

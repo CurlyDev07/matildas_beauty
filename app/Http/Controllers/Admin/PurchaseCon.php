@@ -56,23 +56,13 @@ class PurchaseCon extends Controller
         ]);
 
         foreach ($request->products as $product) {
-            // purchase_product
             $purchase->purchase_product()->create($product);
-
-            // Add stocks/Update Inventory
-            $get_product = Product::select('id', 'sku', 'qty')->find($product['product_id']);
-
-            $new_stock = ($get_product['qty'] + $product['qty']);// Calculate new sock
-            $get_product->update(['qty' => $new_stock]);
-
         }
 
         return response()->json(['code' => 200]);
-
     }
 
     public function update($purchase_id){
-        // dd($purchase_id);
         $products = $this->products->active()->get(['id', 'title', 'sku', 'selling_price', 'price'])->sortBy('title');
         $suppliers = Suppliers::select('id', 'name', 'surname')->get();
         $purchase = Purchase::find($purchase_id);
@@ -196,6 +186,37 @@ class PurchaseCon extends Controller
             ->get();
 
         return $month;
+    }
+
+    public function reflect_stocks(Request $request){
+        $product = Product::find($request->product_id);
+        $product_purchase = PurchaseProduct::find($request->purchase_product_id);
+        $prevRQTY = $product_purchase->received_qty;
+        $receivedStatus = $request->received;
+        $stock_in = 'no';
+
+        if ($request->received_qty >= $product_purchase->qty) {
+            $receivedStatus = 'yes';
+            $stock_in = 'yes';
+        }else{
+            $receivedStatus = 'incomplete';
+            $stock_in = 'partial';
+        }
+
+        $product_purchase->update([
+            'received' => $receivedStatus,
+            'received_qty' => $request->received_qty,
+            'stock_in' => $stock_in,
+        ]);
+
+        if ($prevRQTY == NULL) {
+            $product->update(['qty' => ($product->qty + $request->received_qty)]);
+        }else{
+            $product->update(['qty' => (($product->qty - $prevRQTY) + $request->received_qty) ]);
+        }
+
+        
+        return response()->json(['code' => 200]);
     }
 
 }

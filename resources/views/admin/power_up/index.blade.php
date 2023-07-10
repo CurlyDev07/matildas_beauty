@@ -44,15 +44,6 @@
         <div class="tborder-b tpx-5 tpy-3">
             <ul class="tflex titems-center">
                 {{-- <li class="tmr-2">
-                    <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
-                        <button type="submit" style="height: 40px; border-right-style: dashed;" class="focus:tbg-white focus:toutline-none tborder-r grey-text tborder tborder-gray-200 tborder-r-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-l-full waves-effect">
-                            <img class="" src="{{ asset('images/icons/store.png') }}" alt="">
-                        </button>
-                        
-                        <input type="text" placeholder="Not working yet. . ." name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-r-full trounded-tl" placeholder="Search order number">
-                    </form>
-                </li><!-- SEARCH --> --}}
-                {{-- <li class="tmr-2">
                     <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
                         <img class="tpr-1" src="{{ asset('images/icons/platform.png') }}" alt="">
 
@@ -88,7 +79,7 @@
                         <input type="text" name="review_date" id="review_date" value="{{ request()->review_date }}" class="browser-default tooltipped" data-position="top" data-tooltip="Filter by review date"/>
                     </div>
                 </li><!-- review_date Filter-->
-                <li class="tml-3">
+                <li class="tml-3 tml-auto tmr-2">
                     <a href="/admin/powerup">
                         <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
@@ -126,7 +117,7 @@
                         </span>
                     </div>
                 </li>
-            @endif <!--REVIEW Date-->
+                @endif <!--REVIEW Date-->
 
                 @if (request()->stores)
                     <li class="tmr-2">
@@ -142,32 +133,9 @@
                         </div>
                     </li>
                 @endif <!--STORE FILTER -->
-              
-                <li class="tmr-2">
-                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                        <span class="tpl-1">Stores:  &nbsp;</span>
-                    </div>
-                </li><!-- Orders -->
-                <li>    
-                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                        <span class="tpl-1">Sales:  &nbsp;</span>
-                    </div>
-                </li><!-- Sales-->
-                <li class="tml-2">    
-                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                        <span class="tpl-1">Conversion rate:% &nbsp;</span>
-                    </div>
-                </li><!-- Conversion rate -->
-                <li class="tml-2">    
-                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                        <span class="tpl-1">Visitors:  &nbsp;</span>
-                    </div>
-                </li><!-- Visitors --> 
-                
-             
             </ul>
-
         </div>
+
         <div class="tpx-3 tpy-4 tflex tjustify-center">
             <table class="tmb-4 tbg-white ttext-md tw-full">
                 <tr class="tborder-0">
@@ -182,7 +150,12 @@
                     <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
                 </tr>
                 
-                @foreach ($power_up as $data)
+                @foreach ($power_up as $data) 
+
+
+               
+
+
                     <tr class="hover:tshadow-2xl row" id="{{ $data->id }}">
                         <td class="ttext-sm ttext-center tpy-1">{{ $data->store->store_name  }}</td>
                         <td class="ttext-sm ttext-center tpy-1">{{  auth()->user()->first_name  }}</td>
@@ -199,31 +172,36 @@
                                 </span>
                             @else
                                 <span class="chip green lighten-5 waves-effect waves-green tooltipped" style="cursor: pointer;"  data-position="right" data-tooltip="Reviewed">
-                                    <span class="green-text" style="cursor: pointer;">{{  date_f($data->purchase_date, 'd M') }}</span>
+                                    <span class="green-text" style="cursor: pointer;">{{  date_f($data->review_date, 'd M') }}</span>
                                 </span>
                             @endif
-                        </td>
+                        </td><!-- review_date -->
                         <td class="ttext-sm ttext-center tpy-1">
                             <span class="tfont-medium">
-                                @if ($data->status == 'Shipping')
-                                    <span class="chip orange lighten-5 waves-effect waves-orange review-chip" data-id="{{ $data->id }}" style="cursor: pointer;">
-                                        <span class="orange-text tooltipped" style="cursor: pointer;" data-position="right" data-tooltip="mark as reviewed">{{ $data->status }}</span>
-                                    </span>
-                                @endif
+                                @if ($data->status == 'Shipping')   
+                                    @php
+                                        $date = date_diff(date_create(date('Y-m-d')), date_create($data->purchase_date));
+                                    @endphp
 
-                                @if ($data->status == 'Done')
+                                    @if ($date->days > 3)
+                                        <span class="chip orange lighten-5 waves-effect waves-orange review-chip" data-id="{{ $data->id }}" style="cursor: pointer;">
+                                        <span class="orange-text tinline-block tooltipped" style="cursor: pointer;width: 67px;" data-position="right" data-tooltip="mark as reviewed">To Review</span>                                        </span>
+                                    @else
+                                        <span class="chip red lighten-5 waves-effect waves-red review-chip" data-id="{{ $data->id }}" style="cursor: pointer;">
+                                            <span class="red-text tooltipped" style="cursor: pointer;" data-position="right" data-tooltip="mark as reviewed">{{ $data->status }}</span>
+                                        </span>
+                                    @endif
+                                @else
+                                        
+                                @if ($data->status == 'PENDING')
+                                    
+                                @endif
                                     <span class="chip green lighten-5 waves-effect waves-green tooltipped" style="cursor: pointer;"  data-position="right" data-tooltip="Reviewed">
                                         <span class="green-text" style="cursor: pointer;">{{ $data->status }}</span>
                                     </span>
                                 @endif
-                                
-                                {{-- @if ($data->status == 'Done')
-                                    <span class="chip green lighten-5 waves-effect waves-green tooltipped" style="cursor: pointer;"  data-position="right" data-tooltip="Reviewed">
-                                        <span class="green-text" style="cursor: pointer;">{{ $data->status }}</span>
-                                    </span>
-                                @endif --}}
                             </span>
-                        </td>
+                        </td><!-- status -->
                         <td class="ttext-sm ttext-center tpy-1">
                             <a href="/admin/powerup/update/{{ $data->id }}">
                                 <i class="fas fa-edit hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Edit"></i>       
@@ -231,7 +209,7 @@
                             <a href="/admin/powerup/duplicate?id={{ $data->id }}">
                                 <i class="fas fa-copy hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Duplicate"></i>       
                             </a>
-                        </td>
+                        </td><!-- action --> 
                     </tr>
                 @endforeach
             </table>
@@ -359,15 +337,13 @@
                     type: 'POST',
                     data: { id: $(this).data('id') },
                     success: ()=>{
-                        var date = moment();
-
                          // Change Button text and color
                         self.attr('class', 'chip green lighten-5 waves-effect waves-green status');
                         self.children().html('Done')
                         self.children().attr('class', 'green-text')
                         self.parent().parent().prev().children().attr('class', 'chip green lighten-5 waves-effect waves-green')
                         self.parent().parent().prev().children().children().attr('class', 'green-text')
-                        self.parent().parent().prev().children().children().html(date.format('DD MMM'))
+                        self.parent().parent().prev().children().children().html('Today')
                     }
                 });// update via Ajax request
             }

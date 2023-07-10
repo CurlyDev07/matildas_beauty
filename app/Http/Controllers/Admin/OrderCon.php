@@ -163,12 +163,19 @@ class OrderCon extends Controller
     }
 
     public function patch(CreateOrderRequest $request){
-
         // Delete Previous Record
-        TransactionProducts::where('transaction_id', $request->transaction_id)->delete();
+        $product_deductions = TransactionProducts::select('id', 'product_id', 'qty')->where('transaction_id', $request->transaction_id);
+
+        foreach ($product_deductions->get() as $product_deduction) {
+            $findProductToDeduct = Product::find($product_deduction->product_id);
+            $findProductToDeduct->update(['qty' => ($findProductToDeduct->qty + $product_deduction->qty)]); // deduct the qty
+
+            $product_deduction->delete();// Delete the  transaction product
+        }
+
         TransactionPayment::where('transaction_id', $request->transaction_id)->delete();
         TransactionPorductSummary::where('transaction_id', $request->transaction_id)->delete();
-        Transaction::find($request->transaction_id)->delete();
+        // Transaction::find($request->transaction_id)->delete();
         
         // this code is just a copy paste of store method
 
@@ -184,10 +191,10 @@ class OrderCon extends Controller
             return response()->json($errormsg, 422);
         }// Check if first Product is existing
 
-        // ==========================================
-
         // CREATE TRANSACTION 
-        $transaction = Transaction::create([
+        $transaction = Transaction::find($request->transaction_id);
+
+        $update_transaction = $transaction->update([
             'sold_from_id' => $request->sold_from,
             'payment_method_id' => $request->payment_method,
             'user_id' => 0,
@@ -206,16 +213,10 @@ class OrderCon extends Controller
             'status' => 'completed',
             'date' => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now(),
         ]);
-
-        $transaction->update([
-            'order_number' => generateOrderNumber($transaction['id'])
-        ]);// Add transaction id
-
-        
+    
         $total = 0;
         // CREATE TRANSACTION PRODUCTS
         foreach ($request->products as $product) {
-
             // check if user all selected products has Product ID
             // if ID is present Create a record of product : dont create
 
@@ -229,8 +230,8 @@ class OrderCon extends Controller
                 
                 $total += $product['subtotal'];// add subtotal
     
-                // UPDATE PRODUCT STOCKS
-                $this->products->updateStocks($product['product_id'], $product['qty']);
+                $get_product = Product::find($product['product_id']);
+                $update_stocks = $get_product->update(['qty' => $get_product->qty - $product['qty']]);
             }
         }
 
@@ -258,7 +259,6 @@ class OrderCon extends Controller
         }
 
         return response()->json(['status' => true]);
-
     }
 
     public function change_status(Request $request){

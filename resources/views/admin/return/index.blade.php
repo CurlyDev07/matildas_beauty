@@ -5,7 +5,7 @@
 
 
 
-    <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
+    <div class="tbg-white trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-1">
             <div class="">
                 <div class="ttext-sm">Rts: <span class="tfont-semibold">{{ number_format($rts_count) }}</span></div>
@@ -47,9 +47,9 @@
             <table class="tmb-4 tbg-white ttext-md tw-full">
                 <tbody>
                     <tr class="tborder-0">
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">#</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Transaction #</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Platform</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Store</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Courrier</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Package</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Product Value</th>
@@ -61,21 +61,21 @@
                 @foreach ($return as $rts)
                 
                     <tr>    
+                        <td class="ttext-sm ttext-center tpy-1">{{ $rts->id }}</td>
                         <td class="ttext-sm ttext-center tpy-1">
-                            <a href="{{ route('rts.view', ['transaction_id' => $rts->transaction_id]) }}" class="ttext-blue-500">
+                            <a href="{{ route('rts.update', ['transaction_id' => $rts->id]) }}" class="ttext-blue-500">
                                 {{ $rts->transaction_id }}
                             </a>
                         </td>
                         <td class="ttext-sm tpy-1">
                             @if ($rts->platform == 'shopee')
-                                <img class="th-10 tmx-auto" src="{{ asset('/icons/shopee.png') }}">
+                                <img class="th-10 tmx-auto" src="{{ asset('/images/icons/shopee.png') }}">
                             @elseif($rts->platform == 'lazada')
-                                <img class="th-10 tmx-auto" src="{{ asset('/icons/lazada.png') }}">
+                                <img class="th-10 tmx-auto" src="{{ asset('/images/icons/lazada.png') }}">
                             @elseif($rts->platform == 'tiktok')
-                                <img class="th-10 tmx-auto" src="{{ asset('/icons/tiktok.png') }}">
+                                <img class="th-10 tmx-auto" src="{{ asset('/images/icons/tiktok.png') }}">
                             @endif
                         </td>
-                        <td class="ttext-sm ttext-center tpy-1">{{ $rts->store }}</td>
                         <td class="ttext-sm ttext-center tpy-1">{{ $rts->courier }}</td>
                         <td class="ttext-sm ttext-center tpy-1">{{ $rts->products()->count() }} items</td>
                         <td class="ttext-sm ttext-center tpy-1">{{ $rts->products()->sum('capital') }}</td>
@@ -101,6 +101,10 @@
                 </div>
             @endif
         </div><!-- TABLE -->
+
+        <div class="tbg-white tflex tjustify-end tpb-1">
+            {{ $return->onEachSide(1)->appends(request()->except('page'))->links() }}
+        </div>
     </div>
 @endsection
 

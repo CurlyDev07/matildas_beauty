@@ -135,6 +135,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::post('/report-data', 'PurchaseCon@report_data');
         Route::get('/update/{id}', 'PurchaseCon@update');
         Route::post('/patch', 'PurchaseCon@patch');
+        Route::post('/reflect-stocks', 'PurchaseCon@reflect_stocks');
     });
 
 
@@ -155,7 +156,8 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/', 'RtsCon@index');
         Route::get('/create', 'RtsCon@create');
         Route::post('/store', 'RtsCon@store');
-        Route::post('/view/{transaction_id}', 'RtsCon@view')->name('rts.view');
+        Route::get('/update/{transaction_id}', 'RtsCon@update')->name('rts.update');
+        Route::post('/patch', 'RtsCon@patch')->name('rts.patch');
     });
 
          /*
@@ -208,6 +210,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     Route::prefix('fbads')->group(function () {
         Route::get('/', 'FbAdsCon@index')->name('fbads.index');
         Route::get('/event-listener', 'FbAdsCon@event_listener')->name('fbads.event_listener');
+        Route::post('/change-status', 'FbAdsCon@change_status');
     });
 
 

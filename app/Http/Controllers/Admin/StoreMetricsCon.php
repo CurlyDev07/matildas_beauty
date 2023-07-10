@@ -17,13 +17,19 @@ class StoreMetricsCon extends Controller
 
         $metrics = StoreMetrics::with(['store'])
         ->when(!$request->dates, function($q){
-            $yesterday = date('Y-m-d',strtotime("-1 days"));
-            return $q->where('date', $yesterday);
+            $from = date('Y-m-d', strtotime("-15 days"));
+            $to = date('Y-m-d');
+            return $q->whereBetween('date', [$from, $to]);
         })// Show Yesterday's Datas
         ->when($request->dates, function ($q) {
             $date = explode(" - ",request()->dates);
             $from = date_format(date_create($date[0]), "Y-m-d") .' 00:00:00';
             $to = date_format(date_create($date[1]),"Y-m-d") .' 23:59:59';
+
+            if ($from == $to) {
+                return $q->whereDate('date', $from);
+            }
+
             return $q->whereBetween('date', [$from, $to]);
         })// filter by date
         ->when($request->stores, function($q){
