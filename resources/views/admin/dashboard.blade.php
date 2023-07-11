@@ -4,10 +4,21 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 
-<div class="tborder tflex titems-center tpx-2 tpy-1 trounded ttext-sm" >
-    <img class="tpr-1" src="{{ asset('images/icons/calendar.png') }}" alt="">
-    <input type="text" name="date" id="date" value="" class="browser-default tooltipped" data-position="top" data-tooltip="Filter by date"/>
-</div>
+<ul>
+    <li class="tml-3 tml-auto tmr-2">
+        <div class="tborder tflex titems-center tpx-2 tpy-1 trounded ttext-sm" >
+            <img class="tpr-1" src="{{ asset('images/icons/calendar.png') }}" alt="">
+            <input type="text" name="date" id="date" value="" class="browser-default tooltipped" data-position="top" data-tooltip="Filter by date"/>
+        </div>
+    </li>
+    <li class="tml-3 tml-auto tmr-2">
+        <a href="/admin/powerup">
+            <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
+        </a>
+    </li><!-- REMOVE FILTER -->
+</ul>
+
+
 <br>
 <br>
 
