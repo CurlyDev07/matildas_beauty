@@ -12,7 +12,7 @@
         </div>
     </li>
     <li class="tml-3 tml-auto tmr-2">
-        <a href="/admin/powerup">
+        <a href="/admin/dashboard">
             <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
         </a>
     </li><!-- REMOVE FILTER -->
