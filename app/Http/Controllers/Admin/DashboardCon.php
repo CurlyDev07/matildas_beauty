@@ -11,8 +11,9 @@ use App\PowerUp;
 
 class DashboardCon extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
+        
         $products = Product::all('price', 'qty');
         $commodity_cost = 0;
         $active_products = $products->count();
@@ -21,16 +22,60 @@ class DashboardCon extends Controller
             $commodity_cost += $value->price * $value->qty;
         }
 
-        $expense = Expenses::sum('cost');
-        $purchase = Purchase::sum('total_price') + Purchase::sum('tax');
-        $power_up_sf = PowerUp::sum('sf');
-        $power_up_total = PowerUp::sum('total');
+        $expense = Expenses::when($request->date, function($q){
+            $date = explode(" - ",request()->date);
+            $from = carbon($date[0]);
+            $to = carbon($date[1]);
+            if ($from == $to) {
+                return $q->whereDate('date', $from);
+            }
+            return $q->whereBetween('date', [$from, $to]);
+        })->sum('cost'); // FILTER DATE
+
+        $purchase = Purchase::when($request->date, function($q){
+            $date = explode(" - ",request()->date);
+            $from = carbon($date[0]);
+            $to = carbon($date[1]);
+            if ($from == $to) {
+                return $q->whereDate('date', $from);
+            }
+            return $q->whereBetween('date', [$from, $to]);
+        })->sum('total_price'); // FILTER DATE
+
+        $tax = Purchase::when($request->date, function($q){
+            $date = explode(" - ",request()->date);
+            $from = carbon($date[0]);
+            $to = carbon($date[1]);
+            if ($from == $to) {
+                return $q->whereDate('date', $from);
+            }
+            return $q->whereBetween('date', [$from, $to]);
+        })->sum('tax'); // FILTER DATE
+
+        $power_up_sf = PowerUp::when($request->date, function($q){
+            $date = explode(" - ",request()->date);
+            $from = carbon($date[0]);
+            $to = carbon($date[1]);
+            if ($from == $to) {
+                return $q->whereDate('purchase_date', $from);
+            }
+            return $q->whereBetween('purchase_date', [$from, $to]);
+        })->sum('sf'); // FILTER DATE;
+        $power_up_total = PowerUp::when($request->date, function($q){
+            $date = explode(" - ",request()->date);
+            $from = carbon($date[0]);
+            $to = carbon($date[1]);
+            if ($from == $to) {
+                return $q->whereDate('purchase_date', $from);
+            }
+            return $q->whereBetween('purchase_date', [$from, $to]);
+        })->sum('total'); // FILTER DATE;
 
         return view('admin.dashboard', [
             'commodity_cost' => $commodity_cost,
             'active_products' => $active_products,
             'expense' => $expense,
-            'purchase' => $purchase,
+            'purchase' => ($purchase + $tax),
             'power_up_sf' => $power_up_sf,
             'power_up_total' => $power_up_total,
         ]);
