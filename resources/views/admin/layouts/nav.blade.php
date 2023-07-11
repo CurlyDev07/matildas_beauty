@@ -30,12 +30,12 @@
     <div class="tcontainer">
         <div class="col s12">
             <ul class="tabs tabs tflex tjustify-between">
-                {{-- <li class="tab col">
+                <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'dashboard', 'active') }}" onclick="location.href = '/admin/dashboard'">
                         <i class="fas fa-desktop tmr-1 fa-lg"></i>
                         Dashboard
                     </a>
-                </li> --}}
+                </li>
                 <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'orders', 'active') }}" onclick="location.href = '/admin/orders'">
                         <i class="fas fa-shopping-cart tmr-1 fa-lg"></i>
