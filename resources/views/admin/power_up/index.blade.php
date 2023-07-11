@@ -214,6 +214,9 @@
                 @endforeach
             </table>
         </div><!-- TABLE -->
+        <div class="tbg-white tflex tjustify-end tpb-1">
+            {{ $power_up->onEachSide(1)->appends(request()->except('page'))->links() }}
+        </div>
     </div>
 @endsection
 
