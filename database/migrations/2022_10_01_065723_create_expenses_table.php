@@ -17,8 +17,9 @@ class CreateExpensesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->comment('advertisement | Utilities | Logistics');
             $table->integer('category_id')->comment('Linked to expenses_category table');
+            $table->double('price', 10, 2);
             $table->integer('quantity');
-            $table->integer('cost');
+            $table->double('total', 10, 2);
             $table->string('notes')->nullable();
             $table->date('date');
             $table->timestamps();

@@ -42,8 +42,9 @@
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Name</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Category</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Price</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Quantity</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Cost</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Total</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
                     </tr>
                 </tbody>
@@ -54,8 +55,9 @@
                         <td class="ttext-sm ttext-center">{{ date_f($expense->date, 'd M, Y') }}</td>
                         <td class="ttext-sm ttext-center">{{ $expense->name }}</td>
                         <td class="ttext-sm ttext-center">{{ $expense->category->category }}</td>
+                        <td class="ttext-sm ttext-center">{{ $expense->price }}</td>
                         <td class="ttext-sm ttext-center">{{ $expense->quantity }}</td>
-                        <td class="ttext-sm ttext-center">{{ $expense->cost }}</td>
+                        <td class="ttext-sm ttext-center">{{ $expense->total }}</td>
                         <td class="ttext-sm ttext-center">
                             <a href="{{ route('expenses.update', $expense->id)}}">
                                 <i class="fa-external-link-alt fas gray-text tcursor-pointer tooltipped" data-position="left" data-tooltip="view transaction"></i>

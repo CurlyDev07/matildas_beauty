@@ -21,12 +21,12 @@ class ExpensesCon extends Controller
     }
 
     public function store(){
-
         Expenses::Create([
             'name' => request()->name,
             'category_id' => request()->category_id,
+            'price' => request()->price,
             'quantity' => request()->quantity,
-            'cost' => request()->cost,
+            'total' => request()->total,
             'notes' => request()->Notes,
             'date' => date_f(request()->date, 'Y-m-d H:i:s'),
         ]);
@@ -40,7 +40,15 @@ class ExpensesCon extends Controller
     }
 
     public function patch(){
-        $expense = Expenses::find(request()->id)->update(request()->all());
+        $expense = Expenses::find(request()->id)->update([
+            'name' => request()->name,
+            'category_id' => request()->category_id,
+            'price' => request()->price,
+            'quantity' => request()->quantity,
+            'total' => request()->total,
+            'notes' => request()->Notes,
+            'date' => date_f(request()->date, 'Y-m-d H:i:s'),
+        ]);
         return redirect()->route('expenses.index');
     }
    

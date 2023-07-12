@@ -68,6 +68,13 @@
                             @enderror
                         </div><!-- Name -->
                         <div class="tw-1/5 tflex tflex-col tmr-3">
+                            <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">price</label>
+                            <input type="number" value="{{ $expense['price'] }}" name="price" price="price" id="price" value="{{ old('price') }}" class="browser-default form-control" style="padding: 6px;" required>
+                            @error('price')
+                                <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
+                            @enderror
+                        </div><!-- QTY -->
+                        <div class="tw-1/5 tflex tflex-col tmr-3">
                             <label for="quantity" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
                             <input type="number" value="{{ $expense['quantity'] }}" name="quantity" quantity="quantity" id="quantity" value="{{ old('quantity') }}" class="browser-default form-control" style="padding: 6px;" required>
                             @error('quantity')
@@ -75,12 +82,16 @@
                             @enderror
                         </div><!-- QTY -->
                         <div class="tw-1/5 tflex tflex-col tmr-3">
-                            <label for="cost" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Cost</label>
-                            <input type="number" value="{{ $expense['cost'] }}" value="{{ $expense['cost'] }}" name="cost" id="cost" value="{{ old('cost') }}" class="browser-default form-control" style="padding: 6px;" required>
-                            @error('cost')
+                            <label for="cost" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Total</label>
+                            <input type="number" value="{{ $expense['total'] }}" value="{{ $expense['total'] }}" name="total" id="total" value="{{ old('total') }}" class="browser-default form-control" style="padding: 6px;" required>
+                            @error('total')
                                 <div class="ttext-red-600 tfont-bold ttext-sm">{{ $message }}</div>
                             @enderror
-                        </div><!-- COST -->
+                        </div><!-- total -->
+                        <div class="tw-1/6 tflex tflex-col tmr-3">
+                            <label for="date" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date</label>
+                            <input type="text" value="{{ date_f($expense['date'], 'Y-m-d') }}" name="date" class="datepicker browser-default form-control" style="padding: 6px;" required>    
+                        </div><!-- DATE -->
                     </div>
 
                     <div class="tflex tpx-5 tmt-2 tflex tflex-row">
@@ -104,16 +115,17 @@
 
 @section('js')
     <script src="{{ asset('js/plugins/sweatalert.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
             
      {{-- UPLOAD IMAGES JS CONTROLS --}}
     <script>
          
          $('#file').change(function () {
             let file_name = $(this).val().split("\\").pop();
-            
          });
+
+        $('.datepicker').datepicker({
+            autoClose: true
+        });// initiate datepicker
             
     </script>
 @endsection
