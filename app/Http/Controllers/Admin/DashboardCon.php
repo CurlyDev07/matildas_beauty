@@ -14,7 +14,8 @@ class DashboardCon extends Controller
 {
     public function index(Request $request){
 
-        
+            // dd(request()->date);
+
         $products = Product::all('price', 'qty');
         $commodity_cost = 0;
         $active_products = $products->count();
@@ -34,10 +35,23 @@ class DashboardCon extends Controller
         }); // FILTER DATE
 
         $chart_data = [['Task', 'Hours per Day']];
-        $chart = $expense->selectRaw('sum(total) as grand_total, category_id')->with('category')->groupBy('category_id')->get()->toArray();
+        $chart = $expense->selectRaw('sum(total) as grand_total, category_id')->with('category')->groupBy('category_id')
+        ->when($request->date, function($q){
+            $date = explode(" - ",request()->date);
+            $from = carbon($date[0]);
+            $to = carbon($date[1]);
+            if ($from == $to) {
+                return $q->whereDate('date', $from);
+            }
+            return $q->whereBetween('date', [$from, $to]);
+        }) // FILTER DATE
+        ->get()->toArray();
+
         foreach ($chart as $data) {
-            $chart_data[] = [$data['category']['category'], $data['grand_total']];
+            $chart_data[] = [$data['category']['category'], (int)$data['grand_total']];
         }
+        // dd($chart_data);
+
 
         $purchase = Purchase::when($request->date, function($q){
             $date = explode(" - ",request()->date);

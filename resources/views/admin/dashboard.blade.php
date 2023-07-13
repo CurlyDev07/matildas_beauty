@@ -5,6 +5,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 
+{{request()->date}}
+
 <ul>
     <li class="tml-3 tml-auto tmr-2">
         <div class="tborder tflex titems-center tpx-2 tpy-1 trounded ttext-sm" >
@@ -61,17 +63,17 @@
             window.location = parser.href;
         });// Date on CHANGE
 
+
         let data = $('#chart_data').val();
         let chart_data = JSON.parse(data)
-   
+        
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
           var data = google.visualization.arrayToDataTable(chart_data);
           var options = {
-            title: 'My Daily Activities',
-            dataType: "json"
+            title: 'My Expenses',
           };
           var chart = new google.visualization.PieChart(document.getElementById('piechart'));
           chart.draw(data, options);
