@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
+
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 
@@ -31,9 +32,15 @@
 ------------------------
 <h1 class="ttext-2xl tfont-medium">Total Expense: {{ number_format($purchase + $expense + $power_up_total) }}</h1>
 
+<div id="piechart" style="width: 900px; height: 500px;"></div>
+
+<input type="hidden" id="chart_data" value="{{ json_encode($chart_data, TRUE) }}">
+
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 
 <script>
         $('input[name="date"]').daterangepicker({
@@ -53,5 +60,23 @@
             parser.searchParams.set("date", $(this).val());
             window.location = parser.href;
         });// Date on CHANGE
+
+        let data = $('#chart_data').val();
+        let chart_data = JSON.parse(data)
+   
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable(chart_data);
+          var options = {
+            title: 'My Daily Activities',
+            dataType: "json"
+          };
+          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+          chart.draw(data, options);
+        }
+
+
 </script>
 @endsection

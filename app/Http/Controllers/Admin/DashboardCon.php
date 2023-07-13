@@ -8,6 +8,7 @@ use App\Product;
 use App\Expenses;
 use App\Purchase;
 use App\PowerUp;
+use Illuminate\Support\Collection;
 
 class DashboardCon extends Controller
 {
@@ -30,7 +31,13 @@ class DashboardCon extends Controller
                 return $q->whereDate('date', $from);
             }
             return $q->whereBetween('date', [$from, $to]);
-        })->sum('cost'); // FILTER DATE
+        }); // FILTER DATE
+
+        $chart_data = [['Task', 'Hours per Day']];
+        $chart = $expense->selectRaw('sum(total) as grand_total, category_id')->with('category')->groupBy('category_id')->get()->toArray();
+        foreach ($chart as $data) {
+            $chart_data[] = [$data['category']['category'], $data['grand_total']];
+        }
 
         $purchase = Purchase::when($request->date, function($q){
             $date = explode(" - ",request()->date);
@@ -74,10 +81,11 @@ class DashboardCon extends Controller
         return view('admin.dashboard', [
             'commodity_cost' => $commodity_cost,
             'active_products' => $active_products,
-            'expense' => $expense,
+            'expense' => $expense->sum('total'),
             'purchase' => ($purchase + $tax),
             'power_up_sf' => $power_up_sf,
             'power_up_total' => $power_up_total,
+            'chart_data' => $chart_data
         ]);
     }
 }
