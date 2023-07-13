@@ -26,7 +26,8 @@
                 </tr>
                 @foreach ($top_20_products as $products)
                     @php
-                        $selling_price = $products['products']['selling_price'] + ($products['products']['selling_price'] * 7/100);
+                        $catch_sp = $products['products']['selling_price']?? 1;
+                        $selling_price =  $catch_sp + ($catch_sp * 7/100);
                         $price = $products['products']['price'];
                         $profit = ($selling_price) - $price;
                         $price_with_charges = 100 * ($selling_price - $price) / $selling_price;
