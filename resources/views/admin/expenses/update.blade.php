@@ -126,6 +126,33 @@
         $('.datepicker').datepicker({
             autoClose: true
         });// initiate datepicker
+
+        $('#price').change(function () {
+            let price = $(this).val();
+            let quantity = $('#quantity').val();
+            let total = (price*quantity);
+            $('#total').val(total);
+        });
+
+        $('#quantity').change(function () {
+            let price = $(this).val();
+            let quantity = $('#price').val();
+            let total = (price*quantity);
+            $('#total').val(total);
+        });
+
+        function MakeDecimal(Number) {
+            Number = Number + "" // Convert Number to string if not
+            Number = Number.split('').reverse().join(''); //Reverse string
+            var Result = "";
+            for (i = 0; i <= Number.length; i += 3) {
+                Result = Result + Number.substring(i, i + 3) + ".";
+            }
+            Result = Result.split('').reverse().join(''); //Reverse again
+            if (!isFinite(Result.substring(0, 1))) Result = Result.substring(1, Result.length); // Remove first dot, if have.
+            if (!isFinite(Result.substring(0, 1))) Result = Result.substring(1, Result.length); // Remove first dot, if have.
+            return Result;
+        }
             
     </script>
 @endsection
