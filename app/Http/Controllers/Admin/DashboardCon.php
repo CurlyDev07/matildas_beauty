@@ -9,21 +9,19 @@ use App\Expenses;
 use App\Purchase;
 use App\PowerUp;
 use Illuminate\Support\Collection;
+use App\TransactionPorductSummary;
+use Carbon\Carbon;
 
 class DashboardCon extends Controller
 {
     public function index(Request $request){
+        // ****************** TOP Products **********************
+        $top_20_products = TransactionPorductSummary::selectRaw('sum(qty) as quantity, product_id')
+        ->with(['products', 'products:id,sku,selling_price,price'])
+        ->groupBy('product_id')->limit(20)->get()->toArray();
 
-            // dd(request()->date);
 
-        $products = Product::all('price', 'qty');
-        $commodity_cost = 0;
-        $active_products = $products->count();
-
-        foreach ($products as $key => $value) {
-            $commodity_cost += $value->price * $value->qty;
-        }
-
+        // ****************** EXPENSES **********************
         $expense = Expenses::when($request->date, function($q){
             $date = explode(" - ",request()->date);
             $from = carbon($date[0]);
@@ -50,9 +48,8 @@ class DashboardCon extends Controller
         foreach ($chart as $data) {
             $chart_data[] = [$data['category']['category'], (int)$data['grand_total']];
         }
-        // dd($chart_data);
 
-
+        // ****************** PURCHASE **********************
         $purchase = Purchase::when($request->date, function($q){
             $date = explode(" - ",request()->date);
             $from = carbon($date[0]);
@@ -73,6 +70,7 @@ class DashboardCon extends Controller
             return $q->whereBetween('date', [$from, $to]);
         })->sum('tax'); // FILTER DATE
 
+        // ****************** POWER UP **********************
         $power_up_sf = PowerUp::when($request->date, function($q){
             $date = explode(" - ",request()->date);
             $from = carbon($date[0]);
@@ -93,13 +91,12 @@ class DashboardCon extends Controller
         })->sum('total'); // FILTER DATE;
 
         return view('admin.dashboard', [
-            'commodity_cost' => $commodity_cost,
-            'active_products' => $active_products,
             'expense' => $expense->sum('total'),
             'purchase' => ($purchase + $tax),
             'power_up_sf' => $power_up_sf,
             'power_up_total' => $power_up_total,
-            'chart_data' => $chart_data
+            'chart_data' => $chart_data,
+            'top_20_products' => $top_20_products
         ]);
     }
 }
