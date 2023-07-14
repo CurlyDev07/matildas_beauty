@@ -104,7 +104,7 @@
                                     <div class="tflex titems-center tpy-1">
                                         <img src="{{ $product['primary_image'] }}" data-src="{{ $product['primary_image'] }}" class="search-img" style="height: 50px; width: 50px;" alt="">
                                         <div class="tpx-2">
-                                            <p class="search-title ttext-md">{{ $product->title }}</p>
+                                            <p class="search-title truncate ttext-md" style="width: 157px;">{{ $product->title }}</p>
                                             <small class="search-sku">{{ $product->sku }}</small>
                                             <input type="hidden" class="search-price" value="{{ $product->selling_price }}">
                                         </div>
