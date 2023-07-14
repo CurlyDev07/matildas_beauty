@@ -18,6 +18,7 @@ class DashboardCon extends Controller
         // ****************** TOP Products **********************
         $top_20_products = TransactionPorductSummary::selectRaw('sum(qty) as quantity, product_id')
         ->with(['products', 'products:id,sku,selling_price,price'])
+        ->orderBy('quantity', 'desc')
         ->groupBy('product_id')->limit(20)->get()->toArray();
 
 
