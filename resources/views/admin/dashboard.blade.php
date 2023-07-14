@@ -34,8 +34,8 @@
                     @endphp
 
                     <tr>
-                        <td class="tpy-2"><img src="{{ $products['products']['primary_image'] }}" style="height: 35px;"></td>
-                        <td class="tpy-2">{{ $products['products']['sku'] }}</td>
+                        <td class="tpy-2"><img src="{{ $products['products']['primary_image'] }}" class="trounded" style="height: 35px;"></td>
+                        <td class="tpy-2 truncate" style="width: 150px;">{{ $products['products']['sku'] }}</td>
                         <td class="tpy-2">{{ number_format($selling_price, 2) }}</td>
                         <td class="tpy-2">{{ number_format($price, 2) }}</td>
                         <td class="tpy-2">{{ number_format($profit, 2) }}</td>
