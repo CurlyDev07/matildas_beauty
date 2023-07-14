@@ -103,8 +103,8 @@
                                 <a href="javascript:void(0)" class="add-search-product" id="{{ $product->id }}" aria-disabled="true">
                                     <div class="tflex titems-center tpy-1">
                                         <img src="{{ $product['primary_image'] }}" data-src="{{ $product['primary_image'] }}" class="search-img" style="height: 50px; width: 50px;" alt="">
-                                        <div class="tpx-2">
-                                            <p class="search-title truncate ttext-md" style="width: 157px;">{{ $product->title }}</p>
+                                        <div class="tpx-2 product-truncate" style="width: 157px;">
+                                            <p class="search-title ttext-md" >{{ $product->title }}</p>
                                             <small class="search-sku">{{ $product->sku }}</small>
                                             <input type="hidden" class="search-price" value="{{ $product->selling_price }}">
                                         </div>
@@ -120,9 +120,9 @@
                         <div class="tw-5/7 tw-full tflex tflex-col tmr-2">
                             <div class="tflex titems-center tpy-1">
                                 <img src="https://cf.shopee.ph/file/d8966eff56f6714d423e261828353033" class="product_img" style="height: 50px; width: 50px;" alt="">
-                                <div class="tpx-2">
-                                    <p class="product_title truncate ttext-sm">Matilda's Beauty Bleaching Soap 10x Whitening SoapMatilda's Beauty Bleaching Soap 10x Whitening Soap</p>
-                                    <small class="product_sku">VS_AKL</small>
+                                <div class="tpx-2 product-truncate" >
+                                    <p class="product_title ttext-sm" style="width: 157px;">Matilda's Beauty Bleaching Soap 10x Whitening SoapMatilda's Beauty Bleaching Soap 10x Whitening Soap</p>
+                                    <small class="product_sku" style="width: 157px;">VS_AKL</small>
                                 </div>
                             </div>
                         </div><!-- Product -->
@@ -145,12 +145,12 @@
                     
                     @foreach ($purchase->purchase_product as $purchase_product)
 
-                        <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="{{ $purchase_product->product['id'] }}">
+                        <div class="product tborder-b tflex titems-center tmx-1 tpy-1 trelative" id="{{ $purchase_product->product['id'] }}">
                             <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
                                 <div class="tflex titems-center tpy-1">
                                     <img src="{{ $purchase_product->product['primary_image'] }}" class="product_img" style="height: 50px; width: 50px;" alt="">
-                                    <div class="tpx-2">
-                                        <p class="product_title truncate ttext-sm">{{ $purchase_product->product['title'] }}</p>
+                                    <div class="tpx-2 truncate" style="width: 157px;">
+                                        <p class="product_title ttext-sm" >{{ $purchase_product->product['title'] }}</p>
                                         <small class="product_sku">{{ $purchase_product->product['sku'] }}</small>
                                     </div>
                                 </div>

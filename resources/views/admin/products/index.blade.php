@@ -5,17 +5,6 @@
         .icon_color{
             color: #9e9e9e
         }
-
-        .product-truncate{
-            overflow-wrap: anywhere;
-            width: 200px;
-            white-space: normal;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: normal;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
     </style>
 @endsection
 

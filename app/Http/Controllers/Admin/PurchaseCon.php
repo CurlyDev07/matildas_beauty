@@ -78,7 +78,6 @@ class PurchaseCon extends Controller
 
     public function patch(Request $request){
 
-
         Purchase::find($request->purchase_id)->delete();
         PurchaseProduct::where('purchase_id', $request->purchase_id)->delete();
 
@@ -106,15 +105,21 @@ class PurchaseCon extends Controller
 
             // These IF/ELSE are used to get the Purchase Status
 
-            if ($product['received'] == 'no') {
+
+            if (array_key_exists('received', $product)) {
+                if ($product['received'] == 'no') {
+                    $OTW++;
+                }
+                if ($product['received'] == 'yes') {
+                    $COMPLETED++;
+                }
+                if ($product['received'] == 'incomplete') {
+                    $INCOMPLETE++;
+                }
+            }else{
                 $OTW++;
             }
-            if ($product['received'] == 'yes') {
-                $COMPLETED++;
-            }
-            if ($product['received'] == 'incomplete') {
-                $INCOMPLETE++;
-            }
+
             // -------------------------------------------------
 
 
