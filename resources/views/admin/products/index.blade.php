@@ -5,6 +5,17 @@
         .icon_color{
             color: #9e9e9e
         }
+
+        .product-truncate{
+            overflow-wrap: anywhere;
+            width: 200px;
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
     </style>
 @endsection
 
@@ -55,19 +66,19 @@
                     </tr>
                     @foreach ($products as $product)
                         <tr class="tborder-0 hover:tbg-gray-100">
-                            <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#{{ $product['id'] }}</td>
-                            <td class="tp-3 tpx-5">
+                            <td class="tp-3 tpx-1 ttext-black-100 tfont-medium">#{{ $product['id'] }}</td>
+                            <td class="tp-3 tpx-1">
                                 <img src="{{ ($product['primary_image']) }}" data-src="{{ ($product['primary_image']) }}" class="tmx-auto" style="height: 50px;width: 50px;">
                             </td>
-                            <td class="tp-3 tpx-5 truncate" style="overflow-wrap: anywhere;width: 200px;">
+                            <td class="tp-3 tpx-1 product-truncate">
                                 <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500">{{ $product['title'] }}</a>
                             </td>
-                            <td class="tp-3 tpx-5"> {{ $product['sku'] }} </td>
-                            <td class="tp-3 tpx-5">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
-                            <td class="tp-3 tpx-5">{{ currency() }}{{ number_format($product['campaign_price']) }}</td>
-                            <td class="tp-3 tpx-5">{{ currency() }}{{ number_format($product['price']) }}</td>
-                            <td class="tp-3 tpx-5">{{ $product['qty'] ?? 'N/A'  }}</td>
-                            <td class="tp-3 tpx-5">
+                            <td class="tp-3 tpx-1 product-truncate"> {{ $product['sku'] }} </td>
+                            <td class="tp-3 tpx-1">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
+                            <td class="tp-3 tpx-1">{{ currency() }}{{ number_format($product['campaign_price']) }}</td>
+                            <td class="tp-3 tpx-1">{{ currency() }}{{ number_format($product['price']) }}</td>
+                            <td class="tp-3 tpx-1">{{ $product['qty'] ?? 'N/A'  }}</td>
+                            <td class="tp-3 tpx-1">
                                 @if ($product['status'] == 'active')
                                     <span class="chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="{{ $product['id'] }}" style="cursor: pointer;">
                                         <span class="green-text" style="cursor: pointer;">{{ $product['status'] }}</span>
