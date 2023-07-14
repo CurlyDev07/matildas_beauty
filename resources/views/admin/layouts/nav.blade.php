@@ -14,8 +14,8 @@
 <div class="tbg-primary">
     <div class="tcontainer">
         <div class="tflex titems-center tjustify-between tpy-3">
-            <div class="">
-                <img src="http://www.urbanui.com/cloudui/light/images/logo.svg" alt="">
+            <div class="trelative">
+                <img src="{{ asset('images/logo/main.png') }}" class="tabsolute tbg-white trounded-full" style="max-width: 76px;bottom: -38px;" alt="MB logo">
             </div>
             <a href="{{ url('/') }}" class="ttext-white tunderline">Back to site</a>
             <a class="dropdown-trigger" href="#!" data-target="dropdown1">

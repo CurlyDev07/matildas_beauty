@@ -152,9 +152,9 @@
                 
                 @foreach ($power_up as $data) 
                     <tr class="hover:tshadow-2xl row" id="{{ $data->id }}">
-                        <td class="ttext-sm ttext-center tpy-1" style="overflow-wrap: anywhere;">{{ $data->store->store_name  }}</td>
-                        <td class="ttext-sm ttext-center tpy-1">{{  $data->user->first_name  }}</td>
-                        <td class="ttext-sm ttext-center tpy-1" style="overflow-wrap: anywhere;">{{ $data->email }} <br> {{ $data->password }}</td>
+                        <td class="ttext-sm ttext-center tpy-1" style="overflow-wrap: anywhere;font-size: 12px;">{{ $data->store->store_name  }}</td>
+                        <td class="ttext-sm ttext-center tpy-1" style="font-size: 12px;">{{  $data->user->first_name  }}</td>
+                        <td class="ttext-sm ttext-center tpy-1" style="overflow-wrap: anywhere;font-size: 12px;">{{ $data->email }} <br> {{ $data->password }}</td>
                         <td class="ttext-sm ttext-center tpy-1">{{ $data->phone ?? '--' }}</td>
                         <td class="ttext-sm ttext-center tpy-1">{{ $data->sf }} | {{ $data->total }}</td>
                         <td class="ttext-sm ttext-center tpy-1">
