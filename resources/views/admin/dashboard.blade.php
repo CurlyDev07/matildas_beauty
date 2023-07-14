@@ -25,15 +25,14 @@
                     <th>Prof</th>
                 </tr>
                 @foreach ($top_20_products as $products)
-
                     @php
-
                         $catch_sp = ($products['products']['selling_price'] == 0)? 1 : $products['products']['selling_price'];
                         $selling_price =  $catch_sp + ($catch_sp * 7/100);
                         $price = $products['products']['price']?? 1;
                         $profit = ($selling_price) - $price;
                         $price_with_charges = 100 * ($selling_price - $price) / $selling_price;
                     @endphp
+
                     <tr>
                         <td class="tpy-2"><img src="{{ $products['products']['primary_image'] }}" style="height: 35px;"></td>
                         <td class="tpy-2">{{ $products['products']['sku'] }}</td>
@@ -42,7 +41,7 @@
                         <td class="tpy-2">{{ number_format($profit, 2) }}</td>
                         <td class="tpy-2">{{ number_format($price_with_charges, 2) }}%</td>
                         <td class="tpy-2 tfont-medium qty">{{ $products['quantity'] }}</td>
-                        <td class="tpy-2 tfont-medium">₱ <span class="profit">{{ ($products['quantity'] * $profit) }}</span></td>
+                        <td class="tpy-2 tfont-medium">₱ <span class="profit">{{ number_format($products['quantity'] * $profit) }}</span></td>
                     </tr>
                 @endforeach
                 <tr class="tborder-0">
@@ -132,18 +131,21 @@
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
+        function numberWithoutCommas(x) {
+            return x.toString().replace(",", "");
+        }
+
         let total_qty = 0;
         let total_profit = 0;
 
         $( ".qty" ).each(function( index ) {
-            total_qty+= parseInt($(this).html());
+            total_qty+= $(this).html();
         });
         
         $( ".profit" ).each(function( index ) {
-        console.log(parseInt($(this).html()));
-
-            total_profit+= parseInt($(this).html());
+            total_profit+= parseInt(numberWithoutCommas($(this).html()));
         });
+
         $('#total_qty').html(total_qty);
         $('#total_profit').html(numberWithCommas(total_profit));
     </script>
