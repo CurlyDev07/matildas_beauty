@@ -2,9 +2,9 @@
     <div class="thidden sm:tblock tcontainer tpy-10 sm:tpy-3">
         <div class="tflex tjustify-between">
             <h1 class="logo">
-                <a href="/">
-                    <img src="{{ asset('images\logo\main.png') }}" class="tabsolute" style="height: 100px;margin-top: -1px;" alt="shopickers logo">
-                </a>
+                <div class="trelative">
+                    <img src="https://matildasbeauty.com/images/logo/main.png" class="tabsolute tbg-white trounded-full" style="max-width: 76px;bottom: -58px;" alt="MB logo">
+                </div>
             </h1>
             <ul class="lg:tml-5 sm:tml-24 tflex tfont-medium titems-center ttext-white tlist-none">
                 {{-- @foreach (\App\Category::categories() as $item)
