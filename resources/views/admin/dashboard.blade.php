@@ -28,14 +28,14 @@
 
                     @php
 
-                        $catch_sp = $products['products']['selling_price']?? 1;
+                        $catch_sp = ($products['products']['selling_price'] == 0)? 1 : $products['products']['selling_price'];
                         $selling_price =  $catch_sp + ($catch_sp * 7/100);
                         $selling_price =  1;
                         $price = $products['products']['price']?? 1;
                         $profit = ($selling_price) - $price;
                         $price_with_charges = 100 * ($selling_price - $price) / $selling_price;
                     @endphp
-                    {{ $catch_sp }}
+                    <br>
                     <tr>
                         {{-- {{ dd($charges) }} --}}
                         <td class="tpy-2"><img src="{{ $products['products']['primary_image'] }}" style="height: 35px;"></td>
