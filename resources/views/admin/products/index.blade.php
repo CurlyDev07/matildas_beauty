@@ -58,15 +58,15 @@
                                 <img src="{{ ($product['primary_image']) }}" data-src="{{ ($product['primary_image']) }}" class="tmx-auto trounded" style="height: 50px;width: 50px;">
                             </td>
                             <td class="tp-3 tpx-1">
-                                <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500"
+                                <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500 ttext-sm"
                                 style="width: 150px; overflow-wrap: anywhere; white-space: normal;">{{ $product['title'] }}</a>
                             </td>
-                            <td class="tp-3 tpx-1 product-truncate" style="width: 150px; overflow-wrap: anywhere; white-space: normal;"> {{ $product['sku'] }} </td>
-                            <td class="tp-3 tpx-1">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
-                            <td class="tp-3 tpx-1">{{ currency() }}{{ number_format($product['campaign_price']) }}</td>
-                            <td class="tp-3 tpx-1">{{ currency() }}{{ number_format($product['price']) }}</td>
-                            <td class="tp-3 tpx-1">{{ $product['qty'] ?? 'N/A'  }}</td>
-                            <td class="tp-3 tpx-1">
+                            <td class="tp-3 tpx-1 product-truncate ttext-sm" style="width: 150px; overflow-wrap: anywhere; white-space: normal;"> {{ $product['sku'] }} </td>
+                            <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
+                            <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['campaign_price']) }}</td>
+                            <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['price']) }}</td>
+                            <td class="tp-3 tpx-1 ttext-sm">{{ $product['qty'] ?? 'N/A'  }}</td>
+                            <td class="tp-3 tpx-1 ttext-sm">
                                 @if ($product['status'] == 'active')
                                     <span class="chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="{{ $product['id'] }}" style="cursor: pointer;">
                                         <span class="green-text" style="cursor: pointer;">{{ $product['status'] }}</span>
