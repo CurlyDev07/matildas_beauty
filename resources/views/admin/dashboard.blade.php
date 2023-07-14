@@ -35,7 +35,6 @@
                         $profit = ($selling_price) - $price;
                         $price_with_charges = 100 * ($selling_price - $price) / $selling_price;
                     @endphp
-                    <br>
                     <tr>
                         {{-- {{ dd($charges) }} --}}
                         <td class="tpy-2"><img src="{{ $products['products']['primary_image'] }}" style="height: 35px;"></td>
