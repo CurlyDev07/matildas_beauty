@@ -59,7 +59,7 @@
                             <td class="tp-3 tpx-5">
                                 <img src="{{ ($product['primary_image']) }}" data-src="{{ ($product['primary_image']) }}" class="tmx-auto" style="height: 50px;width: 50px;">
                             </td>
-                            <td class="tp-3 tpx-5">
+                            <td class="tp-3 tpx-5 truncate" style="overflow-wrap: anywhere;width: 200px;">
                                 <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500">{{ $product['title'] }}</a>
                             </td>
                             <td class="tp-3 tpx-5"> {{ $product['sku'] }} </td>
