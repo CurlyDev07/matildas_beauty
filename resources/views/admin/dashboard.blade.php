@@ -40,7 +40,7 @@
                         <td class="tpy-2">{{ number_format($price, 2) }}</td>
                         <td class="tpy-2">{{ number_format($profit, 2) }}</td>
                         <td class="tpy-2">{{ number_format($price_with_charges, 2) }}%</td>
-                        <td class="tpy-2 tfont-medium qty">{{ $products['quantity'] }}</td>
+                        <td class="tpy-2 tfont-medium qty">{{ number_format($products['quantity']) }}</td>
                         <td class="tpy-2 tfont-medium">₱ <span class="profit">{{ number_format($products['quantity'] * $profit) }}</span></td>
                     </tr>
                 @endforeach
@@ -51,7 +51,7 @@
                     <td class="tpy-2 tinvisible">23.00</td>
                     <td class="tpy-2 tinvisible">82.93</td>
                     <td class="tpy-2 tinvisible">78.29%</td>
-                    <td  class="tfont-medium tpy-2 ttext-lg">30</td>
+                    <td  class="tfont-medium tpy-2 ttext-lg" id="total_qty"></td>
                     <td class="tfont-medium tpy-2 ttext-lg">₱<span id="total_profit"></span></td>
                 </tr>
             </table>
@@ -139,14 +139,15 @@
         let total_profit = 0;
 
         $( ".qty" ).each(function( index ) {
-            total_qty+= $(this).html();
+            total_qty+= parseInt(numberWithoutCommas($(this).html()));
+
         });
         
         $( ".profit" ).each(function( index ) {
             total_profit+= parseInt(numberWithoutCommas($(this).html()));
         });
 
-        $('#total_qty').html(total_qty);
+        $('#total_qty').html(numberWithCommas(total_qty));
         $('#total_profit').html(numberWithCommas(total_profit));
     </script>
 @endsection
