@@ -435,26 +435,26 @@
                 <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmt-3" style="height: ;" alt="">
                 <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
             </div>
-            {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nisi, quod, porro temporibus asperiores, dolore exercitationem omnis incidunt molestias dolores similique quibusdam cum at illum dolor cupiditate quia molestiae eius. --}}
 
             <section class="tflex titems-baseline tmt-5 tmb-3">
                 <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/fast_delivery.webp') }}" alt="fast_delivery">
-                    <span>Fast delivery nationwide</span>
+                    <i class="fa-solid fa-truck-fast ttext-5xl ttext-red-500"></i>
+                    <span class="tinline-block">Fast delivery nationwide</span>
                 </div>
                 <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/money_back.webp') }}" alt="cash_on_delivery">
-                    <span>Moneyback Guarantee</span>
+                    <i class="fa-solid fa-money-bill-transfer ttext-5xl ttext-red-500"></i>
+                    <span class="tinline-block">Moneyback Guarantee</span>
                 </div>
                 <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/cash_on_delivery.webp') }}" alt="cash_on_delivery">
-                    <span>Cash on Delivery</span>
+                    <i class="fa-solid fa-hand-holding-dollar ttext-5xl ttext-red-500"></i>
+                    <span class="tinline-block">Cash on Delivery</span>
                 </div>
                 <div class="ttext-center">
-                    <img class="tmx-auto" src="{{ asset('/images/icons/promises/customer_service.webp') }}" alt="customer_service">
-                    <span>Aftersales Support</span>
+                    <i class="fa-solid fa-headset ttext-5xl ttext-red-500"></i>
+                    <span class="tinline-block">Aftersales Support</span>
                 </div>
             </section>
+            
             <form action="{{ route('kasoy_oil_store') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
                 <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
                 <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3>
@@ -562,7 +562,13 @@
                     </span>
                 </div>
                 <div class="tw-full ">
-                    <button class="focus:tbg-red-500 tbg-red-500 tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">Checkout Order</button>
+                    <button class="focus:tbg-red-500 trelative tbg-red-500 tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
+                        <span>Checkout Order</span>
+                    </button>
+                    <span class="thidden focus:tbg-red-500 trelative tbg-red-500 ttext-center tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="loader">
+                        <img src="{{ asset('/loader/four_dots_loader.svg') }}" style="display: initial; position: absolute; top: -29%; right: 35px;">
+                        <span class="tmr-5">Loading please wait</span>
+                    </span>
                 </div><!-- Submit Order -->
             </form><!-- ORDER PROMO -->
 
@@ -734,6 +740,11 @@
                     submit_order: 1
                 });//  EVENT LISTENER Track SUBMIT ORDER
             })
+
+            $("#form").submit(function(event) {
+                $('#submit_btn').addClass('thidden');
+                $('#loader').removeClass('thidden');
+            });
 
             $.post("/event-listener",{
                 visitors: 1
