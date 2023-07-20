@@ -157,8 +157,7 @@ class ProductsCon extends Controller
         $archive = Product::select('id', 'title', 'price', 'deleted_at')
         ->onlyTrashed()->get()->toArray();
 
-        $ids = Product::onlyTrashed()->pluck('id');
-        return view('admin.products.archive', compact('archive', 'ids'));
+        return view('admin.products.archive', compact('archive'));
     }
 
     public function generate_variant(){
