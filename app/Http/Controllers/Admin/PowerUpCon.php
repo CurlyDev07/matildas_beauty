@@ -46,7 +46,7 @@ class PowerUpCon extends Controller
         ->when($request->stores, function($q){
             return $q->where('store_id', request()->stores);
         })// Filter by stores
-        ->paginate(25);
+        ->paginate(100);
 
         return view('admin.power_up.index', ['power_up' => $power_up, 'stores' => $stores]);
     }
