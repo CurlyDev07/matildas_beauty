@@ -53,7 +53,7 @@
                         <tr class="tborder-0 hover:tbg-blue-100">
                             <td class="tp-3 tpx-5 ttext-black-100 tfont-medium">#{{ $item['id'] }}</td>
                             <td class="tp-3 tpx-5">
-                                <img src="{{ $item['images'][0]['img'] }}" class="tmx-auto" style="height: 50px;width: 50px;">
+                                <img src="{{ $item['primary_image'] }}" class="tmx-auto" style="height: 50px;width: 50px;">
                             </td>
                             <td class="tp-3 tpx-5">
                                 <a href="{{ item_show_slug($item['title'], $item['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500">{{ $item['title'] }}</a>                        </td>

@@ -154,11 +154,7 @@ class ProductsCon extends Controller
     }
 
     public function archive(){
-        $archive = Product::with(array('images' => function($query){
-                $query->where('primary', 1);
-            })
-        )
-        ->select('id', 'title', 'price', 'deleted_at')
+        $archive = Product::select('id', 'title', 'price', 'deleted_at')
         ->onlyTrashed()->get()->toArray();
 
         $ids = Product::onlyTrashed()->pluck('id');
