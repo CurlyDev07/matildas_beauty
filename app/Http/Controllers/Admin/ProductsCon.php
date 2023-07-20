@@ -154,7 +154,7 @@ class ProductsCon extends Controller
     }
 
     public function archive(){
-        $archive = Product::select('id', 'title', 'price', 'deleted_at')
+        $archive = Product::select('id', 'title', 'price', 'deleted_at')->orderBy('id', 'desc')
         ->onlyTrashed()->get()->toArray();
 
         return view('admin.products.archive', compact('archive'));
