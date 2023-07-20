@@ -38,7 +38,7 @@
                     @endif
                 </li><!-- SORT -->
                 <li>
-                    <a href="/admin/shopee/">
+                    <a href="/admin/purchase/">
                         <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li>
