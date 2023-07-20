@@ -14,6 +14,18 @@
                         </button>
                     </form>
                 </li><!-- SEARCH -->
+                <li class="tmr-2">
+                    <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
+                        <img class="tpr-1" src="{{ asset('images/icons/store.png') }}" alt="">
+                        <select id="supplier" class="supplier tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
+                            <option value="#" selected>Choose ...</option>
+
+                            @foreach ($suppliers as $supplier)
+                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                            @endforeach
+                        </select> 
+                    </div>
+                </li><!-- Store Filter-->
                 <li class="tmr-4 tpt-1">
                     @if (request()->sort == 'asc')
                         <a href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by newest">
@@ -110,6 +122,17 @@
                 }
             });
         });
+
+        $('#supplier').change(function (e) {
+        e.preventDefault();
+
+        const parser = new URL(window.location.href);
+        parser.searchParams.set("supplier", $(this).val());
+        window.location = parser.href;
+
+        return false;
+
+    });
     });
 </script>
 @endsection

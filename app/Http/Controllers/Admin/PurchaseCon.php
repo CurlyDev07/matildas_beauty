@@ -11,6 +11,7 @@ use App\Purchase;
 use App\PurchaseProduct;
 use App\PaymentMethod;
 use App\SoldFrom;
+use App\Store;
 use Carbon\Carbon;
 
 use App\Http\Requests\Purchase\CreatePurchaseRequest;
@@ -22,11 +23,14 @@ class PurchaseCon extends Controller
         $this->products = $products;
     }
 
-    public function index(){
-
-        $purchases = Purchase::with(['suppliers'])->orderBy('date', 'desc')->get();
-
-        return view('admin.purchase.index', ['purchases' => $purchases]);
+    public function index(Request $request){
+        $suppliers = Suppliers::all(['id', 'name']);
+        $purchases = Purchase::with(['suppliers'])->orderBy('date', 'desc')
+        ->when($request->supplier, function($q){
+            return $q->where('supplier', request()->supplier);
+        })// Filter by stores
+        ->get();
+        return view('admin.purchase.index', ['purchases' => $purchases, 'suppliers' => $suppliers]);
     }
 
     public function supplier(){
