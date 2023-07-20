@@ -227,7 +227,7 @@
                             </i>
 
                             @if ($purchase_product->stock_in != 'yes')
-                                <i class=" hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tbottom-0 tooltipped" data-position="right" data-tooltip="Remove Product">close</i>
+                                <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tbottom-0 tooltipped" data-position="right" data-tooltip="Remove Product">close</i>
                             @endif <!-- if purchase product is added to stocks. Cannot remove it anymore --> 
                         </div>
                     @endforeach
