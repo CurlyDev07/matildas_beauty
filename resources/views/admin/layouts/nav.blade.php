@@ -63,12 +63,14 @@
                         Inventory
                     </a>
                 </li> --}}
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'purchase', 'active') }}" onclick="location.href = '/admin/purchase'">
-                       <i class="fas fa-shopping-bag tmr-1 fa-lg"></i>
-                        Purchase
-                    </a>
-                </li>
+                @if (auth()->user()->role == 'master')
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'purchase', 'active') }}" onclick="location.href = '/admin/purchase'">
+                        <i class="fas fa-shopping-bag tmr-1 fa-lg"></i>
+                            Purchase
+                        </a>
+                    </li>
+                @endif
                 @if (auth()->user()->isMaster())
                     <li class="tab col">
                         <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'expenses', 'active') }}" onclick="location.href = '/admin/expenses'">

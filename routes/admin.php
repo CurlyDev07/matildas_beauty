@@ -127,7 +127,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('purchase')->group(function () {
-        Route::get('/', 'PurchaseCon@index');
+        Route::get('/', 'PurchaseCon@index')->middleware(['masterAcess', 'inventoryAccess']);
         Route::get('/create', 'PurchaseCon@create');
         Route::post('/store', 'PurchaseCon@store');
         Route::get('/view/{id}', 'PurchaseCon@view');
@@ -181,7 +181,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
 
     Route::prefix('stores')->group(function () {
-        Route::get('/', 'StoreCon@index')->name('store.index');
+        Route::get('/', 'StoreCon@index')->name('store.index')->middleware(['masterAcess', 'saAccess']);
         Route::get('/create', 'StoreCon@create');
         Route::post('/store', 'StoreCon@store')->name('store.store');
         Route::get('/update/{id}', 'StoreCon@update')->name('store.update');
@@ -195,7 +195,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('store-metrics')->group(function () {
-        Route::get('/', 'StoreMetricsCon@index')->name('store.metrics.index');
+        Route::get('/', 'StoreMetricsCon@index')->name('store.metrics.index')->middleware(['masterAcess', 'saAccess']);
         Route::get('/create', 'StoreMetricsCon@create');
         Route::post('/store', 'StoreMetricsCon@store')->name('store.metrics.store');
         Route::get('/update/{id}', 'StoreMetricsCon@update')->name('store.metrics.update');
@@ -215,7 +215,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
 
     Route::prefix('powerup')->group(function () {
-        Route::get('/', 'PowerUpCon@index');
+        Route::get('/', 'PowerUpCon@index')->middleware(['masterAcess', 'saAccess']);
         Route::get('/create', 'PowerUpCon@create');
         Route::post('/store', 'PowerUpCon@store')->name('powerup.store');
         Route::get('/update/{id}', 'PowerUpCon@update');

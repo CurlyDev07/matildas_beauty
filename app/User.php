@@ -42,4 +42,12 @@ class User extends Authenticatable
     public function isMaster(){
         return $this->role == 'master'? true:false;
     }
+
+    public function isSA(){
+        return $this->role == 'sa'? true:false;
+    }
+
+    public function isInventory(){
+        return $this->role == 'inventory'? true:false;
+    }
 }
