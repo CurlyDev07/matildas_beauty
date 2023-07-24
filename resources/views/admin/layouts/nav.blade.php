@@ -63,7 +63,8 @@
                         Inventory
                     </a>
                 </li> --}}
-                @if (auth()->user()->role == 'master')
+                {{-- {{ dd(auth()->user()->role) }} --}}
+                @if (in_array(auth()->user()->role, ['master', 'inventory']))
                     <li class="tab col">
                         <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'purchase', 'active') }}" onclick="location.href = '/admin/purchase'">
                         <i class="fas fa-shopping-bag tmr-1 fa-lg"></i>
@@ -93,24 +94,28 @@
                         RTS
                     </a>
                 </li>
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'stores', 'active') }}" onclick="location.href = '/admin/stores'">
-                        <i class="fas fa-users tmr-1 fa-lg"></i> 
-                        Stores
-                    </a>
-                </li>
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'store-metrics', 'active') }}" onclick="location.href = '/admin/store-metrics'">
-                        <i class="fas fa-users tmr-1 fa-lg"></i> 
-                        Store Metrics
-                    </a>
-                </li>
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'powerup', 'active') }}" onclick="location.href = '/admin/powerup'">
-                        <i class="fas fa-users tmr-1 fa-lg"></i> 
-                        Power Up
-                    </a>
-                </li>
+                @if (in_array(auth()->user()->role, ['master', 'sa', 'admin']))
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'stores', 'active') }}" onclick="location.href = '/admin/stores'">
+                            <i class="fas fa-users tmr-1 fa-lg"></i> 
+                            Stores
+                        </a>
+                    </li>
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'store-metrics', 'active') }}" onclick="location.href = '/admin/store-metrics'">
+                            <i class="fas fa-users tmr-1 fa-lg"></i> 
+                            Store Metrics
+                        </a>
+                    </li>
+
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'powerup', 'active') }}" onclick="location.href = '/admin/powerup'">
+                            <i class="fas fa-users tmr-1 fa-lg"></i> 
+                            Power Up
+                        </a>
+                    </li>
+                @endif
+
                 <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'fbads', 'active') }}" onclick="location.href = '/admin/fbads'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 
