@@ -55,6 +55,7 @@
                             <select data-id="{{ $user->id }}" class="role form-control browser-default tmx-auto" style="width: 86px;">
                                 <option value="user" {{ $user->role == 'user'?'selected':'' }}>User</option>
                                 <option value="admin" {{ $user->role == 'admin'?'selected':'' }}>Admin</option>
+                                <option value="sa" {{ $user->role == 'sa'?'selected':'' }}>Sa</option>
                                 <option value="inventory" {{ $user->role == 'inventory'?'selected':'' }}>Inventory</option>
                                 <option value="master" {{ $user->role == 'master'?'selected':'' }}>Master</option>
                             </select>

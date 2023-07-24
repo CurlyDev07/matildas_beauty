@@ -122,12 +122,14 @@
                         FB
                     </a>
                 </li>
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'users', 'active') }}" onclick="location.href = '/admin/users'">
-                        <i class="fas fa-users tmr-1 fa-lg"></i> 
-                        Users
-                    </a>
-                </li>
+                @if (auth()->user()->isMaster())
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'users', 'active') }}" onclick="location.href = '/admin/users'">
+                            <i class="fas fa-users tmr-1 fa-lg"></i> 
+                            Users
+                        </a>
+                    </li>
+                @endif
                 {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'categories', 'active') }}" onclick="location.href = '/admin/categories'">
                         <i class="fas fa-comment tmr-1 fa-lg"></i> 
