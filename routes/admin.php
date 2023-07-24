@@ -33,7 +33,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
 
 
-    Route::get('dashboard', 'DashboardCon@index');
+    Route::get('dashboard', 'DashboardCon@index')->middleware(['masterAcess']);
     
      
     /*
@@ -43,7 +43,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     */
 
     Route::prefix('products')->group(function () {
-        Route::get('/', 'ProductsCon@index');
+        Route::get('/', 'ProductsCon@index')->name('products.index');
         Route::get('/add', 'ProductsCon@add');
         Route::post('/store', 'ProductsCon@store');
         Route::get('/update/{id}', 'ProductsCon@update')->name('products.update');
@@ -145,7 +145,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('suppliers')->group(function () {
-        Route::get('/', 'SuppliersCon@index');
+        Route::get('/', 'SuppliersCon@index')->middleware(['masterAcess']);;
         Route::get('/create', 'SuppliersCon@create');
         Route::post('/store', 'SuppliersCon@store')->name('suppliers.store');
         Route::get('/view/{supplier_id}', 'SuppliersCon@view')->name('suppliers.view');
@@ -166,7 +166,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('expenses')->group(function () {
-        Route::get('/', 'ExpensesCon@index')->name('expenses.index');
+        Route::get('/', 'ExpensesCon@index')->name('expenses.index')->middleware(['masterAcess']);;
         Route::get('/create', 'ExpensesCon@create');
         Route::post('/store', 'ExpensesCon@store')->name('expenses.store');
         Route::get('/view/{supplier_id}', 'ExpensesCon@view')->name('expenses.view');

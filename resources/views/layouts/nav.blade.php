@@ -20,6 +20,12 @@
                             <a href="/admin/products">ADMIN</a>
                         </li>
                     @endif
+                    @if (auth()->user()->role == 'master')
+                        <li class="tborder-white tpx-2 hover:tunderline tcursor-pointer">
+                            <i class="fab fa-envira"></i>
+                            <a href="/admin/products">ADMIN</a>
+                        </li>
+                    @endif
                 @endauth
             </ul>
             <div class="tself-center trelative thidden sm:tblock">

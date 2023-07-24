@@ -38,4 +38,8 @@ class User extends Authenticatable
     public function orders(){
         return $this->hasMany(Transaction::class);
     }
+
+    public function isMaster(){
+        return $this->role == 'master'? true:false;
+    }
 }

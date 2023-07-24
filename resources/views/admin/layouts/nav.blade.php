@@ -30,12 +30,15 @@
     <div class="tcontainer">
         <div class="col s12">
             <ul class="tabs tabs tflex tjustify-between">
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'dashboard', 'active') }}" onclick="location.href = '/admin/dashboard'">
-                        <i class="fas fa-desktop tmr-1 fa-lg"></i>
-                        Dashboard
-                    </a>
-                </li>
+                @if (auth()->user()->isMaster())
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'dashboard', 'active') }}" onclick="location.href = '/admin/dashboard'">
+                            <i class="fas fa-desktop tmr-1 fa-lg"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                @endif
+               
                 <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'orders', 'active') }}" onclick="location.href = '/admin/orders'">
                         <i class="fas fa-shopping-cart tmr-1 fa-lg"></i>
@@ -66,18 +69,22 @@
                         Purchase
                     </a>
                 </li>
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'expenses', 'active') }}" onclick="location.href = '/admin/expenses'">
-                       <i class="fas fa-users tmr-1 fa-lg"></i>
-                        Expenses
-                    </a> 
-                </li>
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'suppliers', 'active') }}" onclick="location.href = '/admin/suppliers'">
-                       <i class="fas fa-users tmr-1 fa-lg"></i>
-                        Suppliers
-                    </a>
-                </li>
+                @if (auth()->user()->isMaster())
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'expenses', 'active') }}" onclick="location.href = '/admin/expenses'">
+                        <i class="fas fa-users tmr-1 fa-lg"></i>
+                            Expenses
+                        </a> 
+                    </li>
+                @endif
+                @if (auth()->user()->isMaster())
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'suppliers', 'active') }}" onclick="location.href = '/admin/suppliers'">
+                        <i class="fas fa-users tmr-1 fa-lg"></i>
+                            Suppliers
+                        </a>
+                    </li>
+                @endif
                 <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'rts', 'active') }}" onclick="location.href = '/admin/rts'">
                        <i class="fas fa-users tmr-1 fa-lg"></i>

@@ -15,6 +15,7 @@ use Carbon\Carbon;
 class DashboardCon extends Controller
 {
     public function index(Request $request){
+
         // ****************** TOP Products **********************
         $top_20_products = TransactionPorductSummary::selectRaw('sum(qty) as quantity, product_id')
         ->with(['products', 'products:id,sku,selling_price,price'])
