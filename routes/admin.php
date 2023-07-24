@@ -224,6 +224,11 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/duplicate', 'PowerUpCon@duplicate');
     });
 
+    Route::prefix('users')->group(function () {
+        Route::get('/', 'UserCon@index')->middleware(['masterAcess']);
+        Route::post('/change-role', 'UserCon@role')->middleware(['masterAcess']);
+    });
+
     Route::prefix('admin-panel')->group(function () {
         Route::get('/', function(){
             return view('admin_panel.index');
