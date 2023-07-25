@@ -127,7 +127,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('purchase')->group(function () {
-        Route::get('/', 'PurchaseCon@index')->middleware(['masterAcess', 'inventoryAccess']);
+        Route::get('/', 'PurchaseCon@index')->middleware(['masterAcess']);
         Route::get('/create', 'PurchaseCon@create');
         Route::post('/store', 'PurchaseCon@store');
         Route::get('/view/{id}', 'PurchaseCon@view');
@@ -195,7 +195,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('store-metrics')->group(function () {
-        Route::get('/', 'StoreMetricsCon@index')->name('store.metrics.index')->middleware(['masterAcess', 'saAccess']);
+        Route::get('/', 'StoreMetricsCon@index')->name('store.metrics.index');
         Route::get('/create', 'StoreMetricsCon@create');
         Route::post('/store', 'StoreMetricsCon@store')->name('store.metrics.store');
         Route::get('/update/{id}', 'StoreMetricsCon@update')->name('store.metrics.update');
@@ -215,7 +215,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
 
     Route::prefix('powerup')->group(function () {
-        Route::get('/', 'PowerUpCon@index')->middleware(['masterAcess', 'saAccess']);
+        Route::get('/', 'PowerUpCon@index');
         Route::get('/create', 'PowerUpCon@create');
         Route::post('/store', 'PowerUpCon@store')->name('powerup.store');
         Route::get('/update/{id}', 'PowerUpCon@update');
