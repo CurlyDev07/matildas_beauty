@@ -14,13 +14,7 @@
                     </li>
                 @endforeach --}}
                 @auth
-                    @if (auth()->user()->role == 'admin')
-                        <li class="tborder-white tpx-2 hover:tunderline tcursor-pointer">
-                            <i class="fab fa-envira"></i>
-                            <a href="/admin/products">ADMIN</a>
-                        </li>
-                    @endif
-                    @if (auth()->user()->role == 'master')
+                    @if (auth()->user()->role != 'user')
                         <li class="tborder-white tpx-2 hover:tunderline tcursor-pointer">
                             <i class="fab fa-envira"></i>
                             <a href="/admin/products">ADMIN</a>
