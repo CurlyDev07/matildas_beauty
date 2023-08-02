@@ -229,6 +229,13 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::post('/change-role', 'UserCon@role')->middleware(['masterAcess']);
     });
 
+    Route::prefix('withdrawal')->group(function () {
+        Route::get('/', 'withdrawalCon@index');
+        Route::get('/create', 'withdrawalCon@create');
+        Route::post('/store', 'withdrawalCon@store')->name('withdrawal.store');
+        Route::post('/status', 'withdrawalCon@status')->name('withdrawal.status');
+    });
+
     Route::prefix('admin-panel')->group(function () {
         Route::get('/', function(){
             return view('admin_panel.index');
