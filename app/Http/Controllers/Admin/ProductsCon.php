@@ -29,6 +29,7 @@ class ProductsCon extends Controller
             return $query->where('selling_price', 0);
         })// filter all product with no no_selling_price
         ->latest()->get()->toArray();
+
         return view('admin.products.index', compact('products'));
     }
     

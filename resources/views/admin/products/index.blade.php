@@ -12,7 +12,7 @@
 @section('page')
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-4">
-            <span class="ttext-base ttext-title tfont-medium">Product List</span>
+            <span class="ttext-base ttext-title tfont-medium">Product List ({{ count($products) }})</span>
             <ul class="tflex">
                 <li class="">
                     <a href="{{ request()->fullUrlWithQuery(['no_selling_price' => 'true']) }}" class="tooltipped" data-position="top" data-tooltip="Filter Products with no Selling Price">
