@@ -91,11 +91,11 @@
                         <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
                             <span class="tpl-1 ttext-red-500">
                                 <i class="fas fa-bookmark"></i>
-                                Past 7 Days
+                                Past 30 Days
                             </span>
                         </div>
                     </li>
-                @endif <!-- Default Date |  Past 7 Days-->
+                @endif <!-- Default Date |  Past 30 Days-->
 
                 @if (request()->purchase_date)
                     <li class="tmr-2">

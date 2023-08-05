@@ -17,8 +17,8 @@ class PowerUpCon extends Controller
         $power_up = PowerUp::orderBy('created_at', 'desc')
         ->when(!$request->purchase_date && !$request->review_date, function($q){
             // dd('asdsad');
-            return $q->whereBetween('created_at', [now()->subDays(6), now()]);
-        })// Show DEFAULT DATA For the Past 7 Days
+            return $q->whereBetween('created_at', [now()->subDays(30), now()]);
+        })// Show DEFAULT DATA For the Past 30 Days
 
         ->when($request->purchase_date, function($q){
             $date = explode(" - ",request()->purchase_date);
