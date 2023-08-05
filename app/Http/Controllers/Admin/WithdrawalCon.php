@@ -11,7 +11,7 @@ use App\Http\Requests\Withdrawal\WithdrawalCreateRequest;
 class WithdrawalCon extends Controller
 {
     
-    public function index(){
+    public function index(){ 
         $withdrawal = Withdrawal::all();
         $stores = Store::all();
 
