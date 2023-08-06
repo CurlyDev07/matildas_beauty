@@ -95,6 +95,12 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     */
     Route::prefix('inventory')->group(function () {
         Route::get('/', 'InventoryCon@index')->name('inventory.view');
+        Route::get('/in-out-list', 'InventoryCon@in_out_list');
+        Route::get('/stock-in', 'InventoryCon@stock_in')->name('inventory.view');
+        Route::get('/stock-in/update/{id}', 'InventoryCon@stock_in_update');
+        Route::post('/stock-in/patch', 'InventoryCon@stock_in_patch');
+        Route::post('/stock-in/store', 'InventoryCon@stock_in_store');
+
     });
 
     /*

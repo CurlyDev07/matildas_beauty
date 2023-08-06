@@ -150,12 +150,12 @@
                 </li> --}}
                
                 
-                {{-- <li class="tab col">
+                <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'inventory', 'active') }}" onclick="location.href = '/admin/inventory'">
                         <i class="fas fa-cogs tmr-1 fa-lg"></i> 
                         Inventory
                     </a>
-                </li> --}}
+                </li>
             </ul>
         </div>
     </div>
