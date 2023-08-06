@@ -49,7 +49,7 @@ class InventoryCon extends Controller
 
         $stock_in_out = StockInOut::create([
             'user_id' => auth()->id(),
-            'total_qty' => $request->total_qty,
+            'total_qty' => (int)str_replace(',', '', $request->total_qty),
             'note' => $request->note,
         ]);
 
@@ -72,7 +72,7 @@ class InventoryCon extends Controller
         $stock_in_out = StockInOut::find($request->id);
 
         $stock_in_out->update([
-            "total_qty" => $request->total_qty,
+            "total_qty" => (int)str_replace(',', '', $request->total_qty),
             "note" => $request->note,
         ]);
 
