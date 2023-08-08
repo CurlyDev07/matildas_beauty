@@ -46,7 +46,7 @@ class InventoryCon extends Controller
     }
     
     public function stock_in_store(Request $request){
-
+        // dd($request->all());
         $stock_in_out = StockInOut::create([
             'user_id' => auth()->id(),
             'total_qty' => (int)str_replace(',', '', $request->total_qty),
@@ -55,6 +55,9 @@ class InventoryCon extends Controller
 
         foreach ($request->products as $product) {
             $stock_in_out->stock_in_out_product()->create($product);
+
+            $find_product = Product::find($product['product_id']);
+            $update = $find_product->update(['qty' => ($find_product->qty + $product['qty'])]);
         }
 
         return response()->json(['code' => 200]);
@@ -64,7 +67,7 @@ class InventoryCon extends Controller
         $products = $this->products->active()->get(['id', 'title', 'sku', 'selling_price', 'price'])->sortBy('title');
         $stock_in_out = StockInOut::find($id);
         $in_out_products = $stock_in_out->stock_in_out_product;
-
+        // dd($in_out_products->toArray());
         return view('admin.inventory.update', compact('products', 'stock_in_out', 'in_out_products'));
     }
 
@@ -76,9 +79,22 @@ class InventoryCon extends Controller
             "note" => $request->note,
         ]);
 
-        StockInOutProducts::where('stock_in_out_id', $request->id)->delete();
+        $old_stock_in_out_products = StockInOutProducts::where('stock_in_out_id', $request->id);
+        // dd($old_stock_in_out_products->get());
 
+        foreach ($old_stock_in_out_products->get() as $old_product) {
+            // ACTUAL PRODUCT
+            $minus_product = Product::find($old_product->product_id);
+            $minus_product_update = $minus_product->update(['qty' => ($minus_product->qty - $old_product->qty)]);
+        } //update minus all added products to stocks
+
+        $old_stock_in_out_products->delete();
+
+        // add all new products to stocks
         foreach ($request->products as $product) {
+
+            $add_product = Product::find($product['product_id']);
+            $update_stocks = $add_product->update(['qty' => ($add_product->qty + $product['qty'])]);
 
             StockInOutProducts::create([
                 'stock_in_out_id' => $request->id,
@@ -89,4 +105,5 @@ class InventoryCon extends Controller
 
         return response()->json(['code' => 200]);
     }
+
 }

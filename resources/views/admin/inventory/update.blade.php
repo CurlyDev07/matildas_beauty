@@ -281,14 +281,14 @@
 
         $('#submit_btn').click(()=>{
 
-            if ($('#total_items').html() < 1) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Please Add Product Quantity',
-                })
-                return
-            }// if qty is no stocks pop up validation
+            // if ($('#total_items').html() < 1) {
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: 'Oops...',
+            //         text: 'Please Add Product Quantity',
+            //     })
+            //     return
+            // }// if qty is no stocks pop up validation
 
 
             $('#submit_btn').attr('disabled', 'true');
