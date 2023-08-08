@@ -46,7 +46,6 @@ class InventoryCon extends Controller
     }
     
     public function stock_in_store(Request $request){
-        // dd($request->all());
         $stock_in_out = StockInOut::create([
             'user_id' => auth()->id(),
             'total_qty' => (int)str_replace(',', '', $request->total_qty),
@@ -106,4 +105,12 @@ class InventoryCon extends Controller
         return response()->json(['code' => 200]);
     }
 
+    public function reflect(){
+        $stocks = StockInOutProducts::select('id', 'product_id', 'qty')->get();
+
+        foreach ($stocks as $stock) {
+            $add_product = Product::find($stock->product_id);
+            $update_stocks = $add_product->update(['qty' => ($add_product->qty + $stock->qty)]);
+        }
+    }
 }

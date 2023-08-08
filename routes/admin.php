@@ -100,6 +100,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/stock-in/update/{id}', 'InventoryCon@stock_in_update');
         Route::post('/stock-in/patch', 'InventoryCon@stock_in_patch');
         Route::post('/stock-in/store', 'InventoryCon@stock_in_store');
+        Route::post('/stock-in/reflect', 'InventoryCon@reflect');
 
     });
 

@@ -48,6 +48,9 @@
                         <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li><!-- REMOVE FILTER -->
+                <li class="tml-3 tml-auto tmr-2">
+                    <button id="reflect" class="focus:tbg-primary tbg-primary tml-auto tpy-2 trounded ttext-white tw-24 waves-effect">Reflect Stocks</button>
+                </li><!-- REMOVE FILTER -->
             </ul>
             <ul class="tflex titems-center tjustify-center tmt-2">
                 @if (!request()->purchase_date && !request()->review_date)
@@ -143,122 +146,15 @@
 
 <script>
 
-    $('input[name="purchase_date"]').daterangepicker({
-        maxDate: moment(),
-        ranges: {
-           'Today': [moment(), moment()],
-           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-           'This Month': [moment().startOf('month'), moment().endOf('month')],
-           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
-    });
-
-    $('#purchase_date').change(function () {
-        const parser = new URL(window.location.href);
-        parser.searchParams.set("purchase_date", $(this).val());
-        window.location = parser.href;
-    });
-
-    $('input[name="review_date"]').daterangepicker({
-        maxDate: moment(),
-        ranges: {
-           'Today': [moment(), moment()],
-           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-           'This Month': [moment().startOf('month'), moment().endOf('month')],
-           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
-    });
-
-    $('#review_date').change(function () {
-        const parser = new URL(window.location.href);
-        parser.searchParams.set("review_date", $(this).val());
-        window.location = parser.href;
-    });
-
-    $('#stores').change(function (e) {
-        e.preventDefault();
-
-        const parser = new URL(window.location.href);
-        parser.searchParams.set("stores", $(this).val());
-        window.location = parser.href;
-
-        return false;
-
-    });
-
-
-    $('#platform').change(function (e) {
-        e.preventDefault();
-
-        const parser = new URL(window.location.href);
-        parser.searchParams.set("platform", $(this).val());
-        window.location = parser.href;
-
-        return false;
-
-    });
-
-
-    $(document).ready(function(){
-        $('.modal').modal();
-        $('.dropdown-trigger').dropdown();
-
-        // CHANGE STATUS
-        $('.change_status').click(function(){
-            let id = $(this).data('id');
-            let status = $(this).data('status');
-
-            $.ajax({
-                url: '/admin/orders/change-status',
-                type: 'POST',
-                data: {
-                    id: id,
-                    status: status,
-                },
-                success: ()=>{
-                   
-                }
-            });
-        });
-    });
-
-    $('.to_validate').click(function(){
-        let self = $(this);
-        
-        Swal.fire({
-            title: 'Mark as Validated?',
-            text: "You won't be able to revert this!",
-            icon: 'info',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    'Mark as Validated!',
-                    'Your withdrawal status has been updated.',
-                    'success'
-                )// success prompt
-
-                $.ajax({
-                    url: '/admin/withdrawal/status',
-                    type: 'POST',
-                    data: { id: $(this).data('id') },
-                    success: ()=>{
-                        self.parent().html(`<span class="chip green lighten-5 waves-effect waves-green" data-id="1" style="cursor: pointer;">
-                                    <span class="green-text tooltipped" style="cursor: pointer;" data-position="right" data-tooltip="mark as reviewed">validated</span>
-                                </span>`);
-                         // Change Button text and color
-                    }
-                });// update via Ajax request
+    $('#reflect').click(function () {
+        $.ajax({
+            url: '/admin/inventory/stock-in/reflect',
+            type: 'POST',
+            success: ()=>{
+                
             }
-        })// swal
-    });
-    
+        });
+    })
+
 </script>
 @endsection
