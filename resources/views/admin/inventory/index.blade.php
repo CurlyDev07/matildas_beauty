@@ -126,8 +126,9 @@
                 </tbody>
             </table>
 
-            {{ $products->links() }}
-
+            {{-- {{ $products->links() }} --}}
+            {{ $products->onEachSide(1)->appends(request()->except('page'))->links() }}
+            
         </div>
     </div>
 @endsection
