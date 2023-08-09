@@ -28,7 +28,7 @@ class InventoryCon extends Controller
             return $query->where('sku', 'like', '%'.request()->search.'%')
             ->orWhere('title', 'like', '%'.request()->search.'%');
         })// search
-        ->oldest('qty')->paginate(20);
+        ->oldest('qty')->paginate(100);
             
         return view('admin.inventory.index', compact('products'));
     }
