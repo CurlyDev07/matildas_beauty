@@ -4,7 +4,7 @@
 @section('page')
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
-            <span class="ttext-base ttext-title tfont-medium">Inventory List</span>
+            <span class="ttext-base ttext-title tfont-medium">Inventory List <small>({{ count($products) }})</small> </span>
             <ul class="tflex titems-center">
                 <li class="tmr-2">
                     <div class="tborder tflex tp-1 trounded ttext-sm titems-center tbg-red-500">
