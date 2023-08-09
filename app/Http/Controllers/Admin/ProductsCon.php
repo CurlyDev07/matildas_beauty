@@ -78,7 +78,7 @@ class ProductsCon extends Controller
         | FIND AND UPDATE THE PROPERTY
         |--------------------------------------------------------------------------*/
         $product = Product::find($request->id);
-        $update = $product->update($request->except(['id', 'images']));
+        $update = $product->update($request->except(['id', 'images', 'qty']));
         $old_imgs = ProductImage::where('product_id', $request->id)->pluck('img')->toArray();
 
         /*--------------------------------------------------------------------------
