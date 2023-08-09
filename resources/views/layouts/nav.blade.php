@@ -17,7 +17,7 @@
                     @if (auth()->user()->role != 'user')
                         <li class="tborder-white tpx-2 hover:tunderline tcursor-pointer">
                             <i class="fab fa-envira"></i>
-                            <a href="/admin/products">ADMIN</a>
+                            <a href="/admin/inventory">ADMIN</a>
                         </li>
                     @endif
                 @endauth
