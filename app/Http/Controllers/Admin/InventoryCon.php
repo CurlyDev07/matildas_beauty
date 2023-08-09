@@ -17,10 +17,20 @@ class InventoryCon extends Controller
     }
 
     public function index(Request $request){
-        $products = Product::with(array('images' => function($query){
+        $query = Product::with(array('images' => function($query){
                 $query->where(['primary' => 1, 'size' => 'small']);
             })
-        )
+        );
+
+        $products = $query->when($request->stocks, function($query){
+            if (request()->stocks == 'outofstock') {
+                return $query->where('qty', '<=', 0);
+            }elseif (request()->stocks == 'threshold') {
+                return $query->whereRaw('products.qty > 0 AND products.qty <= products.threshold');
+            }
+
+            return $query->where('qty', '>=', 1);
+        })// Stocks Filter
         ->when($request->sort, function($query){
             return $query->orderBy('id', request()->sort);
         })// sort

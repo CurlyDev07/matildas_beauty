@@ -6,6 +6,36 @@
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
             <span class="ttext-base ttext-title tfont-medium">Inventory List</span>
             <ul class="tflex titems-center">
+                <li class="tmr-2">
+                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center tbg-red-500">
+                        <a href="?stocks=outofstock" class="tooltipped" data-position="top" data-tooltip="Sort by Visitors">
+                            <span class="tpl-1 ttext-white">
+                                <i class="fas fa-bookmark"></i>
+                                Out of Stock
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="tmr-2">
+                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center tbg-orange-500">
+                        <a href="?stocks=threshold" class="tooltipped" data-position="top" data-tooltip="Sort by Visitors">
+                            <span class="tpl-1 ttext-white">
+                                <i class="fas fa-bookmark"></i>
+                                Threshold
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="tmr-2">
+                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center tbg-green-500">
+                        <a href="?stocks=available" class="tooltipped" data-position="top" data-tooltip="Sort by Visitors">
+                            <span class="tpl-1 ttext-white">
+                                <i class="fas fa-bookmark"></i>
+                                Available
+                            </span>
+                        </a>
+                    </div>
+                </li>
                 <li class="tmr-4">
                     <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
                         <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search sku or name">
