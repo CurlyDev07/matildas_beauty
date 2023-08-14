@@ -134,7 +134,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::prefix('purchase')->group(function () {
-        Route::get('/', 'PurchaseCon@index')->middleware(['masterAcess']);
+        Route::get('/', 'PurchaseCon@index');
         Route::get('/create', 'PurchaseCon@create');
         Route::post('/store', 'PurchaseCon@store');
         Route::get('/view/{id}', 'PurchaseCon@view');
