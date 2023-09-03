@@ -72,22 +72,22 @@
                         </a>
                     </li>
                 @endif
-                @if (auth()->user()->isMaster())
+                {{-- @if (auth()->user()->isMaster())
                     <li class="tab col">
                         <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'expenses', 'active') }}" onclick="location.href = '/admin/expenses'">
                         <i class="fas fa-users tmr-1 fa-lg"></i>
                             Expenses
                         </a> 
                     </li>
-                @endif
-                @if (auth()->user()->isMaster())
+                @endif --}}
+                {{-- @if (auth()->user()->isMaster())
                     <li class="tab col">
                         <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'suppliers', 'active') }}" onclick="location.href = '/admin/suppliers'">
                         <i class="fas fa-users tmr-1 fa-lg"></i>
                             Suppliers
                         </a>
                     </li>
-                @endif
+                @endif --}}
                 <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'rts', 'active') }}" onclick="location.href = '/admin/rts'">
                        <i class="fas fa-users tmr-1 fa-lg"></i>
@@ -116,18 +116,18 @@
                     </li>
                 @endif
 
-                <li class="tab col">
+                {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'fbads', 'active') }}" onclick="location.href = '/admin/fbads'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 
                         FB
                     </a>
-                </li>
-                <li class="tab col">
+                </li> --}}
+                {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'withdrawal', 'active') }}" onclick="location.href = '/admin/withdrawal'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 
                         Withdrawal
                     </a>
-                </li>
+                </li> --}}
                 @if (auth()->user()->isMaster())
                     <li class="tab col">
                         <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'users', 'active') }}" onclick="location.href = '/admin/users'">
