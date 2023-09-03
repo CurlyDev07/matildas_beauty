@@ -116,7 +116,7 @@
                 @foreach ($in_out as $list)
                     <tr>
                         
-                        <td class="ttext-sm ttext-center tpy-1">
+                        <td class="tfont-black tpy-1 ttext-blue-600 ttext-center ttext-sm">
                             <a href="/admin/inventory/stock-in/update/{{ $list->id }}"># {{ $list->id }}</a>
                         </td>
                         <td class="ttext-sm ttext-center tpy-1">{{ $list->user->first_name }} {{ $list->user->last_name }}</td>
