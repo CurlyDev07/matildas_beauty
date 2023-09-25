@@ -132,9 +132,9 @@
                 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="https://down-ph.img.susercontent.com/file/718815ca359b01a19d455b41782dc93a_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review1/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Sunshine Sauqillo</p>
+                            <p>Emerlita Manao</p>
                             <div class="">
                                 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
                                 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
@@ -146,28 +146,30 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        Grabe effective nya, nakakatanggal talaga sya ng nunal. At first nag w-worry ako baka kasi di matanggal at mag stay lang sya,
-                        <b>pero after ilang days and pag tumigas na dun mo na sya pwede i-peel off.</b> For now gumagamit ako ng cebo de macho para mawala ang scar
+                        very effective cya guys ito talaga vitamins ko dati pa. kaya tinry ko ulit.
+                        <b>mapapasabak ka talaga sa kain pinipigilan ko ngalang kumain kasi sa sobrang kabusugan</b> medyo dina ko makahinga
+                        hahahaja🤣🤣🤣😊😊 kaya pag take ko once a day nalang .😚😚baka bigla akong lolobo pag twice a day ko cya iinumin. 
+                        hehheeje <b>i order 2 bottle again para my reserba na ako</b> 
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/1.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/2.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/2.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/3.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/3.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/4.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/4.png') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 1 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="https://down-ph.img.susercontent.com/file/c245932fb8207140fb36221c278834dd_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review2/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
                             <p>Aiza Melina</p>
                             <div class="">
@@ -181,30 +183,30 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        I received correct and complete order Ang bilis ng Shipping. <b>Wala pang 1 week natangal na agad ung warts ko sa paa.</b>
-                        Grabe Highly recommended itong product na to. Kudos kay seller
+                        Hi! Finally got the original LingZhi. 
+                        I started March 31 . <b>From 41kilos I am now at 48kilos.</b> I’ve already finished 1 bottle .❤️
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/1.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/2.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/2.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/3.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/3.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/4.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/4.png') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 2 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="https://down-ph.img.susercontent.com/file/6c5ce453d8cc6b1d60ce389b24a595f4_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review3/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Cynthia Sariolacasia</p>
+                            <p>Riza Samson</p>
                             <div class="">
                                 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
                                 <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
@@ -216,30 +218,28 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        Matagal ko na Problem ang warts ko sa kamay Nakaka Irita kasi lalo kapag mag luluto ako
-                        Ang dami ko na din na subukan na ibang product pero
-                        <b>Ito lang talaga ang nag work sakin. Lessthan 1 week lang Tangal na warts ko</b>
-                        Ang bait pa ng Seller.
+                        before and after vitamin ling Zhi Adults 2023 50 caps <b> 41kg up to 43 kg in 1 week
+                        Kitang kita na agad talaga ang difference</b>
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/1.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/2.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/2.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/3.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/3.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/4.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/4.png') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 3 -->
                 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="https://down-ph.img.susercontent.com/file/b0f1e1ab8148360fcdaeae8e692ea7f1_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review4/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
                             <p>Melanie Paz</p>
                             <div class="">
@@ -253,30 +253,32 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        <b>Picture nalang mag explain ng effect</b> Super Thankful ako sa Friend ko na nag recommend sakin nito
-                        Mas malaki kasi Nunal nya kesa sakin sa Nuo pa hahaha pero
-                        Ang Galing ng product na to FDA Approved <b>4days kusa nalang bumagsak ung warts ko sa gilid ng ilong</b>
-                        Natuyo nalang bigya ung warts ko
+                        legit ! nakainom nsko neto for 5 days straight. and <b> yes napakaganda ko kumain !! seryoso !
+                        very effective kahit pang kids lng binili ko dahil minor pa Naman ako. </b>
+                        and talagang sinabi ko Kay mama na very effective ito :) <b> natuwa Sila dahil nagkakalaman narin na talaga ako </b>
+                        <b>Ang pinaka nagustuhan ko nag ka boobs na ko char!</b>
+                        👍👍 maraming salamat seller..
+                        lagi Rin ako gutom dahil dito hehe pa ako neto ule
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/1.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/2.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/2.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/3.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/3.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/4.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/4.png') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 4 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="https://down-ph.img.susercontent.com/file/39dc0c6845820a47f9053fae10036078_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review5/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
                             <p>Emilita Rorasio</p>
                             <div class="">
@@ -290,29 +292,28 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        Nag try lang naman ako bumili. Nag babaka sakali lang na mag effect
-                        <b>Nakaka inis kasi kapag kiniKISS ako ng asawa ko sa leeg May warts hahaha.</b>
-                        Buti nalang Nag try ako EFFECTIVE Talaga sya. Ngayon smooth na ang hali ng asawa ko sa leeg ko 
+                        I've always struggled with maintaining a healthy weight. No matter how much I ate, my body seemed to resist any efforts to gain the extra pounds I desperately needed.
+                        That's when I stumbled upon Ling Zhi, and let me tell you, <b>it has been a game-changer in my life! </b>
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/1.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/2.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/2.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/3.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/3.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/4.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/4.png') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 5 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="https://down-ph.img.susercontent.com/file/fc787aa4a2cde90abf3b7e70edb239a8_tn" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review6/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
                             <p>Robert Atienza</p>
                             <div class="">
@@ -326,23 +327,21 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        Hindi naman ako masyado concious sa Warts ko. Pero ung asawa ko kasi nag pupumilit Kaya nag order na ako.
-                        Madami na kasi ako na try dati pero hindi nag effect. Dito sa Product nato
-                        <b> wala pang 4 Days na tuyo na agad ung warts ko sa batok</b>
-                        Ang Bilis pa ng shipping.
+                        Sobrang Effective ng product na to. <b> Na recommend lang sakin ng kapit bahay namin.
+                        From 35kg to 41kg.</b> Grabe talga effect sakin. Mas Confident na ko sa ganda ko haha
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/1.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/2.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/2.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/3.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/3.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/4.webp') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/4.png') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 6 -->
@@ -364,52 +363,77 @@
             <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
 
             <p style="font-size: 20px;" class="ttext-center tmb-4">
-                The ultimate solution for your skin concerns.
+                <b>TOP #1 Weight Gain Supplement in the World</b>
             </p><br>
 
-            <h4 class="tfont-medium tmb-4 ttext-xl">CURE SKIN PROBLEM SUCH AS:</h4>
+            <h4 class="tfont-medium tmb-4 ttext-xl">LING ZHI BENEFITS:</h4>
             
             <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">All Types of Warts</li>
-                <li class="ttext-xl">Skin Tags</li>
-                <li class="ttext-xl">Moles</li>
-                <li class="ttext-xl">Kulugo</li>
-                <li class="ttext-xl">Kalyo</li>
-                <li class="ttext-xl">Nunal</li>
-                <li class="ttext-xl">Buni</li>
-                <li class="ttext-xl">Syringoma</li>
-            </ul><br><!-- CURE SKIN PROBLEM SUCH AS: -->
+                <li class="ttext-xl">Pampa Taba</li>
+                <li class="ttext-xl">Pampa Lakas Kumain</li>
+                <li class="ttext-xl">Pampa Ganda ng Kutis</li>
+
+                <li class="ttext-xl">Good Quality Sleep</li>
+                <li class="ttext-xl">Cure Insomnia</li>
+                <li class="ttext-xl">Improve Memory</li>
+                <li class="ttext-xl">Boost Metabolism</li>
+                <li class="ttext-xl">Strong Body</li>
+                <li class="ttext-xl">Weight Gain</li>
+                <li class="ttext-xl">Increast Self Confidence</li>
+            </ul><br><!-- LING ZHI BENEFITS: -->
             
 
             <h4 class="tfont-medium tmb-4 ttext-xl">INGREDIENTS:</h4>
             
             <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">Pure Kasoy Oil</li>
-                <li class="ttext-xl">Garlic Extract</li>
-                <li class="ttext-xl">Pineapple Extract</li>
-                <li class="ttext-xl">Aloe Vera</li>
+                <li class="ttext-xl">Lingshi Mushroom</li>
+                <li class="ttext-xl">Panax Ginseng Roots</li>
+                <li class="ttext-xl">Angelica Senensis Roots</li>
+                <li class="ttext-xl">Dodder Seed</li>
+                <li class="ttext-xl">Horn Deer Antler</li>
+                <li class="ttext-xl">Eucommia Bark</li>
+                <li class="ttext-xl">Codonopsis Root</li>
+                <li class="ttext-xl">Caterpillar fungus</li>
+                <li class="ttext-xl">Astralagus Roots</li>
+                <li class="ttext-xl">Rizome Roots</li>
+                <li class="ttext-xl">Large head Atractylodes</li>
+                <li class="ttext-xl">Rizome Roots</li>
+                <li class="ttext-xl">Cinnamon Bark Extrac</li>
+                <li class="ttext-xl">Indian Mulberry Root</li>
+                <li class="ttext-xl">Lycium Barbarum Fruit</li>
+                <li class="ttext-xl">Poria Mushroom Extract</li>
             </ul><br><!--INGREDIENTS: -->
             
  
             <h4 class="tfont-medium tmb-4 ttext-xl">WHAT TO EXPECT:</h4>
             
             <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">You will feel a burning effect that is not too painful</li>
-                <li class="ttext-xl">You will feel that it is taking effect</li>
-                <li class="ttext-xl">in 3 to 7 days you will see results up to the final result</li>
+                <li class="ttext-xl">In 2-3 Days Lalakas kana kumain</li>
+                <li class="ttext-xl">Gaganda ang tulog</li>
+                <li class="ttext-xl">Lalakas ang katawan</li>
+                <li class="ttext-xl">In 1 week makikita mo na ang improvement</li>
+                <li class="ttext-xl">In 2-3 weeks tataba kana</li>
             </ul><br><!--WHAT TO EXPECT: -->
             
             
-            <h4 class="tfont-medium tmb-4 ttext-xl">HOW TO USE:</h4>
+            <h4 class="tfont-medium tmb-4 ttext-xl">HOW TO USE FOR (ADULT):</h4>
             
             <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">Use the dropper to place 3 to 4 drops of the oil to your skin insecurities</li>
-                <li class="ttext-xl">Let the oil sit on the skin for 10 to 15 minutes</li>
-                <li class="ttext-xl">Repeat 2x a day</li>
+                <li class="ttext-xl">Sa unang 5 days 2x a day</li>
+                <li class="ttext-xl">1 capsule sa umaga, 1 capsule sa gabi</li>
+                <li class="ttext-xl">Pag lumalakas kana kumain once a day nalang</li>
+            </ul><br><!--HOW TO USE: -->
+           
+            <h4 class="tfont-medium tmb-4 ttext-xl">HOW TO USE FOR (KIDS):</h4>
+            
+            <ul class="tpx-5 tml-8">
+                <li class="ttext-xl">1 Capsule a day</li>
+                <li class="ttext-xl">Kapag hindi pa kaya ng bata mag take ng capsule, Tangalin ang capsule at ihalo ang powder sa inumin or pagkain</li>
+                <li class="ttext-xl">Pag lumalakas na kumain ang bata. Every other day nalang ang pag gamit</li>
             </ul><br><!--HOW TO USE: -->
             
             <p style="font-size: 20px;" class="ttext-center">
-                Experience the confidence of flawless skin with Kasoy Oil Warts Remover. 
+                Tumaba, Maging Malakas, Macho, Sexy at Good Looking
             </p>
         </div>
 
