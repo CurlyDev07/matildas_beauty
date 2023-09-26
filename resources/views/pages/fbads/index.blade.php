@@ -349,13 +349,15 @@
             </div>  <!-- RATINGS DIV -->
         </div> <!-- RATINGS -->
 
-        <div class="tp-5 tmb-5 gredient-border">
+        <div class="tpy-5 tmb-5">
             <h4 class="tfont-medium tmb-4 ttext-xl ttext-center">BEFORE AND AFTER</h4>
-            <img src="{{ asset('images/kasoy_oil/before_after.webp') }}" class="tw-full"  alt="kasoy_oil_promo">
+            <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full"  alt="kasoy_oil_promo">
         </div>
 
+        <h4 class="tfont-medium tmb-4 ttext-xl ttext-center">WATCH THIS VIDEO</h4>
+
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay muted loop>
-            <source src="{{ asset('images/kasoy_oil/testimonial_vid.mp4') }}" type="video/mp4">
+            <source src="{{ asset('images/kasoy_oil/testimonial1.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
 
