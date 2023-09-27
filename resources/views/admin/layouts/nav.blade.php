@@ -122,12 +122,12 @@
                     </li>
                 @endif
 
-                {{-- <li class="tab col">
+                <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'fbads', 'active') }}" onclick="location.href = '/admin/fbads'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 
                         FB
                     </a>
-                </li> --}}
+                </li>
                 {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'withdrawal', 'active') }}" onclick="location.href = '/admin/withdrawal'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 

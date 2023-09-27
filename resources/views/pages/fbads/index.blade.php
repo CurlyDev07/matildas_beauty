@@ -93,9 +93,72 @@
             </button>
         </div>
 
-        <img src="{{ asset('images/kasoy_oil/benefits.webp') }}" class="tw-full tmt-2 tmb-5" alt="kasoy_oil_promo">
+        <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full tmt-2 tmb-2" alt="kasoy_oil_promo">
 
-        <div class="tmt-8 tmb-5" >
+        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay  loop>
+            <source src="{{ asset('images/kasoy_oil/testimonial1.mp4') }}" type="video/mp4">
+            <source src="movie.ogg" type="video/ogg">
+        </video>
+
+        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full"  alt="kasoy_oil_promo">
+
+        <div class="tmx-auto trelative tp-5">
+            <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
+
+            <p style="font-size: 20px;" class="ttext-center tmb-4">
+                <b>TOP #1 Weight Gain Supplement in the World</b>
+            </p><br>
+
+            <h4 class="tfont-medium tmb-4 ttext-xl">LING ZHI BENEFITS:</h4>
+            
+            <img class="" src="{{ asset('images\kasoy_oil\benefits.png') }}" alt="benefits">
+            <hr>
+            <h4 class="tfont-medium  tmy-4 ttext-xl">INGREDIENTS:</h4>
+            
+            <img class="" src="{{ asset('images\kasoy_oil\ingredients\1.png') }}" alt="ingredients">
+            <hr>
+
+            <img class="" src="{{ asset('images\kasoy_oil\ingredients\2.png') }}" alt="ingredients">
+            
+            <hr class="tmb-4">
+            
+            <h4 class="tfont-medium tmb-4 ttext-xl">WHAT TO EXPECT:</h4>
+            
+            <ul class="tpx-5 tml-8">
+                <li class="ttext-xl">In 2-3 Days Lalakas kana kumain</li>
+                <li class="ttext-xl">Gaganda ang tulog</li>
+                <li class="ttext-xl">Lalakas ang katawan</li>
+                <li class="ttext-xl">In 1 week makikita mo na ang improvement</li>
+                <li class="ttext-xl">In 2-3 weeks tataba kana</li>
+            </ul><br><!--WHAT TO EXPECT: -->
+            
+            <hr class="tmb-4">
+            
+            <h4 class="tfont-medium tmb-4 ttext-xl">HOW TO USE FOR (ADULT):</h4>
+            
+            <ul class="tpx-5 tml-8">
+                <li class="ttext-xl">Sa unang 5 days 2x a day</li>
+                <li class="ttext-xl">1 capsule sa umaga, 1 capsule sa gabi</li>
+                <li class="ttext-xl">Pag lumalakas kana kumain once a day nalang</li>
+            </ul><br><!--HOW TO USE: -->
+            <hr class="tmb-4">
+           
+            <h4 class="tfont-medium tmb-4 ttext-xl">HOW TO USE FOR (KIDS):</h4>
+            
+            <ul class="tpx-5 tml-8">
+                <li class="ttext-xl">1 Capsule a day</li>
+                <li class="ttext-xl">Kapag hindi pa kaya ng bata mag take ng capsule, Tangalin ang capsule at ihalo ang powder sa inumin or pagkain</li>
+                <li class="ttext-xl">Pag lumalakas na kumain ang bata. Every other day nalang ang pag gamit</li>
+            </ul><br><!--HOW TO USE: -->
+
+            <hr class="tmb-4">
+            
+            <p style="font-size: 20px;" class="ttext-center">
+                Tumaba, Maging Malakas, Macho, Sexy at Good Looking
+            </p>
+        </div><!-- PRODUCT DETAILS-->
+
+        <div class="tmb-5 tborder-t" >
             <div class="tborder tpx-4 tpy-5">
                 <h1 class="tmb-3 ttext-2xl">Product Ratings</h1>
                 <div class="tflex titems-center tjustify-between tmb-3">
@@ -349,112 +412,12 @@
             </div>  <!-- RATINGS DIV -->
         </div> <!-- RATINGS -->
 
-        <div class="tpy-5 tmb-5">
-            <h4 class="tfont-medium tmb-4 ttext-xl ttext-center">BEFORE AND AFTER</h4>
-            <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full"  alt="kasoy_oil_promo">
-        </div>
-
-        <h4 class="tfont-medium tmb-4 ttext-xl ttext-center">WATCH THIS VIDEO</h4>
-
-        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay muted loop>
-            <source src="{{ asset('images/kasoy_oil/testimonial1.mp4') }}" type="video/mp4">
-            <source src="movie.ogg" type="video/ogg">
-        </video>
-
-        <div class="tmx-auto trelative tp-5">
-            <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
-
-            <p style="font-size: 20px;" class="ttext-center tmb-4">
-                <b>TOP #1 Weight Gain Supplement in the World</b>
-            </p><br>
-
-            <h4 class="tfont-medium tmb-4 ttext-xl">LING ZHI BENEFITS:</h4>
-            
-            <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">Pampa Taba</li>
-                <li class="ttext-xl">Pampa Lakas Kumain</li>
-                <li class="ttext-xl">Pampa Ganda ng Kutis</li>
-
-                <li class="ttext-xl">Good Quality Sleep</li>
-                <li class="ttext-xl">Cure Insomnia</li>
-                <li class="ttext-xl">Improve Memory</li>
-                <li class="ttext-xl">Boost Metabolism</li>
-                <li class="ttext-xl">Strong Body</li>
-                <li class="ttext-xl">Weight Gain</li>
-                <li class="ttext-xl">Increast Self Confidence</li>
-            </ul><br><!-- LING ZHI BENEFITS: -->
-            
-
-            <h4 class="tfont-medium tmb-4 ttext-xl">INGREDIENTS:</h4>
-            
-            <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">Lingshi Mushroom</li>
-                <li class="ttext-xl">Panax Ginseng Roots</li>
-                <li class="ttext-xl">Angelica Senensis Roots</li>
-                <li class="ttext-xl">Dodder Seed</li>
-                <li class="ttext-xl">Horn Deer Antler</li>
-                <li class="ttext-xl">Eucommia Bark</li>
-                <li class="ttext-xl">Codonopsis Root</li>
-                <li class="ttext-xl">Caterpillar fungus</li>
-                <li class="ttext-xl">Astralagus Roots</li>
-                <li class="ttext-xl">Rizome Roots</li>
-                <li class="ttext-xl">Large head Atractylodes</li>
-                <li class="ttext-xl">Rizome Roots</li>
-                <li class="ttext-xl">Cinnamon Bark Extrac</li>
-                <li class="ttext-xl">Indian Mulberry Root</li>
-                <li class="ttext-xl">Lycium Barbarum Fruit</li>
-                <li class="ttext-xl">Poria Mushroom Extract</li>
-            </ul><br><!--INGREDIENTS: -->
-            
- 
-            <h4 class="tfont-medium tmb-4 ttext-xl">WHAT TO EXPECT:</h4>
-            
-            <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">In 2-3 Days Lalakas kana kumain</li>
-                <li class="ttext-xl">Gaganda ang tulog</li>
-                <li class="ttext-xl">Lalakas ang katawan</li>
-                <li class="ttext-xl">In 1 week makikita mo na ang improvement</li>
-                <li class="ttext-xl">In 2-3 weeks tataba kana</li>
-            </ul><br><!--WHAT TO EXPECT: -->
-            
-            
-            <h4 class="tfont-medium tmb-4 ttext-xl">HOW TO USE FOR (ADULT):</h4>
-            
-            <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">Sa unang 5 days 2x a day</li>
-                <li class="ttext-xl">1 capsule sa umaga, 1 capsule sa gabi</li>
-                <li class="ttext-xl">Pag lumalakas kana kumain once a day nalang</li>
-            </ul><br><!--HOW TO USE: -->
-           
-            <h4 class="tfont-medium tmb-4 ttext-xl">HOW TO USE FOR (KIDS):</h4>
-            
-            <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">1 Capsule a day</li>
-                <li class="ttext-xl">Kapag hindi pa kaya ng bata mag take ng capsule, Tangalin ang capsule at ihalo ang powder sa inumin or pagkain</li>
-                <li class="ttext-xl">Pag lumalakas na kumain ang bata. Every other day nalang ang pag gamit</li>
-            </ul><br><!--HOW TO USE: -->
-            
-            <p style="font-size: 20px;" class="ttext-center">
-                Tumaba, Maging Malakas, Macho, Sexy at Good Looking
-            </p>
-        </div>
-
         <h4 class="tfont-medium tpy-3 tmb-5 ttext-xl ttext-center">WATCH OUR CUSTOMER VIDEO  FEEDBACK</h4>
        
-        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay muted loop>
-            <source src="{{ asset('images/kasoy_oil/testimonial_vid3.mp4') }}" type="video/mp4">
-            <source src="movie.ogg" type="video/ogg">
-        </video>
-        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay muted loop>
-            <source src="{{ asset('images/kasoy_oil/testimonial_vid2.mp4') }}" type="video/mp4">
-            <source src="movie.ogg" type="video/ogg">
-        </video>
-
-            <img src="{{ asset('images/kasoy_oil/doc_willie.webp') }}" class="tw-full tmy-5" alt="doc_willie">
-     
-
         {{-- REVIEWS --}}
-        <img class="" src="{{ asset('images\icons\promises\fda.webp') }}" alt="fda">
+
+        <img class="" src="{{ asset('images\kasoy_oil\satisfied_customer1.png') }}" alt="fda">
+        <img class="" src="{{ asset('images\kasoy_oil\satisfied_customer2.png') }}" alt="fda">
 
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
@@ -535,44 +498,26 @@
                     </div><!--barangay -->
                 </div><!--province/city/barangay --> --}}
 
-                <div class="tborder tmb-2 tp-2 trelative">
+                <div class="tborder-2 tborder-red-500 tmb-2 tp-2 trelative">
                     <div class="tflex tflex-wrap tjustify-center">
                         <div class="tflex titems-center tw-1/2">
                             <label>
-                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="2pcs_kasoy_oil|449">
+                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="Adult|799">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium">₱449</span>
-                                    Buy 1 Take 1
+                                    <span class="tfont-medium">₱799</span>
+                                    Ling Zhi Adult
                                 </span>
                             </label>
                         </div><!-- PROMO 4-->
                         <div class="tflex titems-center tw-1/2">
                             <label>
-                                <input type="checkbox" id="promo3" name="promo" class="promo" value="5pcs_kasoy_oil|749">
+                                <input type="checkbox" id="promo3" name="promo" class="promo" value="Kids|749">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-medium">₱749</span>
-                                    5pcs
+                                    Ling Zhi Kids (10yr & up)
                                 </span>
                             </label>
                         </div><!-- PROMO 3 -->
-                        <div class="tflex titems-center tw-1/2">
-                            <label>
-                                <input type="checkbox" id="promo2" name="promo" class="promo" value="7pcs_kasoy_oil|1099">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium">₱1099</span>
-                                    7pcs 
-                                </span>
-                            </label>
-                        </div><!-- PROMO 2-->
-                        <div class="tflex titems-center tw-1/2">
-                            <label>
-                                <input type="checkbox" id="promo1" name="promo" class="promo" value="10pc_kasoy_oil|1399">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium">₱1399</span>
-                                    10 pcs
-                                </span>
-                            </label>
-                        </div><!-- PROMO 1 -->
                     </div>
                    
                     @error('promo')
