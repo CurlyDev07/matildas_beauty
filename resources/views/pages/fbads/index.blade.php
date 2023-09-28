@@ -95,7 +95,7 @@
 
         <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full tmt-2 tmb-2" alt="kasoy_oil_promo">
 
-        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay  loop>
+        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay muted loop>
             <source src="{{ asset('images/kasoy_oil/testimonial.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
