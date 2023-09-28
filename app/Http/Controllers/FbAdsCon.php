@@ -17,9 +17,9 @@ class FbAdsCon extends Controller
     public function index(){
         $provinces = Province::orderBy('province', 'asc')->pluck('province');
         $seo = [
-            'title' => "Kasoy Oil Warts Remover",
+            'title' => "Ling Zhi Capsule #1 Pampataba",
             'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
-            'description' => "Kasoy Oil Warts Remover",
+            'description' => "Ling Zhi Capsule #1 Pampataba",
             'robots' => 'none',
         ];
 
