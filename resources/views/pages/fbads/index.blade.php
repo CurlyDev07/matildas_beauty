@@ -86,8 +86,8 @@
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
         <div class="tflex tfont-medium titems-center tjustify-between trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgba(255, 106, 0, 1) 0%, rgba(238, 9, 9, 1) 100%)">
             <div style="margin-left: 4%;">
-                <s class="ttext-sm ttext-white">Orig Price ₱1,000</s>
-                <p class="t-mt-2 tfont-medium tshadow-2xl ttext-4xl ttext-white"><u>Promo ₱449</u></p>
+                <s class="ttext-sm ttext-white">Orig Price ₱1,499</s>
+                <p class="t-mt-2 tfont-medium tshadow-2xl ttext-4xl ttext-white"><u>Promo ₱749</u></p>
             </div>
             <button class="focus:tbg-red-500 order_now tabsolute tbg-white tbottom-0 tfixed tfont-black tpy-2 trounded-full tw-10/12 waves-effect zoom-in-out-box" style="bottom: 18%;max-width: 240px;width: 34%;right: 4%;color: #f63604;">ORDER NOW!
             </button>
@@ -412,7 +412,7 @@
             </div>  <!-- RATINGS DIV -->
         </div> <!-- RATINGS -->
 
-        <h4 class="tfont-medium tpy-3 tmb-5 ttext-xl ttext-center">WATCH OUR CUSTOMER VIDEO  FEEDBACK</h4>
+        <h4 class="tfont-medium tpy-3 tmb-5 ttext-xl ttext-center">HAPPY & SATISFIED CUSTOMERS</h4>
        
         {{-- REVIEWS --}}
 
@@ -529,7 +529,7 @@
                     <span class="ttext-gray-900" style="font-size: 16px;">
                         <span class="tfont-medium">TOTAL:</span>
                         <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">399</span>
+                        <span id="total" class="tfont-medium t-ml-1">799</span>
                     </span>
                 </div>
                 <div class="tw-full ">
