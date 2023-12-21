@@ -84,16 +84,16 @@
 <body>
 
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
-        <div class="tflex tfont-medium titems-center tjustify-between trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgba(255, 106, 0, 1) 0%, rgba(238, 9, 9, 1) 100%)">
+        <div class="tflex tfont-medium titems-center tjustify-between trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgb(250 25 158 / 53%) 0%, rgb(251 0 148) 100%);">
             <div style="margin-left: 4%;">
                 <s class="ttext-sm ttext-white">Orig Price ₱1,499</s>
                 <p class="t-mt-2 tfont-medium tshadow-2xl ttext-4xl ttext-white"><u>Promo ₱749</u></p>
             </div>
-            <button class="focus:tbg-red-500 order_now tabsolute tbg-white tbottom-0 tfixed tfont-black tpy-2 trounded-full tw-10/12 waves-effect zoom-in-out-box" style="bottom: 18%;max-width: 240px;width: 34%;right: 4%;color: #f63604;">ORDER NOW!
+            <button class="focus:tbg-pink-300 order_now tabsolute tbg-white tbottom-0 tfixed tfont-black tpy-2 trounded-full tw-10/12 waves-effect zoom-in-out-box" style="bottom: 18%;max-width: 240px;width: 34%;right: 4%;color: #000000;">ORDER NOW!
             </button>
         </div>
 
-        <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full tmt-2 tmb-2" alt="kasoy_oil_promo">
+        <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full" alt="kasoy_oil_promo">
 
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay muted loop>
             <source src="{{ asset('images/kasoy_oil/testimonial.mp4') }}" type="video/mp4">
@@ -106,10 +106,10 @@
             <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
 
             <p style="font-size: 20px;" class="ttext-center tmb-4">
-                <b>TOP #1 Weight Gain Supplement in the World</b>
+                <b><b>"</b>Revitalize Your Skin with Our Melasma Rejuvenating Set<b>"</b></b>
             </p><br>
 
-            <h4 class="tfont-medium tmb-4 ttext-xl">LING ZHI BENEFITS:</h4>
+            <h4 class="tfont-medium tmb-4 ttext-xl">BENEFITS:</h4>
             
             <img class="" src="{{ asset('images\kasoy_oil\benefits.png') }}" alt="benefits">
             <hr>
