@@ -93,7 +93,9 @@
             </button>
         </div>
 
-        <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full" alt="top_banner">
+        <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full tmb-5" alt="top_banner">
+
+        <img class="tmb-3" src="{{ asset('images\kasoy_oil\28_days_challenge.png') }}" alt="28_days_challenge">
 
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
             <source src="{{ asset('images/kasoy_oil/testimonial.mp4') }}" type="video/mp4">
@@ -112,24 +114,32 @@
             <h4 class="tfont-medium tmb-4 ttext-xl">BENEFITS:</h4>
             
             <img class="" src="{{ asset('images\kasoy_oil\benefits.png') }}" alt="benefits">
-            <hr>
-            <h4 class="tfont-medium  tmy-4 ttext-xl">INGREDIENTS:</h4>
+           
+            {{-- <hr> --}}
+            {{-- <h4 class="tfont-medium  tmy-4 ttext-xl">INGREDIENTS:</h4>
             
             <img class="" src="{{ asset('images\kasoy_oil\ingredients\1.png') }}" alt="ingredients">
             <hr>
 
-            <img class="" src="{{ asset('images\kasoy_oil\ingredients\2.png') }}" alt="ingredients">
+            <img class="" src="{{ asset('images\kasoy_oil\ingredients\2.png') }}" alt="ingredients"> --}}
             
             <hr class="tmb-4">
             
             <h4 class="tfont-medium tmb-4 ttext-xl">WHAT TO EXPECT:</h4>
             
             <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">In 2-3 Days Lalakas kana kumain</li>
-                <li class="ttext-xl">Gaganda ang tulog</li>
-                <li class="ttext-xl">Lalakas ang katawan</li>
-                <li class="ttext-xl">In 1 week makikita mo na ang improvement</li>
-                <li class="ttext-xl">In 2-3 weeks tataba kana</li>
+                <li class="ttext-xl">In 3-4 weeks, the <b> melasma is Gone.</b></li>
+                <li class="ttext-xl">Korean Glass Skin</li>
+                <li class="ttext-xl">No More Darkspots</li>
+                <li class="ttext-xl">No More Uneven Skin Tone</li>
+                <li class="ttext-xl">Brighter Skin</li>
+                <li class="ttext-xl">Protected To UV Rays</li>
+                <li class="ttext-xl">Whiter Skin</li>
+                <li class="ttext-xl">Healthy Skin</li>
+                <li class="ttext-xl">Reduce Pores</li>
+                <li class="ttext-xl">Remove Skin Irritation</li>
+                <li class="ttext-xl">Soft Skin</li>
+                <li class="ttext-xl">Moisturized Skin</li>
             </ul><br><!--WHAT TO EXPECT: -->
             
             <hr class="tmb-4">
