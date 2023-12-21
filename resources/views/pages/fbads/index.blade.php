@@ -93,14 +93,14 @@
             </button>
         </div>
 
-        <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full" alt="kasoy_oil_promo">
+        <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full" alt="top_banner">
 
-        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline autoplay muted loop>
+        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
             <source src="{{ asset('images/kasoy_oil/testimonial.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
 
-        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full"  alt="kasoy_oil_promo">
+        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full"  alt="before_after">
 
         <div class="tmx-auto trelative tp-5">
             <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
