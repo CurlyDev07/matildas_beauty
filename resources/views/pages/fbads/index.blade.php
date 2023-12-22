@@ -102,7 +102,7 @@
             <source src="movie.ogg" type="video/ogg">
         </video>
 
-        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full"  alt="before_after">
+        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full tmy-5"  alt="before_after">
 
         <div class="tmx-auto trelative tp-5">
             <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
@@ -113,37 +113,11 @@
 
             <h4 class="tfont-medium tmb-4 ttext-xl">BENEFITS:</h4>
             
-            <img class="" src="{{ asset('images\kasoy_oil\benefits.png') }}" alt="benefits">
-           
-            {{-- <hr> --}}
-            {{-- <h4 class="tfont-medium  tmy-4 ttext-xl">INGREDIENTS:</h4>
+            <img class="tmb-5" src="{{ asset('images\kasoy_oil\benefits.png') }}" alt="benefits">
+     
+            <img class="tmb-5" src="{{ asset('images\kasoy_oil\what_to_expect.png') }}" alt="What to expect">
+            <!--WHAT TO EXPECT: -->
             
-            <img class="" src="{{ asset('images\kasoy_oil\ingredients\1.png') }}" alt="ingredients">
-            <hr>
-
-            <img class="" src="{{ asset('images\kasoy_oil\ingredients\2.png') }}" alt="ingredients"> --}}
-            
-            <hr class="tmb-4">
-            
-            <h4 class="tfont-medium tmb-4 ttext-xl">WHAT TO EXPECT:</h4>
-            
-            <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">Fade <b>melasma</b> in 3-4 weeks</li>
-                <li class="ttext-xl">Korean Glass Skin</li>
-                <li class="ttext-xl">No More Darkspots</li>
-                <li class="ttext-xl">No More Uneven Skin Tone</li>
-                <li class="ttext-xl">Brighter Skin</li>
-                <li class="ttext-xl">Protected To UV Rays</li>
-                <li class="ttext-xl">Whiter Skin</li>
-                <li class="ttext-xl">Healthy Skin</li>
-                <li class="ttext-xl">Reduce Pores</li>
-                <li class="ttext-xl">Remove Skin Irritation</li>
-                <li class="ttext-xl">Soft Skin</li>
-                <li class="ttext-xl">Moisturized Skin</li>
-            </ul><br><!--WHAT TO EXPECT: -->
-            
-            <hr class="tmb-4">
-
             <img class="" src="{{ asset('images\kasoy_oil\how_to_use_01.png') }}" alt="how_to_use in the morning">
             <img class="" src="{{ asset('images\kasoy_oil\how_to_use_02.png') }}" alt="how_to_use in the evening">
 
@@ -154,33 +128,33 @@
                 <h1 class="tmb-3 ttext-2xl">Product Ratings</h1>
                 <div class="tflex titems-center tjustify-between tmb-3">
                     <p>
-                        <span class="ttext-2xl tfont-semibold" style="color: #ee4d2d">5.0</span>
-                        <span class="ttext-xl tfont-medium" style="color: #ee4d2d"> out of 5</span>
+                        <span class="ttext-2xl tfont-semibold" style="color: #f51773">5.0</span>
+                        <span class="ttext-xl tfont-medium" style="color: #f51773"> out of 5</span>
                     </p>
                     <div class="">
-                        <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                        <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                        <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                        <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                        <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
                     </div>
                 </div>    
                 <div class="tflex titems-center tjustify-between">
 
-                    <div class="trounded ttext-sm tmr-1 ttext-center trelative" style="padding: 5px 5px; border: #ee4d2d 1px solid; color: #ee4d2d; background: #ee4d2d; color: white;">
+                    <div class="trounded ttext-sm tmr-1 ttext-center trelative" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773; background: #f51773; color: white;">
                         <p>5 <i class="fa-solid fa-star" style="color: white;"></i> (9.5k)</p>
                     </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        4<i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
+                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
+                        4<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
                     </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        3<i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
+                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
+                        3<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
                     </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        2<i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
+                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
+                        2<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
                     </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #ee4d2d 1px solid; color: #ee4d2d;">
-                        1<i class="fa-solid fa-star" style="color: #ee4d2d;"></i> (0)
+                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
+                        1<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
                     </div>
                 </div>
                 
@@ -190,11 +164,11 @@
                         <div class="tml-2">
                             <p>Emerlita Manao</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">April 14, 2023 09:07AM</span>
                         </div>
@@ -227,11 +201,11 @@
                         <div class="tml-2">
                             <p>Aiza Melina</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 14, 2023 12:48PM</span>
                         </div>
@@ -262,11 +236,11 @@
                         <div class="tml-2">
                             <p>Riza Samson</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
@@ -297,11 +271,11 @@
                         <div class="tml-2">
                             <p>Melanie Paz</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 25, 2023 04:22PM</span>
                         </div>
@@ -336,11 +310,11 @@
                         <div class="tml-2">
                             <p>Emilita Rorasio</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 02, 2023 07:27AM</span>
                         </div>
@@ -371,11 +345,11 @@
                         <div class="tml-2">
                             <p>Robert Atienza</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
-                                <i class="fa-solid fa-star" style="color: #ee4d2d;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 16, 2023 01:29PM</span>
                         </div>
@@ -558,8 +532,8 @@
                 </div>
             </div> <!-- Modal  -->
 
-            <button class="order_now focus:tbg-red-500 tabsolute tbg-red-500 tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
-                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;">
+            <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
+                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
                 ORDER NOW!
             </button>
         </div>
