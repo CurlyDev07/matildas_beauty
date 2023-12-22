@@ -128,7 +128,7 @@
             <h4 class="tfont-medium tmb-4 ttext-xl">WHAT TO EXPECT:</h4>
             
             <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">In 3-4 weeks, the <b> melasma is Gone.</b></li>
+                <li class="ttext-xl">Fade <b>melasma</b> in 3-4 weeks</li>
                 <li class="ttext-xl">Korean Glass Skin</li>
                 <li class="ttext-xl">No More Darkspots</li>
                 <li class="ttext-xl">No More Uneven Skin Tone</li>
@@ -143,29 +143,10 @@
             </ul><br><!--WHAT TO EXPECT: -->
             
             <hr class="tmb-4">
-            
-            <h4 class="tfont-medium tmb-4 ttext-xl">HOW TO USE FOR (ADULT):</h4>
-            
-            <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">Sa unang 5 days 2x a day</li>
-                <li class="ttext-xl">1 capsule sa umaga, 1 capsule sa gabi</li>
-                <li class="ttext-xl">Pag lumalakas kana kumain once a day nalang</li>
-            </ul><br><!--HOW TO USE: -->
-            <hr class="tmb-4">
-           
-            <h4 class="tfont-medium tmb-4 ttext-xl">HOW TO USE FOR (KIDS):</h4>
-            
-            <ul class="tpx-5 tml-8">
-                <li class="ttext-xl">1 Capsule a day</li>
-                <li class="ttext-xl">Kapag hindi pa kaya ng bata mag take ng capsule, Tangalin ang capsule at ihalo ang powder sa inumin or pagkain</li>
-                <li class="ttext-xl">Pag lumalakas na kumain ang bata. Every other day nalang ang pag gamit</li>
-            </ul><br><!--HOW TO USE: -->
 
-            <hr class="tmb-4">
-            
-            <p style="font-size: 20px;" class="ttext-center">
-                Tumaba, Maging Malakas, Macho, Sexy at Good Looking
-            </p>
+            <img class="" src="{{ asset('images\kasoy_oil\how_to_use_01.png') }}" alt="how_to_use in the morning">
+            <img class="" src="{{ asset('images\kasoy_oil\how_to_use_02.png') }}" alt="how_to_use in the evening">
+
         </div><!-- PRODUCT DETAILS-->
 
         <div class="tmb-5 tborder-t" >
