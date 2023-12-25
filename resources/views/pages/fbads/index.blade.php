@@ -174,10 +174,8 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        very effective cya guys ito talaga vitamins ko dati pa. kaya tinry ko ulit.
-                        <b>mapapasabak ka talaga sa kain pinipigilan ko ngalang kumain kasi sa sobrang kabusugan</b> medyo dina ko makahinga
-                        hahahaja🤣🤣🤣😊😊 kaya pag take ko once a day nalang .😚😚baka bigla akong lolobo pag twice a day ko cya iinumin. 
-                        hehheeje <b>i order 2 bottle again para my reserba na ako</b> 
+                        Hala grabi. <b>Effective pala talaga ang MissTisa</b> totoo pala ung napnoud ko na video.
+                        Kitang kita naman sa picture ko nag <b>fade talga ung melasma ko in 3 Weeks.</b> 
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -199,7 +197,7 @@
                     <div class="tflex titems-center">
                         <img src="{{ asset('images/kasoy_oil/reviews/review2/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Aiza Melina</p>
+                            <p>Aiza Ling</p>
                             <div class="">
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
@@ -211,8 +209,10 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        Hi! Finally got the original LingZhi. 
-                        I started March 31 . <b>From 41kilos I am now at 48kilos.</b> I’ve already finished 1 bottle .❤️
+                       <b> Sobrang problemado talaga ako sa Melasma ko.</b> Maputi naman ung face ko
+                       Kaya lalong naging Visible ung Melasma ko. Nakuha ko to sa panga-nganak
+                       sa Pangalawa ko. Ang dami ko na din nasubukan ok naman <b> kaso mas na satisfy
+                       lang talga ako dito sa MissTisa </b>lang ung may pinaka magandang Effect.
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -234,7 +234,7 @@
                     <div class="tflex titems-center">
                         <img src="{{ asset('images/kasoy_oil/reviews/review3/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Riza Samson</p>
+                            <p>Ana Park</p>
                             <div class="">
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
@@ -246,8 +246,9 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        before and after vitamin ling Zhi Adults 2023 50 caps <b> 41kg up to 43 kg in 1 week
-                        Kitang kita na agad talaga ang difference</b>
+                        Hi!. <b>I was so frustrated with my melasma.</b>  i'm a korean living here in philippines.
+                        My Filipino husband bought me this product. <b>I tried many korean products</b>  but this is only 
+                        The Rejuvenating set worked for me. this is my result after using for month </b>
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -269,7 +270,7 @@
                     <div class="tflex titems-center">
                         <img src="{{ asset('images/kasoy_oil/reviews/review4/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Melanie Paz</p>
+                            <p>Sharon Tee</p>
                             <div class="">
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
@@ -281,12 +282,9 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        legit ! nakainom nsko neto for 5 days straight. and <b> yes napakaganda ko kumain !! seryoso !
-                        very effective kahit pang kids lng binili ko dahil minor pa Naman ako. </b>
-                        and talagang sinabi ko Kay mama na very effective ito :) <b> natuwa Sila dahil nagkakalaman narin na talaga ako </b>
-                        <b>Ang pinaka nagustuhan ko nag ka boobs na ko char!</b>
-                        👍👍 maraming salamat seller..
-                        lagi Rin ako gutom dahil dito hehe pa ako neto ule
+                        The before and after of my face is proof that MissTisa Product is very Effective.
+                        The Glass Skin Effect is superb, And my melasma is totally Gone.
+                        I would definitely recommend this to my co mother who suffer also from melasma.
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -308,7 +306,7 @@
                     <div class="tflex titems-center">
                         <img src="{{ asset('images/kasoy_oil/reviews/review5/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Emilita Rorasio</p>
+                            <p>Liza Manalo</p>
                             <div class="">
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
@@ -320,8 +318,9 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        I've always struggled with maintaining a healthy weight. No matter how much I ate, my body seemed to resist any efforts to gain the extra pounds I desperately needed.
-                        That's when I stumbled upon Ling Zhi, and let me tell you, <b>it has been a game-changer in my life! </b>
+                        <b>Wag kayo bibili nito! Kung ayaw nyo Mawala agad ang melasma nyo ng 1 week.</b> 
+                        Mga sis Legit at Effective Talga sya lalo na kapag wala ka palya sa pag lagay.
+                        1 Week kitang kita na result tulad ng pic ko dito oh.
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -343,7 +342,7 @@
                     <div class="tflex titems-center">
                         <img src="{{ asset('images/kasoy_oil/reviews/review6/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Robert Atienza</p>
+                            <p>Rebecca Morales</p>
                             <div class="">
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
@@ -355,8 +354,9 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        Sobrang Effective ng product na to. <b> Na recommend lang sakin ng kapit bahay namin.
-                        From 35kg to 41kg.</b> Grabe talga effect sakin. Mas Confident na ko sa ganda ko haha
+                        <b> Dati Palagi nalang ako naka Mask.</b> Kasi Ang Dami kong Melasma. 
+                        kaya Thankful ako kasi nakita ko itong MISSTISA isang Set palang
+                        at <b>1 week Kitang kita na agad ang effect nya.</b>  at nag Glass SKin pa face ko.
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -386,25 +386,25 @@
 
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
-                <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmt-3" style="height: ;" alt="">
+                <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" style="height: ;" alt="">
                 <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
             </div>
 
             <section class="tflex titems-baseline tmt-5 tmb-3">
                 <div class="ttext-center">
-                    <i class="fa-solid fa-truck-fast ttext-5xl ttext-red-500"></i>
+                    <i class="fa-solid fa-truck-fast ttext-5xl" style="color: #ee2a7b"></i>
                     <span class="tinline-block">Fast delivery nationwide</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fa-solid fa-money-bill-transfer ttext-5xl ttext-red-500"></i>
+                    <i class="fa-solid fa-money-bill-transfer ttext-5xl" style="color: #ee2a7b"></i>
                     <span class="tinline-block">Moneyback Guarantee</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fa-solid fa-hand-holding-dollar ttext-5xl ttext-red-500"></i>
+                    <i class="fa-solid fa-hand-holding-dollar ttext-5xl" style="color: #ee2a7b"></i>
                     <span class="tinline-block">Cash on Delivery</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fa-solid fa-headset ttext-5xl ttext-red-500"></i>
+                    <i class="fa-solid fa-headset ttext-5xl" style="color: #ee2a7b"></i>
                     <span class="tinline-block">Aftersales Support</span>
                 </div>
             </section>
@@ -463,23 +463,23 @@
                     </div><!--barangay -->
                 </div><!--province/city/barangay --> --}}
 
-                <div class="tborder-2 tborder-red-500 tmb-2 tp-2 trelative">
+                <div class="tborder-2 tmb-2 tp-2 trelative" style="border-color: #ee2a7ba8">
                     <div class="tflex tflex-wrap tjustify-center">
                         <div class="tflex titems-center tw-1/2">
                             <label>
-                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="Adult|799">
+                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium">₱799</span>
-                                    Ling Zhi Adult
+                                    <span class="tfont-medium">₱499</span>
+                                    MissTisa 1 Set
                                 </span>
                             </label>
                         </div><!-- PROMO 4-->
                         <div class="tflex titems-center tw-1/2">
                             <label>
-                                <input type="checkbox" id="promo3" name="promo" class="promo" value="Kids|749">
+                                <input type="checkbox" id="promo3" name="promo" class="promo" value="MissTisa_2pcs|849">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium">₱749</span>
-                                    Ling Zhi Kids (10yr & up)
+                                    <span class="tfont-medium">₱849</span>
+                                    MissTisa 2 Set
                                 </span>
                             </label>
                         </div><!-- PROMO 3 -->
@@ -494,11 +494,11 @@
                     <span class="ttext-gray-900" style="font-size: 16px;">
                         <span class="tfont-medium">TOTAL:</span>
                         <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">799</span>
+                        <span id="total" class="tfont-medium t-ml-1">499</span>
                     </span>
                 </div>
                 <div class="tw-full ">
-                    <button class="focus:tbg-red-500 trelative tbg-red-500 tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
+                    <button style="background-color: #ee2a7b" class="focus:tbg-pink-500 trelative tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
                         <span>Checkout Order</span>
                     </button>
                     <span class="thidden focus:tbg-red-500 trelative tbg-red-500 ttext-center tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="loader">
@@ -507,10 +507,10 @@
                     </span>
                 </div><!-- Submit Order -->
             </form><!-- ORDER PROMO -->
-
+{{-- 
             <p class="tmt-6 ttext-2xl ttext-center">Pweding ibalik ang bayad if hindi effective.</p>
 
-            <img class="th-48 tmx-auto" src="{{ asset('images\icons\promises\money_back_guarantee.webp') }}" alt="money_back_guarantee">
+            <img class="th-48 tmx-auto" src="{{ asset('images\icons\promises\money_back_guarantee.webp') }}" alt="money_back_guarantee"> --}}
 
             <div id="modal1" class="modal">
                 <div class="modal-content" style="padding-bottom: 0px;">
