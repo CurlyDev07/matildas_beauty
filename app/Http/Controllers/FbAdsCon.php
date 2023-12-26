@@ -42,7 +42,7 @@ class FbAdsCon extends Controller
         ]);
         
         // return redirect()->back(['a'=>'s'])->with('success', 'Success');
-        return redirect()->route('MissTisa', ['purchase' => 1, 'amount' => $promo[1]])->with('success', 'Success');
+        return redirect()->route('miss_tisa', ['purchase' => 1, 'amount' => $promo[1]])->with('success', 'Success');
 
     }
 
