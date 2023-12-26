@@ -17,9 +17,9 @@ class FbAdsCon extends Controller
     public function index(){
         $provinces = Province::orderBy('province', 'asc')->pluck('province');
         $seo = [
-            'title' => "Ling Zhi Capsule #1 Pampataba",
+            'title' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
             'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
-            'description' => "Ling Zhi Capsule #1 Pampataba",
+            'description' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
             'robots' => 'none',
         ];
 
@@ -38,7 +38,7 @@ class FbAdsCon extends Controller
             "barangay" => 'n/a',
             "promo" => $promo[0],
             "total" => $promo[1],
-            "product" => 'Kasoy Oil',
+            "product" => 'MissTisa',
         ]);
         
         // return redirect()->back(['a'=>'s'])->with('success', 'Success');
