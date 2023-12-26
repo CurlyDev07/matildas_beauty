@@ -409,7 +409,7 @@
                 </div>
             </section>
             
-            <form action="{{ route('kasoy_oil_store') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
+            <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
                 <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
                 <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3>
 
