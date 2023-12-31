@@ -118,12 +118,12 @@ class InventoryCon extends Controller
 
 
     // I USE THIS TO REFLECT THE MANUAL STOCK IN TO THE PRODUCT STOCKS
-    // public function reflect(){ 
-    //     $stocks = StockInOutProducts::select('id', 'product_id', 'qty')->get();
+    public function reflect(){ 
+        $stocks = StockInOutProducts::select('id', 'product_id', 'qty')->get();
 
-    //     foreach ($stocks as $stock) {
-    //         $add_product = Product::find($stock->product_id);
-    //         $update_stocks = $add_product->update(['qty' => ($add_product->qty + $stock->qty)]);
-    //     }
-    // }
+        foreach ($stocks as $stock) {
+            $add_product = Product::find($stock->product_id);
+            $update_stocks = $add_product->update(['qty' => ($add_product->qty + $stock->qty)]);
+        }
+    }
 }

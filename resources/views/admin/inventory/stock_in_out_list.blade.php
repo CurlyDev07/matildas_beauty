@@ -49,7 +49,7 @@
                     </a>
                 </li><!-- REMOVE FILTER -->
                 <li class="tml-3 tml-auto tmr-2">
-                    {{-- <button id="reflect" class="focus:tbg-primary tbg-primary tml-auto tpy-2 trounded ttext-white tw-24 waves-effect">Reflect Stocks</button> --}}
+                    <button id="reflect" class="focus:tbg-primary tbg-primary tml-auto tpy-2 trounded ttext-white tw-24 waves-effect">Reflect Stocks</button>
                 </li><!-- I USE THIS TO REFLECT THE MANUAL STOCK IN TO THE PRODUCT STOCKS -->
             </ul>
             <ul class="tflex titems-center tjustify-center tmt-2">
@@ -148,15 +148,15 @@
 
     // I USE THIS TO REFLECT THE MANUAL STOCK IN TO THE PRODUCT STOCKS
 
-    // $('#reflect').click(function () {
-    //     $.ajax({
-    //         url: '/admin/inventory/stock-in/reflect',
-    //         type: 'POST',
-    //         success: ()=>{
+    $('#reflect').click(function () {
+        $.ajax({
+            url: '/admin/inventory/stock-in/reflect',
+            type: 'POST',
+            success: ()=>{
                 
-    //         }
-    //     });
-    // })
+            }
+        });
+    })
 
 
 
