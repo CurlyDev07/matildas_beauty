@@ -87,7 +87,7 @@
         <div class="tflex tfont-medium titems-center tjustify-between trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgb(250 25 158 / 53%) 0%, rgb(251 0 148) 100%);">
             <div style="margin-left: 4%;">
                 <s class="ttext-sm ttext-white">Orig Price ₱1,499</s>
-                <p class="t-mt-2 tfont-medium tshadow-2xl ttext-4xl ttext-white"><u>Promo ₱749</u></p>
+                <p class="t-mt-2 tfont-medium tshadow-2xl ttext-4xl ttext-white"><u>Promo ₱499</u></p>
             </div>
             <button class="focus:tbg-pink-300 order_now tabsolute tbg-white tbottom-0 tfixed tfont-black tpy-2 trounded-full tw-10/12 waves-effect zoom-in-out-box" style="bottom: 18%;max-width: 240px;width: 34%;right: 4%;color: #000000;">ORDER NOW!
             </button>
