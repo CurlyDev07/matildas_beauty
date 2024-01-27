@@ -34,11 +34,26 @@ class FbAdsCon extends Controller
             return $q->where('status', request()->status);
         })// Filter by STATUS
         ->get();
+
         return view('admin.fbads.index', ['orders' => $orders, 'stores' => $stores]);
     }
 
-    public function event_listener(){
-        $events = FbEventListener::groupBy('data')->select('data', DB::raw('count(*) as total'))->orderBy('data', 'desc')->get();
+    public function event_listener(Request $request){
+        $events = FbEventListener::groupBy('data')->select('data', DB::raw('count(*) as total'))
+        ->when($request->date, function($q){
+            $date = explode(" - ",request()->date);
+            $from = carbon($date[0]);
+            $to = carbon($date[1]);
+
+            if ($from == $to) {
+                return $q->whereDate('created_at', $from);
+            }
+
+            return $q->whereBetween('created_at', [$from, $to]);
+        })// FILTER DATE
+        ->orderBy('data', 'desc')
+        ->get();
+
         return view('admin.fbads.event_listener', ['events' => $events]);
     }
    

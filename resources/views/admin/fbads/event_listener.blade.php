@@ -1,5 +1,8 @@
 @extends('admin.fbads.layouts')
 
+@section('css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+@endsection
 
 @section('page')
 
@@ -7,27 +10,15 @@
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
             <span class="ttext-base ttext-title tfont-medium">FB Event Listener</span>
             <ul class="tflex titems-center">
-                <li class="tmr-4">
-                    <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
-                        <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
-                        <button type="submit" class="focus:tbg-white focus:toutline-none grey-text tborder tborder-gray-200 tborder-l-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-r-full waves-effect">
-                            <i class="fa-flip-horizontal fa-lg fa-search fas"></i>
-                        </button>
-                    </form>
-                </li><!-- SEARCH -->
-                <li class="tmr-4 tpt-1">
-                    @if (request()->sort == 'asc')
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by newest">
-                            <i class="material-icons grey-text tmr-3">sort_by_alpha</i>
-                        </a>
-                    @else
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'asc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by oldest">
-                            <i class="material-icons grey-text">sort_by_alpha</i>
-                        </a>
-                    @endif
-                </li><!-- SORT -->
+                <li class="tmr-2">
+                    <div class="tborder tflex titems-center tpx-2 tpy-1 trounded ttext-sm" >
+                        <img class="tpr-1" src="{{ asset('images/icons/calendar.png') }}" alt="">
+                        <input type="text" name="date" id="date" value="" class="browser-default tooltipped" data-position="top" data-tooltip="Filter by date"/>
+                    </div>
+                </li><!-- date Filter-->
+                
                 <li>
-                    <a href="/admin/shopee/">
+                    <a href="/admin/fbads/event-listener">
                         <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li>
@@ -49,7 +40,30 @@
 
 
 @section('js')
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <script>
+
+    $('input[name="date"]').daterangepicker({
+        maxDate: moment(),
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    });/// Date picker
+
+    $('#date').change(function () {
+        const parser = new URL(window.location.href);
+        parser.searchParams.set("date", $(this).val());
+        window.location = parser.href;
+    });// Date on CHANGE
+
     $(document).ready(function(){
         $('.modal').modal();
         $('.dropdown-trigger').dropdown();
