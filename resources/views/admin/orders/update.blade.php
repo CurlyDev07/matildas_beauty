@@ -214,7 +214,7 @@
         <div class="tflex tpx-5">
             <div class="tw-1/3 tflex tflex-col tmr-3">
                 <label for="first_name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Name</label>
-                <input type="text" id="first_name" value="Picklist" class="browser-default form-control" style="padding: 6px;">
+                <input type="text" id="first_name" value="{{ $orders->first_name }}" class="browser-default form-control" style="padding: 6px;">
             </div><!-- Name -->
             <div class="tw-1/3 tflex tflex-col tmr-3">
                 <label for="last_name" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Surname</label>
