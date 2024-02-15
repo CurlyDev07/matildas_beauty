@@ -61,24 +61,24 @@
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/8d4a8c4bc9.js" crossorigin="anonymous"></script>
 
-    <!-- Facebook Pixel Code -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1393765810823713');
-        fbq('track', 'ViewContent');
+        <!-- Facebook Pixel Code -->
+        <script>
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1614979632011184');
+            fbq('track', 'ViewContent');
+        </script>
         
-    </script>
-    <noscript>
-        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1614979632011184&ev=PageView&noscript=1"/>
-    </noscript>
-    <!-- End Facebook Pixel Code -->
+        <noscript>
+            <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1614979632011184&ev=PageView&noscript=1"/>
+        </noscript>
+        <!-- End Facebook Pixel Code -->
 
 </head>
 <body>
@@ -392,19 +392,19 @@
 
             <section class="tflex titems-baseline tmt-5 tmb-3">
                 <div class="ttext-center">
-                    <i class="fa-solid fa-truck-fast ttext-5xl" style="color: #ee2a7b"></i>
+                    <i class="fa-solid fa-truck-fast ttext-5xl" style="color: #2d3748"></i>
                     <span class="tinline-block">Fast delivery nationwide</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fa-solid fa-money-bill-transfer ttext-5xl" style="color: #ee2a7b"></i>
+                    <i class="fa-solid fa-money-bill-transfer ttext-5xl" style="color: #2d3748"></i>
                     <span class="tinline-block">Moneyback Guarantee</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fa-solid fa-hand-holding-dollar ttext-5xl" style="color: #ee2a7b"></i>
+                    <i class="fa-solid fa-hand-holding-dollar ttext-5xl" style="color: #2d3748"></i>
                     <span class="tinline-block">Cash on Delivery</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fa-solid fa-headset ttext-5xl" style="color: #ee2a7b"></i>
+                    <i class="fa-solid fa-headset ttext-5xl" style="color: #2d3748"></i>
                     <span class="tinline-block">Aftersales Support</span>
                 </div>
             </section>
@@ -465,21 +465,21 @@
 
                 <div class="tborder-2 tmb-2 tp-2 trelative" style="border-color: #ee2a7ba8">
                     <div class="tflex tflex-wrap tjustify-center">
-                        <div class="tflex titems-center tw-1/2">
+                        <div class="tflex titems-center tw-full tjustify-center">
                             <label>
-                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499">
+                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium">₱499</span>
-                                    MissTisa 1 Set
+                                    <span class="tfont-medium ttext-sm">₱499</span>
+                                    MissTisa Melasma Remover 1 Set
                                 </span>
                             </label>
                         </div><!-- PROMO 4-->
-                        <div class="tflex titems-center tw-1/2">
+                        <div class="tflex titems-center tw-full tjustify-center">
                             <label>
-                                <input type="checkbox" id="promo3" name="promo" class="promo" value="MissTisa_2pcs|849">
+                                <input type="checkbox" id="promo3" name="promo" class="promo" value="MissTisa_2pcs|849|2pcs">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium">₱849</span>
-                                    MissTisa 2 Set
+                                    <span class="tfont-medium ttext-sm">₱849</span>
+                                    MissTisa Melasma Remover 2 Set
                                 </span>
                             </label>
                         </div><!-- PROMO 3 -->
@@ -540,10 +540,10 @@
     </div>
 
     <footer>
+        
         @if (request()->amount)
             <script>
                 let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
-                fbq('track', 'Purchase', {currency: "PHP", value: fb_purchase_value});
             </script>
         @endif
 

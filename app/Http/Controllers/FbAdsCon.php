@@ -29,7 +29,7 @@ class FbAdsCon extends Controller
     public function store(StoreFbAdsRequest $request){
         $promo = explode ("|", $request->promo); 
 
-        FbAds::create([
+        $order = FbAds::create([
             "full_name" => $request->full_name,
             "phone_number" => $request->phone_number,
             "address" => $request->address,
@@ -40,10 +40,27 @@ class FbAdsCon extends Controller
             "total" => $promo[1],
             "product" => 'MissTisa',
         ]);
-        
         // return redirect()->back(['a'=>'s'])->with('success', 'Success');
-        return redirect()->route('miss_tisa', ['purchase' => 1, 'amount' => $promo[1]])->with('success', 'Success');
+        // return redirect()->route('miss_tisa', ['purchase' => 1, 'amount' => $promo[1]])->with('success', 'Success');
 
+        $data = [
+            "purchase" => 1,
+            "promo" => request()->promo,
+            "amount" => $promo[1],
+            "full_name" => $request->full_name,
+            "phone_number" => $request->phone_number,
+            "address" => $request->address,
+            "order_number" => 'MB'.date("mdy").'O'.$order->id,
+        ];
+
+
+        return redirect()->route('miss_tisa_success', $data);
+    }
+
+    public function success(){
+        $data = request()->all();
+
+        return view('pages.fbads.order_success', ['data' => $data]);
     }
 
     public function cities(Request $request){

@@ -48,9 +48,18 @@
                         <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li><!-- REMOVE FILTER -->
-                <li class="tml-3 tml-auto tmr-2">
-                    <button id="reflect" class="focus:tbg-primary tbg-primary tml-auto tpy-2 trounded ttext-white tw-24 waves-effect">Reflect Stocks</button>
-                </li><!-- I USE THIS TO REFLECT THE MANUAL STOCK IN TO THE PRODUCT STOCKS -->
+
+                <!-- ***********************SPECIAL BUTTON********************************************************** -->
+
+                @if (auth()->user()->role == 'master')
+                    <li class="tml-3 tml-auto tmr-2">
+                        <button id="reflect" class="focus:tbg-primary tbg-primary tml-auto tpy-2 trounded ttext-white tw-24 waves-effect">Reflect Stocks</button>
+                    </li><!-- I USE THIS TO REFLECT THE MANUAL STOCK IN TO THE PRODUCT STOCKS -->
+                @endif
+
+                <!-- ***********************SPECIAL BUTTON********************************************************** -->
+
+
             </ul>
             <ul class="tflex titems-center tjustify-center tmt-2">
                 @if (!request()->purchase_date && !request()->review_date)

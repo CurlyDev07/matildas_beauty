@@ -73,6 +73,7 @@ Route::get('payment-error', 'PaymentController@payment_error');
 // FB ADS 
 Route::get('MissTisa', 'FbAdsCon@index')->name('miss_tisa');;
 Route::post('MissTisa-Submit', 'FbAdsCon@store')->name('miss_tisa_submit');
+Route::get('MissTisa-Success', 'FbAdsCon@success')->name('miss_tisa_success');
 Route::post('get-cities', 'FbAdsCon@cities');
 Route::post('get-barangay', 'FbAdsCon@barangay');
 
