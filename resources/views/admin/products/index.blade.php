@@ -89,17 +89,19 @@
 
 
                             <td class="tp-3 tpx-1 ttext-sm">
-                                    @php
-                                        $campaign_price = $product['campaign_price'] == 0? 1 : $product['campaign_price'];
+                                @php
+                                    $campaign_price = $product['campaign_price'] == 0? 1 : $product['campaign_price'];
 
-                                        $profit = ($campaign_price - ((($campaign_price) * 19.5) /100))  - $product['price'];
-                                    @endphp
+                                    $profit = ($campaign_price - ((($campaign_price) * 19.5) /100))  - $product['price'];
+                                @endphp
 
-                                    @if ($campaign_price || $product['price'] == 0)
-                                        0
-                                    @else
-                                        {{ number_format($profit) }} | {{ number_format(($profit / $campaign_price) * 100) }}%
-                                    @endif
+
+                                @if ($product['campaign_price'] == 0 || $product['price'] == 0)
+                                    0
+                                @else
+                                    <span class="ttext-green-600">{{ number_format($profit) }}</span>
+                                    /{{ number_format(($profit / $campaign_price) * 100) }}%
+                                @endif
                             </td>
 
 
