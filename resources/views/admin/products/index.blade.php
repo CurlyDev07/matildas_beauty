@@ -14,25 +14,25 @@
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-4">
             <span class="ttext-base ttext-title tfont-medium">Product List ({{ count($products) }})</span>
             <ul class="tflex">
-                <li class="">
+                <li class="tmx-2 ttext-green-500">
                     <a href="{{ request()->fullUrlWithQuery(['no_selling_price' => 'true']) }}" class="tooltipped" data-position="top" data-tooltip="Filter Products with no Selling Price">
-                        <i class="material-icons grey-text">monetization_on</i>
+                        <i class="fab fa-product-hunt ttext-xl"></i>
                     </a>
                 </li>
-                <li class="">
+                <li class="tmx-2 ttext-green-800">
                     <a href="{{ request()->fullUrlWithQuery(['no_cogs' => 'true']) }}" class="tooltipped" data-position="top" data-tooltip="Filter Products with no cogs">
-                        <i class="material-icons grey-text">monetization_on</i>
+                        <i class="fas fa-hand-holding-usd ttext-xl"></i>
                     </a>
                 </li>
-                <li class="">
+                {{-- <li class="">
                     <i class="material-icons grey-text">delete</i>
-                </li>
-                <li class="ttext-center">
+                </li> --}}
+                {{-- <li class="ttext-center">
                     <i class="material-icons grey-text">sort</i>
-                </li>
-                <li class="ttext-center">
+                </li> --}}
+                {{-- <li class="ttext-center">
                     <i class="material-icons grey-text">more_vert</i>
-                </li>
+                </li> --}}
                 <a href="/admin/products">
                     <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                 </a>
