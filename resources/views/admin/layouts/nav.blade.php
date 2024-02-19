@@ -30,14 +30,14 @@
     <div class="tcontainer">
         <div class="col s12">
             <ul class="tabs tabs tflex tjustify-between">
-                @if (auth()->user()->isMaster())
+                {{-- @if (auth()->user()->isMaster())
                     <li class="tab col">
                         <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'dashboard', 'active') }}" onclick="location.href = '/admin/dashboard'">
                             <i class="fas fa-desktop tmr-1 fa-lg"></i>
                             Dashboard
                         </a>
                     </li>
-                @endif
+                @endif --}}
                
                 <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'orders', 'active') }}" onclick="location.href = '/admin/orders'">
@@ -128,20 +128,20 @@
                         FB
                     </a>
                 </li>
-                <li class="tab col">
+                {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'withdrawal', 'active') }}" onclick="location.href = '/admin/withdrawal'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 
                         Withdrawal
                     </a>
-                </li>
-                @if (auth()->user()->isMaster())
+                </li> --}}
+                {{-- @if (auth()->user()->isMaster())
                     <li class="tab col">
                         <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'users', 'active') }}" onclick="location.href = '/admin/users'">
                             <i class="fas fa-users tmr-1 fa-lg"></i> 
                             Users
                         </a>
                     </li>
-                @endif
+                @endif --}}
                 {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'categories', 'active') }}" onclick="location.href = '/admin/categories'">
                         <i class="fas fa-comment tmr-1 fa-lg"></i> 

@@ -42,29 +42,61 @@
             <table class="tmb-4 tbg-white ttext-md tw-full centered">
                 <tbody>
                     <tr class="tborder-0">
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Photo</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Name</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Sku</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Selling Price</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Campaign Price</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Cogs</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Qty</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Status</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium"><i class="fas fa-cog"></i></th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Photo</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Name</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Sku</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">SRP</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">MinSRP</th>
+
+                        @if (auth()->user()->isMaster())
+                            <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Cogs</th>
+                            <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Profit_%</th>
+                        @endif
+
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Qty</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Status</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm"><i class="fas fa-cog"></i></th>
                     </tr>
                     @foreach ($products as $product)
-                        <tr class="tborder-0 hover:tbg-gray-100">
+                        <tr class="tborder-0 hover:tbg-gray-100 product">
                             <td class="tp-3 tpx-1">
                                 <img src="{{ ($product['primary_image']) }}" data-src="{{ ($product['primary_image']) }}" class="tmx-auto trounded" style="height: 50px;width: 50px;">
                             </td>
                             <td class="tp-3 tpx-1">
-                                <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500 ttext-sm"
+                                <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500 ttext-sm truncate "
                                 style="width: 150px; overflow-wrap: anywhere; white-space: normal;">{{ $product['title'] }}</a>
                             </td>
-                            <td class="tp-3 tpx-1 product-truncate ttext-sm" style="width: 150px; overflow-wrap: anywhere; white-space: normal;"> {{ $product['sku'] }} </td>
-                            <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
-                            <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['campaign_price']) }}</td>
-                            <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['price']) }}</td>
+                            <td class="tp-3 tpx-1  " style="width: 150px; overflow-wrap: anywhere; white-space: normal;">
+                                <span class="truncate ttext-sm">{{ $product['sku'] }}</span>
+                            </td>
+
+
+                            @if (auth()->user()->isMaster()) <!-- TextBox FOR ADMIN AUTO UPDATE -->
+                                <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
+                                    <input type="number" onkeyup="allnumeric(this)" id="{{ $product['id'] }}" onchange="changeSellingPrice({{ $product['id'] }})" class="browser-default ttext-center form-control" value="{{ $product['selling_price'] }}" style="padding: 6px;">
+                                </td>
+                                <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
+                                    <input type="number" onkeyup="allnumeric(this)" class="browser-default ttext-center form-control" value="{{ $product['campaign_price'] }}" style="padding: 6px;">
+                                </td>
+                                <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
+                                    <input type="number" onkeyup="allnumeric(this)" class="browser-default ttext-center form-control" value="{{ $product['price'] }}" style="padding: 6px;">
+                                </td>
+                            @else
+                                <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
+                                <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['campaign_price']) }}</td>
+                                <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['price']) }}</td>
+                            @endif
+
+                            <td class="tp-3 tpx-1 ttext-sm">
+                                @php
+                                    $profit = ($product['campaign_price'] - ((($product['campaign_price']) * 19.5) /100))  - $product['price'];
+                                @endphp
+
+                                {{ $profit }} | {{ number_format(($profit / $product['campaign_price']) * 100) }}%
+                            </td>
+
+
+
                             <td class="tp-3 tpx-1 ttext-sm">{{ $product['qty'] ?? 'N/A'  }}</td>
                             <td class="tp-3 tpx-1 ttext-sm">
                                 @if ($product['status'] == 'active')
@@ -114,6 +146,12 @@
 
 
     <script>
+
+        // function changeSellingPrice(id){
+        //     let id = $('.product').find('#' + id);
+        //     console.log(id)
+        // }
+
         $('.delete').click(function (e) {
             $.ajax({
                 type: 'POST',
