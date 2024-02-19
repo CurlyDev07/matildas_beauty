@@ -15,12 +15,17 @@
             <span class="ttext-base ttext-title tfont-medium">Product List ({{ count($products) }})</span>
             <ul class="tflex">
                 <li class="tmx-2 ttext-green-500">
-                    <a href="{{ request()->fullUrlWithQuery(['no_selling_price' => 'true']) }}" class="tooltipped" data-position="top" data-tooltip="Filter Products with no Selling Price">
+                    <a href="?with_profit=true" class="tooltipped" data-position="top" data-tooltip="Filter Products with Profit Computation">
+                        <i class="fas fa-check-square ttext-xl"></i>
+                    </a>
+                </li>
+                <li class="tmx-2 ttext-green-500">
+                    <a href="?no_selling_price=true" class="tooltipped" data-position="top" data-tooltip="Filter Products with no Selling Price">
                         <i class="fab fa-product-hunt ttext-xl"></i>
                     </a>
                 </li>
                 <li class="tmx-2 ttext-green-800">
-                    <a href="{{ request()->fullUrlWithQuery(['no_cogs' => 'true']) }}" class="tooltipped" data-position="top" data-tooltip="Filter Products with no cogs">
+                    <a href="?no_cogs=true" class="tooltipped" data-position="top" data-tooltip="Filter Products with no cogs">
                         <i class="fas fa-hand-holding-usd ttext-xl"></i>
                     </a>
                 </li>
