@@ -87,12 +87,20 @@
                                 <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['price']) }}</td>
                             @endif
 
-                            <td class="tp-3 tpx-1 ttext-sm">
-                                @php
-                                    $profit = ($product['campaign_price'] - ((($product['campaign_price']) * 19.5) /100))  - $product['price'];
-                                @endphp
 
-                                {{ $profit }} | {{ number_format(($profit / $product['campaign_price']) * 100) }}%
+                            <td class="tp-3 tpx-1 ttext-sm">
+                                    @php
+                                        $campaign_price = $product['campaign_price'] == 0? 1 : $product['campaign_price'];
+
+                                        $profit = ($campaign_price - ((($campaign_price) * 19.5) /100))  - $product['price'];
+                                    @endphp
+
+                                    @if ($campaign_price == 0)
+                                        0
+                                    @else
+                                    {{ $profit }} | {{ number_format(($profit / $campaign_price) * 100) }}%
+                                        
+                                    @endif
                             </td>
 
 
