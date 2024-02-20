@@ -61,7 +61,7 @@
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/8d4a8c4bc9.js" crossorigin="anonymous"></script>
 
-        <!-- Facebook Pixel Code -->
+    <!---- Facebook Pixel Code -->
         <script>
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -78,8 +78,34 @@
         <noscript>
             <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1614979632011184&ev=PageView&noscript=1"/>
         </noscript>
-        <!-- End Facebook Pixel Code -->
+    <!---- End Facebook Pixel Code -->
 
+    <!----- Tiktok Pixel Code ----->
+        <script>
+            !function (w, d, t) {
+            w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+            
+            ttq.load('CNA5J9BC77U0MBPFU4C0');
+            ttq.page();
+            }(window, document, 'ttq');
+        </script>
+    <!----- Tiktok Pixel Code ----->
+
+
+        <!----- Tiktok Pixel ViewContent ----->
+    <script>
+        ttq.track('ViewContent', {
+            "contents": [
+                {
+                    "content_id": "1", // string. ID of the product. Example: "1077218".
+                    "content_type": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. Either product or product_group.
+                    "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
+                    "brand": "MissTisa" // string. The brand name of the page or product. Example: "Nike".
+                }
+            ]
+        });
+    </script>
+    
 </head>
 <body>
 
@@ -645,6 +671,24 @@
                 $.post("/event-listener",{
                     order_form: 1
                 });// EVENT LISTENER Track ORDER FORM
+
+                ttq.track('ClickButton', {
+                    "contents": [
+                        {
+                            "content_id": "1" // string. ID of the product. Example: "1077218".
+                        }
+                    ]
+                });// Tiktok Event
+
+                ttq.track('AddPaymentInfo', {
+                    "contents": [
+                        {
+                            "content_id": "1", // string. ID of the product. Example: "1077218".
+                            "content_type": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. Either product or product_group.
+                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" // string. The name of the page or product. Example: "shirt".
+                        }
+                    ]
+                });// Tiktok Event
             });
 
             $('#full_name').click(function (e) {
@@ -657,6 +701,17 @@
                 $.post("/event-listener",{
                     phone_number: 1
                 });// EVENT LISTENER Track ENTER CONTACT NUMBER
+
+                ttq.track('Contact', {
+                    "contents": [
+                        {
+                            "content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
+                            "content_type": "<content_type>", // string. Either product or product_group.
+                            "content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
+                        }
+                    ]
+                });//Tiktok Event
+
             });
 
             $('#address').click(function (e) {
@@ -675,6 +730,20 @@
                 $.post("/event-listener",{
                     submit_order: 1
                 });//  EVENT LISTENER Track SUBMIT ORDER
+
+                ttq.track('InitiateCheckout', {
+                    "contents": [
+                        {
+                            "content_id": "1", // string. ID of the product. Example: "1077218".
+                            "content_type": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. Either product or product_group.
+                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
+                            "quantity": "1", // number. The number of items. Example: 4.
+                            "price": $('.total').val() // number. The price of a single item. Example: 25.
+                        }
+                    ],
+                    "value": $('.total').val(), // number. Value of the order or items sold. Example: 100.
+                    "currency": "PHP" // string. The 4217 currency code. Example: "USD".
+                });//TIktok Event
             })
 
             $("#form").submit(function(event) {
