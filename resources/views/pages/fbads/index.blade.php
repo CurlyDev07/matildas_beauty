@@ -712,6 +712,8 @@
                 $.post("/event-listener",{
                     submit_order: 1
                 });//  EVENT LISTENER Track SUBMIT ORDER
+                
+                let amount = $('#total').val();
 
                 ttq.track('InitiateCheckout', {
                     "contents": [
@@ -720,10 +722,10 @@
                             "content_type": "product", // string. Either product or product_group.
                             "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
                             "quantity": "1", // number. The number of items. Example: 4.
-                            "price": $('#total').val() // number. The price of a single item. Example: 25.
+                            "price": amount // number. The price of a single item. Example: 25.
                         }
                     ],
-                    "value": $('#total').val(), // number. Value of the order or items sold. Example: 100.
+                    "value": amount, // number. Value of the order or items sold. Example: 100.
                     "currency": "PHP" // string. The 4217 currency code. Example: "USD".
                 });//TIktok Event
             })
