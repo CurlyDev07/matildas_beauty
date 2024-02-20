@@ -713,7 +713,7 @@
                     submit_order: 1
                 });//  EVENT LISTENER Track SUBMIT ORDER
                 
-                let amount = $('#total').val();
+                let amount = $('#total').html();
 
                 ttq.track('InitiateCheckout', {
                     "contents": [
