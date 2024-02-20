@@ -724,7 +724,7 @@
                     "contents": [
                         {
                             "content_id": "1", // string. ID of the product. Example: "1077218".
-                            "content_type": "Product", // string. Either product or product_group.
+                            "content_type": "product", // string. Either product or product_group.
                             "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
                             "quantity": "1", // number. The number of items. Example: 4.
                             "price": $('.total').val() // number. The price of a single item. Example: 25.
