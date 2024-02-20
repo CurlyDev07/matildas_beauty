@@ -92,21 +92,6 @@
         </script>
     <!----- Tiktok Pixel Code ----->
 
-
-        <!----- Tiktok Pixel ViewContent ----->
-    <script>
-        // ttq.track('ViewContent', {
-        //     "contents": [
-        //         {
-        //             "content_id": "1", // string. ID of the product. Example: "1077218".
-        //             "content_type": "product", // string. Either product or product_group.
-        //             "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
-        //             "brand": "MissTisa" // string. The brand name of the page or product. Example: "Nike".
-        //         }
-        //     ]
-        // });
-    </script>
-    
 </head>
 <body>
 
@@ -568,6 +553,20 @@
 
     <footer>
         
+        <!----- Tiktok Pixel ViewContent ----->
+        <script>
+            ttq.track('ViewContent', {
+                "contents": [
+                    {
+                        "content_id": "1", // string. ID of the product. Example: "1077218".
+                        "content_type": "product", // string. Either product or product_group.
+                        "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
+                        "brand": "MissTisa" // string. The brand name of the page or product. Example: "Nike".
+                    }
+                ]
+            });
+        </script>
+
         @if (request()->amount)
             <script>
                 let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
@@ -674,15 +673,15 @@
                 });// EVENT LISTENER Track ORDER FORM
 
 
-                // ttq.track('AddPaymentInfo', {
-                //     "contents": [
-                //         {
-                //             "content_id": "1", // string. ID of the product. Example: "1077218".
-                //             "content_type": "product", // string. Either product or product_group.
-                //             "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" // string. The name of the page or product. Example: "shirt".
-                //         }
-                //     ]
-                // });// Tiktok Event
+                ttq.track('AddPaymentInfo', {
+                    "contents": [
+                        {
+                            "content_id": "1", // string. ID of the product. Example: "1077218".
+                            "content_type": "product", // string. Either product or product_group.
+                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" // string. The name of the page or product. Example: "shirt".
+                        }
+                    ]
+                });// Tiktok Event
             });
 
             $('#full_name').click(function (e) {
@@ -716,19 +715,19 @@
                 
                 let amount = $('#total').html();
 
-                // ttq.track('InitiateCheckout', {
-                //     "contents": [
-                //         {
-                //             "content_id": "1", // string. ID of the product. Example: "1077218".
-                //             "content_type": "product", // string. Either product or product_group.
-                //             "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
-                //             "quantity": "1", // number. The number of items. Example: 4.
-                //             "price": amount // number. The price of a single item. Example: 25.
-                //         }
-                //     ],
-                //     "value": amount, // number. Value of the order or items sold. Example: 100.
-                //     "currency": "PHP" // string. The 4217 currency code. Example: "USD".
-                // });//TIktok Event
+                ttq.track('InitiateCheckout', {
+                    "contents": [
+                        {
+                            "content_id": "1", // string. ID of the product. Example: "1077218".
+                            "content_type": "product", // string. Either product or product_group.
+                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
+                            "quantity": "1", // number. The number of items. Example: 4.
+                            "price": amount // number. The price of a single item. Example: 25.
+                        }
+                    ],
+                    "value": amount, // number. Value of the order or items sold. Example: 100.
+                    "currency": "PHP" // string. The 4217 currency code. Example: "USD".
+                });//TIktok Event
             })
 
             $("#form").submit(function(event) {
