@@ -98,7 +98,7 @@
             "contents": [
                 {
                     "content_id": "1", // string. ID of the product. Example: "1077218".
-                    "content_type": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. Either product or product_group.
+                    "content_type": "product", // string. Either product or product_group.
                     "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
                     "brand": "MissTisa" // string. The brand name of the page or product. Example: "Nike".
                 }
@@ -684,7 +684,7 @@
                     "contents": [
                         {
                             "content_id": "1", // string. ID of the product. Example: "1077218".
-                            "content_type": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. Either product or product_group.
+                            "content_type": "product", // string. Either product or product_group.
                             "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" // string. The name of the page or product. Example: "shirt".
                         }
                     ]
@@ -701,17 +701,6 @@
                 $.post("/event-listener",{
                     phone_number: 1
                 });// EVENT LISTENER Track ENTER CONTACT NUMBER
-
-                ttq.track('Contact', {
-                    "contents": [
-                        {
-                            "content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-                            "content_type": "<content_type>", // string. Either product or product_group.
-                            "content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-                        }
-                    ]
-                });//Tiktok Event
-
             });
 
             $('#address').click(function (e) {
@@ -735,7 +724,7 @@
                     "contents": [
                         {
                             "content_id": "1", // string. ID of the product. Example: "1077218".
-                            "content_type": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. Either product or product_group.
+                            "content_type": "Product", // string. Either product or product_group.
                             "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
                             "quantity": "1", // number. The number of items. Example: 4.
                             "price": $('.total').val() // number. The price of a single item. Example: 25.

@@ -172,7 +172,7 @@
                     "contents": [
                         {
                             "content_id": "1", // string. ID of the product. Example: "1077218".
-                            "content_type": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. Either product or product_group.
+                            "content_type": "Product", // string. Either product or product_group.
                             "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
                             "quantity": "1", // number. The number of items. Example: 4.
                             "price": fb_purchase_value // number. The price of a single item. Example: 25.
@@ -187,7 +187,7 @@
                     "contents": [
                         {
                             "content_id": "1", // string. ID of the product. Example: "1077218".
-                            "content_type": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. Either product or product_group.
+                            "content_type": "product", // string. Either product or product_group.
                             "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
                             "quantity": "1", // number. The number of items. Example: 4.
                             "price": fb_purchase_value // number. The price of a single item. Example: 25.
