@@ -83,10 +83,10 @@
     <!----- Tiktok Pixel Code ----->
         <script>
             !function (w, d, t) {
-            w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+                w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
             
-            ttq.load('CNA5J9BC77U0MBPFU4C0');
-            ttq.page();
+                ttq.load('CNAPJGJC77U3KI9K4LG0');
+                ttq.page();
             }(window, document, 'ttq');
         </script>
     <!----- Tiktok Pixel Code ----->
@@ -172,9 +172,7 @@
                     "contents": [
                         {
                             "content_id": "1", // string. ID of the product. Example: "1077218".
-                            "content_type": "product", // string. Either product or product_group.
-                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
-                            "quantity": "1", // number. The number of items. Example: 4.
+                            "quantity": 1, // number. The number of items. Example: 4.
                             "price": fb_purchase_value // number. The price of a single item. Example: 25.
                         }
                     ],
@@ -186,10 +184,8 @@
                 ttq.track('CompletePayment', {
                     "contents": [
                         {
-                            "content_id": "1", // string. ID of the product. Example: "1077218".
-                            "content_type": "product", // string. Either product or product_group.
-                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
-                            "quantity": "1", // number. The number of items. Example: 4.
+                            "content_id": 1, // string. ID of the product. Example: "1077218".
+                            "quantity": 1, // number. The number of items. Example: 4.
                             "price": fb_purchase_value // number. The price of a single item. Example: 25.
                         }
                     ],
