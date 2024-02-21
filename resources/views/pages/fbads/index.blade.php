@@ -558,11 +558,11 @@
             ttq.track('ViewContent', {
                 "contents": [
                     {
-                        "content_id": "1", // string. ID of the product. Example: "1077218".
-                        "content_type": "product", // string. Either product or product_group.
-                        "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
-                        "content_category": "Beauty Products", // string. The category of the page or product. Example: "apparel".
-                        "brand": "MissTisa" // string. The brand name of the page or product. Example: "Nike".
+                        "content_id": "1",
+                        "content_type": "product", 
+                        "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", 
+                        "content_category": "Beauty Products",
+                        "brand": "MissTisa"
                     }
                 ]
             });
@@ -677,12 +677,12 @@
                 ttq.track('AddPaymentInfo', {
                     "contents": [
                         {
-                            "content_id": "1", // string. ID of the product. Example: "1077218".
-                            "content_type": "product", // string. Either product or product_group.
-                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" // string. The name of the page or product. Example: "shirt".
+                            "content_id": "1", 
+                            "content_type": "product",
+                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" 
                         }
                     ],
-                    "description": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" // string. Non-hashed public IP address of the browser.
+                    "description": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" 
                 });// Tiktok Event
             });
 
@@ -720,15 +720,15 @@
                 ttq.track('InitiateCheckout', {
                     "contents": [
                         {
-                            "content_id": "1", // string. ID of the product. Example: "1077218".
-                            "content_type": "product", // string. Either product or product_group.
-                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", // string. The name of the page or product. Example: "shirt".
-                            "quantity": "1, // number. The number of items. Example: 4.
-                            "price": amount // number. The price of a single item. Example: 25.
+                            "content_id": "1",
+                            "content_type": "product",
+                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set",
+                            "quantity": 1,
+                            "price": amount
                         }
                     ],
-                    "value": amount, // number. Value of the order or items sold. Example: 100.
-                    "currency": "PHP" // string. The 4217 currency code. Example: "USD".
+                    "value": amount,
+                    "currency": "PHP" 
                 });//TIktok Event
 
             })
