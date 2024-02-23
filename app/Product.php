@@ -10,7 +10,7 @@ class Product extends Model
 {
     use SoftDeletes;
     
-    protected $fillable = ['title', 'description', 'campaign_price', 'selling_price','price', 'compare_price', 'qty', 'threshold','sku', 'barcode', 'short_description', 'status'];
+    protected $fillable = ['title', 'description', 'campaign_price', 'selling_price','price', 'compare_price', 'qty', 'threshold','sku', 'barcode', 'short_description', 'status', 'profit'];
     protected $hidden = ['created_at', 'updated_at'];
     protected $appends = ['primary_image'];
 

@@ -52,6 +52,10 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::post('/status', 'ProductsCon@status')->name('products.status');
         Route::post('/restore', 'ProductsCon@restore')->name('products.restore');
         Route::get('/archive', 'ProductsCon@archive');
+
+        Route::post('/change-profit', 'ProductsCon@change_profit')->name('products.change_profit');
+        Route::post('/change-price', 'ProductsCon@change_price')->name('products.change_price');
+
         
         Route::post('/generate_variant', 'ProductsCon@generate_variant');
     });

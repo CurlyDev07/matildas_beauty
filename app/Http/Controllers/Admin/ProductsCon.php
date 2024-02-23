@@ -200,6 +200,21 @@ class ProductsCon extends Controller
            
             return view('admin.products.variant_items_form', compact('all_combination', 'variant_key_values'));
     }
+
+
+    public function change_profit(Request $request){
+        $product = Product::find($request->id);
+        $update = $product->update(['profit' => $request->profit]);
+
+        return request()->all();
+    }
+    
+    public function change_price(Request $request){
+        $product = Product::find($request->id);
+        $update = $product->update(['price' => $request->price]);
+
+        return request()->all();
+    }
 }
 
 

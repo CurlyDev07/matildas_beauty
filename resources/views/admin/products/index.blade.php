@@ -50,8 +50,7 @@
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Photo</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Name</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Sku</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">SRP</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">MinSRP</th>
+                        {{-- <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">SRP</th> --}}
 
                         @if (auth()->user()->isMaster())
                             <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Cogs</th>
@@ -75,39 +74,27 @@
                                 <span class="truncate ttext-sm">{{ $product['sku'] }}</span>
                             </td>
 
+                            @php
+                                $selling_price = $product['price'] - $product['profit'];
+                                
+                            @endphp
+
 
                             @if (auth()->user()->isMaster()) <!-- TextBox FOR ADMIN AUTO UPDATE -->
+                                {{-- <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
+                                    <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}" class="browser-default ttext-center form-control selling_price" value="{{ $selling_price }}" style="padding: 6px;">
+                                </td><!-- SRP --> --}}
+                  
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
-                                    <input type="number" onkeyup="allnumeric(this)" id="{{ $product['id'] }}" onchange="changeSellingPrice({{ $product['id'] }})" class="browser-default ttext-center form-control" value="{{ $product['selling_price'] }}" style="padding: 6px;">
+                                    <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}"class="browser-default ttext-center form-control price" value="{{ $product['price'] }}" style="padding: 6px;">
                                 </td>
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
-                                    <input type="number" onkeyup="allnumeric(this)" class="browser-default ttext-center form-control" value="{{ $product['campaign_price'] }}" style="padding: 6px;">
-                                </td>
-                                <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
-                                    <input type="number" onkeyup="allnumeric(this)" class="browser-default ttext-center form-control" value="{{ $product['price'] }}" style="padding: 6px;">
+                                    <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}"class="browser-default ttext-center form-control profit" value="{{ $product['profit'] }}" style="padding: 6px;">
                                 </td>
                             @else
                                 <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
-                                <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['campaign_price']) }}</td>
                                 <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['price']) }}</td>
                             @endif
-
-
-                            <td class="tp-3 tpx-1 ttext-sm">
-                                @php
-                                    $campaign_price = $product['campaign_price'] == 0? 1 : $product['campaign_price'];
-
-                                    $profit = ($campaign_price - ((($campaign_price) * 19.5) /100))  - $product['price'];
-                                @endphp
-
-
-                                @if ($product['campaign_price'] == 0 || $product['price'] == 0)
-                                    0
-                                @else
-                                    <span class="ttext-green-600">{{ number_format($profit) }}</span>
-                                    /{{ number_format(($profit / $campaign_price) * 100) }}%
-                                @endif
-                            </td>
 
 
 
@@ -161,10 +148,43 @@
 
     <script>
 
-        // function changeSellingPrice(id){
-        //     let id = $('.product').find('#' + id);
-        //     console.log(id)
-        // }
+        $('.profit').change(function(){
+            let id = $(this).data('id')
+            let profit = $(this).val();
+
+            console.log('id: ' +id);
+            console.log('profit: ' +profit);
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("products.change_profit") }}',
+                data: {
+                    id: id,
+                    profit:profit
+                },
+            });
+        });// Onchange Profit
+
+        $('.price').change(function(){
+            let id = $(this).data('id')
+            let price = $(this).val();
+
+            console.log('id: ' +id);
+            console.log('price: ' +price);
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("products.change_price") }}',
+                data: {
+                    id: id,
+                    price:price
+                },
+            });
+        });// Onchange Capital
+
+
+
+
 
         $('.delete').click(function (e) {
             $.ajax({
