@@ -95,7 +95,7 @@
                                 </td><!-- Profit --> --}}
                             @else
                                 <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
-                                <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['price']) }}</td>
+                                {{-- <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['price']) }}</td> --}}
                             @endif
 
 
