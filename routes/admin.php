@@ -55,6 +55,9 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
         Route::post('/change-profit', 'ProductsCon@change_profit')->name('products.change_profit');
         Route::post('/change-price', 'ProductsCon@change_price')->name('products.change_price');
+        Route::post('/selling-price', 'ProductsCon@selling_price')->name('products.selling_price');
+
+        Route::post('/get-cogs', 'ProductsCon@get_cogs')->name('products.get_cogs');
 
         
         Route::post('/generate_variant', 'ProductsCon@generate_variant');

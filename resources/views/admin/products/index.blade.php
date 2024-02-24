@@ -15,29 +15,36 @@
             <span class="ttext-base ttext-title tfont-medium">Product List ({{ count($products) }})</span>
             <ul class="tflex">
                 <li class="tmx-2 ttext-green-500">
-                    <a href="?with_profit=true" class="tooltipped" data-position="top" data-tooltip="Filter Products with Profit Computation">
-                        <i class="fas fa-check-square ttext-xl"></i>
-                    </a>
-                </li>
+                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center tbg-red-500">
+                        <a href="?no_selling_price=true" class="tooltipped" data-position="top" data-tooltip="No SRP Product">
+                            <span class="tpl-1 ttext-white">
+                                <i class="fas fa-bookmark"></i>
+                                No Srp
+                            </span>
+                        </a>
+                    </div>
+                </li><!-- No Srp -->
                 <li class="tmx-2 ttext-green-500">
-                    <a href="?no_selling_price=true" class="tooltipped" data-position="top" data-tooltip="Filter Products with no Selling Price">
-                        <i class="fab fa-product-hunt ttext-xl"></i>
-                    </a>
-                </li>
-                <li class="tmx-2 ttext-green-800">
-                    <a href="?no_cogs=true" class="tooltipped" data-position="top" data-tooltip="Filter Products with no cogs">
-                        <i class="fas fa-hand-holding-usd ttext-xl"></i>
-                    </a>
-                </li>
-                {{-- <li class="">
-                    <i class="material-icons grey-text">delete</i>
-                </li> --}}
-                {{-- <li class="ttext-center">
-                    <i class="material-icons grey-text">sort</i>
-                </li> --}}
-                {{-- <li class="ttext-center">
-                    <i class="material-icons grey-text">more_vert</i>
-                </li> --}}
+                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center tbg-green-500">
+                        <a href="?no_cogs=true" class="tooltipped" data-position="top" data-tooltip="No Capital">
+                            <span class="tpl-1 ttext-white">
+                                <i class="fas fa-bookmark"></i>
+                                No Capital
+                            </span>
+                        </a>
+                    </div>
+                </li><!-- No Capital -->
+                <li class="tmx-2 ttext-green-500">
+                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center tbg-red-500">
+                        <a href="?out_of_stock=true" class="tooltipped" data-position="top" data-tooltip="Out of Stock">
+                            <span class="tpl-1 ttext-white">
+                                <i class="fas fa-bookmark"></i>
+                                Out of Stock
+                            </span>
+                        </a>
+                    </div>
+                </li><!-- Out of Stock-->
+             
                 <a href="/admin/products">
                     <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                 </a>
@@ -50,11 +57,11 @@
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Photo</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Name</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Sku</th>
-                        {{-- <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">SRP</th> --}}
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">SRP</th>
 
                         @if (auth()->user()->isMaster())
                             <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Cogs</th>
-                            <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Profit_%</th>
+                            {{-- <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Profit_%</th> --}}
                         @endif
 
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Qty</th>
@@ -74,23 +81,18 @@
                                 <span class="truncate ttext-sm">{{ $product['sku'] }}</span>
                             </td>
 
-                            @php
-                                $selling_price = $product['price'] - $product['profit'];
-                                
-                            @endphp
-
-
                             @if (auth()->user()->isMaster()) <!-- TextBox FOR ADMIN AUTO UPDATE -->
-                                {{-- <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
-                                    <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}" class="browser-default ttext-center form-control selling_price" value="{{ $selling_price }}" style="padding: 6px;">
-                                </td><!-- SRP --> --}}
+                                <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
+                                    <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}" class="browser-default ttext-center form-control selling_price" value="{{ $product['selling_price'] }}" style="padding: 6px;">
+                                </td><!-- SRP -->
                   
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
+                                    <button class="browser-default ttext-center cogs tbg-green-500 ttext-white tpx-2 tpy-1 trounded tmb-1" data-id="{{ $product['id'] }}">Get_Cogs</button>
                                     <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}"class="browser-default ttext-center form-control price" value="{{ $product['price'] }}" style="padding: 6px;">
-                                </td>
-                                <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
+                                </td><!-- Cogs -->
+                                {{-- <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
                                     <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}"class="browser-default ttext-center form-control profit" value="{{ $product['profit'] }}" style="padding: 6px;">
-                                </td>
+                                </td><!-- Profit --> --}}
                             @else
                                 <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
                                 <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['price']) }}</td>
@@ -144,16 +146,41 @@
 
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <script>
 
+        $('.cogs').click(function () {
+            let id = $(this).data('id');
+            let dis = $(this);
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("products.get_cogs") }}',
+                data: {
+                    id: id,
+                },
+                success: function(data) {
+                    if (data == 0) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "warning",
+                            title: "No Purchase Record",
+                            showConfirmButton: false,
+                            timer: 300
+                        });
+                    }
+
+                    console.log(data); 
+                    dis.next().val(data)
+                }
+            });
+        })// Get Cogs From Last Purchase
+
         $('.profit').change(function(){
             let id = $(this).data('id')
             let profit = $(this).val();
-
-            console.log('id: ' +id);
-            console.log('profit: ' +profit);
 
             $.ajax({
                 type: 'POST',
@@ -178,6 +205,23 @@
                 data: {
                     id: id,
                     price:price
+                },
+            });
+        });// Onchange Capital
+
+        $('.selling_price').change(function(){
+            let id = $(this).data('id')
+            let selling_price = $(this).val();
+
+            console.log('id: ' +id);
+            console.log('selling_price: ' +selling_price);
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("products.selling_price") }}',
+                data: {
+                    id: id,
+                    selling_price:selling_price
                 },
             });
         });// Onchange Capital

@@ -11,7 +11,7 @@ use Illuminate\Support\Arr;
 use App\ProductImage;
 use App\ProductVariantOption;
 use App\Http\Requests\Products\UploadProductsRequest;
-
+use App\PurchaseProduct;
 class ProductsCon extends Controller
 {
     public function index(Request $request){
@@ -19,9 +19,6 @@ class ProductsCon extends Controller
                 $query->where('primary', 1);
             })
         )
-        ->when($request->selling_price, function ($query, $selling_price) {
-            return $query->where('selling_price', 0);
-        })
 
         ->when($request->no_cogs, function($query){
             return $query->where('price', 0);
@@ -31,10 +28,9 @@ class ProductsCon extends Controller
             return $query->where('selling_price', 0);
         })// filter all product with no no_selling_price
 
-        ->when($request->with_profit, function($query){
-
-            return $query->where('campaign_price', '>', 0)->where('price', '>' , 0);
-        })// filter all product with no no_selling_price
+        ->when($request->out_of_stock, function($query){
+            return $query->where('qty', '<=',0);
+        })// filter Out Of Stock
 
         ->latest()->get()->toArray();
 
@@ -215,6 +211,28 @@ class ProductsCon extends Controller
 
         return request()->all();
     }
+
+    public function selling_price(Request $request){
+        $product = Product::find($request->id);
+        $update = $product->update(['selling_price' => $request->selling_price]);
+
+        return request()->all();
+    }
+
+    public function get_cogs(Request $request){ 
+        $last_price = PurchaseProduct::where('product_id', $request->id)->where('received', 'yes')->get('price')->last();
+
+        if ($last_price) {
+            $product = Product::find($request->id);
+            $update = $product->update(['price' => $last_price->price]);
+    
+            return $last_price->price;
+        }
+
+        return 0;
+    }
+
+
 }
 
 
