@@ -133,6 +133,7 @@
                         <div class="tw-1/2 tflex tflex-col">
                             <span class="ttext-md tfont-medium">Contact Number</span>
                             <span class="">{{ $data['phone_number'] }}</span>
+                            <input type="text" id="phone_number" value="{{ hash('sha256', $data['phone_number']) }}">
                         </div>
                     </div>
                     <div class="tw-full tflex tmt-3">
@@ -163,6 +164,19 @@
     </div>
 
     <footer>
+
+        <script>
+
+            let phone_number = $('#phone_number').val();
+            // add this before event code to all pages where PII data postback is expected and appropriate 
+            ttq.identify({
+                "email": "", // string. The email of the customer if available. It must be hashed with SHA-256 on the client side.
+                "phone_number": $('#phone_number').val(), // string. The phone number of the customer if available. It must be hashed with SHA-256 on the client side.
+                "external_id": "" // string. Any unique identifier, such as loyalty membership IDs, user IDs, and external cookie IDs.It must be hashed with SHA-256 on the client side.
+            });
+        </script>
+
+
         @if (request()->amount)
             <script>
                 let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
