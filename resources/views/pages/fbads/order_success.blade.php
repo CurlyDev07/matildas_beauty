@@ -133,7 +133,7 @@
                         <div class="tw-1/2 tflex tflex-col">
                             <span class="ttext-md tfont-medium">Contact Number</span>
                             <span class="">{{ $data['phone_number'] }}</span>
-                            <input type="text" id="phone_number" value="{{ hash('sha256', $data['phone_number']) }}">
+                            <input type="hidden" id="phone_number" value="{{ hash('sha256', $data['phone_number']) }}">
                         </div>
                     </div>
                     <div class="tw-full tflex tmt-3">
@@ -167,7 +167,6 @@
 
         <script>
 
-            let phone_number = $('#phone_number').val();
             // add this before event code to all pages where PII data postback is expected and appropriate 
             ttq.identify({
                 "email": "", // string. The email of the customer if available. It must be hashed with SHA-256 on the client side.
