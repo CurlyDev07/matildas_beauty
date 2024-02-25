@@ -40,7 +40,7 @@ class ProductsCon extends Controller
             return $query->where('sku', 'like', '%'.request()->search.'%')
             ->orWhere('title', 'like', '%'.request()->search.'%');
         })// search
-        ->oldest('qty')->paginate(2);
+        ->oldest('qty')->paginate(100);
 
         return view('admin.products.index', compact('products'));
     }
