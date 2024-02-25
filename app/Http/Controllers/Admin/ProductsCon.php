@@ -32,7 +32,15 @@ class ProductsCon extends Controller
             return $query->where('qty', '<=',0);
         })// filter Out Of Stock
 
-        ->latest()->get()->toArray();
+        ->when($request->sort, function($query){
+            return $query->orderBy('id', request()->sort);
+        })// sort
+
+        ->when($request->search, function($query){
+            return $query->where('sku', 'like', '%'.request()->search.'%')
+            ->orWhere('title', 'like', '%'.request()->search.'%');
+        })// search
+        ->oldest('qty')->paginate(2);
 
         return view('admin.products.index', compact('products'));
     }
