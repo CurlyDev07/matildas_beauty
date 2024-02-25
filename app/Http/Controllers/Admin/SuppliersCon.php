@@ -6,6 +6,9 @@ use App\Http\Requests\Suppliers\CreateSupplierRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Suppliers;
+use App\Purchase;
+use App\Product;
+use App\PurchaseProduct;
 
 
 class SuppliersCon extends Controller
@@ -33,6 +36,16 @@ class SuppliersCon extends Controller
         
         return view('admin.suppliers.update', ['supplier' => $supplier]);
     }
+    
+    public function details($supplier_id){
+
+        $purchase_ids = Purchase::where('supplier', $supplier_id)->pluck('id');
+        $purchase_products = PurchaseProduct::whereIn('purchase_id', $purchase_ids)->pluck('product_id')->unique();
+        $products = Product::whereIn('id', $purchase_products)->select('id', 'title', 'sku')->get();
+        
+        return view('admin.suppliers.details', ['products' => $products]);
+    }
+
     
     public function patch(CreateSupplierRequest $request){
         $supplier = Suppliers::find($request->id);

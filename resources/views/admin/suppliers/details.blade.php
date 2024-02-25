@@ -7,7 +7,7 @@
 
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
-            <span class="ttext-base ttext-title tfont-medium">Suppliers</span>
+            <span class="ttext-base ttext-title tfont-medium">Suppliers <span class="ttext-gray-500 ttext-xl">></span> Products</span>
             <ul class="tflex titems-center">
                 {{-- <li class="tmr-4">
                     <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
@@ -39,38 +39,32 @@
             <table class="tmb-4 tbg-white ttext-md tw-full">
                 <tbody>
                     <tr class="tborder-0">
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Name</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Phone Number</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Province/City</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Social Media</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Link</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Image</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Title</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Sku</th>
                     </tr>
+
+                    @foreach ($products as $product)
+                        <tr class="tborder-0 hover:tbg-gray-100 product">
+                            <td class="tp-3 tpx-1 ttext-center">
+                                <img src="{{ $product->primary_image }}" data-src="{{ $product->primary_image }}" class="tmx-auto trounded ttext-center" style="height: 50px;width: 50px;">
+                            </td>
+                            <td class="tp-3 tpx-1 ttext-center">
+                                <span class="ttext-sm truncate ttext-center">{{ $product->title }}</span>
+                            </td>
+                            <td class="tp-3 tpx-1 ttext-center">
+                                <span class="ttext-sm truncate ttext-center">{{ $product->sku }}</span>
+                            </td>
+                            {{-- <td class="tp-3 tpx-1 ttext-center">
+                                <a href="" target="_blank" class="hover:tunderline ttext-blue-500 ttext-sm truncate ttext-center " style="width: 150px; overflow-wrap: anywhere; white-space: normal;">{{ $product->title }}</a>
+                            </td>
+                            <td class="tp-3 tpx-1 ttext-center  " style="width: 150px; overflow-wrap: anywhere; white-space: normal;">
+                                <a href="" target="_blank" class="hover:tunderline ttext-blue-500 ttext-sm truncate ttext-center" style="width: 150px; overflow-wrap: anywhere; white-space: normal;">{{ $product->sku }}</a>
+                            </td> --}}
+                        </tr>
+                    @endforeach
                 </tbody>
-
-                @foreach ($suppliers as $supplier)
-                    <tr>
-                        <td class="ttext-sm ttext-center">
-                            <a href="/admin/suppliers/details/{{ $supplier->id }}" class="ttext-blue-600">{{ $supplier->name }} {{ $supplier->surname }}</a>
-                        </td>
-                        <td class="ttext-sm ttext-center">{{ $supplier->phone_number }}</td>
-                        <td class="ttext-sm ttext-center">{{ $supplier->province }}/{{ $supplier->city }}</td>
-                        <td class="ttext-sm ttext-center">
-                            <a href="{{ $supplier->social_media_link }}" target=”_blank” class="ttext-blue-500 ttext-sm ttext-center">{{ $supplier->social_media }}</a>
-                        </td>
-                        <td class="ttext-sm ttext-center">{{ $supplier->created_at->diffForHumans() }}</td>
-                        <td class="ttext-sm ttext-center">
-                            <a href="{{ route('suppliers.view', ['supplier_id' => $supplier->id]) }}">
-                                <i class="fas fa-edit ttext-primary ttext-xl"></i>
-                            </a>
-                            <a href="{{ route('suppliers.view', ['supplier_id' => $supplier->id]) }}">
-                                <i class="fas fa-edit ttext-primary ttext-xl"></i>
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
             </table>
-
         </div><!-- TABLE -->
 
     </div>

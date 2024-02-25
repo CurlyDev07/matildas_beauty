@@ -163,6 +163,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/create', 'SuppliersCon@create');
         Route::post('/store', 'SuppliersCon@store')->name('suppliers.store');
         Route::get('/view/{supplier_id}', 'SuppliersCon@view')->name('suppliers.view');
+        Route::get('/details/{supplier_id}', 'SuppliersCon@details')->name('suppliers.details');
         Route::post('/patch', 'SuppliersCon@patch')->name('suppliers.patch');
     });
 
