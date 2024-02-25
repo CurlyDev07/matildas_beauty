@@ -7,7 +7,7 @@
 
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
-            <span class="ttext-base ttext-title tfont-medium">Suppliers <span class="ttext-gray-500 ttext-xl">></span> Products</span>
+            <span class="ttext-base ttext-title tfont-medium">{{ $supplier->name }} {{ $supplier->surname }}<span class="ttext-gray-500 ttext-xl">></span> Products</span>
             <ul class="tflex titems-center">
                 {{-- <li class="tmr-4">
                     <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">

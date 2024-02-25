@@ -38,12 +38,13 @@ class SuppliersCon extends Controller
     }
     
     public function details($supplier_id){
+        $supplier = Suppliers::find($supplier_id);
 
         $purchase_ids = Purchase::where('supplier', $supplier_id)->pluck('id');
         $purchase_products = PurchaseProduct::whereIn('purchase_id', $purchase_ids)->pluck('product_id')->unique();
         $products = Product::whereIn('id', $purchase_products)->select('id', 'title', 'sku')->get();
         
-        return view('admin.suppliers.details', ['products' => $products]);
+        return view('admin.suppliers.details', ['products' => $products, 'supplier' => $supplier]);
     }
 
     
