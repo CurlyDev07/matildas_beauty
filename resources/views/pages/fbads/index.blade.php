@@ -97,9 +97,11 @@
 <body>
 
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
-        <div class="tflex tfont-medium titems-center tjustify-between trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgb(250 25 158 / 53%) 0%, rgb(251 0 148) 100%);">
-            <div style="margin-left: 4%;">
-                <p class="t-mt-2 tfont-medium  ttext-3xl ttext-white">Good Bye Melasma</p>
+        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgb(250 25 158 / 53%) 0%, rgb(251 0 148) 100%);">
+            <div >
+                <div class="">
+                    <p class="t-mt-2 tfont-medium  ttext-4xl ttext-white">Good Bye Melasma</p>
+                </div>
                 <div class="">
                     <span class="ttext-sm ttext-white">
                         <i class="fas fa-star ttext-yellow-300"></i>
@@ -108,14 +110,14 @@
                         <i class="fas fa-star ttext-yellow-300"></i>
                         <i class="fas fa-star ttext-yellow-300"></i>
                     </span>
-                    <span class="ttext-sm ttext-white">
+                    <span class="ttext-md ttext-white">
                         <span><u>9.5k</u> Ratings</span>
                         <span> | </span>
                         <span><u>23.6k</u> Sold</span>
                     </span>
                 </div>
             </div>
-            <button class="focus:tbg-pink-300 order_now tabsolute tbg-white tbottom-0 tfixed tfont-black tpy-2 trounded-full tw-10/12 waves-effect zoom-in-out-box" style="bottom: 18%;max-width: 240px;width: 34%;right: 4%;color: #000000;">ORDER NOW!
+            <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="bottom: -52%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;background-color: #ee2a7b;">ORDER NOW!
             </button>
         </div>
 
