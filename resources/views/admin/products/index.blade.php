@@ -112,7 +112,7 @@
                                 </td><!-- Cogs -->
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
                                     @php
-                                        $profit = $product['price'] - $product['selling_price'];
+                                        $profit = $product['selling_price'] - $product['price'];
                                     @endphp
                                     @if ($profit > 1)
                                         <span class="truncate ttext-sm ttext-green-600 tfont-medium"><u>{{ $profit }}</u></span>
