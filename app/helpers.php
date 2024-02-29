@@ -353,7 +353,7 @@ function number_spinner_js($max = ''){
 }// ECHO THIS SCRIPT TO FOOTER
 
 function currency(){
-    $php = ['localhost', '127.0.0.1', "shopickers.com", "192.168.1.2", "192.168.1.6"];
+    $php = ['localhost', '127.0.0.1', "shopickers.com", "192.168.1.2", "192.168.1.6", "matildasbeauty.com"];
     $domain = $_SERVER['SERVER_NAME'];
     $currency = in_array($domain, $php) ? '₱' : '$';
 

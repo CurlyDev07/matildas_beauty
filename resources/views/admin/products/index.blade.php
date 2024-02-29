@@ -81,7 +81,7 @@
 
                         @if (auth()->user()->isMaster())
                             <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Cogs</th>
-                            {{-- <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Profit_%</th> --}}
+                            <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Profit</th>
                         @endif
 
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Qty</th>
@@ -110,9 +110,17 @@
                                     <button class="browser-default ttext-center cogs tbg-green-500 ttext-white tpx-2 tpy-1 trounded tmb-1" data-id="{{ $product['id'] }}">Get_Cogs</button>
                                     <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}"class="browser-default ttext-center form-control price" value="{{ $product['price'] }}" style="padding: 6px;">
                                 </td><!-- Cogs -->
-                                {{-- <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
-                                    <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}"class="browser-default ttext-center form-control profit" value="{{ $product['profit'] }}" style="padding: 6px;">
-                                </td><!-- Profit --> --}}
+                                <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
+                                    @php
+                                        $profit = $product['price'] - $product['selling_price'];
+                                    @endphp
+                                    @if ($profit > 1)
+                                        <span class="truncate ttext-sm ttext-green-600 tfont-medium"><u>{{ $profit }}</u></span>
+                                    @else
+                                        <span class="truncate ttext-sm ttext-red-600 tfont-medium"><u>{{ $profit }}</u></span>
+                                    @endif
+                                    
+                                </td><!-- Profit -->
                             @else
                                 <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
                                 {{-- <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['price']) }}</td> --}}
