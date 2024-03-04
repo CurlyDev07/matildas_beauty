@@ -82,6 +82,7 @@
                         @if (auth()->user()->isMaster())
                             <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Cogs</th>
                             <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Profit</th>
+                            <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Profit(24.5%)</th>
                         @endif
 
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Qty</th>
@@ -102,6 +103,12 @@
                             </td>
 
                             @if (auth()->user()->isMaster()) <!-- TextBox FOR ADMIN AUTO UPDATE -->
+                                @php
+                                    $profit = $product['selling_price'] - $product['price'];
+                                    $total_charges = 25;
+                                    $profit_with_charges = $profit - (($total_charges/100) * $profit);
+                                @endphp
+
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
                                     <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}" class="browser-default ttext-center form-control selling_price" value="{{ $product['selling_price'] }}" style="padding: 6px;">
                                 </td><!-- SRP -->
@@ -111,9 +118,7 @@
                                     <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}"class="browser-default ttext-center form-control price" value="{{ $product['price'] }}" style="padding: 6px;">
                                 </td><!-- Cogs -->
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
-                                    @php
-                                        $profit = $product['selling_price'] - $product['price'];
-                                    @endphp
+                                  
                                     @if ($profit > 1)
                                         <span class="truncate ttext-sm ttext-green-600 tfont-medium"><u>{{ $profit }}</u></span>
                                     @else
@@ -121,6 +126,14 @@
                                     @endif
                                     
                                 </td><!-- Profit -->
+                                <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
+                                    @if ($profit_with_charges > 20)
+                                        <span class="truncate ttext-sm ttext-green-600 tfont-medium"><u>{{ $profit_with_charges }}</u></span>
+                                    @else
+                                        <span class="truncate ttext-sm ttext-red-600 tfont-medium"><u>{{ $profit_with_charges }}</u></span>
+                                    @endif
+                                </td>
+
                             @else
                                 <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
                                 {{-- <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['price']) }}</td> --}}
