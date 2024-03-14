@@ -15,13 +15,22 @@
     <div class="tcontainer">
         <div class="tflex titems-center tjustify-between tpy-3">
             <div class="trelative">
-                <img src="{{ asset('images/logo/main.png') }}" class="tabsolute tbg-white trounded-full" style="max-width: 76px;bottom: -38px;" alt="MB logo">
+                <img src="{{ asset('images/logo/main.png') }}" class="tabsolute tbg-white trounded-full" style="max-width: 46px;bottom: -22px;" alt="MB logo">
             </div>
             <a href="{{ url('/') }}" class="ttext-white tunderline">Back to site</a>
-            <a class="dropdown-trigger" href="#!" data-target="dropdown1">
+            <a href="{{ url('/') }}" class="ttext-white tunderline">
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="hover:tunderline tcursor-default tfont-bold">
+                        <i class="fas fa-sign-out-alt ttext-2xl"></i>
+                    </button>
+                </form>
+            </a>
+
+            {{-- <a class="dropdown-trigger" href="#!" data-target="dropdown1">
                 <i class="fas fa-user-secret fa-2x ttext-white"></i>
                 <i class="material-icons right ttext-white" style="margin:0!important">arrow_drop_down</i>
-            </a>
+            </a> --}}
         </div>
     </div>
 </div>

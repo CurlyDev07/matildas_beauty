@@ -81,9 +81,9 @@
 
                         @if (auth()->user()->isMaster())
                             <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Cogs</th>
-                            <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Profit</th>
-                            <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Profit(24.5%)</th>
-                        @endif
+                            <th class="ttext-center tp-3 tpx-5 ttext-orange-700 tfont-medium ttext-sm tooltipped tcursor-pointer" data-position="top" data-tooltip="(Srp - 28.82% - Cogs - 10php">Profit</th>
+                            <th class="ttext-center tp-3 tpx-5 ttext-orange-700 tfont-medium ttext-sm tooltipped tcursor-pointer" data-position="top" data-tooltip="(28.82 * Srp) + 10">Charges</th>
+                        @endif 
 
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Qty</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Status</th>
@@ -104,9 +104,14 @@
 
                             @if (auth()->user()->isMaster()) <!-- TextBox FOR ADMIN AUTO UPDATE -->
                                 @php
-                                    $profit = $product['selling_price'] - $product['price'];
-                                    $total_charges = 25;
-                                    $profit_with_charges = $profit - (($total_charges/100) * $profit);
+                                    $selling_price = $product['selling_price'] > 1? $product['selling_price'] : 1;
+                                    $cogs = $product['price'] > 0? $product['price'] : 1;
+                                    $packaging_cost = 10;
+                                    $total_charges_percentage = 28.82;
+                                    $total_charges = (($total_charges_percentage/100) * $selling_price) + $packaging_cost;
+                                    $profit = $selling_price - ($total_charges + $cogs);
+                                    $profit_percentage = ($profit/$selling_price) * 100;
+
                                 @endphp
 
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
@@ -118,21 +123,28 @@
                                     <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}"class="browser-default ttext-center form-control price" value="{{ $product['price'] }}" style="padding: 6px;">
                                 </td><!-- Cogs -->
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
-                                  
-                                    @if ($profit > 1)
-                                        <span class="truncate ttext-sm ttext-green-600 tfont-medium"><u>{{ $profit }}</u></span>
-                                    @else
-                                        <span class="truncate ttext-sm ttext-red-600 tfont-medium"><u>{{ $profit }}</u></span>
+                                    @if ($selling_price <= 1)
+                                        --
+                                    @elseif($cogs <= 1)
+                                        --
+                                    @else 
+                                        <div class="tflex tflex-col">
+                                            <div class=""><u><b>{{ $profit }}</b></u></div>
+                                            <div class="">({{ number_format($profit_percentage, 2) }}%)</div>
+                                        </div>
                                     @endif
-                                    
                                 </td><!-- Profit -->
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
-                                    @if ($profit_with_charges > 20)
-                                        <span class="truncate ttext-sm ttext-green-600 tfont-medium"><u>{{ $profit_with_charges }}</u></span>
-                                    @else
-                                        <span class="truncate ttext-sm ttext-red-600 tfont-medium"><u>{{ $profit_with_charges }}</u></span>
+                                    @if ($selling_price <= 1)
+                                        --
+                                    @elseif($cogs <= 1)
+                                        --
+                                    @else 
+                                        <div class="tflex tflex-col">
+                                            <div class=""><u><b>{{ $total_charges }}</b></u></div>
+                                        </div>
                                     @endif
-                                </td>
+                                </td><!-- Total Charges -->
 
                             @else
                                 <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
