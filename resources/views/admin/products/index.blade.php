@@ -119,7 +119,7 @@
                                 </td><!-- SRP -->
                   
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
-                                    <button class="browser-default ttext-center cogs tbg-green-500 ttext-white tpx-2 tpy-1 trounded tmb-1" data-id="{{ $product['id'] }}">Get_Cogs</button>
+                                    <button class="browser-default ttext-center cogs tbg-green-700 ttext-white tpx-2 tpy-1 trounded tmb-1" data-id="{{ $product['id'] }}">Get_Cogs</button>
                                     <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}"class="browser-default ttext-center form-control price" value="{{ $product['price'] }}" style="padding: 6px;">
                                 </td><!-- Cogs -->
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
@@ -128,10 +128,18 @@
                                     @elseif($cogs <= 1)
                                         --
                                     @else 
-                                        <div class="tflex tflex-col">
-                                            <div class=""><u><b>{{ $profit }}</b></u></div>
-                                            <div class="">({{ number_format($profit_percentage, 2) }}%)</div>
-                                        </div>
+                                        @if ($profit < 20)
+                                            <div class="tflex tflex-col">
+                                                <div class="ttext-red-500"><u><b>{{ number_format($profit, 2) }}</b></u></div>
+                                                <div class="ttext-red-500">({{ number_format($profit_percentage, 2) }}%)</div>
+                                            </div>
+                                        @else
+                                            <div class="tflex tflex-col">
+                                                <div class="ttext-green-600"><u><b>{{ number_format($profit, 2) }}</b></u></div>
+                                                <div class="ttext-green-600">({{ number_format($profit_percentage, 2) }}%)</div>
+                                            </div>
+                                        @endif
+                                        
                                     @endif
                                 </td><!-- Profit -->
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
@@ -141,7 +149,7 @@
                                         --
                                     @else 
                                         <div class="tflex tflex-col">
-                                            <div class=""><u><b>{{ $total_charges }}</b></u></div>
+                                            <div class="">{{ number_format($total_charges, 2) }}</div>
                                         </div>
                                     @endif
                                 </td><!-- Total Charges -->
