@@ -77,7 +77,7 @@
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Photo</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Name</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Sku</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">SRP</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm tw-1/12">SRP</th>
 
                         @if (auth()->user()->isMaster())
                             <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Cogs</th>
