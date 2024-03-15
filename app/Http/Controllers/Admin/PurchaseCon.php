@@ -81,6 +81,8 @@ class PurchaseCon extends Controller
     }
 
     public function patch(Request $request){
+        // return $request->products;
+
 
         Purchase::find($request->purchase_id)->delete();
         PurchaseProduct::where('purchase_id', $request->purchase_id)->delete();
@@ -104,6 +106,11 @@ class PurchaseCon extends Controller
         // -------------------------------------------------
 
         foreach ($request->products as $product) {
+            // UPDATE PRODUCT LISTING PRICE TO THE LATEST PURCHASE PRICE
+            if ($product['price'] != 0) {
+                Product::find($product['product_id'])->update(['price' => $product['price']]);
+            }
+
             // purchase_product
             $purchase->purchase_product()->create($product);
 
@@ -150,6 +157,8 @@ class PurchaseCon extends Controller
         }
 
         $purchase->update(['status' => $status]);// Update status
+
+
 
         return response()->json(['code' => 200]);
 
@@ -224,6 +233,10 @@ class PurchaseCon extends Controller
             $product->update(['qty' => (($product->qty - $prevRQTY) + $request->received_qty) ]);
         }
 
+        return response()->json([
+            'receivedStatus' => $receivedStatus,
+            'stock_in' => $stock_in
+        ]);
         
         return response()->json(['code' => 200]);
     }

@@ -127,7 +127,7 @@
                             </div>
                         </div><!-- Product -->
                         <div class="tw-1/6 tflex tflex-col tmr-3">
-                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
+                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Prices</label>
                             <input type="text" onkeyup="allnumeric(this)" value="0" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
                         </div><!-- Price -->
                         <div class="tw-1/6 tflex tflex-col tmr-3">
@@ -138,9 +138,10 @@
                             <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Subtotal</label>
                             <input type="text" onkeyup="allnumeric(this)" disabled="" value="0" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
                         </div><!-- Sub Total -->
-                        <i class="fas fa-plus-circle"></i>
+                        <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
+                        {{-- <i class="fas fa-plus-circle"></i>
                         <i class="fas fa-plus-circle hover:tunderline material-icons t-mr-4 tabsolute ttop-0 tcursor-pointer tmt-6 tooltipped tright-0 ttext-green-700"></i>
-                        <i class="fas fa-plus-circle hover:tunderline material-icons t-mr-4 tabsolute ttop-0 tcursor-pointer tmt-6 tooltipped tright-0 ttext-green-700"></i>
+                        <i class="fas fa-plus-circle hover:tunderline material-icons t-mr-4 tabsolute ttop-0 tcursor-pointer tmt-6 tooltipped tright-0 ttext-green-700"></i> --}}
                     </div><!-- Test -->
                     
                     @foreach ($purchase->purchase_product as $purchase_product)
@@ -155,22 +156,29 @@
                                     </div>
                                 </div>
                             </div><!-- Product -->
-                            <div class="tw-1/6 tflex tflex-col tmr-3">
+                            <div class="tw-32 tflex tflex-col tmr-1">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
                                 <input type="text" onkeyup="allnumeric(this)" value="{{ $purchase_product['price'] }}" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
+                                
                             </div><!-- Price -->
-                            <div class="tw-1/6 tflex tflex-col tmr-3">
+                            <div class="tw-32 tflex tflex-col tmr-1">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Quantity</label>
-                                <input type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['qty'] }}" class="product_quantity browser-default form-control" style="padding: 6px;">
+
+                                @if ($purchase_product->received == 'yes')
+                                    <span class="browser-default form-control cursor: not-allowed;" style="background: #f9f9f9; cursor: not-allowed;">{{ $purchase_product['qty']?? 1 }}</span>
+                                @else
+                                    <input type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['qty'] }}" class="product_quantity browser-default form-control" style="padding: 6px;">
+                                @endif
+
                             </div><!-- QTY -->
-                            <div class="tw-/6 tflex tflex-col tmr-3">
+                            <div class="tw-32 tflex tflex-col tmr-1">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Subtotal</label>
                                 <input type="text" onkeyup="allnumeric(this)" disabled="" value="{{ $purchase_product->sub_total }}" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
                             </div><!-- Sub Total -->
 
                             <div class="tborder-l tmr-3"></div>
 
-                            <div class="tw-1/6 tflex tflex-col tmr-3">
+                            <div class="tw-32 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active"> Received? </label>
                                 <select 
                                     @if ($purchase_product->received == 'yes' && $purchase_product['received_qty'] >= $purchase_product['qty'])
@@ -189,7 +197,7 @@
                                 </select>
                             </div><!-- Received Status -->
 
-                            <div class="tw-2/6 tflex tflex-col tmr-3">
+                            <div class="tw-32 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">R-QTY</label>
                                 <input 
 
@@ -226,7 +234,7 @@
                                 <i class="fa-plus-circle fas ttext-green-500"></i>
                             </i>
 
-                            @if ($purchase_product->stock_in != 'yes')
+                            @if ($purchase_product->received != 'yes')
                                 <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tbottom-0 tooltipped" data-position="right" data-tooltip="Remove Product">close</i>
                             @endif <!-- if purchase product is added to stocks. Cannot remove it anymore --> 
                         </div>
@@ -558,15 +566,35 @@
                             received: received
                         },
                         success: ()=>{
-                            Swal.fire(
-                                'Purchase added to stocks',
-                                'Inventory purchase recorded. Stocks updated',
-                                'success'
-                            )// success prompt
+
+                            Swal.fire({
+                                position: "middle",
+                                icon: "success",
+                                title: "The item has been successfully added to our inventory stocks",
+                                showConfirmButton: false,
+                                timer: 700
+                            });
+
+                            // Dissabled Price Because Stocks is Already added 
+                            self.parent().find('.product_quantity').attr('disabled', true)
+                            self.parent().find('.product_quantity').css("background-color", "#f9f9f9");
+                            self.parent().find('.product_quantity').css("cursor", "not-allowed");
+
+                            // Dissabled Price Because Stocks is Already added 
+                            self.parent().find('.product_received_qty').attr('disabled', true)
+                            self.parent().find('.product_received_qty').css("background-color", "#f9f9f9");
+                            self.parent().find('.product_received_qty').css("cursor", "not-allowed");
+
+
+                            self.next().remove();// Remove X Button
+                            self.remove(); // Remove Reflect Stocks once Click
                         }
                     });// update via Ajax request
                 }
             })// swal
+
+            
+
         });// Reflect Stocks
 
     </script>
