@@ -82,7 +82,7 @@
                         @if (auth()->user()->isMaster())
                             <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Cogs</th>
                             <th class="ttext-center tp-3 tpx-5 ttext-orange-700 tfont-medium ttext-sm tooltipped tcursor-pointer" data-position="top" data-tooltip="(Srp - 28.82% - Cogs - 10php">Profit</th>
-                            <th class="ttext-center tp-3 tpx-5 ttext-orange-700 tfont-medium ttext-sm tooltipped tcursor-pointer" data-position="top" data-tooltip="(28.82 * Srp) + 10">Charges</th>
+                            {{-- <th class="ttext-center tp-3 tpx-5 ttext-orange-700 tfont-medium ttext-sm tooltipped tcursor-pointer" data-position="top" data-tooltip="(28.82 * Srp) + 10">Charges</th> --}}
                         @endif 
 
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Qty</th>
@@ -146,7 +146,7 @@
                                         
                                     @endif
                                 </td><!-- Profit -->
-                                <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
+                                {{-- <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
                                     @if ($selling_price <= 1)
                                         --
                                     @elseif($cogs <= 1)
@@ -156,7 +156,7 @@
                                             <div class="">{{ number_format($total_charges, 2) }}</div>
                                         </div>
                                     @endif
-                                </td><!-- Total Charges -->
+                                </td><!-- Total Charges --> --}}
 
                             @else
                                 <td class="tp-3 tpx-1 ttext-sm">{{ currency() }}{{ number_format($product['selling_price']) }}</td>
