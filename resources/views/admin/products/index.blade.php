@@ -119,7 +119,7 @@
                                 </td><!-- SRP -->
                   
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
-                                    <button class="browser-default ttext-center cogs tbg-green-700 ttext-white tpx-2 tpy-1 trounded tmb-1" data-id="{{ $product['id'] }}">Get_Cogs</button>
+                                    {{-- <button class="browser-default ttext-center cogs tbg-green-700 ttext-white tpx-2 tpy-1 trounded tmb-1" data-id="{{ $product['id'] }}">Get_Cogs</button> --}}
                                     <input type="number" onkeyup="allnumeric(this)" data-id="{{ $product['id'] }}"class="browser-default ttext-center form-control price" value="{{ $product['price'] }}" style="padding: 6px;">
                                 </td><!-- Cogs -->
                                 <td class="tp-3 tpx-1 ttext-sm tw-0 ttext">
