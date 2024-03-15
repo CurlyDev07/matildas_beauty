@@ -128,15 +128,19 @@
                                     @elseif($cogs <= 1)
                                         --
                                     @else 
-                                        @if ($profit < 20)
+                                        @if ($profit < 10)
                                             <div class="tflex tflex-col">
-                                                <div class="ttext-red-500"><u><b>{{ number_format($profit, 2) }}</b></u></div>
-                                                <div class="ttext-red-500">({{ number_format($profit_percentage, 2) }}%)</div>
+                                                <div class="ttext-red-500 tfont-bold tunderline profit">{{ number_format($profit, 2) }}</div>
+                                                <div class="">
+                                                    <span class="ttext-red-500 profit_percentage">( {{ number_format($profit_percentage, 2) }}% )</span>
+                                                </div>
                                             </div>
                                         @else
                                             <div class="tflex tflex-col">
-                                                <div class="ttext-green-600"><u><b>{{ number_format($profit, 2) }}</b></u></div>
-                                                <div class="ttext-green-600">({{ number_format($profit_percentage, 2) }}%)</div>
+                                                <div class="ttext-green-600 tfont-bold tunderline profit">{{ number_format($profit, 2) }}</div>
+                                                <div class="">
+                                                    <span class="ttext-green-600 profit_percentage">( {{ number_format($profit_percentage, 2) }}% )</span>
+                                                </div>
                                             </div>
                                         @endif
                                         
@@ -265,9 +269,7 @@
         $('.price').change(function(){
             let id = $(this).data('id')
             let price = $(this).val();
-
-            console.log('id: ' +id);
-            console.log('price: ' +price);
+            let self = $(this);
 
             $.ajax({
                 type: 'POST',
@@ -276,6 +278,23 @@
                     id: id,
                     price:price
                 },
+                success: function(data){
+                    self.parent().next().find('.profit').html(data.profit);
+                    self.parent().next().find('.profit_percentage').html('( ' + data.profit_percentage +'% )');
+
+                    //change Color
+                    if (data.profit < 10) {
+                        self.parent().next().find('.profit').removeClass('ttext-green-600');
+                        self.parent().next().find('.profit').addClass('ttext-red-500');
+                        self.parent().next().find('.profit_percentage').removeClass('ttext-green-600');
+                        self.parent().next().find('.profit_percentage').addClass('ttext-red-500');
+                    }else{
+                        self.parent().next().find('.profit').removeClass('ttext-red-500');
+                        self.parent().next().find('.profit').addClass('ttext-green-600');
+                        self.parent().next().find('.profit_percentage').removeClass('ttext-red-500');
+                        self.parent().next().find('.profit_percentage').addClass('ttext-green-600');
+                    }
+                }
             });
         });// Onchange Capital
 
@@ -283,8 +302,7 @@
             let id = $(this).data('id')
             let selling_price = $(this).val();
 
-            console.log('id: ' +id);
-            console.log('selling_price: ' +selling_price);
+            let self = $(this);
 
             $.ajax({
                 type: 'POST',
@@ -293,12 +311,25 @@
                     id: id,
                     selling_price:selling_price
                 },
+                success: function(data){
+                    self.parent().next().next().find('.profit').html(data.profit);
+                    self.parent().next().next().find('.profit_percentage').html('( ' + data.profit_percentage +'% )');
+
+                    //change Color
+                    if (data.profit < 10) {
+                        self.parent().next().next().find('.profit').removeClass('ttext-green-600');
+                        self.parent().next().next().find('.profit').addClass('ttext-red-500');
+                        self.parent().next().next().find('.profit_percentage').removeClass('ttext-green-600');
+                        self.parent().next().next().find('.profit_percentage').addClass('ttext-red-500');
+                    }else{
+                        self.parent().next().next().find('.profit').removeClass('ttext-red-500');
+                        self.parent().next().next().find('.profit').addClass('ttext-green-600');
+                        self.parent().next().next().find('.profit_percentage').removeClass('ttext-red-500');
+                        self.parent().next().next().find('.profit_percentage').addClass('ttext-green-600');
+                    }
+                }
             });
         });// Onchange Capital
-
-
-
-
 
         $('.delete').click(function (e) {
             $.ajax({

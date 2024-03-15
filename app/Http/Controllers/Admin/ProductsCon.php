@@ -14,6 +14,13 @@ use App\Http\Requests\Products\UploadProductsRequest;
 use App\PurchaseProduct;
 class ProductsCon extends Controller
 {
+
+    protected $products;
+
+    public function __construct(Product $products) {
+        $this->products = $products;
+    }
+
     public function index(Request $request){
         $products = Product::with(array('images' => function($query){
                 $query->where('primary', 1);
@@ -77,6 +84,8 @@ class ProductsCon extends Controller
 
         }// Upload Images
 
+        $this->products->recomputeProfit($product->id);// Recompute And Update Profit
+
         return response()->json(['code' => 200]);
     }
 
@@ -86,6 +95,9 @@ class ProductsCon extends Controller
     }
     
     public function patch(UploadProductsRequest $request){
+
+        $this->products->recomputeProfit($request->id);// Recompute And Update Profit
+
         /*--------------------------------------------------------------------------
         | FIND AND UPDATE THE PROPERTY
         |--------------------------------------------------------------------------*/
@@ -217,14 +229,17 @@ class ProductsCon extends Controller
         $product = Product::find($request->id);
         $update = $product->update(['price' => $request->price]);
 
-        return request()->all();
+        $profit = $this->products->recomputeProfit($request->id);// Recompute And Update Profit
+        return $profit;
     }
 
     public function selling_price(Request $request){
         $product = Product::find($request->id);
         $update = $product->update(['selling_price' => $request->selling_price]);
+        
+        $profit = $this->products->recomputeProfit($request->id);// Recompute And Update Profit
 
-        return request()->all();
+        return $profit;
     }
 
     public function get_cogs(Request $request){ 
@@ -233,11 +248,15 @@ class ProductsCon extends Controller
         if ($last_price) {
             $product = Product::find($request->id);
             $update = $product->update(['price' => $last_price->price]);
+            $profit = $this->products->recomputeProfit($request->id);// Recompute And Update Profit
+            return 'hello';
     
-            return $last_price->price;
+            return $profit;
         }
 
-        return 0;
+        $profit = $this->products->recomputeProfit($request->id);// Recompute And Update Profit
+
+        return 'hello';
     }
 
 

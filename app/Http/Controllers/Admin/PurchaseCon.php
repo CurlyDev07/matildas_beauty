@@ -19,6 +19,8 @@ use App\Http\Requests\Purchase\CreatePurchaseRequest;
 class PurchaseCon extends Controller
 {
 
+    protected $products;
+    
     public function __construct(Product $products) {
         $this->products = $products;
     }
@@ -81,8 +83,6 @@ class PurchaseCon extends Controller
     }
 
     public function patch(Request $request){
-        // return $request->products;
-
 
         Purchase::find($request->purchase_id)->delete();
         PurchaseProduct::where('purchase_id', $request->purchase_id)->delete();
@@ -109,13 +109,14 @@ class PurchaseCon extends Controller
             // UPDATE PRODUCT LISTING PRICE TO THE LATEST PURCHASE PRICE
             if ($product['price'] != 0) {
                 Product::find($product['product_id'])->update(['price' => $product['price']]);
+
+                $this->products->recomputeProfit($product['product_id']);// Recompute And Update Profit
             }
 
             // purchase_product
             $purchase->purchase_product()->create($product);
 
             // These IF/ELSE are used to get the Purchase Status
-
 
             if (array_key_exists('received', $product)) {
                 if ($product['received'] == 'no') {
@@ -158,10 +159,7 @@ class PurchaseCon extends Controller
 
         $purchase->update(['status' => $status]);// Update status
 
-
-
         return response()->json(['code' => 200]);
-
     }
 
     public function view($id){
