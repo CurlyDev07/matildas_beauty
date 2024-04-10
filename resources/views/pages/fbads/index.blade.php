@@ -695,10 +695,10 @@
                         {
                             "content_id": "1", 
                             "content_type": "product",
-                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" 
+                            "content_name": "" 
                         }
                     ],
-                    "description": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" 
+                    "description": "" 
                 });// Tiktok Event
             });
 
@@ -738,7 +738,7 @@
                         {
                             "content_id": "1",
                             "content_type": "product",
-                            "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set",
+                            "content_name": "",
                             "quantity": 1,
                             "price": amount
                         }

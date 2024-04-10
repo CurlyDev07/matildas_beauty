@@ -192,7 +192,7 @@
                     ],
                     "value": fb_purchase_value, // number. Value of the order or items sold. Example: 100.
                     "currency": "PHP", // string. The 4217 currency code. Example: "USD".
-                    "description": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" // string. Non-hashed public IP address of the browser.
+                    "description": "" // string. Non-hashed public IP address of the browser.
                 });
 
                 ttq.track('CompletePayment', {
@@ -205,7 +205,7 @@
                     ],
                     "value": fb_purchase_value, // number. Value of the order or items sold. Example: 100.
                     "currency": "PHP", // string. The 4217 currency code. Example: "USD".
-                    "description": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set" // string. Non-hashed public IP address of the browser.
+                    "description": "" // string. Non-hashed public IP address of the browser.
                 });
 
             </script>
