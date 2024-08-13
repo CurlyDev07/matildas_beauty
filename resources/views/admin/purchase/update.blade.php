@@ -86,8 +86,8 @@
         </div>
      
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3" >
-            <div class="tflex tpx-5 tmt-5 tpr-0 t-mr-16">
-                <div class="tw-2/7 tborder-r tpr-2">
+            <div class="tflex tpx-5 tmt-5 tpr-0">
+                <div class="lg:tw-1/4 tborder-r tpr-2">
 
                     <div action="?" class="tflex titems-center tmb-4">
                         <input type="text" id="search" onkeyup="Search()" class="browser-default tw-full tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
@@ -115,9 +115,9 @@
                     </ul><!-- Product Pick list -->
 
                 </div>
-                <div id="products_container" class="tw-4/6 tborder-l tpl-2 toverflow-scroll toverflow-x-hidden tpr-6" style="height: 450px">
+                <div id="products_container" class="lg:tw-3/4 tborder-l tpl-2 toverflow-scroll toverflow-x-hidden" style="height: 450px">
                     <div class="product tborder-b tflex tmx-1 trelative thidden tpy-1" id="hidden_product">
-                        <div class="tw-5/7 tw-full tflex tflex-col tmr-2">
+                        <div class="tw-full tflex tflex-col tmr-2">
                             <div class="tflex titems-center tpy-1">
                                 <img src="https://cf.shopee.ph/file/d8966eff56f6714d423e261828353033" class="product_img" style="height: 50px; width: 50px;" alt="">
                                 <div class="tpx-2 product-truncate" >
@@ -145,9 +145,10 @@
                     </div><!-- Test -->
                     
                     @foreach ($purchase->purchase_product as $purchase_product)
+                     
 
-                        <div class="product tborder-b tflex titems-center tmx-1 tpy-1 trelative" id="{{ $purchase_product->product['id'] }}">
-                            <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
+                        <div class="product tborder-b-2 tborder-gray-500 tborder-dashed tflex titems-center tmx-1 tpt-1 tpb-3 trelative  tflex-wrap" id="{{ $purchase_product->product['id'] }}">
+                            <div class="tw-full tflex tflex-col">
                                 <div class="tflex titems-center tpy-1">
                                     <img src="{{ $purchase_product->product['primary_image'] }}" class="product_img" style="height: 50px; width: 50px;" alt="">
                                     <div class="tpx-2 truncate" style="width: 157px;">
@@ -156,12 +157,18 @@
                                     </div>
                                 </div>
                             </div><!-- Product -->
-                            <div class="tw-32 tflex tflex-col tmr-1">
+
+                            <div class="tw-1/2 lg:tw-2/12 tflex tflex-col tpx-1 tmb-2 lg:tmb-0">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active tmt-1 tmr-2">Expiration: </label>
+                                <input type="text" class="expiration_date browser-default form-control" value="Aug 13, 2024">
+                            </div><!-- Expiration Date -->
+
+                            <div class="tw-1/2 lg:tw-1/12 tflex tflex-col tpx-1 tmb-2 lg:tmb-0">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
                                 <input type="text" onkeyup="allnumeric(this)" value="{{ $purchase_product['price'] }}" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
-                                
                             </div><!-- Price -->
-                            <div class="tw-32 tflex tflex-col tmr-1">
+
+                            <div class="tw-1/2 lg:tw-1/12 tflex tflex-col tpx-1 tmb-2 lg:tmb-0">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Quantity</label>
 
                                 @if ($purchase_product->received == 'yes')
@@ -171,14 +178,14 @@
                                 @endif
 
                             </div><!-- QTY -->
-                            <div class="tw-32 tflex tflex-col tmr-1">
+                            <div class="tw-1/2 lg:tw-1/12 tflex tflex-col tpx-1 tmb-2 lg:tmb-0">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Subtotal</label>
                                 <input type="text" onkeyup="allnumeric(this)" disabled="" value="{{ $purchase_product->sub_total }}" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
                             </div><!-- Sub Total -->
 
-                            <div class="tborder-l tmr-3"></div>
+                            {{-- <div class="tborder-l tmr-3"></div> --}}
 
-                            <div class="tw-32 tflex tflex-col tmr-3">
+                            <div class="tw-1/2 lg:tw-2/12 tflex tflex-col tpx-1 tmb-2 lg:tmb-0">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active"> Received? </label>
                                 <select 
                                     @if ($purchase_product->received == 'yes' && $purchase_product['received_qty'] >= $purchase_product['qty'])
@@ -197,8 +204,8 @@
                                 </select>
                             </div><!-- Received Status -->
 
-                            <div class="tw-32 tflex tflex-col tmr-3">
-                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">R-QTY</label>
+                            <div class="tw-1/2 lg:tw-2/12 tflex tflex-col tpx-1 tmb-2 lg:tmb-0 lg:tmr-1 ">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">R_QTY</label>
                                 <input 
 
                                 @if ($purchase_product->received == 'yes' && $purchase_product['received_qty'] >= $purchase_product['qty'])
@@ -218,26 +225,29 @@
 
                                 type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['received_qty'] }}" >
                             </div><!-- Recieved QTY -->
-
-                            <i 
+      
+                            {{------------BUTTONS---------- --}}
+                            <button 
                                 @if ($purchase_product->received == 'incomplete')
-                                    class="hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 tooltipped reflect-stocks"
+                                    class="tmr-3 lg:tmr-1 tpx-1 tmb-2 lg:tmb-0 hover:tunderline tcursor-pointer tooltipped reflect-stocks focus:tbg-green-500 tbg-green-500 tpx-3 tpy-2 ttext-white trounded mr-1"
                                 @else
-                                    class="thidden hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 tooltipped reflect-stocks"
+                                    class="tmr-3 lg:tmr-1 tpx-1 tmb-2 lg:tmb-0 thidden hover:tunderline tcursor-pointer tooltipped reflect-stocks focus:tbg-green-500 tbg-green-500 tpx-3 tpy-2 ttext-white trounded mr-1"
                                 @endif
                                 
-                               style="top: -28%;" 
-                               data-position="right" 
-                               data-tooltip="Reflect Stocks to Inventory"
-                               purchase_product_id="{{ $purchase_product->id }}"
-                               product_id="{{ $purchase_product->product['id'] }}">
-                                <i class="fa-plus-circle fas ttext-green-500"></i>
-                            </i>
+                                {{-- style="top: -28%;"  --}}
+                                {{-- data-position="right"  --}}
+                                data-tooltip="Reflect Stocks to Inventory"
+                                purchase_product_id="{{ $purchase_product->id }}"
+                                product_id="{{ $purchase_product->product['id'] }}">StockIn</button>
 
                             @if ($purchase_product->received != 'yes')
-                                <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error tbottom-0 tooltipped" data-position="right" data-tooltip="Remove Product">close</i>
+                                <button class="tpx-1 tmb-2 lg:tmb-0 closeItem focus:tbg-red-500 tbg-red tbg-red-500 tpx-3 tpy-2 trounded ttext-white tooltipped" data-position="right" data-tooltip="Remove Product">Remove</button>
                             @endif <!-- if purchase product is added to stocks. Cannot remove it anymore --> 
+                            {{------------BUTTONS---------- --}}
+
+                         
                         </div>
+                      
                     @endforeach
                 </div>
             </div>
@@ -318,6 +328,7 @@
     <script>
         $('.modal').modal();// initiate modal
         $('.datepicker').datepicker();// initiate datepicker
+        $('.expiration_date').datepicker();// initiate datepicker
         getTotal(); // Display Saved 
 
         let height = 478;
@@ -403,7 +414,10 @@
         }// numberWithCommas
 
         $('.closeItem').click(function () {
-            $(this).parent().remove();
+            let self = $(this);
+            $(this).parent().fadeOut('slow', function () {
+                self.parent().remove();
+            })
             getTotal();
         })// Remove item
 

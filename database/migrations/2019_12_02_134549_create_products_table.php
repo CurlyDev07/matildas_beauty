@@ -30,6 +30,7 @@ class CreateProductsTable extends Migration
             $table->integer('threshold')->nullable()->default(0);
             $table->string('sku')->nullable();
             $table->string('barcode')->nullable();
+            $table->date('expiration_date')->nullable();
             $table->string('status')->default('inactive')->comment('active|inactive|top-selling|featured');
             $table->softDeletes();
             $table->timestamps();
