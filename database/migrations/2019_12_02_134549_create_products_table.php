@@ -22,6 +22,10 @@ class CreateProductsTable extends Migration
             $table->integer('campaign_price')->nullable();
             $table->integer('price')->nullable();
             $table->integer('compare_price')->nullable()->default(0);
+
+            $table->double('profit')->nullable()->default(0);
+            $table->double('profit_percentage')->nullable()->default(0);
+            
             $table->integer('qty')->nullable()->default(0);
             $table->integer('threshold')->nullable()->default(0);
             $table->string('sku')->nullable();

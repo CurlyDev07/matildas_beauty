@@ -95,7 +95,7 @@
                                 <img src="{{ ($product['primary_image']) }}" data-src="{{ ($product['primary_image']) }}" class="tmx-auto trounded" style="height: 50px;width: 50px;">
                             </td>
                             <td class="tp-3 tpx-1">
-                                <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500 ttext-sm truncate "
+                                <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline tmx-auto ttext-blue-500 ttext-sm truncate "
                                 style="width: 150px; overflow-wrap: anywhere; white-space: normal;">{{ $product['title'] }}</a>
                             </td>
                             <td class="tp-3 tpx-1  " style="width: 150px; overflow-wrap: anywhere; white-space: normal;">
@@ -206,12 +206,13 @@
                 </tbody>
             </table>
         </div>
+
+      
         @if (count($products) < 1)
-            <tr>
-                <td colspan="6" class=" ttext-center">
-                    <a href="/admin/products/add" class="tfont-medium ttext-blue-500 tunderline">Upload your first product</a>
-                </td>
-            </tr>
+        <div class="tpx-5 ttext-center">
+            <a href="/admin/products/add" class="tfont-medium ttext-blue-500 tunderline">Upload your first product</a>
+        </div>
+            
         @endif
 
         {{ $products->onEachSide(1)->appends(request()->except('page'))->links() }}
