@@ -160,7 +160,7 @@
 
                             <div class="tw-1/2 lg:tw-2/12 tflex tflex-col tpx-1 tmb-2 lg:tmb-0">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active tmt-1 tmr-2">Expiration: </label>
-                                <input type="text" class="expiration_date browser-default form-control" value="{{ date_f($purchase_product->expiration_date, "M d, Y") }}">
+                                <input type="text" class="expiration_date browser-default form-control" value="{{ date_f($purchase_product->expiration_date ?? "Jan 01, 2020", "M d, Y") }}">
                             </div><!-- Expiration Date -->
 
                             <div class="tw-1/2 lg:tw-1/12 tflex tflex-col tpx-1 tmb-2 lg:tmb-0">
