@@ -70,7 +70,7 @@
                 </a>
             </ul>
         </div>
-        <div class="tflex tflex-wrap toverflow-auto tpy-4 tw-full">
+        <div class="tflex tflex-wrap toverflow-auto tpy-4 tpx-5 tw-full">
             <table class="tmb-4 tbg-white ttext-md tw-full centered">
                 <tbody>
                     <tr class="tborder-0">
