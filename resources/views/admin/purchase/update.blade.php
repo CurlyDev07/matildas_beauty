@@ -145,7 +145,7 @@
                     </div><!-- Test -->
                     
                     @foreach ($purchase->purchase_product as $purchase_product)
-                     
+                     {{-- {{ dd($purchase_product) }} --}}
 
                         <div class="product tborder-b-2 tborder-gray-500 tborder-dashed tflex titems-center tmx-1 tpt-1 tpb-3 trelative  tflex-wrap" id="{{ $purchase_product->product['id'] }}">
                             <div class="tw-full tflex tflex-col">
@@ -160,7 +160,7 @@
 
                             <div class="tw-1/2 lg:tw-2/12 tflex tflex-col tpx-1 tmb-2 lg:tmb-0">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active tmt-1 tmr-2">Expiration: </label>
-                                <input type="text" class="expiration_date browser-default form-control" value="Aug 13, 2024">
+                                <input type="text" class="expiration_date browser-default form-control" value="{{ date_f($purchase_product->expiration_date, "M d, Y") }}">
                             </div><!-- Expiration Date -->
 
                             <div class="tw-1/2 lg:tw-1/12 tflex tflex-col tpx-1 tmb-2 lg:tmb-0">
@@ -432,6 +432,7 @@
                 let subtotal = $(this).find('.product_subtotal').val();
                 let received = $(this).find('.product_received').val();
                 let received_qty = $(this).find('.product_received_qty').val();
+                let expiration_date = $(this).find('.expiration_date').val()?? 'Jan 01, 2020';
 
                 if (i != 0) {
                     products.push({
@@ -441,6 +442,7 @@
                         sub_total: subtotal,
                         received: received,
                         received_qty: received_qty,
+                        expiration_date: formatDate(expiration_date),
                     })
                 }// if product is not the sample clone push
             });
@@ -472,6 +474,9 @@
             progress_loading(true);// show loader
 
             let products = getAllProducts();
+
+            // console.log(products);
+            // return;
 
             $.post( "/admin/purchase/patch", {
                 'purchase_id': $('#purchase_id').val(),
@@ -531,8 +536,13 @@
                 let reflectStock = $(this).parent().next().next().removeClass('thidden ');// Show reflect stocks button
 
                 if (received == 'yes') {// If received == yes. RQTY = QTY
-                    let purchase_qty = $(this).parent().prev().prev().prev().children().last().val();
+                    let purchase_qty = $(this).parent().prev().prev().children().last().val();
                     $(this).parent().next().children().last().val(purchase_qty);
+
+                    rqty.attr('disabled', true); // remove R-QTY disabled
+                    rqty.addClass('tcursor-not-allowed');// remove cursur disabled
+                    rqty.css("background-color", "#f9f9f9");// remove bg-gray 
+
                 }else{
                     $(this).parent().next().children().last().val(0);// remove RQTY QTY
                 }
@@ -611,6 +621,23 @@
 
         });// Reflect Stocks
 
+    </script>
+
+
+    <script> // date Converter
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
     </script>
 
      {{-- Search --}}
