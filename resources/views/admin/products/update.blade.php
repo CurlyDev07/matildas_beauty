@@ -98,25 +98,28 @@
                 Inventory
             </div>
             <div class="tflex tpx-5">
-                <div class="tw-1/2 tflex tflex-col tmr-3">
+                <div class="tw-1/5 tflex tflex-col tmr-2">
                     <label for="sku" class="tfont-normal ttext-sm tmb-2 ttext-black-100">SKU (Stock Keeping Unit)</label>
                     <input type="text" id="sku" class="browser-default form-control" value="{{ $products['sku'] }}" style="padding: 6px;">
                 </div>
-                <div class="tw-1/2 tflex tflex-col tml-3">
+                <div class="tw-1/5 tflex tflex-col tmr-2">
                     <label for="barcode" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barcode (ISBN, UPC, GTIN, etc.)</label>
                     <input type="text" id="barcode" class="browser-default form-control" value="{{ $products['barcode'] }}" style="padding: 6px;">
                 </div>
-            </div>
-            <div class="tflex tpx-5 tpt-4">
-                <div class="tw-1/2 tflex tflex-col tmr-3">
+                <div class="tw-1/5 tflex tflex-col tmr-2">
                     <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity <small class="ttext-red-700">(Not Editable)</small></label>
                     <input type="number" disabled onkeyup="allnumeric(this)" id="qty" class="browser-default form-control" value="{{ $products['qty'] }}" style="padding: 6px;">
                 </div>
-                <div class="tw-1/2 tflex tflex-col tml-3">
+                <div class="tw-1/5 tflex tflex-col tmr-2">
                     <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Threshold</label>
                     <input type="number" onkeyup="allnumeric(this)" id="threshold" class="browser-default form-control" value="{{ $products['threshold'] ?? 10 }}" style="padding: 6px;">
                 </div>
+                <div class="tw-1/5 tflex tflex-col tmr-2">
+                    <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Expiration Date</label>
+                    <input type="text" class="browser-default form-control" id="expiration_date" value="{{ date_f($products['expiration_date'] ?? "Jan 01, 2020", "M d, Y") }}">
+                </div>
             </div>
+         
         </div>
 
         <div class="tflex tjustify-end tpy-5 trounded-lg 100 tmt-5">
@@ -151,8 +154,10 @@
     <script src="{{ asset('input_counter/script.js') }}"></script>
 
     
-    <script> // ck editor and other initiator
-        $(document).ready(function () {
+    <script>
+        $('#expiration_date').datepicker();// initiate datepicker
+    
+        $(document).ready(function () {  // ck editor and other initiator
             $('.modal').modal();
 
             let description = CKEDITOR.replace( 'description' );
@@ -408,7 +413,8 @@
             let barcode = $('#barcode').val();
             let qty = $('#qty').val();
             let threshold = $('#threshold').val();
-            
+            let expiration_date = formatDate($('#expiration_date').val());
+
             let image = [];
             $.each($('.image'), function (i, el) {
                 image.push({
@@ -431,6 +437,7 @@
                 barcode:barcode,
                 qty:qty,
                 threshold:threshold,
+                expiration_date:expiration_date,
                 images:image,
             })
             .fail(function(response) {
@@ -469,5 +476,21 @@
             });
         }
     </script>   
+
+    <script> // date Converter
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+    </script>
 
 @endsection

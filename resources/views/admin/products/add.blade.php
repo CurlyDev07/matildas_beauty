@@ -55,7 +55,7 @@
             Images
         </div>
         <div class="tflex tflex-wrap tpx-5">
-            <input type="file" class="thidden" id="upload_file_input">
+            <input type="file" class="thidden" id="upload_file_input" accept="image/*">
 
             <div class="tw-full tpy-6 dropzone">
                 <div class="dz-message needsclick">    
@@ -101,26 +101,30 @@
             Inventory
         </div>
         <div class="tflex tpx-5">
-            <div class="tw-1/2 tflex tflex-col tmr-3">
+            <div class="tw-1/5 tflex tflex-col tmr-2 ">
                 <label for="sku" class="tfont-normal ttext-sm tmb-2 ttext-black-100">SKU (Stock Keeping Unit)</label>
                 <input type="text" id="sku" class="browser-default form-control" style="padding: 6px;">
             </div>
-            <div class="tw-1/2 tflex tflex-col tml-3">
-                <label for="barcode" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barcode (ISBN, UPC, GTIN, etc.)</label>
-                <input type="text" id="barcode" class="browser-default form-control" style="padding: 6px;">
-            </div>
-        </div>
-        <div class="tflex tpx-5 tpt-4">
-            <div class="tw-1/2 tflex tflex-col tmr-3 tpr-3">
+            <div class="tw-1/5 tflex tflex-col tmr-2 ">
                 <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
                 <input type="number" onkeyup="allnumeric(this)" value="0" id="qty" class="browser-default form-control" style="padding: 6px;">
             </div>
-            <div class="tw-1/2 tflex tflex-col tml-3">
+            <div class="tw-1/5 tflex tflex-col tmr-2">
+                <label for="barcode" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barcode</label>
+                <input type="text" id="barcode" class="browser-default form-control" style="padding: 6px;">
+            </div>
+            <div class="tw-1/5 tflex tflex-col tmr-2">
                 <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Threshold</label>
                 <input type="number" onkeyup="allnumeric(this)" value="10" id="threshold" class="browser-default form-control" style="padding: 6px;">
             </div>
+            <div class="tw-1/5 tflex tflex-col tmr-2">
+                <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Expiration Date</label>
+                <input type="text" class="browser-default form-control" id="expiration_date" value="Jan 01, 2020">
+            </div>
         </div>
     </div>
+
+
 {{--     
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-5">
         <div class="text-sm tfont-medium tpx-5 tpy-4 ttext-title">Variants</div>
@@ -242,7 +246,11 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('input_counter/script.js') }}"></script>
 
+
     <script>
+
+        $('#expiration_date').datepicker();// initiate datepicker
+
         // $(document).ready(function () {
         //     $('.modal').modal();
 
@@ -464,6 +472,7 @@
             let barcode = $('#barcode').val();
             let qty = $('#qty').val();
             let threshold = $('#threshold').val();
+            let expiration_date = formatDate($('#expiration_date').val());
             
             let image = [];
 
@@ -517,6 +526,7 @@
                 barcode:barcode,
                 qty:qty,
                 threshold:threshold,
+                expiration_date:expiration_date,
                 images:image,
                 variant_types: variant_types,   
                 variant_options: variant_options,
@@ -552,5 +562,21 @@
         }
     </script>   
 
+
+    <script> // date Converter
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+    </script>
 
 @endsection
