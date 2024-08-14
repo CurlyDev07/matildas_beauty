@@ -76,20 +76,20 @@
         <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
             Pricing
         </div>
-        <div class="tflex tpx-5">
-            <div class="tw-1/2 tflex tflex-col tmr-3">
+        <div class="tflex tflex-wrap tpx-5">
+            <div class="tw-1/2 lg:tw-1/4 tmb-2 lg:tmb-0 tpx-1">
                 <label for="selling_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Selling Price</label>
                 <input type="number" onkeyup="allnumeric(this)" id="selling_price" class="browser-default form-control" value="0"  style="padding: 6px;">
             </div>
-            <div class="tw-1/2 tflex tflex-col tmr-3">
+            <div class="tw-1/2 lg:tw-1/4 tmb-2 lg:tmb-0 tpx-1">
                 <label for="campaign_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Campaign Price</label>
                 <input type="number" onkeyup="allnumeric(this)" id="campaign_price" class="browser-default form-control" value="0" style="padding: 6px;">
             </div>
-            <div class="tw-1/2 tflex tflex-col tmr-3">
+            <div class="tw-1/2 lg:tw-1/4 tmb-2 lg:tmb-0 tpx-1">
                 <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Cogs</label>
                 <input type="number" onkeyup="allnumeric(this)" id="price" class="browser-default form-control" value="0" style="padding: 6px;">
             </div>
-            <div class="tw-1/2 tflex tflex-col tml-3">
+            <div class="tw-1/2 lg:tw-1/4 tmb-2 lg:tmb-0 tpx-1">
                 <label for="compare_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Website Price <small class="ttext-blue-500">(x2 of Cogs)</small></label>
                 <input type="number" onkeyup="allnumeric(this)" value="0" id="compare_price" class="browser-default form-control" style="padding: 6px;">
             </div>
@@ -100,24 +100,24 @@
         <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
             Inventory
         </div>
-        <div class="tflex tpx-5">
-            <div class="tw-1/5 tflex tflex-col tmr-2 ">
-                <label for="sku" class="tfont-normal ttext-sm tmb-2 ttext-black-100">SKU (Stock Keeping Unit)</label>
+        <div class="tflex tflex-wrap tpx-5">
+            <div class="tw-1/3 lg:tw-1/5 tpx-1">
+                <label for="sku" class="tfont-normal ttext-sm tmb-2 ttext-black-100">SKU</label>
                 <input type="text" id="sku" class="browser-default form-control" style="padding: 6px;">
             </div>
-            <div class="tw-1/5 tflex tflex-col tmr-2 ">
+            <div class="tw-1/3 lg:tw-1/5 tpx-1">
                 <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
                 <input type="number" onkeyup="allnumeric(this)" value="0" id="qty" class="browser-default form-control" style="padding: 6px;">
             </div>
-            <div class="tw-1/5 tflex tflex-col tmr-2">
+            <div class="tw-1/3 lg:tw-1/5 tpx-1 tmb-2 lg:tmb-0">
                 <label for="barcode" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barcode</label>
                 <input type="text" id="barcode" class="browser-default form-control" style="padding: 6px;">
             </div>
-            <div class="tw-1/5 tflex tflex-col tmr-2">
+            <div class="tw-1/2 lg:tw-1/5 tpx-1">
                 <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Threshold</label>
                 <input type="number" onkeyup="allnumeric(this)" value="10" id="threshold" class="browser-default form-control" style="padding: 6px;">
             </div>
-            <div class="tw-1/5 tflex tflex-col tmr-2">
+            <div class="tw-1/2 lg:tw-1/5 tpx-1">
                 <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Expiration Date</label>
                 <input type="text" class="browser-default form-control" id="expiration_date" value="Jan 01, 2020">
             </div>

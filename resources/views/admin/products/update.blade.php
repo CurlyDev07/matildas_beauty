@@ -52,7 +52,7 @@
                 Images
             </div>
             <div class="tflex tflex-wrap tpx-5">
-                <input type="file" class="thidden" id="upload_file_input" multiple>
+                <input type="file" class="thidden" id="upload_file_input" multiple accept="image/*">
 
                 <div class="tw-full tpy-6 dropzone">
                     <div class="dz-message needsclick">    
@@ -73,20 +73,20 @@
             <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
                 Pricing
             </div>
-            <div class="tflex tpx-5">
-                <div class="tw-1/2 tflex tflex-col tmr-3">
+            <div class="tflex tflex-wrap tpx-5">
+                <div class="tw-1/2 lg:tw-1/4 tmb-2 lg:tmb-0 tpx-1">
                     <label for="selling_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Selling Price</label>
                     <input type="number" onkeyup="allnumeric(this)" id="selling_price" class="browser-default form-control" value="{{ $products['selling_price'] }}" style="padding: 6px;">
                 </div>
-                <div class="tw-1/2 tflex tflex-col tmr-3">
+                <div class="tw-1/2 lg:tw-1/4 tmb-2 lg:tmb-0 tpx-1">
                     <label for="campaign_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Campaign Price</label>
                     <input type="number" onkeyup="allnumeric(this)" id="campaign_price" class="browser-default form-control" value="{{ $products['campaign_price'] }}"  style="padding: 6px;">
                 </div>
-                <div class="tw-1/2 tflex tflex-col tmr-3">
+                <div class="tw-1/2 lg:tw-1/4 tmb-2 lg:tmb-0 tpx-1">
                     <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Cogs</label>
                     <input type="number" onkeyup="allnumeric(this)" id="price" class="browser-default form-control" value="{{ $products['price'] }}" style="padding: 6px;">
                 </div>
-                <div class="tw-1/2 tflex tflex-col tml-3">
+                <div class="tw-1/2 lg:tw-1/4 tmb-2 lg:tmb-0 tpx-1">
                     <label for="compare_price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Website Price <small class="ttext-blue-500">(x2 of Cogs)</small></label>
                     <input type="number" onkeyup="allnumeric(this)" id="compare_price" class="browser-default form-control" value="{{ $products['compare_price'] }}" style="padding: 6px;">
                 </div>
@@ -97,24 +97,24 @@
             <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
                 Inventory
             </div>
-            <div class="tflex tpx-5">
-                <div class="tw-1/5 tflex tflex-col tmr-2">
-                    <label for="sku" class="tfont-normal ttext-sm tmb-2 ttext-black-100">SKU (Stock Keeping Unit)</label>
+            <div class="tflex tflex-wrap tpx-5">
+                <div class="tw-1/3 lg:tw-1/5 tpx-1">
+                    <label for="sku" class="tfont-normal ttext-sm tmb-2 ttext-black-100">SKU</label>
                     <input type="text" id="sku" class="browser-default form-control" value="{{ $products['sku'] }}" style="padding: 6px;">
                 </div>
-                <div class="tw-1/5 tflex tflex-col tmr-2">
-                    <label for="barcode" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barcode (ISBN, UPC, GTIN, etc.)</label>
+                <div class="tw-1/3 lg:tw-1/5 tpx-1">
+                    <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity</label>
+                    <input type="number" disabled onkeyup="allnumeric(this)" id="qty" class="browser-default form-control tcursor-not-allowed" value="{{ $products['qty'] }}" style="padding: 6px;    background-color: #e6e6e6;">
+                </div>
+                <div class="tw-1/3 lg:tw-1/5 tpx-1 tpx-1 tmb-2 lg:tmb-0">
+                    <label for="barcode" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Barcode</label>
                     <input type="text" id="barcode" class="browser-default form-control" value="{{ $products['barcode'] }}" style="padding: 6px;">
                 </div>
-                <div class="tw-1/5 tflex tflex-col tmr-2">
-                    <label for="qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Quantity <small class="ttext-red-700">(Not Editable)</small></label>
-                    <input type="number" disabled onkeyup="allnumeric(this)" id="qty" class="browser-default form-control" value="{{ $products['qty'] }}" style="padding: 6px;">
-                </div>
-                <div class="tw-1/5 tflex tflex-col tmr-2">
+                <div class="tw-1/2 lg:tw-1/5 tpx-1">
                     <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Threshold</label>
                     <input type="number" onkeyup="allnumeric(this)" id="threshold" class="browser-default form-control" value="{{ $products['threshold'] ?? 10 }}" style="padding: 6px;">
                 </div>
-                <div class="tw-1/5 tflex tflex-col tmr-2">
+                <div class="tw-1/2 lg:tw-1/5 tpx-1">
                     <label for="threshold" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Expiration Date</label>
                     <input type="text" class="browser-default form-control" id="expiration_date" value="{{ date_f($products['expiration_date'] ?? "Jan 01, 2020", "M d, Y") }}">
                 </div>
@@ -176,7 +176,7 @@
                 <script>// RENDER IMAGE MARK-UP FOR (PRIMARY) IMAGE
                     // getBase64Image("{{ $img['img'] }}", function (base64image) {
                         $('#image_container').prepend(`
-                            <div class="tw-1/5 tmb-3 tpr-1 trelative">
+                            <div class="tw-1/2 md:tw-1/3 lg:tw-1/5 tmb-3 tpr-1 trelative">
                                 <img src="{{ asset('images/icons/medal.png') }}" class="tabsolute t-ml-1" id="main_image_badge" alt="main image">
                                 <i class="delete_image fa-backspace fa-lg fas tabsolute tcursor-pointer" style="color: tomato;margin-top: 1px;right: 11px;"></i>
                                 <img src="{{ $img['img'] }}" class="image tborder" primary="1" style="height:148px; width: 164px;">
@@ -188,7 +188,7 @@
                 <script>// RENDER IMAGE MARK-UP FOR (NON PRIMARY) IMAGE
                     // getBase64Image("{{ $img['img'] }}", function (base64image) {
                         $('#image_container').prepend(`
-                            <div class="tw-1/5 tmb-3 tpr-1 trelative">
+                            <div class="tw-1/2 md:tw-1/3 lg:tw-1/5 tmb-3 tpr-1 trelative">
                                 <i class="delete_image fa-backspace fa-lg fas tabsolute tcursor-pointer" style="color: tomato;margin-top: 1px;right: 11px;"></i>
                                 <img src="{{ $img['img'] }}" class="image tborder" primary="0" style="height:148px; width: 164px;">
                             </div>
@@ -231,7 +231,7 @@
 
                     // RENDER IMAGE MARK-UP
                     let img_markup = `
-                        <div class="tw-1/5 tmb-3 tpr-1 trelative">
+                        <div class="tw-1/2 md:tw-1/3 lg:tw-1/5 tmb-3 tpr-1 trelative">
                             <i class="delete_image fa-backspace fa-lg fas tabsolute tcursor-pointer" style="color: tomato;margin-top: 1px;right: 11px;"></i>
                             <img src="${base64Img}" class="image tborder" primary="0" style="height:148px; width: 164px;">
                         </div>
