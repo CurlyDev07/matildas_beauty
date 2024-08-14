@@ -11,10 +11,10 @@
     
 @section('page')
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
-        <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-4">
+        <div class="tborder-b tflex-wrap  tflex titems-center tjustify-between tpx-5 tpy-4">
             <span class="ttext-base ttext-title tfont-medium">Product List ({{ count($products) }})</span>
-            <ul class="tflex titems-center">
-                <li class="tmx-2 ttext-green-500">
+            <ul class="tflex  tflex-wrap titems-center">
+                <li class="tw-1/3 md:tw-auto md:tmx-2 ttext-green-500">
                     <div class="tborder tflex tp-1 trounded ttext-sm titems-center tbg-red-500">
                         <a href="?no_selling_price=true" class="tooltipped" data-position="top" data-tooltip="No SRP Product">
                             <span class="tpl-1 ttext-white">
@@ -24,7 +24,7 @@
                         </a>
                     </div>
                 </li><!-- No Srp -->
-                <li class="tmx-2 ttext-green-500">
+                <li class="tw-1/3 md:tw-auto md:tmx-2 ttext-green-500">
                     <div class="tborder tflex tp-1 trounded ttext-sm titems-center tbg-green-500">
                         <a href="?no_cogs=true" class="tooltipped" data-position="top" data-tooltip="No Capital">
                             <span class="tpl-1 ttext-white">
@@ -34,7 +34,7 @@
                         </a>
                     </div>
                 </li><!-- No Capital -->
-                <li class="tmx-2 ttext-green-500">
+                <li class="tw-1/3 md:tw-auto md:tmx-2 ttext-green-500">
                     <div class="tborder tflex tp-1 trounded ttext-sm titems-center tbg-red-500">
                         <a href="?out_of_stock=true" class="tooltipped" data-position="top" data-tooltip="Out of Stock">
                             <span class="tpl-1 ttext-white">
@@ -45,7 +45,7 @@
                     </div>
                 </li><!-- Out of Stock-->
 
-                <li class="tmr-4">
+                <li class="tw-3/5 md:tw-auto md:tmr-4">
                     <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
                         <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search sku or name">
                         <button type="submit" class="focus:tbg-white focus:toutline-none grey-text tborder tborder-gray-200 tborder-l-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-r-full waves-effect">
@@ -53,7 +53,7 @@
                         </button>
                     </form>
                 </li><!-- SEARCH -->
-                <li class="tmr-4 tpt-1">
+                <li class="tw-1/5 md:tw-auto md:tmr-4 md:tpt-1 ttext-center">
                     @if (request()->sort == 'asc')
                         <a href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by newest">
                             <i class="material-icons grey-text tmr-3">sort_by_alpha</i>
@@ -65,18 +65,19 @@
                     @endif
                 </li><!-- SORT -->
              
-                <a href="/admin/products">
+                <a href="/admin/products" class="tw-1/5 md:tw-auto">
                     <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                 </a>
             </ul>
         </div>
-        <div class="tpx-3 tpy-4 tflex tjustify-center">
+        <div class="tflex tflex-wrap toverflow-auto tpy-4 tw-full">
             <table class="tmb-4 tbg-white ttext-md tw-full centered">
                 <tbody>
                     <tr class="tborder-0">
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Photo</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Name</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Sku</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Name/SKU</th>
+                        {{-- <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm">Sku</th> --}}
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm tw-1/12">Expiration</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium ttext-sm tw-1/12">SRP</th>
 
                         @if (auth()->user()->isMaster())
@@ -95,11 +96,18 @@
                                 <img src="{{ ($product['primary_image']) }}" data-src="{{ ($product['primary_image']) }}" class="tmx-auto trounded" style="height: 50px;width: 50px;">
                             </td>
                             <td class="tp-3 tpx-1">
-                                <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline tmx-auto ttext-blue-500 ttext-sm truncate "
-                                style="width: 150px; overflow-wrap: anywhere; white-space: normal;">{{ $product['title'] }}</a>
+                                {{-- <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline tmx-auto ttext-blue-500 ttext-sm truncate "
+                                style="width: 150px; overflow-wrap: anywhere; white-space: normal;">{{ $product['title'] }}</a> --}}
+
+                                <span class="truncate ttext-sm ttext-blue-600">{{ $product['title'] }}</span>
+                                <span class="truncate ttext-sm"><span class="tfont-medium ttext-gray-800">SKU:</span>  {{ $product['sku'] }}</span>
+
                             </td>
-                            <td class="tp-3 tpx-1  " style="width: 150px; overflow-wrap: anywhere; white-space: normal;">
+                            {{-- <td class="tp-3 tpx-1  " style="width: 150px; overflow-wrap: anywhere; white-space: normal;">
                                 <span class="truncate ttext-sm">{{ $product['sku'] }}</span>
+                            </td> --}}
+                            <td class="tp-3 tpx-1  " style="width: 150px; overflow-wrap: anywhere; white-space: normal;">
+                                <span class="truncate ttext-sm">{{ date_f($product['expiration_date'], "M Y") == 'Jan 1970'? 'N/A' : date_f($product['expiration_date'], "M Y") }}</span>
                             </td>
 
                             @if (auth()->user()->isMaster()) <!-- TextBox FOR ADMIN AUTO UPDATE -->

@@ -70,6 +70,7 @@
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Sku</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Name</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Qty</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Expiration</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">status</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium"><i class="fas fa-cog"></i></th>
                     </tr>
@@ -83,6 +84,7 @@
                                 <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline ttext-blue-500">{{ $product['title'] }}</a>
                             </td>
                             <td class="tp-3 tpx-5 ttext-sm">{{ $product['qty'] }}</td>
+                            <td class="tp-3 tpx-5 ttext-sm">{{ date_f($product['expiration_date'], "M Y") == 'Jan 1970'? 'N/A' : date_f($product['expiration_date'], "M Y") }}</td>
                             <td class="tp-3 tpx-5">
                                 @if ($product['qty'] < 1)
                                     <span class="tm-0 chip red lighten-5 waves-effect waves-red status" data-status="active" data-id="{{ $product['id'] }}" style="cursor: pointer;">
