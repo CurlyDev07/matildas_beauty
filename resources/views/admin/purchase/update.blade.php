@@ -172,7 +172,9 @@
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Quantity</label>
 
                                 @if ($purchase_product->received == 'yes')
-                                    <span class="browser-default form-control cursor: not-allowed;" style="background: #f9f9f9; cursor: not-allowed;">{{ $purchase_product['qty']?? 1 }}</span>
+                                    {{-- <span class="browser-default form-control cursor: not-allowed;" style="background: #f9f9f9; cursor: not-allowed;">{{ $purchase_product['qty']?? 1 }}</span> --}}
+
+                                    <input type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['qty'] ?? 1 }}" class="product_quantity browser-default form-control tcursor-not-allowed" disabled style="padding: 6px; background-color: #ddcccc6b;">
                                 @else
                                     <input type="number" onkeyup="allnumeric(this)" value="{{ $purchase_product['qty'] }}" class="product_quantity browser-default form-control" style="padding: 6px;">
                                 @endif

@@ -106,16 +106,32 @@ class PurchaseCon extends Controller
         // -------------------------------------------------
 
         foreach ($request->products as $product) {
+            $find_product = Product::find($product['product_id']);
+            // dd([$find_product->expiration_date, $product['expiration_date']]);
+
+
             // UPDATE PRODUCT LISTING PRICE TO THE LATEST PURCHASE PRICE
             if ($product['price'] != 0) {
-                Product::find($product['product_id'])->update(['price' => $product['price']]);
+                $find_product->update(['price' => $product['price']]);
 
                 $this->products->recomputeProfit($product['product_id']);// Recompute And Update Profit
             }
 
+            // UPDATE PRODUCT EXPIRATION IF PURCHASE XP IS EALIEST 
+            if ($product['expiration_date'] != '2020-01-01') {
+                if (carbon($product['expiration_date']) < carbon($find_product->expiration_date)) {
+                    $find_product->update(['expiration_date' => $product['expiration_date']]);
+                }
+            }
+
+
             // purchase_product
             $purchase->purchase_product()->create($product);
 
+                // if
+                // productXP > purchase XP
+                // -  Update product XP to purchase XP
+    
             // These IF/ELSE are used to get the Purchase Status
 
             if (array_key_exists('received', $product)) {
