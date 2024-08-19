@@ -50,7 +50,6 @@ class PurchaseCon extends Controller
     }
 
     public function store(CreatePurchaseRequest $request){
-        
         $purchase = Purchase::create([
             "supplier" => $request->supplier, 
             "total_price" => (int)str_replace(',', '', $request->total_price),
@@ -61,8 +60,11 @@ class PurchaseCon extends Controller
             "date" => $request->date ? date_f($request->date, 'Y-m-d H:i:s') : now()
         ]);
 
-        foreach ($request->products as $product) {
-            $purchase->purchase_product()->create($product);
+        foreach ($request->products as $i => $product) {
+
+            $find_product = Product::where('id', $product['product_id'])->get()[0];
+            $purchase_product_create = $purchase->purchase_product()->create($product);
+            $purchase_product_create->update(['expiration_date' => $find_product['expiration_date']]);
         }
 
         return response()->json(['code' => 200]);
