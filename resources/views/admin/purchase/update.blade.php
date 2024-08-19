@@ -151,7 +151,7 @@
                             <div class="tw-full tflex tflex-col">
                                 <div class="tflex titems-center tpy-1">
                                     <img src="{{ $purchase_product->product['primary_image'] }}" class="product_img" style="height: 50px; width: 50px;" alt="">
-                                    <div class="tpx-2 truncate" style="width: 157px;">
+                                    <div class="tpx-2 truncate">
                                         <p class="product_title ttext-sm" >{{ $purchase_product->product['title'] }}</p>
                                         <small class="product_sku">{{ $purchase_product->product['sku'] }}</small>
                                     </div>
@@ -487,7 +487,7 @@
                 $( ".reflect-stocks:not(.thidden)" ).each(function( index ) {
                     $(this).click();
                 });
-                
+
                 console.log(stockIn);
                 return;
             }
