@@ -546,7 +546,7 @@
                     title: 'Awesome',
                     text: 'Added Successfuly',
                 });
-                location.href = '/admin/purchase';
+                // location.href = '/admin/purchase';
             });
         })// Submit
 
