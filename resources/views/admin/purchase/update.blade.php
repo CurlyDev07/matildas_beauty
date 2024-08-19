@@ -229,20 +229,28 @@
                             </div><!-- Recieved QTY -->
       
                             {{------------BUTTONS---------- --}}
-                            <button 
-                                @if ($purchase_product->received == 'incomplete')
-                                    class="tmr-3 lg:tmr-1 tpx-1 tmb-2 lg:tmb-0 hover:tunderline tcursor-pointer tooltipped reflect-stocks focus:tbg-green-500 tbg-green-500 tpx-3 tpy-2 ttext-white trounded mr-1"
-                                @else
-                                    class="tmr-3 lg:tmr-1 tpx-1 tmb-2 lg:tmb-0 thidden hover:tunderline tcursor-pointer tooltipped reflect-stocks focus:tbg-green-500 tbg-green-500 tpx-3 tpy-2 ttext-white trounded mr-1"
-                                @endif
-                                
-                                {{-- style="top: -28%;"  --}}
-                                {{-- data-position="right"  --}}
-                                data-tooltip="Reflect Stocks to Inventory"
-                                purchase_product_id="{{ $purchase_product->id }}"
-                                product_id="{{ $purchase_product->product['id'] }}">StockIn</button>
+
 
                             @if ($purchase_product->received != 'yes')
+
+                                {{-- REFLECT STOCKS BUTTON --}}
+                                <button 
+                                    @if ($purchase_product->received == 'incomplete')
+                                        class="tmr-3 lg:tmr-1 tpx-1 tmb-2 lg:tmb-0 hover:tunderline tcursor-pointer tooltipped reflect-stocks focus:tbg-green-500 tbg-green-500 tpx-3 tpy-2 ttext-white trounded mr-1"
+                                    @else
+                                        class="tmr-3 lg:tmr-1 tpx-1 tmb-2 lg:tmb-0 thidden hover:tunderline tcursor-pointer tooltipped reflect-stocks focus:tbg-green-500 tbg-green-500 tpx-3 tpy-2 ttext-white trounded mr-1"
+                                    @endif
+                                    
+                                    {{-- style="top: -28%;"  --}}
+                                    {{-- data-position="right"  --}}
+                                    data-tooltip="Reflect Stocks to Inventory"
+                                    purchase_product_id="{{ $purchase_product->id }}"
+                                    product_id="{{ $purchase_product->product['id'] }}">
+                                    StockIn
+                                </button>
+
+
+                                {{-- REMOVE BUTTON --}}
                                 <button class="tpx-1 tmb-2 lg:tmb-0 closeItem focus:tbg-red-500 tbg-red tbg-red-500 tpx-3 tpy-2 trounded ttext-white tooltipped" data-position="right" data-tooltip="Remove Product">Remove</button>
                             @endif <!-- if purchase product is added to stocks. Cannot remove it anymore --> 
                             {{------------BUTTONS---------- --}}
@@ -471,6 +479,22 @@
         }
 
         $('#submit_btn').click(()=>{
+
+
+            let stockIn = $('.reflect-stocks:not(.thidden)').length;
+
+            if (stockIn != 0) {
+                $( ".reflect-stocks:not(.thidden)" ).each(function( index ) {
+                    $(this).click();
+                });
+                
+                console.log(stockIn);
+                return;
+            }
+
+           
+
+       
 
             $('#submit_btn').attr('disabled', 'true');
             progress_loading(true);// show loader
