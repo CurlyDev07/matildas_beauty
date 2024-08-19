@@ -48,7 +48,8 @@
             <table class="tmb-4 tbg-white ttext-md tw-full">
                 <tbody>
                     <tr class="tborder-0">
-                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
+                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Created Date</th>
+                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Purchase Date</th>
                         <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Supplier</th>
                         <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Total</th>
                         <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Status</th>
@@ -58,6 +59,7 @@
                     @foreach ($purchases as $purchase)
                     
                         <tr class="tborder-0 hover:tbg-blue-100">
+                            <td class="tp-3 tpx-5">{{ carbon($purchase['created_at'])->diffForHumans() }}</td>
                             <td class="tp-3 tpx-5">{{ date('M d, Y',strtotime($purchase['date'])) }}</td>
                             <td class="tp-3 tpx-5">{{ $purchase->suppliers->name }} {{ $purchase->suppliers->surname }}</td>
                             <td class="tp-3 tpx-5">{{ currency() }}{{ number_format($purchase->total_price + $purchase->shipping_fee + $purchase->transaction_fee + $purchase->tax, 2) }}</td>

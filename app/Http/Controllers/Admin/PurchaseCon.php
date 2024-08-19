@@ -32,6 +32,7 @@ class PurchaseCon extends Controller
             return $q->where('supplier', request()->supplier);
         })// Filter by stores
         ->get();
+
         return view('admin.purchase.index', ['purchases' => $purchases, 'suppliers' => $suppliers]);
     }
 
