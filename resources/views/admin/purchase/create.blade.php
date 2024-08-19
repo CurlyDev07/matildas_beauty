@@ -121,7 +121,7 @@
                             <div class="tflex titems-center tpy-1">
                                 <img src="https://cf.shopee.ph/file/d8966eff56f6714d423e261828353033" class="product_img" style="height: 50px; width: 50px;" alt="">
                                 <div class="tpx-2">
-                                    <p class="product_title truncate ttext-sm">Matilda's Beauty Bleaching Soap 10x Whitening SoapMatilda's Beauty Bleaching Soap 10x Whitening Soap</p>
+                                    <p class="product_title truncate ttext-sm ">Matilda's Beauty Bleaching Soap 10x Whitening SoapMatilda's Beauty Bleaching Soap 10x Whitening Soap</p>
                                     <small class="product_sku">VS_AKL</small>
                                 </div>
                             </div>
