@@ -137,6 +137,10 @@ class FbAdsCon extends Controller
         return $request->all();
     }
 
+    public function fbads(){
+        return view('pages.fbads.fbads');
+    }
+
 }
 
 

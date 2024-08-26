@@ -77,10 +77,17 @@ Route::get('MissTisa-Success', 'FbAdsCon@success')->name('miss_tisa_success');
 Route::post('get-cities', 'FbAdsCon@cities');
 Route::post('get-barangay', 'FbAdsCon@barangay');
 
+
+Route::get('fbads', 'FbAdsCon@fbads')->name('fbads');;
+
+
+
+
 // FB ADS EVENT LISTENER
 Route::post('event-listener', 'FbAdsCon@event_listener')->name('event.listener');
 
 Auth::routes();
+
 
 
 // http://127.0.0.1:8000/
