@@ -20,36 +20,35 @@
 
     
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
-        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgb(250 25 158 / 53%) 0%, rgb(251 0 148) 100%);">
-            <div >
-                <div class="">
-                    <p class="t-mt-2 tfont-medium  ttext-4xl ttext-white">Good Bye Melasma</p>
-                </div>
-            </div>
+        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 45px; background-color: #b62762;">
+            <p class="tfont-medium  ttext-lg ttext-white">SAVE UP TO 46% WITH 4 FREE GIFTS</p>
+        </div>
+        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 30px; background-color: #ffffff;">
+            <p class="tfont-medium  ttext-xs"> <b>30pcs</b> AVAILABLE STOCKS</p>
         </div>
 
         <img src="{{ asset('images/kasoy_oil/wild_berry.png') }}" class="tw-full" alt="top_banner">
 
         <div class="tmx-2 tflex titems-center tflex-wrap tpy-3">
             <div class="tborder-gray-200 tborder-r-2 tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
-                <span class="tfont-bold ttext-4xl ttext-gray-700">60</span>
+                <span class="tfont-bold ttext-4xl" style="color: #ea353d;">60</span>
                 <span class="tfont-medium">Servings</span>
             </div>
             <div class="tborder-gray-200 tborder-r-2 tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
-                <span class="tfont-bold ttext-4xl ttext-gray-700">60</span>
-                <span class="tfont-medium">Servings</span>
+                <span class="tfont-bold ttext-4xl" style="color: #ea353d;">75</span>
+                <span class="tfont-medium">Ingredients</span>
             </div>
             <div class="tborder-gray-200 tborder-r-2 tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
-                <span class="tfont-bold ttext-4xl ttext-gray-700">60</span>
-                <span class="tfont-medium">Servings</span>
+                <span class="tfont-bold ttext-4xl" style="color: #ea353d;">50</span>
+                <span class="tfont-medium">Calories</span>
             </div>
             <div class="tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
-                <span class="tfont-bold ttext-4xl ttext-gray-700">60</span>
-                <span class="tfont-medium">Servings</span>
+                <span class="tfont-bold ttext-4xl" style="color: #ea353d;">12</span>
+                <span class="tfont-medium">Vitamins</span>
             </div>
         </div><!-- Benefits -->
 
-        <div class="tmx-2 tflex titems-center tmy-3">
+        <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
                 <span class="ttext-sm ttext-white">
                     <i class="fas fa-star" style="color: #ffa633;"></i>
@@ -66,11 +65,49 @@
             <div class="tw-1/2  ttext-center tfont-medium ">19,586 + Trusted Reviews</div>
         </div><!-- Ratings and reviews -->
 
-        <div class="tborder-dashed tflex titems-center tjustify-center tmx-2 tmy-3 tpx-3 tpy-2" style="border: 1px solid #068f06; border-style: dashed;">
+        <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3" style="border: 2px solid #fe8686; border-style: dashed;">
             <span class="tfont-medium">Order Today for guaranteed </span>
-            <span class="ttext-green-600 tfont-medium tml-2"> FREE 4 Gifts</span>
-        </div>
+            <span class="ttext-pink-500 tfont-medium tml-2"> FREE 4 Gifts</span>
+        </div><!-- ORDER TODAY -->
 
+        <div class="tmb-2 tp-2 trelative">
+            <div class="tflex tflex-wrap">
+                <div class="tw-1/2 tp-1 trelative">
+                    <label class="tblock tborder-2 tborder-pink-400 tbg-yellow-100 tpx-3 tpy-2 trounded">
+                        <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
+                        <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
+                        <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
+                    </label>
+                    <div class="tabsolute" style="top: -6px; left: 23%;">
+                        <div class="tbg-red-600 tfont-medium tpx-4 trounded ttext-sm ttext-white">
+                            BEST SELLER
+                        </div>
+                    </div>
+                </div><!-- PROMO 4-->
+                <div class="tw-1/2 tp-1">
+                    <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
+                        <input type="checkbox" id="promo1" name="promo" class="promo"  value="MissTisa_1pc|499|1pc">
+                        <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
+                        <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
+                    </label>
+                </div><!-- PROMO 4-->
+                <div class="tw-1/2 tp-1">
+                    <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
+                        <input type="checkbox" id="promo1" name="promo" class="promo"  value="MissTisa_1pc|499|1pc">
+                        <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
+                        <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
+                    </label>
+                </div><!-- PROMO 4-->
+                <div class="tw-1/2 tp-1">
+                    <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
+                        <input type="checkbox" id="promo1" name="promo" class="promo"  value="MissTisa_1pc|499|1pc">
+                        <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
+                        <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
+                    </label>
+                </div><!-- PROMO 4-->
+   
+            </div>
+        </div><!-- PROMO  -->
 
         <img class="tmb-3" src="{{ asset('images\kasoy_oil\28_days_challenge.png') }}" alt="28_days_challenge">
 
