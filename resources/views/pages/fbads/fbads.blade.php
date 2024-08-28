@@ -10,14 +10,90 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/icons/favicon.ico') }}" >
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+  
+    <style>
+       .input-control {
+            width: 100%;
+            padding: 12px!important;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            border: 1px solid #e1e5eb;
+            font-weight: 400;
+            will-change: border-color,box-shadow;
+            border-radius: 0.25rem;
+            box-shadow: none;
+            transition: box-shadow 250ms cubic-bezier(.27,.01,.38,1.06),border 250ms cubic-bezier(.27,.01,.38,1.06);
+        }
+
+        .zoom-in-out-box {
+            animation: zoom-in-zoom-out 1s ease infinite;
+        }
+
+        @keyframes zoom-in-zoom-out {
+            0% {
+                transform: scale(1, 1);
+            }
+            30% {
+                transform: scale(1.1, 1.1);
+            }
+            100% {
+                transform: scale(1, 1);
+            }
+        }
+
+        li{
+            list-style-type: disc !important;
+        }
+
+        .gredient-border{
+            border: linear-gradient(180deg, rgba(255, 106, 0, 1) 0%, rgba(238, 9, 9, 1) 100%);
+            background: linear-gradient(#fff, #fff), linear-gradient(to right, #f63705, #fc5b01);
+            background-origin: padding-box, border-box;
+            background-repeat: no-repeat;
+            border: 5px solid transparent;
+        }
+
+    </style>
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/8d4a8c4bc9.js" crossorigin="anonymous"></script>
 
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1081433249584415');
+        fbq('track', 'PageView');
+    </script>
+
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1081433249584415&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+
+    <!----- Tiktok Pixel Code ----->
+    <script>
+        !function (w, d, t) {
+          w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+        
+          ttq.load('CNAPJGJC77U3KI9K4LG0');
+          ttq.page();
+        }(window, document, 'ttq');
+        </script>
+    <!----- Tiktok Pixel Code ----->
+
 </head>
 <body>
-
     
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
         <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 45px; background-color: #b62762;">
@@ -27,7 +103,7 @@
             <p class="tfont-medium  ttext-xs"> <b>30pcs</b> AVAILABLE STOCKS</p>
         </div>
 
-        <img src="{{ asset('images/kasoy_oil/wild_berry.png') }}" class="tw-full" alt="top_banner">
+        <img src="{{ asset('images/kasoy_oil/goree_banner.png') }}" class="tw-full" alt="top_banner">
 
         <div class="tmx-2 tflex titems-center tflex-wrap tpy-3">
             <div class="tborder-gray-200 tborder-r-2 tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
@@ -70,44 +146,99 @@
             <span class="ttext-pink-500 tfont-medium tml-2"> FREE 4 Gifts</span>
         </div><!-- ORDER TODAY -->
 
-        <div class="tmb-2 tp-2 trelative">
-            <div class="tflex tflex-wrap">
-                <div class="tw-1/2 tp-1 trelative">
-                    <label class="tblock tborder-2 tborder-pink-400 tbg-yellow-100 tpx-3 tpy-2 trounded">
-                        <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
-                        <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
-                        <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
-                    </label>
-                    <div class="tabsolute" style="top: -6px; left: 23%;">
-                        <div class="tbg-red-600 tfont-medium tpx-4 trounded ttext-sm ttext-white">
-                            BEST SELLER
+        {{-- FORM --}}
+        
+        <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
+
+            @csrf
+
+            <div class="tmb-2 tp-2 trelative">
+                <div class="tflex tflex-wrap">
+                    <div class="tw-1/2 tp-1 trelative">
+                        <label class="tblock tborder-2 tborder-pink-400 tbg-yellow-100 tpx-3 tpy-2 trounded">
+                            <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="MissTisa_1pc|999|1pc">
+                            <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
+                            <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱999</span>
+                        </label>
+                        <div class="tabsolute" style="top: -6px; left: 23%;">
+                            <div class="tbg-red-600 tfont-medium tpx-4 trounded ttext-sm ttext-white">
+                                BEST SELLER
+                            </div>
                         </div>
-                    </div>
-                </div><!-- PROMO 4-->
-                <div class="tw-1/2 tp-1">
-                    <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
-                        <input type="checkbox" id="promo1" name="promo" class="promo"  value="MissTisa_1pc|499|1pc">
-                        <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
-                        <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
+                    </div><!-- PROMO 4-->
+                    <div class="tw-1/2 tp-1">
+                        <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
+                            <input type="checkbox" id="promo2" name="promo" class="promo"  value="MissTisa_1pc|799|1pc">
+                            <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">8 pcs Goree</span>
+                            <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱799</span>
+                        </label>
+                    </div><!-- PROMO 4-->
+                    <div class="tw-1/2 tp-1">
+                        <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
+                            <input type="checkbox" id="promo3" name="promo" class="promo"  value="MissTisa_1pc|499|1pc">
+                            <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">6 pcs Goree</span>
+                            <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
+                        </label>
+                    </div><!-- PROMO 4-->
+                    <div class="tw-1/2 tp-1">
+                        <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
+                            <input type="checkbox" id="promo4" name="promo" class="promo"  value="MissTisa_1pc|399|1pc">
+                            <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">4 pcs Goree</span>
+                            <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱399</span>
+                        </label>
+                    </div><!-- PROMO 4-->
+       
+                </div>
+            </div><!-- PROMO  -->
+            
+            <div class="tw-full tflex tmb-3 tpx-3">
+                <div class="tw-1/2 tmr-1">
+                    <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Full Name</label>
+                    <input required type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="browser-default input-control">
+                </div>
+                <div class="tw-1/2 tml-1 trelative">
+                    @error('phone_number')
+                        <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 1%;">{{ $message }}</span>
+                    @enderror
+                    <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Phone Number</label>
+                    <input required type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default input-control">
+                </div>
+            </div><!--Fullname & Phone Number -->
+
+            <div class="tw-full tflex tmb-3 tpx-3">
+                <div class="tw-auto">
+                    <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
+                        <span class="tfont-medium">Complete Address</span>
+                        <small class="ttext-gray-600">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</small>
                     </label>
-                </div><!-- PROMO 4-->
-                <div class="tw-1/2 tp-1">
-                    <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
-                        <input type="checkbox" id="promo1" name="promo" class="promo"  value="MissTisa_1pc|499|1pc">
-                        <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
-                        <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
-                    </label>
-                </div><!-- PROMO 4-->
-                <div class="tw-1/2 tp-1">
-                    <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
-                        <input type="checkbox" id="promo1" name="promo" class="promo"  value="MissTisa_1pc|499|1pc">
-                        <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
-                        <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
-                    </label>
-                </div><!-- PROMO 4-->
-   
+                    <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
+                </div>
+            </div><!--Address -->
+
+            @error('promo')
+                <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 32%;">{{ $message }}</span>
+            @enderror
+
+            <div class="tmt-3 ttext-right tw-full">
+                <span class="ttext-gray-900" style="font-size: 16px;">
+                    <span class="tfont-medium">TOTAL:</span>
+                    <span class="tfont-medium">₱</span>
+                    <span id="total" class="tfont-medium t-ml-1">499</span>
+                </span>
             </div>
-        </div><!-- PROMO  -->
+            <div class="tw-full ">
+                <button style="background-color: #ee2a7b" class="focus:tbg-pink-500 trelative tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
+                    <span>Checkout Order</span>
+                </button>
+                <span style="background-color: #ee2a7b" class="thidden focus:tbg-pink-500 trelative ttext-center tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="loader">
+                    <img src="{{ asset('/loader/four_dots_loader.svg') }}" style="display: initial; position: absolute; top: -29%; right: 35px;">
+                    <span class="tmr-5">Loading please wait</span>
+                </span>
+            </div><!-- Submit Order -->
+        </form><!-- ORDER PROMO -->
+
+
 
         <img class="tmb-3" src="{{ asset('images\kasoy_oil\28_days_challenge.png') }}" alt="28_days_challenge">
 
@@ -425,104 +556,7 @@
                 </div>
             </section>
             
-            <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
-                <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
-                <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3>
 
-                @csrf
-                <div class="tw-full tflex tmb-3">
-                    <div class="tw-1/2 tmr-1">
-                        <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Full Name</label>
-                        <input required type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="browser-default input-control">
-                    </div>
-                    <div class="tw-1/2 tml-1 trelative">
-                        @error('phone_number')
-                            <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 1%;">{{ $message }}</span>
-                        @enderror
-                        <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Phone Number</label>
-                        <input required type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default input-control">
-                    </div>
-                </div><!--Fullname & Phone Number -->
-                <div class="tw-full tflex tmb-3">
-                    <div class="tw-auto tmr-1">
-                        <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
-                            <span class="tfont-medium">Complete Address</span>
-                            <small class="ttext-gray-600">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</small>
-                        </label>
-                        <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
-                    </div>
-                </div><!--Address -->
-
-                {{-- <div class="tflex tmb-3">
-                    <div class="tw-full">
-                        <label for="province" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Province</label>
-                        <select required name="province" id="province" class="browser-default input-control" style="font-size: 12px;">
-                            <option value="">Province</option>
-                            @foreach ($provinces as $province)
-                                <option value="{{ $province }}">{{ $province }}</option>
-                            @endforeach
-                        </select>
-                    </div><!--province -->
-                </div><!--province -->
-                <div class="tflex tmb-5">
-                    <div class="tw-1/2">
-                        <label for="city" class="tfont-medium ttext-sm tmb-2 ttext-black-100">City</label>
-                        <select required name="city" id="city" disabled class="browser-default input-control" style="font-size: 12px;border-right: 0px;">
-                            <option value="">City</option>
-                        </select>
-                    </div><!--city -->
-                    <div class="tw-1/2">
-                        <label for="barangay" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Barangay</label>
-                        <select required name="barangay" disabled id="barangay" class="browser-default input-control" style=" font-size: 12px;border-left: none;">
-                            <option value="">Barangay</option>
-                        </select>
-                    </div><!--barangay -->
-                </div><!--province/city/barangay --> --}}
-
-                <div class="tborder-2 tmb-2 tp-2 trelative" style="border-color: #ee2a7ba8">
-                    <div class="tflex tflex-wrap tjustify-center">
-                        <div class="tflex titems-center tw-full tjustify-center">
-                            <label>
-                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium ttext-sm">₱499</span>
-                                    MissTisa Melasma Remover 1 Set
-                                </span>
-                            </label>
-                        </div><!-- PROMO 4-->
-                        <div class="tflex titems-center tw-full tjustify-center">
-                            <label>
-                                <input type="checkbox" id="promo3" name="promo" class="promo" value="MissTisa_2pcs|849|2pcs">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium ttext-sm">₱849</span>
-                                    MissTisa Melasma Remover 2 Set
-                                </span>
-                            </label>
-                        </div><!-- PROMO 3 -->
-                    </div>
-                   
-                    @error('promo')
-                        <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 32%;">{{ $message }}</span>
-                    @enderror
-                </div><!-- ORDER PROMO -->
-
-                <div class="tmt-3 ttext-right tw-full">
-                    <span class="ttext-gray-900" style="font-size: 16px;">
-                        <span class="tfont-medium">TOTAL:</span>
-                        <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">499</span>
-                    </span>
-                </div>
-                <div class="tw-full ">
-                    <button style="background-color: #ee2a7b" class="focus:tbg-pink-500 trelative tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
-                        <span>Checkout Order</span>
-                    </button>
-                    <span style="background-color: #ee2a7b" class="thidden focus:tbg-pink-500 trelative ttext-center tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="loader">
-                        <img src="{{ asset('/loader/four_dots_loader.svg') }}" style="display: initial; position: absolute; top: -29%; right: 35px;">
-                        <span class="tmr-5">Loading please wait</span>
-                    </span>
-                </div><!-- Submit Order -->
-            </form><!-- ORDER PROMO -->
 
             <div id="modal1" class="modal">
                 <div class="modal-content" style="padding-bottom: 0px;">
@@ -552,7 +586,6 @@
     </div>
 
     <footer>
-    
 
         @if (request()->amount)
             <script>
@@ -631,8 +664,6 @@
             var $window = $(window),x
                 $document = $(document),
                 button = $('.order_now');
-
-              
                 
             $window.on('scroll', function () {
                 let scrollH = $(window).height() + $(window).scrollTop();
