@@ -613,28 +613,12 @@
                 </div>
 
 
+                <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3 ttext-green-900" style="border: 2px solid #27ac9b; border-style: dashed;">
+                    <span class="tfont-medium">Order Today for guaranteed </span>
+                    <span class="tfont-medium tml-2" style="color: #ee4d2d;"> FREE 4 Gifts</span>
+                </div>
 
-                
-                <section class="tflex titems-baseline tmt-5 tmb-3">
-                    <div class="ttext-center">
-                        <i class="fa-solid fa-truck-fast ttext-5xl" style="color: #27ac9b" aria-hidden="true"></i>
-                        <span class="tinline-block ttext-green-900">Fast delivery nationwide</span>
-                    </div>
-                    <div class="ttext-center">
-                        <i class="fa-solid fa-money-bill-transfer ttext-5xl" style="color: #27ac9b" aria-hidden="true"></i>
-                        <span class="tinline-block ttext-green-900">Moneyback Guarantee</span>
-                    </div>
-                    <div class="ttext-center">
-                        <i class="fa-solid fa-hand-holding-dollar ttext-5xl" style="color: #27ac9b" aria-hidden="true"></i>
-                        <span class="tinline-block ttext-green-900">Cash on Delivery</span>
-                    </div>
-                    <div class="ttext-center">
-                        <i class="fa-solid fa-headset ttext-5xl" style="color: #27ac9b" aria-hidden="true"></i>
-                        <span class="tinline-block ttext-green-900">Aftersales Support</span>
-                    </div>
-                </section>
-
-                <div class="tpy-2 tpx-3 tflex tjustify-center" style="background-color: #27ac9b;">
+                {{-- <div class="tpy-2 tpx-3 tflex tjustify-center" style="background-color: #27ac9b;">
                     <div class="tmr-5">
                         <h1 class="ttext-lg">FREE DELIVERY</h1>
                         <img src="{{ asset('/images/fbads/shping_time.png') }}" class="tml-5" alt="">
@@ -645,12 +629,8 @@
                         <span class="tfont-normal">Visayas: <b>4-5 Days</b> </span>
                         <span class="tfont-normal">Mindanao: <b>6-8 Days</b> </span>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3 ttext-green-900" style="border: 2px solid #27ac9b; border-style: dashed;">
-                    <span class="tfont-medium">Order Today for guaranteed </span>
-                    <span class="tfont-medium tml-2" style="color: #ee4d2d;"> FREE 4 Gifts</span>
-                </div>
 
                 <div class="tmx-3 tflex titems-center tmy-5">
                     <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
