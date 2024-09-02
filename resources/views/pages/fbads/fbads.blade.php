@@ -587,7 +587,7 @@
             <div class="tabsolute tw-full tbottom-0 tfixed tfont-medium tmt-4 ttext-white tw-10/12 waves-effect tbg-white"
                 style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0; -webkit-box-shadow: 0px -2px 15px -5px #000000; box-shadow: 0px -2px 15px -5px #000000;">
                 <div class="tflex">
-                    <div class="tw-3/5 tbg-white ttext-right tpr-2 tpy-2" style="color: #606060; background-color: white;">
+                    <div class="tw-3/5 tbg-white ttext-right tpr-2 tpy-3" style="color: #606060; background-color: white;">
                         <div class="t-mt-3 tpt-1">
                             <span class="" style="margin-top: 17%;">Total Payment</span>
                         </div>
