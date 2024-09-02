@@ -181,7 +181,7 @@
             <div class="tmb-2 tp-2 trelative">
                 <div class="tflex tflex-wrap">
                     <div class="tw-1/2 tp-1 trelative">
-                        <label class="tblock tborder-2 tborder-pink-400 tbg-yellow-100 tpx-3 tpy-2 trounded">
+                        <label class="tblock tborder-2  tbg-yellow-100 tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
                             <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="MissTisa_1pc|999|1pc">
                             <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
                             <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱999</span>
@@ -193,21 +193,21 @@
                         </div>
                     </div><!-- PROMO 4-->
                     <div class="tw-1/2 tp-1">
-                        <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
+                        <label class="tblock tborder-2  tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
                             <input type="checkbox" id="promo2" name="promo" class="promo"  value="MissTisa_1pc|799|1pc">
                             <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">8 pcs Goree</span>
                             <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱799</span>
                         </label>
                     </div><!-- PROMO 4-->
                     <div class="tw-1/2 tp-1">
-                        <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
+                        <label class="tblock tborder-2  tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
                             <input type="checkbox" id="promo3" name="promo" class="promo"  value="MissTisa_1pc|499|1pc">
                             <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">6 pcs Goree</span>
                             <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
                         </label>
                     </div><!-- PROMO 4-->
                     <div class="tw-1/2 tp-1">
-                        <label class="tblock tborder-2 tborder-pink-400 tpx-3 tpy-2 trounded">
+                        <label class="tblock tborder-2  tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
                             <input type="checkbox" id="promo4" name="promo" class="promo"  value="MissTisa_1pc|399|1pc">
                             <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">4 pcs Goree</span>
                             <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱399</span>
@@ -603,8 +603,8 @@
                 </div>
             </div> <!-- Modal  -->
 
-            <div class="tabsolute tw-full th-full tbottom-0 tfixed tfont-medium tmt-4 ttext-white tw-10/12 waves-effect tbg-white"
-                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0; ">
+            <div id="checkout_page" class="thidden tabsolute tw-full th-full tbottom-0 tfixed tfont-medium tmt-4 ttext-white tw-10/12 tbg-white"
+                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0; z-index: 999;">
                 
                 <div class="shopee-bg-color t tflex titems-center tjustify-between tpx-4 tpy-4">
                     <i class="fa-arrow-left fa-solid ttext-3xl ttext-white tfont-light" aria-hidden="true"></i>
@@ -612,8 +612,72 @@
                     <i class="fa-solid fa-cart-shopping ttext-2xl" aria-hidden="true"></i>
                 </div>
 
-                <form action="http://127.0.0.1:8000/MissTisa-Submit" id="form" class="relative" method="post" enctype="multipart/form-data">
-                    <h1 class="ttext-gray-900 tmy-5 tml-3 ttext-lg">Shipping Details</h1>
+
+
+                
+                <section class="tflex titems-baseline tmt-5 tmb-3">
+                    <div class="ttext-center">
+                        <i class="fa-solid fa-truck-fast ttext-5xl" style="color: #27ac9b" aria-hidden="true"></i>
+                        <span class="tinline-block ttext-green-900">Fast delivery nationwide</span>
+                    </div>
+                    <div class="ttext-center">
+                        <i class="fa-solid fa-money-bill-transfer ttext-5xl" style="color: #27ac9b" aria-hidden="true"></i>
+                        <span class="tinline-block ttext-green-900">Moneyback Guarantee</span>
+                    </div>
+                    <div class="ttext-center">
+                        <i class="fa-solid fa-hand-holding-dollar ttext-5xl" style="color: #27ac9b" aria-hidden="true"></i>
+                        <span class="tinline-block ttext-green-900">Cash on Delivery</span>
+                    </div>
+                    <div class="ttext-center">
+                        <i class="fa-solid fa-headset ttext-5xl" style="color: #27ac9b" aria-hidden="true"></i>
+                        <span class="tinline-block ttext-green-900">Aftersales Support</span>
+                    </div>
+                </section>
+
+                <div class="tpy-2 tpx-3 tflex tjustify-center" style="background-color: #27ac9b;">
+                    <div class="tmr-5">
+                        <h1 class="ttext-lg">FREE DELIVERY</h1>
+                        <img src="{{ asset('/images/fbads/shping_time.png') }}" class="tml-5" alt="">
+                    </div>
+                    
+                    <div class="tflex tjustify-between tflex-col tml-5">
+                        <span class="tfont-normal">Luzon: <b>3 Days</b></span>
+                        <span class="tfont-normal">Visayas: <b>4-5 Days</b> </span>
+                        <span class="tfont-normal">Mindanao: <b>6-8 Days</b> </span>
+                    </div>
+                </div>
+
+                <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3 ttext-green-900" style="border: 2px solid #27ac9b; border-style: dashed;">
+                    <span class="tfont-medium">Order Today for guaranteed </span>
+                    <span class="tfont-medium tml-2" style="color: #ee4d2d;"> FREE 4 Gifts</span>
+                </div>
+
+                <div class="tmx-3 tflex titems-center tmy-5">
+                    <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
+                        <span class="ttext-sm ttext-white">
+                            <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
+                            <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
+                            <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
+                            <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
+                            <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
+                        </span>
+                        <span class="ttext-md ttext-green-900">
+                            <span class="tfont-bold"> &nbsp; 4.8</span>
+                            <span class="tfont-medium">Ratings</span>
+                        </span>
+                    </div>
+                    <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">19,586 + Trusted Reviews</div>
+                </div>
+
+             
+
+                <hr class="tmx-5 tmy-5">
+
+
+                {{-- <img src="{{ asset('images/fbads/free_shipping_dicount.png') }}" alt="free sf" width="100%"> --}}
+
+                <form action="http://127.0.0.1:8000/MissTisa-Submit" id="form"  method="post" enctype="multipart/form-data">
+                    <h1 class="ttext-gray-900 tmb-5 tmt-8 tml-3 ttext-lg">Shipping Details</h1>
                     <input type="hidden" id="purchase_value" value="">
         
                     <div class="tw-full tflex tmb-3 tpx-3">
@@ -641,46 +705,47 @@
 
                     <h1 class="ttext-gray-900 tmy-5 tml-3 ttext-lg">Promos</h1>
 
-                    <div class="tbg-grey-300">
-                        <input type="hidden" name="_token" value="enS2CN3xv3tYpb14jc4DDAETuqoS8mFZqlkgW91R">
-                        
-                        <div class="tflex tmy-5 tpx-3 trelative tshadow-lg">
-                            <img src="{{ asset('images/fbads/promos/1.png') }}" class="tabsolute trounded" style="z-index: 999;bottom: 8%; left: 13%;position: absolute !important;" height="75px" width="75px">
-                            <label class="tw-full tbg-white tblock tpx-3 tpy-8 trounded trounded-b" style="border: 1px solid #e1e5eb;">
-                                
-                                <input type="checkbox" id="promo2" name="promo" class="promo" value="MissTisa_1pc|799|1pc">
-                                <span></span>
-                            </label>
-                            <span class="tabsolute ttext-gray-900 tfont-medium ttext-lg" style="right: 18%; bottom: 40%;">8 pcs Sleek Stick Green</span>
-                            <span class="tabsolute tblock ttext-right ttext-gray-900 tfont-bold ttext-lg" style="right: 6%; bottom: 8%;">₱799</span>
-                        </div><!-- PROMO 1 -->
+                    
 
-                        <div class="tflex tmy-5 tpx-3 trelative tshadow-lg">
-                            <img src="{{ asset('images/fbads/promos/1.png') }}" class="tabsolute trounded" style="z-index: 999;bottom: 8%; left: 13%;position: absolute !important;" height="75px" width="75px">
-                            <label class="tw-full tbg-white tblock tpx-3 tpy-8 trounded trounded-b" style="border: 1px solid #e1e5eb;">
-                                
-                                <input type="checkbox" id="promo2" name="promo" class="promo" value="MissTisa_1pc|799|1pc">
-                                <span></span>
-                            </label>
-                            <span class="tabsolute ttext-gray-900 tfont-medium ttext-lg" style="right: 18%; bottom: 40%;">8 pcs Sleek Stick Green</span>
-                            <span class="tabsolute tblock ttext-right ttext-gray-900 tfont-bold ttext-lg" style="right: 6%; bottom: 8%;">₱799</span>
 
-                            <div class="tabsolute tbg-red-600 tfont-medium tpx-4 trounded ttext-sm ttext-white" style="top: -6px;left: 37%;">
-                                BEST SELLER
-                            </div>
-                        </div><!-- PROMO 1   BEST SELLER   -->
-
-                        <div class="tflex tmy-5 tpx-3 trelative tshadow-lg">
-                            <img src="{{ asset('images/fbads/promos/1.png') }}" class="tabsolute trounded" style="z-index: 999;bottom: 8%; left: 13%;position: absolute !important;" height="75px" width="75px">
-                            <label class="tw-full tbg-white tblock tpx-3 tpy-8 trounded trounded-b" style="border: 1px solid #e1e5eb;">
-                                
-                                <input type="checkbox" id="promo2" name="promo" class="promo" value="MissTisa_1pc|799|1pc">
-                                <span></span>
-                            </label>
-                            <span class="tabsolute ttext-gray-900 tfont-medium ttext-lg" style="right: 18%; bottom: 40%;">8 pcs Sleek Stick Green</span>
-                            <span class="tabsolute tblock ttext-right ttext-gray-900 tfont-bold ttext-lg" style="right: 6%; bottom: 8%;">₱799</span>
-                        </div><!-- PROMO 3 -->
-                    </div> <!-- PROMO  -->
+                    <div class="tmb-2 tp-2 trelative">
+                        <div class="tflex tflex-wrap">
+                            <div class="tw-1/2 tp-1 trelative">
+                                <label class="tblock tborder-2  tbg-yellow-100 tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
+                                    <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="MissTisa_1pc|999|1pc">
+                                    <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
+                                    <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱999</span>
+                                </label>
+                                <div class="tabsolute" style="top: -6px; left: 23%;">
+                                    <div class="tbg-red-600 tfont-medium tpx-4 trounded ttext-sm ttext-white">
+                                        BEST SELLER
+                                    </div>
+                                </div>
+                            </div><!-- PROMO 4-->
+                            <div class="tw-1/2 tp-1">
+                                <label class="tblock tborder-2  tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
+                                    <input type="checkbox" id="promo2" name="promo" class="promo" value="MissTisa_1pc|799|1pc">
+                                    <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">8 pcs Goree</span>
+                                    <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱799</span>
+                                </label>
+                            </div><!-- PROMO 4-->
+                            <div class="tw-1/2 tp-1">
+                                <label class="tblock tborder-2  tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
+                                    <input type="checkbox" id="promo3" name="promo" class="promo" value="MissTisa_1pc|499|1pc">
+                                    <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">6 pcs Goree</span>
+                                    <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
+                                </label>
+                            </div><!-- PROMO 4-->
+                            <div class="tw-1/2 tp-1">
+                                <label class="tblock tborder-2  tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
+                                    <input type="checkbox" id="promo4" name="promo" class="promo" value="MissTisa_1pc|399|1pc">
+                                    <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">4 pcs Goree</span>
+                                    <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱399</span>
+                                </label>
+                            </div><!-- PROMO 4-->
+               
+                        </div>
+                    </div>
         
                 </form>
 
@@ -695,11 +760,12 @@
                     </div>
                     <button class="tfont-medium tpy-3 tw-2/5" style="background-color: #ee4d2d; font-size: 18px;">Buy Now!</button>
                 </div>
-            {{-- <button class="order_now tabsolute tw-full  tbottom-0 tfixed tfont-medium tmt-4 tpy-3 ttext-lg ttext-white tw-10/12 waves-effect" 
-                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
+            </div>
+
+            <button class="order_now shopee-bg-color tabsolute tw-full  tbottom-0 tfixed tfont-medium tmt-4 tpy-5 ttext-lg ttext-white tw-10/12 waves-effect" 
+                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;">
                 ORDER NOW!
-            </button> --}}
-        </div>
+            </button>
     </div>
 
     <footer>
@@ -782,26 +848,36 @@
                 $document = $(document),
                 button = $('.order_now');
                 
-            $window.on('scroll', function () {
-                let scrollH = $(window).height() + $(window).scrollTop();
-                let H = ($document.height() - 550);
+            // $window.on('scroll', function () {
+            //     let scrollH = $(window).height() + $(window).scrollTop();
+            //     let H = ($document.height() - 550);
 
-                if (scrollH > H) {
+            //     if (scrollH > H) {
                     
-                    button.stop(true).css('z-index', 0).animate({
-                        opacity: 0
-                    }, 50);
-                } else {
-                    button.stop(true).css('z-index', 999).animate({
-                        opacity: 1
-                    }, 50);
-                }
-            });// hide show ORDER BUTTON on Scroll
+            //         button.stop(true).css('z-index', 0).animate({
+            //             opacity: 0
+            //         }, 50);
+            //     } else {
+            //         button.stop(true).css('z-index', 999).animate({
+            //             opacity: 1
+            //         }, 50);
+            //     }
+            // });// hide show ORDER BUTTON on Scroll
+
+
+            $('.shopee-bg-color ').click(function () {
+                $('.order_now').removeClass('thidden');
+                $('#checkout_page').addClass('thidden');
+            })
 
             $('.order_now').click(function (e) {
-                $('html, body').animate({
-                    scrollTop: $('#form').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
-                }, 'slow');
+
+                $(this).addClass('thidden');
+                $('#checkout_page').removeClass('thidden');
+
+                // $('html, body').animate({
+                //     scrollTop: $('#form').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
+                // }, 'slow');
 
                 $.post("/event-listener",{
                     order_form: 1
