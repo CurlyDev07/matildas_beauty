@@ -589,7 +589,7 @@
                 <div class="tflex">
                     <div class="tw-3/5 tbg-white ttext-right tpr-2 tpy-2" style="color: #606060; background-color: white;">
                         <div class="t-mt-3 tpt-1">
-                            <small class="" style="margin-top: 17%;">Total Payment</small>
+                            <span class="" style="margin-top: 17%;">Total Payment</span>
                         </div>
                         <div class="t-mt-1 tfont-bold tfont-medium" style="color: #ee4d2d; font-size: 20px;">
                             ₱150
