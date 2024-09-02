@@ -857,7 +857,7 @@
 
             $('.order_now').click(function (e) {
 
-                window.history.replaceState(null, null, "?checkout");
+                window.history.pushState(null, null, "?checkout");
 
 
 
