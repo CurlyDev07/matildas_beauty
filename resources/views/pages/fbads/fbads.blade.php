@@ -848,9 +848,19 @@
             $('.shopee-bg-color ').click(function () {
                 $('.order_now').removeClass('thidden');
                 $('#checkout_page').addClass('thidden');
+
+                $('html, body').css({
+                    overflow: 'auto',
+                    height: 'auto'
+                });// ENEBLED SCROLL
             })
 
             $('.order_now').click(function (e) {
+
+                $('html, body').css({
+                    overflow: 'hidden',
+                    height: '100%'
+                }); // disabled scroll
 
                 $(this).addClass('thidden');
                 $('#checkout_page').removeClass('thidden');
