@@ -591,11 +591,11 @@
                         <div class="t-mt-3 tpt-1">
                             <small class="" style="margin-top: 17%;">Total Payment</small>
                         </div>
-                        <div class="t-mt-1 tfont-bold tfont-medium" style="color: #ee4d2d; font-size: 18px;">
+                        <div class="t-mt-1 tfont-bold tfont-medium" style="color: #ee4d2d; font-size: 20px;">
                             ₱150
                         </div>
                     </div>
-                    <button class="tfont-medium tpy-3 ttext-lg tw-2/5" style="background-color: #ee4d2d;">Buy Now!</button>
+                    <button class="tfont-medium tpy-3 tw-2/5" style="background-color: #ee4d2d; font-size: 18px;">Buy Now!</button>
                 </div>
             </div>
             {{-- <button class="order_now tabsolute tw-full  tbottom-0 tfixed tfont-medium tmt-4 tpy-3 ttext-lg ttext-white tw-10/12 waves-effect" 
