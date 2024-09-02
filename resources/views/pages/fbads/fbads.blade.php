@@ -12,6 +12,25 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
   
     <style>
+        /* CHECK BOX */
+        [type="checkbox"]:checked+span:not(.lever):before {
+            top: -4px;
+            left: -5px;
+            width: 12px;
+            height: 22px;
+            border-top: 2px solid transparent;
+            border-left: 2px solid transparent;
+            border-right: 2px solid #ee4d2d!important;
+            border-bottom: 2px solid #ee4d2d!important;
+            -webkit-transform: rotate(40deg);
+            transform: rotate(40deg);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+        }
+
+
         .shopee-bg-color{
             background: linear-gradient(-180deg, #f53d2d, #f63);
             transition: transform .2s cubic-bezier(.4,0,.2,1);
@@ -584,9 +603,88 @@
                 </div>
             </div> <!-- Modal  -->
 
-            <div class="tabsolute tw-full tbottom-0 tfixed tfont-medium tmt-4 ttext-white tw-10/12 waves-effect tbg-white"
-                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0; -webkit-box-shadow: 0px -2px 15px -5px #000000; box-shadow: 0px -2px 15px -5px #000000;">
-                <div class="tflex">
+            <div class="tabsolute tw-full th-full tbottom-0 tfixed tfont-medium tmt-4 ttext-white tw-10/12 waves-effect tbg-white"
+                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0; ">
+                
+                <div class="shopee-bg-color t tflex titems-center tjustify-between tpx-4 tpy-4">
+                    <i class="fa-arrow-left fa-solid ttext-3xl ttext-white tfont-light" aria-hidden="true"></i>
+                    <span class="tfont-light ttext-3xl">Checkout</span>
+                    <i class="fa-solid fa-cart-shopping ttext-2xl" aria-hidden="true"></i>
+                </div>
+
+                <form action="http://127.0.0.1:8000/MissTisa-Submit" id="form" class="relative" method="post" enctype="multipart/form-data">
+                    <h1 class="ttext-gray-900 tmy-5 tml-3 ttext-lg">Shipping Details</h1>
+                    <input type="hidden" id="purchase_value" value="">
+        
+                    <div class="tw-full tflex tmb-3 tpx-3">
+                        <div class="tw-1/2 tmr-1">
+                            <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Full Name</label>
+                            <input required="" type="text" name="full_name" id="full_name" value="" class="browser-default input-control">
+                        </div>
+                        <div class="tw-1/2 tml-1 trelative">
+                                                <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Phone Number</label>
+                            <input required="" type="text" name="phone_number" id="phone_number" value="" class="browser-default input-control">
+                        </div>
+                    </div><!--Fullname & Phone Number -->
+        
+                    <div class="tw-full tflex tmb-3 tpx-3">
+                        <div class="tw-auto">
+                            <label for="address" class="ttext-sm tmb-2 ttext-black-100">
+                                <span class="tfont-medium">Complete Address</span>
+                                <small class="ttext-gray-600">(St./House No. | blk &amp; lot/ Subdv / Barangay / City / Province)</small>
+                            </label>
+                            <input required="" type="text" name="address" id="address" value="" class="browser-default input-control">
+                        </div>
+                    </div><!--Address -->
+
+                    <hr class="tmx-5 tmy-5">
+
+                    <h1 class="ttext-gray-900 tmy-5 tml-3 ttext-lg">Promos</h1>
+
+                    <div class="tbg-grey-300">
+                        <input type="hidden" name="_token" value="enS2CN3xv3tYpb14jc4DDAETuqoS8mFZqlkgW91R">
+                        
+                        <div class="tflex tmy-5 tpx-3 trelative tshadow-lg">
+                            <img src="{{ asset('images/fbads/promos/1.png') }}" class="tabsolute trounded" style="z-index: 999;bottom: 8%; left: 13%;position: absolute !important;" height="75px" width="75px">
+                            <label class="tw-full tbg-white tblock tpx-3 tpy-8 trounded trounded-b" style="border: 1px solid #e1e5eb;">
+                                
+                                <input type="checkbox" id="promo2" name="promo" class="promo" value="MissTisa_1pc|799|1pc">
+                                <span></span>
+                            </label>
+                            <span class="tabsolute ttext-gray-900 tfont-medium ttext-lg" style="right: 18%; bottom: 40%;">8 pcs Sleek Stick Green</span>
+                            <span class="tabsolute tblock ttext-right ttext-gray-900 tfont-bold ttext-lg" style="right: 6%; bottom: 8%;">₱799</span>
+                        </div><!-- PROMO 1 -->
+
+                        <div class="tflex tmy-5 tpx-3 trelative tshadow-lg">
+                            <img src="{{ asset('images/fbads/promos/1.png') }}" class="tabsolute trounded" style="z-index: 999;bottom: 8%; left: 13%;position: absolute !important;" height="75px" width="75px">
+                            <label class="tw-full tbg-white tblock tpx-3 tpy-8 trounded trounded-b" style="border: 1px solid #e1e5eb;">
+                                
+                                <input type="checkbox" id="promo2" name="promo" class="promo" value="MissTisa_1pc|799|1pc">
+                                <span></span>
+                            </label>
+                            <span class="tabsolute ttext-gray-900 tfont-medium ttext-lg" style="right: 18%; bottom: 40%;">8 pcs Sleek Stick Green</span>
+                            <span class="tabsolute tblock ttext-right ttext-gray-900 tfont-bold ttext-lg" style="right: 6%; bottom: 8%;">₱799</span>
+
+                            <div class="tabsolute tbg-red-600 tfont-medium tpx-4 trounded ttext-sm ttext-white" style="top: -6px;left: 37%;">
+                                BEST SELLER
+                            </div>
+                        </div><!-- PROMO 1   BEST SELLER   -->
+
+                        <div class="tflex tmy-5 tpx-3 trelative tshadow-lg">
+                            <img src="{{ asset('images/fbads/promos/1.png') }}" class="tabsolute trounded" style="z-index: 999;bottom: 8%; left: 13%;position: absolute !important;" height="75px" width="75px">
+                            <label class="tw-full tbg-white tblock tpx-3 tpy-8 trounded trounded-b" style="border: 1px solid #e1e5eb;">
+                                
+                                <input type="checkbox" id="promo2" name="promo" class="promo" value="MissTisa_1pc|799|1pc">
+                                <span></span>
+                            </label>
+                            <span class="tabsolute ttext-gray-900 tfont-medium ttext-lg" style="right: 18%; bottom: 40%;">8 pcs Sleek Stick Green</span>
+                            <span class="tabsolute tblock ttext-right ttext-gray-900 tfont-bold ttext-lg" style="right: 6%; bottom: 8%;">₱799</span>
+                        </div><!-- PROMO 3 -->
+                    </div> <!-- PROMO  -->
+        
+                </form>
+
+                <div class="tabsolute tbottom-0 tflex tw-full" style="-webkit-box-shadow: 0px -2px 15px -5px #000000; box-shadow: 0px -2px 15px -5px #000000;">
                     <div class="tw-3/5 tbg-white ttext-right tpr-2 tpy-3" style="color: #606060; background-color: white;">
                         <div class="t-mt-3 tpt-1">
                             <span class="" style="margin-top: 17%;">Total Payment</span>
@@ -597,7 +695,6 @@
                     </div>
                     <button class="tfont-medium tpy-3 tw-2/5" style="background-color: #ee4d2d; font-size: 18px;">Buy Now!</button>
                 </div>
-            </div>
             {{-- <button class="order_now tabsolute tw-full  tbottom-0 tfixed tfont-medium tmt-4 tpy-3 ttext-lg ttext-white tw-10/12 waves-effect" 
                 style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
                 ORDER NOW!
