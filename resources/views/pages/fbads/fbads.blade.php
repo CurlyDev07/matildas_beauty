@@ -12,6 +12,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
   
     <style>
+        .shopee-bg-color{
+            background: linear-gradient(-180deg, #f53d2d, #f63);
+            transition: transform .2s cubic-bezier(.4,0,.2,1);
+        }
+
+        .shopee-bg-green{
+            background-color: #26a998;
+        }
+
        .input-control {
             width: 100%;
             padding: 12px!important;
@@ -96,11 +105,8 @@
 <body>
     
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
-        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 45px; background-color: #b62762;">
+        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center shopee-bg-color" style="height: 45px;">
             <p class="tfont-medium  ttext-lg ttext-white">SAVE UP TO 46% WITH 4 FREE GIFTS</p>
-        </div>
-        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 30px; background-color: #ffffff;">
-            <p class="tfont-medium  ttext-xs"> <b>30pcs</b> AVAILABLE STOCKS</p>
         </div>
 
         <img src="{{ asset('images/kasoy_oil/goree_banner.png') }}" class="tw-full" alt="top_banner">
@@ -578,10 +584,24 @@
                 </div>
             </div> <!-- Modal  -->
 
-            <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
+            <div class="tabsolute tw-full tbottom-0 tfixed tfont-medium tmt-4 ttext-white tw-10/12 waves-effect tbg-white"
+                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0; -webkit-box-shadow: 0px -2px 15px -5px #000000; box-shadow: 0px -2px 15px -5px #000000;">
+                <div class="tflex">
+                    <div class="tw-3/5 tbg-white ttext-right tpr-2 tpy-2" style="color: #606060; background-color: white;">
+                        <div class="t-mt-3 tpt-1">
+                            <small class="" style="margin-top: 17%;">Total Payment</small>
+                        </div>
+                        <div class="t-mt-1 tfont-bold tfont-medium" style="color: #ee4d2d;">
+                            ₱150
+                        </div>
+                    </div>
+                    <button class="tw-2/5 tfont-medium  tpy-2" style="background-color: #ee4d2d;">Buy Now!</button>
+                </div>
+            </div>
+            {{-- <button class="order_now tabsolute tw-full  tbottom-0 tfixed tfont-medium tmt-4 tpy-3 ttext-lg ttext-white tw-10/12 waves-effect" 
                 style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
                 ORDER NOW!
-            </button>
+            </button> --}}
         </div>
     </div>
 
