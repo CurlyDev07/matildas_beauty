@@ -763,67 +763,7 @@
                 }
             });
 
-            // ONCLICKS
-            $('#province').change(function () {
-                $.post("/get-cities",{
-                    province: $(this).val()
-                },
-                function(data, status){
-                    let html = "<option value=''>Pick your city</option>"
-                    $.each(JSON.parse(data), function(index, value) {
-                        html += "<option value='"+value.city+"'>"+value.city+"</option>";
-                    });
-                    $('#city').html();
-                    $('#barangay').html("<option value='Barangay'>Pick your barangay</option>");
-                    $('#city').html(html);
-
-                    $('#city').removeAttr("disabled");// Enable City
-                });
-            });
-
-            $('#city').change(function () {
-                $.post("/get-barangay",{
-                    city: $(this).val()
-                },
-                function(data, status){
-                    let html = "<option value=''>Pick your barangay</option>"
-                    $.each(JSON.parse(data), function(index, value) {
-                        html += "<option value='"+value.barangay+"'>"+value.barangay+"</option>";
-                    });
-                    $('#barangay').html(html);
-
-                    $('#barangay').removeAttr("disabled");// Enable City
-                });
-            });
-            
-            $('#promo1').change(function () {
-                $('#total').html($(this).val().split('|')[1]);
-                $("#promo2").prop('checked', false);
-                $("#promo3").prop('checked', false);
-                $("#promo4").prop('checked', false);
-            });
-
-            $('#promo2').change(function () {
-                $('#total').html($(this).val().split('|')[1]);
-                $("#promo1").prop('checked', false);
-                $("#promo3").prop('checked', false);
-                $("#promo4").prop('checked', false);
-            });
-
-            $('#promo3').change(function () {
-                $('#total').html($(this).val().split('|')[1]);
-                $("#promo1").prop('checked', false);
-                $("#promo2").prop('checked', false);
-                $("#promo4").prop('checked', false);
-            });
-
-            $('#promo4').change(function () {
-                $('#total').html($(this).val().split('|')[1]);
-                $("#promo1").prop('checked', false);
-                $("#promo2").prop('checked', false);
-                $("#promo3").prop('checked', false);
-            });
-
+          
             var $window = $(window),x
                 $document = $(document),
                 button = $('.order_now');
@@ -844,30 +784,40 @@
             //     }
             // });// hide show ORDER BUTTON on Scroll
 
+            window.onpopstate = function() {
+                CloseCheckoutPage()
+            }
 
-            $('.shopee-bg-color ').click(function () {
+            function CloseCheckoutPage() {
                 $('.order_now').removeClass('thidden');
                 $('#checkout_page').addClass('thidden');
-
+               
                 $('html, body').css({
                     overflow: 'auto',
                     height: 'auto'
                 });// ENEBLED SCROLL
-            })
+            }// Close Checkout PAGE FUNCTIONS
 
-            $('.order_now').click(function (e) {
-
+            function OpenCheckoutPage() {
                 window.history.pushState(null, null, "?checkout");
-
-
 
                 $('html, body').css({
                     overflow: 'hidden',
                     height: '100%'
                 }); // disabled scroll
 
-                $(this).addClass('thidden');
+                $('.order_now').addClass('thidden');
                 $('#checkout_page').removeClass('thidden');
+            }
+
+            $('.shopee-bg-color ').click(function () {
+                CloseCheckoutPage();
+            })// Close Checkout PAGE
+
+
+            $('.order_now').click(function (e) {
+                OpenCheckoutPage();
+               
 
                 // $('html, body').animate({
                 //     scrollTop: $('#form').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
@@ -944,6 +894,68 @@
             $.post("/event-listener",{
                 visitors: 1
             });//  EVENT LISTENER Track VIEW
+
+
+              // ONCLICKS
+              $('#province').change(function () {
+                $.post("/get-cities",{
+                    province: $(this).val()
+                },
+                function(data, status){
+                    let html = "<option value=''>Pick your city</option>"
+                    $.each(JSON.parse(data), function(index, value) {
+                        html += "<option value='"+value.city+"'>"+value.city+"</option>";
+                    });
+                    $('#city').html();
+                    $('#barangay').html("<option value='Barangay'>Pick your barangay</option>");
+                    $('#city').html(html);
+
+                    $('#city').removeAttr("disabled");// Enable City
+                });
+            });
+
+            $('#city').change(function () {
+                $.post("/get-barangay",{
+                    city: $(this).val()
+                },
+                function(data, status){
+                    let html = "<option value=''>Pick your barangay</option>"
+                    $.each(JSON.parse(data), function(index, value) {
+                        html += "<option value='"+value.barangay+"'>"+value.barangay+"</option>";
+                    });
+                    $('#barangay').html(html);
+
+                    $('#barangay').removeAttr("disabled");// Enable City
+                });
+            });
+            
+            $('#promo1').change(function () {
+                $('#total').html($(this).val().split('|')[1]);
+                $("#promo2").prop('checked', false);
+                $("#promo3").prop('checked', false);
+                $("#promo4").prop('checked', false);
+            });
+
+            $('#promo2').change(function () {
+                $('#total').html($(this).val().split('|')[1]);
+                $("#promo1").prop('checked', false);
+                $("#promo3").prop('checked', false);
+                $("#promo4").prop('checked', false);
+            });
+
+            $('#promo3').change(function () {
+                $('#total').html($(this).val().split('|')[1]);
+                $("#promo1").prop('checked', false);
+                $("#promo2").prop('checked', false);
+                $("#promo4").prop('checked', false);
+            });
+
+            $('#promo4').change(function () {
+                $('#total').html($(this).val().split('|')[1]);
+                $("#promo1").prop('checked', false);
+                $("#promo2").prop('checked', false);
+                $("#promo3").prop('checked', false);
+            });
 
         </script>
     </footer>
