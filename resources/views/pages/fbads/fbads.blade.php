@@ -149,7 +149,7 @@
             </div>
         </div><!-- Benefits -->
 
-        <div class="tmx-3 tflex titems-center tmy-5">
+        {{-- <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
                 <span class="ttext-sm ttext-white">
                     <i class="fas fa-star" style="color: #ffa633;"></i>
@@ -164,7 +164,7 @@
                 </span>
             </div>
             <div class="tw-1/2  ttext-center tfont-medium ">19,586 + Trusted Reviews</div>
-        </div><!-- Ratings and reviews -->
+        </div><!-- Ratings and reviews --> --}}
 
         <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3" style="border: 2px solid #fe8686; border-style: dashed;">
             <span class="tfont-medium">Order Today for guaranteed </span>
@@ -173,7 +173,7 @@
 
         {{-- FORM --}}
         
-        <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
+        {{-- <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
             <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
 
             @csrf
@@ -261,7 +261,7 @@
                     <span class="tmr-5">Loading please wait</span>
                 </span>
             </div><!-- Submit Order -->
-        </form><!-- ORDER PROMO -->
+        </form><!-- ORDER PROMO --> --}}
 
 
 
@@ -649,14 +649,10 @@
                     <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">19,586 + Trusted Reviews</div>
                 </div>
 
-             
-
                 <hr class="tmx-5 tmy-5">
 
-
-                {{-- <img src="{{ asset('images/fbads/free_shipping_dicount.png') }}" alt="free sf" width="100%"> --}}
-
-                <form action="http://127.0.0.1:8000/MissTisa-Submit" id="form"  method="post" enctype="multipart/form-data">
+                <form action="{{ route('miss_tisa_submit') }}" id="form"  method="post" enctype="multipart/form-data">
+                    @csrf
                     <h1 class="ttext-gray-900 tmb-5 tmt-8 tml-3 ttext-lg">Shipping Details</h1>
                     <input type="hidden" id="purchase_value" value="">
         
@@ -684,9 +680,6 @@
                     <hr class="tmx-5 tmy-5">
 
                     <h1 class="ttext-gray-900 tmy-5 tml-3 ttext-lg">Promos</h1>
-
-                    
-
 
                     <div class="tmb-2 tp-2 trelative">
                         <div class="tflex tflex-wrap">
@@ -726,20 +719,21 @@
                
                         </div>
                     </div>
-        
-                </form>
 
-                <div class="tabsolute tbottom-0 tflex tw-full" style="-webkit-box-shadow: 0px -2px 15px -5px #000000; box-shadow: 0px -2px 15px -5px #000000;">
-                    <div class="tw-3/5 tbg-white ttext-right tpr-2 tpy-3" style="color: #606060; background-color: white;">
-                        <div class="t-mt-3 tpt-1">
-                            <span class="" style="margin-top: 17%;">Total Payment</span>
+
+                    <div class="tabsolute tbottom-0 tflex tw-full" style="-webkit-box-shadow: 0px -2px 15px -5px #000000; box-shadow: 0px -2px 15px -5px #000000;">
+                        <div class="tw-3/5 tbg-white ttext-right tpr-2 tpy-3" style="color: #606060; background-color: white;">
+                            <div class="t-mt-3 tpt-1">
+                                <span class="" style="margin-top: 17%;">Total Payment</span>
+                            </div>
+                            <div class="t-mt-1 tfont-bold tfont-medium" style="color: #ee4d2d; font-size: 20px;">
+                                ₱150
+                            </div>
                         </div>
-                        <div class="t-mt-1 tfont-bold tfont-medium" style="color: #ee4d2d; font-size: 20px;">
-                            ₱150
-                        </div>
+                        <button class="tfont-medium tpy-3 tw-2/5" style="background-color: #ee4d2d; font-size: 18px;">Buy Now!</button>
                     </div>
-                    <button class="tfont-medium tpy-3 tw-2/5" style="background-color: #ee4d2d; font-size: 18px;">Buy Now!</button>
-                </div>
+                </form>
+                
             </div>
 
             <button class="order_now shopee-bg-color tabsolute tw-full  tbottom-0 tfixed tfont-medium tmt-4 tpy-5 ttext-lg ttext-white tw-10/12 waves-effect" 

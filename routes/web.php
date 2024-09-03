@@ -78,7 +78,7 @@ Route::post('get-cities', 'FbAdsCon@cities');
 Route::post('get-barangay', 'FbAdsCon@barangay');
 
 
-Route::get('fbads', 'FbAdsCon@fbads')->name('fbads');;
+Route::get('fbads', 'FbAdsCon@fbads')->name('fbads');
 
 
 
