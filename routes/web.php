@@ -70,15 +70,19 @@ Route::get('payment-success-paypal', 'PaymentController@payment_success_paypal')
 Route::get('payment-error', 'PaymentController@payment_error');
 
 
-// FB ADS 
-Route::get('MissTisa', 'FbAdsCon@index')->name('miss_tisa');;
-Route::post('MissTisa-Submit', 'FbAdsCon@store')->name('miss_tisa_submit');
-Route::get('MissTisa-Success', 'FbAdsCon@success')->name('miss_tisa_success');
+// MissTisa
+Route::get('MissTisa', 'MissTisaCon@index')->name('miss_tisa');
+Route::post('MissTisa-Submit', 'MissTisaCon@store')->name('miss_tisa_submit');
+Route::get('MissTisa-Success', 'MissTisaCon@success')->name('miss_tisa_success');
+
+// FB Ads Pages
+Route::get('fbads', 'FbAdsCon@fbads')->name('fbads');
+Route::post('Madella-Submit', 'FbAdsCon@store')->name('madella_submit');
+Route::get('Madella-Success', 'FbAdsCon@success')->name('madella_success');
+
+// FOR DROP-DOWN ADDRESS
 Route::post('get-cities', 'FbAdsCon@cities');
 Route::post('get-barangay', 'FbAdsCon@barangay');
-
-
-Route::get('fbads', 'FbAdsCon@fbads')->name('fbads');
 
 
 

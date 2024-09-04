@@ -149,13 +149,125 @@
             </div>
         </div><!-- Benefits -->
 
+        {{-- <div class="tmx-3 tflex titems-center tmy-5">
+            <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
+                <span class="ttext-sm ttext-white">
+                    <i class="fas fa-star" style="color: #ffa633;"></i>
+                    <i class="fas fa-star" style="color: #ffa633;"></i>
+                    <i class="fas fa-star" style="color: #ffa633;"></i>
+                    <i class="fas fa-star" style="color: #ffa633;"></i>
+                    <i class="fas fa-star" style="color: #ffa633;"></i>
+                </span>
+                <span class="ttext-md">
+                    <span class="tfont-bold"> &nbsp; 4.8</span>
+                    <span class="tfont-medium">Ratings</span>
+                </span>
+            </div>
+            <div class="tw-1/2  ttext-center tfont-medium ">19,586 + Trusted Reviews</div>
+        </div><!-- Ratings and reviews --> --}}
+
         <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3" style="border: 2px solid #fe8686; border-style: dashed;">
             <span class="tfont-medium">Order Today for guaranteed </span>
             <span class="ttext-pink-500 tfont-medium tml-2"> FREE 4 Gifts</span>
         </div><!-- ORDER TODAY -->
 
+        {{-- FORM --}}
+        
+        {{-- <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
+
+            @csrf
+
+            <div class="tmb-2 tp-2 trelative">
+                <div class="tflex tflex-wrap">
+                    <div class="tw-1/2 tp-1 trelative">
+                        <label class="tblock tborder-2  tbg-yellow-100 tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
+                            <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="MissTisa_1pc|999|1pc">
+                            <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">10 pcs Goree</span>
+                            <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱999</span>
+                        </label>
+                        <div class="tabsolute" style="top: -6px; left: 23%;">
+                            <div class="tbg-red-600 tfont-medium tpx-4 trounded ttext-sm ttext-white">
+                                BEST SELLER
+                            </div>
+                        </div>
+                    </div><!-- PROMO 4-->
+                    <div class="tw-1/2 tp-1">
+                        <label class="tblock tborder-2  tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
+                            <input type="checkbox" id="promo2" name="promo" class="promo"  value="MissTisa_1pc|799|1pc">
+                            <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">8 pcs Goree</span>
+                            <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱799</span>
+                        </label>
+                    </div><!-- PROMO 4-->
+                    <div class="tw-1/2 tp-1">
+                        <label class="tblock tborder-2  tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
+                            <input type="checkbox" id="promo3" name="promo" class="promo"  value="MissTisa_1pc|499|1pc">
+                            <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">6 pcs Goree</span>
+                            <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱499</span>
+                        </label>
+                    </div><!-- PROMO 4-->
+                    <div class="tw-1/2 tp-1">
+                        <label class="tblock tborder-2  tpx-3 tpy-2 trounded" style="border-color: #ee4d2d;">
+                            <input type="checkbox" id="promo4" name="promo" class="promo"  value="MissTisa_1pc|399|1pc">
+                            <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">4 pcs Goree</span>
+                            <span class="tblock ttext-right ttext-gray-900 tfont-bold ttext-lg">₱399</span>
+                        </label>
+                    </div><!-- PROMO 4-->
+       
+                </div>
+            </div><!-- PROMO  -->
+            
+            <div class="tw-full tflex tmb-3 tpx-3">
+                <div class="tw-1/2 tmr-1">
+                    <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Full Name</label>
+                    <input required type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="browser-default input-control">
+                </div>
+                <div class="tw-1/2 tml-1 trelative">
+                    @error('phone_number')
+                        <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 1%;">{{ $message }}</span>
+                    @enderror
+                    <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Phone Number</label>
+                    <input required type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default input-control">
+                </div>
+            </div><!--Fullname & Phone Number -->
+
+            <div class="tw-full tflex tmb-3 tpx-3">
+                <div class="tw-auto">
+                    <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
+                        <span class="tfont-medium">Complete Address</span>
+                        <small class="ttext-gray-600">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</small>
+                    </label>
+                    <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
+                </div>
+            </div><!--Address -->
+
+            @error('promo')
+                <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 32%;">{{ $message }}</span>
+            @enderror
+
+            <div class="tmt-3 ttext-right tw-full">
+                <span class="ttext-gray-900" style="font-size: 16px;">
+                    <span class="tfont-medium">TOTAL:</span>
+                    <span class="tfont-medium">₱</span>
+                    <span id="total" class="tfont-medium t-ml-1">499</span>
+                </span>
+            </div>
+            <div class="tw-full ">
+                <button style="background-color: #ee2a7b" class="focus:tbg-pink-500 trelative tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
+                    <span>Checkout Order</span>
+                </button>
+                <span style="background-color: #ee2a7b" class="thidden focus:tbg-pink-500 trelative ttext-center tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="loader">
+                    <img src="{{ asset('/loader/four_dots_loader.svg') }}" style="display: initial; position: absolute; top: -29%; right: 35px;">
+                    <span class="tmr-5">Loading please wait</span>
+                </span>
+            </div><!-- Submit Order -->
+        </form><!-- ORDER PROMO --> --}}
+
+
 
         <img class="tmb-3" src="{{ asset('images\kasoy_oil\28_days_challenge.png') }}" alt="28_days_challenge">
+
+       
 
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
             <source src="{{ asset('images/kasoy_oil/explainer_video.mp4') }}" type="video/mp4">
@@ -539,7 +651,7 @@
 
                 <hr class="tmx-5 tmy-5">
 
-                <form action="{{ route('madella_submit') }}" id="form"  method="post" enctype="multipart/form-data">
+                <form action="{{ route('miss_tisa_submit') }}" id="form"  method="post" enctype="multipart/form-data">
                     @csrf
                     <h1 class="ttext-gray-900 tmb-5 tmt-8 tml-3 ttext-lg">Shipping Details</h1>
                     <input type="hidden" id="purchase_value" value="">

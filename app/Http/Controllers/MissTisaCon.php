@@ -11,7 +11,7 @@ use App\FbAds;
 use App\FbEventListener;
 use App\Http\Requests\FbAds\StoreFbAdsRequest;
 
-class FbAdsCon extends Controller
+class MissTisaCon extends Controller
 {
 
     public function index(){
@@ -23,7 +23,7 @@ class FbAdsCon extends Controller
             'robots' => 'none',
         ];
 
-        return view('pages.fbads.index', ['seo' => $seo, 'provinces' => $provinces]);
+        return view('pages.misstisa.index', ['seo' => $seo, 'provinces' => $provinces]);
     }
 
     public function store(StoreFbAdsRequest $request){
@@ -54,16 +54,25 @@ class FbAdsCon extends Controller
         ];
 
 
-        return redirect()->route('madella_success', $data);
+        return redirect()->route('miss_tisa_success', $data);
     }
 
     public function success(){
         $data = request()->all();
 
-        return view('pages.fbads.order_success', ['data' => $data]);
+        return view('pages.misstisa.order_success', ['data' => $data]);
+    }
+
+    public function cities(Request $request){
+        return json_encode(City::select('city')->orderBy('city', 'asc')->where('province', $request->province)->get());
+    }
+   
+    public function barangay(Request $request){
+        return json_encode(Barangay::select('barangay')->orderBy('barangay', 'asc')->where('city', $request->city)->get());
     }
 
     public function event_listener(Request $request){
+        
         if ($request->visitors) {
             FbEventListener::create([
                 'data' => 'visitors',
@@ -127,10 +136,6 @@ class FbAdsCon extends Controller
 
         // FbEventListener::create([$data]);
         return $request->all();
-    }
-
-    public function fbads(){
-        return view('pages.fbads.fbads');
     }
 
 }

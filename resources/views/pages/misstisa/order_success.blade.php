@@ -104,13 +104,14 @@
 
             <div class="tabsolute ttop-0">
                 <div class="tflex tjustify-center">
-                    <img src="{{ asset('images/fbads/lightbulb/light-bulb-logo.png') }}" class="tmt-10" width="60px" alt="">
-                </div><!-- LOGO -->
+                    <img src="{{ asset('/images/logo/main.png') }}" class="" width="60px" alt="">
+                </div>
+                <p class="tfont-medium ttext-center ttext-md" style="color: #ef0e5f;margin: -10px;">Matilda's Beauty</p>
             </div>
 
-            <div class="tflex titems-center tflex-col tmt-5">
+            <div class="tflex titems-center tflex-col">
                 
-                <p class="ttext-center tfont-medium ttext-2xl tmt-12" style="color: #367d54">Smart Home PH</p>
+                <p class="ttext-center tfont-medium ttext-2xl tmt-10" style="color: #ef0e5f">MissTisa</p>
 
                 <div class="tflex tjustify-center tw-full tmy-3 tborder tp-3">
                     <i class="fa-regular fa-circle-check ttext-5xl ttext-green-500 tmr-3"></i>
@@ -148,13 +149,13 @@
 
                 <div class="tw-full tborder tborder-2 tp-3 tm-2">
                     <div class="tflex titems-center tjustify-between">
-                        <img width="100" src="{{ asset('images/fbads/lightbulb/product.jpg') }}" class="tmr-3" alt="MissTisa Melasma Remover">
+                        <img width="100" src="{{ asset('/images/icons/misstisa.png') }}" class="tmr-3" alt="MissTisa Melasma Remover">
                         <div class="">MissTisa Melasma Remover Set |  {{ $price_qty[2] }}</div>
                     </div>
 
                     <div class="tflex tjustify-end titems-center">
                         <span class="tfont-medium tmx-2 ttext-gray-700 ttext-md">Total: </span>
-                        <span class="tmr-3 tmb-2 ttext-xl tfont-medium" style="color: #ee4d2d">₱{{ $price_qty[1] }}</span>
+                        <span class="tmr-3 tmb-2 ttext-xl tfont-medium" style="color: #ef0e5f">{{ $price_qty[1] }}₱</span>
                         <input type="hidden" name="purchase_value" id="purchase_value" value="{{ $price_qty[1] }}">
                     </div>
                 </div>
