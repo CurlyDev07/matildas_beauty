@@ -12,7 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <style>
-       .input-control {
+        .input-control {
             width: 100%;
             padding: 12px!important;
             font-size: 14px;
@@ -53,6 +53,16 @@
             background-origin: padding-box, border-box;
             background-repeat: no-repeat;
             border: 5px solid transparent;
+        }
+
+
+        .theme-color{
+            color: #f7442e;
+        }
+        
+        .theme-bg{
+            background: linear-gradient(-180deg, #f53d2d, #f63);
+            transition: transform .2s cubic-bezier(.4,0,.2,1);
         }
 
     </style>
