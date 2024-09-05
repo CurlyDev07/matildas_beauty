@@ -75,8 +75,17 @@ Route::get('MissTisa', 'MissTisaCon@index')->name('miss_tisa');
 Route::post('MissTisa-Submit', 'MissTisaCon@store')->name('miss_tisa_submit');
 Route::get('MissTisa-Success', 'MissTisaCon@success')->name('miss_tisa_success');
 
+
+
+
 // FB Ads Pages
-Route::get('fbads', 'FbAdsCon@fbads')->name('fbads');
+Route::get('smart-home-ph', 'FbAdsCon@smart_home_ph')->name('smart_home_ph');
+Route::post('Madella-Submit', 'FbAdsCon@store')->name('madella_submit');
+Route::get('Madella-Success', 'FbAdsCon@success')->name('madella_success');
+
+
+Route::post('Madella-Submit', 'FbAdsCon@store')->name('madella_submit');
+Route::get('Madella-Success', 'FbAdsCon@success')->name('madella_success');
 Route::post('Madella-Submit', 'FbAdsCon@store')->name('madella_submit');
 Route::get('Madella-Success', 'FbAdsCon@success')->name('madella_success');
 

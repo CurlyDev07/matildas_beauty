@@ -13,18 +13,10 @@ use App\Http\Requests\FbAds\StoreFbAdsRequest;
 
 class FbAdsCon extends Controller
 {
-
-    public function index(){
-        $provinces = Province::orderBy('province', 'asc')->pluck('province');
-        $seo = [
-            'title' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
-            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
-            'description' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
-            'robots' => 'none',
-        ];
-
-        return view('pages.fbads.index', ['seo' => $seo, 'provinces' => $provinces]);
+    public function smart_home_ph(){
+        return view('pages.fbads.category.home_improvements.bulb.index');
     }
+
 
     public function store(StoreFbAdsRequest $request){
         $promo = explode ("|", $request->promo); 
@@ -60,7 +52,7 @@ class FbAdsCon extends Controller
     public function success(){
         $data = request()->all();
 
-        return view('pages.fbads.order_success', ['data' => $data]);
+        return view('pages.fbads.category.home_improvements.bulb.order_success', ['data' => $data]);
     }
 
     public function event_listener(Request $request){
@@ -127,10 +119,6 @@ class FbAdsCon extends Controller
 
         // FbEventListener::create([$data]);
         return $request->all();
-    }
-
-    public function fbads(){
-        return view('pages.fbads.fbads');
     }
 
 }

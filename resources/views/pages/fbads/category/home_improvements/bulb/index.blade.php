@@ -1,0 +1,540 @@
+@extends('pages.fbads.category.home_improvements.layouts.app')
+
+@section('content')
+    <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
+        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 76px;     background: linear-gradient(-180deg, #f53d2d, #f63); transition: transform .2s cubic-bezier(.4,0,.2,1);">
+            <div >
+                <div class="">
+                    <p class="t-mt-2 tfont-medium  ttext-4xl ttext-white">Good Bye Melasma</p>
+                </div>
+                <div class="">
+                    <span class="ttext-sm ttext-white">
+                        <i class="fas fa-star ttext-yellow-300"></i>
+                        <i class="fas fa-star ttext-yellow-300"></i>
+                        <i class="fas fa-star ttext-yellow-300"></i>
+                        <i class="fas fa-star ttext-yellow-300"></i>
+                        <i class="fas fa-star ttext-yellow-300"></i>
+                    </span>
+                    <span class="ttext-md ttext-white">
+                        <span><u>9.5k</u> Ratings</span>
+                        <span> | </span>
+                        <span><u>23.6k</u> Sold</span>
+                    </span>
+                </div>
+            </div>
+            <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="bottom: -52%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;background-color: #ee2a7b;">ORDER NOW!
+            </button>
+        </div>
+
+        <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full tmb-5" alt="top_banner">
+
+
+        <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3" style="border: 2px solid #fe8686; border-style: dashed;">
+            <span class="tfont-medium">Order Today for guaranteed </span>
+            <span class="ttext-pink-600 tfont-medium tml-2"> FREE 4 Gifts</span>
+        </div><!-- FREE 4 Gifts -->
+
+        <div class="tmx-2 tflex titems-center tflex-wrap tpy-3">
+            <div class="tborder-gray-200 tborder-r-2 tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
+                <span class="tfont-bold ttext-4xl" style="color: #ea353d;">60</span>
+                <span class="tfont-medium">Servings</span>
+            </div>
+            <div class="tborder-gray-200 tborder-r-2 tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
+                <span class="tfont-bold ttext-4xl" style="color: #ea353d;">75</span>
+                <span class="tfont-medium">Ingredients</span>
+            </div>
+            <div class="tborder-gray-200 tborder-r-2 tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
+                <span class="tfont-bold ttext-4xl" style="color: #ea353d;">50</span>
+                <span class="tfont-medium">Calories</span>
+            </div>
+            <div class="tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
+                <span class="tfont-bold ttext-4xl" style="color: #ea353d;">12</span>
+                <span class="tfont-medium">Vitamins</span>
+            </div>
+        </div><!-- 4 Key Benefits -->
+
+
+        <img class="tmb-3" src="{{ asset('images\kasoy_oil\28_days_challenge.png') }}" alt="28_days_challenge">
+
+        
+        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
+            <source src="{{ asset('images/kasoy_oil/explainer_video.mp4') }}" type="video/mp4">
+            <source src="movie.ogg" type="video/ogg">
+        </video>
+
+        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full tmy-5"  alt="before_after">
+
+        <div class="tmx-auto trelative tp-5">
+            <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
+
+            <p style="font-size: 20px;" class="ttext-center tmb-4">
+                <b><b>"</b>Revitalize Your Skin with Our Melasma Rejuvenating Set<b>"</b></b>
+            </p><br>
+
+            <h4 class="tfont-medium tmb-4 ttext-xl">BENEFITS:</h4>
+            
+            <img class="tmb-5" src="{{ asset('images\kasoy_oil\benefits.png') }}" alt="benefits">
+    
+            <img class="tmb-5" src="{{ asset('images\kasoy_oil\what_to_expect.png') }}" alt="What to expect">
+            <!--WHAT TO EXPECT: -->
+            
+            <img class="" src="{{ asset('images\kasoy_oil\how_to_use_01.png') }}" alt="how_to_use in the morning">
+            <img class="" src="{{ asset('images\kasoy_oil\how_to_use_02.png') }}" alt="how_to_use in the evening">
+
+        </div><!-- PRODUCT DETAILS-->
+
+        <div class="tmb-5 tborder-t" >
+            <div class="tborder tpx-4 tpy-5">
+                <h1 class="tmb-3 ttext-2xl">Product Ratings</h1>
+                <div class="tflex titems-center tjustify-between tmb-3">
+                    <p>
+                        <span class="ttext-2xl tfont-semibold" style="color: #f51773">5.0</span>
+                        <span class="ttext-xl tfont-medium" style="color: #f51773"> out of 5</span>
+                    </p>
+                    <div class="">
+                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                    </div>
+                </div>    
+                <div class="tflex titems-center tjustify-between">
+
+                    <div class="trounded ttext-sm tmr-1 ttext-center trelative" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773; background: #f51773; color: white;">
+                        <p>5 <i class="fa-solid fa-star" style="color: white;"></i> (9.5k)</p>
+                    </div>
+                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
+                        4<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
+                    </div>
+                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
+                        3<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
+                    </div>
+                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
+                        2<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
+                    </div>
+                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
+                        1<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
+                    </div>
+                </div>
+                
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review1/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Emerlita Manao</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">April 14, 2023 09:07AM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" >
+                        Hala grabi. <b>Effective pala talaga ang MissTisa</b> totoo pala ung napnoud ko na video.
+                        Kitang kita naman sa picture ko nag <b>fade talga ung melasma ko in 3 Weeks.</b> 
+                    </div>
+                    <div class="tflex" style="">
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/1.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/2.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/3.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/4.png') }}" class="tmr-1 trounded">
+                        </div>
+                    </div>
+                </div><!-- REVIEW 1 -->
+
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review2/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Aiza Ling</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 14, 2023 12:48PM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" >
+                    <b> Sobrang problemado talaga ako sa Melasma ko.</b> Maputi naman ung face ko
+                    Kaya lalong naging Visible ung Melasma ko. Nakuha ko to sa panga-nganak
+                    sa Pangalawa ko. Ang dami ko na din nasubukan ok naman <b> kaso mas na satisfy
+                    lang talga ako dito sa MissTisa </b>lang ung may pinaka magandang Effect.
+                    </div>
+                    <div class="tflex" style="">
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/1.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/2.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/3.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/4.png') }}" class="tmr-1 trounded">
+                        </div>
+                    </div>
+                </div><!-- REVIEW 2 -->
+
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review3/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Ana Park</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" >
+                        Hi!. <b>I was so frustrated with my melasma.</b>  i'm a korean living here in philippines.
+                        My Filipino husband bought me this product. <b>I tried many korean products</b>  but this is only 
+                        The Rejuvenating set worked for me. this is my result after using for month </b>
+                    </div>
+                    <div class="tflex" style="">
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/1.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/2.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/3.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/4.png') }}" class="tmr-1 trounded">
+                        </div>
+                    </div>
+                </div><!-- REVIEW 3 -->
+                
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review4/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Sharon Tee</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 25, 2023 04:22PM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" >
+                        The before and after of my face is proof that MissTisa Product is very Effective.
+                        The Glass Skin Effect is superb, And my melasma is totally Gone.
+                        I would definitely recommend this to my co mother who suffer also from melasma.
+                    </div>
+                    <div class="tflex" style="">
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/1.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/2.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/3.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/4.png') }}" class="tmr-1 trounded">
+                        </div>
+                    </div>
+                </div><!-- REVIEW 4 -->
+
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review5/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Liza Manalo</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 02, 2023 07:27AM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" >
+                        <b>Wag kayo bibili nito! Kung ayaw nyo Mawala agad ang melasma nyo ng 1 week.</b> 
+                        Mga sis Legit at Effective Talga sya lalo na kapag wala ka palya sa pag lagay.
+                        1 Week kitang kita na result tulad ng pic ko dito oh.
+                    </div>
+                    <div class="tflex" style="">
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/1.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/2.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/3.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/4.png') }}" class="tmr-1 trounded">
+                        </div>
+                    </div>
+                </div><!-- REVIEW 5 -->
+
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review6/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Rebecca Morales</p>
+                            <div class="">
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 16, 2023 01:29PM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" >
+                        <b> Dati Palagi nalang ako naka Mask.</b> Kasi Ang Dami kong Melasma. 
+                        kaya Thankful ako kasi nakita ko itong MISSTISA isang Set palang
+                        at <b>1 week Kitang kita na agad ang effect nya.</b>  at nag Glass SKin pa face ko.
+                    </div>
+                    <div class="tflex" style="">
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/1.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/2.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/3.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/4.png') }}" class="tmr-1 trounded">
+                        </div>
+                    </div>
+                </div><!-- REVIEW 6 -->
+
+            </div>  <!-- RATINGS DIV -->
+        </div> <!-- RATINGS -->
+
+        <h4 class="tfont-medium tpy-3 tmb-5 ttext-xl ttext-center">HAPPY & SATISFIED CUSTOMERS</h4>
+    
+        {{-- REVIEWS --}}
+
+        <img class="" src="{{ asset('images\kasoy_oil\satisfied_customer1.png') }}" alt="fda">
+        <img class="" src="{{ asset('images\kasoy_oil\satisfied_customer2.png') }}" alt="fda">
+
+        <div class="tmx-auto trelative tborder tpx-5 tpb-5">
+            <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
+                <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" style="height: ;" alt="">
+                <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
+            </div>
+
+            <section class="tflex titems-baseline tmt-5 tmb-3">
+                <div class="ttext-center">
+                    <i class="fa-solid fa-truck-fast ttext-5xl" style="color: #2d3748"></i>
+                    <span class="tinline-block">Fast delivery nationwide</span>
+                </div>
+                <div class="ttext-center">
+                    <i class="fa-solid fa-money-bill-transfer ttext-5xl" style="color: #2d3748"></i>
+                    <span class="tinline-block">Moneyback Guarantee</span>
+                </div>
+                <div class="ttext-center">
+                    <i class="fa-solid fa-hand-holding-dollar ttext-5xl" style="color: #2d3748"></i>
+                    <span class="tinline-block">Cash on Delivery</span>
+                </div>
+                <div class="ttext-center">
+                    <i class="fa-solid fa-headset ttext-5xl" style="color: #2d3748"></i>
+                    <span class="tinline-block">Aftersales Support</span>
+                </div>
+            </section>
+            
+            <form action="{{ route('madella_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
+                <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3>
+
+                @csrf
+                <div class="tw-full tflex tmb-3">
+                    <div class="tw-1/2 tmr-1">
+                        <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Full Name</label>
+                        <input required type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="browser-default input-control">
+                    </div>
+                    <div class="tw-1/2 tml-1 trelative">
+                        @error('phone_number')
+                            <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 1%;">{{ $message }}</span>
+                        @enderror
+                        <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Phone Number</label>
+                        <input required type="number" name="phone_number" id="phone_number" onkeyup="allnumeric(this)" value="{{ old('phone_number') }}" class="browser-default input-control">
+                    </div>
+                </div><!--Fullname & Phone Number -->
+                <div class="tw-full tflex tmb-3">
+                    <div class="tw-auto tmr-1">
+                        <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
+                            <span class="tfont-medium">Complete Address</span>
+                            <small class="ttext-gray-600">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</small>
+                        </label>
+                        <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
+                    </div>
+                </div><!--Address -->
+
+                <div class="tborder-2 tmb-2 tp-3 trelative" style="border-color: #ee2a7ba8">
+                    
+                    <div class="tflex tflex-wrap tflex-wrap-reverse tjustify-center">
+                        <div class="tw-1/2 tp-1 trelative">
+                            <label class="tblock tborder-2 tpb-12 tpt-5 tpx-3 trounded" style="border-color: #ee4d2d;">
+                                <input type="checkbox" id="promo3" name="promo" class="promo" value="SmartLight_1pcs|549|1pc">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">1pc Smart Light</span>
+                                <span class="tabsolute tbg-red-700 tw-10" style="
+                                    height: 28px;
+                                    bottom: 4%;
+                                    width: 57px;
+                                    right: 5%;
+                                    border: 1px solid red;
+                                    border-top-left-radius: 10px;
+                                    border-top-right-radius: 10px;
+                                    ">
+                                    <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">549</span>
+                                </span>
+                            </label>
+                        </div><!-- PROMO 1-->
+
+                        <div class="tw-1/2 tp-1 trelative">
+                            <label class="tblock tborder-2 tpb-12 tpt-5 tpx-3 trounded" style="border-color: #ee4d2d;">
+                                <input type="checkbox" id="promo2" name="promo" class="promo"  value="SmartLight_2pcs|899|2pc">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">2pcs Smart Light</span>
+                                <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 40%;color: #000000;">(449/each)</span>
+                                <span class="tabsolute tbg-red-700 tw-10" style="
+                                    height: 28px;
+                                    bottom: 4%;
+                                    width: 57px;
+                                    right: 5%;
+                                    border: 1px solid red;
+                                    border-top-left-radius: 10px;
+                                    border-top-right-radius: 10px;
+                                    ">
+                                    <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱899</span>
+
+                                </span>
+                            </label>
+                          
+                        </div><!-- PROMO 2-->
+
+                        <div class="tw-1/2 tp-1 trelative">
+                            <label class="tblock tborder-2 tpb-12 tpt-5 tpx-3 trounded" style="border-color: #ee4d2d;">
+                                <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="SmartLight_3pcs|1199|1pc">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">3pcs Smart Light</span>
+                                <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 40%;color: #000000;">(399/each)</span>
+                                <span class="tabsolute tbg-red-700 tw-10" style="
+                                    height: 28px;
+                                    bottom: 4%;
+                                    width: 57px;
+                                    right: 5%;
+                                    border: 1px solid red;
+                                    border-top-left-radius: 10px;
+                                    border-top-right-radius: 10px;
+                                    ">
+                                <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱1199</span>
+
+                                </span>
+                            </label>
+                            <div class="tabsolute" style="top: -6px; left: 23%;">
+                                <div class="tbg-red-600 tfont-medium tpx-4 trounded ttext-sm ttext-white">
+                                    BEST SELLER
+                                </div>
+                            </div>
+                        </div><!-- PROMO 1-->
+
+
+
+
+                        {{-- <div class="tflex titems-center tw-full tjustify-center">
+                            <label>
+                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-medium ttext-sm">₱499</span>
+                                    MissTisa Melasma Remover 1 Set
+                                </span>
+                            </label>
+                        </div><!-- PROMO 4-->
+                        <div class="tflex titems-center tw-full tjustify-center">
+                            <label>
+                                <input type="checkbox" id="promo3" name="promo" class="promo" value="MissTisa_2pcs|849|2pcs">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-medium ttext-sm">₱849</span>
+                                    MissTisa Melasma Remover 2 Set
+                                </span>
+                            </label>
+                        </div><!-- PROMO 3 --> --}}
+                    </div>
+                
+                    @error('promo')
+                        <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 32%;">{{ $message }}</span>
+                    @enderror
+                </div><!-- ORDER PROMO -->
+
+                <div class="tmt-3 ttext-right tw-full">
+                    <span class="ttext-gray-900" style="font-size: 16px;">
+                        <span class="tfont-medium">TOTAL:</span>
+                        <span class="tfont-medium">₱</span>
+                        <span id="total" class="tfont-medium t-ml-1">1199</span>
+                    </span>
+                </div>
+                <div class="tw-full ">
+                    <button style="background-color: #ee2a7b" class="focus:tbg-pink-500 trelative tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
+                        <span>Checkout Order</span>
+                    </button>
+                    <span style="background-color: #ee2a7b" class="thidden focus:tbg-pink-500 trelative ttext-center tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="loader">
+                        <img src="{{ asset('/loader/four_dots_loader.svg') }}" style="display: initial; position: absolute; top: -29%; right: 35px;">
+                        <span class="tmr-5">Loading please wait</span>
+                    </span>
+                </div><!-- Submit Order -->
+            </form><!-- ORDER PROMO -->
+
+            <div id="modal1" class="modal">
+                <div class="modal-content" style="padding-bottom: 0px;">
+                    <h4 class="tfont-medium ttext-3xl">Thank you</h4>
+                    <h5 class="tfont-medium tmb-3 tmt-4 ttext-xl">Your order was completed successfully.</h5>
+                
+                    <p>We want to assure you that we are working diligently to process and ship your order as quickly as possible.</p><br>
+                    <p><span class="tfont-medium">Metro Manila:</span>  1-3 working days.</p>
+                    <p><span class="tfont-medium">Visayas & Mindanao:</span> 4-7 days.</p>
+                    <br>
+                    <p>
+                        We truly appreciate your business and look forward to serving you again in the future.
+                    </p><br>
+                    <p class="tfont-medium">We appreciate your business!</p>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div> <!-- Modal  -->
+
+            <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
+                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
+                ORDER NOW!
+            </button>
+        </div>
+    </div>
+@endsection
+
