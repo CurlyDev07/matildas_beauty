@@ -2,86 +2,75 @@
 
 @section('content')
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
-        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 76px;     background: linear-gradient(-180deg, #f53d2d, #f63); transition: transform .2s cubic-bezier(.4,0,.2,1);">
+        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 50px;     background: linear-gradient(-180deg, #f53d2d, #f63); transition: transform .2s cubic-bezier(.4,0,.2,1);">
             <div >
                 <div class="">
-                    <p class="t-mt-2 tfont-medium  ttext-4xl ttext-white">Good Bye Melasma</p>
-                </div>
-                <div class="">
-                    <span class="ttext-sm ttext-white">
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                    </span>
-                    <span class="ttext-md ttext-white">
-                        <span><u>9.5k</u> Ratings</span>
-                        <span> | </span>
-                        <span><u>23.6k</u> Sold</span>
-                    </span>
+                    <p class="t-mt-2 tfont-medium  ttext-3xl ttext-white">75% Tipid sa Kuryente</p>  
                 </div>
             </div>
             <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box theme-bg" style="bottom: -52%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;">ORDER NOW!
             </button>
         </div>
 
-        <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full tmb-5" alt="top_banner">
+        <div class="tabsolute tbg-green-900 tpx-5 trounded" 
+            style="left: 18%;top: 50.7%; background: linear-gradient(-180deg, #f53d2d, #f63); transition: transform .2s cubic-bezier(.4,0,.2,1);">
+            <p class="t-mt-2 tfont-medium  ttext-sm ttext-white tpt-2 tmb-1">when people come, LIGHT TURN ON</p>
+            <p class="t-mt-2 tfont-medium  ttext-sm ttext-white tpb-2">when people leave, LIGHT TURN OFF</p>
+        </div>
+
+        <img src="{{ asset('/images/fbads/lightbulb/banner.png') }}" class="tw-full tmb-5" alt="top_banner">
 
 
-        <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3" style="border: 2px solid #fe8686; border-style: dashed;">
+        <div class="tmx-3 tflex titems-center tmy-5">
+            <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
+                <span class="ttext-sm ttext-white">
+                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
+                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
+                </span>
+                <span class="ttext-md ttext-green-900">
+                    <span class="tfont-bold"> &nbsp; 4.8</span>
+                    <span class="tfont-medium">Ratings</span>
+                </span>
+            </div>
+            <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">19,586 + Trusted Reviews</div>
+        </div>
+
+        <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3" style="border: 2px solid #4aa30b; border-style: dashed;">
             <span class="tfont-medium">Order Today for guaranteed </span>
             <span class="theme-color tfont-medium tml-2"> FREE 4 Gifts</span>
         </div><!-- FREE 4 Gifts -->
 
-        <div class="tmx-2 tflex titems-center tflex-wrap tpy-3">
-            <div class="tborder-gray-200 tborder-r-2 tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
-                <span class="tfont-bold ttext-4xl theme-color">60</span>
-                <span class="tfont-medium">Servings</span>
-            </div>
-            <div class="tborder-gray-200 tborder-r-2 tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
-                <span class="tfont-bold ttext-4xl theme-color">75</span>
-                <span class="tfont-medium">Ingredients</span>
-            </div>
-            <div class="tborder-gray-200 tborder-r-2 tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
-                <span class="tfont-bold ttext-4xl theme-color">50</span>
-                <span class="tfont-medium">Calories</span>
-            </div>
-            <div class="tflex tflex-col tflex-grow titems-center tjustify-between tpx-3">
-                <span class="tfont-bold ttext-4xl theme-color">12</span>
-                <span class="tfont-medium">Vitamins</span>
-            </div>
-        </div><!-- 4 Key Benefits -->
+        <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Ultra Energy Saver</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Human Detection</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> 360° Sensing Angle</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> 1-8 meters Range</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Easy to Install</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Plug & Play</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> No Switch Required</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> No Wifi Needed</div>
 
+            <div class="tw-full tmt-3"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> No need to remove Original Lamp Socket</div>
+            <div class="tw-full"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Adjustable Ambient Light</div>
+            <div class="tw-full"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Adjustalbe Lighting Time</div>
+            <div class="tw-full"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> No need Tool</div>
+        </div>
 
-        <img class="tmb-3" src="{{ asset('images\kasoy_oil\28_days_challenge.png') }}" alt="28_days_challenge">
+        <img class="tmb-3 tmt-5" src="{{ asset('/images/fbads/lightbulb/gif.gif') }}" alt="GIF">
 
-        
+        <img class="tmb-3 tmt-5" src="{{ asset('/images/fbads/lightbulb/1.png') }}" alt="1">
+
+        <img class="tmt-5" src="{{ asset('/images/fbads/lightbulb/2.png') }}" alt="2">
+
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
-            <source src="{{ asset('images/kasoy_oil/explainer_video.mp4') }}" type="video/mp4">
+            <source src="{{ asset('/images/fbads/lightbulb/main-video.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
 
-        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full tmy-5"  alt="before_after">
-
-        <div class="tmx-auto trelative tp-5">
-            <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
-
-            <p style="font-size: 20px;" class="ttext-center tmb-4">
-                <b><b>"</b>Revitalize Your Skin with Our Melasma Rejuvenating Set<b>"</b></b>
-            </p><br>
-
-            <h4 class="tfont-medium tmb-4 ttext-xl">BENEFITS:</h4>
-            
-            <img class="tmb-5" src="{{ asset('images\kasoy_oil\benefits.png') }}" alt="benefits">
-    
-            <img class="tmb-5" src="{{ asset('images\kasoy_oil\what_to_expect.png') }}" alt="What to expect">
-            <!--WHAT TO EXPECT: -->
-            
-            <img class="" src="{{ asset('images\kasoy_oil\how_to_use_01.png') }}" alt="how_to_use in the morning">
-            <img class="" src="{{ asset('images\kasoy_oil\how_to_use_02.png') }}" alt="how_to_use in the evening">
-
-        </div><!-- PRODUCT DETAILS-->
+        <img class="tmt-5" src="{{ asset('/images/fbads/lightbulb/3.png') }}" alt="2">
 
         <div class="tmb-5 tborder-t" >
             <div class="tborder tpx-4 tpy-5">
@@ -400,7 +389,7 @@
 
                                 </span>
                             </label>
-                            <div class="tabsolute" style="top: -6px; left: 32%;">
+                            <div class="tabsolute" style="top: -6px; left: 38%%;">
                                 <div class="tbg-red-600 tfont-medium tpx-4 trounded ttext-sm ttext-white">
                                     BEST SELLER
                                 </div>
