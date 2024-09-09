@@ -674,30 +674,6 @@
                                 </span>
                             </label>
                         </div><!-- PROMO 3-->
-
-                     
-
-
-
-
-                        {{-- <div class="tflex titems-center tw-full tjustify-center">
-                            <label>
-                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium ttext-sm">₱499</span>
-                                    MissTisa Melasma Remover 1 Set
-                                </span>
-                            </label>
-                        </div><!-- PROMO 4-->
-                        <div class="tflex titems-center tw-full tjustify-center">
-                            <label>
-                                <input type="checkbox" id="promo3" name="promo" class="promo" value="MissTisa_2pcs|849|2pcs">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium ttext-sm">₱849</span>
-                                    MissTisa Melasma Remover 2 Set
-                                </span>
-                            </label>
-                        </div><!-- PROMO 3 --> --}}
                     </div>
                 
                     @error('promo')
