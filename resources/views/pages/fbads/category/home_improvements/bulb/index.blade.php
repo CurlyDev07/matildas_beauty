@@ -12,12 +12,6 @@
             </button>
         </div>
 
-        <div class="tabsolute tbg-green-900 tpx-5 trounded" 
-            style="left: 18%;top: 50.7%; background: linear-gradient(-180deg, #f53d2d, #f63); transition: transform .2s cubic-bezier(.4,0,.2,1);">
-            <p class="t-mt-2 tfont-medium  ttext-sm ttext-white tpt-2 tmb-1">when people come, LIGHT TURN ON</p>
-            <p class="t-mt-2 tfont-medium  ttext-sm ttext-white tpb-2">when people leave, LIGHT TURN OFF</p>
-        </div>
-
         <img src="{{ asset('/images/fbads/lightbulb/banner.png') }}" class="tw-full tmb-5" alt="top_banner">
 
 
@@ -63,14 +57,20 @@
 
         <img class="tmb-3 tmt-5" src="{{ asset('/images/fbads/lightbulb/1.png') }}" alt="1">
 
-        <img class="tmt-5" src="{{ asset('/images/fbads/lightbulb/2.png') }}" alt="2">
-
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
             <source src="{{ asset('/images/fbads/lightbulb/main-video.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
 
+        <img class="tmt-5" src="{{ asset('/images/fbads/lightbulb/2.png') }}" alt="2">
+        <img class="tmt-5" src="{{ asset('/images/fbads/lightbulb/5.png') }}" alt="2">
+
+
         <img class="tmt-5" src="{{ asset('/images/fbads/lightbulb/3.png') }}" alt="2">
+
+
+        <img class="tmt-5" src="{{ asset('/images/fbads/lightbulb/4.png') }}" alt="2">
+
 
         <div class="tmb-5 tborder-t" >
             <div class="tborder tpx-4 tpy-5">
@@ -109,7 +109,7 @@
                 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review1/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('/images/fbads/lightbulb/reviews/review1/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
                             <p>Emerlita Manao</p>
                             <div class="">
@@ -123,67 +123,31 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        Hala grabi. <b>Effective pala talaga ang MissTisa</b> totoo pala ung napnoud ko na video.
-                        Kitang kita naman sa picture ko nag <b>fade talga ung melasma ko in 3 Weeks.</b> 
+                        Hala!. <b>FROM 3,500 ngayon 2k</b> nalang ang <b>Meralco</b> namin.
+                        Ang dami kasi naming Ilaw sa labas. Tapos di naman sustainable ung solar
+                        Kaya Bumili ako nito. <b> i Purchase 8pcs na.</b>
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review1/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review1/2.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review1/3.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review1/4.png') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 1 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review2/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('/images/fbads/lightbulb/reviews/review6/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Aiza Ling</p>
-                            <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 14, 2023 12:48PM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                    <b> Sobrang problemado talaga ako sa Melasma ko.</b> Maputi naman ung face ko
-                    Kaya lalong naging Visible ung Melasma ko. Nakuha ko to sa panga-nganak
-                    sa Pangalawa ko. Ang dami ko na din nasubukan ok naman <b> kaso mas na satisfy
-                    lang talga ako dito sa MissTisa </b>lang ung may pinaka magandang Effect.
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/1.png') }}" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/2.png') }}" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/3.png') }}" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/4.png') }}" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 2 -->
-
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review3/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
-                        <div class="tml-2">
-                            <p>Ana Park</p>
+                            <p>Mark Culantes</p>
                             <div class="">
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
@@ -195,31 +159,68 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        Hi!. <b>I was so frustrated with my melasma.</b>  i'm a korean living here in philippines.
-                        My Filipino husband bought me this product. <b>I tried many korean products</b>  but this is only 
-                        The Rejuvenating set worked for me. this is my result after using for month </b>
+                        <b>Nabilihan ko </b> na ng washing ung <b> asawa ko.</b>
+                        Dahil naka tipid na kami sa koryente.
+                        <b>Dati 3k meralco namin wala pa washing machine.</b> 
+                        Ngayon may washing na <b>bumaba pa ng 2600 </b>
+                        Madilim kasi samin kaya 24hrs bukas ilaw.
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review6/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review6/2.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review6/3.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review6/4.png') }}" class="tmr-1 trounded">
+                        </div>
+                    </div>
+                </div><!-- REVIEW 6 -->
+
+                <div class="tmt-5 tpb-5">
+                    <div class="tflex titems-center">
+                        <img src="{{ asset('/images/fbads/lightbulb/reviews/review3/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <div class="tml-2">
+                            <p>Rolando Baldasin</p>
+                            <div class="">
+                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fa-solid fa-star theme-color"></i>
+                            </div>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
+                        </div>
+                    </div>
+                    <div class="tpy-2" >
+                        <b>Sulit ang bayad.</b>Maganda sya sa hagdan at CR. 
+                        Pwde din sa labas. mas <b>bumaba pa koryente namin.</b> 
+                    </div>
+                    <div class="tflex" style="">
+                        <div class="tmr-2">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review3/1.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review3/2.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review3/3.png') }}" class="tmr-1 trounded">
+                        </div>
+                        <div class="tmr-2">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review3/4.png') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 3 -->
                 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review4/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('/images/fbads/lightbulb/reviews/review4/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Sharon Tee</p>
+                            <p>Melinda Bergadin</p>
                             <div class="">
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
@@ -227,35 +228,34 @@
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
                             </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 25, 2023 04:22PM</span>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        The before and after of my face is proof that MissTisa Product is very Effective.
-                        The Glass Skin Effect is superb, And my melasma is totally Gone.
-                        I would definitely recommend this to my co mother who suffer also from melasma.
+                        <b>Sulit ang bayad.</b>Maganda sya sa hagdan at CR. 
+                        Pwde din sa labas. mas <b>bumaba pa koryente namin.</b> 
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review4/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review4/2.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review4/3.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review4/4.png') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 4 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review5/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('/images/fbads/lightbulb/reviews/review5/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Liza Manalo</p>
+                            <p>Sarah Peransa</p>
                             <div class="">
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
@@ -263,35 +263,35 @@
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
                             </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 02, 2023 07:27AM</span>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        <b>Wag kayo bibili nito! Kung ayaw nyo Mawala agad ang melasma nyo ng 1 week.</b> 
-                        Mga sis Legit at Effective Talga sya lalo na kapag wala ka palya sa pag lagay.
-                        1 Week kitang kita na result tulad ng pic ko dito oh.
+                        Great Product. <b>Nabawasan ng ₱1,300 ung Bill namin Monthly.</b> 
+                        Big Help din. <b>Malala-an pa sa Internet ung na tipid.</b> 
+                        na recommend ko na din to sa mga kumare ko.
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review5/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review5/2.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review5/3.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review5/4.png') }}" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 5 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review6/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('/images/fbads/lightbulb/reviews/review2/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Rebecca Morales</p>
+                            <p>Aiza Mercado</p>
                             <div class="">
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
@@ -299,40 +299,278 @@
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
                             </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 16, 2023 01:29PM</span>
+                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 14, 2023 12:48PM</span>
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        <b> Dati Palagi nalang ako naka Mask.</b> Kasi Ang Dami kong Melasma. 
-                        kaya Thankful ako kasi nakita ko itong MISSTISA isang Set palang
-                        at <b>1 week Kitang kita na agad ang effect nya.</b>  at nag Glass SKin pa face ko.
+                        <b>TIPID talaga sa koryente.</b> Solar gamit ko dati. Kaso Ang bilis ma Lowbat lalo kapag matagal na.
+                        Unlike dito bubukas lang kapag may tao. tapos di humihina ung ilaw. 
+                        <b>automatic din na mamatay kapag umaga at bukas kapag</b>
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review2/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review2/2.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review2/3.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review2/4.png') }}" class="tmr-1 trounded">
                         </div>
                     </div>
-                </div><!-- REVIEW 6 -->
+                </div><!-- REVIEW 2 -->
+
+                <hr class="tmy-5">
+
+                <div class=" tmb-3">
+                    <span class="ttext-lg tfont-semibold theme-color tmy-3">More Reviews</span>
+
+                    <div class="tflex tflex-wrap tmt-5">
+                        <div class="tborder tp-2 tw-1/2 tmb-2">
+                            <img src="https://images.loox.io/uploads/2024/8/3/QD6Cq-Rzb0g.jpg" class="tmr-1 trounded">
+                            <div class="">
+                                <span class="tfont-medium">Angela M.</span>
+                            </div>
+                            <div class="">
+                                <span>
+                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    Verified
+                                </span>
+                            </div>
+                            <div class="tmb-2">
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            </div>
+                            <p>
+                                I love how it automatically lights up when I enter the room. So convenient!
+                            </p>
+                        </div><!--more review 1 -->
+
+                        <div class="tborder tp-2 tw-1/2 tmb-2">
+                            <img src="https://images.loox.io/uploads/2024/8/3/Voa4-8-epBw.jpg" class="tmr-1 trounded">
+                            <div class="">
+                                <span class="tfont-medium">Sarah T.</span>
+                            </div>
+                            <div class="">
+                                <span>
+                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    Verified
+                                </span>
+                            </div>
+                            <div class="tmb-2">
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            </div>
+                            <p>
+                                Ang galing ng motion sensor nito, it makes my hallway lighting smart and efficient!
+                            </p>
+                        </div><!--more review 2 -->
+
+                        <div class="tborder tp-2 tw-1/2 tmb-2">
+                            <img src="https://images.loox.io/uploads/2024/8/3/6XIZDrghJpJ_mid.jpg" class="tmr-1 trounded">
+                            <div class="">
+                                <span class="tfont-medium">Daniel R.</span>
+                            </div>
+                            <div class="">
+                                <span>
+                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    Verified
+                                </span>
+                            </div>
+                            <div class="tmb-2">
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            </div>
+                            <p>
+                                This light bulb holder is super easy to install and works flawlessly. No more stumbling in the dark!
+                            </p>
+                        </div><!--more review 3 -->
+                        
+                        <div class="tborder tp-2 tw-1/2 tmb-2">
+                            <img src="https://images.loox.io/uploads/2024/8/3/ndjnpjjuKzw_mid.jpg" class="tmr-1 trounded">
+                            <div class="">
+                                <span class="tfont-medium">James P.</span>
+                            </div>
+                            <div class="">
+                                <span>
+                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    Verified
+                                </span>
+                            </div>
+                            <div class="tmb-2">
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            </div>
+                            <p>
+                                This holder turns any bulb into a sensor light. It's perfect for our basement.
+                            </p>
+                        </div><!--more review 5 -->
+
+                        <div class="tborder tp-2 tw-1/2 tmb-2">
+                            <img src="https://scontent.fmnl30-2.fna.fbcdn.net/v/t1.6435-9/188331180_10218522411960220_6151144468265578546_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=689c2a&_nc_eui2=AeFjKnmUhLwz_CcP3-6QiWNgtnx9NeCvYKq2fH014K9gqgGW_IZFZxKmdEK1FM0tFqHg6KSH2w6rAEputS0jJOiN&_nc_ohc=sYxnk0PnJMcQ7kNvgErGibS&_nc_ht=scontent.fmnl30-2.fna&oh=00_AYCjSbs3jj_kTWQBJej3nvLrh0znnuBkiz2mN6Yv_hVmpw&oe=67064751" class="tmr-1 trounded">
+                            <div class="">
+                                <span class="tfont-medium">Mark B.</span>
+                            </div>
+                            <div class="">
+                                <span>
+                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    Verified
+                                </span>
+                            </div>
+                            <div class="tmb-2">
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            </div>
+                            <p>
+                                Ang ganda kasi kusa talga sya namamatay bukas legit
+                                Ung natipid ko sa Ilaw. Nakakapag Aircon pa ko. kawawa kasi baby ko ang init sa tanghali.
+                                
+                            </p>
+                        </div><!--more review 5 -->
+
+                        <div class="tborder tp-2 tw-1/2 tmb-2">
+                            <img src="https://scontent.fmnl30-1.fna.fbcdn.net/v/t39.30808-6/457038755_1600913997504512_8665573359713391975_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGBh21quEY9gtomGgbxYLgQ5pGOo5eSN6fmkY6jl5I3p6IGgcAsXxfVMZSS6bCfyhn2EevOuDKZzDzYKzNF2kOq&_nc_ohc=DCP3_cknZU0Q7kNvgGP4oJb&_nc_ht=scontent.fmnl30-1.fna&oh=00_AYDCR9Zq7UgC046T9qujY8qzJXyuTWINec-hbi_dusmyvg&oe=66E48BA6" class="tmr-1 trounded">
+                            <div class="">
+                                <span class="tfont-medium">Mark B.</span>
+                            </div>
+                            <div class="">
+                                <span>
+                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    Verified
+                                </span>
+                            </div>
+                            <div class="tmb-2">
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            </div>
+                            <p>
+                                Lakas maka tipid sa Koryente. Bagay talaga to sa mga makalimutin mag patay ng ilaw
+                            </p>
+                        </div><!--more review 4 -->
+
+                        <div class="tborder tp-2 tw-1/2 tmb-2">
+                            <img src="https://images.loox.io/uploads/2024/8/3/2MlZjhEK5f_mid.jpg" class="tmr-1 trounded">
+                            <div class="">
+                                <span class="tfont-medium">Rachel S.</span>
+                            </div>
+                            <div class="">
+                                <span>
+                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    Verified
+                                </span>
+                            </div>
+                            <div class="tmb-2">
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            </div>
+                            <p>
+                                Easy to install and works like a charm. Highly recommend!
+                            </p>
+                        </div><!--more review 5 -->
+
+                        <div class="tborder tp-2 tw-1/2 tmb-2">
+                            <img src="https://images.loox.io/uploads/2024/8/3/uE_jWfRXwS_mid.jpg" class="tmr-1 trounded">
+                            <div class="">
+                                <span class="tfont-medium">Lily N.</span>
+                            </div>
+                            <div class="">
+                                <span>
+                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    Verified
+                                </span>
+                            </div>
+                            <div class="tmb-2">
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            </div>
+                            <p>
+                                It detects motion accurately and the installation was very straightforward.
+                            </p>
+                        </div><!--more review 5 -->
+
+                        <div class="tborder tp-2 tw-1/2 tmb-2">
+                            <img src="https://images.loox.io/uploads/2024/8/3/UTwrRVFfs_mid.jpg" class="tmr-1 trounded">
+                            <div class="">
+                                <span class="tfont-medium">Emily V.</span>
+                            </div>
+                            <div class="">
+                                <span>
+                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    Verified
+                                </span>
+                            </div>
+                            <div class="tmb-2">
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            </div>
+                            <p>
+                               ito gamit ko sa labas ng bahay. Ang ganda automatic on/OFF tipid talaga sa koryente
+                            </p>
+                        </div><!--more review 5 -->
+
+                        <div class="tborder tp-2 tw-1/2 tmb-2">
+                            <img src="https://scontent.fmnl30-2.fna.fbcdn.net/v/t39.30808-6/453215189_7934172459951651_709636608049295640_n.jpg?stp=dst-jpg_p526x296&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeH10KoaaZK3U5cLzQr_Y4Sj9REGJl3iKKn1EQYmXeIoqViEBnG6ej70Onx6hC-2PLIPwSaLdOqquj8nf3BgZYi2&_nc_ohc=orpQjtq7XOAQ7kNvgHNL4N5&_nc_ht=scontent.fmnl30-2.fna&oh=00_AYBjWwpfV5iN40rh_bBSnWND7_n2gufbr4ii50CnGTjbHg&oe=66E48C2E" class="tmr-1 trounded">
+                            <div class="">
+                                <span class="tfont-medium">Maricar C.</span>
+                            </div>
+                            <div class="">
+                                <span>
+                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    Verified
+                                </span>
+                            </div>
+                            <div class="tmb-2">
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            </div>
+                            <p>
+                                Wow Grabe tipid meralco namin. BIll to sa paupahan ko
+                                wala pa kasi naka tira kaya palagi bukas ilaw
+                            </p>
+                        </div><!--more review 5 -->
+
+                    </div>
+                </div><!-- More Reviews -->
+
 
             </div>  <!-- RATINGS DIV -->
         </div> <!-- RATINGS -->
 
-        <h4 class="tfont-medium tpy-3 tmb-5 ttext-xl ttext-center">HAPPY & SATISFIED CUSTOMERS</h4>
+        <img class="tmt-5 tmb-6" src="{{ asset('/images/fbads/lightbulb/6.png') }}" alt="2">
     
-        {{-- REVIEWS --}}
-
-        <img class="" src="{{ asset('images\kasoy_oil\satisfied_customer1.png') }}" alt="fda">
-        <img class="" src="{{ asset('images\kasoy_oil\satisfied_customer2.png') }}" alt="fda">
-
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
                 
@@ -376,7 +614,7 @@
                                 <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="SmartLight_3pcs|1199|1pc">
                                 <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">3pcs Smart Light</span>
                                 <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(399/each)</span>
-                                <span class="tabsolute tbg-red-700 tw-10" style="
+                                <span class="tabsolute theme-bg tw-10" style="
                                     height: 28px;
                                     bottom: 4%;
                                     width: 57px;
@@ -390,7 +628,7 @@
                                 </span>
                             </label>
                             <div class="tabsolute" style="top: -6px; left: 38%%;">
-                                <div class="tbg-red-600 tfont-medium tpx-4 trounded ttext-sm ttext-white">
+                                <div class="theme-bg tfont-medium tpx-4 trounded ttext-sm ttext-white">
                                     BEST SELLER
                                 </div>
                             </div>
@@ -401,7 +639,7 @@
                                 <input type="checkbox" id="promo2" name="promo" class="promo"  value="SmartLight_2pcs|899|2pc">
                                 <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">2pcs Smart Light</span>
                                 <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(449/each)</span>
-                                <span class="tabsolute tbg-red-700 tw-10" style="
+                                <span class="tabsolute theme-bg tw-10" style="
                                     height: 28px;
                                     bottom: 4%;
                                     width: 57px;
@@ -423,7 +661,7 @@
                                 <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">1pc Smart Light</span>
                                 <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(549/each)</span>
 
-                                <span class="tabsolute tbg-red-700 tw-10" style="
+                                <span class="tabsolute theme-bg tw-10" style="
                                     height: 28px;
                                     bottom: 4%;
                                     width: 57px;
@@ -432,7 +670,7 @@
                                     border-top-left-radius: 10px;
                                     border-top-right-radius: 10px;
                                     ">
-                                    <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">549</span>
+                                    <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱549</span>
                                 </span>
                             </label>
                         </div><!-- PROMO 3-->
