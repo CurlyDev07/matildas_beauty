@@ -1,7 +1,9 @@
 @extends('pages.fbads.category.home_improvements.layouts.app')
 
 @section('content')
+
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
+
         <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 50px;     background: linear-gradient(-180deg, #f53d2d, #f63); transition: transform .2s cubic-bezier(.4,0,.2,1);">
             <div >
                 <div class="">
@@ -11,9 +13,20 @@
             <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box theme-bg" style="bottom: -52%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;">ORDER NOW!
             </button>
         </div>
-
-        <img src="{{ asset('/images/fbads/lightbulb/banner.png') }}" class="tw-full tmb-5" alt="top_banner">
-
+        <div class="custom-slider">
+            <div class="slides">
+                <img src="{{ asset('/images/fbads/lightbulb/tumbnails/banner.png') }}" class="tw-full" alt="banner">
+                <img src="{{ asset('/images/fbads/lightbulb/tumbnails/2.png') }}" class="tw-full tmb-5" alt="2">
+                <img src="{{ asset('/images/fbads/lightbulb/tumbnails/3.png') }}" class="tw-full tmb-5" alt="3">
+                <img src="{{ asset('/images/fbads/lightbulb/tumbnails/4.png') }}" class="tw-full tmb-5" alt="4">
+                <img src="{{ asset('/images/fbads/lightbulb/tumbnails/5.png') }}" class="tw-full tmb-5" alt="5">
+                <img src="{{ asset('/images/fbads/lightbulb/tumbnails/6.png') }}" class="tw-full tmb-5" alt="6">
+                <img src="{{ asset('/images/fbads/lightbulb/tumbnails/7.png') }}" class="tw-full tmb-5" alt="7">
+                <img src="{{ asset('/images/fbads/lightbulb/tumbnails/8.png') }}" class="tw-full tmb-5" alt="8">
+            </div>
+            <button class="prev" onclick="prevSlide()">&#10094</button>
+            <button class="next" onclick="nextSlide()">&#10095</button>
+        </div>
 
         <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
@@ -725,5 +738,6 @@
             </button>
         </div>
     </div>
+
 @endsection
 

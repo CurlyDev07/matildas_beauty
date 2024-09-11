@@ -65,6 +65,44 @@
             transition: transform .2s cubic-bezier(.4,0,.2,1);
         }
 
+        /* SLIDE SHOW */
+        .custom-slider{
+            position: relative;
+            width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .custom-slider img{
+            width: 100%;
+            display: none;
+        }
+        img.displaySlide{
+            display: block;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        .custom-slider button{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            padding: 10px 15px;
+            background-color: hsla(0, 0%, 0%, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .prev{
+            left: 0;
+        }
+        .next{
+            right: 0;
+        }
+        @keyframes fade {
+            from {opacity: .5}
+            to {opacity: 1}
+        }
+
     </style>
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
