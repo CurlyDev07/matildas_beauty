@@ -12,7 +12,6 @@ use App\Store;
 class FbAdsCon extends Controller
 {
     public function index(Request $request){
-
         $stores = Store::all();
 
         $orders = FbAds::orderBy('created_at', 'desc')
@@ -35,7 +34,13 @@ class FbAdsCon extends Controller
         })// Filter by STATUS
         ->get();
 
-        return view('admin.fbads.index', ['orders' => $orders, 'stores' => $stores]);
+        $sales = FbAds::all()->sum('total');
+
+        return view('admin.fbads.index', [
+            'orders' => $orders,
+            'stores' => $stores,
+            'sales' => $sales
+        ]);
     }
 
     public function event_listener(Request $request){
@@ -54,6 +59,8 @@ class FbAdsCon extends Controller
         ->orderBy('data', 'desc')
         ->get();
 
+        // dd($events);
+
         return view('admin.fbads.event_listener', ['events' => $events]);
     }
    
@@ -62,3 +69,5 @@ class FbAdsCon extends Controller
         return response(['success' => 'Success!']);
     }
 }
+
+// conversions/visitors * 100

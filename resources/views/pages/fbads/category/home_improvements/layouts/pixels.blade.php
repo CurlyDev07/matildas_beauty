@@ -1,4 +1,7 @@
-<!-- Meta Pixel Code -->
+
+{{-- Prevent local testing to use pixel. only on live host --}}
+@if (!request()->getHost() == "127.0.0.1")
+    <!-- Meta Pixel Code -->
     <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -13,7 +16,9 @@
     </script>
 
     <noscript><img height="1" width="1" style="display:none"src="https://www.facebook.com/tr?id=3862987257311979&ev=PageView&noscript=1"/></noscript>
-<!-- End Meta Pixel Code -->
+    <!-- End Meta Pixel Code -->
+
+@endif
 
 
 

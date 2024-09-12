@@ -10,17 +10,23 @@
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
             <span class="ttext-base ttext-title tfont-medium">FB Orders</span>
             <ul class="tflex titems-center">
-
-                @if (!request()->date)
-                    <li class="tmr-2">
-                        <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
-                            <span class="tpl-1 ttext-red-500">
-                                <i class="fas fa-bookmark"></i>
-                                Past 7 Days
-                            </span>
-                        </div>
-                    </li>
-                @endif <!-- Default Date |  Past 7 Days-->
+                <li class="tmr-2">
+                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                        <span class="tpl-1" style="color: #333;">
+                            <i class="fas fa-shopping-cart"></i>
+                            {{ count($orders) }} 
+                            <span>Orders</span> 
+                        </span>
+                    </div>
+                </li>
+                <li class="tmr-2">
+                    <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
+                        <span class="tpl-1" style="color: #333;">
+                            <span class="tfont-bold ttext-md">₱</span>
+                            {{ number_format( $sales ) }}
+                        </span>
+                    </div>
+                </li>
 
                 @if (request()->date)
                     <li class="tmr-2">
@@ -128,6 +134,8 @@
     <script>
 
         $('input[name="date"]').daterangepicker({
+            "startDate": moment().subtract(6, 'days'),
+            "endDate": moment(),
             maxDate: moment(),
             ranges: {
             'Today': [moment(), moment()],
