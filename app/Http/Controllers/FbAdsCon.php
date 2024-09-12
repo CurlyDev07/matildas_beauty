@@ -10,6 +10,8 @@ use App\Barangay;
 use App\FbAds;
 use App\FbEventListener;
 use App\Http\Requests\FbAds\StoreFbAdsRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Transactions\FbAdsOrderSuccess;
 
 class FbAdsCon extends Controller
 {
@@ -43,8 +45,8 @@ class FbAdsCon extends Controller
             "phone_number" => $request->phone_number,
             "address" => $request->address,
             "order_number" => 'MB'.date("mdy").'O'.$order->id,
+            "date" => date("F j g:i a"),
         ];
-
 
         return redirect()->route('madella_success', $data);
     }
@@ -53,6 +55,11 @@ class FbAdsCon extends Controller
         $data = request()->all();
 
         return view('pages.fbads.category.home_improvements.bulb.order_success', ['data' => $data]);
+    }
+
+    public function madella_order_success_email(){
+        Mail::to(['reggie.frias1105@gmail.com', 'shopickers007@gmail.com'])->send(new FbAdsOrderSuccess(request()->data));
+        return redirect()->back()->with('success');
     }
 
     public function event_listener(Request $request){

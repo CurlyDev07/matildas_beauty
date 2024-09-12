@@ -120,6 +120,11 @@
             }
         });
 
+        let data = {!! json_encode($data) !!};
+        $.post("/Madella-Order-Success-Email",{
+            data,
+        });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
+
         $.post("/event-listener",{
             order_success: 1
         });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
