@@ -103,11 +103,11 @@
     let submit_order_rate = parseFloat((submit_order/order_form) * 100).toFixed(2);
     let form_validation_error_rate = parseFloat((form_validation_error/submit_order) * 100).toFixed(2);
 
-    $('#conversion_rate').html(conversion_rate);
-    $('#order_form_rate').html(order_form_rate);
-    $('#phone_number_rate').html(phone_number_rate);
-    $('#submit_order_rate').html(submit_order_rate);
-    $('#form_validation_error_rate').html(form_validation_error_rate);
+    $('#conversion_rate').html(NanReplacer(conversion_rate));
+    $('#order_form_rate').html(NanReplacer(order_form_rate));
+    $('#phone_number_rate').html(NanReplacer(phone_number_rate));
+    $('#submit_order_rate').html(NanReplacer(submit_order_rate));
+    $('#form_validation_error_rate').html(NanReplacer(form_validation_error_rate));
 
     $('input[name="date"]').daterangepicker({
         "startDate": moment().subtract(6, 'days'),
@@ -151,5 +151,13 @@
             });
         });
     });
+
+    
+    function NanReplacer(number){
+        if (!isNaN(number)) {
+            return number;
+        }
+        return 0
+    }
 </script>
 @endsection

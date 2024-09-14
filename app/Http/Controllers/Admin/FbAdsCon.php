@@ -16,7 +16,7 @@ class FbAdsCon extends Controller
 
         $orders = FbAds::orderBy('created_at', 'desc')
         ->when(!$request->date, function($q){
-            return $q->whereBetween('created_at', [now()->subDays(6), now()]);
+            return $q->whereBetween('created_at', [now(), now()]);
         })// Show DEFAULT DATA For the Past 7 Days
         ->when($request->date, function($q){
             $date = explode(" - ",request()->date);
@@ -42,6 +42,9 @@ class FbAdsCon extends Controller
 
     public function event_listener(Request $request){
         $events = FbEventListener::groupBy('data')->select('data', DB::raw('count(*) as total'))
+        ->when(!$request->date, function($q){
+            return $q->whereBetween('created_at', [now(), now()]);
+        })// Show DEFAULT DATA For the Past 7 Days
         ->when($request->date, function($q){
             $date = explode(" - ",request()->date);
             $from = carbon($date[0]);
