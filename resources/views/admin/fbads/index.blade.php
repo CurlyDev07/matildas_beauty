@@ -23,7 +23,7 @@
                     <div class="tborder tflex tp-1 trounded ttext-sm titems-center">
                         <span class="tpl-1" style="color: #333;">
                             <span class="tfont-bold ttext-md">₱</span>
-                            {{ number_format( $sales ) }}
+                            <span id="sales" class="tfont-bold ttext-md"></span>
                         </span>
                     </div>
                 </li>
@@ -100,7 +100,7 @@
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->address }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->product }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->promo }}</td>
-                            <td class="ttext-sm ttext-center tpy-1">{{ $order->total }}</td>
+                            <td class="ttext-sm ttext-center tpy-1 amount">{{ $order->total }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->created_at->format('d M, h:i:s A') }}</td>
                             <td class="ttext-sm ttext-center tpy-1">
                                 @if ($order->status == 'TO SHIP')
@@ -196,6 +196,23 @@
                 }
             })// swal
         });
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+
+        function getAllSalesAmount(){
+            let amount = 0;
+
+            $('.amount').each(function() {
+                amount = (amount + parseInt($(this).html()))
+            });
+
+            $('#sales').html(numberWithCommas(amount))
+        }
+
+        getAllSalesAmount()
 
     </script>
 @endsection

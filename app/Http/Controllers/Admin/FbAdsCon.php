@@ -34,12 +34,9 @@ class FbAdsCon extends Controller
         })// Filter by STATUS
         ->get();
 
-        $sales = FbAds::all()->sum('total');
-
         return view('admin.fbads.index', [
             'orders' => $orders,
             'stores' => $stores,
-            'sales' => $sales
         ]);
     }
 
