@@ -119,16 +119,18 @@
             </button>
         </div>
 
+
         <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full tmb-5" alt="top_banner">
 
         <img class="tmb-3" src="{{ asset('images\kasoy_oil\28_days_challenge.png') }}" alt="28_days_challenge">
+        
+        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full tmy-5"  alt="before_after">
 
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
             <source src="{{ asset('images/kasoy_oil/explainer_video.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
 
-        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full tmy-5"  alt="before_after">
 
         <div class="tmx-auto trelative tp-5">
             <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
