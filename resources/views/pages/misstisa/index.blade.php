@@ -225,7 +225,7 @@
                     <div class="tflex titems-center">
                         <img src="{{ asset('images/kasoy_oil/reviews/review2/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Aiza Ling</p>
+                            <p>Maricel Batang</p>
                             <div class="">
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
@@ -262,7 +262,7 @@
                     <div class="tflex titems-center">
                         <img src="{{ asset('images/kasoy_oil/reviews/review3/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Ana Park</p>
+                            <p>Analiza Pareo</p>
                             <div class="">
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
@@ -298,7 +298,7 @@
                     <div class="tflex titems-center">
                         <img src="{{ asset('images/kasoy_oil/reviews/review4/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Sharon Tee</p>
+                            <p>Sharon Temon</p>
                             <div class="">
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
                                 <i class="fa-solid fa-star" style="color: #f51773;"></i>
