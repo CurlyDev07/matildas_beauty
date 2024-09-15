@@ -19,7 +19,6 @@ class FbAdsCon extends Controller
         return view('pages.fbads.category.home_improvements.bulb.index');
     }
 
-
     public function store(StoreFbAdsRequest $request){
         $promo = explode ("|", $request->promo); 
 
@@ -34,8 +33,6 @@ class FbAdsCon extends Controller
             "total" => $promo[1],
             "product" => 'Bulb Holder',
         ]);
-        // return redirect()->back(['a'=>'s'])->with('success', 'Success');
-        // return redirect()->route('miss_tisa', ['purchase' => 1, 'amount' => $promo[1]])->with('success', 'Success');
 
         $data = [
             "purchase" => 1,
