@@ -2,9 +2,69 @@
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+    <style>
+   
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+        
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+        
+        .dropdown-content a:hover {background-color: #ddd;}
+        
+        .dropdown:hover .dropdown-content {display: block;}
+        
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+        </style>
 @endsection
 
 @section('page')
+
+@php
+    $order_status = ['TO ENCODE', 'TO CALL', 'TO SHIP', 'SHIPPED', 'DELIVERED', 'DUPPLICATE'];
+
+    function status_color($status){
+        switch ($status) {
+            case "TO ENCODE":
+                echo "tbg-yellow-200";
+                break;
+            case "TO CALL":
+                echo "tbg-blue-200";
+                break;
+            case "TO SHIP":
+                echo "tbg-orange-200";
+                break;
+            case "SHIPPED":
+                echo "tbg-green-200";
+                break;
+            case "DELIVERED":
+                echo "tbg-green-300";
+                break;
+            case "'DUPPLICATE'":
+                echo "tbg-red-300";
+                break;
+            default:
+                echo "Your favorite color is neither red, blue, nor green!";
+            }
+    }
+@endphp
 
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
@@ -54,10 +114,11 @@
                     <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
                         <i class="fas fa-shipping-fast ttext-xl" style="color: #f05538;"></i>
                         <select id="status" class="status tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
-                            <option value="" selected>ALL</option>
-                            <option value="TO SHIP" selected>TO SHIP</option>
-                            <option value="SHIPPED" selected>SHIPPED</option>
-                            <option value="#" selected>Choose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                            <option value="" selected>Choose</option>
+                            <option value="">ALL</option>
+                            @foreach ($order_status as $status)
+                                <option value="{{ $status }}">{{ $status }}</option>
+                            @endforeach
                         </select> 
                     </div>
                 </li><!-- STATUS Filter-->
@@ -84,11 +145,10 @@
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Customer</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">CP#</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Address</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Product</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Promo</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Product/Promo</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Amount</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Status</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium tw-32">Status</th>
                     </tr>
 
                     @foreach ($orders as $order)
@@ -98,23 +158,22 @@
                             <td class="ttext-sm ttext-center tpy-1 tcapitalize">{{ $order->full_name }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->phone_number }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->address }}</td>
-                            <td class="ttext-sm ttext-center tpy-1">{{ $order->product }}</td>
-                            <td class="ttext-sm ttext-center tpy-1">{{ $order->promo }}</td>
+                            <td class="ttext-sm ttext-center tpy-1 ">
+                                <span class="tfont-medium {{ $order->product == 'MissTisa'? 'ttext-pink-600' : "ttext-green-700" }}">{{ $order->promo }}</span>
+                            </td>
                             <td class="ttext-sm ttext-center tpy-1 amount">{{ $order->total }}</td>
-                            <td class="ttext-sm ttext-center tpy-1">{{ $order->created_at->format('d M, h:i:s A') }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">{{ $order->created_at->format('M d, h:i:s A') }}</td>
                             <td class="ttext-sm ttext-center tpy-1">
-                                @if ($order->status == 'TO SHIP')
-                                        <span class="to-ship tm-0 chip orange lighten-5 waves-effect waves-orange tooltipped" data-id="{{ $order->id }}" data-position="top" data-tooltip="Mark as Shipped?" style="cursor: pointer; width: 73px;">
-                                            <span class="orange-text" style="cursor: pointer;">TO SHIP</span>
-                                        </span>
-                                    @endif
-
-                                    @if ($order->status == 'SHIPPED')
-                                    <span class="tm-0 chip green lighten-5 waves-effect waves-green" style="cursor: pointer;">
-                                        <span class="green-text" style="cursor: pointer;" style="width: 73px;">{{ $order->status }}</span>
-                                    </span>
-                                @endif
-                                
+                                <select data-id="{{ $order->id }}" class="change_status tfont-medium browser-default tborder-gray-300 th-8 tpx-2 trounded-full ttext-center {{ status_color($order->status) }}">
+                                    @foreach ($order_status as $status)
+                                        <option value="{{ $status }}"
+                                            @if ($order->status == $status)
+                                                selected
+                                            @endif
+                                        >{{ $status }}</option>
+                                    @endforeach
+                                    
+                                </select>
                             </td>
                         </tr>
                     @endforeach
@@ -161,11 +220,10 @@
             return false;
         });
 
-        $('.to-ship').click(function(){
-            let self = $(this);
-            
+
+        $('.change_status').change(function () {
             Swal.fire({
-                title: 'Mark as Shipped?',
+                title: 'Change Order Status?',
                 text: "You won't be able to revert this!",
                 icon: 'info',
                 showCancelButton: true,
@@ -177,15 +235,10 @@
                     $.ajax({
                         url: '/admin/fbads/change-status',
                         type: 'POST',
-                        data: { id: $(this).data('id') },
+                        data: { id: $(this).data('id'), status: $(this).val() },
                         success: ()=>{
-                             // Change Button text and color
-                            self.attr('class', 'tm-0 chip green lighten-5 waves-effect waves-green');
-                            self.children().html('SHIPPED')
-                            self.children().attr('class', 'green-text')
-
                             Swal.fire(
-                                'Mark as Shipped!',
+                                'Status Changed Successfully!',
                                 'The order has been updated.',
                                 'success'
                             )// success prompt
@@ -195,6 +248,7 @@
             })// swal
         });
 
+  
         function numberWithCommas(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
