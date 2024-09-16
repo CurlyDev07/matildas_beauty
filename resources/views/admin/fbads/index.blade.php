@@ -134,8 +134,6 @@
     <script>
 
         $('input[name="date"]').daterangepicker({
-            "startDate": moment().subtract(6, 'days'),
-            "endDate": moment(),
             maxDate: moment(),
             ranges: {
             'Today': [moment(), moment()],
