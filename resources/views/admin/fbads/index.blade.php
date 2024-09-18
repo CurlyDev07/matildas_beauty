@@ -38,30 +38,33 @@
 @section('page')
 
 @php
-    $order_status = ['TO ENCODE', 'TO CALL', 'TO SHIP', 'SHIPPED', 'DELIVERED', 'DUPPLICATE'];
+    $order_status = ['TO ENCODE', 'TO CALL', 'TO SHIP', 'SHIPPED', 'DELIVERED', 'CANCELLED', 'DUPLICATE'];
 
     function status_color($status){
         switch ($status) {
             case "TO ENCODE":
-                echo "tbg-yellow-200";
+                echo "tbg-yellow-200 ttext-yellow-900 tborder-yellow-300";
                 break;
             case "TO CALL":
-                echo "tbg-blue-200";
+                echo "tbg-blue-200 ttext-blue-900 tborder-blue-300";
                 break;
             case "TO SHIP":
-                echo "tbg-orange-200";
+                echo "tbg-orange-200 ttext-orange-900 tborder-orange-300";
                 break;
             case "SHIPPED":
-                echo "tbg-green-200";
+                echo "tbg-green-200 ttext-green-900 tborder-green-300";
                 break;
             case "DELIVERED":
-                echo "tbg-green-300";
+                echo "tbg-green-300 ttext-green-900 tborder-green-300";
                 break;
-            case "'DUPPLICATE'":
-                echo "tbg-red-300";
+            case "CANCELLED":
+                echo "tbg-red-300 ttext-red-900 tborder-red-300";
+                break;
+            case "DUPLICATE":
+                echo "tbg-pink-200 ttext-pink-900 tborder-pink-300";
                 break;
             default:
-                echo "Your favorite color is neither red, blue, nor green!";
+                echo "tbg-pink-200 ttext-pink-900 tborder-pink-300";
             }
     }
 @endphp
@@ -113,7 +116,7 @@
                 <li class="tmr-2">
                     <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
                         <i class="fas fa-shipping-fast ttext-xl" style="color: #f05538;"></i>
-                        <select id="status" class="status tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
+                        <select id="status" class="status ttext-center tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
                             <option value="" selected>Choose</option>
                             <option value="">ALL</option>
                             @foreach ($order_status as $status)
@@ -191,6 +194,33 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        function status_color(self, status) {
+            switch(status){
+                case "TO ENCODE":
+                    self.attr('class', "change_status tfont-medium browser-default th-8 tpx-2 trounded-full ttext-center tbg-yellow-200 ttext-yellow-900 tborder-yellow-300")
+                    break;
+                case "TO CALL":
+                    self.attr('class', "change_status tfont-medium browser-default th-8 tpx-2 trounded-full ttext-center tbg-blue-200 ttext-blue-900 tborder-blue-300")
+                    break;
+                case "TO SHIP":
+                    self.attr('class', "change_status tfont-medium browser-default th-8 tpx-2 trounded-full ttext-center tbg-orange-200 ttext-orange-900 tborder-orange-300")
+                    break;
+                case "SHIPPED":
+                    self.attr('class', "change_status tfont-medium browser-default th-8 tpx-2 trounded-full ttext-center tbg-green-200 ttext-green-900 tborder-green-300")
+                    break;
+                case "DELIVERED":
+                    self.attr('class', "change_status tfont-medium browser-default th-8 tpx-2 trounded-full ttext-center tbg-green-300 ttext-green-900 tborder-green-300")
+                    break;
+                case "CANCELLED":
+                    self.attr('class', "change_status tfont-medium browser-default th-8 tpx-2 trounded-full ttext-center tbg-red-300 ttext-red-900 tborder-red-300")
+                    break;
+                case "DUPLICATE":
+                    self.attr('class', "change_status tfont-medium browser-default th-8 tpx-2 trounded-full ttext-center tbg-pink-200 ttext-pink-900 tborder-pink-300")
+                    break;
+                default:
+                    self.attr('class', "change_status tfont-medium browser-default th-8 tpx-2 trounded-full ttext-center tbg-pink-200 ttext-pink-900 tborder-pink-300")
+            }
+        }
 
         $('input[name="date"]').daterangepicker({
             maxDate: moment(),
@@ -220,8 +250,9 @@
             return false;
         });
 
-
         $('.change_status').change(function () {
+            let self = $(this);
+
             Swal.fire({
                 title: 'Change Order Status?',
                 text: "You won't be able to revert this!",
@@ -237,14 +268,16 @@
                         type: 'POST',
                         data: { id: $(this).data('id'), status: $(this).val() },
                         success: ()=>{
-                            Swal.fire(
-                                'Status Changed Successfully!',
-                                'The order has been updated.',
-                                'success'
-                            )// success prompt
+                            status_color(self, $(this).val())
+                            // Swal.fire(
+                            //     'Status Changed Successfully!',
+                            //     'The order has been updated.',
+                            //     'success'
+                            // )// success prompt
                         }
                     });// update via Ajax request
                 }
+
             })// swal
         });
 
