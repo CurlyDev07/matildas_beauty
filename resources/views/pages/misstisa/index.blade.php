@@ -145,27 +145,25 @@
         </div><!-- FREE 4 Gifts -->
 
         <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-1" style="color: #fa5230;"></i> Melasma Remover</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-1" style="color: #fa5230;"></i> Korean Glass Skin</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-1" style="color: #fa5230;"></i> No More Pekas</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-1" style="color: #fa5230;"></i> No More Dark Spots</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-1" style="color: #fa5230;"></i> Uneven Skin Tone</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-1" style="color: #fa5230;"></i> Deep Scars</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-1" style="color: #fa5230;"></i> Whiteheads</div>
-            <div class="tw-1/2  tmb-3"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Blackheads</div>
-
-            <div class="tw-full"><i class="fa-solid fa-circle-check tmb-1" style="color: #12bc39;"></i> Good for Sensitive Skin</div>
-            <div class="tw-full"><i class="fa-solid fa-circle-check tmb-1" style="color: #12bc39;"></i> No Irritation & Side Effects</div>
-            <div class="tw-full tmt-3"><i class="fa-solid fa-circle-check tmb-1" style="color: #12bc39;"></i> Safe</div>
-            <div class="tw-full"><i class="fa-solid fa-circle-check tmb-1" style="color: #12bc39;"></i> FDA Approved</div>
-            <div class="tw-full"><i class="fa-solid fa-circle-check tmb-1" style="color: #12bc39;"></i> Proven & tested by many users</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> Melasma Remover</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> Korean Glass Skin</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> No More Pekas</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> No More Dark Spots</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> Uneven Skin Tone</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> Deep Scars</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> Whiteheads</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #f52d87;"></i> Blackheads</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> For Sensitive Skin</div>
+            <div class="tw-1/2 tmb-3"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> No Irritation </div>
+          
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #12bc39;"></i> FDA Approved</div>
+            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #12bc39;"></i> Safe</div>
+            <div class="tw-full"><i class="fa-solid fa-circle-check tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
-
-
-        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full tmy-5"  alt="before_after">
-        
         <img class="tmb-3" src="{{ asset('images\kasoy_oil\28_days_challenge.png') }}" alt="28_days_challenge">
+        
+        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full tmy-5"  alt="before_after">
 
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
             <source src="{{ asset('images/kasoy_oil/explainer_video.mp4') }}" type="video/mp4">
