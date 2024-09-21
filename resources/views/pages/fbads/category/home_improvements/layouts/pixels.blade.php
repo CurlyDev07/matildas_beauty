@@ -10,7 +10,8 @@
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '3862987257311979');
+        fbq('init', '3862987257311979'); // Home Improvement
+        fbq('init', '482416941368193'); // Smart Home PH Pixel
         fbq('track', 'PageView');
     </script>
 
