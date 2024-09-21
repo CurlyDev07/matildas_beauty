@@ -40,9 +40,18 @@ class FbAdsCon extends Controller
         ]);
     }
 
+    public function create(){
+        return view('admin.fbads.create');
+    }
+
+    public function store(){
+        $order = FbAds::create(request()->all() + ['province' => '', 'city' => '', 'barangay' => '']);
+
+       return redirect()->route('fbads.index');
+    }
+
     public function order($id){
         $order = FbAds::find($id);
-
         return view('admin.fbads.order', ['order' => $order]);
     }
 

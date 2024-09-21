@@ -224,6 +224,8 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     */
     Route::prefix('fbads')->group(function () {
         Route::get('/', 'FbAdsCon@index')->name('fbads.index');
+        Route::get('/create', 'FbAdsCon@create')->name('fbads.create');
+        Route::post('/store', 'FbAdsCon@store')->name('fbads.store');
         Route::get('/order/{id}', 'FbAdsCon@order')->name('fbads.order');
         Route::post('/order/patch', 'FbAdsCon@patch')->name('fbads.order.patch');
         Route::get('/event-listener', 'FbAdsCon@event_listener')->name('fbads.event_listener');
