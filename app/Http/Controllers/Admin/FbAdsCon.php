@@ -40,6 +40,19 @@ class FbAdsCon extends Controller
         ]);
     }
 
+    public function order($id){
+        $order = FbAds::find($id);
+
+        return view('admin.fbads.order', ['order' => $order]);
+    }
+
+    public function patch(){
+        
+        FbAds::find(request()->id)->update(request()->all());
+        
+        return redirect()->back()->with('success', 'update successful');
+    }
+
     public function event_listener(Request $request){
         $events = FbEventListener::groupBy('data')->select('data', DB::raw('count(*) as total'))
         ->when(!$request->date, function($q){
