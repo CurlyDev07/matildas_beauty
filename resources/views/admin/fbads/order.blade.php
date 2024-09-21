@@ -27,9 +27,9 @@
                         <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Phone number</label>
                         <input type="number" id="phone_number" name="phone_number" class="browser-default form-control" value="{{ $order->phone_number }}" style="padding: 6px;">
                     </div>
-                    <div class="tw-3/5 tmb-2 lg:tmb-0 tpx-1 tpb-3">
+                    <div class="tw-full tmb-2 lg:tmb-0 tpx-1 tpb-3">
                         <label for="address" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Address</label>
-                        <input type="text" id="address" name="address" class="browser-default form-control" value="{{ $order->address }}" style="padding: 6px;">
+                        <textarea name="address" id="address" cols="30" rows="3" class="browser-default form-control"  style="padding: 6px;">{{ $order->address }}</textarea>
                     </div>
                 </div>
             </div>
