@@ -5,11 +5,11 @@
 
     <div class="tpb-5 trounded-lg ttext-black-100">
 
-        <div class="tbg-green-200 tborder tborder-green-600 tfont-medium tmb-3 tpy-2 trounded ttext-center ttext-green-900">
-            @if (session('success'))
+        @if (session('success'))
+            <div class="tbg-green-200 tborder tborder-green-600 tfont-medium tmb-3 tpy-2 trounded ttext-center ttext-green-900">
                 Update Successful
-            @endif
-        </div>
+            </div>
+        @endif
 
         <form action="{{ route('fbads.order.patch') }}" method="POST">
             @csrf
