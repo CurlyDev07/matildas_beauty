@@ -12,6 +12,7 @@
         "aws/aws-sdk-php": "^3.130",
         "cyber-duck/laravel-excel": "^2.2",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "~6.0",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.0",
         "laravel/passport": "^8.0",

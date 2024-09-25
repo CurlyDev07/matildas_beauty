@@ -51,6 +51,34 @@ class FbAdsCon extends Controller
     public function success(){
         $data = request()->all();
 
+        $order_promo = explode('|', request()->promo)[0];
+
+$sms = "
+Hi ". request()->full_name.",
+This is from Smart Light PH
+
+Ung Automaic On/OFF na Light Bulb Holder po.
+
+We've recieved your order. Thank you!
+
+
+Order Details: ".$order_promo."
+Total: " .request()->amount."
+
+Reminder:
+-> Strictly no cancellation
+-> Warranty: 6 Months
+-> Delivery: 
+    Luzon: 3days
+    Visayas: 5days
+    Mindanao: 5-7days 
+-> Always turn on your Mobile phone since dito po tatawag/text si J&T
+
+For any questions, Message us her";
+
+        infoTextSend(request()->phone_number, $sms);
+        infoTextSend('09550090156', 'New Order '. request()->amount);
+
         return view('pages.fbads.category.home_improvements.bulb.order_success', ['data' => $data]);
     }
 

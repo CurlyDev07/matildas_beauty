@@ -10,6 +10,7 @@ use App\Barangay;
 use App\FbAds;
 use App\FbEventListener;
 use App\Http\Requests\FbAds\StoreFbAdsRequest;
+use GuzzleHttp\Client;
 
 class MissTisaCon extends Controller
 {
@@ -59,6 +60,30 @@ class MissTisaCon extends Controller
 
     public function success(){
         $data = request()->all();
+
+        $order_promo = explode('|', request()->promo)[0];
+
+$sms = "
+Hi ". request()->full_name.",
+This is from MissTisa Melasma Remover
+
+We've recieved your order. Thank you!
+
+Order Details: ".$order_promo."
+Total:" .request()->amount."
+
+Reminder:
+-> Strictly no cancellation
+-> Delivery: 
+    Luzon: 3days
+    Visayas: 5days
+    Mindanao: 5-7days 
+-> Always turn on your Mobile phone since dito po tatawag/text si J&T
+
+For any questions, Message us her";
+
+        infoTextSend(request()->phone_number, $sms);
+        infoTextSend('09550090156', 'New Order '. request()->amount);
 
         return view('pages.misstisa.order_success', ['data' => $data]);
     }

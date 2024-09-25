@@ -488,3 +488,15 @@ function sku_check($sku){
 
     return $check;
 }
+
+
+function infoTextSend($mobile, $sms){
+    $sms_data = [
+        'UserID' => '669',
+        'ApiKey' => '207bb08817f8ab47ac813b6b8917de0d',
+        'Mobile' => $mobile,
+        'SMS' => $sms,
+    ];
+    
+    curl_req('https://api.myinfotxt.com/v2/send.php', $sms_data);
+}
