@@ -51,39 +51,41 @@ class FbAdsCon extends Controller
     public function success(){
         $data = request()->all();
 
-        $order_promo = explode('|', request()->promo)[0];
+        return view('pages.fbads.category.home_improvements.bulb.order_success', ['data' => $data]);
+    }
+
+    public function madella_order_success_email(){
+
+        Mail::to(['reggie.frias1105@gmail.com', 'shopickers007@gmail.com'])->send(new FbAdsOrderSuccess(request()->data));
+
+        $order_promo = explode('|', request()->data['promo'])[0];
 
 $sms = "
-Hi ". request()->full_name.",
+Hi ". request()->data['full_name'].",
 This is from Smart Light PH
 
 Ung Automaic On/OFF na Light Bulb Holder po.
 
 We've recieved your order. Thank you!
 
-
 Order Details: ".$order_promo."
-Total: " .request()->amount."
+Total: ₱" .request()->data['amount']."
 
 Reminder:
 -> Strictly no cancellation
 -> Warranty: 6 Months
 -> Delivery: 
-    Luzon: 3days
-    Visayas: 5days
-    Mindanao: 5-7days 
+        Luzon: 3days
+        Visayas: 5days
+        Mindanao: 5-7days 
+
 -> Always turn on your Mobile phone since dito po tatawag/text si J&T
 
 For any questions, Message us her";
 
-        infoTextSend(request()->phone_number, $sms);
-        infoTextSend('09550090156', 'New Order '. request()->amount);
-
-        return view('pages.fbads.category.home_improvements.bulb.order_success', ['data' => $data]);
-    }
-
-    public function madella_order_success_email(){
-        Mail::to(['reggie.frias1105@gmail.com', 'shopickers007@gmail.com'])->send(new FbAdsOrderSuccess(request()->data));
+        infoTextSend(request()->data['phone_number'], $sms);
+        infoTextSend('09550090156', 'New Order '. request()->data['amount']);
+    
         return redirect()->back()->with('success');
     }
 
