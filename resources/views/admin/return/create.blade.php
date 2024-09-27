@@ -172,6 +172,7 @@
                     <option value="j&t">J&T</option>
                     <option value="spx">Shopee Express</option>
                     <option value="lex">LEX/Lazada Express</option>
+                    <option value="flash">Flash</option>
                     <option value="xde">XDE/XIMEX</option>
                     <option value="ninjavan">Ninja Van</option>
                 </select>
