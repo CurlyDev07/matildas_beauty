@@ -150,7 +150,7 @@
                         <div class="product tborder-b-2 tborder-gray-500 tborder-dashed tflex titems-center tmx-1 tpt-1 tpb-3 trelative  tflex-wrap" id="{{ $purchase_product->product['id'] }}">
                             <div class="tw-full tflex tflex-col">
                                 <div class="tflex titems-center tpy-1">
-                                    <img src="{{ $purchase_product->product['primary_image'] }}" class="product_img" style="height: 50px; width: 50px;" alt="">
+                                    <img data-src="{{ $purchase_product->product['primary_image'] }}" class="product_img lazy" style="height: 50px; width: 50px;" alt="">
                                     <div class="tpx-2 truncate">
                                         <p class="product_title ttext-sm tfont-medium" >{{ $purchase_product->product['title'] }}</p>
                                         <small class="product_sku tbg-gray-300 tpx-2">SKU: {{ $purchase_product->product['sku'] }}</small>
