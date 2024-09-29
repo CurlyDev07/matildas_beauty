@@ -233,6 +233,21 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     });
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | FILE MANAGER
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('file-manager')->group(function () {
+        Route::get('/', 'FileManagerCon@index')->name('file_manager.index');
+        Route::post('/add-folder', 'FileManagerCon@add_folder');
+        Route::get('/folder/{id}', 'FileManagerCon@folder')->name('file_manager.folder');
+        Route::post('/folder/change-name', 'FileManagerCon@change_name')->name('file_manager.folder.change_name');
+        Route::POST('/folder/upload', 'FileManagerCon@upload')->name('file_manager.upload');
+    });
+    
+
+
     Route::prefix('powerup')->group(function () {
         Route::get('/', 'PowerUpCon@index');
         Route::get('/create', 'PowerUpCon@create');

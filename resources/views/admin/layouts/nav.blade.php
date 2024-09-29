@@ -109,8 +109,16 @@
                         RTS
                     </a>
                 </li>
-                @if (in_array(auth()->user()->role, ['master', 'sa', 'admin']))
+                @if (auth()->user()->isMaster())
                     <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'users', 'active') }}" onclick="location.href = '/admin/users'">
+                            <i class="fas fa-users tmr-1 fa-lg"></i> 
+                            Users
+                        </a>
+                    </li>
+                @endif
+                @if (in_array(auth()->user()->role, ['master', 'sa', 'admin']))
+                    {{-- <li class="tab col">
                         <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'stores', 'active') }}" onclick="location.href = '/admin/stores'">
                             <i class="fas fa-users tmr-1 fa-lg"></i> 
                             Stores
@@ -128,7 +136,7 @@
                             <i class="fas fa-users tmr-1 fa-lg"></i> 
                             Power Up
                         </a>
-                    </li>
+                    </li> --}}
                 @endif
 
                 <li class="tab col">
@@ -137,20 +145,19 @@
                         FB
                     </a>
                 </li>
+                <li class="tab col">
+                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'file-manager', 'active') }}" onclick="location.href = '/admin/file-manager'">
+                        <i class="fas fa-users tmr-1 fa-lg"></i> 
+                        File Manager
+                    </a>
+                </li>
                 {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'withdrawal', 'active') }}" onclick="location.href = '/admin/withdrawal'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 
                         Withdrawal
                     </a>
                 </li> --}}
-                {{-- @if (auth()->user()->isMaster())
-                    <li class="tab col">
-                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'users', 'active') }}" onclick="location.href = '/admin/users'">
-                            <i class="fas fa-users tmr-1 fa-lg"></i> 
-                            Users
-                        </a>
-                    </li>
-                @endif --}}
+              
                 {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'categories', 'active') }}" onclick="location.href = '/admin/categories'">
                         <i class="fas fa-comment tmr-1 fa-lg"></i> 
