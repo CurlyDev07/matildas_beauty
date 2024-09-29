@@ -101,7 +101,7 @@
                             <li>
                                 <a href="javascript:void(0)" class="add-search-product" id="{{ $product->id }}" aria-disabled="true">
                                     <div class="tflex titems-center tpy-1">
-                                        <img data-src="{{ $product['primary_image'] }}" class="search-img lazy" style="height: 50px; width: 50px;" alt="">
+                                        <img src="{{ $product['primary_image'] }}" class="search-img" style="height: 50px; width: 50px;" alt="">
                                         <div class="tpx-2">
                                             <p class="search-title ttext-md">{{ $product->title }}</p>
                                             <small class="search-sku">{{ $product->sku }}</small>
@@ -237,7 +237,6 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
 
     <script>
-        $('.lazy').Lazy();
         $('.modal').modal();// initiate modal
         $('.datepicker').datepicker();// initiate datepicker
 

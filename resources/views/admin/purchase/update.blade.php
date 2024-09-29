@@ -102,7 +102,7 @@
                             <li>
                                 <a href="javascript:void(0)" class="add-search-product" id="{{ $product->id }}" aria-disabled="true">
                                     <div class="tflex titems-center tpy-1">
-                                        <img data-src="{{ $product['primary_image'] }}" class="search-img lazy" style="height: 50px; width: 50px;" alt="">
+                                        <img src="{{ $product['primary_image'] }}" class="search-img" style="height: 50px; width: 50px;" alt="">
                                         <div class="tpx-2 product-truncate" style="width: 157px;">
                                             <p class="search-title ttext-md" >{{ $product->title }}</p>
                                             <small class="search-sku">{{ $product->sku }}</small>
@@ -150,7 +150,7 @@
                         <div class="product tborder-b-2 tborder-gray-500 tborder-dashed tflex titems-center tmx-1 tpt-1 tpb-3 trelative  tflex-wrap" id="{{ $purchase_product->product['id'] }}">
                             <div class="tw-full tflex tflex-col">
                                 <div class="tflex titems-center tpy-1">
-                                    <img data-src="{{ $purchase_product->product['primary_image'] }}" class="product_img lazy" style="height: 50px; width: 50px;" alt="">
+                                    <img src="{{ $purchase_product->product['primary_image'] }}" class="product_img " style="height: 50px; width: 50px;" alt="">
                                     <div class="tpx-2 truncate">
                                         <p class="product_title ttext-sm tfont-medium" >{{ $purchase_product->product['title'] }}</p>
                                         <small class="product_sku tbg-gray-300 tpx-2">SKU: {{ $purchase_product->product['sku'] }}</small>
@@ -334,10 +334,8 @@
 
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
 
     <script>
-        $('.lazy').Lazy();
         $('.modal').modal();// initiate modal
         $('.datepicker').datepicker();// initiate datepicker
         $('.expiration_date').datepicker();// initiate datepicker

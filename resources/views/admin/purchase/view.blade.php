@@ -42,7 +42,7 @@
                         <tr>
                             <td style="width: 55%;!important" class="tpy-0">
                                 <div class="tflex titems-center">
-                                    <img data-src="{{ $product['product']['primary_image'] }}" class="lazy" style="height: 80px;width: 80px;" alt="">
+                                    <img src="{{ $product['product']['primary_image'] }}" class="" style="height: 80px;width: 80px;" alt="">
                                     <span class="ttext-primary hover:tunderline"></span>
                                     <a href="{{ item_show_slug($product['product']['title'], $product['product']['id']) }}" class="hover:tunderline tmax-w-sm tml-3 ttext-primary truncate">
                                         {{ $product['product']['title'] }}
@@ -85,10 +85,8 @@
 @endsection
 @section('js')
     <script src="{{ asset('js/plugins/print_this.js') }}"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
 
     <script>
-        $('.lazy').Lazy();
         $('#print').click(function () {
             $(this).addClass('thidden');
             $('#receipt').printThis({
