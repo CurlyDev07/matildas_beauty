@@ -93,7 +93,7 @@
                     @foreach ($products as $product)
                         <tr class="tborder-0 hover:tbg-gray-100 product">
                             <td class="tp-3 tpx-1">
-                                <img src="{{ ($product['primary_image']) }}" data-src="{{ ($product['primary_image']) }}" class="tmx-auto trounded" style="height: 50px;width: 50px;">
+                                <img data-src="{{ ($product['primary_image']) }}" class="tmx-auto trounded lazy" style="height: 50px;width: 50px;">
                             </td>
                             <td class="tp-3 tpx-1">
                                 {{-- <a href="{{ item_show_slug($product['title'], $product['id']) }}" target="_blank" class="hover:tunderline tmx-auto ttext-blue-500 ttext-sm truncate "
@@ -230,7 +230,7 @@
 
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
 
     <script>
 

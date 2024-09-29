@@ -134,6 +134,7 @@
 @endsection
 
 @section('js')
+
     <script src="{{ asset('js/plugins/sweatalert.js') }}"></script>
 
     @include('plugins.fb_messenger')
