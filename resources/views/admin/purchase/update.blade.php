@@ -102,7 +102,7 @@
                             <li>
                                 <a href="javascript:void(0)" class="add-search-product" id="{{ $product->id }}" aria-disabled="true">
                                     <div class="tflex titems-center tpy-1">
-                                        <img src="{{ $product['primary_image'] }}" data-src="{{ $product['primary_image'] }}" class="search-img" style="height: 50px; width: 50px;" alt="">
+                                        <img data-src="{{ $product['primary_image'] }}" class="search-img lazy" style="height: 50px; width: 50px;" alt="">
                                         <div class="tpx-2 product-truncate" style="width: 157px;">
                                             <p class="search-title ttext-md" >{{ $product->title }}</p>
                                             <small class="search-sku">{{ $product->sku }}</small>
@@ -334,6 +334,7 @@
 
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
 
     <script>
         $('.modal').modal();// initiate modal

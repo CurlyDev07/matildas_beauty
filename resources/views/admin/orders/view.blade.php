@@ -74,7 +74,7 @@
                         <tr>
                             <td style="width: 55%;!important" class="tpy-1">
                                 <div class="tflex titems-center">
-                                    <img src="{{ $item['product']['images'][0]['img'] }}" style="height: 55px;width: 55px;" alt="">
+                                    <img data-src="{{ $item['product']['images'][0]['img'] }}" class="lazy" style="height: 55px;width: 55px;" alt="">
                                     <span class="ttext-primary hover:tunderline"></span>
                                     <a href="{{ item_show_slug($item['product']['title'], $item['product']['id']) }}" class="hover:tunderline tmax-w-sm tml-3 ttext-primary truncate">
                                         {{ $item['product']['title'] }}
@@ -109,6 +109,8 @@
 @endsection
 @section('js')
     <script src="{{ asset('js/plugins/print_this.js') }}"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
+
     <script>
         $('#print').click(function () {
             $(this).addClass('thidden');
