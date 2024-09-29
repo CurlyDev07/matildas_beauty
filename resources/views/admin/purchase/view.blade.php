@@ -88,6 +88,7 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
 
     <script>
+        $('.lazy').Lazy();
         $('#print').click(function () {
             $(this).addClass('thidden');
             $('#receipt').printThis({

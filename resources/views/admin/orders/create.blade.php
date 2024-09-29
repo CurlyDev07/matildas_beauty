@@ -236,6 +236,7 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
 
     <script>
+        $('.lazy').Lazy();
         $('.modal').modal();// initiate modal
         $('.datepicker').datepicker({autoClose: true});// initiate datepicker
 
