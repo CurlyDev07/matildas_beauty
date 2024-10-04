@@ -246,19 +246,6 @@
     </script>
 </footer>
 
-@if(session()->has('success'))
-<script>
-    $(document).ready(function(){
-        $('.modal').modal();
-        $('.modal').modal('open');
-    });// OPEN THANK YOU MODAL
-
-    $.post("/event-listener",{
-        order_success: 1
-    });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
-</script>
-@endif
-
 @if(session()->get('errors'))
     <script>
         $('html, body').animate({

@@ -103,6 +103,46 @@
             to {opacity: 1}
         }
 
+
+        /* MODAL */
+        .modal .modal-content {
+            padding: 15px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            left: 0;
+            /* top: 0% !important; */
+            right: 0;
+            background-color: #fafafa;
+            padding: 0;
+            max-height: 100%;
+            width: 100%!important%;
+            margin: auto;
+            overflow-y: auto;
+            border-radius: 2px;
+            will-change: top, opacity;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            z-index: 999;
+            top: -25%;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 125%;
+            width: 100%;
+            background: #000;
+            display: none;
+            will-change: opacity;
+        }
+
+        div#order_success_modal {
+            max-width: 450px;
+        }
+
     </style>
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>

@@ -31,7 +31,6 @@ Route::get('/policy', "HomeController@policy")->name('policy');
 
 Route::get('/terms', "HomeController@terms")->name('terms');
 
-
 Route::group(['middleware' => ['auth']], function () {
     // User dashboard
     Route::get('dashboard', 'UserCon@dashboard')->name('dashboard');
@@ -40,13 +39,10 @@ Route::group(['middleware' => ['auth']], function () {
 
 });// authenticated User's only
 
-
 //Products
 Route::get('{slug}-i.{item_id}', 'ProductsCon@show')->where(['item_id' => '[0-9]+', 'slug' => '.*']);
 Route::get('products', 'ProductsCon@all')->name('products.all');
 Route::get('auto-complete', 'ProductsCon@auto_complete')->name('products.auto_complete');
-
-
 
 // CART
 Route::get('cart', 'CartCon@index')->name('cart');
@@ -57,10 +53,8 @@ Route::get('cart/count', 'CartCon@count')->name('cart.count');
 // WISHLIST
 Route::get('wishlist/add/{product_id}', 'WishListCon@create');
 
-
 // CHECKOUT
 Route::get('checkout/{base64_item_details}', 'CheckoutCon@index')->name('checkout');
-
 
 // PAYMENT 
 Route::get('payment', 'PaymentController@index');
@@ -69,14 +63,10 @@ Route::get('payment-success', 'PaymentController@payment_success');// for cash o
 Route::get('payment-success-paypal', 'PaymentController@payment_success_paypal');// for paypal not used
 Route::get('payment-error', 'PaymentController@payment_error');
 
-
 // MissTisa
 Route::get('MissTisa', 'MissTisaCon@index')->name('miss_tisa');
 Route::post('MissTisa-Submit', 'MissTisaCon@store')->name('miss_tisa_submit');
 Route::get('MissTisa-Success', 'MissTisaCon@success')->name('miss_tisa_success');
-
-
-
 
 // FB Ads Pages
 Route::get('smart-home-ph', 'FbAdsCon@smart_home_ph')->name('smart_home_ph');
@@ -84,20 +74,14 @@ Route::post('Madella-Submit', 'FbAdsCon@store')->name('madella_submit');
 Route::get('Madella-Success', 'FbAdsCon@success')->name('madella_success');
 Route::post('Madella-Order-Success-Email', 'FbAdsCon@madella_order_success_email')->name('madella_order_success_email');
 
-
 // FOR DROP-DOWN ADDRESS
 Route::post('get-cities', 'FbAdsCon@cities');
 Route::post('get-barangay', 'FbAdsCon@barangay');
-
-
-
 
 // FB ADS EVENT LISTENER
 Route::post('event-listener', 'FbAdsCon@event_listener')->name('event.listener');
 
 Auth::routes();
-
-
 
 // http://127.0.0.1:8000/
 // php artisan serve --host 0.0.0.0 --port 80
