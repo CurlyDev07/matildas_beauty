@@ -65,23 +65,23 @@
             <div class="tw-full"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> No need Tool</div>
         </div>
 
-        <img class="tmb-3 tmt-5 lazy" data-src="{{ asset('/images/fbads/lightbulb/gif.gif') }}" alt="GIF">
+        <img class="tmb-3 tmt-5" src="{{ asset('/images/fbads/lightbulb/gif.gif') }}" alt="GIF">
 
-        <img class="tmb-3 tmt-5 lazy" data-src="{{ asset('/images/fbads/lightbulb/1.png') }}" alt="1">
+        <img class="tmb-3 tmt-5" src="{{ asset('/images/fbads/lightbulb/1.png') }}" alt="1">
 
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
             <source src="{{ asset('/images/fbads/lightbulb/main-video.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
 
-        <img class="tmt-5 lazy" data-src="{{ asset('/images/fbads/lightbulb/2.png') }}" alt="2">
-        <img class="tmt-5 lazy" data-src="{{ asset('/images/fbads/lightbulb/5.png') }}" alt="2">
+        <img class="tmt-5" src="{{ asset('/images/fbads/lightbulb/2.png') }}" alt="2">
+        <img class="tmt-5" src="{{ asset('/images/fbads/lightbulb/5.png') }}" alt="2">
 
 
-        <img class="tmt-5 lazy" data-src="{{ asset('/images/fbads/lightbulb/3.png') }}" alt="2">
+        <img class="tmt-5" src="{{ asset('/images/fbads/lightbulb/3.png') }}" alt="2">
 
 
-        <img class="tmt-5 lazy" data-src="{{ asset('/images/fbads/lightbulb/4.png') }}" alt="2">
+        <img class="tmt-5" src="{{ asset('/images/fbads/lightbulb/4.png') }}" alt="2">
 
 
         <div class="tmb-5 tborder-t" >
@@ -141,7 +141,7 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review1/1.png') }}" class="tmr-1 trounded lazy">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review1/1.png') }}" class="tmr-1 trounded">
                      </div>
                         <div class="tmr-2">
                             <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review1/2.png') }}" class="tmr-1 trounded lazy">
@@ -179,7 +179,7 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review6/1.png') }}" class="tmr-1 lazy trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review6/1.png') }}" class="tmr-1  trounded">
                         </div>
                         <div class="tmr-2">
                             <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review6/2.png') }}" class="tmr-1 lazy trounded">
@@ -214,7 +214,7 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review3/1.png') }}" class="tmr-1 lazy trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review3/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
                             <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review3/2.png') }}" class="tmr-1 lazy trounded">
@@ -249,7 +249,7 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review4/1.png') }}" class="tmr-1 lazy trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review4/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
                             <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review4/2.png') }}" class="tmr-1 lazy trounded">
@@ -285,7 +285,7 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review5/1.png') }}" class="tmr-1 lazy trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review5/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
                             <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review5/2.png') }}" class="tmr-1 lazy trounded">
@@ -321,7 +321,7 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review2/1.png') }}" class="tmr-1 lazy trounded">
+                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review2/1.png') }}" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
                             <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review2/2.png') }}" class="tmr-1 lazy trounded">
@@ -365,7 +365,7 @@
                         </div><!--more review 1 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img data-src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/c784eb85b0ef497d919fb54decf0b915.jpg" class="tmr-1 trounded lazy">
+                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/c784eb85b0ef497d919fb54decf0b915.jpg" class="tmr-1 trounded ">
                             <div class="">
                                 <span class="tfont-medium">Sarah T.</span>
                             </div>
@@ -388,7 +388,7 @@
                         </div><!--more review 2 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img data-src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/09e3f422034c46cab57338e3451e346a.jpg" class="tmr-1 trounded lazy">
+                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/09e3f422034c46cab57338e3451e346a.jpg" class="tmr-1 trounded ">
                             <div class="">
                                 <span class="tfont-medium">Daniel R.</span>
                             </div>
@@ -411,7 +411,7 @@
                         </div><!--more review 3 -->
                         
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img data-src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/4c4c2704a84a458eb21cfe9b78d9d137.jpg" class="tmr-1 trounded lazy">
+                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/4c4c2704a84a458eb21cfe9b78d9d137.jpg" class="tmr-1 trounded ">
                             <div class="">
                                 <span class="tfont-medium">James P.</span>
                             </div>
@@ -434,7 +434,7 @@
                         </div><!--more review 4 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img data-src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/a8438268a7c241349fa819a21eabf86b.jpg" class="tmr-1 trounded lazy">
+                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/a8438268a7c241349fa819a21eabf86b.jpg" class="tmr-1 trounded ">
                             <div class="">
                                 <span class="tfont-medium">Mark B.</span>
                             </div>
@@ -459,7 +459,7 @@
                         </div><!--more review 5 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img data-src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/a25b2245250540c699465d525590e89a.jpg" class="tmr-1 trounded lazy">
+                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/a25b2245250540c699465d525590e89a.jpg" class="tmr-1 trounded ">
                             <div class="">
                                 <span class="tfont-medium">Mark B.</span>
                             </div>
@@ -482,7 +482,7 @@
                         </div><!--more review 6 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img data-src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/593c6b951ad942c29c6556cb93250775.jpg" class="tmr-1 trounded lazy">
+                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/593c6b951ad942c29c6556cb93250775.jpg" class="tmr-1 trounded ">
                             <div class="">
                                 <span class="tfont-medium">Rachel S.</span>
                             </div>
@@ -505,7 +505,7 @@
                         </div><!--more review 7 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img data-src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/12e50bc69ad74dfeaad97e169c8e4f01.webp" class="tmr-1 trounded lazy">
+                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/12e50bc69ad74dfeaad97e169c8e4f01.webp" class="tmr-1 trounded ">
                             <div class="">
                                 <span class="tfont-medium">Lily N.</span>
                             </div>
@@ -528,7 +528,7 @@
                         </div><!--more review 8 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img data-src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/35fe85fb82744b77bc3c60182095327d.webp" class="tmr-1 trounded lazy">
+                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/35fe85fb82744b77bc3c60182095327d.webp" class="tmr-1 trounded ">
                             <div class="">
                                 <span class="tfont-medium">Emily V.</span>
                             </div>
@@ -551,7 +551,7 @@
                         </div><!--more review 9 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img data-src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/3581d4c2e2944266a3501906b1b1bc03.webp" class="tmr-1 trounded lazy">
+                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/3581d4c2e2944266a3501906b1b1bc03.webp" class="tmr-1 trounded ">
                             <div class="">
                                 <span class="tfont-medium">Maricar C.</span>
                             </div>
@@ -581,7 +581,7 @@
             </div>  <!-- RATINGS DIV -->
         </div> <!-- RATINGS -->
 
-        <img class="tmt-5 tmb-6 lazy" data-src="{{ asset('/images/fbads/lightbulb/6.png') }}" alt="2">
+        <img class="tmt-5 tmb-6" src="{{ asset('/images/fbads/lightbulb/6.png') }}" alt="2">
     
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
@@ -734,7 +734,7 @@
                                 <div class="tflex tflex-col trelative">
                                     <span>Order Success</span>
                                     
-                                    <span class="ttext-sm">#MB093024O61</span>
+                                    <span class="ttext-sm" id="modal-order-number">#MB093024O61</span>
                                 </div>
                             </div>
             
@@ -746,11 +746,11 @@
                                     <div class="">
                                         <div class="">
                                             <span class="tfont-medium tmx-2 ttext-gray-700 ttext-md">Qty: </span>
-                                            <span class="tmr-3 tmb-2 ttext-xl tfont-medium" style="color: #ee4d2d">2pcs</span>
+                                            <span class="tmr-3 tmb-2 ttext-xl tfont-medium" style="color: #ee4d2d" id="modal-promo">2pcs</span>
                                         </div>
                                         <div class="">
                                             <span class="tfont-medium tmx-2 ttext-gray-700 ttext-md">Total: </span>
-                                            <span class="tmr-3 tmb-2 ttext-xl tfont-medium" style="color: #ee4d2d">₱899</span>
+                                            <span class="tmr-3 tmb-2 ttext-xl tfont-medium" style="color: #ee4d2d" >₱<span id="modal-amount"></span></span>
                                             <input type="hidden" name="purchase_value" id="purchase_value" value="899">
                                         </div>
                                     </div>
@@ -766,17 +766,10 @@
             </div> <!-- Modal  -->
 
             <button class="order_now theme-bg tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
-                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;">
+                style="position: fixed; max-width: 480px; z-index: 998; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;">
                 ORDER NOW!
             </button>
         </div>
     </div>
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
-    <script>
-         $('.lazy').Lazy();
-        $('.modal').modal();
-        // $('.modal').modal('open');
-    </script>
 @endsection
 

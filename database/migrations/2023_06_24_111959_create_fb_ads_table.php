@@ -24,7 +24,7 @@ class CreateFbAdsTable extends Migration
             $table->text('province');
             $table->string('city');
             $table->string('barangay');
-            $table->string('status')->comment('TO ENCODE | TO CALL | TO SHIP | SHIPPED | DUPPLICATE | DELIVERED');
+            $table->string('status')->default('TO ENCODE')->comment('TO ENCODE | TO CALL | TO SHIP | SHIPPED | DUPPLICATE | DELIVERED');
             $table->timestamps();
         });
     }

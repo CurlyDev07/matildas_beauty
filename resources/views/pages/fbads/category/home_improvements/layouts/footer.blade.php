@@ -1,6 +1,12 @@
 
 <footer>
 
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
+    <script>
+        $('.lazy').Lazy();
+        $('.modal').modal();
+    </script>
+
     <script> // SLIDE SHOW
         const slides = document.querySelectorAll(".slides img");
         let slideIndex = 0;
@@ -40,25 +46,8 @@
             showSlide(slideIndex);
         }
     </script>
-        
-    <!----- Tiktok Pixel ViewContent ----->
-    <script>
 
-        ttq.track('ViewContent', {
-            "contents": [
-                {
-                    "content_id": "1",
-                    "content_type": "product", 
-                    "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", 
-                    "content_category": "Beauty Products",
-                    "brand": "MissTisa"
-                }
-            ]
-        });
-
-    </script>
-
-    <script>
+    <script> // allnumeric
          function allnumeric(inputtxt){
             var numbers = /^[0-9]+$/;
             if(inputtxt.value.match(numbers)){
@@ -70,17 +59,72 @@
         }
     </script>
 
-    @if (request()->amount)
-        <script>
-            let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
-        </script>
-    @endif
-
     <script>
          $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+        });
+
+        var $window = $(window),x
+            $document = $(document),
+            button = $('.order_now');
+            
+        $window.on('scroll', function () {
+            let scrollH = $(window).height() + $(window).scrollTop();
+            let H = ($document.height() - 550);
+
+            if (scrollH > H) {
+                
+                button.stop(true).css('z-index', 0).animate({
+                    opacity: 0
+                }, 50);
+            } else {
+                button.stop(true).css('z-index', 998).animate({
+                    opacity: 1
+                }, 50);
+            }
+        });// hide show ORDER BUTTON on Scroll
+
+      
+        $("form").on("submit", function (e) {
+            e.preventDefault();
+
+            $('.loader').removeClass('thidden');// SHOW LOADER
+
+            let url = $(this).attr('action');
+
+            $.post(url, {
+                full_name: $('#full_name').val(),
+                phone_number: $('#phone_number').val(),
+                address: $('#address').val(),
+                promo: $('.promo:checked').val(),
+            })
+            .done(function( data ) {    
+                fbq('track', 'Purchase', {currency: "PHP", value: data.amount});// send data to fb pixel
+
+                // change html content of success modal
+                $('#modal-order-number').html(data.order_number);
+                $('#modal-promo').html(data.promo);
+                $('#modal-amount').html(data.amount);
+                $('.modal').modal('open'); // open modal
+
+                $('.loader').addClass('thidden');// HIDE LOADER
+
+                eventListener('order_success');// Track event
+
+                $.post("/Madella-Order-Success-Email",{
+                    data,
+                });// Email Notif
+            });
+        })
+
+        $('.order_now').click(function (e) {
+            $('html, body').animate({
+                scrollTop: $('#form').offset().top + 9999
+            }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
+
+            eventListener('order_form');// Track event
         });
 
         // ONCLICKS
@@ -144,106 +188,38 @@
             $("#promo3").prop('checked', false);
         });
 
-        var $window = $(window),x
-            $document = $(document),
-            button = $('.order_now');
 
-          
-            
-        $window.on('scroll', function () {
-            let scrollH = $(window).height() + $(window).scrollTop();
-            let H = ($document.height() - 550);
-
-            if (scrollH > H) {
-                
-                button.stop(true).css('z-index', 0).animate({
-                    opacity: 0
-                }, 50);
-            } else {
-                button.stop(true).css('z-index', 999).animate({
-                    opacity: 1
-                }, 50);
-            }
-        });// hide show ORDER BUTTON on Scroll
-
-        $('.order_now').click(function (e) {
-            $('html, body').animate({
-                scrollTop: $('#form').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
-            }, 'slow');
-
-            $.post("/event-listener",{
-                order_form: 1
-            });// EVENT LISTENER Track ORDER FORM
-
-            ttq.track('AddPaymentInfo', {
-                "contents": [
-                    {
-                        "content_id": "1", 
-                        "content_type": "product",
-                        "content_name": "" 
-                    }
-                ],
-                "description": "" 
-            });// Tiktok Event
-        });
-
+        // EVENT LISTENER
         $('#full_name').click(function (e) {
-            $.post("/event-listener",{
-                full_name: 1
-            });// EVENT LISTENER Track ENTER FULL NAME
+            eventListener('full_name');// Track event
         });
         
         $('#phone_number').click(function (e) {
-            $.post("/event-listener",{
-                phone_number: 1
-            });// EVENT LISTENER Track ENTER CONTACT NUMBER
+            eventListener('phone_number');// Track event
         });
 
         $('#address').click(function (e) {
-            $.post("/event-listener",{
-                address: 1
-            });// EVENT LISTENER Track ENTER CONTACT NUMBER
+            eventListener('address');// Track event
         });
 
         $('.promo').click(function (e) {
-            $.post("/event-listener",{
-                promo: 1
-            });// EVENT LISTENER Track ENTER CONTACT NUMBER
+            eventListener('promo');// Track event
         });
 
         $('#submit_btn').click(function () {
-            $.post("/event-listener",{
-                submit_order: 1
-            });//  EVENT LISTENER Track SUBMIT ORDER
-            
-            let amount = $('#total').html();
-
-            ttq.track('InitiateCheckout', {
-                "contents": [
-                    {
-                        "content_id": "1",
-                        "content_type": "product",
-                        "content_name": "",
-                        "quantity": 1,
-                        "price": amount
-                    }
-                ],
-                "value": amount,
-                "currency": "PHP" 
-            });//TIktok Event
-
+            eventListener('submit_order');// Track event
         })
 
-        $("#form").submit(function(event) {
-            $('#submit_btn').addClass('thidden');
-            $('#loader').removeClass('thidden');
-        });
+        //  Track event
+        eventListener('visitors');
 
-        $.post("/event-listener",{
-            visitors: 1
-        });//  EVENT LISTENER Track VIEW
+        function eventListener(event){
+            let data = {[event]: 1}
+            $.post("/event-listener",data);
+        }//  EVENT LISTENER
 
     </script>
+    
 </footer>
 
 @if(session()->get('errors'))

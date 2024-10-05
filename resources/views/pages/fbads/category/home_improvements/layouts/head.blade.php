@@ -143,6 +143,17 @@
             max-width: 450px;
         }
 
+        .loader { 
+            position: fixed; 
+            left: 0px; 
+            top: 0px; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 999!important; 
+            background: rgba(245,245,245,0.89); 
+            background-size: 55px 55px; 
+        }
+
     </style>
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
@@ -155,3 +166,12 @@
 
 </head>
 <body>
+<div class="loader thidden">
+    <div class="tmx-auto" style="max-width: 480px;">
+        <img src="{{ asset('loader\cart.svg') }}" class="tmx-auto" style="margin-top: 45%;" alt="cart Loading">
+        <h1 class="tfont-medium ttext-3xl ttext-center">Your Order is Processing</h1>
+        <h1 class="tfont-medium ttext-lg ttext-center">Please Wait...</h1>
+        <img src="{{ asset('loader\loading.gif') }}" class="tmx-auto" style="margin-top: -45px;" alt="loader">
+    </div>
+</div> 
+

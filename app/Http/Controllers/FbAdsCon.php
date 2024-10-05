@@ -20,6 +20,7 @@ class FbAdsCon extends Controller
     }
 
     public function store(StoreFbAdsRequest $request){
+
         $promo = explode ("|", $request->promo); 
 
         $order = FbAds::create([
@@ -36,7 +37,7 @@ class FbAdsCon extends Controller
 
         $data = [
             "purchase" => 1,
-            "promo" => request()->promo,
+            "promo" => $promo[2],
             "amount" => $promo[1],
             "full_name" => $request->full_name,
             "phone_number" => $request->phone_number,
@@ -45,7 +46,8 @@ class FbAdsCon extends Controller
             "date" => date("F j g:i a"),
         ];
 
-        return redirect()->route('madella_success', $data);
+        return response()->json($data);
+        // return redirect()->route('madella_success', $data);
     }
 
     public function success(){
@@ -57,8 +59,7 @@ class FbAdsCon extends Controller
     public function madella_order_success_email(){
 
         Mail::to(['reggie.frias1105@gmail.com', 'shopickers007@gmail.com'])->send(new FbAdsOrderSuccess(request()->data));
-
-        $order_promo = explode('|', request()->data['promo'])[0];
+        $order_promo = request()->data['promo'];
 
 $sms = "
 Hi ". request()->data['full_name'].",
