@@ -90,6 +90,10 @@
         $("form").on("submit", function (e) {
             e.preventDefault();
 
+            if (!isValid()) {
+                return;
+            }
+
             $('.loader').removeClass('thidden');// SHOW LOADER
 
             let url = $(this).attr('action');
@@ -101,8 +105,6 @@
                 promo: $('.promo:checked').val(),
             })
             .done(function( data ) {    
-                fbq('track', 'Purchase', {currency: "PHP", value: data.amount});// send data to fb pixel
-
                 // change html content of success modal
                 $('#modal-order-number').html(data.order_number);
                 $('#modal-promo').html(data.promo);
@@ -116,8 +118,38 @@
                 $.post("/Madella-Order-Success-Email",{
                     data,
                 });// Email Notif
-            });
+
+                fbq('track', 'Purchase', {currency: "PHP", value: data.amount});// send data to fb pixel
+            })
         })
+
+        function isValid() {
+            let full_name = $('#full_name').val();
+            let phone_number = $('#phone_number').val();
+            let address = $('#address').val();
+
+            let errors = 0
+
+            if (full_name == '') {
+                errors++
+            }else if (phone_number == '') {
+                errors++
+            }else if (phone_number.length != 11) {
+                $('#phone_number_validation').removeClass('thidden');
+                console.log(phone_number.length)
+                console.log('error phone number');
+                errors++
+            }else if (address == '') {
+                errors++
+            }
+            
+            if (errors != 0) {
+                eventListener('form_validation_error');// Track event
+                return false;
+            }
+
+            return true;
+        }// form validation
 
         $('.order_now').click(function (e) {
             $('html, body').animate({
@@ -181,13 +213,32 @@
             $("#promo4").prop('checked', false);
         });
 
-        $('#promo4').change(function () {
-            $('#total').html($(this).val().split('|')[1]);
-            $("#promo1").prop('checked', false);
-            $("#promo2").prop('checked', false);
-            $("#promo3").prop('checked', false);
-        });
+        // $('#promo4').change(function () {
+            //     $('#total').html($(this).val().split('|')[1]);
+            //     $("#promo1").prop('checked', false);
+            //     $("#promo2").prop('checked', false);
+            //     $("#promo3").prop('checked', false);
+        // });
 
+        $('#phone_number').keyup(function (e) { 
+            let count = $(this).val().length;
+
+            $('#number_counter').html(count + '/11');
+
+            if (count == 11) {
+                $('#phone_number').css("border-color", "#4aa977");
+                $('#phone_number').css("outline-color", "#4aa977");
+                $('#number_counter').attr('class', 'tfont-medium ttext-green-600');
+
+                $('#phone_number_validation').addClass('thidden');
+
+            }else{
+                $('#phone_number').css("border-color", "#e53e3e");
+                $('#phone_number').css("outline-color", "#e53e3e");
+
+                $('#number_counter').attr('class', 'tfont-medium ttext-red-600 focus-visible-red');
+            }
+        }); // Phone Number Validation
 
         // EVENT LISTENER
         $('#full_name').click(function (e) {
@@ -227,10 +278,6 @@
         $('html, body').animate({
             scrollTop: $('#form').offset().top + 9999
         }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
-
-        $.post("/event-listener",{
-            form_validation_error: "{{ $errors->first() }}"
-        });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
     </script>
 @endif
 

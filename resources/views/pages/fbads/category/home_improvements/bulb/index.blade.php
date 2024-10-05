@@ -12,7 +12,7 @@
             <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box theme-bg" style="bottom: -52%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;">ORDER NOW!
             </button>
         </div>
-        <div class="custom-slider">
+        {{-- <div class="custom-slider">
             <div class="slides">
                 <img src="{{ asset('/images/fbads/lightbulb/tumbnails/banner.png') }}" class="tw-full" alt="banner">
                 <img src="{{ asset('/images/fbads/lightbulb/tumbnails/2.png') }}" class="tw-full tmb-5" alt="2">
@@ -25,7 +25,9 @@
             </div>
             <button class="prev" onclick="prevSlide()">&#10094</button>
             <button class="next" onclick="nextSlide()">&#10095</button>
-        </div>
+        </div> --}}
+        <img src="{{ asset('/images/fbads/lightbulb/tumbnails/banner.png') }}" class="tw-full" alt="banner">
+
 
         <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
@@ -41,7 +43,9 @@
                     <span class="tfont-medium">Ratings</span>
                 </span>
             </div>
-            <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">19,586 + Trusted Reviews</div>
+            <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium">
+                19,586 + Reviews
+            </div>
         </div>
 
         <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3" style="border: 2px solid #4aa30b; border-style: dashed;">
@@ -603,8 +607,12 @@
                         @error('phone_number')
                             <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 1%;">{{ $message }}</span>
                         @enderror
-                        <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Phone Number</label>
+                        <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">
+                            Phone Number 
+                            <span id="number_counter" class="tfont-medium ttext-orange-500">0/11</span> 
+                        </label>
                         <input required type="number" name="phone_number" id="phone_number" onkeyup="allnumeric(this)" value="{{ old('phone_number') }}" class="browser-default input-control">
+                        <span><small id="phone_number_validation" class="tfont-medium ttext-red-600 ttext-xs thidden">Mobile Number is Incorrect</small></span>
                     </div>
                 </div><!--Fullname & Phone Number -->
                 <div class="tw-full tflex tmb-3">
@@ -612,6 +620,7 @@
                         <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
                             <span class="tfont-medium">Complete Address</span>
                             <small class="ttext-gray-600">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</small>
+                            <small class="ttext-green-600">make sure to complete the address</small>
                         </label>
                         <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
                     </div>
@@ -732,7 +741,7 @@
                                 <i class="fa-regular fa-circle-check ttext-5xl ttext-green-500 tmr-3" aria-hidden="true"></i>
                                 
                                 <div class="tflex tflex-col trelative">
-                                    <span>Order Success</span>
+                                    <span class="tfont-medium ttext-lg">Order Success</span>
                                     
                                     <span class="ttext-sm" id="modal-order-number">#MB093024O61</span>
                                 </div>

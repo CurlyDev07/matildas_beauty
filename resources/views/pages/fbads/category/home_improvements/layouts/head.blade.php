@@ -154,6 +154,7 @@
             background-size: 55px 55px; 
         }
 
+
     </style>
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
