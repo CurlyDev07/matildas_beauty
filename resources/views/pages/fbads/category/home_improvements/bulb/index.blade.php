@@ -776,7 +776,7 @@
                     </div>
                 </div>
                 <div class="modal-footer tborder-t-2">
-                    <a href="javascript:void(0)" class="btn-flat modal-close tbg-red-500 tfont-medium ttext-center ttext-white tw-full waves-effect">Close</a>
+                    <a href="javascript:void(0)" class="btn-flat modal-close theme-bg tfont-medium ttext-center ttext-white tw-full waves-effect">Close</a>
                 </div>
             </div> <!-- Modal  -->
 
