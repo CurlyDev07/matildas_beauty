@@ -120,7 +120,8 @@
             max-height: 100%;
             width: 100%!important%;
             margin: auto;
-            overflow-y: auto;
+            /* overflow-y: auto; */
+            overflow: hidden;
             border-radius: 2px;
             will-change: top, opacity;
         }
@@ -154,6 +155,15 @@
             background-size: 55px 55px; 
         }
 
+        /* FOR CONFETTI ANIMATION */
+        canvas {
+            overflow-y: hidden;
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            height: -webkit-fill-available;
+            opacity: 70%;
+        }
 
     </style>
 

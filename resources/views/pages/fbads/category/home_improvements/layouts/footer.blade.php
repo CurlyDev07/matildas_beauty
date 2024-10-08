@@ -1,6 +1,7 @@
 
 <footer>
 
+    <script type="text/javascript" src="{{ asset('/js/plugins/confetti.js') }}"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
     <script>
         $('.lazy').Lazy();
@@ -44,18 +45,6 @@
         function nextSlide(){
             slideIndex++;
             showSlide(slideIndex);
-        }
-    </script>
-
-    <script> // allnumeric
-         function allnumeric(inputtxt){
-            var numbers = /^[0-9]+$/;
-            if(inputtxt.value.match(numbers)){
-                return true;
-            }else{
-                inputtxt.value = '';
-                return false;
-            }
         }
     </script>
 
@@ -269,17 +258,19 @@
             $.post("/event-listener",data);
         }//  EVENT LISTENER
 
+
+        // allnumeric
+        function allnumeric(inputtxt){
+            var numbers = /^[0-9]+$/;
+            if(inputtxt.value.match(numbers)){
+                return true;
+            }else{
+                inputtxt.value = '';
+                return false;
+            }
+        }
     </script>
     
 </footer>
-
-@if(session()->get('errors'))
-    <script>
-        $('html, body').animate({
-            scrollTop: $('#form').offset().top + 9999
-        }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
-    </script>
-@endif
-
 </body>
 </html>

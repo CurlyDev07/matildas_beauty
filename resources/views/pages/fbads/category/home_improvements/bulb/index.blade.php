@@ -1,6 +1,7 @@
 @extends('pages.fbads.category.home_improvements.layouts.app')
 
 @section('content')
+
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
 
         <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 50px; background: linear-gradient(-180deg, #f53d2d, #f63); transition: transform .2s cubic-bezier(.4,0,.2,1);">
@@ -722,7 +723,8 @@
 
 
             {{-- ORDER SUCCESS MODAL --}}
-            <div id="order_success_modal" class="modal">
+            <div id="order_success_modal" class="modal trelative">
+                <canvas id="canvas" class="tabsolute tw-full"></canvas>
                 <div class="modal-content" style="padding-bottom: 0px;">
 
                     <div class="tmax-w-md tflex titems-center tjustify-center tmx-auto">
@@ -741,7 +743,7 @@
                                 <i class="fa-regular fa-circle-check ttext-5xl ttext-green-500 tmr-3" aria-hidden="true"></i>
                                 
                                 <div class="tflex tflex-col trelative">
-                                    <span class="tfont-medium ttext-lg">Order Success</span>
+                                    <span class="tfont-medium ttext-lg zoom-in-out-box">Order Success</span>
                                     
                                     <span class="ttext-sm" id="modal-order-number">#MB093024O61</span>
                                 </div>
