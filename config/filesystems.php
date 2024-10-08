@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'filemanager' => [
+            'driver' => 'local',
+            'root' => "filemanager",
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
         'file' => [
             'driver' => 'local',
             'root' => "files",

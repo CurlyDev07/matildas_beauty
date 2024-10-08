@@ -36,7 +36,8 @@ class FileManagerCon extends Controller
             $file_ext = $file->getClientOriginalExtension();
             $file_name = uuid().'.'.$file_ext;
 
-            $store = Storage::disk('s3')->putFileAs('/filemanager', $file, $file_name);
+            $store = Storage::disk('filemanager')->putFileAs('/', $file, $file_name);
+            // $store = Storage::disk('s3')->putFileAs('/filemanager', $file, $file_name);
 
             File::create([
                 'folder_id' => $request->folder_id,

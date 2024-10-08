@@ -18,6 +18,10 @@ class FbAdsCon extends Controller
     public function smart_home_ph(){
         return view('pages.fbads.category.home_improvements.bulb.index');
     }
+    
+    public function ginger_oil(){
+        return view('pages.fbads.category.home_improvements.ginger_oil.index');
+    }
 
     public function store(StoreFbAdsRequest $request){
 

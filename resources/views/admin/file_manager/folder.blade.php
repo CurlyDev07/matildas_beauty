@@ -44,18 +44,39 @@
 
             <div id="image_container" class="tflex tflex-wrap tpx-5">
                 @foreach ($files as $file)
-                    <div class="lg:tw-1/4 md:tw-1/3 sm:tw-1/2 tflex tjustify-center tpx-1 trelative tw-full tmb-5   tpy-2">
-                        <div class="tborder tflex titems-center tpx-2 tshadow-2xl trelative " style="max-width: 280px; max-height: 280px; height: 280px;overflow: hidden;">
-                            <div class="tabsolute tpy-1 tbg-white tfont-medium tpx-2 ttext-sm tw-full ttruncate ttext-gray-900" style="top: 0%; left: 0%;">jQuery Lazy - Delayed Content, Image and Background Lazy</div>
-                            <img class="lazy" data-src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/{{ $file->file_name }}" >
-                            <div class="tabsolute tbg-white tfont-medium tpx-2 truncate ttext-sm tw-full tpy-1" style="bottom: 0%; left: 0%;">
-                                <div class="tw-full tflex tjustify-between tpx-5">
-                                    <div class="">Size: <span class="file_size ttext-gray-900">{{ $file->file_size }}</span></div>
-                                    <div class=""> Type: <span class="ttext-gray-900">Png</span> </div>
+
+                    @if ($file->file_ext == 'mp4')
+                        <div class="lg:tw-1/4 md:tw-1/3 sm:tw-1/2 tflex tjustify-center tpx-1 trelative tw-full tmb-5   tpy-2">
+                            <div class="tborder tflex titems-center tpx-2 tshadow-2xl trelative " style="max-width: 280px; max-height: 280px; height: 280px;overflow: hidden;">
+                                <div class="tabsolute tpy-1 tbg-white tfont-medium tpx-2 ttext-sm tw-full ttruncate ttext-gray-900" style="top: 0%; left: 0%;">filemanager/{{ $file->file_name }}</div>
+                                {{-- <img class="lazy" data-src="{{ asset('filemanager/'. $file->file_name) }}" > --}}
+                                <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
+                                    <source src="{{ asset('filemanager/'. $file->file_name) }}" type="video/mp4">
+                                    <source src="movie.ogg" type="video/ogg">
+                                </video>
+                                <div class="tabsolute tbg-white tfont-medium tpx-2 truncate ttext-sm tw-full tpy-1" style="bottom: 0%; left: 0%;">
+                                    <div class="tw-full tflex tjustify-between tpx-5">
+                                        <div class="">Size: <span class="file_size ttext-gray-900">{{ $file->file_size }}</span></div>
+                                        <div class=""> Type: <span class="ttext-gray-900">Png</span> </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @else
+                        <div class="lg:tw-1/4 md:tw-1/3 sm:tw-1/2 tflex tjustify-center tpx-1 trelative tw-full tmb-5   tpy-2">
+                            <div class="tborder tflex titems-center tpx-2 tshadow-2xl trelative " style="max-width: 280px; max-height: 280px; height: 280px;overflow: hidden;">
+                                <div class="tabsolute tpy-1 tbg-white tfont-medium tpx-2 ttext-sm tw-full ttruncate ttext-gray-900" style="top: 0%; left: 0%;">filemanager/{{ $file->file_name }}</div>
+                                <img class="lazy" data-src="{{ asset('filemanager/'. $file->file_name) }}" >
+                                <div class="tabsolute tbg-white tfont-medium tpx-2 truncate ttext-sm tw-full tpy-1" style="bottom: 0%; left: 0%;">
+                                    <div class="tw-full tflex tjustify-between tpx-5">
+                                        <div class="">Size: <span class="file_size ttext-gray-900">{{ $file->file_size }}</span></div>
+                                        <div class=""> Type: <span class="ttext-gray-900">Png</span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                 @endforeach
             </div>
         </div>

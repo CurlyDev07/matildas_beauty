@@ -65,6 +65,15 @@
             transition: transform .2s cubic-bezier(.4,0,.2,1);
         }
 
+        .ginger-theme-color{
+            color: #020702;
+        }
+
+        .ginger-theme-bg{
+            background: linear-gradient(-180deg, #020702, #164f19);
+            transition: transform .2s cubic-bezier(.4,0,.2,1);
+        }
+
         /* SLIDE SHOW */
         .custom-slider{
             position: relative;
