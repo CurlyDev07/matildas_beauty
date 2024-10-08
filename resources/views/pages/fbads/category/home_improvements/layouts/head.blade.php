@@ -173,7 +173,7 @@
 
     <!-- Meta Pixel Code -->
 
-    @include('pages.fbads.category.home_improvements.layouts.pixels')
+    @yield('pixels')
 
 </head>
 <body>

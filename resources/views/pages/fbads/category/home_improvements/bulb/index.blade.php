@@ -1,5 +1,9 @@
 @extends('pages.fbads.category.home_improvements.layouts.app')
 
+@section('pixels')
+    @include('pages.fbads.category.home_improvements.bulb.pixels')
+@endsection
+
 @section('content')
 
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
