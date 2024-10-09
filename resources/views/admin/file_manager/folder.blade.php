@@ -47,7 +47,7 @@
 
                     @if ($file->file_ext == 'mp4')
                         <div class="lg:tw-1/4 md:tw-1/3 sm:tw-1/2 tflex tjustify-center tpx-1 trelative tw-full tmb-5   tpy-2">
-                            <div class="tborder tflex titems-center tpx-2 tshadow-2xl trelative " style="max-width: 280px; max-height: 280px; height: 280px;overflow: hidden;">
+                            <div class="tborder tflex titems-center tjustify-center tpx-2 trelative tshadow-2xl tw-full" style="max-width: 280px; max-height: 280px; height: 280px;overflow: hidden;">
                                 <div class="tabsolute tpy-1 tbg-white tfont-medium tpx-2 ttext-sm tw-full ttruncate ttext-gray-900" style="top: 0%; left: 0%;">filemanager/{{ $file->file_name }}</div>
                                 {{-- <img class="lazy" data-src="{{ asset('filemanager/'. $file->file_name) }}" > --}}
                                 <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
@@ -64,7 +64,7 @@
                         </div>
                     @else
                         <div class="lg:tw-1/4 md:tw-1/3 sm:tw-1/2 tflex tjustify-center tpx-1 trelative tw-full tmb-5   tpy-2">
-                            <div class="tborder tflex titems-center tpx-2 tshadow-2xl trelative " style="max-width: 280px; max-height: 280px; height: 280px;overflow: hidden;">
+                            <div class="tborder tflex titems-center tjustify-center tpx-2 trelative tshadow-2xl tw-full" style="max-width: 280px; max-height: 280px; height: 280px;overflow: hidden;">
                                 <div class="tabsolute tpy-1 tbg-white tfont-medium tpx-2 ttext-sm tw-full ttruncate ttext-gray-900" style="top: 0%; left: 0%;">filemanager/{{ $file->file_name }}</div>
                                 <img class="lazy" data-src="{{ asset('filemanager/'. $file->file_name) }}" >
                                 <div class="tabsolute tbg-white tfont-medium tpx-2 truncate ttext-sm tw-full tpy-1" style="bottom: 0%; left: 0%;">

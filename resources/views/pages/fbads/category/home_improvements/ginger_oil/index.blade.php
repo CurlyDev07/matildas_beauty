@@ -31,7 +31,7 @@
             <button class="prev" onclick="prevSlide()">&#10094</button>
             <button class="next" onclick="nextSlide()">&#10095</button>
         </div> --}}
-        <img src="{{ asset('filemanager/a19f133867744ea1a583e22e6abcb876.png') }}" class="tw-full" alt="banner">
+        <img src="https://matildasbeauty.com/filemanager/786ed9fddd444aa48a3eedffe7e0c884.png" class="tw-full" alt="banner">
 
 
         <div class="tmx-3 tflex titems-center tmy-5">
@@ -74,8 +74,8 @@
             <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Insomia</div>
         </div>
 
-        <img class="tmt-5" src="{{ asset('filemanager/9ed619a942a1482f9dfdefcaf142d6fd.png') }}" alt="1">
-        <img class="tmb-3" src="{{ asset('filemanager/a2d620b67d2b43d2b423e982caf1517f.png') }}" alt="1">
+        <img class="tmt-5" src="https://matildasbeauty.com/filemanager/4f4dedb4413b471f92045252d5a89af6.png" alt="1">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e5e3011805df4b868d13e34f86915cd7.png" alt="1">
 
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
             <source src="{{ asset('filemanager/2e51178113854a748792e4db3c22c6f8.mp4') }}" type="video/mp4">
@@ -122,7 +122,7 @@
                     <div class="tflex titems-center">
                         <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review1/profile.png') }}" class="trounded-full lazy" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Emerlita Manao</p>
+                            <p>Ana Villanueva</p>
                             <div class="">
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
@@ -134,9 +134,7 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        Hala!. <b>FROM 3,500 ngayon 2k</b> nalang ang <b>Meralco</b> namin.
-                        Ang dami kasi naming Ilaw sa labas. Tapos di naman sustainable ung solar
-                        Kaya Bumili ako nito. <b> i Purchase 8pcs na.</b>
+                        "Nakakatuwa yung ginger oil! <b>Nakatulong talaga sa pananakit ng tuhod ko dahil sa arthritis</b>. Wala nang lagkit at sobrang bilis mag-absorb. <b>Mabilis din yung shipping</b>, and I appreciate na very responsive yung seller. <b>Definitely bibili ulit ako!</b>"
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -158,7 +156,7 @@
                     <div class="tflex titems-center">
                         <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review6/profile.png') }}" class="lazy trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Mark Culantes</p>
+                            <p>Carlo Reyes</p>
                             <div class="">
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
@@ -170,11 +168,7 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        <b>Nabilihan ko </b> na ng washing ung <b> asawa ko.</b>
-                        Dahil naka tipid na kami sa koryente.
-                        <b>Dati 3k meralco namin wala pa washing machine.</b> 
-                        Ngayon may washing na <b>bumaba pa ng 2600 </b>
-                        Madilim kasi samin kaya 24hrs bukas ilaw.
+                        "Matagal ko nang hinahanap ang solusyon sa chronic back pain ko, and this ginger oil <b>worked wonders</b>. <b>Mabilis na dumating at maayos ang packaging</b>. I really appreciate the smooth transaction. <b>Seller is very professional</b>. <b>Will order again for sure!</b>"
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -190,13 +184,13 @@
                             <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review6/4.png') }}" class="tmr-1 lazy trounded">
                         </div>
                     </div>
-                </div><!-- REVIEW 6 -->
+                </div><!-- REVIEW 2 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
                         <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review3/profile.png') }}" class="lazy trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Rolando Baldasin</p>
+                            <p>Grace Morales</p>
                             <div class="">
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
@@ -208,8 +202,7 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        <b>Sulit ang bayad.</b>Maganda sya sa hagdan at CR. 
-                        Pwde din sa labas. mas <b>bumaba pa koryente namin.</b> 
+                        "Nagulat ako kung gaano ka-effective itong ginger oil! Ginamit ko ito for menstrual pain, at <b>within minutes, nawala agad ang discomfort</b>. Plus, <b>super fast yung delivery</b>! <b>Trusted seller</b> na alam mong aalagaan ka. <b>Sigurado akong bibili ulit!</b>"
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -231,7 +224,7 @@
                     <div class="tflex titems-center">
                         <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review4/profile.png') }}" class="lazy trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Melinda Bergadin</p>
+                            <p>Allan De Guzman</p>
                             <div class="">
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
@@ -243,8 +236,7 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        <b>Sulit ang bayad.</b>Maganda sya sa hagdan at CR. 
-                        Pwde din sa labas. mas <b>bumaba pa koryente namin.</b> 
+                        "<b>Sobrang bilis ng delivery ng order ko</b>, hindi ko inaasahan. Ginamit ko ito sa muscle pain ko pagkatapos mag-exercise, and <b>nakakagaan talaga ng pakiramdam</b>. <b>Trusted seller</b>, napaka-hands on pa sa customer inquiries. <b>Babalik ako para bumili ulit!</b>"
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -266,7 +258,7 @@
                     <div class="tflex titems-center">
                         <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review5/profile.png') }}" class="lazy trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Sarah Peransa</p>
+                            <p>Maricel Navarro</p>
                             <div class="">
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
@@ -278,9 +270,7 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        Great Product. <b>Nabawasan ng ₱1,300 ung Bill namin Monthly.</b> 
-                        Big Help din. <b>Malala-an pa sa Internet ung na tipid.</b> 
-                        na recommend ko na din to sa mga kumare ko.
+                        "<b>Nakakarelax itong ginger oil</b>, lalo na sa anxiety ko. Yung amoy niya sobrang calming, hindi mabigat sa ilong. <b>Fast shipping and very accommodating</b> yung customer support. For sure, <b>magiging loyal customer ako!</b>"
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -302,7 +292,7 @@
                     <div class="tflex titems-center">
                         <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review2/profile.png') }}" class="lazy trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
-                            <p>Aiza Mercado</p>
+                            <p>Julius Santos</p>
                             <div class="">
                                 <i class="fa-solid fa-star theme-color"></i>
                                 <i class="fa-solid fa-star theme-color"></i>
@@ -314,9 +304,7 @@
                         </div>
                     </div>
                     <div class="tpy-2" >
-                        <b>TIPID talaga sa koryente.</b> Solar gamit ko dati. Kaso Ang bilis ma Lowbat lalo kapag matagal na.
-                        Unlike dito bubukas lang kapag may tao. tapos di humihina ung ilaw. 
-                        <b>automatic din na mamatay kapag umaga at bukas kapag</b>
+                        "<b>Best ginger oil I've tried so far!</b> Nakakabawas ng muscle tension at sobrang effective sa <b>ubo at sipon ng mga bata</b>. I received it <b>ahead of schedule</b>, and ang ganda ng service ng seller. <b>Hindi ako magdadalawang-isip na bumili ulit!</b>"
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
@@ -332,7 +320,7 @@
                             <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review2/4.png') }}" class="tmr-1 lazy trounded">
                         </div>
                     </div>
-                </div><!-- REVIEW 2 -->
+                </div><!-- REVIEW 6 -->
 
                 <hr class="tmy-5">
 
