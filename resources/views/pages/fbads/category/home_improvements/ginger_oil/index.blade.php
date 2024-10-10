@@ -1,5 +1,7 @@
 @extends('pages.fbads.category.home_improvements.layouts.app')
 
+@section('title') Ginger Essential Oil PH @endsection
+
 @section('pixels')
     @include('pages.fbads.category.home_improvements.bulb.pixels')
 @endsection
@@ -11,7 +13,7 @@
         <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 50px; background: linear-gradient(-180deg, #f53d2d, #f63); transition: transform .2s cubic-bezier(.4,0,.2,1);">
             <div >
                 <div class="">
-                    <p class="t-mt-2 tfont-medium  ttext-3xl ttext-white">75% Tipid sa Kuryente</p>  
+                    <p class="t-mt-2 tfont-medium  ttext-lg ttext-white">FDA APPROVED | GINGER OIL</p>  
                 </div>
             </div>
             <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box theme-bg" style="bottom: -52%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;">ORDER NOW!
@@ -75,12 +77,47 @@
         </div>
 
         <img class="tmt-5" src="https://matildasbeauty.com/filemanager/4f4dedb4413b471f92045252d5a89af6.png" alt="1">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e5e3011805df4b868d13e34f86915cd7.png" alt="1">
+        <img class="" src="https://matildasbeauty.com/filemanager/e5e3011805df4b868d13e34f86915cd7.png" alt="1">
 
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
             <source src="{{ asset('filemanager/2e51178113854a748792e4db3c22c6f8.mp4') }}" type="video/mp4">
             <source src="movie.ogg" type="video/ogg">
         </video>
+
+        <div class="ginger-theme-bg tmb-8 tp-5 ttext-white">
+            <h1 class="tmb-3 ttext-2xl tfont-medium tm-5">KADALASANG TANONG</h1>
+
+            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2">
+                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">1. Paano ito nakakatulong sa sakit?</h2>
+                <p class="tml-8 ttext-gray-400">
+                    <b>Ginger oil</b> ay isang natural na langis na nakuha mula sa ugat ng <b>luya</b>. Kilala ito sa mga <b>anti-inflammatory properties</b> nito na nakakatulong sa pagpapagaan ng sakit sa mga kasukasuan at kalamnan, lalo na para sa mga taong may <b>arthritis</b>.
+                </p>
+            </div>
+            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2 tmt-5">
+                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">2. Paano gamitin ang ginger oil?</h2>
+                <p class="tml-8 ttext-gray-400">
+                    Maaari mong ipahid ang <b>ginger oil</b> sa mga apektadong bahagi ng katawan. Maglagay ng ilang patak ng langis at dahan-dahang imasahe ito sa lugar ng sakit. Inirerekomenda na gamitin ito <b>2-3 beses sa isang araw</b> para sa pinakamahusay na resulta.
+                </p>
+            </div>
+            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2 tmt-5">
+                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">3. Ligtas ba ang ginger oil para sa mga bataat matatanda?</h2>
+                <p class="tml-8 ttext-gray-400">
+                    Oo, <b>ligtas</b> ang ginger oil para sa mga bata at matatanda, ngunit palaging magandang ideya na kumonsulta sa isang doktor bago gamitin ito, lalo na kung may mga kasalukuyang kondisyon o umiinom ng gamot.
+                </p>
+            </div>
+            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2 tmt-5">
+                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">4. Gaano katagal bago ko makita ang mga resulta?</h2>
+                <p class="tml-8 ttext-gray-400">
+                    Maraming gumagamit ang nakakakita ng mga resulta sa loob ng <b>ilang araw</b>. Gayunpaman, ang mga resulta ay maaaring mag-iba depende sa indibidwal at antas ng sakit. <b>Patuloy na paggamit</b> ang susi para sa mas magandang epekto.
+                </p>
+            </div>
+            <div class="tpb-2 tmt-5">
+                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">5. Maaari bang gamitin ang ginger oil kasabay ng iba pang mga gamot?</h2>
+                <p class="tml-8 ttext-gray-400">
+                    Yes! Ma-ari gamitin kasabay ng ibang gamot.
+                </p>
+            </div>
+        </div>
 
 
         <div class="tmb-5 tborder-t" >
@@ -120,7 +157,7 @@
                 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review1/profile.png') }}" class="trounded-full lazy" style="width: 40px;" alt="">
+                        <img data-src="https://matildasbeauty.com/filemanager/ee1e89719c8043c7bb73efe1d48444bc.png" class="trounded-full lazy" style="width: 40px;" alt="">
                         <div class="tml-2">
                             <p>Ana Villanueva</p>
                             <div class="">
@@ -138,23 +175,23 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review1/1.png') }}" class="tmr-1 trounded">
+                            <img src="https://matildasbeauty.com/filemanager/e1dfd4859544413cb9a0180c1abb3b06.png" class="tmr-1 trounded">
                      </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review1/2.png') }}" class="tmr-1 trounded lazy">
+                            <img data-src="https://matildasbeauty.com/filemanager/44c9ec170a674a648aeca87fddc70f47.png" class="tmr-1 trounded lazy">
                      </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review1/3.png') }}" class="tmr-1 trounded lazy">
+                            <img data-src="https://matildasbeauty.com/filemanager/c13008193f5d48cb9aa8fc4da7f71a44.png" class="tmr-1 trounded lazy">
                      </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review1/4.png') }}" class="tmr-1 trounded lazy">
+                            <img data-src="https://matildasbeauty.com/filemanager/92d3f704fd044fbf8b22871cf14b6e99.png" class="tmr-1 trounded lazy">
                      </div>
                     </div>
                 </div><!-- REVIEW 1 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review6/profile.png') }}" class="lazy trounded-full" style="width: 40px;" alt="">
+                        <img data-src="https://matildasbeauty.com/filemanager/a65cbaa3763b4944818595cc34eaa01a.png" class="lazy trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
                             <p>Carlo Reyes</p>
                             <div class="">
@@ -172,23 +209,23 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review6/1.png') }}" class="tmr-1  trounded">
+                            <img src="https://matildasbeauty.com/filemanager/973a34e758404981a8a1d3a09d4f00ab.png" class="tmr-1  trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review6/2.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/f496b5817ff843fd8cb7d9ea88ea3d4c.png" class="tmr-1 lazy trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review6/3.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/dda04916b3f546a1bdd5c509d07602e6.png" class="tmr-1 lazy trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review6/4.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/34c9cf8cb8af4938b0e1b1f2fe98239b.png" class="tmr-1 lazy trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 2 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review3/profile.png') }}" class="lazy trounded-full" style="width: 40px;" alt="">
+                        <img data-src="https://matildasbeauty.com/filemanager/0899a1d837e544708918c1c6e8476a2f.png" class="lazy trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
                             <p>Grace Morales</p>
                             <div class="">
@@ -206,23 +243,23 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review3/1.png') }}" class="tmr-1 trounded">
+                            <img src="https://matildasbeauty.com/filemanager/8d50d5518d6c4820b593352075f1e195.png" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review3/2.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/e1136bf0bb5c4e00b0a5ca35b4c65019.png" class="tmr-1 lazy trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review3/3.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/6032de04e83e4dcca60ae72c1270b404.png" class="tmr-1 lazy trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review3/4.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/9300b19b62cc4065b7c2613fea675fc0.png" class="tmr-1 lazy trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 3 -->
                 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review4/profile.png') }}" class="lazy trounded-full" style="width: 40px;" alt="">
+                        <img data-src="https://matildasbeauty.com/filemanager/62a3944cf9e7498ba599d59f5c3de612.png" class="lazy trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
                             <p>Allan De Guzman</p>
                             <div class="">
@@ -240,23 +277,23 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review4/1.png') }}" class="tmr-1 trounded">
+                            <img src="https://matildasbeauty.com/filemanager/38945a5420d64c34ace068478bb63dff.png" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review4/2.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/b112209a4ad2497a960b48418dad12e9.png" class="tmr-1 lazy trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review4/3.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/e7630524f21341bf89edc06ab1a6055e.png" class="tmr-1 lazy trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review4/4.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/732c3e2e60ad469d8eef656a9f8d564d.png" class="tmr-1 lazy trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 4 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review5/profile.png') }}" class="lazy trounded-full" style="width: 40px;" alt="">
+                        <img data-src="https://matildasbeauty.com/filemanager/b36892d83ef64b488397f89a27429287.png" class="lazy trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
                             <p>Maricel Navarro</p>
                             <div class="">
@@ -274,23 +311,23 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review5/1.png') }}" class="tmr-1 trounded">
+                            <img src="https://matildasbeauty.com/filemanager/41fbd34a0efc4b6f8c053e1cda645a12.png" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review5/2.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/d14738c8770741d3a0dcdeb9c172c2df.png" class="tmr-1 lazy trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review5/3.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/102d7b67b0e846f3ae92a61223e3ed6d.png" class="tmr-1 lazy trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review5/4.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/5c8ce64bb95147e3970ccf752c985191.png" class="tmr-1 lazy trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 5 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review2/profile.png') }}" class="lazy trounded-full" style="width: 40px;" alt="">
+                        <img data-src="https://matildasbeauty.com/filemanager/dc00ba64323b4280a8e41b6d515d7167.png" class="lazy trounded-full" style="width: 40px;" alt="">
                         <div class="tml-2">
                             <p>Julius Santos</p>
                             <div class="">
@@ -308,16 +345,16 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('/images/fbads/lightbulb/reviews/review2/1.png') }}" class="tmr-1 trounded">
+                            <img src="https://matildasbeauty.com/filemanager/87d95d1f23894bacab2d20981f0831f7.png" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review2/2.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/aea7f3bac9444f56ba6fe7c5a0d54107.png" class="tmr-1 lazy trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review2/3.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/fe87bb85200a49a8a9f319ffa4a5d7dc.png" class="tmr-1 lazy trounded">
                         </div>
                         <div class="tmr-2">
-                            <img data-src="{{ asset('/images/fbads/lightbulb/reviews/review2/4.png') }}" class="tmr-1 lazy trounded">
+                            <img data-src="https://matildasbeauty.com/filemanager/03da22bfea18404dab11a42280fe8a62.png" class="tmr-1 lazy trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 6 -->
@@ -329,9 +366,9 @@
 
                     <div class="tflex tflex-wrap tmt-5">
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/0098272e71624a42bcd3d4e7acab481b.jpg" class="tmr-1 trounded">
+                            <img src="https://matildasbeauty.com/filemanager/dcffe765bd64434a8bf609551b9b4100.png" class="tmr-1 trounded">
                             <div class="">
-                                <span class="tfont-medium">Angela M.</span>
+                                <span class="tfont-medium">Ka Tasio</span>
                             </div>
                             <div class="">
                                 <span>
@@ -347,14 +384,14 @@
                                 <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
-                                I love how it automatically lights up when I enter the room. So convenient!
+                                "Dati ay hirap na hirap ako sa <b>arthritis sa kamay</b> ko. Pero sa <b>ginger oil</b> na ito, <b>na-relieve ang sakit</b> at mas madali na akong makagalaw. Salamat!"
                             </p>
                         </div><!--more review 1 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/c784eb85b0ef497d919fb54decf0b915.jpg" class="tmr-1 trounded ">
+                            <img src="https://matildasbeauty.com/filemanager/a22cb1fed2e64962adee9146eac851eb.png" class="tmr-1 trounded ">
                             <div class="">
-                                <span class="tfont-medium">Sarah T.</span>
+                                <span class="tfont-medium">Aling Rosa</span>
                             </div>
                             <div class="">
                                 <span>
@@ -370,14 +407,14 @@
                                 <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
-                                Ang galing ng motion sensor nito, it makes my hallway lighting smart and efficient!
+                                "Sa tagal ng <b>arthritis sa kamay</b> ko, naghanap ako ng solusyon. Ngayon, gamit ko ang <b>ginger oil</b>, <b>mas magaan na ang pakiramdam</b> ko. Talagang epektibo!"
                             </p>
                         </div><!--more review 2 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/09e3f422034c46cab57338e3451e346a.jpg" class="tmr-1 trounded ">
+                            <img src="https://matildasbeauty.com/filemanager/6c064877baca4f9d87c808415ee403e3.png" class="tmr-1 trounded ">
                             <div class="">
-                                <span class="tfont-medium">Daniel R.</span>
+                                <span class="tfont-medium">Maria Reyes</span>
                             </div>
                             <div class="">
                                 <span>
@@ -393,14 +430,14 @@
                                 <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
-                                This light bulb holder is super easy to install and works flawlessly. No more stumbling in the dark!
+                                "Dahil sa katagalan sa trabaho, sumasakit ang likod ko. Pero sa <b>ginger oil</b>, <b>naging magaan ang pakiramdam</b> ko pagkatapos magmasahe. Sulit!"
                             </p>
                         </div><!--more review 3 -->
                         
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/4c4c2704a84a458eb21cfe9b78d9d137.jpg" class="tmr-1 trounded ">
+                            <img src="https://matildasbeauty.com/filemanager/5aea82ab45fa48479a8e2b2ce7233c24.png" class="tmr-1 trounded ">
                             <div class="">
-                                <span class="tfont-medium">James P.</span>
+                                <span class="tfont-medium">Ana Cruz</span>
                             </div>
                             <div class="">
                                 <span>
@@ -416,14 +453,14 @@
                                 <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
-                                This holder turns any bulb into a sensor light. It's perfect for our basement.
+                                "Sobrang stress ako lately, kaya nagka-<b>matinding headache</b> ako. Pero nang ginamit ko ang <b>ginger oil</b>, <b>nawala ang sakit</b> at nakatulog ako ng maayos!"
                             </p>
                         </div><!--more review 4 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/a8438268a7c241349fa819a21eabf86b.jpg" class="tmr-1 trounded ">
+                            <img src="https://matildasbeauty.com/filemanager/89b06bbaa45446b6a745ad98f90fefba.png" class="tmr-1 trounded ">
                             <div class="">
-                                <span class="tfont-medium">Mark B.</span>
+                                <span class="tfont-medium">Lita Villanueva</span>
                             </div>
                             <div class="">
                                 <span>
@@ -439,16 +476,14 @@
                                 <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
-                                Ang ganda kasi kusa talga sya namamatay bukas legit
-                                Ung natipid ko sa Ilaw. Nakakapag Aircon pa ko. kawawa kasi baby ko ang init sa tanghali.
-                                
+                                "Madalas akong magkaroon ng <b>manas sa paa</b> dahil sa pagod. Pero sa <b>ginger oil</b>, <b>nabawasan ang pamamaga</b> at mas magaan na ang pakiramdam ko!"
                             </p>
                         </div><!--more review 5 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/a25b2245250540c699465d525590e89a.jpg" class="tmr-1 trounded ">
+                            <img src="https://matildasbeauty.com/filemanager/a9f8f63697ea434cbde35bfafbac684b.png" class="tmr-1 trounded ">
                             <div class="">
-                                <span class="tfont-medium">Mark B.</span>
+                                <span class="tfont-medium">Ferdinand Sarayot</span>
                             </div>
                             <div class="">
                                 <span>
@@ -464,14 +499,14 @@
                                 <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
-                                Lakas maka tipid sa Koryente. Bagay talaga to sa mga makalimutin mag patay ng ilaw
+                                "Pagod na pagod ako sa trabaho at laging <b>ngalay</b> ang kamay ko. Pero nang ginamit ko ang <b>ginger oil</b>, <b>nawala ang sakit</b> at nakaramdam ako ng ginhawa!"
                             </p>
                         </div><!--more review 6 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/593c6b951ad942c29c6556cb93250775.jpg" class="tmr-1 trounded ">
+                            <img src="https://matildasbeauty.com/filemanager/68e2db2ad6534b65bb56f558e43a1a1c.png" class="tmr-1 trounded ">
                             <div class="">
-                                <span class="tfont-medium">Rachel S.</span>
+                                <span class="tfont-medium">Elena Torres</span>
                             </div>
                             <div class="">
                                 <span>
@@ -487,14 +522,14 @@
                                 <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
-                                Easy to install and works like a charm. Highly recommend!
+                                "Sobrang sakit ng <b>likod at leeg</b> ko mula sa trabaho. Pero sa <b>ginger oil</b>, <b>nawala ang pananakit</b> at nakaramdam ako ng ginhawa. Salamat!"
                             </p>
                         </div><!--more review 7 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/12e50bc69ad74dfeaad97e169c8e4f01.webp" class="tmr-1 trounded ">
+                            <img src="https://matildasbeauty.com/filemanager/912dfd52044541df86d5baa04dd992e5.png" class="tmr-1 trounded ">
                             <div class="">
-                                <span class="tfont-medium">Lily N.</span>
+                                <span class="tfont-medium">Ronaldo tinad</span>
                             </div>
                             <div class="">
                                 <span>
@@ -510,14 +545,14 @@
                                 <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
-                                It detects motion accurately and the installation was very straightforward.
+                                "Laging sumasakit ang <b>balikat at mga kalamnan</b> ko matapos magtrabaho. Pero sa <b>ginger oil</b>, <b>naalis ang tensyon</b> at nakaramdam ako ng ginhawa. Napaka-epektibo!"
                             </p>
                         </div><!--more review 8 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/35fe85fb82744b77bc3c60182095327d.webp" class="tmr-1 trounded ">
+                            <img src="https://matildasbeauty.com/filemanager/a81617d549e940aa91cf384625f1dfdb.png" class="tmr-1 trounded ">
                             <div class="">
-                                <span class="tfont-medium">Emily V.</span>
+                                <span class="tfont-medium">Corazon dela Cruz</span>
                             </div>
                             <div class="">
                                 <span>
@@ -533,12 +568,12 @@
                                 <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
-                               ito gamit ko sa labas ng bahay. Ang ganda automatic on/OFF tipid talaga sa koryente
+                                "Dati, sobrang <b>masakit ang paa ko dahil sa rayuma</b>. sinubukan ko gamitin ang <b>ginger oil</b>, <b>nabawasan ang sakit</b> at mas nakalakad ako ng maayos. Salamat!"
                             </p>
                         </div><!--more review 9 -->
 
                         <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com/filemanager/3581d4c2e2944266a3501906b1b1bc03.webp" class="tmr-1 trounded ">
+                            <img src="https://matildasbeauty.com/filemanager/70a203028a1a4ec7969020734e1148c9.png" class="tmr-1 trounded ">
                             <div class="">
                                 <span class="tfont-medium">Maricar C.</span>
                             </div>
@@ -556,8 +591,8 @@
                                 <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
-                                Wow Grabe tipid meralco namin. BIll to sa paupahan ko
-                                wala pa kasi naka tira kaya palagi bukas ilaw
+                                "Sobrang <b>masakit ang buong katawan</b> ko at nagka-<b>maga sa kamay ko</b>. 
+                                itong ginger oil ang gamit ng masahista samin. kaya nag order din ako pan sariling gamit
                             </p>
                         </div><!--more review 10 -->
 
@@ -568,7 +603,7 @@
             </div>  <!-- RATINGS DIV -->
         </div> <!-- RATINGS -->
 
-        <img class="tmt-5 tmb-6" src="{{ asset('/images/fbads/lightbulb/6.png') }}" alt="2">
+        <img class="tmt-5 tmb-6" src="https://matildasbeauty.com/filemanager/2fe108d419424016a9496bfc5b334357.png" alt="fda">
     
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
@@ -615,19 +650,12 @@
 
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
-                                <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="SmartLight_3pcs|1199|3pcs">
-                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">3pcs Smart Light</span>
-                                <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(399/each)</span>
-                                <span class="tabsolute theme-bg tw-10" style="
-                                    height: 28px;
-                                    bottom: 4%;
-                                    width: 57px;
-                                    right: 5%;
-                                    border: 1px solid red;
-                                    border-top-left-radius: 10px;
-                                    border-top-right-radius: 10px;
-                                    ">
-                                <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱1199</span>
+                                <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="GingerOil_5pcs|699|5pcs">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">Buy 3 + Free 2 (5pcs Ginger Oil) </span>
+                                <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(139/each)</span>
+                                <span class="tabsolute theme-bg tw-10" style="height: 28px; bottom: 4%; width: 57px; right: 5%; border: 1px solid red;
+                                    border-top-left-radius: 10px; border-top-right-radius: 10px; ">
+                                <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱699</span>
 
                                 </span>
                             </label>
@@ -640,20 +668,12 @@
 
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
-                                <input type="checkbox" id="promo2" name="promo" class="promo"  value="SmartLight_2pcs|899|2pcs">
-                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">2pcs Smart Light</span>
-                                <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(449/each)</span>
-                                <span class="tabsolute theme-bg tw-10" style="
-                                    height: 28px;
-                                    bottom: 4%;
-                                    width: 57px;
-                                    right: 5%;
-                                    border: 1px solid red;
-                                    border-top-left-radius: 10px;
-                                    border-top-right-radius: 10px;
-                                    ">
-                                    <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱899</span>
-
+                                <input type="checkbox" id="promo2" name="promo" class="promo"  value="GingerOil_3pcs|499|3pcs">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">Buy 2 + Free 1 (3pcs Ginger Oil)</span>
+                                <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(166/each)</span>
+                                <span class="tabsolute theme-bg tw-10" style=" height: 28px; bottom: 4%; width: 57px; right: 5%; border: 1px solid red; 
+                                    border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                                    <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱499</span>
                                 </span>
                             </label>
                           
@@ -661,20 +681,13 @@
                         
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
-                                <input type="checkbox" id="promo3" name="promo" class="promo" value="SmartLight_1pcs|549|1pc">
-                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">1pc Smart Light</span>
-                                <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(549/each)</span>
+                                <input type="checkbox" id="promo3" name="promo" class="promo" value="GingerOil_1pc|399|1pc">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">1pc Ginger Oil</span>
+                                <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(399/each)</span>
 
-                                <span class="tabsolute theme-bg tw-10" style="
-                                    height: 28px;
-                                    bottom: 4%;
-                                    width: 57px;
-                                    right: 5%;
-                                    border: 1px solid red;
-                                    border-top-left-radius: 10px;
-                                    border-top-right-radius: 10px;
-                                    ">
-                                    <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱549</span>
+                                <span class="tabsolute theme-bg tw-10" style=" height: 28px; bottom: 4%; width: 57px; right: 5%; border: 1px solid red;
+                                    border-top-left-radius: 10px; border-top-right-radius: 10px; ">
+                                    <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱399</span>
                                 </span>
                             </label>
                         </div><!-- PROMO 3-->
@@ -689,7 +702,7 @@
                     <span class="ttext-gray-900" style="font-size: 16px;">
                         <span class="tfont-medium">TOTAL:</span>
                         <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">1199</span>
+                        <span id="total" class="tfont-medium t-ml-1">699</span>
                     </span>
                 </div>
                 <div class="tw-full ">

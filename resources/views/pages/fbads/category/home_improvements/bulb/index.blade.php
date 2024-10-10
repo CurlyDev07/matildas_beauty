@@ -1,5 +1,7 @@
 @extends('pages.fbads.category.home_improvements.layouts.app')
 
+@section('title') Smart Light PH | Auto On/Off Bulb Holder @endsection
+
 @section('pixels')
     @include('pages.fbads.category.home_improvements.bulb.pixels')
 @endsection
