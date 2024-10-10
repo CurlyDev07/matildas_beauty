@@ -57,7 +57,7 @@
                                 <div class="tabsolute tbg-white tfont-medium tpx-2 truncate ttext-sm tw-full tpy-1" style="bottom: 0%; left: 0%;">
                                     <div class="tw-full tflex tjustify-between tpx-5">
                                         <div class="">Size: <span class="file_size ttext-gray-900">{{ $file->file_size }}</span></div>
-                                        <div class=""> Type: <span class="ttext-gray-900">Png</span> </div>
+                                        <div class=""> Type: <span class="ttext-gray-900">{{ $file->file_ext }}</span> </div>
                                     </div>
                                 </div>
                             </div>
