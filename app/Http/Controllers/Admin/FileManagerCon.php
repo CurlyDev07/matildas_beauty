@@ -30,9 +30,6 @@ class FileManagerCon extends Controller
     }// add folder
    
     public function upload(Request $request){
-        phpinfo();
-      
-
         if (request()->hasFile('file')) {
             $file = $request->file('file');
             $file_ext = $file->getClientOriginalExtension();
@@ -49,7 +46,6 @@ class FileManagerCon extends Controller
             ]);
         }
 
-        dd("FIle upload");
         return redirect()->back();
     }// Upload File inside the folder
 
