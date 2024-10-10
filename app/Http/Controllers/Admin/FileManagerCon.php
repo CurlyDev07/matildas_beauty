@@ -30,9 +30,8 @@ class FileManagerCon extends Controller
     }// add folder
    
     public function upload(Request $request){
-        
-        echo ini_set('post_max_size');
-        echo ini_set('upload_max_filesize');
+        phpinfo();
+      
 
         if (request()->hasFile('file')) {
             $file = $request->file('file');
