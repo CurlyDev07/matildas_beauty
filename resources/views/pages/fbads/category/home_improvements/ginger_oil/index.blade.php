@@ -7,7 +7,7 @@
 @endsection
 
 @section('pixels')
-    @include('pages.fbads.category.home_improvements.bulb.pixels')
+    @include('pages.fbads.category.home_improvements.ginger_oil.pixels')
 @endsection
 
 @section('content')
