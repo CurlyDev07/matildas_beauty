@@ -2,8 +2,12 @@
 
 @section('title') Ginger Essential Oil PH @endsection
 
+@section('favicon')
+    <link rel="shortcut icon" href="https://matildasbeauty.com/filemanager/72b0d36b09d04746ac3bb23ad4142151.ico" >
+@endsection
+
 @section('pixels')
-    @include('pages.fbads.category.home_improvements.bulb.pixels')
+    {{-- @include('pages.fbads.category.home_improvements.bulb.pixels') --}}
 @endsection
 
 @section('content')
@@ -45,6 +49,7 @@
                     <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
                     <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
                 </span>
+                <br>
                 <span class="ttext-md ttext-green-900">
                     <span class="tfont-bold"> &nbsp; 4.8</span>
                     <span class="tfont-medium">Ratings</span>
@@ -60,7 +65,7 @@
             <span class="theme-color tfont-medium tml-2"> FREE 4 Gifts</span>
         </div><!-- FREE 4 Gifts -->
 
-        <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
+        <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3 tpx-5">
             <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Arthritis</div>
             <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Chronic Pain</div>
             <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Muscle Pain</div>
@@ -75,50 +80,6 @@
             <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Sipon</div>
             <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Insomia</div>
         </div>
-
-        <img class="tmt-5" src="https://matildasbeauty.com/filemanager/4f4dedb4413b471f92045252d5a89af6.png" alt="1">
-        <img class="" src="https://matildasbeauty.com/filemanager/e5e3011805df4b868d13e34f86915cd7.png" alt="1">
-
-        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
-            <source src="{{ asset('filemanager/2e51178113854a748792e4db3c22c6f8.mp4') }}" type="video/mp4">
-            <source src="movie.ogg" type="video/ogg">
-        </video>
-
-        <div class="ginger-theme-bg tmb-8 tp-5 ttext-white">
-            <h1 class="tmb-3 ttext-2xl tfont-medium tm-5">KADALASANG TANONG</h1>
-
-            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2">
-                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">1. Paano ito nakakatulong sa sakit?</h2>
-                <p class="tml-8 ttext-gray-400">
-                    <b>Ginger oil</b> ay isang natural na langis na nakuha mula sa ugat ng <b>luya</b>. Kilala ito sa mga <b>anti-inflammatory properties</b> nito na nakakatulong sa pagpapagaan ng sakit sa mga kasukasuan at kalamnan, lalo na para sa mga taong may <b>arthritis</b>.
-                </p>
-            </div>
-            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2 tmt-5">
-                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">2. Paano gamitin ang ginger oil?</h2>
-                <p class="tml-8 ttext-gray-400">
-                    Maaari mong ipahid ang <b>ginger oil</b> sa mga apektadong bahagi ng katawan. Maglagay ng ilang patak ng langis at dahan-dahang imasahe ito sa lugar ng sakit. Inirerekomenda na gamitin ito <b>2-3 beses sa isang araw</b> para sa pinakamahusay na resulta.
-                </p>
-            </div>
-            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2 tmt-5">
-                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">3. Ligtas ba ang ginger oil para sa mga bataat matatanda?</h2>
-                <p class="tml-8 ttext-gray-400">
-                    Oo, <b>ligtas</b> ang ginger oil para sa mga bata at matatanda, ngunit palaging magandang ideya na kumonsulta sa isang doktor bago gamitin ito, lalo na kung may mga kasalukuyang kondisyon o umiinom ng gamot.
-                </p>
-            </div>
-            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2 tmt-5">
-                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">4. Gaano katagal bago ko makita ang mga resulta?</h2>
-                <p class="tml-8 ttext-gray-400">
-                    Maraming gumagamit ang nakakakita ng mga resulta sa loob ng <b>ilang araw</b>. Gayunpaman, ang mga resulta ay maaaring mag-iba depende sa indibidwal at antas ng sakit. <b>Patuloy na paggamit</b> ang susi para sa mas magandang epekto.
-                </p>
-            </div>
-            <div class="tpb-2 tmt-5">
-                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">5. Maaari bang gamitin ang ginger oil kasabay ng iba pang mga gamot?</h2>
-                <p class="tml-8 ttext-gray-400">
-                    Yes! Ma-ari gamitin kasabay ng ibang gamot.
-                </p>
-            </div>
-        </div>
-
 
         <div class="tmb-5 tborder-t" >
             <div class="tborder tpx-4 tpy-5">
@@ -602,6 +563,52 @@
 
             </div>  <!-- RATINGS DIV -->
         </div> <!-- RATINGS -->
+
+        <img class="tmt-5" src="https://matildasbeauty.com/filemanager/4f4dedb4413b471f92045252d5a89af6.png" alt="1">
+
+        <img class="" src="https://matildasbeauty.com/filemanager/e5e3011805df4b868d13e34f86915cd7.png" alt="1">
+
+        <img class="tmb-5" src="https://matildasbeauty.com/filemanager/4f0fcbfa68e64996851d614db7af8e96.png" alt="1">
+
+        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline >
+
+            <source src="https://matildasbeauty.com/filemanager/b2abb61415d641ba853efdae0a493e9f.mp4" type="video/mp4">
+            <source src="movie.ogg" type="video/ogg">
+        </video>
+        <div class="ginger-theme-bg tmb-8 tp-5 ttext-white">
+            <h1 class="tmb-3 ttext-2xl tfont-medium tm-5">KADALASANG TANONG</h1>
+
+            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2">
+                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">1. Paano ito nakakatulong sa sakit?</h2>
+                <p class="tml-8 ttext-gray-400">
+                    <b>Ginger oil</b> ay isang natural na langis na nakuha mula sa ugat ng <b>luya</b>. Kilala ito sa mga <b>anti-inflammatory properties</b> nito na nakakatulong sa pagpapagaan ng sakit sa mga kasukasuan at kalamnan, lalo na para sa mga taong may <b>arthritis</b>.
+                </p>
+            </div>
+            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2 tmt-5">
+                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">2. Paano gamitin ang ginger oil?</h2>
+                <p class="tml-8 ttext-gray-400">
+                    Maaari mong ipahid ang <b>ginger oil</b> sa mga apektadong bahagi ng katawan. Maglagay ng ilang patak ng langis at dahan-dahang imasahe ito sa lugar ng sakit. Inirerekomenda na gamitin ito <b>2-3 beses sa isang araw</b> para sa pinakamahusay na resulta.
+                </p>
+            </div>
+            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2 tmt-5">
+                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">3. Ligtas ba ang ginger oil para sa mga bataat matatanda?</h2>
+                <p class="tml-8 ttext-gray-400">
+                    Oo, <b>ligtas</b> ang ginger oil para sa mga bata at matatanda, ngunit palaging magandang ideya na kumonsulta sa isang doktor bago gamitin ito, lalo na kung may mga kasalukuyang kondisyon o umiinom ng gamot.
+                </p>
+            </div>
+            <div class="tborder-b tborder-gray-500 tborder-dashed tpb-2 tmt-5">
+                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">4. Gaano katagal bago ko makita ang mga resulta?</h2>
+                <p class="tml-8 ttext-gray-400">
+                    Maraming gumagamit ang nakakakita ng mga resulta sa loob ng <b>ilang araw</b>. Gayunpaman, ang mga resulta ay maaaring mag-iba depende sa indibidwal at antas ng sakit. <b>Patuloy na paggamit</b> ang susi para sa mas magandang epekto.
+                </p>
+            </div>
+            <div class="tpb-2 tmt-5">
+                <h2 class="ttext-lg tfont-bold tmb-1 tmb-3">5. Maaari bang gamitin ang ginger oil kasabay ng iba pang mga gamot?</h2>
+                <p class="tml-8 ttext-gray-400">
+                    Yes! Ma-ari gamitin kasabay ng ibang gamot.
+                </p>
+            </div>
+        </div>
 
         <img class="tmt-5 tmb-6" src="https://matildasbeauty.com/filemanager/2fe108d419424016a9496bfc5b334357.png" alt="fda">
     

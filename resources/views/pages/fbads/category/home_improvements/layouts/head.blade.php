@@ -8,7 +8,8 @@
     {{-- STYLE SHEETS --}}
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="shortcut icon" href="{{ asset('images/icons/favicon.ico') }}" >
+    
+    @yield('favicon')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <style>

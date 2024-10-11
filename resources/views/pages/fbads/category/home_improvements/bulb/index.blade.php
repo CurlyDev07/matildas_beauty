@@ -1,6 +1,12 @@
 @extends('pages.fbads.category.home_improvements.layouts.app')
 
-@section('title') Smart Light PH | Auto On/Off Bulb Holder @endsection
+@section('title') 
+    Smart Light PH | Auto On/Off Bulb Holder 
+@endsection
+
+@section('favicon')
+    <link rel="shortcut icon" href="{{ asset('images/icons/favicon.ico') }}" >
+@endsection
 
 @section('pixels')
     @include('pages.fbads.category.home_improvements.bulb.pixels')
