@@ -37,7 +37,7 @@
             <button class="prev" onclick="prevSlide()">&#10094</button>
             <button class="next" onclick="nextSlide()">&#10095</button>
         </div> --}}
-        <img src="https://matildasbeauty.com/filemanager/786ed9fddd444aa48a3eedffe7e0c884.png" class="tw-full" alt="banner">
+        <img src="https://matildasbeauty.com/filemanager/39451e7fd1c14459b004195435241424.webp" class="tw-full" alt="banner">
 
 
         <div class="tmx-3 tflex titems-center tmy-5">
@@ -321,9 +321,9 @@
             </div><!-- More Reviews -->
         </div>
 
-        <img class="tmt-5" src="https://matildasbeauty.com/filemanager/4f4dedb4413b471f92045252d5a89af6.png" alt="1">
+        <img class="tmt-5" src="https://matildasbeauty.com/filemanager/bda2459ce09644738445515e4530b594.webp" alt="Benefits Image">
 
-        <img class="" src="https://matildasbeauty.com/filemanager/e5e3011805df4b868d13e34f86915cd7.png" alt="1">
+        <img src="https://matildasbeauty.com/filemanager/45f23a0644804d588c8a18334fd8ac66.webp" alt="Ingredients Image">
 
         <div class="tborder-t" >
             <div class="tborder tpx-4 tpy-5">
