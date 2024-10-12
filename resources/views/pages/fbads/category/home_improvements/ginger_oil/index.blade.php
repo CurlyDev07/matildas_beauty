@@ -568,7 +568,7 @@
 
         <img class="" src="https://matildasbeauty.com/filemanager/e5e3011805df4b868d13e34f86915cd7.png" alt="1">
 
-        <img class="tmb-5" src="https://matildasbeauty.com/filemanager/4f0fcbfa68e64996851d614db7af8e96.png" alt="1">
+        <img class="tmb-5" src="https://matildasbeauty.com/filemanager/26c12434a9a348559708e3ed1b52b851.webp" alt="1">
 
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline >
 
