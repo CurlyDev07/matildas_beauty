@@ -81,7 +81,251 @@
             <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Insomia</div>
         </div>
 
-        <div class="tmb-5 tborder-t" >
+        <div class="tmb-5 tp-5 tborder">
+            <div class=" tmb-3">
+                <span class="ttext-lg tfont-semibold theme-color tmy-3">Customer Reviews</span>
+
+                <div class="tflex tflex-wrap tmt-5">
+                    <div class="tborder tp-2 tw-1/2 tmb-2">
+                        <img src="https://matildasbeauty.com/filemanager/dcffe765bd64434a8bf609551b9b4100.png" class="tmr-1 trounded">
+                        <div class="">
+                            <span class="tfont-medium">Ka Tasio</span>
+                        </div>
+                        <div class="">
+                            <span>
+                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                Verified
+                            </span>
+                        </div>
+                        <div class="tmb-2">
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Dati ay hirap na hirap ako sa <b>arthritis sa kamay</b> ko. Pero sa <b>ginger oil</b> na ito, <b>na-relieve ang sakit</b> at mas madali na akong makagalaw. Salamat!"
+                        </p>
+                    </div><!--more review 1 -->
+
+                    <div class="tborder tp-2 tw-1/2 tmb-2">
+                        <img src="https://matildasbeauty.com/filemanager/a22cb1fed2e64962adee9146eac851eb.png" class="tmr-1 trounded ">
+                        <div class="">
+                            <span class="tfont-medium">Aling Rosa</span>
+                        </div>
+                        <div class="">
+                            <span>
+                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                Verified
+                            </span>
+                        </div>
+                        <div class="tmb-2">
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Sa tagal ng <b>arthritis sa kamay</b> ko, naghanap ako ng solusyon. Ngayon, gamit ko ang <b>ginger oil</b>, <b>mas magaan na ang pakiramdam</b> ko. Talagang epektibo!"
+                        </p>
+                    </div><!--more review 2 -->
+
+                    <div class="tborder tp-2 tw-1/2 tmb-2">
+                        <img src="https://matildasbeauty.com/filemanager/6c064877baca4f9d87c808415ee403e3.png" class="tmr-1 trounded ">
+                        <div class="">
+                            <span class="tfont-medium">Maria Reyes</span>
+                        </div>
+                        <div class="">
+                            <span>
+                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                Verified
+                            </span>
+                        </div>
+                        <div class="tmb-2">
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Dahil sa katagalan sa trabaho, sumasakit ang likod ko. Pero sa <b>ginger oil</b>, <b>naging magaan ang pakiramdam</b> ko pagkatapos magmasahe. Sulit!"
+                        </p>
+                    </div><!--more review 3 -->
+                    
+                    <div class="tborder tp-2 tw-1/2 tmb-2">
+                        <img src="https://matildasbeauty.com/filemanager/5aea82ab45fa48479a8e2b2ce7233c24.png" class="tmr-1 trounded ">
+                        <div class="">
+                            <span class="tfont-medium">Ana Cruz</span>
+                        </div>
+                        <div class="">
+                            <span>
+                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                Verified
+                            </span>
+                        </div>
+                        <div class="tmb-2">
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Sobrang stress ako lately, kaya nagka-<b>matinding headache</b> ako. Pero nang ginamit ko ang <b>ginger oil</b>, <b>nawala ang sakit</b> at nakatulog ako ng maayos!"
+                        </p>
+                    </div><!--more review 4 -->
+
+                    <div class="tborder tp-2 tw-1/2 tmb-2">
+                        <img src="https://matildasbeauty.com/filemanager/89b06bbaa45446b6a745ad98f90fefba.png" class="tmr-1 trounded ">
+                        <div class="">
+                            <span class="tfont-medium">Lita Villanueva</span>
+                        </div>
+                        <div class="">
+                            <span>
+                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                Verified
+                            </span>
+                        </div>
+                        <div class="tmb-2">
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Madalas akong magkaroon ng <b>manas sa paa</b> dahil sa pagod. Pero sa <b>ginger oil</b>, <b>nabawasan ang pamamaga</b> at mas magaan na ang pakiramdam ko!"
+                        </p>
+                    </div><!--more review 5 -->
+
+                    <div class="tborder tp-2 tw-1/2 tmb-2">
+                        <img src="https://matildasbeauty.com/filemanager/a9f8f63697ea434cbde35bfafbac684b.png" class="tmr-1 trounded ">
+                        <div class="">
+                            <span class="tfont-medium">Ferdinand Sarayot</span>
+                        </div>
+                        <div class="">
+                            <span>
+                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                Verified
+                            </span>
+                        </div>
+                        <div class="tmb-2">
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Pagod na pagod ako sa trabaho at laging <b>ngalay</b> ang kamay ko. Pero nang ginamit ko ang <b>ginger oil</b>, <b>nawala ang sakit</b> at nakaramdam ako ng ginhawa!"
+                        </p>
+                    </div><!--more review 6 -->
+
+                    <div class="tborder tp-2 tw-1/2 tmb-2">
+                        <img src="https://matildasbeauty.com/filemanager/68e2db2ad6534b65bb56f558e43a1a1c.png" class="tmr-1 trounded ">
+                        <div class="">
+                            <span class="tfont-medium">Elena Torres</span>
+                        </div>
+                        <div class="">
+                            <span>
+                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                Verified
+                            </span>
+                        </div>
+                        <div class="tmb-2">
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Sobrang sakit ng <b>likod at leeg</b> ko mula sa trabaho. Pero sa <b>ginger oil</b>, <b>nawala ang pananakit</b> at nakaramdam ako ng ginhawa. Salamat!"
+                        </p>
+                    </div><!--more review 7 -->
+
+                    <div class="tborder tp-2 tw-1/2 tmb-2">
+                        <img src="https://matildasbeauty.com/filemanager/912dfd52044541df86d5baa04dd992e5.png" class="tmr-1 trounded ">
+                        <div class="">
+                            <span class="tfont-medium">Ronaldo tinad</span>
+                        </div>
+                        <div class="">
+                            <span>
+                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                Verified
+                            </span>
+                        </div>
+                        <div class="tmb-2">
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Laging sumasakit ang <b>balikat at mga kalamnan</b> ko matapos magtrabaho. Pero sa <b>ginger oil</b>, <b>naalis ang tensyon</b> at nakaramdam ako ng ginhawa. Napaka-epektibo!"
+                        </p>
+                    </div><!--more review 8 -->
+
+                    <div class="tborder tp-2 tw-1/2 tmb-2">
+                        <img src="https://matildasbeauty.com/filemanager/a81617d549e940aa91cf384625f1dfdb.png" class="tmr-1 trounded ">
+                        <div class="">
+                            <span class="tfont-medium">Corazon dela Cruz</span>
+                        </div>
+                        <div class="">
+                            <span>
+                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                Verified
+                            </span>
+                        </div>
+                        <div class="tmb-2">
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Dati, sobrang <b>masakit ang paa ko dahil sa rayuma</b>. sinubukan ko gamitin ang <b>ginger oil</b>, <b>nabawasan ang sakit</b> at mas nakalakad ako ng maayos. Salamat!"
+                        </p>
+                    </div><!--more review 9 -->
+
+                    <div class="tborder tp-2 tw-1/2 tmb-2">
+                        <img src="https://matildasbeauty.com/filemanager/70a203028a1a4ec7969020734e1148c9.png" class="tmr-1 trounded ">
+                        <div class="">
+                            <span class="tfont-medium">Maricar C.</span>
+                        </div>
+                        <div class="">
+                            <span>
+                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                Verified
+                            </span>
+                        </div>
+                        <div class="tmb-2">
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                        </div>
+                        <p>
+                            "Sobrang <b>masakit ang buong katawan</b> ko at nagka-<b>maga sa kamay ko</b>. 
+                            itong ginger oil ang gamit ng masahista samin. kaya nag order din ako pan sariling gamit
+                        </p>
+                    </div><!--more review 10 -->
+
+                </div>
+            </div><!-- More Reviews -->
+        </div>
+
+        <img class="tmt-5" src="https://matildasbeauty.com/filemanager/4f4dedb4413b471f92045252d5a89af6.png" alt="1">
+
+        <img class="" src="https://matildasbeauty.com/filemanager/e5e3011805df4b868d13e34f86915cd7.png" alt="1">
+
+        <div class="tborder-t" >
             <div class="tborder tpx-4 tpy-5">
                 <h1 class="tmb-3 ttext-2xl">Product Ratings</h1>
                 <div class="tflex titems-center tjustify-between tmb-3">
@@ -322,251 +566,10 @@
 
                 <hr class="tmy-5">
 
-                <div class=" tmb-3">
-                    <span class="ttext-lg tfont-semibold theme-color tmy-3">More Reviews</span>
-
-                    <div class="tflex tflex-wrap tmt-5">
-                        <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeauty.com/filemanager/dcffe765bd64434a8bf609551b9b4100.png" class="tmr-1 trounded">
-                            <div class="">
-                                <span class="tfont-medium">Ka Tasio</span>
-                            </div>
-                            <div class="">
-                                <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
-                                    Verified
-                                </span>
-                            </div>
-                            <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            </div>
-                            <p>
-                                "Dati ay hirap na hirap ako sa <b>arthritis sa kamay</b> ko. Pero sa <b>ginger oil</b> na ito, <b>na-relieve ang sakit</b> at mas madali na akong makagalaw. Salamat!"
-                            </p>
-                        </div><!--more review 1 -->
-
-                        <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeauty.com/filemanager/a22cb1fed2e64962adee9146eac851eb.png" class="tmr-1 trounded ">
-                            <div class="">
-                                <span class="tfont-medium">Aling Rosa</span>
-                            </div>
-                            <div class="">
-                                <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
-                                    Verified
-                                </span>
-                            </div>
-                            <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            </div>
-                            <p>
-                                "Sa tagal ng <b>arthritis sa kamay</b> ko, naghanap ako ng solusyon. Ngayon, gamit ko ang <b>ginger oil</b>, <b>mas magaan na ang pakiramdam</b> ko. Talagang epektibo!"
-                            </p>
-                        </div><!--more review 2 -->
-
-                        <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeauty.com/filemanager/6c064877baca4f9d87c808415ee403e3.png" class="tmr-1 trounded ">
-                            <div class="">
-                                <span class="tfont-medium">Maria Reyes</span>
-                            </div>
-                            <div class="">
-                                <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
-                                    Verified
-                                </span>
-                            </div>
-                            <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            </div>
-                            <p>
-                                "Dahil sa katagalan sa trabaho, sumasakit ang likod ko. Pero sa <b>ginger oil</b>, <b>naging magaan ang pakiramdam</b> ko pagkatapos magmasahe. Sulit!"
-                            </p>
-                        </div><!--more review 3 -->
-                        
-                        <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeauty.com/filemanager/5aea82ab45fa48479a8e2b2ce7233c24.png" class="tmr-1 trounded ">
-                            <div class="">
-                                <span class="tfont-medium">Ana Cruz</span>
-                            </div>
-                            <div class="">
-                                <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
-                                    Verified
-                                </span>
-                            </div>
-                            <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            </div>
-                            <p>
-                                "Sobrang stress ako lately, kaya nagka-<b>matinding headache</b> ako. Pero nang ginamit ko ang <b>ginger oil</b>, <b>nawala ang sakit</b> at nakatulog ako ng maayos!"
-                            </p>
-                        </div><!--more review 4 -->
-
-                        <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeauty.com/filemanager/89b06bbaa45446b6a745ad98f90fefba.png" class="tmr-1 trounded ">
-                            <div class="">
-                                <span class="tfont-medium">Lita Villanueva</span>
-                            </div>
-                            <div class="">
-                                <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
-                                    Verified
-                                </span>
-                            </div>
-                            <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            </div>
-                            <p>
-                                "Madalas akong magkaroon ng <b>manas sa paa</b> dahil sa pagod. Pero sa <b>ginger oil</b>, <b>nabawasan ang pamamaga</b> at mas magaan na ang pakiramdam ko!"
-                            </p>
-                        </div><!--more review 5 -->
-
-                        <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeauty.com/filemanager/a9f8f63697ea434cbde35bfafbac684b.png" class="tmr-1 trounded ">
-                            <div class="">
-                                <span class="tfont-medium">Ferdinand Sarayot</span>
-                            </div>
-                            <div class="">
-                                <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
-                                    Verified
-                                </span>
-                            </div>
-                            <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            </div>
-                            <p>
-                                "Pagod na pagod ako sa trabaho at laging <b>ngalay</b> ang kamay ko. Pero nang ginamit ko ang <b>ginger oil</b>, <b>nawala ang sakit</b> at nakaramdam ako ng ginhawa!"
-                            </p>
-                        </div><!--more review 6 -->
-
-                        <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeauty.com/filemanager/68e2db2ad6534b65bb56f558e43a1a1c.png" class="tmr-1 trounded ">
-                            <div class="">
-                                <span class="tfont-medium">Elena Torres</span>
-                            </div>
-                            <div class="">
-                                <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
-                                    Verified
-                                </span>
-                            </div>
-                            <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            </div>
-                            <p>
-                                "Sobrang sakit ng <b>likod at leeg</b> ko mula sa trabaho. Pero sa <b>ginger oil</b>, <b>nawala ang pananakit</b> at nakaramdam ako ng ginhawa. Salamat!"
-                            </p>
-                        </div><!--more review 7 -->
-
-                        <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeauty.com/filemanager/912dfd52044541df86d5baa04dd992e5.png" class="tmr-1 trounded ">
-                            <div class="">
-                                <span class="tfont-medium">Ronaldo tinad</span>
-                            </div>
-                            <div class="">
-                                <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
-                                    Verified
-                                </span>
-                            </div>
-                            <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            </div>
-                            <p>
-                                "Laging sumasakit ang <b>balikat at mga kalamnan</b> ko matapos magtrabaho. Pero sa <b>ginger oil</b>, <b>naalis ang tensyon</b> at nakaramdam ako ng ginhawa. Napaka-epektibo!"
-                            </p>
-                        </div><!--more review 8 -->
-
-                        <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeauty.com/filemanager/a81617d549e940aa91cf384625f1dfdb.png" class="tmr-1 trounded ">
-                            <div class="">
-                                <span class="tfont-medium">Corazon dela Cruz</span>
-                            </div>
-                            <div class="">
-                                <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
-                                    Verified
-                                </span>
-                            </div>
-                            <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            </div>
-                            <p>
-                                "Dati, sobrang <b>masakit ang paa ko dahil sa rayuma</b>. sinubukan ko gamitin ang <b>ginger oil</b>, <b>nabawasan ang sakit</b> at mas nakalakad ako ng maayos. Salamat!"
-                            </p>
-                        </div><!--more review 9 -->
-
-                        <div class="tborder tp-2 tw-1/2 tmb-2">
-                            <img src="https://matildasbeauty.com/filemanager/70a203028a1a4ec7969020734e1148c9.png" class="tmr-1 trounded ">
-                            <div class="">
-                                <span class="tfont-medium">Maricar C.</span>
-                            </div>
-                            <div class="">
-                                <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
-                                    Verified
-                                </span>
-                            </div>
-                            <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            </div>
-                            <p>
-                                "Sobrang <b>masakit ang buong katawan</b> ko at nagka-<b>maga sa kamay ko</b>. 
-                                itong ginger oil ang gamit ng masahista samin. kaya nag order din ako pan sariling gamit
-                            </p>
-                        </div><!--more review 10 -->
-
-                    </div>
-                </div><!-- More Reviews -->
-
-
             </div>  <!-- RATINGS DIV -->
         </div> <!-- RATINGS -->
 
-        <img class="tmt-5" src="https://matildasbeauty.com/filemanager/4f4dedb4413b471f92045252d5a89af6.png" alt="1">
-
-        <img class="" src="https://matildasbeauty.com/filemanager/e5e3011805df4b868d13e34f86915cd7.png" alt="1">
+        <h1 class="ginger-theme-bg tfont-medium tpb-8 tpt-5 tpx-5 ttext-2xl ttext-white ttext-center">PAANO GAMITIN?</h1>
 
         <img class="tmb-5" src="https://matildasbeauty.com/filemanager/26c12434a9a348559708e3ed1b52b851.webp" alt="1">
 
