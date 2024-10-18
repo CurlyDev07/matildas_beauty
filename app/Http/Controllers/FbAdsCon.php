@@ -67,9 +67,6 @@ class FbAdsCon extends Controller
 
 $sms = "
 Hi ". request()->data['full_name'].",
-This is from Smart Light PH
-
-Ung Automaic On/OFF na Light Bulb Holder po.
 
 We've recieved your order. Thank you!
 
