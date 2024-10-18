@@ -755,7 +755,7 @@
                             </div>
             
                             <div class="tw-full tp-3 tm-2">
-                                <div class="tfont-medium tmb-5 ttext-center">Auto On/Off <br> Light Bulb Holder Sensor</div>
+                                <div class="tfont-medium tmb-5 ttext-center">Madella Ginger Oil</div>
 
                                 <div class="tflex titems-between titems-center">
                                     <img width="75" data-src="{{ asset('/images/fbads/lightbulb/order_success_product_image.png') }}" class="tmr-3 lazy" alt="Product Image">
