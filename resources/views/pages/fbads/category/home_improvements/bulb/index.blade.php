@@ -608,6 +608,13 @@
 
             <form action="{{ route('madella_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
                 <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
+
+                 {{-- !!!!! IMPORTANT | PRODUCT NAME!!!!! --}}
+                 <input type="hidden" id="product_name" value="Smart Light Holder">
+                 <input type="hidden" id="notif_message" value="Smart Light Holder PH">
+ 
+
+
                 <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3>
 
                 @csrf

@@ -92,6 +92,8 @@
                 phone_number: $('#phone_number').val(),
                 address: $('#address').val(),
                 promo: $('.promo:checked').val(),
+                product_name: $('#product_name').val(),
+                notif_message: $('#notif_message').val(),
             })
             .done(function( data ) {    
                 // change html content of success modal
@@ -108,7 +110,7 @@
                     data,
                 });// Email Notif
 
-                fbq('track', 'Purchase', {currency: "PHP", value: data.amount});// send data to fb pixel
+                // fbq('track', 'Purchase', {currency: "PHP", value: data.amount});// send data to fb pixel
             })
         })
 

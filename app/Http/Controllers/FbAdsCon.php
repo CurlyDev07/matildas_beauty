@@ -36,7 +36,7 @@ class FbAdsCon extends Controller
             "barangay" => 'n/a',
             "promo" => $promo[0],
             "total" => $promo[1],
-            "product" => 'Bulb Holder',
+            "product" => $request->product_name,
         ]);
 
         $data = [
@@ -48,10 +48,11 @@ class FbAdsCon extends Controller
             "address" => $request->address,
             "order_number" => 'MB'.date("mdy").'O'.$order->id,
             "date" => date("F j g:i a"),
+            "product" => $request->product_name,
+            "notif_message" => $request->notif_message,
         ];
 
         return response()->json($data);
-        // return redirect()->route('madella_success', $data);
     }
 
     public function success(){
@@ -62,20 +63,19 @@ class FbAdsCon extends Controller
 
     public function madella_order_success_email(){
 
-        Mail::to(['reggie.frias1105@gmail.com', 'shopickers007@gmail.com'])->send(new FbAdsOrderSuccess(request()->data));
+        // Mail::to(['reggie.frias1105@gmail.com', 'shopickers007@gmail.com'])->send(new FbAdsOrderSuccess(request()->data));
         $order_promo = request()->data['promo'];
 
 $sms = "
 Hi ". request()->data['full_name'].",
-
+". request()->data['notif_message']."
 We've recieved your order. Thank you!
 
-Order Details: ".$order_promo."
+Order Details: ".$order_promo." ".request()->data['product']."
 Total: ₱" .request()->data['amount']."
 
-Reminder:
--> Strictly no cancellation
--> Warranty: 6 Months
+=== Strictly no cancellation ===
+
 -> Delivery: 
         Luzon: 3days
         Visayas: 5days
