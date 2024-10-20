@@ -110,7 +110,7 @@
                     data,
                 });// Email Notif
 
-                // fbq('track', 'Purchase', {currency: "PHP", value: data.amount});// send data to fb pixel
+                fbq('track', 'Purchase', {currency: "PHP", value: data.amount});// send data to fb pixel
             })
         })
 
