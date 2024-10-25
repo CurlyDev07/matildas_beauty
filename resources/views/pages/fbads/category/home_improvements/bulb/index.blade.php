@@ -1,7 +1,7 @@
 @extends('pages.fbads.category.home_improvements.layouts.app')
 
 @section('title') 
-    Smart Light PH | Auto On/Off Bulb Holder 
+    fas fa-check-circle Light PH | Auto On/Off Bulb Holder 
 @endsection
 
 @section('favicon')
@@ -67,19 +67,19 @@
         </div><!-- FREE 4 Gifts -->
 
         <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Ultra Energy Saver</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Human Detection</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> 360° Sensing Angle</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> 1-8 meters Range</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Easy to Install</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Plug & Play</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> No Switch Required</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> No Wifi Needed</div>
+            <div class="tw-1/2"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> Ultra Energy Saver</div>
+            <div class="tw-1/2"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> Human Detection</div>
+            <div class="tw-1/2"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> 360° Sensing Angle</div>
+            <div class="tw-1/2"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> 1-8 meters Range</div>
+            <div class="tw-1/2"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> Easy to Install</div>
+            <div class="tw-1/2"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> Plug & Play</div>
+            <div class="tw-1/2"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> No Switch Required</div>
+            <div class="tw-1/2"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> No Wifi Needed</div>
 
-            <div class="tw-full tmt-3"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> No need to remove Original Lamp Socket</div>
-            <div class="tw-full"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Adjustable Ambient Light</div>
-            <div class="tw-full"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> Adjustalbe Lighting Time</div>
-            <div class="tw-full"><i class="fa-solid fa-circle-check" style="color: #fa5230;"></i> No need Tool</div>
+            <div class="tw-full tmt-3"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> No need to remove Original Lamp Socket</div>
+            <div class="tw-full"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> Adjustable Ambient Light</div>
+            <div class="tw-full"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> Adjustalbe Lighting Time</div>
+            <div class="tw-full"><i class="fas fas fa-check-circle" style="color: #fa5230;"></i> No need Tool</div>
         </div>
 
         <img class="tmb-3 tmt-5" src="{{ asset('/images/fbads/lightbulb/gif.gif') }}" alt="GIF">
@@ -110,29 +110,29 @@
                         <span class="ttext-xl tfont-medium theme-color"> out of 5</span>
                     </p>
                     <div class="">
-                        <i class="fa-solid fa-star theme-color"></i>
-                        <i class="fa-solid fa-star theme-color"></i>
-                        <i class="fa-solid fa-star theme-color"></i>
-                        <i class="fa-solid fa-star theme-color"></i>
-                        <i class="fa-solid fa-star theme-color"></i>
+                        <i class="fas fa-star theme-color"></i>
+                        <i class="fas fa-star theme-color"></i>
+                        <i class="fas fa-star theme-color"></i>
+                        <i class="fas fa-star theme-color"></i>
+                        <i class="fas fa-star theme-color"></i>
                     </div>
                 </div>    
                 <div class="tflex titems-center tjustify-between">
 
                     <div class="trounded ttext-sm tmr-1 ttext-center trelative theme-bg" style="padding: 5px 5px; border: #f7442e 1px solid; color: white;">
-                        <p>5 <i class="fa-solid fa-star" style="color: white;"></i> (9.5k)</p>
+                        <p>5 <i class="fas fa-star" style="color: white;"></i> (9.5k)</p>
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center theme-color" style="padding: 5px 5px; border: #f7442e 1px solid;">
-                        4<i class="fa-solid fa-star theme-color"></i> (0)
+                        4<i class="fas fa-star theme-color"></i> (0)
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center theme-color" style="padding: 5px 5px; border: #f7442e 1px solid;">
-                        3<i class="fa-solid fa-star theme-color"></i> (0)
+                        3<i class="fas fa-star theme-color"></i> (0)
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center theme-color" style="padding: 5px 5px; border: #f7442e 1px solid;">
-                        2<i class="fa-solid fa-star theme-color"></i> (0)
+                        2<i class="fas fa-star theme-color"></i> (0)
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center theme-color" style="padding: 5px 5px; border: #f7442e 1px solid;">
-                        1<i class="fa-solid fa-star theme-color"></i> (0)
+                        1<i class="fas fa-star theme-color"></i> (0)
                     </div>
                 </div>
                 
@@ -142,11 +142,11 @@
                         <div class="tml-2">
                             <p>Emerlita Manao</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">April 14, 2023 09:07AM</span>
                         </div>
@@ -178,11 +178,11 @@
                         <div class="tml-2">
                             <p>Mark Culantes</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
@@ -216,11 +216,11 @@
                         <div class="tml-2">
                             <p>Rolando Baldasin</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
@@ -251,11 +251,11 @@
                         <div class="tml-2">
                             <p>Melinda Bergadin</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
@@ -286,11 +286,11 @@
                         <div class="tml-2">
                             <p>Sarah Peransa</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
@@ -322,11 +322,11 @@
                         <div class="tml-2">
                             <p>Aiza Mercado</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 14, 2023 12:48PM</span>
                         </div>
@@ -365,16 +365,16 @@
                             </div>
                             <div class="">
                                 <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    <i class="fas fas fa-check-circle ttext-green-500"></i> 
                                     Verified
                                 </span>
                             </div>
                             <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
                                 I love how it automatically lights up when I enter the room. So convenient!
@@ -388,19 +388,19 @@
                             </div>
                             <div class="">
                                 <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    <i class="fas fas fa-check-circle ttext-green-500"></i> 
                                     Verified
                                 </span>
                             </div>
                             <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
-                                Ang galing ng motion sensor nito, it makes my hallway lighting smart and efficient!
+                                Ang galing ng motion sensor nito, it makes my hallway lighting fas fa-check-circle and efficient!
                             </p>
                         </div><!--more review 2 -->
 
@@ -411,16 +411,16 @@
                             </div>
                             <div class="">
                                 <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    <i class="fas fas fa-check-circle ttext-green-500"></i> 
                                     Verified
                                 </span>
                             </div>
                             <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
                                 This light bulb holder is super easy to install and works flawlessly. No more stumbling in the dark!
@@ -434,16 +434,16 @@
                             </div>
                             <div class="">
                                 <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    <i class="fas fas fa-check-circle ttext-green-500"></i> 
                                     Verified
                                 </span>
                             </div>
                             <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
                                 This holder turns any bulb into a sensor light. It's perfect for our basement.
@@ -457,16 +457,16 @@
                             </div>
                             <div class="">
                                 <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    <i class="fas fas fa-check-circle ttext-green-500"></i> 
                                     Verified
                                 </span>
                             </div>
                             <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
                                 Ang ganda kasi kusa talga sya namamatay bukas legit
@@ -482,16 +482,16 @@
                             </div>
                             <div class="">
                                 <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    <i class="fas fas fa-check-circle ttext-green-500"></i> 
                                     Verified
                                 </span>
                             </div>
                             <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
                                 Lakas maka tipid sa Koryente. Bagay talaga to sa mga makalimutin mag patay ng ilaw
@@ -505,16 +505,16 @@
                             </div>
                             <div class="">
                                 <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    <i class="fas fas fa-check-circle ttext-green-500"></i> 
                                     Verified
                                 </span>
                             </div>
                             <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
                                 Easy to install and works like a charm. Highly recommend!
@@ -528,16 +528,16 @@
                             </div>
                             <div class="">
                                 <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    <i class="fas fas fa-check-circle ttext-green-500"></i> 
                                     Verified
                                 </span>
                             </div>
                             <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
                                 It detects motion accurately and the installation was very straightforward.
@@ -551,16 +551,16 @@
                             </div>
                             <div class="">
                                 <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    <i class="fas fas fa-check-circle ttext-green-500"></i> 
                                     Verified
                                 </span>
                             </div>
                             <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
                                ito gamit ko sa labas ng bahay. Ang ganda automatic on/OFF tipid talaga sa koryente
@@ -574,16 +574,16 @@
                             </div>
                             <div class="">
                                 <span>
-                                    <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                    <i class="fas fas fa-check-circle ttext-green-500"></i> 
                                     Verified
                                 </span>
                             </div>
                             <div class="tmb-2">
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                                <i class="fas fa-star theme-color" aria-hidden="true"></i>
                             </div>
                             <p>
                                 Wow Grabe tipid meralco namin. BIll to sa paupahan ko
@@ -610,8 +610,8 @@
                 <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
 
                  {{-- !!!!! IMPORTANT | PRODUCT NAME!!!!! --}}
-                 <input type="hidden" id="product_name" value="Smart Light Holder">
-                 <input type="hidden" id="notif_message" value="Smart Light Holder PH">
+                 <input type="hidden" id="product_name" value="fas fa-check-circle Light Holder">
+                 <input type="hidden" id="notif_message" value="fas fa-check-circle Light Holder PH">
  
 
 
@@ -652,8 +652,8 @@
 
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
-                                <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="SmartLight_3pcs|1199|3pcs">
-                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">3pcs Smart Light</span>
+                                <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="fas fa-check-circleLight_3pcs|1199|3pcs">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">3pcs fas fa-check-circle Light</span>
                                 <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(399/each)</span>
                                 <span class="tabsolute theme-bg tw-10" style="
                                     height: 28px;
@@ -677,8 +677,8 @@
 
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
-                                <input type="checkbox" id="promo2" name="promo" class="promo"  value="SmartLight_2pcs|899|2pcs">
-                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">2pcs Smart Light</span>
+                                <input type="checkbox" id="promo2" name="promo" class="promo"  value="fas fa-check-circleLight_2pcs|899|2pcs">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">2pcs fas fa-check-circle Light</span>
                                 <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(449/each)</span>
                                 <span class="tabsolute theme-bg tw-10" style="
                                     height: 28px;
@@ -698,8 +698,8 @@
                         
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
-                                <input type="checkbox" id="promo3" name="promo" class="promo" value="SmartLight_1pcs|549|1pc">
-                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">1pc Smart Light</span>
+                                <input type="checkbox" id="promo3" name="promo" class="promo" value="fas fa-check-circleLight_1pcs|549|1pc">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">1pc fas fa-check-circle Light</span>
                                 <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(549/each)</span>
 
                                 <span class="tabsolute theme-bg tw-10" style="
@@ -756,10 +756,10 @@
             
                         <div class="tflex titems-center tflex-col">
                             
-                            <p class="ttext-center tfont-medium ttext-2xl tmt-10" style="color: #367d54">Smart Home PH</p>
+                            <p class="ttext-center tfont-medium ttext-2xl tmt-10" style="color: #367d54">fas fa-check-circle Home PH</p>
             
                             <div class="tflex tjustify-center tw-full tmt-3 tborder tp-3">
-                                <i class="fa-regular fa-circle-check ttext-5xl ttext-green-500 tmr-3" aria-hidden="true"></i>
+                                <i class="fa-regular fas fa-check-circle ttext-5xl ttext-green-500 tmr-3" aria-hidden="true"></i>
                                 
                                 <div class="tflex tflex-col trelative">
                                     <span class="tfont-medium ttext-lg zoom-in-out-box">Order Success</span>

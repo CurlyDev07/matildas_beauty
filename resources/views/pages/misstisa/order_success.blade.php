@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MissTisa | Matilda's Beauty</title>
     {{-- STYLE SHEETS --}}
-    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/icons/favicon.ico') }}" >
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -59,7 +60,6 @@
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/8d4a8c4bc9.js" crossorigin="anonymous"></script>
 
 <!-- Meta Pixel Code -->
 <script>
@@ -113,8 +113,7 @@
                 <p class="ttext-center tfont-medium ttext-2xl tmt-10" style="color: #ef0e5f">MissTisa</p>
 
                 <div class="tflex tjustify-center tw-full tmy-3 tborder tp-3">
-                    <i class="fa-regular fa-circle-check ttext-5xl ttext-green-500 tmr-3"></i>
-                    
+                    <i class="fas fa-check-circle ttext-5xl ttext-green-500 tmr-3"></i>
                     <div class="tflex tflex-col trelative">
                         <span>Order Success</span>
                         {{-- <span class="tfont-medium">Thank You {{ $data['full_name'] }}</span> --}}

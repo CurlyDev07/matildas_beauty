@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MissTisa | Matilda's Beauty</title>
     {{-- STYLE SHEETS --}}
-    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/icons/favicon.ico') }}" >
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -59,7 +60,7 @@
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/8d4a8c4bc9.js" crossorigin="anonymous"></script>
+
 
 <!-- Meta Pixel Code -->
 <script>
@@ -145,20 +146,20 @@
         </div><!-- FREE 4 Gifts -->
 
         <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> Melasma Remover</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> Korean Glass Skin</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> No More Pekas</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> No More Dark Spots</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> Uneven Skin Tone</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> Deep Scars</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> Whiteheads</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check" style="color: #f52d87;"></i> Blackheads</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> For Sensitive Skin</div>
-            <div class="tw-1/2 tmb-3"><i class="fa-solid fa-circle-check tmb-2" style="color: #f52d87;"></i> No Irritation </div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Melasma Remover</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Korean Glass Skin</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No More Pekas</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No More Dark Spots</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Uneven Skin Tone</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Deep Scars</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Whiteheads</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle" style="color: #f52d87;"></i> Blackheads</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> For Sensitive Skin</div>
+            <div class="tw-1/2 tmb-3"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No Irritation </div>
           
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #12bc39;"></i> FDA Approved</div>
-            <div class="tw-1/2"><i class="fa-solid fa-circle-check tmb-2" style="color: #12bc39;"></i> Safe</div>
-            <div class="tw-full"><i class="fa-solid fa-circle-check tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA Approved</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Safe</div>
+            <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
         <img class="tmb-3" src="{{ asset('images\kasoy_oil\28_days_challenge.png') }}" alt="28_days_challenge">
@@ -206,29 +207,29 @@
                         <span class="ttext-xl tfont-medium" style="color: #f51773"> out of 5</span>
                     </p>
                     <div class="">
-                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                        <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                        <i class="fas fa-star" style="color: #f51773;"></i>
+                        <i class="fas fa-star" style="color: #f51773;"></i>
+                        <i class="fas fa-star" style="color: #f51773;"></i>
+                        <i class="fas fa-star" style="color: #f51773;"></i>
+                        <i class="fas fa-star" style="color: #f51773;"></i>
                     </div>
                 </div>    
                 <div class="tflex titems-center tjustify-between">
 
                     <div class="trounded ttext-sm tmr-1 ttext-center trelative" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773; background: #f51773; color: white;">
-                        <p>5 <i class="fa-solid fa-star" style="color: white;"></i> (9.5k)</p>
+                        <p>5 <i class="fas fa-star" style="color: white;"></i> (9.5k)</p>
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        4<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
+                        4<i class="fas fa-star" style="color: #f51773;"></i> (0)
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        3<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
+                        3<i class="fas fa-star" style="color: #f51773;"></i> (0)
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        2<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
+                        2<i class="fas fa-star" style="color: #f51773;"></i> (0)
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        1<i class="fa-solid fa-star" style="color: #f51773;"></i> (0)
+                        1<i class="fas fa-star" style="color: #f51773;"></i> (0)
                     </div>
                 </div>
                 
@@ -238,11 +239,11 @@
                         <div class="tml-2">
                             <p>Emerlita Manao</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">April 14, 2023 09:07AM</span>
                         </div>
@@ -273,11 +274,11 @@
                         <div class="tml-2">
                             <p>Maricel Batang</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 14, 2023 12:48PM</span>
                         </div>
@@ -310,11 +311,11 @@
                         <div class="tml-2">
                             <p>Analiza Pareo</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
@@ -346,11 +347,11 @@
                         <div class="tml-2">
                             <p>Sharon Temon</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 25, 2023 04:22PM</span>
                         </div>
@@ -382,11 +383,11 @@
                         <div class="tml-2">
                             <p>Liza Manalo</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 02, 2023 07:27AM</span>
                         </div>
@@ -418,11 +419,11 @@
                         <div class="tml-2">
                             <p>Rebecca Morales</p>
                             <div class="">
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
-                                <i class="fa-solid fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
+                                <i class="fas fa-star" style="color: #f51773;"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 16, 2023 01:29PM</span>
                         </div>
@@ -464,19 +465,19 @@
 
             <section class="tflex titems-baseline tmt-5 tmb-3">
                 <div class="ttext-center">
-                    <i class="fa-solid fa-truck-fast ttext-5xl" style="color: #2d3748"></i>
+                    <i class="fas fa-truck-fast ttext-5xl" style="color: #2d3748"></i>
                     <span class="tinline-block">Fast delivery nationwide</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fa-solid fa-money-bill-transfer ttext-5xl" style="color: #2d3748"></i>
+                    <i class="fas fa-money-bill-transfer ttext-5xl" style="color: #2d3748"></i>
                     <span class="tinline-block">Moneyback Guarantee</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fa-solid fa-hand-holding-dollar ttext-5xl" style="color: #2d3748"></i>
+                    <i class="fas fa-hand-holding-dollar ttext-5xl" style="color: #2d3748"></i>
                     <span class="tinline-block">Cash on Delivery</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fa-solid fa-headset ttext-5xl" style="color: #2d3748"></i>
+                    <i class="fas fa-headset ttext-5xl" style="color: #2d3748"></i>
                     <span class="tinline-block">Aftersales Support</span>
                 </div>
             </section>

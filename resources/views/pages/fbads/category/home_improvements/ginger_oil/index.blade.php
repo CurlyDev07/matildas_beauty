@@ -66,19 +66,19 @@
         </div><!-- FREE 4 Gifts -->
 
         <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3 tpx-5">
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Arthritis</div>
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Chronic Pain</div>
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Muscle Pain</div>
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Joint Pain</div>
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Muscle Tension</div>
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Manas</div>
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Menstrual Pain</div>
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Anxiety</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Arthritis</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Chronic Pain</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Muscle Pain</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Joint Pain</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Muscle Tension</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Manas</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Menstrual Pain</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Anxiety</div>
 
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Head Ache</div>
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Ubo</div>
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Sipon</div>
-            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fa-circle-check tmr-2" style="color: #fa5230;"></i> Insomia</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Head Ache</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Ubo</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Sipon</div>
+            <div class="tw-1/2 tmt-2 tfont-medium"><i class="fa-solid fas fa-check-circle tmr-2" style="color: #fa5230;"></i> Insomia</div>
         </div>
 
         <div class="tmb-5 tp-5 tborder">
@@ -93,16 +93,16 @@
                         </div>
                         <div class="">
                             <span>
-                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                <i class="fa-solid fas fa-check-circle ttext-green-500"></i> 
                                 Verified
                             </span>
                         </div>
                         <div class="tmb-2">
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
                         </div>
                         <p>
                             "Dati ay hirap na hirap ako sa <b>arthritis sa kamay</b> ko. Pero sa <b>ginger oil</b> na ito, <b>na-relieve ang sakit</b> at mas madali na akong makagalaw. Salamat!"
@@ -116,16 +116,16 @@
                         </div>
                         <div class="">
                             <span>
-                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                <i class="fa-solid fas fa-check-circle ttext-green-500"></i> 
                                 Verified
                             </span>
                         </div>
                         <div class="tmb-2">
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
                         </div>
                         <p>
                             "Sa tagal ng <b>arthritis sa kamay</b> ko, naghanap ako ng solusyon. Ngayon, gamit ko ang <b>ginger oil</b>, <b>mas magaan na ang pakiramdam</b> ko. Talagang epektibo!"
@@ -139,16 +139,16 @@
                         </div>
                         <div class="">
                             <span>
-                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                <i class="fa-solid fas fa-check-circle ttext-green-500"></i> 
                                 Verified
                             </span>
                         </div>
                         <div class="tmb-2">
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
                         </div>
                         <p>
                             "Dahil sa katagalan sa trabaho, sumasakit ang likod ko. Pero sa <b>ginger oil</b>, <b>naging magaan ang pakiramdam</b> ko pagkatapos magmasahe. Sulit!"
@@ -162,16 +162,16 @@
                         </div>
                         <div class="">
                             <span>
-                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                <i class="fa-solid fas fa-check-circle ttext-green-500"></i> 
                                 Verified
                             </span>
                         </div>
                         <div class="tmb-2">
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
                         </div>
                         <p>
                             "Sobrang stress ako lately, kaya nagka-<b>matinding headache</b> ako. Pero nang ginamit ko ang <b>ginger oil</b>, <b>nawala ang sakit</b> at nakatulog ako ng maayos!"
@@ -185,16 +185,16 @@
                         </div>
                         <div class="">
                             <span>
-                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                <i class="fa-solid fas fa-check-circle ttext-green-500"></i> 
                                 Verified
                             </span>
                         </div>
                         <div class="tmb-2">
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
                         </div>
                         <p>
                             "Madalas akong magkaroon ng <b>manas sa paa</b> dahil sa pagod. Pero sa <b>ginger oil</b>, <b>nabawasan ang pamamaga</b> at mas magaan na ang pakiramdam ko!"
@@ -208,16 +208,16 @@
                         </div>
                         <div class="">
                             <span>
-                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                <i class="fa-solid fas fa-check-circle ttext-green-500"></i> 
                                 Verified
                             </span>
                         </div>
                         <div class="tmb-2">
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
                         </div>
                         <p>
                             "Pagod na pagod ako sa trabaho at laging <b>ngalay</b> ang kamay ko. Pero nang ginamit ko ang <b>ginger oil</b>, <b>nawala ang sakit</b> at nakaramdam ako ng ginhawa!"
@@ -231,16 +231,16 @@
                         </div>
                         <div class="">
                             <span>
-                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                <i class="fa-solid fas fa-check-circle ttext-green-500"></i> 
                                 Verified
                             </span>
                         </div>
                         <div class="tmb-2">
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
                         </div>
                         <p>
                             "Sobrang sakit ng <b>likod at leeg</b> ko mula sa trabaho. Pero sa <b>ginger oil</b>, <b>nawala ang pananakit</b> at nakaramdam ako ng ginhawa. Salamat!"
@@ -254,16 +254,16 @@
                         </div>
                         <div class="">
                             <span>
-                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                <i class="fa-solid fas fa-check-circle ttext-green-500"></i> 
                                 Verified
                             </span>
                         </div>
                         <div class="tmb-2">
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
                         </div>
                         <p>
                             "Laging sumasakit ang <b>balikat at mga kalamnan</b> ko matapos magtrabaho. Pero sa <b>ginger oil</b>, <b>naalis ang tensyon</b> at nakaramdam ako ng ginhawa. Napaka-epektibo!"
@@ -277,16 +277,16 @@
                         </div>
                         <div class="">
                             <span>
-                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                <i class="fa-solid fas fa-check-circle ttext-green-500"></i> 
                                 Verified
                             </span>
                         </div>
                         <div class="tmb-2">
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
                         </div>
                         <p>
                             "Dati, sobrang <b>masakit ang paa ko dahil sa rayuma</b>. sinubukan ko gamitin ang <b>ginger oil</b>, <b>nabawasan ang sakit</b> at mas nakalakad ako ng maayos. Salamat!"
@@ -300,16 +300,16 @@
                         </div>
                         <div class="">
                             <span>
-                                <i class="fa-solid fa-circle-check ttext-green-500"></i> 
+                                <i class="fa-solid fas fa-check-circle ttext-green-500"></i> 
                                 Verified
                             </span>
                         </div>
                         <div class="tmb-2">
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
-                            <i class="fa-solid fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
+                            <i class="fas fa-star theme-color" aria-hidden="true"></i>
                         </div>
                         <p>
                             "Sobrang <b>masakit ang buong katawan</b> ko at nagka-<b>maga sa kamay ko</b>. 
@@ -334,29 +334,29 @@
                         <span class="ttext-xl tfont-medium theme-color"> out of 5</span>
                     </p>
                     <div class="">
-                        <i class="fa-solid fa-star theme-color"></i>
-                        <i class="fa-solid fa-star theme-color"></i>
-                        <i class="fa-solid fa-star theme-color"></i>
-                        <i class="fa-solid fa-star theme-color"></i>
-                        <i class="fa-solid fa-star theme-color"></i>
+                        <i class="fas fa-star theme-color"></i>
+                        <i class="fas fa-star theme-color"></i>
+                        <i class="fas fa-star theme-color"></i>
+                        <i class="fas fa-star theme-color"></i>
+                        <i class="fas fa-star theme-color"></i>
                     </div>
                 </div>    
                 <div class="tflex titems-center tjustify-between">
 
                     <div class="trounded ttext-sm tmr-1 ttext-center trelative theme-bg" style="padding: 5px 5px; border: #f7442e 1px solid; color: white;">
-                        <p>5 <i class="fa-solid fa-star" style="color: white;"></i> (9.5k)</p>
+                        <p>5 <i class="fas fa-star" style="color: white;"></i> (9.5k)</p>
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center theme-color" style="padding: 5px 5px; border: #f7442e 1px solid;">
-                        4<i class="fa-solid fa-star theme-color"></i> (0)
+                        4<i class="fas fa-star theme-color"></i> (0)
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center theme-color" style="padding: 5px 5px; border: #f7442e 1px solid;">
-                        3<i class="fa-solid fa-star theme-color"></i> (0)
+                        3<i class="fas fa-star theme-color"></i> (0)
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center theme-color" style="padding: 5px 5px; border: #f7442e 1px solid;">
-                        2<i class="fa-solid fa-star theme-color"></i> (0)
+                        2<i class="fas fa-star theme-color"></i> (0)
                     </div>
                     <div class="trounded ttext-sm tmr-1 ttext-center theme-color" style="padding: 5px 5px; border: #f7442e 1px solid;">
-                        1<i class="fa-solid fa-star theme-color"></i> (0)
+                        1<i class="fas fa-star theme-color"></i> (0)
                     </div>
                 </div>
                 
@@ -366,11 +366,11 @@
                         <div class="tml-2">
                             <p>Ana Villanueva</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">April 14, 2023 09:07AM</span>
                         </div>
@@ -400,11 +400,11 @@
                         <div class="tml-2">
                             <p>Carlo Reyes</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
@@ -434,11 +434,11 @@
                         <div class="tml-2">
                             <p>Grace Morales</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
@@ -468,11 +468,11 @@
                         <div class="tml-2">
                             <p>Allan De Guzman</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
@@ -502,11 +502,11 @@
                         <div class="tml-2">
                             <p>Maricel Navarro</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
                         </div>
@@ -536,11 +536,11 @@
                         <div class="tml-2">
                             <p>Julius Santos</p>
                             <div class="">
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
-                                <i class="fa-solid fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
+                                <i class="fas fa-star theme-color"></i>
                             </div>
                             <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 14, 2023 12:48PM</span>
                         </div>
@@ -750,7 +750,7 @@
                             <p class="ttext-center tfont-medium ttext-2xl tmt-10" style="color: #367d54">Smart Home PH</p>
             
                             <div class="tflex tjustify-center tw-full tmt-3 tborder tp-3">
-                                <i class="fa-regular fa-circle-check ttext-5xl ttext-green-500 tmr-3" aria-hidden="true"></i>
+                                <i class="fa-regular fas fa-check-circle ttext-5xl ttext-green-500 tmr-3" aria-hidden="true"></i>
                                 
                                 <div class="tflex tflex-col trelative">
                                     <span class="tfont-medium ttext-lg zoom-in-out-box">Order Success</span>
