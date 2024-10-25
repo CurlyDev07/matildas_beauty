@@ -121,7 +121,7 @@
         </div>
 
 
-        <img src="{{ asset('images/kasoy_oil/top_banner.png') }}" class="tw-full tmb-5" alt="top_banner">
+        <img src="https://matildasbeauty.com/filemanager/ca72409d0440411490cb6a680c230fe1.webp" class="tw-full tmb-5" alt="top_banner">
 
         <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
@@ -162,9 +162,9 @@
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
-        <img class="tmb-3" src="{{ asset('images\kasoy_oil\28_days_challenge.png') }}" alt="28_days_challenge">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/47e5c4f66a294471b45863de264aefa4.webp" alt="28_days_challenge">
         
-        <img src="{{ asset('images/kasoy_oil/before_after.png') }}" class="tw-full tmy-5"  alt="before_after">
+        <img src="https://matildasbeauty.com/filemanager/f7a3ec127e124558b27200c44022cd2b.webp" class="tw-full tmy-5"  alt="before_after">
 
         <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
             <source src="{{ asset('images/kasoy_oil/explainer_video.mp4') }}" type="video/mp4">
@@ -175,8 +175,8 @@
        
         {{-- REVIEWS --}}
 
-        <img class="" src="{{ asset('images\kasoy_oil\satisfied_customer1.png') }}" alt="satisfied_customer1">
-        <img class="" src="{{ asset('images\kasoy_oil\satisfied_customer2.png') }}" alt="satisfied_customer2">
+        <img src="https://matildasbeauty.com/filemanager/3de536b529bf4cfb9a3d81c5b6c537f6.webp" alt="satisfied_customer1">
+        <img src="https://matildasbeauty.com/filemanager/9685bc8e635a480b84b7852dfd74b41f.webp" alt="satisfied_customer2">
 
 
         <div class="tmx-auto trelative tp-5">
@@ -188,13 +188,13 @@
 
             <h4 class="tfont-medium tmb-4 ttext-xl">BENEFITS:</h4>
             
-            <img class="tmb-5" src="{{ asset('images\kasoy_oil\benefits.png') }}" alt="benefits">
+            <img class="tmb-5" src="https://matildasbeauty.com/filemanager/092361f04f9f4b3195f3959100ac26a9.webp" alt="benefits">
      
-            <img class="tmb-5" src="{{ asset('images\kasoy_oil\what_to_expect.png') }}" alt="What to expect">
+            <img class="tmb-5" src="https://matildasbeauty.com/filemanager/b6dabd41a66a4871a61ecee70fc1b59a.webp" alt="What to expect">
             <!--WHAT TO EXPECT: -->
             
-            <img class="" src="{{ asset('images\kasoy_oil\how_to_use_01.png') }}" alt="how_to_use in the morning">
-            <img class="" src="{{ asset('images\kasoy_oil\how_to_use_02.png') }}" alt="how_to_use in the evening">
+            <img class="" src="https://matildasbeauty.com/filemanager/bf4b1d217b1b4654aaae8d13809d47fd.webp" alt="how_to_use in the morning">
+            <img class="" src="https://matildasbeauty.com/filemanager/70dae3d024234c7b9ec182fb30aa027e.webp" alt="how_to_use in the evening">
 
         </div><!-- PRODUCT DETAILS-->
 
@@ -455,7 +455,7 @@
 
         <h3 class="tfont-medium tmb-8 ttext-2xl ttext-center tmt-10">MissTisa FDA Certificates</h3>
 
-        <img class="" src="{{ asset('images\kasoy_oil\fda_certificates.png') }}" alt="fda_certificates">
+        <img class="" src="https://matildasbeauty.com/filemanager/5bcf6815b5a24e55868fea8f13959544.webp" alt="fda_certificates">
 
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
