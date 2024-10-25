@@ -1,7 +1,7 @@
 @extends('pages.fbads.category.home_improvements.layouts.app')
 
 @section('title') 
-    fas fa-check-circle Light PH | Auto On/Off Bulb Holder 
+    Smart Light PH | Auto On/Off Bulb Holder 
 @endsection
 
 @section('favicon')
@@ -652,8 +652,8 @@
 
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
-                                <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="fas fa-check-circleLight_3pcs|1199|3pcs">
-                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">3pcs fas fa-check-circle Light</span>
+                                <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="SmartLight_3pcs|1199|3pcs">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">3pcs Smart Light</span>
                                 <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(399/each)</span>
                                 <span class="tabsolute theme-bg tw-10" style="
                                     height: 28px;
@@ -677,8 +677,8 @@
 
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
-                                <input type="checkbox" id="promo2" name="promo" class="promo"  value="fas fa-check-circleLight_2pcs|899|2pcs">
-                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">2pcs fas fa-check-circle Light</span>
+                                <input type="checkbox" id="promo2" name="promo" class="promo"  value="SmartLight_2pcs|899|2pcs">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">2pcs Smart Light</span>
                                 <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(449/each)</span>
                                 <span class="tabsolute theme-bg tw-10" style="
                                     height: 28px;
@@ -698,8 +698,8 @@
                         
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
-                                <input type="checkbox" id="promo3" name="promo" class="promo" value="fas fa-check-circleLight_1pcs|549|1pc">
-                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">1pc fas fa-check-circle Light</span>
+                                <input type="checkbox" id="promo3" name="promo" class="promo" value="SmartLight_1pcs|549|1pc">
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">1pc Smart Light</span>
                                 <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(549/each)</span>
 
                                 <span class="tabsolute theme-bg tw-10" style="
@@ -756,7 +756,7 @@
             
                         <div class="tflex titems-center tflex-col">
                             
-                            <p class="ttext-center tfont-medium ttext-2xl tmt-10" style="color: #367d54">fas fa-check-circle Home PH</p>
+                            <p class="ttext-center tfont-medium ttext-2xl tmt-10" style="color: #367d54">Smart Home PH</p>
             
                             <div class="tflex tjustify-center tw-full tmt-3 tborder tp-3">
                                 <i class="fa-regular fas fa-check-circle ttext-5xl ttext-green-500 tmr-3" aria-hidden="true"></i>
