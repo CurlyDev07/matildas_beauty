@@ -452,10 +452,8 @@
             </div>  <!-- RATINGS DIV -->
         </div> <!-- RATINGS -->
 
+        <img  src="https://matildasbeauty.com/filemanager/6fb1ef53e93a4dcdb6e34824ba2b664d.png" alt="fda_certificates">
 
-        <h3 class="tfont-medium tmb-8 ttext-2xl ttext-center tmt-10">MissTisa FDA Certificates</h3>
-
-        <img class="" src="https://matildasbeauty.com/filemanager/5bcf6815b5a24e55868fea8f13959544.webp" alt="fda_certificates">
 
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
@@ -465,20 +463,20 @@
 
             <section class="tflex titems-baseline tmt-5 tmb-3">
                 <div class="ttext-center">
-                    <i class="fas fa-truck-fast ttext-5xl" style="color: #2d3748"></i>
-                    <span class="tinline-block">Fast delivery nationwide</span>
+                    <i class="fas fa-truck ttext-4xl" style="color: #2d3748; line-height: 1.2;"></i>
+                    <span class="tinline-block tmt-1">Fast delivery nationwide</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fas fa-money-bill-transfer ttext-5xl" style="color: #2d3748"></i>
-                    <span class="tinline-block">Moneyback Guarantee</span>
+                    <i class="fas fa-dollar-sign ttext-4xl" style="color: #2d3748; line-height: 1.2;" ></i>
+                    <span class="tinline-block tmt-1">Moneyback Guarantee</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fas fa-hand-holding-dollar ttext-5xl" style="color: #2d3748"></i>
-                    <span class="tinline-block">Cash on Delivery</span>
+                    <i class="fas fa-hand-holding-usd ttext-4xl" style="color: #2d3748; line-height: 1.2;" ></i>
+                    <span class="tinline-block tmt-1">Cash on Delivery</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fas fa-headset ttext-5xl" style="color: #2d3748"></i>
-                    <span class="tinline-block">Aftersales Support</span>
+                    <i class="fas fa-headset ttext-4xl" style="color: #2d3748; line-height: 1.2;"></i>
+                    <span class="tinline-block tmt-1">Aftersales Support</span>
                 </div>
             </section>
             
@@ -542,8 +540,8 @@
                             <label>
                                 <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium ttext-sm">₱499</span>
-                                    MissTisa Melasma Remover 1 Set
+                                    <span class="tfont-bold ttext-sm">₱499</span>
+                                    <span class="tfont-medium">MissTisa Melasma 1 Set</span>
                                 </span>
                             </label>
                         </div><!-- PROMO 4-->
@@ -551,8 +549,8 @@
                             <label>
                                 <input type="checkbox" id="promo3" name="promo" class="promo" value="MissTisa_2pcs|849|2pcs">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-medium ttext-sm">₱849</span>
-                                    MissTisa Melasma Remover 2 Set
+                                    <span class="tfont-bold ttext-sm">₱849</span>
+                                    <span class="tfont-medium">MissTisa Melasma 2 Set</span>
                                 </span>
                             </label>
                         </div><!-- PROMO 3 -->
@@ -580,10 +578,7 @@
                     </span>
                 </div><!-- Submit Order -->
             </form><!-- ORDER PROMO -->
-{{-- 
-            <p class="tmt-6 ttext-2xl ttext-center">Pweding ibalik ang bayad if hindi effective.</p>
 
-            <img class="th-48 tmx-auto" src="{{ asset('images\icons\promises\money_back_guarantee.webp') }}" alt="money_back_guarantee"> --}}
 
             <div id="modal1" class="modal">
                 <div class="modal-content" style="padding-bottom: 0px;">
