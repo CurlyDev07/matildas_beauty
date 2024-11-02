@@ -666,7 +666,7 @@
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
                                 <input type="checkbox" id="promo1" name="promo" class="promo" checked="" value="GingerOil_5pcs|699|5pcs">
-                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">Buy 3 + Free 2 (5pcs Ginger Oil) </span>
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">5pcs Ginger Oil</span>
                                 <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(139/each)</span>
                                 <span class="tabsolute theme-bg tw-10" style="height: 28px; bottom: 4%; width: 57px; right: 5%; border: 1px solid red;
                                     border-top-left-radius: 10px; border-top-right-radius: 10px; ">
@@ -684,7 +684,7 @@
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
                                 <input type="checkbox" id="promo2" name="promo" class="promo"  value="GingerOil_3pcs|499|3pcs">
-                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">Buy 2 + Free 1 (3pcs Ginger Oil)</span>
+                                <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">3pcs Ginger Oil</span>
                                 <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(166/each)</span>
                                 <span class="tabsolute theme-bg tw-10" style=" height: 28px; bottom: 4%; width: 57px; right: 5%; border: 1px solid red; 
                                     border-top-left-radius: 10px; border-top-right-radius: 10px;">
@@ -696,13 +696,13 @@
                         
                         <div class="tw-full tp-1 tmt-2 trelative">
                             <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee4d2d;">
-                                <input type="checkbox" id="promo3" name="promo" class="promo" value="GingerOil_1pc|399|1pc">
+                                <input type="checkbox" id="promo3" name="promo" class="promo" value="GingerOil_1pc|299|1pc">
                                 <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">1pc Ginger Oil</span>
-                                <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(399/each)</span>
+                                <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">(299/each)</span>
 
                                 <span class="tabsolute theme-bg tw-10" style=" height: 28px; bottom: 4%; width: 57px; right: 5%; border: 1px solid red;
                                     border-top-left-radius: 10px; border-top-right-radius: 10px; ">
-                                    <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱399</span>
+                                    <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱299</span>
                                 </span>
                             </label>
                         </div><!-- PROMO 3-->
