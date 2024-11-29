@@ -22,6 +22,34 @@ class FbAdsCon extends Controller
     public function ginger_oil(){
         return view('pages.fbads.category.home_improvements.ginger_oil.index');
     }
+   
+    public function misstisa_melasma(){
+        $title = 'MissTisa #1 Melasma Remover in the Philippines';
+        $product_name = 'MissTisa Melasma';
+        $notif_message = 'This is from MissTisa Melasma';
+        $promos = [
+            'promo1' => [
+                'promo' => 'MissTisaMelasma_1_Set|499|1pc',
+                'promo_text' => '1 Set MissTisa',
+                'price' => 499,
+                'each_price' => '499/each'
+            ], 
+            'promo2' => [
+                'promo' => 'MissTisaMelasma_2_Set|849|2pcs',
+                'promo_text' => '2 Set MissTisa',
+                'price' => 849,
+                'each_price' => '424/each'
+            ], 
+        ];
+
+
+        return view('pages.fbads.category.home_improvements.misstisa_melasma.index', [
+            'title' => $title, 
+            'product_name' => $product_name, 
+            'notif_message' => $notif_message, 
+            'promos' => $promos, 
+        ]);
+    }
 
     public function store(StoreFbAdsRequest $request){
 

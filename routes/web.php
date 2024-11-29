@@ -71,6 +71,7 @@ Route::get('MissTisa-Success', 'MissTisaCon@success')->name('miss_tisa_success')
 // FB Ads Pages
 Route::get('smart-home-ph', 'FbAdsCon@smart_home_ph')->name('smart_home_ph');
 Route::get('ginger-oil', 'FbAdsCon@ginger_oil')->name('ginger_oil');
+Route::get('MissTisaMelasma', 'FbAdsCon@misstisa_melasma')->name('misstisa_melasma');
 
 Route::post('Madella-Submit', 'FbAdsCon@store')->name('madella_submit');
 Route::post('Madella-Order-Success-Email', 'FbAdsCon@madella_order_success_email')->name('madella_order_success_email');

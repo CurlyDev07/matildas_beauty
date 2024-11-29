@@ -68,6 +68,14 @@
             transition: transform .2s cubic-bezier(.4,0,.2,1);
         }
 
+        .misstisa-bg{
+            background-color: #ee2a7b;
+        }
+
+        .misstisa-color{
+            color: #ee2a7b;
+        }
+
         .ginger-theme-color{
             color: #020702;
         }
