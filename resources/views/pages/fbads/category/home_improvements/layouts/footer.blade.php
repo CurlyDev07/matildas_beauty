@@ -257,31 +257,31 @@
         }); // Phone Number Validation
 
         // EVENT LISTENER
-        $('#full_name').click(function (e) {
-            eventListener('full_name');// Track event
+        $('#full_name').change(function (e) {
+            eventListener({'full_name': $(this).val()});// Track event
         });
         
-        $('#phone_number').click(function (e) {
-            eventListener('phone_number');// Track event
+        $('#phone_number').change(function (e) {
+            eventListener({'phone_number': $(this).val()});// Track event
         });
 
-        $('#address').click(function (e) {
-            eventListener('address');// Track event
+        $('#address').change(function (e) {
+            eventListener({'address': $(this).val()});// Track event
         });
 
         $('.promo').click(function (e) {
-            eventListener('promo');// Track event
+            eventListener({'promo': 1});// Track event
         });
 
         $('#submit_btn').click(function () {
-            eventListener('submit_order');// Track event
+            eventListener({'submit_order': 1});// Track event
         })
 
         //  Track event
         eventListener('visitors');
 
         function eventListener(event){
-            let data = {[event]: 1}
+            let data = event;
             $.post("/event-listener",data);
         }//  EVENT LISTENER
 

@@ -744,21 +744,21 @@
                 });// Tiktok Event
             });
 
-            $('#full_name').click(function (e) {
+            $('#full_name').change(function (e) {
                 $.post("/event-listener",{
-                    full_name: 1
+                    full_name: $(this).val()
                 });// EVENT LISTENER Track ENTER FULL NAME
             });
             
-            $('#phone_number').click(function (e) {
+            $('#phone_number').change(function (e) {
                 $.post("/event-listener",{
-                    phone_number: 1
+                    phone_number: $(this).val()
                 });// EVENT LISTENER Track ENTER CONTACT NUMBER
             });
 
-            $('#address').click(function (e) {
+            $('#address').change(function (e) {
                 $.post("/event-listener",{
-                    address: 1
+                    address: $(this).val()
                 });// EVENT LISTENER Track ENTER CONTACT NUMBER
             });
 

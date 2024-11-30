@@ -86,6 +86,31 @@ class FbAdsCon extends Controller
         return view('admin.fbads.event_listener', ['events' => $events]);
     }
    
+    public function events(Request $request){
+        $data = ['phone_number', 'full_name', 'address'];
+
+        $events = FbEventListener::select('data', 'value')
+        ->whereIn('data', $data)
+        ->when(!$request->date, function($q){
+            return $q->whereDate('created_at', now());
+        })// Show DEFAULT DATA For Today
+        ->when($request->date, function($q){
+            $date = explode(" - ",request()->date);
+            $from = carbon($date[0]);
+            $to = carbon($date[1]);
+
+            if ($from == $to) {
+                return $q->whereDate('created_at', $from);
+            }
+
+            return $q->whereBetween('created_at', [$from, $to]);
+        })// FILTER DATE
+        ->orderBy('id', 'desc')
+        ->get();
+
+        return view('admin.fbads.events', ['events' => $events]);
+    }
+
     public function change_status(){
         // return request()->all();
 

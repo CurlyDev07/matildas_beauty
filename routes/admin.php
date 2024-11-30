@@ -229,6 +229,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/order/{id}', 'FbAdsCon@order')->name('fbads.order');
         Route::post('/order/patch', 'FbAdsCon@patch')->name('fbads.order.patch');
         Route::get('/event-listener', 'FbAdsCon@event_listener')->name('fbads.event_listener');
+        Route::get('/events', 'FbAdsCon@events')->name('fbads.events');
         Route::post('/change-status', 'FbAdsCon@change_status');
     });
 
