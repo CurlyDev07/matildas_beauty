@@ -87,7 +87,7 @@ class FbAdsCon extends Controller
     }
    
     public function events(Request $request){
-        $data = ['phone_number', 'full_name', 'address'];
+        $data = ['phone_number', 'full_name', 'address', 'form_validation_error'];
 
         $events = FbEventListener::select('data', 'value')
         ->whereIn('data', $data)
