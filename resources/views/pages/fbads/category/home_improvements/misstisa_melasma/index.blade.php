@@ -4,11 +4,12 @@
 
 @section('favicon')
     <link rel="shortcut icon" href="{{ asset('images/icons/favicon.ico') }}" >
-
 @endsection
 
 @section('pixels')
-    {{-- @include('pages.fbads.category.home_improvements.ginger_oil.pixels') --}}
+    @if (!request()->test)
+        @include('pages.fbads.category.home_improvements.misstisa_melasma.pixels')
+    @endif
 @endsection
 
 @section('content')

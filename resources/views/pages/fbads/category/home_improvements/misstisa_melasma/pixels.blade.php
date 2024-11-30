@@ -1,4 +1,7 @@
 
+
+
+
     <!-- Meta Pixel Code -->
 <script>
     !function(f,b,e,v,n,t,s)
@@ -9,14 +12,13 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '450988314137086');
+    fbq('init', '375777585581364');
     fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=450988314137086&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
-
 
 {{-- =================== TIKTOK PIXEL AND VIEW CONTENT  =================== --}}
 
@@ -33,8 +35,6 @@
     }(window, document, 'ttq');
     </script>
     <!-- TikTok Pixel Code End -->
-
-
 
 
 <script> // TIKTOK PIXEL VIEW CONTENT

@@ -190,9 +190,6 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
 
-
-    <!-- Meta Pixel Code -->
-
     @yield('pixels')
 
 </head>

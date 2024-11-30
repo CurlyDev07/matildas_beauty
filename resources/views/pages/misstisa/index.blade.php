@@ -63,7 +63,7 @@
 
 
 <!-- Meta Pixel Code -->
-{{-- <script>
+<script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -78,11 +78,11 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
     /></noscript>
-    <!-- End Meta Pixel Code --> --}}
+    <!-- End Meta Pixel Code -->
 
 
     <!----- Tiktok Pixel Code ----->
-    {{-- <script>
+    <script>
         !function (w, d, t) {
           w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
         
@@ -90,7 +90,7 @@
           ttq.page();
         }(window, document, 'ttq');
         </script>
-    <!----- Tiktok Pixel Code -----> --}}
+    <!----- Tiktok Pixel Code ----->
 
 </head>
 <body>
@@ -163,6 +163,7 @@
         </div>
 
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/47e5c4f66a294471b45863de264aefa4.webp" alt="28_days_challenge">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/9be3a73b4b7a4c2b900362413f4215d3.webp" alt="mudra">
         
         <img src="https://matildasbeauty.com/filemanager/f7a3ec127e124558b27200c44022cd2b.webp" class="tw-full tmy-5"  alt="before_after">
 
