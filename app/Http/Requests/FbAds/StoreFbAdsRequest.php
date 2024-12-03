@@ -25,7 +25,7 @@ class StoreFbAdsRequest extends FormRequest
     {
         return [
             "full_name" => "required",
-            "phone_number" => "required|digits:11",
+            // "phone_number" => "required|digits:11",
             "address" => "required",
             // "province" => "required",
             // "city" => "required",

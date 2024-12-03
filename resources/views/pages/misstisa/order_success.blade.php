@@ -62,7 +62,7 @@
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
 
 <!-- Meta Pixel Code -->
-<script>
+{{-- <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -76,7 +76,7 @@
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
-    /></noscript>
+/></noscript> --}}
     <!-- End Meta Pixel Code -->
 
 
@@ -105,12 +105,12 @@
                 <div class="tflex tjustify-center">
                     <img src="{{ asset('/images/logo/main.png') }}" class="" width="60px" alt="">
                 </div>
-                <p class="tfont-medium ttext-center ttext-md" style="color: #ef0e5f;margin: -10px;">Matilda's Beauty</p>
+                {{-- <p class="tfont-medium ttext-center ttext-md" style="color: #ef0e5f;margin: -10px;">Matilda's Beauty</p> --}}
             </div>
 
             <div class="tflex titems-center tflex-col">
                 
-                <p class="ttext-center tfont-medium ttext-2xl tmt-10" style="color: #ef0e5f">MissTisa</p>
+                <p class="ttext-center tfont-medium ttext-2xl tmt-5" style="color: #ef0e5f">MissTisa Melasma</p>
 
                 <div class="tflex tjustify-center tw-full tmy-3 tborder tp-3">
                     <i class="fas fa-check-circle ttext-5xl ttext-green-500 tmr-3"></i>
@@ -156,6 +156,20 @@
                         <span class="tmr-3 tmb-2 ttext-xl tfont-medium" style="color: #ef0e5f">{{ $price_qty[1] }}₱</span>
                         <input type="hidden" name="purchase_value" id="purchase_value" value="{{ $price_qty[1] }}">
                     </div>
+                </div>
+
+                <div class="tw-full tborder ttext-center tborder-2 tp-3 tm-2">
+                   
+                    <a href="https://www.facebook.com/groups/422982666836465"  target="_blank" rel="noopener noreferrer">
+                        <span class="tfont-medium"> Join Our Facebook Group</span>
+                        <br>
+
+                         <span class="ttext-blue-600">
+                            <i class="fas fa-arrow-right"></i>
+                             https://www.facebook.com/groups/MissTisa 
+                            <i class="fas fa-arrow-left"></i>
+                        </span> 
+                    </a>
                 </div>
 
             </div>

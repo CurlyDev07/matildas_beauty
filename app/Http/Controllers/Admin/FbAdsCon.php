@@ -89,11 +89,11 @@ class FbAdsCon extends Controller
     public function events(Request $request){
         $data = ['phone_number', 'full_name', 'address', 'form_validation_error'];
 
-        $events = FbEventListener::select('data', 'value')
-        ->whereIn('data', $data)
+        $events = FbEventListener::select('session_id')
         ->when(!$request->date, function($q){
             return $q->whereDate('created_at', now());
         })// Show DEFAULT DATA For Today
+        
         ->when($request->date, function($q){
             $date = explode(" - ",request()->date);
             $from = carbon($date[0]);
@@ -106,8 +106,10 @@ class FbAdsCon extends Controller
             return $q->whereBetween('created_at', [$from, $to]);
         })// FILTER DATE
         ->orderBy('id', 'desc')
+        ->groupBy('session_id')
         ->get();
 
+        dd($events);
         return view('admin.fbads.events', ['events' => $events]);
     }
 

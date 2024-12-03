@@ -17,6 +17,8 @@ class CreateFbEventListenersTable extends Migration
             $table->bigIncrements('id');
             $table->string('data');
             $table->string('value');
+            $table->string('session_id')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

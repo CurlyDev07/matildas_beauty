@@ -16,6 +16,9 @@ class MissTisaCon extends Controller
 {
 
     public function index(){
+        $session_id = uuid();
+        $website = 'MissTisa';
+
         $provinces = Province::orderBy('province', 'asc')->pluck('province');
         $seo = [
             'title' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
@@ -24,7 +27,7 @@ class MissTisaCon extends Controller
             'robots' => 'none',
         ];
 
-        return view('pages.misstisa.index', ['seo' => $seo, 'provinces' => $provinces]);
+        return view('pages.misstisa.index', ['seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
     }
 
     public function store(StoreFbAdsRequest $request){
@@ -77,18 +80,24 @@ class MissTisaCon extends Controller
             FbEventListener::create([
                 'data' => 'visitors',
                 'value' => 1,
+                'website' => $request->website,
+                'session_id' => $request->session_id,
             ]);
         }
         if ($request->order_form) {
             FbEventListener::create([
                 'data' => 'order_form',
                 'value' => 1,
+                'website' => $request->website,
+                'session_id' => $request->session_id,
             ]);
         }
         if ($request->submit_order) {
             FbEventListener::create([
                 'data' => 'submit_order',
                 'value' => 1,
+                'website' => $request->website,
+                'session_id' => $request->session_id,
             ]);
         }
 
@@ -96,6 +105,8 @@ class MissTisaCon extends Controller
             FbEventListener::create([
                 'data' => 'order_success',
                 'value' => 1,
+                'website' => $request->website,
+                'session_id' => $request->session_id,
             ]);
         }
         
@@ -103,6 +114,8 @@ class MissTisaCon extends Controller
             FbEventListener::create([
                 'data' => 'form_validation_error',
                 'value' => $request->form_validation_error,
+                'website' => $request->website,
+                'session_id' => $request->session_id,
             ]);
         }
         
@@ -110,6 +123,8 @@ class MissTisaCon extends Controller
             FbEventListener::create([
                 'data' => 'full_name',
                 'value' => $request->full_name,
+                'website' => $request->website,
+                'session_id' => $request->session_id,
             ]);
         }
 
@@ -117,6 +132,8 @@ class MissTisaCon extends Controller
             FbEventListener::create([
                 'data' => 'phone_number',
                 'value' => $request->phone_number,
+                'website' => $request->website,
+                'session_id' => $request->session_id,
             ]);
         }
 
@@ -124,6 +141,8 @@ class MissTisaCon extends Controller
             FbEventListener::create([
                 'data' => 'address',
                 'value' => $request->address,
+                'website' => $request->website,
+                'session_id' => $request->session_id,
             ]);
         }
        
@@ -131,6 +150,8 @@ class MissTisaCon extends Controller
             FbEventListener::create([
                 'data' => 'promo',
                 'value' => $request->promo,
+                'website' => $request->website,
+                'session_id' => $request->session_id,
             ]);
         }
 

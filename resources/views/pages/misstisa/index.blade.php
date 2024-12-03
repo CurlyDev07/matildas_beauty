@@ -63,7 +63,7 @@
 
 
 <!-- Meta Pixel Code -->
-<script>
+{{-- <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -77,7 +77,7 @@
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
-    /></noscript>
+/></noscript> --}}
     <!-- End Meta Pixel Code -->
 
 
@@ -539,7 +539,7 @@
                     <div class="tflex tflex-wrap tjustify-center">
                         <div class="tflex titems-center tw-full tjustify-center">
                             <label>
-                                <input type="checkbox" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
+                                <input type="radio" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-bold ttext-sm">₱499</span>
                                     <span class="tfont-medium">MissTisa Melasma 1 Set</span>
@@ -548,7 +548,7 @@
                         </div><!-- PROMO 4-->
                         <div class="tflex titems-center tw-full tjustify-center">
                             <label>
-                                <input type="checkbox" id="promo3" name="promo" class="promo" value="MissTisa_2pcs|849|2pcs">
+                                <input type="radio" id="promo3" name="promo" class="promo" value="MissTisa_2pcs|849|2pcs">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-bold ttext-sm">₱849</span>
                                     <span class="tfont-medium">MissTisa Melasma 2 Set</span>
@@ -729,7 +729,9 @@
                 }, 'slow');
 
                 $.post("/event-listener",{
-                    order_form: 1
+                    order_form: 1, 
+                    website: '{{ $website }}',
+                    session_id: '{{ $session_id }}',
                 });// EVENT LISTENER Track ORDER FORM
 
                 ttq.track('AddPaymentInfo', {
@@ -746,31 +748,41 @@
 
             $('#full_name').change(function (e) {
                 $.post("/event-listener",{
-                    full_name: $(this).val()
+                    full_name: $(this).val(),
+                    website: '{{ $website }}',
+                    session_id: '{{ $session_id }}',
                 });// EVENT LISTENER Track ENTER FULL NAME
             });
             
             $('#phone_number').change(function (e) {
                 $.post("/event-listener",{
-                    phone_number: $(this).val()
+                    phone_number: $(this).val(),
+                    website: '{{ $website }}',
+                    session_id: '{{ $session_id }}',
                 });// EVENT LISTENER Track ENTER CONTACT NUMBER
             });
 
             $('#address').change(function (e) {
                 $.post("/event-listener",{
-                    address: $(this).val()
+                    address: $(this).val(),
+                    website: '{{ $website }}',
+                    session_id: '{{ $session_id }}',
                 });// EVENT LISTENER Track ENTER CONTACT NUMBER
             });
 
             $('.promo').click(function (e) {
                 $.post("/event-listener",{
-                    promo: 1
+                    promo: 1,
+                    website: '{{ $website }}',
+                    session_id: '{{ $session_id }}',
                 });// EVENT LISTENER Track ENTER CONTACT NUMBER
             });
 
             $('#submit_btn').click(function () {
                 $.post("/event-listener",{
-                    submit_order: 1
+                    submit_order: 1,
+                    website: '{{ $website }}',
+                    session_id: '{{ $session_id }}',
                 });//  EVENT LISTENER Track SUBMIT ORDER
                 
                 let amount = $('#total').html();
@@ -797,7 +809,9 @@
             });
 
             $.post("/event-listener",{
-                visitors: 1
+                visitors: 1,
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
             });//  EVENT LISTENER Track VIEW
 
         </script>
@@ -811,7 +825,9 @@
         });// OPEN THANK YOU MODAL
 
         $.post("/event-listener",{
-            order_success: 1
+            order_success: 1,
+            website: '{{ $website }}',
+            session_id: '{{ $session_id }}',
         });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
     </script>
     @endif
@@ -823,7 +839,9 @@
             }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
 
             $.post("/event-listener",{
-                form_validation_error: "{{ $errors->first() }}"
+                form_validation_error: "{{ $errors->first() }}",
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
             });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
         </script>
     @endif
