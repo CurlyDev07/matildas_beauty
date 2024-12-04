@@ -610,8 +610,8 @@
                 <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
 
                  {{-- !!!!! IMPORTANT | PRODUCT NAME!!!!! --}}
-                 <input type="hidden" id="product_name" value="fas fa-check-circle Light Holder">
-                 <input type="hidden" id="notif_message" value="fas fa-check-circle Light Holder PH">
+                 <input type="hidden" id="product_name" value="Smart Light Holder">
+                 <input type="hidden" id="notif_message" value="Smart Light Holder PH">
  
 
 

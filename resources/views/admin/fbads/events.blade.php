@@ -30,14 +30,33 @@
                 <table class="tmb-4 tbg-white ttext-md tw-full">
                     <tr class="tborder-0">
 
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Data</th>
-                        <th class="ttext tp-3 tpx-5 ttext-black-100 tfont-medium">Value</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Session ID</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">CP#</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Product</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Details</th>
                     </tr>
 
                     @foreach ($events as $event)
                         <tr>
-                            <td class="ttext-sm ttext-center tpy-1 tcapitalize">{{ $event->data }}</td>
-                            <td class="ttext-sm ttext tpy-1">{{ $event->value }}</td>
+                            <td class="ttext-sm ttext-center tpy-1 tcapitalize">{{ $event->session_id }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">{{ $event->value }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">{{ $event->website }}</td>
+                            <td class="ttext-sm ttext-center tpy-1">
+                                @php
+                                    $details = \App\FbEventListener::select('data', 'value')->whereIn('data', ['full_name', 'address'])->where(['session_id' => $event->session_id])->get();
+                                @endphp
+                                
+                                @foreach ($details as $index => $detail)
+                                    @if ($index == 0)
+                                        <span class="tfont-medium"> {{ $detail->value }} </span>
+                                        /
+                                    @else 
+                                        <span class="tfont-medium">{{ $detail->value }} </span>
+                                    @endif
+                                    
+                                @endforeach
+
+                            </td>
                         </tr>
                     @endforeach
             </table>
