@@ -108,7 +108,6 @@ class FbAdsCon extends Controller
         })// FILTER DATE
         ->orderBy('id', 'desc')
         ->get();
-        dd($events);
         return view('admin.fbads.events', ['events' => $events]);
     }
 
