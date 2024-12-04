@@ -38,11 +38,11 @@
 
                     @foreach ($events as $event)
                         <tr>
-                            {{-- <td class="ttext-sm ttext-center tpy-1 tcapitalize">{{ $event->session_id }}</td> --}}
+                            <td class="ttext-sm ttext-center tpy-1 tcapitalize">{{ $event->session_id }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $event->value }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $event->website }}</td>
                             <td class="ttext-sm ttext-center tpy-1">
-                                {{-- @php
+                                @php
                                     $details = \App\FbEventListener::select('data', 'value')->whereIn('data', ['full_name', 'address'])->where(['session_id' => $event->session_id])->get();
                                 @endphp
                                 
@@ -54,7 +54,7 @@
                                         <span class="tfont-medium">{{ $detail->value }} </span>
                                     @endif
                                     
-                                @endforeach --}}
+                                @endforeach
 
                             </td>
                         </tr>

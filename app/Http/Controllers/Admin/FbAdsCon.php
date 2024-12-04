@@ -90,7 +90,7 @@ class FbAdsCon extends Controller
     public function events(Request $request){
 
         $events = FbEventListener::select('data', 'value', 'session_id', 'website')
-        // ->where('data', 'phone_number')
+        ->where('data', 'phone_number')
         ->when(!$request->date, function($q){
             return $q->whereDate('created_at', now());
         })// Show DEFAULT DATA For Today
