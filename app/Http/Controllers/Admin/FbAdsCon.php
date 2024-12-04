@@ -88,7 +88,6 @@ class FbAdsCon extends Controller
     }
    
     public function events(Request $request){
-        // $data = ['phone_number', 'full_name', 'address', 'form_validation_error'];
 
         $events = FbEventListener::select('data', 'value', 'session_id', 'website')
         ->where('data', 'phone_number')
@@ -109,7 +108,7 @@ class FbAdsCon extends Controller
         })// FILTER DATE
         ->orderBy('id', 'desc')
         ->get();
-
+        dd($events);
         return view('admin.fbads.events', ['events' => $events]);
     }
 
