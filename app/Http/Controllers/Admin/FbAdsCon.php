@@ -89,6 +89,21 @@ class FbAdsCon extends Controller
    
     public function events(Request $request){
 
+        $contact_number = FbAds::select('phone_number')
+        ->when(!$request->date, function($q){
+            return $q->whereDate('created_at', now());
+        })->when($request->date, function($q){
+            $date = explode(" - ",request()->date);
+            $from = carbon($date[0]);
+            $to = carbon($date[1]);
+
+            if ($from == $to) {
+                return $q->whereDate('created_at', $from);
+            }
+
+            return $q->whereBetween('created_at', [$from, $to]);
+        })->pluck('phone_number')->toArray();
+
         $events = FbEventListener::select('data', 'value', 'session_id', 'website')
         ->where('data', 'phone_number')
         ->when(!$request->date, function($q){
@@ -108,7 +123,7 @@ class FbAdsCon extends Controller
         })// FILTER DATE
         ->orderBy('id', 'desc')
         ->get();
-        return view('admin.fbads.events', ['events' => $events]);
+        return view('admin.fbads.events', ['events' => $events, 'contact_number' => $contact_number]);
     }
 
     public function change_status(){

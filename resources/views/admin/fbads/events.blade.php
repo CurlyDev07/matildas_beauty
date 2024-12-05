@@ -35,9 +35,12 @@
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Product</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Details</th>
                     </tr>
-
+                    {{-- {{dd($contact_number)}} --}}
                     @foreach ($events as $event)
-                        <tr>
+                       
+                            
+                        
+                        <tr  @if (!in_array($event->value, $contact_number)) class="tbg-red-200" @endif>
                             <td class="ttext-sm ttext-center tpy-1 tcapitalize">{{ $event->session_id }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $event->value }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $event->website }}</td>
