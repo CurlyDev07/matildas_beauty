@@ -45,16 +45,18 @@
                                 @php
                                     $details = \App\FbEventListener::select('data', 'value')->whereIn('data', ['full_name', 'address'])->where(['session_id' => $event->session_id])->get();
                                 @endphp
-                                
-                                @foreach ($details as $index => $detail)
-                                    @if ($index == 0)
-                                        <span class="tfont-medium"> {{ $detail->value }} </span>
-                                        /
-                                    @else 
-                                        <span class="tfont-medium">{{ $detail->value }} </span>
-                                    @endif
+                                @if ($event->session_id != '')
+                                    @foreach ($details as $index => $detail)
+                                        @if ($index == 0)
+                                            <span class="tfont-medium"> {{ $detail->value }} </span>
+                                            /
+                                        @else 
+                                            <span class="tfont-medium">{{ $detail->value }} </span>
+                                        @endif
                                     
-                                @endforeach
+                                    @endforeach
+                                @endif
+                                
 
                             </td>
                         </tr>
