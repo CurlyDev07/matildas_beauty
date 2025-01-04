@@ -16,7 +16,13 @@ use App\Mail\Transactions\FbAdsOrderSuccess;
 class FbAdsCon extends Controller
 {
     public function smart_home_ph(){
-        return view('pages.fbads.category.home_improvements.bulb.index');
+        $website = 'Smart Light Holder';
+        $session_id = uuid();
+
+        return view('pages.fbads.category.home_improvements.bulb.index', [
+            'website' => $website, 
+            'session_id' => $session_id, 
+        ]);
     }
     
     public function ginger_oil(){
@@ -55,6 +61,9 @@ class FbAdsCon extends Controller
         $title = 'MissTisa #1 Anti-aging + Glass Skin Serum in the Philippines';
         $product_name = 'MissTisa Serum';
         $notif_message = 'This is from MissTisa Serum';
+        $website = 'MissTisaSerum';
+        $session_id = uuid();
+
         $promos = [
             'promo1' => [
                 'promo' => 'MissTisaSerum_1pc|749|1pc',
@@ -76,6 +85,8 @@ class FbAdsCon extends Controller
             'product_name' => $product_name, 
             'notif_message' => $notif_message, 
             'promos' => $promos, 
+            'website' => $website, 
+            'session_id' => $session_id, 
         ]);
     }
 

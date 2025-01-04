@@ -104,7 +104,11 @@
 
                 $('.loader').addClass('thidden');// HIDE LOADER
 
-                eventListener('order_success');// Track event
+                $.post("/event-listener",{
+                    order_success: 1,
+                    website: '{{ $website }}',
+                    session_id: '{{ $session_id }}',
+                });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
 
                 $.post("/Madella-Order-Success-Email",{
                     data,
@@ -148,7 +152,11 @@
             }
             
             if (errors != 0) {
-                eventListener('form_validation_error');// Track event
+                $.post("/event-listener",{
+                    form_validation_error: 1,
+                    website: '{{ $website }}',
+                    session_id: '{{ $session_id }}',
+                });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
                 return false;
             }
 
@@ -160,7 +168,11 @@
                 scrollTop: $('#form').offset().top + 9999
             }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
 
-            eventListener('order_form');// Track event
+            $.post("/event-listener",{
+                order_form: 1, 
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });// EVENT LISTENER Track ORDER FORM
 
             ttq.track('AddPaymentInfo', { // TIKTOK PIXEL
                 "contents": [
@@ -258,33 +270,51 @@
 
         // EVENT LISTENER
         $('#full_name').change(function (e) {
-            eventListener({'full_name': $(this).val()});// Track event
+            $.post("/event-listener",{
+                full_name: $(this).val(),
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });// EVENT LISTENER Track ENTER FULL NAME
         });
         
         $('#phone_number').change(function (e) {
-            eventListener({'phone_number': $(this).val()});// Track event
+            $.post("/event-listener",{
+                phone_number: $(this).val(),
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });// EVENT LISTENER Track ENTER CONTACT NUMBER
         });
 
         $('#address').change(function (e) {
-            eventListener({'address': $(this).val()});// Track event
+            $.post("/event-listener",{
+                address: $(this).val(),
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });// EVENT LISTENER Track ENTER CONTACT NUMBER
         });
 
         $('.promo').click(function (e) {
-            eventListener({'promo': 1});// Track event
+            $.post("/event-listener",{
+                promo: 1,
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });// EVENT LISTENER Track ENTER CONTACT NUMBER
         });
 
         $('#submit_btn').click(function () {
-            eventListener({'submit_order': 1});// Track event
+            $.post("/event-listener",{
+                submit_order: 1,
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });//  EVENT LISTENER Track SUBMIT ORDER
         })
 
         //  Track event
-        eventListener('visitors');
-
-        function eventListener(event){
-            let data = event;
-            $.post("/event-listener",data);
-        }//  EVENT LISTENER
-
+        $.post("/event-listener",{
+            visitors: 1,
+            website: '{{ $website }}',
+            session_id: '{{ $session_id }}',
+        });//  EVENT LISTENER Track VIEW
 
         // allnumeric
         function allnumeric(inputtxt){
