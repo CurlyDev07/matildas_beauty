@@ -167,7 +167,13 @@
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->phone_number }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->address }}</td>
                             <td class="ttext-sm ttext-center tpy-1 ">
-                                <span class="tfont-medium {{ $order->product == 'MissTisa'? 'ttext-pink-600' : "ttext-green-700" }}">{{ $order->promo }}</span>
+                                @if ($order->product == 'MissTisa')
+                                    <span class="tfont-medium ttext-pink-600">{{ $order->promo }}</span>
+                                @if ($order->product == 'Smart Light Holder')
+                                    <span class="tfont-medium ttext-green-700">{{ $order->promo }}</span>
+                                @if ($order->product == 'MissTisa Serum')
+                                    <span class="tfont-medium" style="color: #ff6206;">{{ $order->promo }}</span>
+                                @endif
                             </td>
                             <td class="ttext-sm ttext-center tpy-1 amount">{{ $order->total }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->created_at->format('M d, h:i:s A') }}</td>
