@@ -169,9 +169,9 @@
                             <td class="ttext-sm ttext-center tpy-1 ">
                                 @if ($order->product == 'MissTisa')
                                     <span class="tfont-medium ttext-pink-600">{{ $order->promo }}</span>
-                                @if ($order->product == 'Smart Light Holder')
+                                @elseif ($order->product == 'Smart Light Holder')
                                     <span class="tfont-medium ttext-green-700">{{ $order->promo }}</span>
-                                @if ($order->product == 'MissTisa Serum')
+                                @elseif ($order->product == 'MissTisa Serum')
                                     <span class="tfont-medium" style="color: #ff6206;">{{ $order->promo }}</span>
                                 @endif
                             </td>
