@@ -89,6 +89,39 @@ class FbAdsCon extends Controller
             'session_id' => $session_id, 
         ]);
     }
+    
+    public function misstisa_serum_new(){
+        $title = 'MissTisa #1 Anti-aging + Glass Skin Serum in the Philippines';
+        $product_name = 'MissTisa Serum';
+        $notif_message = 'This is from MissTisa Serum';
+        $website = 'MissTisaSerum';
+        $session_id = uuid();
+
+        $promos = [
+            'promo1' => [
+                'promo' => 'MissTisaSerum_1pc|749|1pc',
+                'promo_text' => '1pc MissTisa Serum',
+                'price' =>749,
+                'each_price' => '749/each'
+            ], 
+            'promo2' => [
+                'promo' => 'MissTisaSerum_2pcs|999|2pcs',
+                'promo_text' => '2pcs MissTisa Serum',
+                'price' => 999,
+                'each_price' => '499/each'
+            ], 
+        ];
+
+
+        return view('pages.fbads.category.home_improvements.misstisa_serum_new.index', [
+            'title' => $title, 
+            'product_name' => $product_name, 
+            'notif_message' => $notif_message, 
+            'promos' => $promos, 
+            'website' => $website, 
+            'session_id' => $session_id, 
+        ]);
+    }
 
     public function store(StoreFbAdsRequest $request){
 
