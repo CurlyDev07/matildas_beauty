@@ -57,11 +57,11 @@
 
                 <div class="tflex tflex-wrap tpx-5">
                     <div class="tw-1/5 tpx-1">
-                        <label for="product" class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Product</label>
-                        <input type="text" disabled id="product" name="product" class="browser-default form-control tbg-gray-200" value="" style="padding: 6px; background-color: #dadada;">
+                        <label for="product" class="tfont-normal ttext-sm tmb-2 ttext-black-100 ">Product</label>
+                        <input type="text" id="product" name="product" class="browser-default form-control tbg-gray-200 tcursor-not-allowed" value="" style="padding: 6px; background-color: #dadada;">
                     </div>
                     <div class="tw-1/5 tpx-1">
-                        <label for="promo" class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Promo</label>
+                        <label for="promo" class="tfont-normal ttext-sm tmb-2 ttext-black-100 ">Promo</label>
                         <input type="text" id="promo" name="promo" class="promo browser-default form-control" value="" style="padding: 6px;">
                     </div>
                     <div class="tw-1/5 tpx-1 tpx-1 tmb-2 lg:tmb-0">
@@ -77,13 +77,7 @@
         </form>
     </div>
 
-
-
-@endsection
-
-
-
-@section('js')
+    @section('js')
     <script>
         $('#promo').change(function () {
             let val = $(this).val().split("|");;
@@ -92,9 +86,15 @@
             let promo = val[1];
             let total = val[2];
 
-            $('#product').val(product);
+            $('#product').val(product); 
             $('.promo').val(promo);
-            $('#total').val('1111');
+            $('#total').val(total);
         });
     </script>
 @endsection
+
+@endsection
+
+
+
+
