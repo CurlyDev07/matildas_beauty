@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -196,6 +197,9 @@
             
             <img class="" src="https://matildasbeauty.com/filemanager/bf4b1d217b1b4654aaae8d13809d47fd.webp" alt="how_to_use in the morning">
             <img class="" src="https://matildasbeauty.com/filemanager/70dae3d024234c7b9ec182fb30aa027e.webp" alt="how_to_use in the evening">
+            <img class="" src="https://matildasbeauty.com/filemanager/b2908c0c052b40469f6c240262d2f723.webp" alt="how_to_use in the evening">
+            <img class="" src="https://matildasbeauty.com/filemanager/ae7c490cd31240b8bc0bf6a66aec5193.webp" alt="how_to_use in the evening">
+            <img class="" src="https://matildasbeauty.com/filemanager/07823d1b14684d76833e387789938baf.webp" alt="how_to_use in the evening">
 
         </div><!-- PRODUCT DETAILS-->
 
@@ -555,6 +559,16 @@
                                 </span>
                             </label>
                         </div><!-- PROMO 3 -->
+
+                        <div class="tflex titems-center tw-full tjustify-center tborder-t-2">
+                            <label>
+                                <input type="radio" id="promo2" name="promo" class="promo" value="MissTisaSerum_1pc|749|1pcs">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-bold ttext-sm">₱749</span>
+                                    <span class="tfont-medium">Serum 1pc</span>
+                                </span>
+                            </label>
+                        </div><!-- PROMO 2 -->
                     </div>
                    
                     @error('promo')
