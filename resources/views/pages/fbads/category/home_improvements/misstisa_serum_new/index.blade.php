@@ -13,7 +13,6 @@
 @endsection
 
 @section('content')
-
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
 
         <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgb(0 0 0) 0%, rgb(0 0 0) 100%);">
