@@ -62,8 +62,11 @@ class MissTisaCon extends Controller
     }
 
     public function success(){
+        $session_id = uuid();
+        $website = 'MissTisa';
+
         $data = request()->all();
-        return view('pages.misstisa.order_success', ['data' => $data]);
+        return view('pages.misstisa.order_success', ['data' => $data, 'session_id' => $session_id, 'website' => $website]);
     }
 
     public function cities(Request $request){

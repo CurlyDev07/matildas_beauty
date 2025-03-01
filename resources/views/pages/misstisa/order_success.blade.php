@@ -62,7 +62,7 @@
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
 
 <!-- Meta Pixel Code -->
-<script>
+{{-- <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -76,7 +76,7 @@
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
-/></noscript>
+/></noscript> --}}
     <!-- End Meta Pixel Code -->
 
 
@@ -231,7 +231,15 @@
             });
 
             $.post("/event-listener",{
-                order_success: 1
+                order_success: 1,
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
+
+            $.post("/event-listener",{
+                order_success: 1,
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}'
             });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
 
         </script>
