@@ -151,6 +151,12 @@
                         File Manager
                     </a>
                 </li>
+                <li class="tab col">
+                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'sms', 'active') }}" onclick="location.href = '/admin/sms'">
+                        <i class="fas fa-users tmr-1 fa-lg"></i> 
+                        SMS
+                    </a>
+                </li>
                 {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'withdrawal', 'active') }}" onclick="location.href = '/admin/withdrawal'">
                         <i class="fas fa-users tmr-1 fa-lg"></i> 

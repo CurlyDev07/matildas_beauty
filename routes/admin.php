@@ -246,6 +246,16 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::post('/folder/change-name', 'FileManagerCon@change_name')->name('file_manager.folder.change_name');
         Route::POST('/folder/upload', 'FileManagerCon@upload')->name('file_manager.upload');
     });
+
+    /*
+    |--------------------------------------------------------------------------
+    | SMS
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('sms')->group(function () {
+        Route::get('/', 'SmsCon@index')->name('sms.index');
+       
+    });
     
 
 
