@@ -43,6 +43,7 @@
 
                         <select id="promo" class="browser-default tfont-normal ttext-sm tmb-2 ttext-black-100">
                             <option value="" style="color: #f43958">choose ....</option>
+                            <option value="MissTisa|MissTisa_1pc_+_1pcSerum|1149" style="color: #ff002b">MissTisa 1pc + 1 Serum</option>
                             <option value="MissTisa|MissTisa_1pc|499" style="color: #f43958">MissTisa 1pc</option>
                             <option value="MissTisa|MissTisa_2pcs|849" style="color: #f43958">MissTisa 2pcs</option>
                             <option value="MissTisa Serum|MissTisaSerum_1pc|749" style="color: #ff6f00">Serum 1pc</option>
