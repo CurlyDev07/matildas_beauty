@@ -47,6 +47,7 @@ class SmsCon extends Controller
 
             return $q->whereBetween('created_at', [$from, $to]);
         })// FILTER DATE
+        ->distinct()
         ->pluck('phone_number');
 
 
