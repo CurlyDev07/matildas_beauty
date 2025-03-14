@@ -254,6 +254,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     */
     Route::prefix('sms')->group(function () {
         Route::get('/', 'SmsCon@index')->name('sms.index');
+        Route::get('/phone-numbers', 'SmsCon@phone_numbers')->name('sms.phone_numbers');
        
     });
     

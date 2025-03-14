@@ -30,4 +30,31 @@ class SmsCon extends Controller
             'thirty_days' => $thirty_days
         ]);
     }
+
+    public function phone_numbers(Request $request){
+        $phoneNumbers = FbAds::orderBy('created_at', 'desc')
+        ->when(!$request->date, function($q){
+            return $q->whereDate('created_at', now());
+        })// Show DEFAULT DATA For TODAY
+        ->when($request->date, function($q){
+            $date = explode(" - ",request()->date);
+            $from = carbon($date[0]);
+            $to = carbon($date[1]);
+
+            if ($from == $to) {
+                return $q->whereDate('created_at', $from);
+            }
+
+            return $q->whereBetween('created_at', [$from, $to]);
+        })// FILTER DATE
+        ->pluck('phone_number');
+
+
+        // $phoneNumbers = FbAds::whereDate('created_at', request()->date ? Carbon::parse(request()->date) : Carbon::yesterday())
+        // ->pluck('phone_number');
+
+        // dd($orders);
+
+        return view('admin.sms.phone_numbers', ['phoneNumbers' => $phoneNumbers]);
+    }
 }

@@ -82,7 +82,6 @@ class FbAdsCon extends Controller
         ->orderBy('data', 'desc')
         ->get();
 
-        // dd($events);
 
         return view('admin.fbads.event_listener', ['events' => $events]);
     }
