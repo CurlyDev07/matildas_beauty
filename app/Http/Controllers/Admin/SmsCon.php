@@ -32,21 +32,20 @@ class SmsCon extends Controller
     }
 
     public function phone_numbers(Request $request){
-        $phoneNumbers = FbAds::orderBy('created_at', 'desc')
-        ->when(!$request->date, function($q){
-            return $q->whereDate('created_at', now());
-        })// Show DEFAULT DATA For TODAY
-        ->when($request->date, function($q){
-            $date = explode(" - ",request()->date);
-            $from = carbon($date[0]);
-            $to = carbon($date[1]);
-
-            if ($from == $to) {
+        $phoneNumbers = FbAds::when(!$request->date, function ($q) {
+            return $q->whereDate('created_at', Carbon::yesterday()); // Default to yesterday
+        })
+        ->when($request->date, function ($q) {
+            $date = explode(" - ", request()->date);
+            $from = Carbon::parse($date[0]);
+            $to = Carbon::parse($date[1]);
+    
+            if ($from->equalTo($to)) {
                 return $q->whereDate('created_at', $from);
             }
-
+    
             return $q->whereBetween('created_at', [$from, $to]);
-        })// FILTER DATE
+        })
         ->distinct()
         ->pluck('phone_number');
 
