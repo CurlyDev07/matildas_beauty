@@ -19,7 +19,7 @@
         <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgb(0 0 0) 0%, rgb(0 0 0) 100%);">
             <div >
                 <div class="">
-                    <p class="t-mt-2 tfont-medium  ttext-4xl ttext-white">Timeless Beauty in Every Drop</p>
+                    <p class="t-mt-2 tfont-medium  ttext-2xl ttext-white">Timeless Beauty in Every Drop</p>
                 </div>
                 <div class="">
                     <span class="ttext-sm ttext-white">
@@ -97,7 +97,9 @@
         <img src="https://matildasbeauty.com/filemanager/b062d855e96a417d85b5a9a91a93ac34.webp" class="tw-full"  alt="Melasma & Darkspot">
         <img src="https://matildasbeauty.com/filemanager/ff77519808c34d98a0cd94669f0c68fc.webp" class="tw-full"  alt="Kontra Law-law">
         <img src="https://matildasbeauty.com/filemanager/b6f3620b86ec4b21a38bc24ba2f2d5b8.webp" class="tw-full"  alt="Ingredients">
-        <img src="https://matildasbeauty.com/filemanager/6b991344e4ce4e3bab731b4d1f0ab63a.webp" class="tw-full"  alt="Before and After">
+        <img src="https://matildasbeauty.com/filemanager/409d8830a29940eea4f69b7ad9b0801a.webp" class="tw-full"  alt="Before & After 1">
+        <img src="https://matildasbeauty.com/filemanager/008b94df938c460493ff2c3abeeef489.webp" class="tw-full"  alt="Before & After 2">
+        <img src="https://matildasbeauty.com/filemanager/00b73e6229ef483ca934284422bd816b.webp" class="tw-full"  alt="Before & After 3">
 
         {{-- <div class="tmb-5 tborder-t" >
             <div class="tborder tpx-4 tpy-5">

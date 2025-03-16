@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -546,26 +546,29 @@
 
                 <div class="tborder-2 tmb-2 tp-2 trelative" style="border-color: #ee2a7ba8">
                     <div class="tflex tflex-wrap tjustify-center">
-                        <div class="tflex titems-center tw-full tjustify-center">
+                        <div class="tflex titems-center tw-full ">
                             <label>
                                 <input type="radio" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-bold ttext-sm">₱499</span>
-                                    <span class="tfont-medium">MissTisa Melasma 1 Set</span>
+                                    <span class="tfont-medium">Melasma 1 Set</span>
                                 </span>
                             </label>
                         </div><!-- PROMO 4-->
-                        <div class="tflex titems-center tw-full tjustify-center">
+
+                        <hr>
+
+                        <div class="tflex titems-center tw-full ">
                             <label>
                                 <input type="radio" id="promo3" name="promo" class="promo" value="MissTisa_2pcs|849|2pcs">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-bold ttext-sm">₱849</span>
-                                    <span class="tfont-medium">MissTisa Melasma 2 Set</span>
+                                    <span class="tfont-medium">Melasma 2 Set</span>
                                 </span>
                             </label>
                         </div><!-- PROMO 3 -->
 
-                        <div class="tflex titems-center tw-full tjustify-center tborder-t-2">
+                        {{-- <div class="tflex titems-center tw-full  tborder-t-2">
                             <label>
                                 <input type="radio" id="promo2" name="promo" class="promo" value="MissTisaSerum_1pc|749|1pcs">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
@@ -574,6 +577,24 @@
                                 </span>
                             </label>
                         </div><!-- PROMO 2 -->
+
+                        <hr>
+
+                        <div class="tflex titems-center tw-full  tborder-t-2 trelative">
+                            <label>
+                                <input type="radio" id="promo1" name="promo" class="promo" value="1_MissTisa_Set_1Serum|1149|1each">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-bold ttext-sm">₱1149</span>
+                                    <span class="tfont-medium">1 MissTisa Set + 1 Serum</span>
+                                </span>
+                            </label>
+                            <span class="tabsolute tfont-medium tright-0 ttext-red-700"> 
+                                <i class="fas fa-arrow-left"></i> &nbsp;
+                                <i class="fas fa-arrow-left"></i> &nbsp;
+                                <i class="fas fa-arrow-left"></i> &nbsp;
+                                 Best Seller
+                            </span>
+                        </div><!-- PROMO 1 --> --}}
                     </div>
                    
                     @error('promo')
@@ -584,7 +605,7 @@
                     <span class="ttext-gray-900" style="font-size: 16px;">
                         <span class="tfont-medium">TOTAL:</span>
                         <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">749</span>
+                        <span id="total" class="tfont-medium t-ml-1">499</span>
                     </span>
                 </div>
                 <div class="tw-full ">

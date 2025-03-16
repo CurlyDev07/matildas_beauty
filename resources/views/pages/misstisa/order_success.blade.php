@@ -231,7 +231,15 @@
             });
 
             $.post("/event-listener",{
-                order_success: 1
+                order_success: 1,
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
+
+            $.post("/event-listener",{
+                order_success: 1,
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}'
             });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
 
         </script>
