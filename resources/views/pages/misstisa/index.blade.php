@@ -563,7 +563,7 @@
                             </label>
                         </div><!-- PROMO 3 -->
 
-                        {{-- <div class="tflex titems-center tw-full  tborder-t-2">
+                        <div class="tflex titems-center tw-full  tborder-t-2">
                             <label>
                                 <input type="radio" id="promo2" name="promo" class="promo" value="MissTisaSerum_1pc|749|1pcs">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
@@ -589,7 +589,7 @@
                                 <i class="fas fa-arrow-left"></i> &nbsp;
                                  Best Seller
                             </span>
-                        </div><!-- PROMO 1 --> --}}
+                        </div><!-- PROMO 1 -->
                     </div>
                    
                     @error('promo')
