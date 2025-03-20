@@ -568,7 +568,31 @@
                             </label>
                         </div><!-- PROMO 3 -->
 
-                        
+                        <div class="tflex titems-center tw-full  tborder-t-2">
+                            <label>
+                                <input type="radio" id="promo2" name="promo" class="promo" value="MissTisaSerum_1pc|749|1pcs">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-bold ttext-sm">₱749</span>
+                                    <span class="tfont-medium">Serum 1pc</span>
+                                </span>
+                            </label>
+                        </div><!-- PROMO 2 -->
+
+                        <hr>
+
+                        <div class="tflex titems-center tw-full  tborder-t-2 trelative">
+                            <label>
+                                <input type="radio" id="promo1" name="promo" class="promo" value="1_MissTisa_Set_1Serum|1149|1each">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-bold ttext-sm">₱1149</span>
+                                    <span class="tfont-medium">1 MissTisa Set + 1 Serum</span>
+                                </span>
+                            </label>
+                            <span class="tabsolute tfont-medium tright-0 ttext-red-700"> 
+                                <i class="fas fa-arrow-left"></i>
+                                 Best Seller
+                            </span>
+                        </div><!-- PROMO 1 -->
                     </div>
                    
                     @error('promo')
