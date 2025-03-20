@@ -62,7 +62,6 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
 
-
 <!-- Meta Pixel Code -->
 <script>
     !function(f,b,e,v,n,t,s)
@@ -147,6 +146,8 @@
         </div><!-- FREE 4 Gifts -->
 
         <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Kulubot</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Wrinkles</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Melasma Remover</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Korean Glass Skin</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No More Pekas</div>
@@ -155,6 +156,8 @@
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Deep Scars</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Whiteheads</div>
             <div class="tw-1/2"><i class="fas fa-check-circle" style="color: #f52d87;"></i> Blackheads</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle" style="color: #f52d87;"></i> Skin Whitening</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle" style="color: #f52d87;"></i> Pinkish Skin</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> For Sensitive Skin</div>
             <div class="tw-1/2 tmb-3"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No Irritation </div>
           
@@ -165,6 +168,7 @@
 
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/47e5c4f66a294471b45863de264aefa4.webp" alt="28_days_challenge">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/9be3a73b4b7a4c2b900362413f4215d3.webp" alt="mudra">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/7e759e18833541df9831e02e1bb580bd.webp" alt="Happy Users">
         
         <img src="https://matildasbeauty.com/filemanager/f7a3ec127e124558b27200c44022cd2b.webp" class="tw-full tmy-5"  alt="before_after">
 
@@ -179,6 +183,7 @@
 
         <img src="https://matildasbeauty.com/filemanager/3de536b529bf4cfb9a3d81c5b6c537f6.webp" alt="satisfied_customer1">
         <img src="https://matildasbeauty.com/filemanager/9685bc8e635a480b84b7852dfd74b41f.webp" alt="satisfied_customer2">
+        <img src="https://matildasbeauty.com/filemanager/a04e4b8538014d62a80d3dd2d3446643.webp" alt="New Before and After">
 
 
         <div class="tmx-auto trelative tp-5">
