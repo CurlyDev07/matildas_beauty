@@ -589,9 +589,7 @@
                                 </span>
                             </label>
                             <span class="tabsolute tfont-medium tright-0 ttext-red-700"> 
-                                <i class="fas fa-arrow-left"></i> &nbsp;
-                                <i class="fas fa-arrow-left"></i> &nbsp;
-                                <i class="fas fa-arrow-left"></i> &nbsp;
+                                <i class="fas fa-arrow-left"></i>
                                  Best Seller
                             </span>
                         </div><!-- PROMO 1 -->
