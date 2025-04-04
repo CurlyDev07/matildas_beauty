@@ -409,6 +409,11 @@
                 </div><!--Address -->
 
 
+                <div class="tbg-red-100 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
+                    MissTisa Set <br>
+                    Out of Stock
+                </div>
+
                 <!-- ORDER PROMO -->
                 <div class=" tmb-2 tp-3 trelative" >
                     
