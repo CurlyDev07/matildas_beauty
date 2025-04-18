@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\FbAds;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
+
 
 
 class SmsCon extends Controller
@@ -49,12 +51,24 @@ class SmsCon extends Controller
         ->distinct()
         ->pluck('phone_number');
 
-
-        // $phoneNumbers = FbAds::whereDate('created_at', request()->date ? Carbon::parse(request()->date) : Carbon::yesterday())
-        // ->pluck('phone_number');
-
-        // dd($orders);
-
         return view('admin.sms.phone_numbers', ['phoneNumbers' => $phoneNumbers]);
+    }
+
+    public function messages(){
+
+        $client = new Client();
+        $response = $client->request('GET', 'http://54.245.199.189/api/get-sms-message');
+        $messages = json_decode($response->getBody(), true);
+
+        return view('admin.sms.messages', ['messages' => $messages['data']]);
+    }
+
+
+    public function follow_ups(){
+        $client = new Client();
+        $response = $client->request('GET', 'http://54.245.199.189/api/get-customer-follow-up');
+        $follow_ups = json_decode($response->getBody(), true);
+        
+        return view('admin.sms.follow_ups', ['follow_ups' => $follow_ups['data']]);
     }
 }
