@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 use App\Province;
 use App\City;
 use App\Barangay;
@@ -12,6 +13,7 @@ use App\FbEventListener;
 use App\Http\Requests\FbAds\StoreFbAdsRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Transactions\FbAdsOrderSuccess;
+
 
 class FbAdsCon extends Controller
 {
@@ -224,6 +226,25 @@ For any questions, Message us her";
                 'website' => $request->website,
                 'session_id' => $request->session_id,
             ]);
+            // sms api here
+
+
+            $data = [
+                'name' => $request->name,
+                'contact_number' => $request->contact_number
+            ];
+        
+            $client = new Client();
+            $response = $client->request('POST', 'http://54.245.199.189/api/create-customer-info', [
+                'json' => $data, // Sends as application/json
+                'headers' => [
+                    'Accept' => 'application/json', // Optional, if your API expects JSON
+                ],
+            ]);
+
+            $data = json_decode($response->getBody(), true);
+            dd($data);
+            return $data;
         }
         
         if ($request->form_validation_error) {

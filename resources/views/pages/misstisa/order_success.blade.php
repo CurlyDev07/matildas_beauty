@@ -127,7 +127,7 @@
                     <div class="tw-full tflex tmt-5">
                         <div class="tw-1/2 tflex tflex-col">
                             <span class="ttext-md tfont-medium">Fullname</span>
-                            <span class="">{{ $data['full_name'] }}</span>
+                            <span class=""  id="name">{{ $data['full_name'] }}</span>
                         </div>
                         <div class="tw-1/2 tflex tflex-col">
                             <span class="ttext-md tfont-medium">Contact Number</span>
@@ -148,7 +148,7 @@
                 <div class="tw-full tborder tborder-2 tp-3 tm-2">
                     <div class="tflex titems-center tjustify-between">
                         <img width="100" src="{{ asset('/images/icons/misstisa.png') }}" class="tmr-3" alt="MissTisa Melasma Remover">
-                        <div class="">MissTisa Melasma Remover Set |  {{ $price_qty[2] }}</div>
+                        <div class="">{{ $price_qty[0] }}</div>
                     </div>
 
                     <div class="tflex tjustify-end titems-center">
@@ -234,12 +234,8 @@
                 order_success: 1,
                 website: '{{ $website }}',
                 session_id: '{{ $session_id }}',
-            });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
-
-            $.post("/event-listener",{
-                order_success: 1,
-                website: '{{ $website }}',
-                session_id: '{{ $session_id }}'
+                name: $('#name').html(),
+                contact_number: '{{ request("phone_number") }}'
             });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
 
         </script>
