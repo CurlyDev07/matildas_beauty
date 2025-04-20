@@ -163,9 +163,9 @@
                             <td class="ttext-sm ttext-center tpy-1 tcapitalize">
                                 <a href="{{ route('fbads.order', ['id' => $order->id]) }}" class="ttext-blue-700 tooltipped" data-tooltip="Click to view/edit order">{{ $order->id }}</a>
                             </td>
-                            <td class="ttext-sm ttext-center tpy-1 tcapitalize">{{ $order->full_name }}</td>
-                            <td class="ttext-sm ttext-center tpy-1">{{ $order->phone_number }}</td>
-                            <td class="ttext-sm ttext-center tpy-1">{{ $order->address }}</td>
+                            <td class="ttext-sm ttext-center tpy-1 tcapitalize tbreak-all">{{ $order->full_name }}</td>
+                            <td class="ttext-sm ttext-center tpy-1 tbreak-all">{{ $order->phone_number }}</td>
+                            <td class="ttext-sm ttext-center tpy-1 tbreak-all">{{ $order->address }}</td>
                             <td class="ttext-sm ttext-center tpy-1 ">
                                 @if ($order->product == 'MissTisa')
                                     <span class="tfont-medium ttext-pink-600">{{ $order->promo }}</span>
