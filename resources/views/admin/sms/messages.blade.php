@@ -2,6 +2,7 @@
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.9/dist/sweetalert2.min.css" rel="stylesheet">
 @endsection
 
 @section('page')
@@ -25,8 +26,8 @@
                             <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Message Name #</th>
                             <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Message</th>
                             <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Interval</th>
+                            <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Actions</th>
                         </tr>
-
 
                         @foreach ($messages as $message)
                             <tr>    
@@ -34,6 +35,14 @@
                                 <td class="ttext-sm ttext-center tpy-1 tfont-medium">{{ $message['message_name'] }}</td>
                                 <td class="tmax-w-sm tpy-1 ttext-center ttext-sm">{{ $message['message'] }}</td>
                                 <td class="ttext-sm ttext-center tpy-1">{{ $message['interval'] }}</td>
+                                <td class="ttext-sm ttext-center tpy-1">
+                                    <button class="delete-btn" data-id="{{ $message['id'] }}">
+                                        <i class="fas fa-trash tcursor-pointer ttext-lg ttext-red-500 tmr-3"></i>
+                                    </button>
+                                    <button>
+                                        <i class="fas fa-pencil-alt tcursor-pointer ttext-lg ttext-green-500"></i>
+                                    </button>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -79,7 +88,9 @@
 
 
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    
     <script>
 
         $('#submit').click(function () {
@@ -105,6 +116,33 @@
 
         $(document).ready(function(){
             $('.modal').modal();
+
+            $('.delete-btn').on('click', function() {
+                var messageId = $(this).data('id');
+
+                $.ajax({
+                    url: "http://54.245.199.189/api/delete-sms-message/" + messageId, 
+                    type: 'DELETE', 
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Deleted!',
+                            text: 'The message has been deleted successfully.',
+                            confirmButtonText: 'OK'
+                        });
+                        window.location.reload();
+
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'There was an issue deleting the message: ' + error,
+                            confirmButtonText: 'Try Again'
+                        });
+                    }
+                });
+            }); // Delete Message
         });
     </script>
     
