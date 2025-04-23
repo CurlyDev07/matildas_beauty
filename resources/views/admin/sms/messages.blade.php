@@ -39,9 +39,9 @@
                                     <button class="delete-btn" data-id="{{ $message['id'] }}">
                                         <i class="fas fa-trash tcursor-pointer ttext-lg ttext-red-500 tmr-3"></i>
                                     </button>
-                                    <button>
+                                    <a href="{{ route('sms.messages.edit', ['id' => $message['id']]) }}">
                                         <i class="fas fa-pencil-alt tcursor-pointer ttext-lg ttext-green-500"></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

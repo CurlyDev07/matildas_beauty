@@ -63,6 +63,14 @@ class SmsCon extends Controller
         return view('admin.sms.messages', ['messages' => $messages['data']]);
     }
 
+    public function message_edit($id){
+        $client = new Client();
+        $response = $client->request('GET', 'http://54.245.199.189/api/get-single-sms-message/'.$id);
+        $messages = json_decode($response->getBody(), true);
+
+        return view('admin.sms.edit', ['message' => $messages['data']]);
+    }
+
 
     public function follow_ups(){
         $client = new Client();
