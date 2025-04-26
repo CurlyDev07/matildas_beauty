@@ -108,6 +108,8 @@
                     order_success: 1,
                     website: '{{ $website }}',
                     session_id: '{{ $session_id }}',
+                    name: $('#full_name').val(),
+                    contact_number: $('#phone_number').val()
                 });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
 
                 $.post("/Madella-Order-Success-Email",{

@@ -85,7 +85,8 @@
         </div><!--BENEFITS -->
 
 
-        <img class="" src="https://matildasbeauty.com/filemanager/bd4121b095194967a7dfbbd6b9298d2b.webp" alt="30_days_challenge">
+        <img src="https://matildasbeauty.com/filemanager/7d4ffbbd2bd848abae285701b235c17a.webp" alt="30_days_challenge">
+        <img src="https://matildasbeauty.com/filemanager/bd4121b095194967a7dfbbd6b9298d2b.webp" alt="30_days_challenge">
         
 
         {{-- <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
@@ -100,6 +101,7 @@
         <img src="https://matildasbeauty.com/filemanager/409d8830a29940eea4f69b7ad9b0801a.webp" class="tw-full"  alt="Before & After 1">
         <img src="https://matildasbeauty.com/filemanager/008b94df938c460493ff2c3abeeef489.webp" class="tw-full"  alt="Before & After 2">
         <img src="https://matildasbeauty.com/filemanager/00b73e6229ef483ca934284422bd816b.webp" class="tw-full"  alt="Before & After 3">
+        <img src="https://matildasbeauty.com/filemanager/7d4ffbbd2bd848abae285701b235c17a.webp" alt="30_days_challenge">
 
         {{-- <div class="tmb-5 tborder-t" >
             <div class="tborder tpx-4 tpy-5">
@@ -545,7 +547,7 @@
                                 <div class="tfont-medium tmb-5 ttext-center">{{ $product_name }}</div>
 
                                 <div class="tflex titems-between titems-center">
-                                    <img width="75" data-src="https://matildasbeauty.com/filemanager/b8a433c399f043d0b33814ec9bcff789.webp" class="tmr-3 lazy" alt="Product Image">
+                                    <img width="75" data-src="https://matildasbeauty.com/filemanager/59f319c429c34cb582c414974a26bcc1.webp" class="tmr-3 lazy" alt="Product Image">
                                     <div class="">
                                         <div class="">
                                             <span class="tfont-medium tmx-2 ttext-gray-700 ttext-md">Qty: </span>
