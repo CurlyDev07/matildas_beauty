@@ -38,7 +38,7 @@
 @section('page')
 
 @php
-    $order_status = ['TO ENCODE', 'TO CALL', 'TO SHIP', 'SHIPPED', 'DELIVERED', 'CANCELLED', 'DUPLICATE', 'RESERVE'];
+    $order_status = ['TO ENCODE', 'TO CALL', 'TO SHIP', 'SHIPPED', 'DELIVERED', 'CANCELLED', 'DELETE', 'RESERVE'];
 
     function status_color($status){
         switch ($status) {
@@ -60,7 +60,7 @@
             case "CANCELLED":
                 echo "tbg-red-300 ttext-red-900 tborder-red-300";
                 break;
-            case "DUPLICATE":
+            case "DELETE":
                 echo "tbg-pink-200 ttext-pink-900 tborder-pink-300";
                 break;
             case "RESERVE":
@@ -225,7 +225,7 @@
                 case "CANCELLED":
                     self.attr('class', "change_status tfont-medium browser-default th-8 tpx-2 trounded-full ttext-center tbg-red-300 ttext-red-900 tborder-red-300")
                     break;
-                case "DUPLICATE":
+                case "DELETE":
                     self.attr('class', "change_status tfont-medium browser-default th-8 tpx-2 trounded-full ttext-center tbg-pink-200 ttext-pink-900 tborder-pink-300")
                     break;
                 case "RESERVE":
