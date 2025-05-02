@@ -147,8 +147,23 @@
 
                 <div class="tw-full tborder tborder-2 tp-3 tm-2">
                     <div class="tflex titems-center tjustify-between">
-                        <img width="100" src="{{ asset('/images/icons/misstisa.png') }}" class="tmr-3" alt="MissTisa Melasma Remover">
-                        <div class="">{{ $price_qty[0] }}</div>
+                        @if ($price_qty[0]== '1_MissTisa_Set_1Serum')
+                            <img width="100" src="https://matildasbeauty.com/filemanager/9d372f1034674394b23c84857fd1f2e8.png" class="tmr-3" alt="MissTisa Melasma Remover">
+                        @endif
+
+                        @if ($price_qty[0]== 'MissTisaSerum_1pc')
+                            <img width="100" src="https://matildasbeauty.com/filemanager/b6d6e20c2ca549efb5d4e4ea2a83bc87.png" class="tmr-3" alt="MissTisa Melasma Remover">
+                        @endif
+
+                        @if ($price_qty[0]== 'MissTisaSerum_2pcs')
+                            <img width="100" src="https://matildasbeauty.com/filemanager/8449a9bc19c341eea5488ca059d84e13.png" class="tmr-3" alt="MissTisa Melasma Remover">
+                        @endif
+
+                        @if ($price_qty[0]== 'MissTisa_1pc')
+                            <img width="100" src="https://matildasbeauty.com/filemanager/7c631048d01544f8bc9616f98ca66f59.png" class="tmr-3" alt="MissTisa Melasma Remover">
+                        @endif
+
+                        <div class="">{{ str_replace('_', ' ', $price_qty[0]) }}</div>
                     </div>
 
                     <div class="tflex tjustify-end titems-center">

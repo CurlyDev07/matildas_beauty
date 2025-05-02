@@ -62,23 +62,26 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
 
-<!-- Meta Pixel Code -->
-<script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '375777585581364');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
-/></noscript>
+
+@if (!request()->test)
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '375777585581364');
+        fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
+    /></noscript>
     <!-- End Meta Pixel Code -->
+@endif
 
 
     <!----- Tiktok Pixel Code ----->
@@ -99,7 +102,7 @@
         <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgb(250 25 158 / 53%) 0%, rgb(251 0 148) 100%);">
             <div >
                 <div class="">
-                    <p class="t-mt-2 tfont-medium  ttext-4xl ttext-white">Good Bye Melasma</p>
+                    <p class="t-mt-2 tfont-medium  ttext-4xl ttext-white">Good Bye Kulubot</p>
                 </div>
                 <div class="">
                     <span class="ttext-sm ttext-white">
@@ -146,18 +149,18 @@
         </div><!-- FREE 4 Gifts -->
 
         <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Kulubot</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Wrinkles</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i><b> Kulubot</b> </div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i><b>Wrinkles</b> </div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Melasma Remover</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Korean Glass Skin</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No More Pekas</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i><b> No More Pekas</b></div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No More Dark Spots</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Uneven Skin Tone</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Deep Scars</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Whiteheads</div>
             <div class="tw-1/2"><i class="fas fa-check-circle" style="color: #f52d87;"></i> Blackheads</div>
             <div class="tw-1/2"><i class="fas fa-check-circle" style="color: #f52d87;"></i> Skin Whitening</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle" style="color: #f52d87;"></i> Pinkish Skin</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle" style="color: #f52d87;"></i> <b>Pinkish Skin</b></div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> For Sensitive Skin</div>
             <div class="tw-1/2 tmb-3"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No Irritation </div>
           
@@ -205,6 +208,7 @@
             <img class="" src="https://matildasbeauty.com/filemanager/b2908c0c052b40469f6c240262d2f723.webp" alt="how_to_use in the evening">
             <img class="" src="https://matildasbeauty.com/filemanager/ae7c490cd31240b8bc0bf6a66aec5193.webp" alt="how_to_use in the evening">
             <img class="" src="https://matildasbeauty.com/filemanager/07823d1b14684d76833e387789938baf.webp" alt="how_to_use in the evening">
+            <img class="" src="https://matildasbeauty.com/filemanager/7d4ffbbd2bd848abae285701b235c17a.webp" alt="Buy 2 Take 2">
 
         </div><!-- PRODUCT DETAILS-->
 
@@ -489,6 +493,9 @@
                     <span class="tinline-block tmt-1">Aftersales Support</span>
                 </div>
             </section>
+
+            <img src="https://matildasbeauty.com/filemanager/7d4ffbbd2bd848abae285701b235c17a.webp" alt="buy 2 take 2">
+
             
             <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
                 <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
@@ -551,7 +558,7 @@
                                 <input type="radio" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-bold ttext-sm">₱499</span>
-                                    <span class="tfont-medium">Melasma 1 Set</span>
+                                    <span class="tfont-medium">Rejuv Set 1pc</span>
                                 </span>
                             </label>
                         </div><!-- PROMO 4-->
@@ -560,10 +567,10 @@
 
                         <div class="tflex titems-center tw-full ">
                             <label>
-                                <input type="radio" id="promo3" name="promo" class="promo" value="MissTisa_2pcs|849|2pcs">
+                                <input type="radio" id="promo3" name="promo" class="promo" value="MissTisaSerum_2pcs|999|2pcs">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-bold ttext-sm">₱849</span>
-                                    <span class="tfont-medium">Melasma 2 Set</span>
+                                    <span class="tfont-bold ttext-sm">₱999</span>
+                                    <span class="tfont-medium">Serum 2pcs - FREE soap & sunscreen</span>
                                 </span>
                             </label>
                         </div><!-- PROMO 3 -->
@@ -583,7 +590,7 @@
                         <div class="tflex titems-center tw-full  tborder-t-2 trelative">
                             <label>
                                 <input type="radio" id="promo1" name="promo" class="promo" value="1_MissTisa_Set_1Serum|1149|1each">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                <span class="ttext-gray-900" style="font-size: 13px; color: #ff5500;">
                                     <span class="tfont-bold ttext-sm">₱1149</span>
                                     <span class="tfont-medium">1 MissTisa Set + 1 Serum</span>
                                 </span>
