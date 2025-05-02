@@ -128,7 +128,7 @@ class FbAdsCon extends Controller
     public function change_status(){
         // return request()->all();
 
-        if (request()->status == 'DUPLICATE') {
+        if (request()->status == "DELETE") {
             FbAds::find(request()->id)->delete();
         }else{
             FbAds::find(request()->id)->update(['status' => request()->status]);
