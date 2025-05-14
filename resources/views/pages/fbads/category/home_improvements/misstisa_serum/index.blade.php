@@ -411,9 +411,8 @@
                 </div><!--Address -->
 
 
-                <div class="tbg-red-100 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
-                    MissTisa Set <br>
-                    Out of Stock
+                <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
+                    Enjoy our Free Soap & Sunscreen <br> <span class="tfont-extrabold ttext-lg ttext-red-900">Promo until May 16!</span> 
                 </div>
 
                 <!-- ORDER PROMO -->
