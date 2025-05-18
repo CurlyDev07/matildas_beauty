@@ -247,6 +247,18 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::POST('/folder/upload', 'FileManagerCon@upload')->name('file_manager.upload');
     });
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | LAB
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('lab')->group(function () {
+        Route::get('/', 'LabCon@index')->name('lab.index');
+     
+    });
+
+
     /*
     |--------------------------------------------------------------------------
     | SMS

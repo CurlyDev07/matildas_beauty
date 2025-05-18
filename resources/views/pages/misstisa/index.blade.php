@@ -497,7 +497,7 @@
             <img src="https://matildasbeauty.com/filemanager/7d4ffbbd2bd848abae285701b235c17a.webp" alt="buy 2 take 2">
 
             <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
-                Enjoy our Free Soap & Sunscreen <br> <span class="tfont-extrabold ttext-lg ttext-red-900">Promo until May 16! 2days Left</span> 
+                Enjoy our Free Soap & Sunscreen <br> <span class="tfont-extrabold ttext-lg ttext-red-900">Promo until May 20! 2days Left</span> 
             </div>
 
             <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
