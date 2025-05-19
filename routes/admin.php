@@ -255,6 +255,9 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     */
     Route::prefix('lab')->group(function () {
         Route::get('/', 'LabCon@index')->name('lab.index');
+        Route::post('/create', 'LabCon@create')->name('lab.create');
+        Route::get('/update/{id}', 'LabCon@update')->name('lab.update');
+        Route::post('/patch/{id}', 'LabCon@patch')->name('lab.patch');
      
     });
 

@@ -60,41 +60,21 @@
                         <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Note</th>
                     </tr>
 
-                    {{-- @foreach ($purchases as $purchase)
+                    @foreach ($ingredients as $ingredient)
                     
                         <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="tp-3 tpx-5">{{ carbon($purchase['created_at'])->diffForHumans() }}</td>
-                            <td class="tp-3 tpx-5">{{ date('M d, Y',strtotime($purchase['date'])) }}</td>
-                            <td class="tp-3 tpx-5">{{ $purchase->suppliers->name }} {{ $purchase->suppliers->surname }}</td>
-                            <td class="tp-3 tpx-5">{{ currency() }}{{ number_format($purchase->total_price + $purchase->shipping_fee + $purchase->transaction_fee + $purchase->tax, 2) }}</td>
-                            <td class="tp-3 tpx-5">
-                                @if ($purchase->status == 'OTW')
-                                    <span class="chip orange lighten-5 waves-effect waves-orange status" data-status="inactive" data-id="1" style="cursor: pointer;">
-                                        <span class="orange-text" style="cursor: pointer;">{{ $purchase->status }}</span>
-                                    </span>
-                                @elseif($purchase->status == 'INCOMPLETE')
-                                    <span class="chip red lighten-5 waves-effect waves-red status" data-status="active" data-id="2" style="cursor: pointer;">
-                                        <span class="red-text" style="cursor: pointer;">{{ $purchase->status }}</span>
-                                    </span>
-                                @elseif($purchase->status == 'COMPLETED')
-                                    <span class="chip green lighten-5 waves-effect waves-green status" data-status="inactive" data-id="1" style="cursor: pointer;">
-                                        <span class="green-text" style="cursor: pointer;">{{ $purchase->status }}</span>
-                                    </span>
-                                @endif
-
-                                
-                                
-                            </td>
+                            <td class="tp-3 tpx-5">{{ $ingredient->name }}</td>
+                            <td class="tp-3 tpx-5">{{ currency() }}{{ $ingredient->price }}</td>
+                            <td class="tp-3 tpx-5">{{ $ingredient->weight }}</td>
+                            <td class="tp-3 tpx-5">{{ $ingredient->price_per_grams }}</td>
+                            <td class="tp-3 tpx-5">{{ $ingredient->note }}</td>
                             <td class="tp-3 tpx-5 ttext-center">
-                                <a href="/admin/purchase/view/{{ $purchase->id }}" >
-                                    <i class="fa-external-link-alt fas gray-text tcursor-pointer tooltipped" data-position="left" data-tooltip="view transaction"></i>
-                                </a>
-                                <a href="/admin/purchase/update/{{ $purchase->id }}" >
-                                    <i class="fas fa-edit hover:ttext-pink-500 tcursor-pointer tpx-1 icon_color tooltipped" data-position="right" data-tooltip="Edit"></i>       
+                                <a href="/admin/lab/update/{{ $ingredient->id }}" >
+                                    <i class="fa-external-link-alt fas gray-text tcursor-pointer tooltipped" data-position="left" data-tooltip="Update"></i>
                                 </a>
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
 
                 </tbody>
             </table>
@@ -107,10 +87,13 @@
         <!-- Modal Structure -->
         <div id="modal1" class="modal modal-fixed-footer tw-full md:tw-1/2  tbg-white">
             <div class="modal-content">
-                <div class="tbg-white tpb-5 trounded-lg ttext-black-100 tmb-10">
+
+                <form action="{{ route('lab.create') }}" method="post" class="tbg-white trounded-lg ttext-black-100">
+                    @csrf
                     <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
                         Customer Info
                     </div>
+
                     <div class="tflex tflex-wrap tpx-5">
                         <div class="tw-1/5 tmb-2 lg:tmb-0 tpx-1 tpb-3">
                             <label for="name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Chemical Name</label>
@@ -126,7 +109,7 @@
                         </div>
                         <div class="tw-1/5 tpx-1 tpx-1 tmb-2 lg:tmb-0">
                             <label for="price_per_grams" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price/Grams</label>
-                            <input type="text" id="price_per_grams" name="price_per_grams" class="browser-default form-control" value="" style="padding: 6px;">
+                            <input type="text" disabled id="price_per_grams" name="price_per_grams" class="browser-default form-control tbg-red tcursor-not-allowed ttext" value="" style="padding: 6px;background-color: #eaeaea;/* opacity: 0.6; *//* color: red!important; */">
                         </div>
                     </div>
 
@@ -136,7 +119,11 @@
                             <textarea name="note" id="note" cols="30" rows="3" class="browser-default form-control" style="padding: 6px;"></textarea>
                         </div>
                     </div>
-                </div>
+
+                    <div class="tflex tjustify-center tmt-3">
+                        <button type="submit" class="focus:tbg-primary tbg-primary tpy-2 trounded ttext-white tw-1/3 tw-24 waves-effect">Submit</button><!-- Save -->
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
@@ -152,6 +139,27 @@
     $(document).ready(function(){
         $('.modal').modal();
         $('.dropdown-trigger').dropdown();
+
+
+        function pricePerUnit() {
+            let price = parseFloat($('#price').val()) || 0;
+            let weight = parseFloat($('#weight').val()) || 0;
+            let price_per_grams = 0;
+
+            price_per_grams = price/weight;
+            price_per_grams = price_per_grams.toFixed(2); // round to 2 decimal places
+
+            $('#price_per_grams').val(price_per_grams);
+        }
+        
+        $('#price').keyup(function () {
+            pricePerUnit();
+        })
+
+        $('#weight').keyup(function () {
+            pricePerUnit();
+        })
+
 
         // CHANGE STATUS
         $('.change_status').click(function(){
