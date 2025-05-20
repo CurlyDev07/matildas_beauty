@@ -27,7 +27,7 @@ class LabCon extends Controller
         $insert = Ingredients::create($validated);
 
         // Redirect or return response
-        return redirect()->back()->with('success', 'Ingredient saved successfully!');
+        return redirect()->route('lab.index');
     }
 
     public function update($id){
@@ -53,7 +53,12 @@ class LabCon extends Controller
             $ingredient->update($validated);
 
             // Optional: redirect or return response
-            return redirect()->back()->with('success', 'Ingredient updated successfully.');
+            return redirect()->route('lab.index');
     }
 
+    public function purchase(){
+        $ingredients  = Ingredients::all();
+
+        return view('admin.lab.purchase.create', compact("ingredients"));
+    }
 }

@@ -259,6 +259,8 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/update/{id}', 'LabCon@update')->name('lab.update');
         Route::post('/patch/{id}', 'LabCon@patch')->name('lab.patch');
      
+        Route::get('/purchase', 'LabCon@purchase')->name('lab.purchase');
+
     });
 
 

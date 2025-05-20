@@ -43,7 +43,7 @@
                     @endif
                 </li><!-- SORT -->
                 <li>
-                    <a href="/admin/purchase/">
+                    <a href="/admin/lab/">
                         <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li>
@@ -58,6 +58,7 @@
                         <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Weight</th>
                         <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Price/Grams</th>
                         <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Note</th>
+                        <th class="ttext-left tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
                     </tr>
 
                     @foreach ($ingredients as $ingredient)
@@ -67,7 +68,14 @@
                             <td class="tp-3 tpx-5">{{ currency() }}{{ $ingredient->price }}</td>
                             <td class="tp-3 tpx-5">{{ $ingredient->weight }}</td>
                             <td class="tp-3 tpx-5">{{ $ingredient->price_per_grams }}</td>
-                            <td class="tp-3 tpx-5">{{ $ingredient->note }}</td>
+                            <td class="tp-3 tpx-5">
+                                @if ($ingredient->note)
+                                    {{ $ingredient->note }}
+                                @else
+                                    --- --- --- --- ---
+                                @endif
+
+                            </td>
                             <td class="tp-3 tpx-5 ttext-center">
                                 <a href="/admin/lab/update/{{ $ingredient->id }}" >
                                     <i class="fa-external-link-alt fas gray-text tcursor-pointer tooltipped" data-position="left" data-tooltip="Update"></i>
@@ -109,7 +117,7 @@
                         </div>
                         <div class="tw-1/5 tpx-1 tpx-1 tmb-2 lg:tmb-0">
                             <label for="price_per_grams" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price/Grams</label>
-                            <input type="text" disabled id="price_per_grams" name="price_per_grams" class="browser-default form-control tbg-red tcursor-not-allowed ttext" value="" style="padding: 6px;background-color: #eaeaea;/* opacity: 0.6; *//* color: red!important; */">
+                            <input type="text" id="price_per_grams" name="price_per_grams" class="browser-default form-control tbg-red tcursor-not-allowed ttext" value="" style="padding: 6px;background-color: #eaeaea;/* opacity: 0.6; *//* color: red!important; */">
                         </div>
                     </div>
 
