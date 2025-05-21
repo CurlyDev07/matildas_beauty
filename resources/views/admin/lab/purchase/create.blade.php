@@ -124,7 +124,10 @@
                                 <img src="https://myfoodsafety.net/wp-content/uploads/2020/03/RAW-MATERIALS-SMALL.png" class="product_img" style="height: 50px; width: 50px;" alt="">
                                 <div class="tpx-2">
                                     <p class="product_name truncate ttext-sm ">Matilda's Beauty Bleaching Soap 10x Whitening SoapMatilda's Beauty Bleaching Soap 10x Whitening Soap</p>
-                                    <small class="product_sku">VS_AKL</small>
+                                    <small>
+                                        ₱
+                                        <small class="product_price_per_grams">0</small>
+                                    </small>
                                 </div>
                             </div>
                         </div><!-- Product -->
@@ -270,6 +273,7 @@
             selected_product.find('.product_price').val(price);// add Price
             selected_product.find('.product_weight').val(weight);// add QTY
             selected_product.find('.product_subtotal').val(price);// add product_subtotal
+            selected_product.find('.product_price_per_grams').html(price_per_grams);// add product_subtotal
 
 
             // Scroll to bottom
@@ -355,53 +359,53 @@
 
 
         $('#submit_btn').click(()=>{
-                $('#submit_btn').attr('disabled', 'true');
-                progress_loading(true);// show loader
+                // $('#submit_btn').attr('disabled', 'true');
+                // progress_loading(true);// show loader
 
-                let products = getAllProducts();
+                // let products = getAllProducts();
 
-                $.post( "/admin/purchase/store", {
-                    'products': products,
-                    'total_price': $('#total').html(),
-                    'total_qty': $('#total_items').html(),
-                    'supplier': $('.supplier').val(),
-                    'shipping_fee': $('.shipping_fee').val(),
-                    'transaction_fee': $('.transaction_fee').val(),
-                    'tax': $('.tax').val(),
-                    'date': $('.datepicker').val(),
-                })
-                .fail(function(response) {
-                    $('#submit_btn').removeAttr('disabled');
-                    progress_loading(false);// show loader
+                // $.post( "/admin/purchase/store", {
+                //     'products': products,
+                //     'total_price': $('#total').html(),
+                //     'total_qty': $('#total_items').html(),
+                //     'supplier': $('.supplier').val(),
+                //     'shipping_fee': $('.shipping_fee').val(),
+                //     'transaction_fee': $('.transaction_fee').val(),
+                //     'tax': $('.tax').val(),
+                //     'date': $('.datepicker').val(),
+                // })
+                // .fail(function(response) {
+                //     $('#submit_btn').removeAttr('disabled');
+                //     progress_loading(false);// show loader
 
-                    let errDecoded = JSON.parse(response.responseText);
-                    let markup = '';
+                //     let errDecoded = JSON.parse(response.responseText);
+                //     let markup = '';
 
-                    if (errDecoded.errors < 1) {
-                        return;
-                    }
+                //     if (errDecoded.errors < 1) {
+                //         return;
+                //     }
 
-                    $('#err_msg_modal').modal('open'); 
-                    $.each(errDecoded.errors, function (key, val) {
-                        markup +=   `<li class="tmb-3" style="color:#f65656;">
-                                        <i class="fas fa-dot-circle tmr-3"></i>
-                                        ${val}
-                                    </li>`;
+                //     $('#err_msg_modal').modal('open'); 
+                //     $.each(errDecoded.errors, function (key, val) {
+                //         markup +=   `<li class="tmb-3" style="color:#f65656;">
+                //                         <i class="fas fa-dot-circle tmr-3"></i>
+                //                         ${val}
+                //                     </li>`;
 
-                    });
-                    $('.modal_err_msg').html(markup);
-                })
-                .done(function( res ) {
-                    $('#submit_btn').removeAttr('disabled');
-                    progress_loading(false);// show loader
+                //     });
+                //     $('.modal_err_msg').html(markup);
+                // })
+                // .done(function( res ) {
+                //     $('#submit_btn').removeAttr('disabled');
+                //     progress_loading(false);// show loader
 
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Awesome',
-                        text: 'Added Successfuly',
-                    });
-                    location.href = '/admin/purchase';
-                });
+                //     Swal.fire({
+                //         icon: 'success',
+                //         title: 'Awesome',
+                //         text: 'Added Successfuly',
+                //     });
+                //     location.href = '/admin/purchase';
+                // });
             })// Submit
 
     </script>
