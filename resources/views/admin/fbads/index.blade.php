@@ -143,6 +143,11 @@
                 </li><!-- REMOVE FILTER -->
             </ul>
         </div>
+        <div class="tpx-3 tpy-4 tpx-5 tflex tjustify-between">
+            @foreach ($statusCounts as $key => $value)
+                <div class="tfont-medium browser-default tp-3 trounded tborder-gray-300 tpx-2 ttext-center {{ status_color($key) }}">{{ $key }}: {{ $value }}</div>
+            @endforeach
+        </div>
         <div class="tpx-3 tpy-4 tflex tjustify-center">
             <table class="tmb-4 tbg-white ttext-md tw-full">
                     <tr class="tborder-0">

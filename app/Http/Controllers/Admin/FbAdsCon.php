@@ -13,6 +13,11 @@ class FbAdsCon extends Controller
 {
 
     public function index(Request $request){
+
+        $statusCounts = FbAds::select('status', DB::raw('count(*) as total'))
+            ->groupBy('status')
+            ->pluck('total', 'status'); // returns associative array: [status => total]
+        
         $stores = Store::all();
 
         $orders = FbAds::orderBy('created_at', 'desc')
@@ -38,6 +43,7 @@ class FbAdsCon extends Controller
         return view('admin.fbads.index', [
             'orders' => $orders,
             'stores' => $stores,
+            'statusCounts' => $statusCounts
         ]);
     }
 
