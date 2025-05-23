@@ -15,6 +15,19 @@ class FbAdsCon extends Controller
     public function index(Request $request){
 
         $statusCounts = FbAds::select('status', DB::raw('count(*) as total'))
+            ->when(!$request->date, function($q){ // Show DEFAULT DATA For TODAY
+                return $q->whereDate('created_at', now());
+            })->when($request->date, function($q){
+                $date = explode(" - ",request()->date);
+                $from = carbon($date[0]);
+                $to = carbon($date[1]);
+
+                if ($from == $to) {
+                    return $q->whereDate('created_at', $from);
+                }
+
+                return $q->whereBetween('created_at', [$from, $to]);
+            })// FILTER DATE
             ->groupBy('status')
             ->pluck('total', 'status'); // returns associative array: [status => total]
         
