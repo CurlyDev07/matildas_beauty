@@ -14,7 +14,8 @@ class FbAdsCon extends Controller
 
     public function index(Request $request){
 
-        $statusCounts = FbAds::select('status', DB::raw('count(*) as total'))
+        // Get grouped counts
+        $grouped = FbAds::select('status', DB::raw('count(*) as total'))
             ->when(!$request->date, function($q){ // Show DEFAULT DATA For TODAY
                 return $q->whereDate('created_at', now());
             })->when($request->date, function($q){
@@ -29,8 +30,27 @@ class FbAdsCon extends Controller
                 return $q->whereBetween('created_at', [$from, $to]);
             })// FILTER DATE
             ->groupBy('status')
-            ->pluck('total', 'status'); // returns associative array: [status => total]
+            ->get();
+
+        // Get total count of all records
+        $overallTotal = $grouped->sum('total');
+
+        // Map into array with percentage
+        $statusCounts = $grouped->mapWithKeys(function ($item) use ($overallTotal) {
+            $percentage = $overallTotal > 0 ? round(($item->total / $overallTotal) * 100, 2) : 0;
+            return [
+                $item->status => [
+                    'count' => $item->total,
+                    'percent' => $percentage
+                ]
+            ];
+        });
         
+        // dd($statusCounts);
+
+        // ======================== STATUS COUNT ========================
+
+
         $stores = Store::all();
 
         $orders = FbAds::orderBy('created_at', 'desc')

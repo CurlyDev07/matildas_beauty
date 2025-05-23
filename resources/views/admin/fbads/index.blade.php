@@ -145,7 +145,7 @@
         </div>
         <div class="tpx-3 tpy-4 tpx-5 tflex tjustify-around">
             @foreach ($statusCounts as $key => $value)
-                <div class="tfont-medium browser-default tp-3 trounded tborder-gray-300 tpx-2 ttext-center {{ status_color($key) }}">{{ $key }}: {{ $value }}</div>
+                <div class="tfont-medium browser-default tp-3 trounded tborder-gray-300 tpx-2 ttext-center {{ status_color($key) }}">{{ $key }}: {{ $value['count'] }} <br> {{ $value['percent'] }}%</div>
             @endforeach
         </div>
         <div class="tpx-3 tpy-4 tflex tjustify-center">
