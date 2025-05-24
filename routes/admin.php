@@ -260,6 +260,8 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::post('/patch/{id}', 'LabCon@patch')->name('lab.patch');
      
         Route::get('/purchase', 'LabCon@purchase')->name('lab.purchase');
+        Route::get('/purchase/create', 'LabCon@create')->name('lab.create');
+        Route::post('/purchase/store', 'LabCon@purchase_store')->name('lab.purchase_store');
 
     });
 

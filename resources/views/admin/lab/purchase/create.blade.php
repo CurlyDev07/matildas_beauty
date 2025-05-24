@@ -211,9 +211,9 @@
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Suppliers </label>
                 <select class="supplier tcursor-pointer browser-default form-control" style="padding: 6px;">
                     <option value="" data-price="" selected="">Choose supplier ...</option>
-                    {{-- @foreach ($suppliers as $supplier)
+                    @foreach ($suppliers as $supplier)
                         <option value="{{ $supplier['id'] }}" >{{ $supplier['name'] }} {{ $supplier['surname'] }}</option>
-                    @endforeach --}}
+                    @endforeach
                 </select>
             </div><!-- suppliers -->
         </div>
@@ -322,7 +322,7 @@
             });
 
             $('#total').html(numberWithCommas(subtotal));
-            $('#total_items').html(numberWithCommas(quantity));
+            $('#total_items').html(numberWithCommas(quantity - 1));
         }// Get Total
 
         function numberWithCommas(x) {
@@ -341,13 +341,15 @@
 
                 let product_id = $(this).attr('id');
                 let price = $(this).find('.product_price').val();
+                let weight = $(this).find('.product_weight').val();
                 let qty = $(this).find('.product_qty').val();
                 let subtotal = $(this).find('.product_subtotal').val();
 
                 if (i != 0) {
                     products.push({
-                        product_id: product_id,
+                        ingredient_id: product_id,
                         price: price,
+                        weight: weight,
                         qty: qty,
                         sub_total: subtotal,
                     })
@@ -359,53 +361,53 @@
 
 
         $('#submit_btn').click(()=>{
-                // $('#submit_btn').attr('disabled', 'true');
-                // progress_loading(true);// show loader
+                $('#submit_btn').attr('disabled', 'true');
+                progress_loading(true);// show loader
 
-                // let products = getAllProducts();
+                let ingredients = getAllProducts();
 
-                // $.post( "/admin/purchase/store", {
-                //     'products': products,
-                //     'total_price': $('#total').html(),
-                //     'total_qty': $('#total_items').html(),
-                //     'supplier': $('.supplier').val(),
-                //     'shipping_fee': $('.shipping_fee').val(),
-                //     'transaction_fee': $('.transaction_fee').val(),
-                //     'tax': $('.tax').val(),
-                //     'date': $('.datepicker').val(),
-                // })
-                // .fail(function(response) {
-                //     $('#submit_btn').removeAttr('disabled');
-                //     progress_loading(false);// show loader
+                $.post( "/admin/lab/purchase/store", {
+                    'ingredients': ingredients,
+                    'total_price': $('#total').html(),
+                    'total_qty': $('#total_items').html(),
+                    'date': $('.datepicker').val(),
+                    'shipping_fee': $('.shipping_fee').val(),
+                    'transaction_fee': $('.transaction_fee').val(),
+                    'tax': $('.tax').val(),
+                    'supplier': $('.supplier').val(),
+                })
+                .fail(function(response) {
+                    $('#submit_btn').removeAttr('disabled');
+                    progress_loading(false);// show loader
 
-                //     let errDecoded = JSON.parse(response.responseText);
-                //     let markup = '';
+                    let errDecoded = JSON.parse(response.responseText);
+                    let markup = '';
 
-                //     if (errDecoded.errors < 1) {
-                //         return;
-                //     }
+                    if (errDecoded.errors < 1) {
+                        return;
+                    }
 
-                //     $('#err_msg_modal').modal('open'); 
-                //     $.each(errDecoded.errors, function (key, val) {
-                //         markup +=   `<li class="tmb-3" style="color:#f65656;">
-                //                         <i class="fas fa-dot-circle tmr-3"></i>
-                //                         ${val}
-                //                     </li>`;
+                    $('#err_msg_modal').modal('open'); 
+                    $.each(errDecoded.errors, function (key, val) {
+                        markup +=   `<li class="tmb-3" style="color:#f65656;">
+                                        <i class="fas fa-dot-circle tmr-3"></i>
+                                        ${val}
+                                    </li>`;
 
-                //     });
-                //     $('.modal_err_msg').html(markup);
-                // })
-                // .done(function( res ) {
-                //     $('#submit_btn').removeAttr('disabled');
-                //     progress_loading(false);// show loader
+                    });
+                    $('.modal_err_msg').html(markup);
+                })
+                .done(function( res ) {
+                    $('#submit_btn').removeAttr('disabled');
+                    progress_loading(false);// show loader
 
-                //     Swal.fire({
-                //         icon: 'success',
-                //         title: 'Awesome',
-                //         text: 'Added Successfuly',
-                //     });
-                //     location.href = '/admin/purchase';
-                // });
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Awesome',
+                        text: 'Added Successfuly',
+                    });
+                    location.href = '/admin/purchase';
+                });
             })// Submit
 
     </script>

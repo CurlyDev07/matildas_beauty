@@ -27,3 +27,4 @@ function allnumeric(inputtxt){
         return false;
     }
 }
+

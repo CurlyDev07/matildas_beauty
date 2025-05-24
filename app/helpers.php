@@ -500,3 +500,9 @@ function infoTextSend($mobile, $sms){
     
     curl_req('https://api.myinfotxt.com/v2/send.php', $sms_data);
 }
+
+
+function cleanFloatNumber($value)
+{
+    return floatval(str_replace(',', '', $value));
+}

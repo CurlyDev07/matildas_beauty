@@ -26,7 +26,7 @@
                         <a class="tmr-2">
                             <i class="fas fa-shopping-basket ttext-primary"></i>
                         </a>
-                        Purchase
+                        Purchases
                     </div>
                 </li>
               
