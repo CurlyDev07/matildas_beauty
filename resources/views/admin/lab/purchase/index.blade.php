@@ -4,10 +4,10 @@
 @section('page')
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
-            <span class="ttext-base ttext-title tfont-medium">Chemicals & Equipments</span>
+            <span class="ttext-base ttext-title tfont-medium">Purchase List</span>
             <ul class="tflex titems-center">
                 <li class="tmr-4">
-                    <a href="#modal1" class="tbg-green-200 tmr-4 tpx-3 tpy-2 trounded ttext-green-900 waves-effect waves-light  modal-trigger">
+                    <a href="{{ route('lab.purchase.create') }}" class="tbg-green-200 tmr-4 tpx-3 tpy-2 trounded ttext-green-900 waves-effect waves-light  modal-trigger">
                         <i class="fas fa-plus-circle"></i>
                     </a>
                 </li><!-- Add Chemical -->
@@ -25,9 +25,9 @@
                         <select id="supplier" class="supplier tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
                             <option value="#" selected>Choose ...</option>
 
-                            {{-- @foreach ($suppliers as $supplier)
+                            @foreach ($suppliers as $supplier)
                                 <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                            @endforeach --}}
+                            @endforeach
                         </select> 
                     </div>
                 </li><!-- Store Filter-->
@@ -43,7 +43,7 @@
                     @endif
                 </li><!-- SORT -->
                 <li>
-                    <a href="/admin/lab/">
+                    <a href="/admin/lab/purchase">
                         <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li>
@@ -53,25 +53,29 @@
             <table class="tmb-4 tbg-white ttext-md tw-full">
                 <tbody>
                     <tr class="tborder-0">
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">#</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Name</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Price</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Weight</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Price/Grams</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Action</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Supplier</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Ingredients Qty</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Total Price</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Purchase Date</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Date Created</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
                     </tr>
 
-                    @foreach ($ingredients as $ingredient)
-                    
+                    @foreach ($purchases as $purchase)
+                    {{-- {{ dd($purchase) }} --}}
                         <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="ttext-center tpx-5">{{ $ingredient->id }}</td>
-                            <td class="ttext-center tpx-5">{{ $ingredient->name }}</td>
-                            <td class="ttext-center tpx-5">{{ currency() }}{{ $ingredient->price }}</td>
-                            <td class="ttext-center tpx-5">{{ $ingredient->weight }}</td>
-                            <td class="ttext-center tpx-5">{{ $ingredient->price_per_grams }}</td>
-                            <td class="ttext-center tpx-5">
-                                <a href="/admin/lab/update/{{ $ingredient->id }}" >
-                                    <i class="fas fa-edit ttext-green-600 gray-text tcursor-pointer tooltipped" data-position="left" data-tooltip="Update"></i>
+                            <td class="tp-3 tpx-5 ttext-center">{{ $purchase->supplierInfo->name }}</td>
+                            <td class="tp-3 tpx-5 ttext-center">{{ number_format(count($purchase->ingredients)) }}</td>
+                            <td class="tp-3 tpx-5 ttext-center">{{ number_format($purchase->total_price) }}</td>
+                            <td class="tp-3 tpx-5 ttext-center">{{ $purchase->date }}</td>
+                            <td class="tp-3 tpx-5 ttext-center">{{ $purchase->created_at }}</td>
+                            <td class="tp-3 tpx-5 ttext-center ttext-center">
+                                <a href="{{ route('lab.purchase.update', $purchase->id) }}" >
+                                    <i class="fas fa-edit tmx-2 tcursor-pointer tooltipped ttext-green-600" data-position="left" data-tooltip="Update"></i>
+                                </a>
+                                    |
+                                <a href="{{ route('lab.purchase.update', $purchase->id) }}" >
+                                    <i class="fas fa-trash tmx-2 tcursor-pointer tooltipped ttext-red-600" data-position="left" data-tooltip="Delete"></i>
                                 </a>
                             </td>
                         </tr>

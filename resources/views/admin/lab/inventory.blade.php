@@ -4,7 +4,7 @@
 @section('page')
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
-            <span class="ttext-base ttext-title tfont-medium">Chemicals & Equipments</span>
+            <span class="ttext-base ttext-title tfont-medium">Inventory List</span>
             <ul class="tflex titems-center">
                 <li class="tmr-4">
                     <a href="#modal1" class="tbg-green-200 tmr-4 tpx-3 tpy-2 trounded ttext-green-900 waves-effect waves-light  modal-trigger">
@@ -53,27 +53,20 @@
             <table class="tmb-4 tbg-white ttext-md tw-full">
                 <tbody>
                     <tr class="tborder-0">
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">#</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Name</th>
+                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Chemical</th>
                         <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Price</th>
                         <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Weight</th>
                         <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Price/Grams</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Action</th>
+                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Stock Value</th>
                     </tr>
 
-                    @foreach ($ingredients as $ingredient)
-                    
+                    @foreach ($inventory as $stock)
                         <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="ttext-center tpx-5">{{ $ingredient->id }}</td>
-                            <td class="ttext-center tpx-5">{{ $ingredient->name }}</td>
-                            <td class="ttext-center tpx-5">{{ currency() }}{{ $ingredient->price }}</td>
-                            <td class="ttext-center tpx-5">{{ $ingredient->weight }}</td>
-                            <td class="ttext-center tpx-5">{{ $ingredient->price_per_grams }}</td>
-                            <td class="ttext-center tpx-5">
-                                <a href="/admin/lab/update/{{ $ingredient->id }}" >
-                                    <i class="fas fa-edit ttext-green-600 gray-text tcursor-pointer tooltipped" data-position="left" data-tooltip="Update"></i>
-                                </a>
-                            </td>
+                            <td class="ttext-center tpx-5">{{ $stock['name'] }}</td>
+                            <td class="ttext-center tpx-5">{{ currency() }}{{ $stock['price'] }}</td>
+                            <td class="ttext-center tpx-5 ">{{ number_format($stock['weight']) }}g</td>
+                            <td class="ttext-center tpx-5">{{ currency() }}{{ $stock['price_per_grams'] }}</td>
+                            <td class="ttext-center tpx-5 ttext-green-700 tfont-medium">{{ currency() }}{{ number_format($stock['total_value']) }}</td>
                         </tr>
                     @endforeach
 

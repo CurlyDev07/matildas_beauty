@@ -255,13 +255,17 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     */
     Route::prefix('lab')->group(function () {
         Route::get('/', 'LabCon@index')->name('lab.index');
+        Route::get('/inventory', 'LabCon@inventory')->name('lab.inventory');
+        Route::get('/chemicals', 'LabCon@chemicals')->name('lab.chemicals');
         Route::post('/create', 'LabCon@create')->name('lab.create');
         Route::get('/update/{id}', 'LabCon@update')->name('lab.update');
         Route::post('/patch/{id}', 'LabCon@patch')->name('lab.patch');
      
         Route::get('/purchase', 'LabCon@purchase')->name('lab.purchase');
-        Route::get('/purchase/create', 'LabCon@create')->name('lab.create');
+        Route::get('/purchase/create', 'LabCon@purchase_create')->name('lab.purchase.create');
         Route::post('/purchase/store', 'LabCon@purchase_store')->name('lab.purchase_store');
+        Route::get('/purchase/update/{id}', 'LabCon@purchase_update')->name('lab.purchase.update');
+        Route::post('/purchase/patch', 'LabCon@purchase_patch')->name('lab.purchase.patch');
 
     });
 
