@@ -105,8 +105,7 @@
 
                                         <div class="tpx-2">
                                             <p class="search-name ttext-md">{{ $ingredient->name }}</p>
-                                            <input type="hidden" class="search-price" value="{{ $ingredient->price }}">
-                                            <input type="hidden" class="search-weight" value="{{ $ingredient->weight }}">
+                                            <input type="hidden" class="search-price" value="{{ $ingredient->price_per_grams }}">
                                             <input type="hidden" class="search-price_per_grams" value="{{ $ingredient->price_per_grams }}">
                                         </div>
                                     </div>
@@ -133,16 +132,12 @@
                         </div><!-- Product -->
                         <div class="2/12 tflex tflex-col tmr-3">
                             <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
-                            <input type="text" onkeyup="allnumeric(this)" value="0" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
+                            <input type="text" value="0" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
                         </div><!-- Price -->
-                        <div class="2/12 tflex tflex-col tmr-3">
-                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Weight</label>
-                            <input type="number" onkeyup="allnumeric(this)" value="0" class="product_weight browser-default form-control" style="padding: 6px;">
-                        </div><!-- Weight -->
                          <div class="2/12 tflex tflex-col tmr-3">
-                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Qty</label>
-                            <input type="number" onkeyup="allnumeric(this)" value="1" class="product_qty browser-default form-control" style="padding: 6px;">
-                        </div><!-- QTY -->
+                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Weight/g</label>
+                            <input type="number" onkeyup="allnumeric(this)" value="1" class="product_weight browser-default form-control" style="padding: 6px;">
+                        </div><!-- Weight -->
                         <div class="2/12 tflex tflex-col tmr-3">
                             <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Subtotal</label>
                             <input type="text" onkeyup="allnumeric(this)" disabled="" value="0" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
@@ -260,7 +255,7 @@
             let img = $(this).find('.search-img').attr('src');
             let name = $(this).find('.search-name').html();
             let price = $(this).find('.search-price').val();
-            let weight = $(this).find('.search-weight').val();
+
             let price_per_grams = $(this).find('.search-price_per_grams').val();
 
             let selected_product = $('#hidden_product').clone(true, true); // clone hidden product sample model
@@ -271,7 +266,7 @@
             selected_product.find('.product_img').attr('src', img);// add IMG
             selected_product.find('.product_name').html(name);// add ID
             selected_product.find('.product_price').val(price);// add Price
-            selected_product.find('.product_weight').val(weight);// add QTY
+
             selected_product.find('.product_subtotal').val(price);// add product_subtotal
             selected_product.find('.product_price_per_grams').html(price_per_grams);// add product_subtotal
 
@@ -285,9 +280,9 @@
             getTotal();
         }) // Add product by search
 
-        $('.product_qty').change(function () {
+        $('.product_weight').change(function () {
             let price = $(this).parent().parent().find('.product_price').val();
-            let qty = $(this).parent().parent().find('.product_qty').val();
+            let qty = $(this).parent().parent().find('.product_weight').val();
             let subtotal = $(this).parent().parent().find('.product_subtotal');
 
             subtotal.val(price * qty);
@@ -303,7 +298,7 @@
 
         function changeSubtotal(parent) {
             let price = parent.find('.product_price').val();
-            let qty = parent.find('.product_qty').val();
+            let qty = parent.find('.product_weight').val();
             let subtotal = parent.find('.product_subtotal');
 
             subtotal.val(price * qty);
@@ -317,7 +312,7 @@
 
                 subtotal += parseInt($(this).val());
             });
-            $('.product_qty').each(function () {
+            $('.product_weight').each(function () {
                 quantity += parseInt($(this).val());
             });
 
@@ -342,7 +337,6 @@
                 let product_id = $(this).attr('id');
                 let price = $(this).find('.product_price').val();
                 let weight = $(this).find('.product_weight').val();
-                let qty = $(this).find('.product_qty').val();
                 let subtotal = $(this).find('.product_subtotal').val();
 
                 if (i != 0) {
@@ -350,7 +344,6 @@
                         ingredient_id: product_id,
                         price: price,
                         weight: weight,
-                        qty: qty,
                         sub_total: subtotal,
                     })
                 }// if product is not the sample clone push
@@ -361,8 +354,8 @@
 
 
         $('#submit_btn').click(()=>{
-                $('#submit_btn').attr('disabled', 'true');
-                progress_loading(true);// show loader
+                // $('#submit_btn').attr('disabled', 'true');
+                // progress_loading(true);// show loader
 
                 let ingredients = getAllProducts();
 

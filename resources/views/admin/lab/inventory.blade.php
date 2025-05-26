@@ -4,7 +4,7 @@
 @section('page')
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
-            <span class="ttext-base ttext-title tfont-medium">Total Stock Value: <span class="tfont-bold ttext-green-800">₱16,350</span></span>
+            <span class="ttext-base ttext-title tfont-medium">Total Stock Value: <span class="tfont-bold ttext-green-800">₱{{ number_format($totalStockValue) }}</span></span>
             <span class="ttext-base ttext-title tfont-medium tfont-bold ttext-2xl"><i class="fas fa-clipboard-list"></i> Inventory</span>
             <ul class="tflex titems-center">
                 <li class="tmr-4">

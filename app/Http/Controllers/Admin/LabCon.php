@@ -112,7 +112,6 @@ class LabCon extends Controller
     }
 
     public function purchase_store(Request $request){
-
         // Clean and parse values
         $totalPrice = cleanFloatNumber($request->total_price);
         $totalQty = cleanFloatNumber($request->total_qty);
@@ -132,36 +131,33 @@ class LabCon extends Controller
             'date'            => $date,
         ]);
 
-        // INSERT INGREDIENTS
-        
+        // Insert ingredients
         foreach ($request->ingredients as $item) {
             $weight = cleanFloatNumber($item['weight']);
-            $qty = (int) $item['qty'];
+            $price = cleanFloatNumber($item['price']);
+            $subTotal = round($price * $weight, 2); // 💡 Compute sub_total
 
             LabPurchaseIngredient::create([
                 'lab_purchase_id' => $labPurchase->id,
                 'ingredient_id'   => $item['ingredient_id'],
-                'price'           => cleanFloatNumber($item['price']),
+                'price'           => $price,
                 'weight'          => $weight,
-                'qty'             => $qty,
-                'sub_total'       => cleanFloatNumber($item['sub_total']),
+                'qty'             => null, // still optional
+                'sub_total'       => $subTotal,
             ]);
 
-            // Update inventory stock by adding the weight
+            // Update inventory stock
             $stock = IngredientStock::where('ingredient_id', $item['ingredient_id'])->first();
 
             if ($stock) {
-                // Add to existing stock
-                $stock->increment('total_weight', ($weight * $qty));
+                $stock->increment('total_weight', $weight);
             } else {
-                // Create new stock record
                 IngredientStock::create([
                     'ingredient_id' => $item['ingredient_id'],
-                    'total_weight' => ($weight * $qty)
+                    'total_weight'  => $weight
                 ]);
             }
         }
-
         return response()->json([
             'message' => 'Lab Purchase and Ingredients saved successfully!',
             'purchase_id' => $labPurchase->id
@@ -185,10 +181,9 @@ class LabCon extends Controller
             // 1. Revert OLD weights from inventory
             $oldItems = LabPurchaseIngredient::where('lab_purchase_id', $labPurchase->id)->get();
             foreach ($oldItems as $oldItem) {
-                $oldTotalWeight = $oldItem->weight * $oldItem->qty;
                 $stock = IngredientStock::where('ingredient_id', $oldItem->ingredient_id)->first();
                 if ($stock) {
-                    $stock->decrement('total_weight', $oldTotalWeight);
+                    $stock->decrement('total_weight', $oldItem->weight);
                 }
             }
 
@@ -203,33 +198,32 @@ class LabCon extends Controller
                 'date'            => Carbon::parse($request->date)->format('Y-m-d'),
             ]);
 
-            // 3. Delete all old ingredients (reset)
+            // 3. Delete old ingredient rows
             LabPurchaseIngredient::where('lab_purchase_id', $labPurchase->id)->delete();
 
-            // 4. Re-insert ingredients and update inventory stock
+            // 4. Insert new ingredients
             foreach ($request->ingredients as $item) {
                 $weight = cleanFloatNumber($item['weight']);
-                $qty = (int) $item['qty'];
-                $totalWeight = $weight * $qty;
+                $price = cleanFloatNumber($item['price']);
+                $subTotal = round($price * $weight, 2); // ✅ recompute
 
-                // Save new ingredient row
                 LabPurchaseIngredient::create([
                     'lab_purchase_id' => $labPurchase->id,
                     'ingredient_id'   => $item['ingredient_id'],
-                    'price'           => cleanFloatNumber($item['price']),
+                    'price'           => $price,
                     'weight'          => $weight,
-                    'qty'             => $qty,
-                    'sub_total'       => cleanFloatNumber($item['sub_total']),
+                    'qty'             => null, // optional or remove from DB if unused
+                    'sub_total'       => $subTotal,
                 ]);
 
-                // Update or create stock
+                // 5. Update inventory stock
                 $stock = IngredientStock::where('ingredient_id', $item['ingredient_id'])->first();
                 if ($stock) {
-                    $stock->increment('total_weight', $totalWeight);
+                    $stock->increment('total_weight', $weight);
                 } else {
                     IngredientStock::create([
                         'ingredient_id' => $item['ingredient_id'],
-                        'total_weight'  => $totalWeight,
+                        'total_weight'  => $weight,
                     ]);
                 }
             }
