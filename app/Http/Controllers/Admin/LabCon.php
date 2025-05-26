@@ -26,11 +26,14 @@ class LabCon extends Controller
     public function inventory(){
         $ingredients = Ingredients::with('stock')->get();
 
-        // Optionally map total value
-        $inventory = $ingredients->map(function ($ingredient) {
+        $totalStockValue = 0;
+
+        $inventory = $ingredients->map(function ($ingredient) use (&$totalStockValue) {
             $weight = $ingredient->stock->total_weight ?? 0;
             $pricePerGram = $ingredient->price_per_grams ?? 0;
             $totalValue = $weight * $pricePerGram;
+
+            $totalStockValue += $totalValue;
 
             return [
                 'name'             => $ingredient->name,
@@ -41,7 +44,10 @@ class LabCon extends Controller
             ];
         });
 
-        return view('admin.lab.inventory', compact('inventory'));
+        // Optional: round the grand total
+        $totalStockValue = round($totalStockValue, 2);
+
+        return view('admin.lab.inventory', compact('inventory', 'totalStockValue'));
     }
 
     public function chemicals(){
@@ -241,7 +247,6 @@ class LabCon extends Controller
             ], 500);
         }
     }
-
 
     public function formulations(){
         $suppliers = Suppliers::select('id', 'name', 'surname')->get();

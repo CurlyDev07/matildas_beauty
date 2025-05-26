@@ -15,8 +15,10 @@ class CreateLabPurchaseIngredientsTable  extends Migration
     {
          Schema::create('lab_purchase_ingredients', function (Blueprint $table) {
             $table->bigIncrements('id');
+
             $table->unsignedBigInteger('lab_purchase_id');
             $table->unsignedBigInteger('ingredient_id');
+            
             $table->decimal('price', 10, 2)->nullable();
             $table->decimal('weight', 10, 2)->nullable();
             $table->integer('qty')->nullable();
