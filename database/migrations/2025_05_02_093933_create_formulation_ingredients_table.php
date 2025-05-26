@@ -22,12 +22,7 @@ class CreateFormulationIngredientsTable extends Migration
             $table->unsignedBigInteger('ingredient_id');
             $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');
 
-            $table->string('phase')->nullable();
-            $table->text('phase_note')->nullable();
-            $table->string('bg_color')->nullable(); // e.g. "#FFCC00" or phase label
-            $table->decimal('percentage', 6, 3)->nullable(); // e.g. 0.123
-            $table->decimal('grams', 10, 2)->nullable();
-            $table->decimal('price', 10, 2)->nullable();
+            $table->decimal('percentage', 10, 2)->nullable();
             $table->timestamps();
         });
     }

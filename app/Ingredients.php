@@ -18,4 +18,10 @@ class Ingredients extends Model
     public function stock(){
         return $this->hasOne(IngredientStock::class, 'ingredient_id', 'id');
     }
+
+    public function formulations(){
+        return $this->belongsToMany(Formulation::class, 'formulation_ingredients')
+                    ->withPivot('percentage')
+                    ->withTimestamps();
+    }
 }

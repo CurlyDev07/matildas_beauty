@@ -15,12 +15,7 @@ class CreateFormulationsTable extends Migration
     {
         Schema::create('formulations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('model');
             $table->string('product_name');
-            $table->decimal('batch', 10, 2)->nullable();
-            $table->decimal('price', 10, 2)->nullable();
-            $table->decimal('ph', 5, 2)->nullable();
-            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

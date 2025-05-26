@@ -28,6 +28,14 @@
                         Purchases
                     </div>
                 </li>
+                <li onclick="window.location.href = '/admin/lab/formulations'" class="tmy-1 tpx-5 tpy-2  tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/lab/formulations', 'tborder-primary tborder-l-4') }}">
+                    <div class="ttext-md ttext-black-100 tmy-1 ">
+                        <a class="tmr-2">
+                            <i class="fas fa-flask ttext-purple-600"></i>
+                        </a>
+                        Formulations
+                    </div>
+                </li>
               
                 {{-- <li onclick="window.location.href = '/admin/lab/suggestions'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/lab/suggestions', 'tborder-primary tborder-l-4') }}">
                     <div class="ttext-md ttext-black-100 tmy-1 ">

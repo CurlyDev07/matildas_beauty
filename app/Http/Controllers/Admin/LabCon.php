@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\FormulationIngredients;
 use App\LabPurchaseIngredient;
 use App\IngredientStock;
 use App\Ingredients;
+use App\Formulation;
 use App\LabPurchase;
 use App\Suppliers;
 use Carbon\Carbon;
@@ -239,5 +241,43 @@ class LabCon extends Controller
             ], 500);
         }
     }
+
+
+    public function formulations(){
+        $suppliers = Suppliers::select('id', 'name', 'surname')->get();
+        $purchases = LabPurchase::with(['supplierInfo', 'ingredients.ingredient'])->get();
+
+        return view('admin.lab.formulations.index', compact('purchases', 'suppliers'));
+    }
+
+    public function formulation_create(){
+        $ingredients  = Ingredients::all();
+        $suppliers = Suppliers::select('id', 'name', 'surname')->get();
+
+        return view('admin.lab.formulations.create', compact('ingredients', 'suppliers'));
+    }
+    
+    public function formulation_store(Request $request){
+        $formulation = Formulation::create([
+            'product_name' => $request->product_name ?? 'Untitled Formula'
+        ]);
+
+        // 2. Save ingredients with given percentages
+        foreach ($request->ingredients as $item) {
+            FormulationIngredients::create([
+                'formulation_id' => $formulation->id,
+                'ingredient_id' => $item['ingredient_id'],
+                'percentage' => round((float) $item['percentage'], 2)
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Formulation saved successfully.',
+            'formulation_id' => $formulation->id
+        ], 201);
+
+    }
+
+
 }
 

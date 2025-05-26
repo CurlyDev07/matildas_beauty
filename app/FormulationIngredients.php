@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class FormulationIngredients extends Model
 {
-    public function formulation(){
+    protected $fillable = ['formulation_id', 'ingredient_id', 'percentage'];
+
+    public function formulation()
+    {
         return $this->belongsTo(Formulation::class);
     }
-    
-    public function ingredient(){
+
+    public function ingredient()
+    {
         return $this->belongsTo(Ingredient::class);
     }
 }

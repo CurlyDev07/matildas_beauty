@@ -267,6 +267,11 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/purchase/update/{id}', 'LabCon@purchase_update')->name('lab.purchase.update');
         Route::post('/purchase/patch', 'LabCon@purchase_patch')->name('lab.purchase.patch');
 
+
+        Route::get('/formulations', 'LabCon@formulations')->name('lab.formulation.index');
+        Route::get('/formulations/create', 'LabCon@formulation_create')->name('lab.formulation.create');
+        Route::post('/formulations/store', 'LabCon@formulation_store')->name('lab.formulation.store');
+
     });
 
 
