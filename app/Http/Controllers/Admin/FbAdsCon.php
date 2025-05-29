@@ -8,6 +8,11 @@ use App\FbAds;
 use App\FbEventListener;
 use Illuminate\Support\Facades\DB;
 use App\Store;
+use App\StatusReason;
+use App\StatusDetail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class FbAdsCon extends Controller
 {
@@ -175,6 +180,81 @@ class FbAdsCon extends Controller
 
         return response(['success' => 'Success!']);
     }
+
+    public function status_details(){
+        $status_details = FbAds::whereHas('statusDetail')
+        ->with(['statusDetail.reason'])
+        ->select('id', 'full_name', 'phone_number')
+        ->get();
+
+        // dd($data);
+        return view('admin.fbads.status_details', compact('status_details'));
+    }
+
+
+    public function change_status_problematic(Request $request){
+        $previous_status = FbAds::where('id', $request['id'])->first('status')->status;
+        $fbads_id = $request['id'];
+        $new_status = $request->status;
+        $admin_name = auth()->user()->first_name;
+
+        return view('admin.fbads.status_details_create', compact('previous_status', 'new_status', 'admin_name', 'fbads_id'));
+    }
+
+    public function status_details_store(Request $request){
+        $request->validate([
+            'reason'          => 'required|string|max:255',
+            'category'        => 'nullable|string|max:255',
+            'previous_status' => 'required|string',
+            'new_status'      => 'required|string',
+            'admin_name'      => 'required|string|max:255',
+            'fbads_id'        => 'required|integer|exists:fb_ads,id',
+            'file'            => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+
+        $imagePath = null;
+        $domain = 'https://matildasbeautybucket.s3.ap-southeast-1.amazonaws.com';
+
+        // Handle file upload to S3
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $uuid = Str::uuid();
+            $ext = $file->getClientOriginalExtension();
+            $imgName = "$uuid.$ext";
+            $path = '/images/status/';
+            $fullPath = $path . 'original-' . $imgName;
+
+            $base64Image = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file));
+            upload_resize_product_image($fullPath, $base64Image, 'original');
+            $imagePath = $fullPath;
+        }
+
+        // Save to status_reasons
+        $reason = StatusReason::create([
+            'reason'   => $request->reason,
+            'category' => $request->category,
+            'img'      => $imagePath ? $domain . $imagePath : null,
+        ]);
+
+        // Save to status_details
+        $statusDetail = StatusDetail::create([
+            'fb_ad_id'        => $request->fbads_id,
+            'status_reason_id'=> $reason->id,
+            'previous_status' => $request->previous_status,
+            'new_status'      => $request->new_status,
+            'admin_name'      => $request->admin_name,
+            'remarks'         => null,
+        ]);
+
+        // Update fb_ads table
+        FbAds::where('id', $request->fbads_id)->update([
+            'status'           => $request->new_status,
+            'statusdetails_id' => $statusDetail->id,
+        ]);
+
+        return redirect()->back()->with('success', 'Status updated and reason logged successfully.');
+    }
+
 }
 
 // conversions/visitors * 100

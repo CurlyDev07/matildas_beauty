@@ -281,21 +281,32 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes'
             }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: '/admin/fbads/change-status',
-                        type: 'POST',
-                        data: { id: $(this).data('id'), status: $(this).val() },
-                        success: ()=>{
-                            status_color(self, $(this).val())
-                            // Swal.fire(
-                            //     'Status Changed Successfully!',
-                            //     'The order has been updated.',
-                            //     'success'
-                            // )// success prompt
-                        }
-                    });// update via Ajax request
+
+                let status = $(this).val();
+                let id = $(this).data('id');
+                let problematic_status = ['CANCELLED', 'TO CALL'];
+
+                if (problematic_status.includes(status)) {
+                    window.location.href = `/admin/fbads/change-status-problematic?status=${encodeURIComponent(status)}&id=${encodeURIComponent(id)}`;
+                }else{
+                    if (result.isConfirmed) {
+    
+                        $.ajax({
+                            url: '/admin/fbads/change-status',
+                            type: 'POST',
+                            data: { id: id, status: status },
+                            success: ()=>{
+                                status_color(self, $(this).val())
+                                Swal.fire(
+                                    'Status Changed Successfully!',
+                                    'The order has been updated.',
+                                    'success'
+                                )// success prompt
+                            }
+                        });// update via Ajax request
+                    }
                 }
+
 
             })// swal
         });

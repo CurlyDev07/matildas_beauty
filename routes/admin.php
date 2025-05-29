@@ -231,6 +231,11 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/event-listener', 'FbAdsCon@event_listener')->name('fbads.event_listener');
         Route::get('/events', 'FbAdsCon@events')->name('fbads.events');
         Route::post('/change-status', 'FbAdsCon@change_status');
+
+        Route::get('/status-details', 'FbAdsCon@status_details')->name('fbads.status_details');
+        Route::post('/status-details/store', 'FbAdsCon@status_details_store')->name('fbads.status_details.store');
+        Route::get('/change-status-problematic', 'FbAdsCon@change_status_problematic');
+
     });
 
 

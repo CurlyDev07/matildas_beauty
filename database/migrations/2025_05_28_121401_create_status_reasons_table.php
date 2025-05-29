@@ -17,6 +17,7 @@ class CreateStatusReasonsTable extends Migration
             $table->bigIncrements('id');
             $table->string('reason');
             $table->string('category')->nullable();
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }

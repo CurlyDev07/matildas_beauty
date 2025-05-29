@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\StatusReason;
+use App\FbAd;
+use App\StatusDetail;
 
 class StatusDetail extends Model
 {
@@ -15,6 +18,7 @@ class StatusDetail extends Model
         'remarks'
     ];
 
+
     public function fbAd()
     {
         return $this->belongsTo(FbAd::class, 'fb_ad_id');
@@ -24,4 +28,5 @@ class StatusDetail extends Model
     {
         return $this->belongsTo(StatusReason::class, 'status_reason_id');
     }
+    
 }
