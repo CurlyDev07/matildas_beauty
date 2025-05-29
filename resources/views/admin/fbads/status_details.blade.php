@@ -1,16 +1,46 @@
 @extends('admin.fbads.layouts')
 
 
+@php
+    $order_status = ['TO ENCODE', 'TO CALL', 'TO SHIP', 'SHIPPED', 'DELIVERED', 'CANCELLED', 'DELETE', 'RESERVE'];
+
+    function status_color($status){
+        switch ($status) {
+            case "TO ENCODE":
+                echo "tbg-yellow-200 ttext-yellow-900 tborder-yellow-300";
+                break;
+            case "TO CALL":
+                echo "tbg-blue-200 ttext-blue-900 tborder-blue-300";
+                break;
+            case "TO SHIP":
+                echo "tbg-orange-200 ttext-orange-900 tborder-orange-300";
+                break;
+            case "SHIPPED":
+                echo "tbg-green-200 ttext-green-900 tborder-green-300";
+                break;
+            case "DELIVERED":
+                echo "tbg-green-300 ttext-green-900 tborder-green-300";
+                break;
+            case "CANCELLED":
+                echo "tbg-red-300 ttext-red-900 tborder-red-300";
+                break;
+            case "DELETE":
+                echo "tbg-pink-200 ttext-pink-900 tborder-pink-300";
+                break;
+            case "RESERVE":
+                echo "tbg-purple-200 ttext-purple-900 tborder-purple-300";
+                break;
+            default:
+                echo "tbg-pink-200 ttext-pink-900 tborder-pink-300";
+            }
+    }
+@endphp
+
 @section('page')
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
             <span class="ttext-base ttext-title tfont-medium">Status Details</span>
             <ul class="tflex titems-center">
-                <li class="tmr-4">
-                    <a href="#modal1" class="tbg-green-200 tmr-4 tpx-3 tpy-2 trounded ttext-green-900 waves-effect waves-light  modal-trigger">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </li><!-- Add Chemical -->
                 <li class="tmr-4">
                     <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
                         <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
@@ -62,22 +92,30 @@
                         <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Cancellation Reason</th>
                     </tr>
 
+                    {{-- {{ $status_details }} --}}
+
+
                     @foreach ($status_details as $details)
                     
                         <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="ttext-center tpx-5">{{ $details->full_name }} <br> {{ $details->phone_number }}</td>
-                            <td class="ttext-center tpx-5"><span class="ttext-sm ttext-gray-500"><strike>{{ $details->statusDetail['previous_status'] }}</strike></span>  <br> {{ $details->statusDetail['new_status']  }}</td>
-                            <td class="ttext-center tpx-5">{{ $details->statusDetail['admin_name'] }}</td>
+                            {{-- {{ dd($details) }} --}}
+                            <td class="ttext-center tpx-5">{{ $details->fbAd->full_name }} <br> {{ $details->fbAd->phone_number }}</td>
                             <td class="ttext-center tpx-5">
-                                <a href="{{ $details->statusDetail['reason']['img'] }}" target="_blank" class="tooltipped tcursur-pointer  ttext-center" data-position="top" data-tooltip="Click to View">
-                                    <img src="{{ $details->statusDetail['reason']['img'] }}" alt="Reason Image" class="tmx-auto tw-20 th-20 object-contain rounded border" />
+                                <span class="ttext-xs ttext-gray-500"><strike>{{ $details->previous_status }}</strike></span>
+                                <br> 
+                                <span class="ttext-lg tpx-2 trounded tfont-medium {{ status_color($details->new_status) }}" >{{ $details->new_status }}</span>
+                            </td>
+                            <td class="ttext-center tpx-5">{{ $details->admin_name }} <br> <span class="ttext-xs">{{ $details->created_at->diffForHumans() }}</span></td>
+                            <td class="ttext-center tpx-5">
+                                <a href="{{ $details->reason->img }}" target="_blank" class="tooltipped tcursur-pointer  ttext-center" data-position="top" data-tooltip="Click to View">
+                                    <img src="{{ $details->reason->img }}" alt="Reason Image" class="tmx-auto tw-20 th-20 object-contain rounded border" />
                                 </a>
                             </td>
                             <td class="ttext-center tpx-5">
-                                <span>{{ $details->statusDetail['reason']['category'] }}</span>
+                                <span>{{ $details->reason->category }}</span>
                             </td>
-                            <td class="ttext-center tpx-5">
-                                <span>{{ $details->statusDetail['reason']['reason'] }}</span>
+                            <td class="ttext-center tpx-5 tmax-w-xs tbreak-words twhitespace-normal">
+                                <span>{{ $details->reason->reason }}</span>
                             </td>
                         </tr>
                     @endforeach
@@ -86,55 +124,6 @@
             </table>
 
         </div><!-- TABLE -->
-
-
-
-
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal modal-fixed-footer tw-full md:tw-1/2  tbg-white">
-            <div class="modal-content">
-
-                <form action="{{ route('lab.create') }}" method="post" class="tbg-white trounded-lg ttext-black-100">
-                    @csrf
-                    <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-                        Customer Info
-                    </div>
-
-                    <div class="tflex tflex-wrap tpx-5">
-                        <div class="tw-1/5 tmb-2 lg:tmb-0 tpx-1 tpb-3">
-                            <label for="name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Chemical Name</label>
-                            <input type="text" id="name" name="name" class="browser-default form-control" value="" style="padding: 6px;">
-                        </div>
-                        <div class="tw-1/5 tpx-1">
-                            <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price</label>
-                            <input type="text" id="price" name="price" class="price browser-default form-control" value="" style="padding: 6px;">
-                        </div>
-                        <div class="tw-1/5 tpx-1">
-                            <label for="weight" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Weight</label>
-                            <input type="text" id="weight" name="weight" class="weight browser-default form-control" value="" style="padding: 6px;">
-                        </div>
-                        <div class="tw-1/5 tpx-1 tpx-1 tmb-2 lg:tmb-0">
-                            <label for="price_per_grams" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price/Grams</label>
-                            <input type="text" id="price_per_grams" name="price_per_grams" class="browser-default form-control tbg-red tcursor-not-allowed ttext" value="" style="padding: 6px;background-color: #eaeaea;/* opacity: 0.6; *//* color: red!important; */">
-                        </div>
-                    </div>
-
-                    <div class="tflex tflex-wrap tpx-5">
-                        <div class="tw-full tmb-2 lg:tmb-0 tpx-1 tpb-3">
-                            <label for="note" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Note</label>
-                            <textarea name="note" id="note" cols="30" rows="3" class="browser-default form-control" style="padding: 6px;"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="tflex tjustify-center tmt-3">
-                        <button type="submit" class="focus:tbg-primary tbg-primary tpy-2 trounded ttext-white tw-1/3 tw-24 waves-effect">Submit</button><!-- Save -->
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
-        </div>
 
     </div>
 @endsection

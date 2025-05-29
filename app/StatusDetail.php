@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\StatusReason;
-use App\FbAd;
+use App\FbAds;
 use App\StatusDetail;
 
 class StatusDetail extends Model
@@ -21,7 +21,7 @@ class StatusDetail extends Model
 
     public function fbAd()
     {
-        return $this->belongsTo(FbAd::class, 'fb_ad_id');
+        return $this->belongsTo(FbAds::class, 'fb_ad_id');
     }
 
     public function reason()

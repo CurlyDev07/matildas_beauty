@@ -181,13 +181,21 @@ class FbAdsCon extends Controller
         return response(['success' => 'Success!']);
     }
 
-    public function status_details(){
-        $status_details = FbAds::whereHas('statusDetail')
-        ->with(['statusDetail.reason'])
-        ->select('id', 'full_name', 'phone_number')
-        ->get();
+    public function status_details(Request $request){
+    
+        $search = $request->query('search');
 
-        // dd($data);
+        $status_details = StatusDetail::with([
+            'fbAd:id,full_name,phone_number',
+            'reason:id,reason,category,img'
+        ])->when($search, function ($query) use ($search) {
+            $query->whereHas('fbAd', function ($q) use ($search) {
+                $q->where('phone_number', 'like', '%' . $search . '%');
+            });
+        })->get();
+        
+        // dd($status_details);
+
         return view('admin.fbads.status_details', compact('status_details'));
     }
 
@@ -252,7 +260,7 @@ class FbAdsCon extends Controller
             'statusdetails_id' => $statusDetail->id,
         ]);
 
-        return redirect()->back()->with('success', 'Status updated and reason logged successfully.');
+        return redirect()->route('fbads.status_details');
     }
 
 }
