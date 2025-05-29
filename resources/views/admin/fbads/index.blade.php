@@ -181,7 +181,7 @@
                                 @endif
                             </td>
                             <td class="ttext-sm ttext-center tpy-1 amount">{{ $order->total }}</td>
-                            <td class="ttext-sm ttext-center tpy-1 amount tooltipped" data-position="top" data-tooltip="Status was changed by {{ $order->user->first_name ?? 'System' }}">
+                            <td class="ttext-sm ttext-center tpy-1 tooltipped" data-position="top" data-tooltip="Status was changed by {{ $order->user->first_name ?? 'System' }}">
                                 {{ $order->user->first_name ?? 'System' }}
                             </td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->created_at->format('M d, h:i:s A') }}</td>
