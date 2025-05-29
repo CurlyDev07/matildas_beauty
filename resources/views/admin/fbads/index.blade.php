@@ -158,13 +158,13 @@
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Address</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Product/Promo</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Amount</th>
+                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">User</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium tw-32">Status</th>
                     </tr>
 
                     @foreach ($orders as $order)
                         <tr>
-
                             <td class="ttext-sm ttext-center tpy-1 tcapitalize">
                                 <a href="{{ route('fbads.order', ['id' => $order->id]) }}" class="ttext-blue-700 tooltipped" data-tooltip="Click to view/edit order">{{ $order->id }}</a>
                             </td>
@@ -181,6 +181,9 @@
                                 @endif
                             </td>
                             <td class="ttext-sm ttext-center tpy-1 amount">{{ $order->total }}</td>
+                            <td class="ttext-sm ttext-center tpy-1 amount tooltipped" data-position="top" data-tooltip="Status was changed by {{ $order->user->first_name ?? 'System' }}">
+                                {{ $order->user->first_name ?? 'System' }}
+                            </td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $order->created_at->format('M d, h:i:s A') }}</td>
                             <td class="ttext-sm ttext-center tpy-1">
                                 <select data-id="{{ $order->id }}" class="change_status tfont-medium browser-default tborder-gray-300 th-8 tpx-2 trounded-full ttext-center {{ status_color($order->status) }}">

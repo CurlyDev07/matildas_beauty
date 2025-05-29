@@ -27,6 +27,7 @@ class CreateFbAdsTable extends Migration
             $table->string('status')->default('TO ENCODE')->comment('TO ENCODE | TO CALL | TO SHIP | SHIPPED | DUPPLICATE | DELIVERED');
             $table->string('statusdetails_id')->nullable();
             $table->integer('modification_id')->nullable();
+            $table->integer('user_id')->nullable();
             $table->timestamps();
         });
     }

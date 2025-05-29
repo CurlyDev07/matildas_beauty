@@ -12,4 +12,9 @@ class FbAds extends Model
     {
         return $this->hasOne(StatusDetail::class, 'fb_ad_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

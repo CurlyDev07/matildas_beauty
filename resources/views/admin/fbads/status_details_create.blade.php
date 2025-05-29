@@ -25,7 +25,7 @@
                 <div class="tflex tflex-wrap tpx-5">
                     <div class="tw-1/2 tmb-2 lg:tmb-0 tpx-1 tpb-3">
                         <label for="category" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Category</label>
-                        <select id="category" name="category" class="browser-default tfont-normal ttext-sm tmb-2 tpx-2 ttext-black-100">
+                        <select id="category" name="category" class="browser-default tfont-normal ttext-sm tmb-2 tpx-2 ttext-black-100" required>
                             <option value="" style="color: #f43958">choose ....</option>
                             <option value="📦 Order Issues" style="color: #12b101">📦 Order Issues</option>
                             <option value="❌ High Cancellation Rate" style="color: #12b101">❌ High Cancellation Rate</option>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="tw-full tmb-2 lg:tmb-0 tpx-1 tpb-3">
                         <label for="reason" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Reason</label>
-                        <textarea name="reason" id="reason" cols="30" rows="3" class="browser-default form-control"  style="padding: 6px;"></textarea>
+                        <textarea name="reason" id="reason" cols="30" rows="3" class="browser-default form-control"  style="padding: 6px;" required></textarea>
                     </div>
                     <div class="tw-full tmb-2 lg:tmb-0 tpx-1 tpb-3">
                        
@@ -55,7 +55,7 @@
                                 <p class="tmb-2 ttext-sm ttext-gray-500"><span class="tfont-semibold">Click to upload</span> or drag and drop</p>
                                 <p class="ttext-xs ttext-gray-500">PNG, JPG up to 10MB</p>
                                 </div>
-                                <input id="file" name="file" type="file" accept="image/*" class="thidden" onchange="previewImage(event)" />
+                                <input id="file" name="file" type="file" accept="image/*" class="thidden" onchange="previewImage(event)" required />
                             </label>
 
                             <div id="preview-container" class="tmt-4 thidden">

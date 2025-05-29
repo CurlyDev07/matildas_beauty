@@ -50,4 +50,9 @@ class User extends Authenticatable
     public function isInventory(){
         return $this->role == 'inventory'? true:false;
     }
+
+     public function fbAds()
+    {
+        return $this->hasMany(FbAds::class, 'user_id');
+    }
 }
