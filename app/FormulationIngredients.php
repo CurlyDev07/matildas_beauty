@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Ingredients;
+use App\Formulation;
+
 
 class FormulationIngredients extends Model
 {
-    protected $fillable = ['formulation_id', 'ingredient_id', 'percentage'];
+    protected $guarded = [];
 
     public function formulation()
     {
@@ -15,6 +18,6 @@ class FormulationIngredients extends Model
 
     public function ingredient()
     {
-        return $this->belongsTo(Ingredient::class);
+        return $this->belongsTo(Ingredients::class);
     }
 }

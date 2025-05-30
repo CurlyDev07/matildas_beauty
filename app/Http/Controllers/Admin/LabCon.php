@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 use App\FormulationIngredients;
 use App\LabPurchaseIngredient;
 use App\IngredientStock;
@@ -243,10 +242,9 @@ class LabCon extends Controller
     }
 
     public function formulations(){
-        $suppliers = Suppliers::select('id', 'name', 'surname')->get();
-        $purchases = LabPurchase::with(['supplierInfo', 'ingredients.ingredient'])->get();
+        $formulations = Formulation::with(['formulationIngredients.ingredient'])->get();
 
-        return view('admin.lab.formulations.index', compact('purchases', 'suppliers'));
+        return view('admin.lab.formulations.index', compact('formulations'));
     }
 
     public function formulation_create(){
@@ -275,6 +273,16 @@ class LabCon extends Controller
             'formulation_id' => $formulation->id
         ], 201);
 
+    }
+
+    public function production_create(Request $request, $id){
+        $ingredients  = Ingredients::all();
+        $suppliers = Suppliers::select('id', 'name', 'surname')->get();
+
+        $formulation = Formulation::with(['ingredients'])->findOrFail($id);
+
+
+        return view('admin.lab.production.create', compact('ingredients', 'suppliers', 'formulation'));
     }
 
 

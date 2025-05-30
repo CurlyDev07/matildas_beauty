@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\IngredientStock;
 use App\FormulationIngredient;
+use App\Formulation;
 
 class Ingredients extends Model
 {

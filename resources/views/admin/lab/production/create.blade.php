@@ -91,6 +91,10 @@
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Product Name </label>
                 <input type="text" class="product_name tcursor-pointer browser-default form-control">
             </div><!-- Product Name -->
+            <div class="tw-2/5 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Batch Weight </label>
+                <input type="text" value="1000" class="total_weight tcursor-pointer browser-default form-control">
+            </div><!-- Product Name -->
         </div>
      
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
@@ -147,6 +151,33 @@
                       
                         <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
                     </div>
+
+                    @foreach ($formulation->ingredients as $ingredient)
+                        <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="{{ $ingredient->id }}">
+                            <div class="tw-1/3 tw-full tflex tflex-col tmr-2">
+                                <div class="tflex titems-center tpy-1">
+                                    <img src="https://myfoodsafety.net/wp-content/uploads/2020/03/RAW-MATERIALS-SMALL.png" class="product_img" style="height: 50px; width: 50px;" alt="">
+                                    <div class="tpx-2">
+                                        <p class="product_name truncate ttext-sm ">{{ $ingredient->name }}</p>
+                                        <small>
+                                            ₱
+                                            <small class="product_price_per_grams">{{ $ingredient->price_per_grams }}</small>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div><!-- Product -->
+                            <div class="tw-1/3 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Percentage</label>
+                                <input type="number" value="{{ $ingredient->pivot->percentage }}" class="product_percentage browser-default form-control" style="padding: 6px;">
+                            </div><!-- Percentage -->
+                            <div class="tw-1/3 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Grams</label>
+                                <input type="number" value="{{ number_format(($ingredient->pivot->percentage / 100) * 100, 2) }}" class="grams browser-default form-control" style="padding: 6px;">
+                            </div><!-- Grams -->
+                        
+                            <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

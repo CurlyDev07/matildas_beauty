@@ -74,26 +74,18 @@
 
     <div class="tbg-white  trounded-lg tshadow-lg ttext-black-100">
         <div class="tflex tjustify-between tborder-b ">
+            <input type="hidden" id="id" value="{{ request()->id }}">
             <div class="ttext-base tfont-medium tpx-5 tpy-4 ttext-title">
-                Formulation / Create
+                Orders
             </div>
             <div class="tflex titems-center tjustify-end tmx-5 tpr-3 tpy-3">
-                <div class="tpr-5 tborder-r"><small class="ttext-gray-500"><span id="total_items">0</span> item(s)</small> TOTAL</div>
-                <div class="tpx-6 tfont-medium" style="font-size: 24px;color: black;">₱<span id="total">0</span> </div>
+                <div class="tpr-5 tborder-r"><small class="ttext-gray-500"><span id="total_items">{{ $purchase->total_qty }}</span> item(s)</small> TOTAL</div>
+                <div class="tpx-6 tfont-medium" style="font-size: 24px;color: black;">₱<span id="total"> {{ number_format($purchase->total_price) }} </span> </div>
             </div>
-        </div>
-
-        <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-            Transaction
-        </div>
-        <div class="tflex tpx-5">
-            <div class="tw-2/5 tmr-2">
-                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Product Name </label>
-                <input type="text" class="product_name tcursor-pointer browser-default form-control">
-            </div><!-- Product Name -->
         </div>
      
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
+          
             <div class="tflex tpx-5 tmt-5">
                 <div class="tw-2/5 tborder-r tpr-2">
 
@@ -125,10 +117,12 @@
                     </ul>
 
                 </div>
-                   
+
+                {{-- {{dd($purchase->ingredients)}} --}}
+                
                 <div id="products_container" class="tw-3/5 tborder-l tpl-2 toverflow-scroll toverflow-x-hidden tpr-6" style="height: 450px">
                     <div class="product tborder-b tflex tmx-1 trelative thidden tpy-1" id="hidden_product">
-                        <div class="tw-1/3 tw-full tflex tflex-col tmr-2">
+                        <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
                             <div class="tflex titems-center tpy-1">
                                 <img src="https://myfoodsafety.net/wp-content/uploads/2020/03/RAW-MATERIALS-SMALL.png" class="product_img" style="height: 50px; width: 50px;" alt="">
                                 <div class="tpx-2">
@@ -140,19 +134,139 @@
                                 </div>
                             </div>
                         </div><!-- Product -->
-                        <div class="tw-1/3 tflex tflex-col tmr-3">
-                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Percentage</label>
-                            <input type="number" value="1" class="product_percentage browser-default form-control" style="padding: 6px;">
+                        <div class="2/12 tflex tflex-col tmr-3">
+                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
+                            <input type="text" onkeyup="allnumeric(this)" value="0" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
+                        </div><!-- Price -->
+                        <div class="2/12 tflex tflex-col tmr-3">
+                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Weight</label>
+                            <input type="number" onkeyup="allnumeric(this)" value="0" class="product_weight browser-default form-control" style="padding: 6px;">
+                        </div><!-- Weight -->
+                         <div class="2/12 tflex tflex-col tmr-3">
+                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Qty</label>
+                            <input type="number" onkeyup="allnumeric(this)" value="1" class="product_qty browser-default form-control" style="padding: 6px;">
                         </div><!-- QTY -->
-                      
+                        <div class="2/12 tflex tflex-col tmr-3">
+                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Subtotal</label>
+                            <input type="text" onkeyup="allnumeric(this)" disabled="" value="0" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
+                        </div><!-- Sub Total --> 
                         <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
                     </div>
+
+                    @foreach ($purchase->ingredients as $ingredient)
+
+                        <div class="product tborder-b tflex tmx-1 trelative tpy-1" id="{{ $ingredient->ingredient_id }}">
+                            <div class="tw-3/6 tw-full tflex tflex-col tmr-2">
+                                <div class="tflex titems-center tpy-1">
+                                    <img src="https://myfoodsafety.net/wp-content/uploads/2020/03/RAW-MATERIALS-SMALL.png" class="product_img" style="height: 50px; width: 50px;" alt="">
+                                    <div class="tpx-2">
+                                        <p class="product_name truncate ttext-sm ">{{ $ingredient->ingredient->name }}</p>
+                                        <small>
+                                            ₱
+                                            <small class="product_price_per_grams">{{ $ingredient->price / $ingredient->weight }}</small>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div><!-- Product -->
+                            <div class="2/12 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
+                                <input type="text" onkeyup="allnumeric(this)" value="{{ $ingredient->price }}" class="product_price browser-default form-control cursor: not-allowed;" style="padding: 6px;">
+                            </div><!-- Price -->
+                            <div class="2/12 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Weight</label>
+                                <input type="number" onkeyup="allnumeric(this)" value="{{ $ingredient->weight }}" class="product_weight browser-default form-control" style="padding: 6px;">
+                            </div><!-- Weight -->
+                                <div class="2/12 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Qty</label>
+                                <input type="number" onkeyup="allnumeric(this)" value="{{ $ingredient->qty }}" class="product_qty browser-default form-control" style="padding: 6px;">
+                            </div><!-- QTY -->
+                            <div class="2/12 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Subtotal</label>
+                                <input type="text" onkeyup="allnumeric(this)" disabled="" value="{{ $ingredient->sub_total }}" class="product_subtotal tcursor-pointer browser-default form-control" style="padding: 6px;background: #f9f9f9; cursor: not-allowed;">
+                            </div><!-- Sub Total --> 
+                            <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
+                        </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>
     </div><!-- Create Order -->
 
+    <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-5">
+        <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
+            Transaction
+        </div>
+        {{-- <div class="tflex tpx-5">
+            <div class="tw-2/5 tflex tflex-col tmr-3 thidden">
+                <label for="sold_from" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Shipping Fee (Optional, You can add this later.)</label>
+                <select name="" id="sold_from" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
+                    @foreach ($sold_from as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endforeach
+                </select>
+            </div><!-- thidden-->
+            <div class="tw-2/5 tflex tflex-col tmr-3 thidden">
+                <label for="payment_method" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Payment method</label>
+                <select name="" id="payment_method" class="tcursor-pointer browser-default form-control" style="padding: 6px;">
+                    @foreach ($payment_method as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endforeach
+                </select>
+            </div><!-- thidden-->
+            <div class="tw-1/5 tflex tflex-col tmr-3">
+                <label for="package_qty" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Package Qty</label>
+                <input type="number" id="package_qty" class="browser-default form-control" style="padding: 6px;" >
+            </div><!-- package Qty -->
+            <div class="tw-1/5 tflex tflex-col tmr-3">
+                <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date</label>
+                <input type="text" class="datepicker browser-default form-control">
+            </div>
+        </div> --}}
 
+        {{-- {{ dd($purchase) }} --}}
+        <div class="tflex tpx-5 tmt-5">
+            <div class="tw-1/5 tmr-3">
+                <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date <small class="ttext-gray-600"> (Date of purchased)</small></label>
+                <input type="text" class="datepicker browser-default form-control" value="{{ date_f($purchase->date, 'M d, Y') }}">
+            </div><!-- Date -->
+            <div class="tw-2/5 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Shipping Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
+                <input type="text" class="shipping_fee tcursor-pointer browser-default form-control" value="{{ $purchase->shipping_fee }}">
+            </div><!-- Shipping Fee -->
+            
+            <div class="tw-2/5 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Transaction Fee <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
+                <input type="text" class="transaction_fee tcursor-pointer browser-default form-control" value="{{ $purchase->transaction_fee }}">
+            </div><!-- Transaction Fee -->
+        </div>
+
+        <div class="tflex tpx-5 tmt-5">
+            <div class="tw-1/2 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Tax <small class="ttext-gray-600">(Optional, You can add this later.)</small></label>
+                <input type="text" class="tax tcursor-pointer browser-default form-control" value="{{ $purchase->tax }}">
+            </div><!-- Tax -->
+
+            <div class="tw-1/2 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Suppliers </label>
+                <select class="supplier tcursor-pointer browser-default form-control" style="padding: 6px;">
+                    <option value="" data-price="" selected="">Choose supplier ...</option>
+                    @foreach ($suppliers as $supplier)
+
+
+                        <option value="{{ $supplier['id'] }}" 
+                            @if ($supplier['id'] == $purchase->supplier)
+                                selected
+                            @endif
+                        >{{ $supplier['name'] }} {{ $supplier['surname'] }}</option>
+
+
+                    @endforeach
+                </select>
+            </div><!-- suppliers -->
+        </div>
+        
+    </div><!-- Transaction -->
 
     <div class="tflex tjustify-end tpy-5 trounded-lg 100 tmt-5">
         <button class="focus:tbg-primary tbg-primary tml-auto tpy-2 trounded ttext-white tw-24 waves-effect" id="submit_btn">Save</button>
@@ -190,16 +304,25 @@
             $('#search').val('');
 
             // Get All Data
-            let batch = parseFloat($("#batch").val());
             let id = $(this).attr('id');
+            let img = $(this).find('.search-img').attr('src');
             let name = $(this).find('.search-name').html();
+            let price = $(this).find('.search-price').val();
+            let weight = $(this).find('.search-weight').val();
+            let price_per_grams = $(this).find('.search-price_per_grams').val();
 
             let selected_product = $('#hidden_product').clone(true, true); // clone hidden product sample model
             selected_product.removeClass('thidden'); // remove hidden class
 
             // Fillout all fields
             selected_product.attr('id', id);// add ID
+            selected_product.find('.product_img').attr('src', img);// add IMG
             selected_product.find('.product_name').html(name);// add ID
+            selected_product.find('.product_price').val(price);// add Price
+            selected_product.find('.product_weight').val(weight);// add QTY
+            selected_product.find('.product_subtotal').val(price);// add product_subtotal
+            selected_product.find('.product_price_per_grams').html(price_per_grams);// add product_subtotal
+
 
             // Scroll to bottom
             height += 62;
@@ -210,9 +333,9 @@
             getTotal();
         }) // Add product by search
 
-        $('.product_percentage').change(function () {
+        $('.product_qty').change(function () {
             let price = $(this).parent().parent().find('.product_price').val();
-            let qty = $(this).parent().parent().find('.product_percentage').val();
+            let qty = $(this).parent().parent().find('.product_qty').val();
             let subtotal = $(this).parent().parent().find('.product_subtotal');
 
             subtotal.val(price * qty);
@@ -228,7 +351,7 @@
 
         function changeSubtotal(parent) {
             let price = parent.find('.product_price').val();
-            let qty = parent.find('.product_percentage').val();
+            let qty = parent.find('.product_qty').val();
             let subtotal = parent.find('.product_subtotal');
 
             subtotal.val(price * qty);
@@ -242,7 +365,7 @@
 
                 subtotal += parseInt($(this).val());
             });
-            $('.product_percentage').each(function () {
+            $('.product_qty').each(function () {
                 quantity += parseInt($(this).val());
             });
 
@@ -267,7 +390,7 @@
                 let product_id = $(this).attr('id');
                 let price = $(this).find('.product_price').val();
                 let weight = $(this).find('.product_weight').val();
-                let percentage = $(this).find('.product_percentage').val();
+                let qty = $(this).find('.product_qty').val();
                 let subtotal = $(this).find('.product_subtotal').val();
 
                 if (i != 0) {
@@ -275,7 +398,7 @@
                         ingredient_id: product_id,
                         price: price,
                         weight: weight,
-                        percentage: percentage,
+                        qty: qty,
                         sub_total: subtotal,
                     })
                 }// if product is not the sample clone push
@@ -291,9 +414,16 @@
 
                 let ingredients = getAllProducts();
 
-                $.post( "/admin/lab/formulations/store", {
+                $.post( "/admin/lab/purchase/patch", {
+                    'id': $('#id').val(),
                     'ingredients': ingredients,
-                    'product_name': $('.product_name').val(),
+                    'total_price': $('#total').html(),
+                    'total_qty': $('#total_items').html(),
+                    'date': $('.datepicker').val(),
+                    'shipping_fee': $('.shipping_fee').val(),
+                    'transaction_fee': $('.transaction_fee').val(),
+                    'tax': $('.tax').val(),
+                    'supplier': $('.supplier').val(),
                 })
                 .fail(function(response) {
                     $('#submit_btn').removeAttr('disabled');
@@ -325,7 +455,7 @@
                         title: 'Awesome',
                         text: 'Added Successfuly',
                     });
-                    location.href = '/admin/lab/formulations';
+                    location.href = '/admin/lab/purchase';
                 });
             })// Submit
 
