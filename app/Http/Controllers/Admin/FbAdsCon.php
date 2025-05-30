@@ -259,6 +259,7 @@ class FbAdsCon extends Controller
         FbAds::where('id', $request->fbads_id)->update([
             'status'           => $request->new_status,
             'statusdetails_id' => $statusDetail->id,
+            'user_id' => auth()->user()->id
         ]);
 
         return redirect()->route('fbads.status_details');
