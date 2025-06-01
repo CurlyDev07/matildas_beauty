@@ -89,12 +89,16 @@
         <div class="tflex tpx-5">
             <div class="tw-2/5 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Product Name </label>
-                <input type="text" class="product_name tcursor-pointer browser-default form-control">
+                <input type="text" value="{{ $formulation->product_name }}" class="product_name tcursor-pointer browser-default form-control">
             </div><!-- Product Name -->
             <div class="tw-2/5 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Batch Weight </label>
                 <input type="text" value="1000" class="total_weight tcursor-pointer browser-default form-control">
-            </div><!-- Product Name -->
+            </div><!-- Total Weight -->
+            <div class="tw-2/5 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Net Content </label>
+                <input type="text" value="60" class="total_quantity tcursor-pointer browser-default form-control">
+            </div><!-- Total Quantity Name -->
         </div>
      
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
@@ -108,7 +112,7 @@
                         </button>
                     </div>
 
-
+                    {{-- {{ dd($formulation) }} --}}
                     <ul id="products" style="height: 400px" class="toverflow-scroll toverflow-x-hidden">
                         @foreach ($ingredients as $ingredient)
                             <li>
@@ -146,7 +150,7 @@
                         </div><!-- Product -->
                         <div class="tw-1/3 tflex tflex-col tmr-3">
                             <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Percentage</label>
-                            <input type="number" value="1" class="product_percentage browser-default form-control" style="padding: 6px;">
+                            <input type="number" value="1" class="grams browser-default form-control" style="padding: 6px;">
                         </div><!-- QTY -->
                       
                         <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
@@ -159,7 +163,7 @@
                                     <img src="https://myfoodsafety.net/wp-content/uploads/2020/03/RAW-MATERIALS-SMALL.png" class="product_img" style="height: 50px; width: 50px;" alt="">
                                     <div class="tpx-2">
                                         <p class="product_name truncate ttext-sm ">{{ $ingredient->name }}</p>
-                                        <small>
+                                        <small class="tfont-medium ttext-lg ttext-orange-700">
                                             ₱
                                             <small class="product_price_per_grams">{{ $ingredient->price_per_grams }}</small>
                                         </small>
@@ -172,8 +176,12 @@
                             </div><!-- Percentage -->
                             <div class="tw-1/3 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Grams</label>
-                                <input type="number" value="{{ number_format(($ingredient->pivot->percentage / 100) * 100, 2) }}" class="grams browser-default form-control" style="padding: 6px;">
+                                <input type="number" value="{{ number_format(($ingredient->pivot->percentage / 100) * 100, 2) }}" class="grams browser-default form-control" style="padding: 6px;" readonly>
                             </div><!-- Grams -->
+                              <div class="tw-1/3 tflex tflex-col tmr-3">
+                                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
+                                <input type="number" value="" class="price browser-default form-control" style="padding: 6px;" readonly>
+                            </div><!-- Price -->
                         
                             <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
                         </div>
@@ -241,45 +249,6 @@
             getTotal();
         }) // Add product by search
 
-        $('.product_percentage').change(function () {
-            let price = $(this).parent().parent().find('.product_price').val();
-            let qty = $(this).parent().parent().find('.product_percentage').val();
-            let subtotal = $(this).parent().parent().find('.product_subtotal');
-
-            subtotal.val(price * qty);
-
-            changeSubtotal($(this).parent().parent());
-            getTotal();
-        });// On Change Qty
-
-        $('.product_price').change(function () {
-            changeSubtotal($(this).parent().parent());
-            getTotal();
-        });// On Change Price
-
-        function changeSubtotal(parent) {
-            let price = parent.find('.product_price').val();
-            let qty = parent.find('.product_percentage').val();
-            let subtotal = parent.find('.product_subtotal');
-
-            subtotal.val(price * qty);
-        }// Change Sub Total
-
-        function getTotal() {
-            let subtotal = 0;
-            let quantity = 0;
-
-            $('.product_subtotal').each(function () {
-
-                subtotal += parseInt($(this).val());
-            });
-            $('.product_percentage').each(function () {
-                quantity += parseInt($(this).val());
-            });
-
-            $('#total').html(numberWithCommas(subtotal));
-            $('#total_items').html(numberWithCommas(quantity - 1));
-        }// Get Total
 
         function numberWithCommas(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -290,75 +259,49 @@
             getTotal();
         })// Remove item
 
-        function getAllProducts() {
-            let products = [];
+        // $('#submit_btn').click(()=>{
+        //     $('#submit_btn').attr('disabled', 'true');
+        //     progress_loading(true);// show loader
 
-            $('#products_container').children().each(function (i) {
+        //     let ingredients = getAllProducts();
 
-                let product_id = $(this).attr('id');
-                let price = $(this).find('.product_price').val();
-                let weight = $(this).find('.product_weight').val();
-                let percentage = $(this).find('.product_percentage').val();
-                let subtotal = $(this).find('.product_subtotal').val();
+        //     $.post( "/admin/lab/formulations/store", {
+        //         'ingredients': ingredients,
+        //         'product_name': $('.product_name').val(),
+        //     })
+        //     .fail(function(response) {
+        //         $('#submit_btn').removeAttr('disabled');
+        //         progress_loading(false);// show loader
 
-                if (i != 0) {
-                    products.push({
-                        ingredient_id: product_id,
-                        price: price,
-                        weight: weight,
-                        percentage: percentage,
-                        sub_total: subtotal,
-                    })
-                }// if product is not the sample clone push
-            });
+        //         let errDecoded = JSON.parse(response.responseText);
+        //         let markup = '';
 
-            return products;
-        }// get getAllProducts
+        //         if (errDecoded.errors < 1) {
+        //             return;
+        //         }
 
+        //         $('#err_msg_modal').modal('open'); 
+        //         $.each(errDecoded.errors, function (key, val) {
+        //             markup +=   `<li class="tmb-3" style="color:#f65656;">
+        //                             <i class="fas fa-dot-circle tmr-3"></i>
+        //                             ${val}
+        //                         </li>`;
 
-        $('#submit_btn').click(()=>{
-                $('#submit_btn').attr('disabled', 'true');
-                progress_loading(true);// show loader
+        //         });
+        //         $('.modal_err_msg').html(markup);
+        //     })
+        //     .done(function( res ) {
+        //         $('#submit_btn').removeAttr('disabled');
+        //         progress_loading(false);// show loader
 
-                let ingredients = getAllProducts();
-
-                $.post( "/admin/lab/formulations/store", {
-                    'ingredients': ingredients,
-                    'product_name': $('.product_name').val(),
-                })
-                .fail(function(response) {
-                    $('#submit_btn').removeAttr('disabled');
-                    progress_loading(false);// show loader
-
-                    let errDecoded = JSON.parse(response.responseText);
-                    let markup = '';
-
-                    if (errDecoded.errors < 1) {
-                        return;
-                    }
-
-                    $('#err_msg_modal').modal('open'); 
-                    $.each(errDecoded.errors, function (key, val) {
-                        markup +=   `<li class="tmb-3" style="color:#f65656;">
-                                        <i class="fas fa-dot-circle tmr-3"></i>
-                                        ${val}
-                                    </li>`;
-
-                    });
-                    $('.modal_err_msg').html(markup);
-                })
-                .done(function( res ) {
-                    $('#submit_btn').removeAttr('disabled');
-                    progress_loading(false);// show loader
-
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Awesome',
-                        text: 'Added Successfuly',
-                    });
-                    location.href = '/admin/lab/formulations';
-                });
-            })// Submit
+        //         Swal.fire({
+        //             icon: 'success',
+        //             title: 'Awesome',
+        //             text: 'Added Successfuly',
+        //         });
+        //         location.href = '/admin/lab/formulations';
+        //     });
+        // })// Submit
 
     </script>
 
@@ -384,5 +327,83 @@
           }
         }
     </script>
+
+
+    <script>
+        $(document).ready(function () {
+            function updateProductCalculations($product) {
+                let percentage = parseFloat($product.find('.product_percentage').val()) || 0;
+                let totalWeight = parseFloat($('.total_weight').val()) || 0;
+                let pricePerGram = parseFloat($product.find('.product_price_per_grams').text()) || 0;
+
+                let grams = (percentage / 100) * totalWeight;
+                let price = grams * pricePerGram;
+
+                $product.find('.grams').val(grams.toFixed(2));
+                $product.find('.price').val(price.toFixed(2));
+            }
+
+            function updateAllProducts() {
+                let total = 0;
+
+                $('.product').each(function () {
+                    updateProductCalculations($(this));
+
+                    let price = parseFloat($(this).find('.price').val()) || 0;
+                    total += price;
+                });
+
+                $('#total').text(total.toFixed(2));
+            }
+
+            // Run on page load
+            updateAllProducts();
+
+            // Recalculate on percentage change
+            $(document).on('input', '.product_percentage', function () {
+                updateAllProducts();
+            });
+
+            // Recalculate all on total weight change
+            $(document).on('input', '.total_weight', function () {
+                updateAllProducts();
+            });
+
+
+
+             $('#submit_btn').on('click', function (e) {
+        e.preventDefault(); // Prevent default form submission if any
+
+        let products = [];
+
+        $('#products_container .product').each(function () {
+            let $product = $(this);
+
+            let name = $product.find('.product_name').text().trim();
+            let pricePerGram = parseFloat($product.find('.product_price_per_grams').text()) || 0;
+            let percentage = parseFloat($product.find('.product_percentage').val()) || 0;
+            let grams = parseFloat($product.find('.grams').val()) || 0;
+            let price = parseFloat($product.find('.price').val()) || 0;
+
+            // Skip hidden template row or incomplete entries
+            if (name && grams > 0) {
+                products.push({
+                    product_name: name,
+                    product_price_per_grams: pricePerGram,
+                    product_percentage: percentage,
+                    grams: grams,
+                    price: price
+                });
+            }
+        });
+
+        console.log(products);
+    });
+        });
+    </script>
+
+
+
+
 
 @endsection
