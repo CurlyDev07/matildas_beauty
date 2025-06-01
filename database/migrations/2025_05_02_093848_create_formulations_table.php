@@ -16,6 +16,7 @@ class CreateFormulationsTable extends Migration
         Schema::create('formulations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('product_name');
+            $table->integer('net_content')->comment('net content in grams/ml ex: 35ml');
             $table->timestamps();
         });
     }

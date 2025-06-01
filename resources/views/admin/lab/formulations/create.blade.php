@@ -91,6 +91,11 @@
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Product Name </label>
                 <input type="text" class="product_name tcursor-pointer browser-default form-control">
             </div><!-- Product Name -->
+            <div class="tw-2/5 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Net Content ( grams/ml )</label>
+                <input type="text" class="net_content tcursor-pointer browser-default form-control">
+            </div><!-- Net Content -->
+            
         </div>
      
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
@@ -294,6 +299,7 @@
                 $.post( "/admin/lab/formulations/store", {
                     'ingredients': ingredients,
                     'product_name': $('.product_name').val(),
+                    'net_content': $('.net_content').val(),
                 })
                 .fail(function(response) {
                     $('#submit_btn').removeAttr('disabled');

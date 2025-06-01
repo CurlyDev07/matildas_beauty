@@ -256,7 +256,8 @@ class LabCon extends Controller
     
     public function formulation_store(Request $request){
         $formulation = Formulation::create([
-            'product_name' => $request->product_name ?? 'Untitled Formula'
+            'product_name' => $request->product_name ?? 'Untitled Formula',
+            'net_content' => $request->net_content ?? 30
         ]);
 
         // 2. Save ingredients with given percentages
@@ -281,6 +282,12 @@ class LabCon extends Controller
 
         $formulation = Formulation::with(['ingredients'])->findOrFail($id);
 
+
+        return view('admin.lab.production.create', compact('ingredients', 'suppliers', 'formulation'));
+    }
+
+    public function production_store(Request $request){
+        return $request->all();
 
         return view('admin.lab.production.create', compact('ingredients', 'suppliers', 'formulation'));
     }

@@ -54,12 +54,14 @@
                 <tbody>
                     <tr class="tborder-0">
                         <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Product</th>
+                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Net Content</th>
                         <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
                     </tr>
                     
                     @foreach ($formulations as $formulation)
                         <tr class="tborder-0 hover:tbg-blue-100">
                             <td class="tp-3 tpx-5 ">{{ $formulation->product_name }}</td>
+                            <td class="tp-3 tpx-5 ">{{ $formulation->net_content }}</td>
                             <td class="tp-3 tpx-5 ">
                                 <a href="{{ route('lab.production.create', ['id' => $formulation->id]) }}" >
                                     <i class="fas fa-plus-circle tmx-2 tcursor-pointer tooltipped ttext-green-600" data-position="left" data-tooltip="Make"></i>
