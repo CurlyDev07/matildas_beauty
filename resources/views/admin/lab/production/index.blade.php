@@ -4,13 +4,8 @@
 @section('page')
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
-            <span class="ttext-base ttext-title tfont-medium">Formulation List</span>
+            <span class="ttext-base ttext-title tfont-medium">Production</span>
             <ul class="tflex titems-center">
-                <li class="tmr-4">
-                    <a href="{{ route('lab.formulation.create') }}" class="tbg-green-200 tmr-4 tpx-3 tpy-2 trounded ttext-green-900 waves-effect waves-light  modal-trigger">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </li><!-- Add Chemical -->
                 <li class="tmr-4">
                     <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
                         <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
@@ -43,7 +38,7 @@
                     @endif
                 </li><!-- SORT -->
                 <li>
-                    <a href="/admin/lab/purchase">
+                    <a href="/admin/lab/production">
                         <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
                     </a>
                 </li>
@@ -53,20 +48,30 @@
             <table class="tmb-4 tbg-white ttext-md tw-full">
                 <tbody>
                     <tr class="tborder-0">
+                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Batch #</th>
                         <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Product</th>
+                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Total Weight</th>
+                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Quantity</th>
+                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Total Cost</th>
+                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Date</th>
                         <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
                     </tr>
                     
-                    {{-- @foreach ($formulations as $formulation)
+                    @foreach ($productions as $production)
                         <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="tp-3 tpx-5 ">{{ $formulation->product_name }}</td>
+                            <td class="tp-3 tpx-5 ">{{ $production->batch_number }}</td>
+                            <td class="tp-3 tpx-5 ">{{ $production->product_name }}</td>
+                            <td class="tp-3 tpx-5 ">{{ $production->total_weight }}</td>
+                            <td class="tp-3 tpx-5 ">{{ $production->total_quantity }}</td>
+                            <td class="tp-3 tpx-5 ">₱{{ number_format($production->total, 2) }}</td>
+                            <td class="tp-3 tpx-5 ">{{ date_f($production->date, 'M, d, Y') }}</td>
                             <td class="tp-3 tpx-5 ">
-                                <a href="" >
-                                    <i class="fas fa-plus-circle tmx-2 tcursor-pointer tooltipped ttext-green-600" data-position="left" data-tooltip="Make"></i>
+                                <a href="{{ route('lab.production.show', ['id' => $production->id]) }}" >
+                                    <i class="fas fa-eye tmx-2 tcursor-pointer tooltipped ttext-green-600" data-position="left" data-tooltip="Make"></i>
                                 </a>
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
 
                 </tbody>
             </table>

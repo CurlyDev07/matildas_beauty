@@ -276,9 +276,10 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/formulations', 'LabCon@formulations')->name('lab.formulation.index');
         Route::get('/formulations/create', 'LabCon@formulation_create')->name('lab.formulation.create');
         Route::post('/formulations/store', 'LabCon@formulation_store')->name('lab.formulation.store');
+        Route::get('/production', 'LabCon@production_index')->name('lab.production.index');
+        Route::get('/production/show/{id}', 'LabCon@production_show')->name('lab.production.show');
         Route::get('/production/create/{id}', 'LabCon@production_create')->name('lab.production.create');
         Route::post('/production/store', 'LabCon@production_store')->name('lab.production.store');
-
     });
 
 

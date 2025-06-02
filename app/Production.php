@@ -1,21 +1,32 @@
 <?php
 
 namespace App;
+use Illuminate\Support\Str;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Production extends Model
 {
-    public static function boot(){
-        
-    parent::boot();
+    protected $guarded = [];
 
-    static::creating(function ($production) {
-        do {
-            $batch = 'M' . strtoupper(Str::random(5));
-        } while (self::where('batch_number', $batch)->exists());
+    public static function boot()
+    {
+        parent::boot();
 
-        $production->batch_number = $batch;
-    });
-}
+        static::creating(function ($production) {
+            $lastBatch = self::orderBy('id', 'desc')->first();
+
+            if ($lastBatch && preg_match('/^M(\d{4})$/', $lastBatch->batch_number, $matches)) {
+                $nextNumber = (int) $matches[1] + 1;
+            } else {
+                $nextNumber = 1;
+            }
+
+            $production->batch_number = 'M' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+        });
+    }
+
+    public function ingredients(){
+        return $this->hasMany(ProductionIngredient::class);
+    }
 }

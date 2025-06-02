@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\FormulationIngredients;
 use App\LabPurchaseIngredient;
+use App\ProductionIngredient;
 use App\IngredientStock;
 use App\Ingredients;
 use App\Formulation;
 use App\LabPurchase;
 use App\Suppliers;
+use App\Production;
 use Carbon\Carbon;
 
 class LabCon extends Controller
@@ -286,12 +289,73 @@ class LabCon extends Controller
         return view('admin.lab.production.create', compact('ingredients', 'suppliers', 'formulation'));
     }
 
-    public function production_store(Request $request){
-        return $request->all();
-
-        return view('admin.lab.production.create', compact('ingredients', 'suppliers', 'formulation'));
+    public function production_index(){
+        $productions = Production::get();
+        return view('admin.lab.production.index', compact('productions'));
     }
 
+    public function production_show($id){
+        $production = Production::with(['ingredients'])->find($id);
 
+        return view('admin.lab.production.show', compact('production'));
+    }
+
+    public function production_store(Request $request){
+        $data = $request->all();
+
+        DB::beginTransaction();
+
+        try {
+            // Generate batch number (e.g., M3A9B2)
+            $lastBatch = Production::orderBy('id', 'desc')->first();
+            if ($lastBatch && preg_match('/^M(\d{4})$/', $lastBatch->batch_number, $matches)) {
+                $nextNumber = (int) $matches[1] + 1;
+            } else {
+                $nextNumber = 1;
+            }
+            $batchNumber = 'M' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+
+
+            // Save production record
+            $production = Production::create([
+                'product_name'    => $data['product_name'],
+                'total_weight'    => $data['total_weight'],
+                'total_quantity'  => $data['total_quantity'],
+                'total'           => $data['total'],
+                'date'            => Carbon::parse($data['date']),
+                'comment'         => $data['comment'] ?? null,
+                'batch_number'    => $batchNumber,
+            ]);
+
+            foreach ($data['products'] as $product) {
+                // Save production ingredient
+                ProductionIngredient::create([
+                    'production_id'            => $production->id,
+                    'product_name'             => $product['product_name'],
+                    'product_price_per_grams'  => $product['product_price_per_grams'],
+                    'product_percentage'       => $product['product_percentage'],
+                    'grams'                    => $product['grams'],
+                    'price'                    => $product['price'],
+                ]);
+
+                // Deduct stock from ingredient_stocks
+            $ingredient = Ingredients::where('name', $product['product_name'])->first();
+
+                if ($ingredient) {
+                    $stock = IngredientStock::firstOrNew(['ingredient_id' => $ingredient->id]);
+                    $stock->total_weight = max(0, $stock->total_weight - $product['grams']);
+                    $stock->save();
+                }
+            }
+
+            DB::commit();
+
+            return response()->json(['success' => true, 'batch_number' => $batchNumber]);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+        }
+    }
 }
 

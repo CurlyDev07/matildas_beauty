@@ -144,18 +144,26 @@
                             <div class="tflex titems-center tpy-1">
                                 <img src="https://myfoodsafety.net/wp-content/uploads/2020/03/RAW-MATERIALS-SMALL.png" class="product_img" style="height: 50px; width: 50px;" alt="">
                                 <div class="tpx-2">
-                                    <p class="product_name truncate ttext-sm ">Matilda's Beauty Bleaching Soap 10x Whitening SoapMatilda's Beauty Bleaching Soap 10x Whitening Soap</p>
-                                    <small>
+                                    <p class="product_name truncate ttext-sm ">{{ $ingredient->name }}</p>
+                                    <small class="tfont-medium ttext-lg ttext-orange-700">
                                         ₱
-                                        <small class="product_price_per_grams">0</small>
+                                        <small class="product_price_per_grams">{{ $ingredient->price_per_grams }}</small>
                                     </small>
                                 </div>
                             </div>
                         </div><!-- Product -->
                         <div class="tw-1/3 tflex tflex-col tmr-3">
                             <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Percentage</label>
-                            <input type="number" value="1" class="grams browser-default form-control" style="padding: 6px;">
-                        </div><!-- QTY -->
+                            <input type="number" value="0" class="product_percentage browser-default form-control" style="padding: 6px;">
+                        </div><!-- Percentage -->
+                        <div class="tw-1/3 tflex tflex-col tmr-3">
+                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Grams</label>
+                            <input type="number" value="0" class="grams browser-default form-control" style="padding: 6px; background-color: #b0b0b02b;" readonly>
+                        </div><!-- Grams -->
+                        <div class="tw-1/3 tflex tflex-col tmr-3">
+                            <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
+                            <input type="number" value="0" class="price browser-default form-control" style="padding: 6px; background-color: #b0b0b02b;" readonly>
+                        </div><!-- Price -->
                       
                         <i class="closeItem hover:tunderline material-icons t-mr-4 tabsolute tcursor-pointer tmt-6 tright-0 ttext-error">close</i>
                     </div>
@@ -180,7 +188,7 @@
                             </div><!-- Percentage -->
                             <div class="tw-1/3 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Grams</label>
-                                <input type="number" value="{{ number_format(($ingredient->pivot->percentage / 100) * 100, 2) }}" class="grams browser-default form-control" style="padding: 6px;" readonly>
+                                <input type="number" value="{{ number_format(($ingredient->pivot->percentage / 100) * 100, 2) }}" class="grams browser-default form-control" style="padding: 6px; background-color: #b0b0b02b;" readonly>
                             </div><!-- Grams -->
                               <div class="tw-1/3 tflex tflex-col tmr-3">
                                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Price</label>
@@ -264,12 +272,10 @@
 
             $("#products_container").append(selected_product).animate({ scrollTop: 99999999999 }, 1);
 
-            getTotal();
         }) // Add product by search
 
         $('.closeItem').click(function () {
             $(this).parent().remove();
-            getTotal();
         })// Remove item
 
     </script>
@@ -323,7 +329,7 @@
                     total += price;
                 });
 
-                $('#total').text(total.toFixed(2));
+                $('#total').text(total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
             }
 
             // Run on page load
@@ -339,9 +345,7 @@
                 updateAllProducts();
             });
 
-
-
-             $('#submit_btn').on('click', function (e) {
+            $('#submit_btn').on('click', function (e) {
                 $('#submit_btn').attr('disabled', 'true');
                 progress_loading(true);// show loader
 
@@ -350,7 +354,10 @@
                 let product_name = $('.product_name ').val(); 
                 let total_weight = $('.total_weight ').val();
                 let total_quantity = $('.total_quantity ').val();
-                let total = parseFloat($('#total').html()).toFixed(2);
+
+                let rawTotal = $('#total').text().replace(/[^0-9.]/g, '');
+                let total = parseFloat(rawTotal).toFixed(2);
+
                 let date = $('.datepicker').val();
 
                 let products = [];
@@ -385,7 +392,6 @@
                     'date': date,
                     'products': products,
                     'comment': comment,
-
                 }).fail(function(response) {
                     $('#submit_btn').removeAttr('disabled');
                     progress_loading(false);// show loader
@@ -399,7 +405,7 @@
                         text: 'Added Successfuly',
                     });
 
-                    location.href = '/admin/lab/formulations';
+                    location.href = '/admin/lab/production';
                 });
             });
         });
