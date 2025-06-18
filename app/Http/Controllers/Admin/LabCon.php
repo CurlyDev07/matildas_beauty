@@ -343,7 +343,7 @@ class LabCon extends Controller
 
                 if ($ingredient) {
                     $stock = IngredientStock::firstOrNew(['ingredient_id' => $ingredient->id]);
-                    $stock->total_weight = max(0, $stock->total_weight - $product['grams']);
+                    $stock->total_weight = $stock->total_weight - $product['grams']; // Allow negative value
                     $stock->save();
                 }
             }
