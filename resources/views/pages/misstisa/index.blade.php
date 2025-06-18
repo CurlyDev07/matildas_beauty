@@ -463,7 +463,7 @@
 
         <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">FDA CERTIFICATES</h3>
 
-        <img src="https://matildasbeauty.com/filemanager/32f8078aa27242209e20db890d4da465.webp" loading="lazy" width="480" height="480" alt="fda_certificate MissTisa Set" class="tmb-5">
+        <img src="https://matildasbeauty.com/filemanager/b864e63d955f47289504464f0471a6a3.webp" loading="lazy" width="480" height="480" alt="fda_certificate MissTisa Set" class="tmb-5">
         <img src="https://matildasbeauty.com/filemanager/b83e1f3a40f24410aa5d25c089b7d62f.webp" loading="lazy" width="480" height="480" alt="fda_certificate Serum" class="tmb-5"> 
 
 
