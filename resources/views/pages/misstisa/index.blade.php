@@ -60,8 +60,7 @@
     </style>
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
-    <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
-
+    {{-- <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script> --}}
 
 @if (!request()->test)
     <!-- Meta Pixel Code -->
@@ -85,14 +84,14 @@
 
 
     <!----- Tiktok Pixel Code ----->
-    <script>
+    {{-- <script>
         !function (w, d, t) {
           w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
         
           ttq.load('CNAPJGJC77U3KI9K4LG0');
           ttq.page();
         }(window, document, 'ttq');
-        </script>
+    </script> --}}
     <!----- Tiktok Pixel Code ----->
 
 </head>
@@ -124,7 +123,7 @@
         </div>
 
 
-        <img src="https://matildasbeauty.com/filemanager/ca72409d0440411490cb6a680c230fe1.webp" class="tw-full tmb-5" alt="top_banner">
+        <img src="https://matildasbeauty.com/filemanager/ec63f33ee9924fafab5729ae3fd52da9.webp" width="480" height="480" class="tw-full tmb-5" alt="#1 Kulubot Remover">
 
         <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
@@ -145,8 +144,8 @@
 
          <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3" style="border: 2px solid #ee2a7b; border-style: dashed;">
             <span class="tfont-medium">Order Today for guaranteed </span>
-            <span class="theme-color tfont-medium tml-2"> FREE 4 Gifts</span>
-        </div><!-- FREE 4 Gifts -->
+            <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span>
+        </div><!-- FREE 2 Gifts -->
 
         <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i><b> Kulubot</b> </div>
@@ -169,24 +168,19 @@
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/47e5c4f66a294471b45863de264aefa4.webp" alt="28_days_challenge">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/9be3a73b4b7a4c2b900362413f4215d3.webp" alt="mudra">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/7e759e18833541df9831e02e1bb580bd.webp" alt="Happy Users">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/47e5c4f66a294471b45863de264aefa4.webp" loading="lazy" width="480" height="350" alt="28_days_challenge">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e835b9e4bc9f4cad803cf3c3a6ef4473.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/36f85481a2114cc891d25704ddfa02ae.webp" loading="lazy" width="480" height="480" alt="Happy Users">
         
-        <img src="https://matildasbeauty.com/filemanager/f7a3ec127e124558b27200c44022cd2b.webp" class="tw-full tmy-5"  alt="before_after">
-
-        <video class="tw-full video-testimonial" controls playsinline webkit-playsinline>
-            <source src="{{ asset('images/kasoy_oil/explainer_video.mp4') }}" type="video/mp4">
-            <source src="movie.ogg" type="video/ogg">
-        </video>
+        <img src="https://matildasbeauty.com/filemanager/f7a3ec127e124558b27200c44022cd2b.webp" loading="lazy" width="480" height="480" class="tw-full tmy-5"  alt="Bakit kay may melasma">
 
         <h4 class="tfont-medium tpy-3 tmt-8 ttext-xl ttext-center">HAPPY & SATISFIED CUSTOMERS</h4>
        
         {{-- REVIEWS --}}
 
-        <img src="https://matildasbeauty.com/filemanager/3de536b529bf4cfb9a3d81c5b6c537f6.webp" alt="satisfied_customer1">
-        <img src="https://matildasbeauty.com/filemanager/9685bc8e635a480b84b7852dfd74b41f.webp" alt="satisfied_customer2">
-        <img src="https://matildasbeauty.com/filemanager/a04e4b8538014d62a80d3dd2d3446643.webp" alt="New Before and After">
+        <img src="https://matildasbeauty.com/filemanager/3de536b529bf4cfb9a3d81c5b6c537f6.webp" loading="lazy" width="480" height="1000" alt="satisfied_customer1">
+        <img src="https://matildasbeauty.com/filemanager/9685bc8e635a480b84b7852dfd74b41f.webp" loading="lazy" width="480" height="1000"alt="satisfied_customer2">
+        <img src="https://matildasbeauty.com/filemanager/a04e4b8538014d62a80d3dd2d3446643.webp" loading="lazy" width="480" height="1000" alt="New Before and After">
 
 
         <div class="tmx-auto trelative tp-5">
@@ -198,17 +192,18 @@
 
             <h4 class="tfont-medium tmb-4 ttext-xl">BENEFITS:</h4>
             
-            <img class="tmb-5" src="https://matildasbeauty.com/filemanager/092361f04f9f4b3195f3959100ac26a9.webp" alt="benefits">
+            <img class="tmb-5" src="https://matildasbeauty.com/filemanager/092361f04f9f4b3195f3959100ac26a9.webp" loading="lazy" width="480" height="1000" alt="benefits">
      
-            <img class="tmb-5" src="https://matildasbeauty.com/filemanager/b6dabd41a66a4871a61ecee70fc1b59a.webp" alt="What to expect">
+            <img class="tmb-5" src="https://matildasbeauty.com/filemanager/b6dabd41a66a4871a61ecee70fc1b59a.webp" loading="lazy" width="480" height="1000" alt="What to expect">
             <!--WHAT TO EXPECT: -->
             
-            <img class="" src="https://matildasbeauty.com/filemanager/bf4b1d217b1b4654aaae8d13809d47fd.webp" alt="how_to_use in the morning">
-            <img class="" src="https://matildasbeauty.com/filemanager/70dae3d024234c7b9ec182fb30aa027e.webp" alt="how_to_use in the evening">
-            <img class="" src="https://matildasbeauty.com/filemanager/b2908c0c052b40469f6c240262d2f723.webp" alt="how_to_use in the evening">
-            <img class="" src="https://matildasbeauty.com/filemanager/ae7c490cd31240b8bc0bf6a66aec5193.webp" alt="how_to_use in the evening">
-            <img class="" src="https://matildasbeauty.com/filemanager/07823d1b14684d76833e387789938baf.webp" alt="how_to_use in the evening">
-            <img class="" src="https://matildasbeauty.com/filemanager/7d4ffbbd2bd848abae285701b235c17a.webp" alt="Buy 2 Take 2">
+            <img class="" src="https://matildasbeauty.com/filemanager/bf4b1d217b1b4654aaae8d13809d47fd.webp" loading="lazy" width="480" height="790" alt="how_to_use in the morning">
+            <img class="" src="https://matildasbeauty.com/filemanager/70dae3d024234c7b9ec182fb30aa027e.webp" loading="lazy" width="480" height="1000" alt="how_to_use in the evening">
+            <img class="" src="https://matildasbeauty.com/filemanager/e8c15e1cb22e4fb6b966cae11086700a.webp" loading="lazy" width="480" height="480" alt="Serum Image">
+
+            <img class="" src="https://matildasbeauty.com/filemanager/ae7c490cd31240b8bc0bf6a66aec5193.webp" loading="lazy" width="480" height="480" alt="how_to_use in the evening">
+            <img class="" src="https://matildasbeauty.com/filemanager/07823d1b14684d76833e387789938baf.webp" loading="lazy" width="480" height="480" alt="how_to_use in the evening">
+            <img class="" src="https://matildasbeauty.com/filemanager/7d4ffbbd2bd848abae285701b235c17a.webp" loading="lazy" width="480" height="480" alt="Buy 2 Take 2 Flash Sale">
 
         </div><!-- PRODUCT DETAILS-->
 
@@ -249,7 +244,7 @@
                 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review1/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review1/profile.png') }}" class="trounded-full" style="width: 40px;" alt="Emerlita manao" loading="lazy" width="100" height="100">
                         <div class="tml-2">
                             <p>Emerlita Manao</p>
                             <div class="">
@@ -268,23 +263,23 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review1/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 1 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review2/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review2/profile.png') }}" class="trounded-full" style="width: 40px;" alt="batang" loading="lazy" width="100" height="100">
                         <div class="tml-2">
                             <p>Maricel Batang</p>
                             <div class="">
@@ -305,23 +300,23 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review2/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 2 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review3/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review3/profile.png') }}" class="trounded-full" style="width: 40px;" alt="analiza" loading="lazy" width="100" height="100">
                         <div class="tml-2">
                             <p>Analiza Pareo</p>
                             <div class="">
@@ -341,23 +336,23 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review3/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 3 -->
                 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review4/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review4/profile.png') }}" class="trounded-full" style="width: 40px;" alt="sharon" loading="lazy" width="100" height="100">
                         <div class="tml-2">
                             <p>Sharon Temon</p>
                             <div class="">
@@ -377,23 +372,23 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review4/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 4 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review5/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review5/profile.png') }}" class="trounded-full" style="width: 40px;" alt="liza manalo" loading="lazy" width="100" height="100">
                         <div class="tml-2">
                             <p>Liza Manalo</p>
                             <div class="">
@@ -413,23 +408,23 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review5/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 5 -->
 
                 <div class="tmt-5 tpb-5">
                     <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review6/profile.png') }}" class="trounded-full" style="width: 40px;" alt="">
+                        <img src="{{ asset('images/kasoy_oil/reviews/review6/profile.png') }}" class="trounded-full" loading="lazy" style="width: 40px;" alt="" width="100" height="100">
                         <div class="tml-2">
                             <p>Rebecca Morales</p>
                             <div class="">
@@ -449,16 +444,16 @@
                     </div>
                     <div class="tflex" style="">
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/1.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/2.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/3.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                         <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/4.png') }}" class="tmr-1 trounded">
+                            <img src="{{ asset('images/kasoy_oil/reviews/review6/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
                         </div>
                     </div>
                 </div><!-- REVIEW 6 -->
@@ -466,12 +461,15 @@
             </div>  <!-- RATINGS DIV -->
         </div> <!-- RATINGS -->
 
-        <img  src="https://matildasbeauty.com/filemanager/6fb1ef53e93a4dcdb6e34824ba2b664d.png" alt="fda_certificates">
+        <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">FDA CERTIFICATES</h3>
+
+        <img src="https://matildasbeauty.com/filemanager/32f8078aa27242209e20db890d4da465.webp" loading="lazy" width="480" height="480" alt="fda_certificate MissTisa Set" class="tmb-5">
+        <img src="https://matildasbeauty.com/filemanager/b83e1f3a40f24410aa5d25c089b7d62f.webp" loading="lazy" width="480" height="480" alt="fda_certificate Serum" class="tmb-5"> 
 
 
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
-                <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" style="height: ;" alt="">
+                <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" alt="free shipping" width="330" height="123">
                 <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
             </div>
 
@@ -494,7 +492,7 @@
                 </div>
             </section>
 
-            <img src="https://matildasbeauty.com/filemanager/7d4ffbbd2bd848abae285701b235c17a.webp" alt="buy 2 take 2">
+            <img src="https://matildasbeauty.com/filemanager/30ab80a0c85a4df69f8917950955e48f.webp" width="480" height="480" alt="buy 2 take 2">
 
            <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
                 Enjoy our Free Soap & Sunscreen <br> <span class="tfont-extrabold ttext-lg ttext-red-900">Promo until {{ \Carbon\Carbon::now()->addDays(2)->format('F j') }}! 2days Left</span> 
@@ -660,17 +658,17 @@
         <!----- Tiktok Pixel ViewContent ----->
         <script>
 
-            ttq.track('ViewContent', {
-                "contents": [
-                    {
-                        "content_id": "1",
-                        "content_type": "product", 
-                        "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", 
-                        "content_category": "Beauty Products",
-                        "brand": "MissTisa"
-                    }
-                ]
-            });
+            // ttq.track('ViewContent', {
+            //     "contents": [
+            //         {
+            //             "content_id": "1",
+            //             "content_type": "product", 
+            //             "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", 
+            //             "content_category": "Beauty Products",
+            //             "brand": "MissTisa"
+            //         }
+            //     ]
+            // });
 
         </script>
 
@@ -781,16 +779,16 @@
                     session_id: '{{ $session_id }}',
                 });// EVENT LISTENER Track ORDER FORM
 
-                ttq.track('AddPaymentInfo', {
-                    "contents": [
-                        {
-                            "content_id": "1", 
-                            "content_type": "product",
-                            "content_name": "" 
-                        }
-                    ],
-                    "description": "" 
-                });// Tiktok Event
+                // ttq.track('AddPaymentInfo', {
+                //     "contents": [
+                //         {
+                //             "content_id": "1", 
+                //             "content_type": "product",
+                //             "content_name": "" 
+                //         }
+                //     ],
+                //     "description": "" 
+                // });// Tiktok Event
             });
 
             $('#full_name').change(function (e) {
@@ -834,19 +832,19 @@
                 
                 let amount = $('#total').html();
 
-                ttq.track('InitiateCheckout', {
-                    "contents": [
-                        {
-                            "content_id": "1",
-                            "content_type": "product",
-                            "content_name": "",
-                            "quantity": 1,
-                            "price": amount
-                        }
-                    ],
-                    "value": amount,
-                    "currency": "PHP" 
-                });//TIktok Event
+                // ttq.track('InitiateCheckout', {
+                //     "contents": [
+                //         {
+                //             "content_id": "1",
+                //             "content_type": "product",
+                //             "content_name": "",
+                //             "quantity": 1,
+                //             "price": amount
+                //         }
+                //     ],
+                //     "value": amount,
+                //     "currency": "PHP" 
+                // });//TIktok Event
 
             })
 
