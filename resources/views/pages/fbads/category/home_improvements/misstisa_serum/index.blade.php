@@ -411,8 +411,21 @@
                 </div><!--Address -->
 
 
-                <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
-                    Enjoy our Free Soap & Sunscreen <br> <span class="tfont-extrabold ttext-lg ttext-red-900">Promo until {{ \Carbon\Carbon::now()->addDays(2)->format('F j') }}! 2days Left</span> 
+               <div class="tbg-yellow-200 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
+                    <span class="ttext-lg">Enjoy our Free Soap & Sunscreen</span>
+                    
+                    <div class="tfont-extrabold ttext-md ttext-red-900 tmt-1">Sold out twice, Don't Miss it again <br> 
+                        <span class="ttext-md">We'll never offer this again.</span>
+                    </div> 
+
+                     <div class="tflex tjustify-between tmt-2 tpx-3">
+                        <div class="ttext-md tfont-bold" style="color: #ff0021;">🚨 Promo expires in </div> 
+                        <div class="ttext-md tfont-bold tflex" style="color: #ff0021;">
+                            ⏰
+                            <div id="timer">29:38</div>
+                            mins
+                        </div> 
+                    </div>
                 </div>
 
                 <!-- ORDER PROMO -->
@@ -576,5 +589,26 @@
             </button>
         </div>
     </div>
+
+     {{-- timer --}}
+    <script>
+        let timeLeft = 27 * 43;
+
+        function updateTimer() {
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            $('#timer').text(`${m}:${s}`);
+
+            if (timeLeft > 0) {
+            timeLeft--;
+            } else {
+            clearInterval(timer);
+                alert("Time's up!");
+            }
+        }
+
+        const timer = setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 @endsection
 

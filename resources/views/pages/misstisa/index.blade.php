@@ -494,7 +494,7 @@
             {{-- <img src="https://matildasbeauty.com/filemanager/30ab80a0c85a4df69f8917950955e48f.webp" width="480" height="480" alt="buy 2 take 2"> --}}
 
            <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
-            <span class="ttext-lg">Enjoy our Free Soap & Sunscreen</span>
+                <span class="ttext-lg">Enjoy our Free Soap & Sunscreen</span>
                 
                 <br> <span class="tfont-extrabold ttext-md ttext-red-900">Sold out twice, Don't Miss it again <br> 
                 <span class="ttext-md">We'll never offer this again.</span>
