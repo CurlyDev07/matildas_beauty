@@ -97,11 +97,11 @@
 </head>
 <body>
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
-        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgb(250 25 158 / 53%) 0%, rgb(251 0 148) 100%);">
+        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 31px; background: #fa199e;">
             <div >
-                <div class="">
+                {{-- <div class="">
                     <p class="t-mt-2 tfont-medium  ttext-4xl ttext-white">Good Bye Kulubot</p>
-                </div>
+                </div> --}}
                 <div class="">
                     <span class="ttext-sm ttext-white">
                         <i class="fas fa-star ttext-yellow-300"></i>
@@ -117,12 +117,12 @@
                     </span>
                 </div>
             </div>
-            <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="bottom: -52%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;background-color: #ee2a7b;">ORDER NOW!
+            <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="bottom: -447%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;background-color: #ee2a7b;">ORDER NOW!
             </button>
         </div>
 
 
-        <img src="https://matildasbeauty.com/filemanager/ec63f33ee9924fafab5729ae3fd52da9.webp" width="480" height="480" class="tw-full tmb-5" alt="#1 Kulubot Remover">
+        <img src="https://matildasbeauty.com/filemanager/afe4fc9e1c00485d9797336377793dff.webp" width="480" height="480" class="tw-full tmb-5" alt="#1 Kulubot Remover">
 
         <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
@@ -142,23 +142,23 @@
         </div><!-- Trusted Reviews -->
 
          <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3" style="border: 2px solid #ee2a7b; border-style: dashed;">
-            <span class="tfont-medium">Order Today for guaranteed </span>
-            <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span>
+            <span class="tfont-bold ttext-2xl">FREE Sunscreen & Soap — Today Only!</span>
+            {{-- <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span> --}}
         </div><!-- FREE 2 Gifts -->
 
         <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i><b> Kulubot</b> </div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i><b>Wrinkles</b> </div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> Kulubot</b> </div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> Wrinkles</b> </div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Melasma Remover</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Korean Glass Skin</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i><b> No More Pekas</b></div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> No More Pekas</b></div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i> <b>Pinkish Skin</b></div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No More Dark Spots</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Uneven Skin Tone</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Deep Scars</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Whiteheads</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle" style="color: #f52d87;"></i> Blackheads</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle" style="color: #f52d87;"></i> Skin Whitening</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle" style="color: #f52d87;"></i> <b>Pinkish Skin</b></div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Blackheads</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Skin Whitening</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> For Sensitive Skin</div>
             <div class="tw-1/2 tmb-3"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No Irritation </div>
           
