@@ -513,9 +513,9 @@
                     <span class="ttext-gray-900" style="font-size: 16px;">
                         <span class="tfont-medium">TOTAL:</span>
                         <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">749</span>
+                        <span id="total" class="tfont-medium t-ml-1">1149</span>
                     </span>
-                </div>
+                </div> <!-- DEFAULT VALUE NEAR BUTTON -->
                 <div class="tw-full ">
                     <button  class="misstisa-bg focus:tbg-pink-500 trelative tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
                         <span>Checkout Order</span>
