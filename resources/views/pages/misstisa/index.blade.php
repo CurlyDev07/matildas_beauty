@@ -494,7 +494,11 @@
             {{-- <img src="https://matildasbeauty.com/filemanager/30ab80a0c85a4df69f8917950955e48f.webp" width="480" height="480" alt="buy 2 take 2"> --}}
 
            <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
-                Enjoy our Free Soap & Sunscreen <br> <span class="tfont-extrabold ttext-lg ttext-red-900">Promo until {{ \Carbon\Carbon::now()->addDays(2)->format('F j') }}! 2days Left</span> 
+            <span class="ttext-lg">Enjoy our Free Soap & Sunscreen</span>
+                
+                <br> <span class="tfont-extrabold ttext-md ttext-red-900">Sold out twice, Don't Miss it again <br> 
+                <span class="ttext-md">We'll never offer this again.</span>
+                </span> 
             </div>
 
             <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
