@@ -122,9 +122,9 @@
         </div>
 
 
-        <img src="https://matildasbeauty.com/filemanager/afe4fc9e1c00485d9797336377793dff.webp" width="480" height="480" class="tw-full tmb-5" alt="#1 Kulubot Remover">
+        <img src="https://matildasbeauty.com/filemanager/afe4fc9e1c00485d9797336377793dff.webp" width="480" height="480" class="tw-full tmb-2" alt="#1 Kulubot Remover">
 
-        <div class="tmx-3 tflex titems-center tmy-5">
+        {{-- <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
                 <span class="ttext-sm ttext-white">
                     <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
@@ -138,11 +138,16 @@
                     <span class="tfont-medium">Ratings</span>
                 </span>
             </div>
-            <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">19,586 Trusted Reviews</div>
-        </div><!-- Trusted Reviews -->
+            <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">⭐19,586 Trusted Reviews</div>
+        </div><!-- Trusted Reviews --> --}}
 
-         <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3" style="border: 2px solid #ee2a7b; border-style: dashed;">
-            <span class="tfont-bold ttext-2xl">FREE Sunscreen & Soap — Today Only!</span>
+        <div class="tfont-semibold tmx-3  ttext-center">
+            ✅ LEGIT | 🚚 Fast Delivery | 💸 COD | 🧪 FDA Approved
+        </div>
+
+
+         <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-2 tpx-3 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
+            <span class="tfont-bold  ttext-center" style="font-size: 20px;">FREE Sunscreen & Soap - Today Only!</span>
             {{-- <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span> --}}
         </div><!-- FREE 2 Gifts -->
 
@@ -496,7 +501,7 @@
            <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
                 <span class="ttext-lg">Enjoy our Free Soap & Sunscreen</span>
                 
-                <br> <span class="tfont-extrabold ttext-md ttext-red-900">Sold out twice, Don't Miss it again <br> 
+                <br> <span class="tfont-extrabold ttext-md ttext-red-900">Sold out twice, Don't Miss it <br> 
                 <span class="ttext-md">We'll never offer this again.</span>
                 </span> 
             </div>
