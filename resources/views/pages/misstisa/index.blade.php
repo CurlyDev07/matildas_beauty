@@ -600,7 +600,7 @@
                                     <br> <span class="ttext-md tfont-bold" style="color: #2e2e2e;">🎁 Free Extra Soap & Sunscreen</span> 
                                     <br>
                                     <div class="tflex tjustify-between">
-                                        <div class="ttext-md tfont-bold" style="color: #ff0021;">🚨 Promo expires in </div> 
+                                        <div class="ttext-md tfont-bold tmr-8" style="color: #ff0021;">🚨 Promo expires in </div> 
                                         <div class="ttext-md tfont-bold tflex" style="color: #ff0021;">
                                             ⏰
                                             <div id="timer">29:38</div>
