@@ -142,7 +142,7 @@
         </div><!-- Trusted Reviews --> --}}
 
         <div class="tfont-semibold tmx-3 tmy-4  ttext-center">
-            ✅ LEGIT | 🚚 Fast Delivery | 💸 COD | 🧪 FDA Approved
+            ✅ LEGIT | 🚚 Fast Delivery | 💸 COD | ✅ FDA Approved
         </div>
 
 
@@ -150,7 +150,7 @@
             <span class="tfont-bold  ttext-center" style="font-size: 20px;">FREE Sunscreen & Soap - Today Only!</span>
             <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
                 ⏰
-                <div id="timer">18:38</div>
+                <div id="timer_top">18:38</div>
                 mins
             </span>
             {{-- <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span> --}}
@@ -613,7 +613,7 @@
                                         <div class="ttext-md tfont-bold tmr-8" style="color: #ff0021;">🚨 Promo expires in </div> 
                                         <div class="ttext-md tfont-bold tflex" style="color: #ff0021;">
                                             ⏰
-                                            <div id="timer">29:38</div>
+                                            <div id="timer_bottom">29:38</div>
                                             mins
                                         </div> 
                                         
@@ -890,10 +890,10 @@
     <script>
         let timeLeft = 27 * 43;
 
-        function updateTimer() {
+        function updateTimerTop() {
             const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
             const s = (timeLeft % 60).toString().padStart(2, '0');
-            $('#timer').text(`${m}:${s}`);
+            $('#timer_top').text(`${m}:${s}`);
 
             if (timeLeft > 0) {
             timeLeft--;
@@ -903,8 +903,23 @@
             }
         }
 
-        const timer = setInterval(updateTimer, 1000);
-        updateTimer();
+        function updateTimerBottom() {
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            $('#timer_bottom').text(`${m}:${s}`);
+
+            if (timeLeft > 0) {
+            timeLeft--;
+            } else {
+            clearInterval(timer);
+                alert("Time's up!");
+            }
+        }
+
+        const timer_top = setInterval(updateTimerTop, 1000);
+        const timer_bottom = setInterval(updateTimerBottom, 1000);
+        updateTimerTop();
+        updateTimerBottom();
     </script>
 
     </footer>
