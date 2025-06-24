@@ -142,7 +142,7 @@
         </div><!-- Trusted Reviews --> --}}
 
         <div class="tfont-semibold tmx-3 tmy-4  ttext-center">
-            ✅ LEGIT | 🚚 Fast Delivery | 💸 COD | ✅ FDA Approved
+            <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA Approved
         </div>
 
 
