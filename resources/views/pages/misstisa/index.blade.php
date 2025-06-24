@@ -96,7 +96,6 @@
 
 </head>
 <body>
-
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
         <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 76px; background: linear-gradient(180deg, rgb(250 25 158 / 53%) 0%, rgb(251 0 148) 100%);">
             <div >
@@ -492,7 +491,7 @@
                 </div>
             </section>
 
-            <img src="https://matildasbeauty.com/filemanager/30ab80a0c85a4df69f8917950955e48f.webp" width="480" height="480" alt="buy 2 take 2">
+            {{-- <img src="https://matildasbeauty.com/filemanager/30ab80a0c85a4df69f8917950955e48f.webp" width="480" height="480" alt="buy 2 take 2"> --}}
 
            <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
                 Enjoy our Free Soap & Sunscreen <br> <span class="tfont-extrabold ttext-lg ttext-red-900">Promo until {{ \Carbon\Carbon::now()->addDays(2)->format('F j') }}! 2days Left</span> 
@@ -571,7 +570,7 @@
                                 <input type="radio" id="promo3" name="promo" class="promo" value="MissTisaSerum_2pcs|999|2pcs">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-bold ttext-sm">₱999</span>
-                                    <span class="tfont-medium">Serum 2pcs - FREE soap & sunscreen</span>
+                                    <span class="tfont-medium">Serum 2pcs</span>
                                 </span>
                             </label>
                         </div><!-- PROMO 3 -->
@@ -591,15 +590,26 @@
                         <div class="tflex titems-center tw-full  tborder-t-2 trelative">
                             <label>
                                 <input type="radio" id="promo1" name="promo" class="promo" value="1_MissTisa_Set_1Serum|1149|1each">
-                                <span class="ttext-gray-900" style="font-size: 13px; color: #ff5500;">
-                                    <span class="tfont-bold ttext-sm">₱1149</span>
-                                    <span class="tfont-medium">1 MissTisa Set + 1 Serum</span>
+                                <span class="ttext-gray-900">
+                                    <span class="tfont-bold ttext-lg"  style=" color: #ff5500;">₱1149</span>
+                                    <span class="tfont-bold ttext-lg"  style=" color: #ff5500;">MissTisa Set + Serum </span>
+                                    <br> <span class="ttext-md tfont-bold" style="color: #2e2e2e;">🎁 Free Extra Soap & Sunscreen</span> 
+                                    <br>
+                                    <div class="tflex tjustify-between">
+                                        <div class="ttext-md tfont-bold" style="color: #ff0021;">🚨 Promo expires in </div> 
+                                        <div class="ttext-md tfont-bold tflex" style="color: #ff0021;">
+                                            ⏰
+                                            <div id="timer">29:38</div>
+                                            mins
+                                        </div> 
+                                        
+                                    </div>
                                 </span>
                             </label>
-                            <span class="tabsolute tfont-medium tright-0 ttext-red-700"> 
+                            {{-- <span class="tabsolute tfont-medium tright-0 ttext-red-700"> 
                                 <i class="fas fa-arrow-left"></i>
                                  Best Seller
-                            </span>
+                            </span> --}}
                         </div><!-- PROMO 1 -->
                     </div>
                    
@@ -860,6 +870,29 @@
             });//  EVENT LISTENER Track VIEW
 
         </script>
+
+
+    {{-- timer --}}
+    <script>
+        let timeLeft = 27 * 43;
+
+        function updateTimer() {
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            $('#timer').text(`${m}:${s}`);
+
+            if (timeLeft > 0) {
+            timeLeft--;
+            } else {
+            clearInterval(timer);
+                alert("Time's up!");
+            }
+        }
+
+        const timer = setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+
     </footer>
 
     @if(session()->has('success'))
