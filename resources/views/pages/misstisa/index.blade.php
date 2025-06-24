@@ -141,13 +141,18 @@
             <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">⭐19,586 Trusted Reviews</div>
         </div><!-- Trusted Reviews --> --}}
 
-        <div class="tfont-semibold tmx-3  ttext-center">
+        <div class="tfont-semibold tmx-3 tmy-4  ttext-center">
             ✅ LEGIT | 🚚 Fast Delivery | 💸 COD | 🧪 FDA Approved
         </div>
 
 
-         <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-2 tpx-3 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
+         <div class="tborder-dashed ttext-center tmx-3 tmy-2 tpx-3 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
             <span class="tfont-bold  ttext-center" style="font-size: 20px;">FREE Sunscreen & Soap - Today Only!</span>
+            <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
+                ⏰
+                <div id="timer">18:38</div>
+                mins
+            </span>
             {{-- <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span> --}}
         </div><!-- FREE 2 Gifts -->
 
