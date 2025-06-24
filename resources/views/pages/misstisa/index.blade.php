@@ -167,9 +167,9 @@
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/47e5c4f66a294471b45863de264aefa4.webp" loading="lazy" width="480" height="350" alt="28_days_challenge">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e835b9e4bc9f4cad803cf3c3a6ef4473.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/36f85481a2114cc891d25704ddfa02ae.webp" loading="lazy" width="480" height="480" alt="Happy Users">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/47e5c4f66a294471b45863de264aefa4.webp" loading="lazy" width="480" height="350" alt="28_days_challenge">
         
         <img src="https://matildasbeauty.com/filemanager/f7a3ec127e124558b27200c44022cd2b.webp" loading="lazy" width="480" height="480" class="tw-full tmy-5"  alt="Bakit kay may melasma">
 
@@ -202,7 +202,7 @@
 
             <img class="" src="https://matildasbeauty.com/filemanager/ae7c490cd31240b8bc0bf6a66aec5193.webp" loading="lazy" width="480" height="480" alt="how_to_use in the evening">
             <img class="" src="https://matildasbeauty.com/filemanager/07823d1b14684d76833e387789938baf.webp" loading="lazy" width="480" height="480" alt="how_to_use in the evening">
-            <img class="" src="https://matildasbeauty.com/filemanager/7d4ffbbd2bd848abae285701b235c17a.webp" loading="lazy" width="480" height="480" alt="Buy 2 Take 2 Flash Sale">
+            <img class="" src="https://matildasbeauty.com/filemanager/db487fdc65274f6e91d92f590c93ec5a.webp" loading="lazy" width="480" height="480" alt="Buy 2 Take 2 Flash Sale">
 
         </div><!-- PRODUCT DETAILS-->
 

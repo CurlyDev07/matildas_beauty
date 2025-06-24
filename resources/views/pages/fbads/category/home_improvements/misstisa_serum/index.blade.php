@@ -85,7 +85,7 @@
         </div><!--BENEFITS -->
 
 
-        <img src="https://matildasbeauty.com/filemanager/7d4ffbbd2bd848abae285701b235c17a.webp" alt="30_days_challenge">
+        <img src="https://matildasbeauty.com/filemanager/db487fdc65274f6e91d92f590c93ec5a.webp" alt="promo">
         <img src="https://matildasbeauty.com/filemanager/bd4121b095194967a7dfbbd6b9298d2b.webp" alt="30_days_challenge">
         
 
@@ -101,7 +101,7 @@
         <img src="https://matildasbeauty.com/filemanager/409d8830a29940eea4f69b7ad9b0801a.webp" class="tw-full"  alt="Before & After 1">
         <img src="https://matildasbeauty.com/filemanager/008b94df938c460493ff2c3abeeef489.webp" class="tw-full"  alt="Before & After 2">
         <img src="https://matildasbeauty.com/filemanager/00b73e6229ef483ca934284422bd816b.webp" class="tw-full"  alt="Before & After 3">
-        <img src="https://matildasbeauty.com/filemanager/7d4ffbbd2bd848abae285701b235c17a.webp" alt="30_days_challenge">
+        <img src="https://matildasbeauty.com/filemanager/db487fdc65274f6e91d92f590c93ec5a.webp" alt="30_days_challenge">
 
         {{-- <div class="tmb-5 tborder-t" >
             <div class="tborder tpx-4 tpy-5">
