@@ -94,7 +94,7 @@
     <script>
 
         $('#submit').click(function () {
-            $.post("http://54.245.199.189/api/create-sms-message", {
+            $.post("https://misstisa.com/api/create-sms-message", {
                 message_name: $('#message_name').val(),
                 interval: $('#interval').val(),
                 message: $('#message').val(),
@@ -121,7 +121,7 @@
                 var messageId = $(this).data('id');
 
                 $.ajax({
-                    url: "http://54.245.199.189/api/delete-sms-message/" + messageId, 
+                    url: "https://misstisa.com/api/delete-sms-message/" + messageId, 
                     type: 'DELETE', 
                     success: function(response) {
                         Swal.fire({

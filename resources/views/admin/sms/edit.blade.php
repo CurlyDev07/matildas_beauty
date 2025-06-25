@@ -43,7 +43,7 @@
         $('#submit').click(function () {
             let id = $('#id').val();
 
-            $.post(`http://54.245.199.189/api/update-sms-message/${id}`, {
+            $.post(`https://misstisa.com/api/update-sms-message/${id}`, {
                 message_name: $('#message_name').val(),
                 interval: $('#interval').val(),
                 message: $('#message').val(),

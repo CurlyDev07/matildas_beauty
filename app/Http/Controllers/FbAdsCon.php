@@ -242,7 +242,7 @@ For any questions, Message us her";
             ];
         
             $client = new Client();
-            $response = $client->request('POST', 'http://54.245.199.189/api/create-customer-info', [
+            $response = $client->request('POST', 'https://misstisa.com/api/create-customer-info', [
                 'json' => $data, // Sends as application/json
                 'headers' => [
                     'Accept' => 'application/json', // Optional, if your API expects JSON
