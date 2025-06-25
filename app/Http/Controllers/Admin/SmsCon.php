@@ -57,7 +57,7 @@ class SmsCon extends Controller
     public function messages(){
 
         $client = new Client();
-        $response = $client->request('GET', 'http://54.245.199.189/api/get-sms-message');
+        $response = $client->request('GET', 'https://misstisa.com/api/get-sms-message');
         $messages = json_decode($response->getBody(), true);
 
         return view('admin.sms.messages', ['messages' => $messages['data']]);
@@ -65,7 +65,7 @@ class SmsCon extends Controller
 
     public function message_edit($id){
         $client = new Client();
-        $response = $client->request('GET', 'http://54.245.199.189/api/get-single-sms-message/'.$id);
+        $response = $client->request('GET', 'https://misstisa.com/api/get-single-sms-message/'.$id);
         $messages = json_decode($response->getBody(), true);
 
         return view('admin.sms.edit', ['message' => $messages['data']]);
@@ -74,7 +74,7 @@ class SmsCon extends Controller
 
     public function follow_ups(){
         $client = new Client();
-        $response = $client->request('GET', 'http://54.245.199.189/api/get-customer-follow-up');
+        $response = $client->request('GET', 'https://misstisa.com/api/get-customer-follow-up');
         $follow_ups = json_decode($response->getBody(), true);
         
         return view('admin.sms.follow_ups', ['follow_ups' => $follow_ups['data']]);
