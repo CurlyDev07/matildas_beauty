@@ -79,4 +79,9 @@ class SmsCon extends Controller
         
         return view('admin.sms.follow_ups', ['follow_ups' => $follow_ups['data']]);
     }
+
+    public function charts(Request $request){
+      
+            return view('admin.sms.charts');
+    }
 }

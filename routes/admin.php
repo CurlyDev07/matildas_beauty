@@ -294,6 +294,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/messages', 'SmsCon@messages')->name('sms.messages');
         Route::get('/messages/{id}', 'SmsCon@message_edit')->name('sms.messages.edit');
         Route::get('/follow-ups', 'SmsCon@follow_ups')->name('sms.follow_ups');
+        Route::get('/charts', 'SmsCon@charts')->name('sms.charts');
        
     });
     
