@@ -556,10 +556,10 @@
                             </div>
             
                             <div class="tw-full tp-3 tm-2">
-                                <div class="tfont-medium tmb-5 ttext-center">{{ $product_name }}</div>
+                                <div class="tfont-medium tmb-5 ttext-center"  id="product_promo_name">{{ $product_name }}</div>
 
                                 <div class="tflex titems-between titems-center">
-                                    <img width="75" data-src="https://matildasbeauty.com/filemanager/59f319c429c34cb582c414974a26bcc1.webp" class="tmr-3 lazy" alt="Product Image">
+                                    <img width="75" id="order_success_image" data-src="https://matildasbeauty.com/filemanager/59f319c429c34cb582c414974a26bcc1.webp" class="tmr-3 lazy" alt="Product Image">
                                     <div class="">
                                         <div class="">
                                             <span class="tfont-medium tmx-2 ttext-gray-700 ttext-md">Qty: </span>

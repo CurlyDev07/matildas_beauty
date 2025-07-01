@@ -96,8 +96,17 @@
                 notif_message: $('#notif_message').val(),
             })
             .done(function( data ) {    
+                console.log(data)
                 // change html content of success modal
                 $('#modal-order-number').html(data.order_number);
+
+                if (data.amount == "1149") {
+                    $('#product_promo_name').html(data.promo_name);
+                    $('#order_success_image')
+                    .attr('data-src', 'https://matildasbeauty.com/filemanager/c895afcfbcce478096d9d9d989c3d1b2.webp')
+                    .attr('src', 'https://matildasbeauty.com/filemanager/c895afcfbcce478096d9d9d989c3d1b2.webp');
+                }
+
                 $('#modal-promo').html(data.promo);
                 $('#modal-amount').html(data.amount);
                 $('.modal').modal('open'); // open modal
@@ -109,7 +118,8 @@
                     website: '{{ $website }}',
                     session_id: '{{ $session_id }}',
                     name: $('#full_name').val(),
-                    contact_number: $('#phone_number').val()
+                    contact_number: $('#phone_number').val(),
+                    promo_name: data.promo_name
                 });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
 
                 $.post("/Madella-Order-Success-Email",{
@@ -118,17 +128,17 @@
 
                 fbq('track', 'Purchase', {currency: "PHP", value: data.amount});// send data to fb pixel
 
-                ttq.track('PlaceAnOrder', { // TIKTOK PIXEL EVENT
-                    "contents": [
-                        {
-                            "content_id": "10225", // string. ID of the product. Example: "1077218".
-                            "content_type": "product", // string. Either product or product_group.
-                            "content_name": "gingerOil" // string. The name of the page or product. Example: "shirt".
-                        }
-                    ],
-                    "value": data.amount, // number. Value of the order or items sold. Example: 100.
-                    "currency": "PHP" // string. The 4217 currency code. Example: "USD".
-                });
+                // ttq.track('PlaceAnOrder', { // TIKTOK PIXEL EVENT
+                //     "contents": [
+                //         {
+                //             "content_id": "10225", // string. ID of the product. Example: "1077218".
+                //             "content_type": "product", // string. Either product or product_group.
+                //             "content_name": "gingerOil" // string. The name of the page or product. Example: "shirt".
+                //         }
+                //     ],
+                //     "value": data.amount, // number. Value of the order or items sold. Example: 100.
+                //     "currency": "PHP" // string. The 4217 currency code. Example: "USD".
+                // });
 
             })
         })
@@ -176,17 +186,17 @@
                 session_id: '{{ $session_id }}',
             });// EVENT LISTENER Track ORDER FORM
 
-            ttq.track('AddPaymentInfo', { // TIKTOK PIXEL
-                "contents": [
-                    {
-                        "content_id": "10225", // string. ID of the product. Example: "1077218".
-                        "content_type": "product", // string. Either product or product_group.
-                        "content_name": "gingerOil" // string. The name of the page or product. Example: "shirt".
-                    }
-                ],
-                "value": "0", // number. Value of the order or items sold. Example: 100.
-                "currency": "PHP" // string. The 4217 currency code. Example: "USD".
-            });
+            // ttq.track('AddPaymentInfo', { // TIKTOK PIXEL
+            //     "contents": [
+            //         {
+            //             "content_id": "10225", // string. ID of the product. Example: "1077218".
+            //             "content_type": "product", // string. Either product or product_group.
+            //             "content_name": "gingerOil" // string. The name of the page or product. Example: "shirt".
+            //         }
+            //     ],
+            //     "value": "0", // number. Value of the order or items sold. Example: 100.
+            //     "currency": "PHP" // string. The 4217 currency code. Example: "USD".
+            // });
         });
 
         // ONCLICKS

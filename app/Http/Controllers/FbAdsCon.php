@@ -68,14 +68,14 @@ class FbAdsCon extends Controller
 
         $promos = [
             'promo1' => [
-                'promo' => '1_MissTisa_Set_1Serum|1149|4pcs',
+                'promo' => '1_MissTisa_Set_1SerumWithFreebies|1149|2pcs',
                 'promo_text' => 'MissTisa Set + MissTisa Serum | Free Extra Soap & Sunscreen',
                 'price' => 1149,
                 'each_price' => 'Freebies worth ₱425'
             ], 
             'promo2' => [
                 'promo' => 'MissTisaSerum_2pcs|999|2pcs',
-                'promo_text' => '2pcs Serum + FREE 1 Soap & 1 Sunscreen',
+                'promo_text' => '2pcs Serum',
                 'price' => 999,
                 'each_price' => '499/each'
             ], 
@@ -150,6 +150,7 @@ class FbAdsCon extends Controller
 
         $data = [
             "purchase" => 1,
+            "promo_name" => $promo[0],
             "promo" => $promo[2],
             "amount" => $promo[1],
             "full_name" => $request->full_name,
@@ -173,14 +174,21 @@ class FbAdsCon extends Controller
     public function madella_order_success_email(){
 
         // Mail::to(['reggie.frias1105@gmail.com', 'shopickers007@gmail.com'])->send(new FbAdsOrderSuccess(request()->data));
-        $order_promo = request()->data['promo'];
+        $order_promo = request()->data['promo_name'];
+        $freebies = '';
+
+        if ($order_promo == '1_MissTisa_Set_1SerumWithFreebies') {
+           $order_promo = '1 MissTIsa Set and 1 Serum';
+            $freebies = 'Freebies Soap and Sunscreen';
+        }
 
 $sms = "
 Hi ". request()->data['full_name'].",
 ". request()->data['notif_message']."
 We've recieved your order. Thank you!
 
-Order Details: ".$order_promo." ".request()->data['product']."
+Order Details: ".$order_promo."
+".$freebies."
 Total: ₱" .request()->data['amount']."
 
 === Strictly no cancellation ===
