@@ -12,6 +12,7 @@ use App\StatusReason;
 use App\StatusDetail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 
 class FbAdsCon extends Controller
@@ -83,6 +84,169 @@ class FbAdsCon extends Controller
             'stores' => $stores,
             'statusCounts' => $statusCounts
         ]);
+    }
+
+    public function dashboard(){
+        $now = Carbon::now();
+
+        // Time ranges
+        $today = $now->toDateString();
+        $startOfWeek = $now->copy()->startOfWeek();
+        $endOfWeek = $now->copy()->endOfWeek();
+        $startOfMonth = $now->copy()->startOfMonth();
+        $endOfMonth = $now->copy()->endOfMonth();
+        $sevenDaysAgo = $now->copy()->subDays(6);
+        $thirtyDaysAgo = $now->copy()->subDays(29);
+
+        // Totals
+        $totalOrdersToday = FbAds::whereDate('created_at', $today)->count();
+        $totalRevenueToday = FbAds::whereDate('created_at', $today)->sum('total');
+
+        $totalOrdersThisWeek = FbAds::whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
+        $totalRevenueThisWeek = FbAds::whereBetween('created_at', [$startOfWeek, $endOfWeek])->sum('total');
+
+        $totalOrdersThisMonth = FbAds::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
+        $totalRevenueThisMonth = FbAds::whereBetween('created_at', [$startOfMonth, $endOfMonth])->sum('total');
+
+        // Orders per day for current month (for chart)
+        $days = collect();
+        $ordersPerDay = collect();
+
+        $currentDate = $startOfMonth->copy();
+        while ($currentDate <= $now) {
+            $label = $currentDate->format('M d');
+            $count = FbAds::whereDate('created_at', $currentDate->toDateString())->count();
+
+            $days->push($label);
+            $ordersPerDay->push($count);
+
+            $currentDate->addDay();
+        }
+
+        // Orders by promo: today, 7 days, 30 days
+        $ordersByPromoToday = FbAds::select('promo', DB::raw('COUNT(*) as count'))
+            ->whereDate('created_at', $today)
+            ->groupBy('promo')
+            ->get();
+
+        $ordersByPromo7 = FbAds::select('promo', DB::raw('COUNT(*) as count'))
+            ->whereBetween('created_at', [$sevenDaysAgo, $now])
+            ->groupBy('promo')
+            ->get();
+
+        $ordersByPromo30 = FbAds::select('promo', DB::raw('COUNT(*) as count'))
+            ->whereBetween('created_at', [$thirtyDaysAgo, $now])
+            ->groupBy('promo')
+            ->get();
+
+
+            $today = Carbon::today();
+            $sevenDaysAgo = Carbon::today()->subDays(6);
+            $thirtyDaysAgo = Carbon::today()->subDays(29);
+
+            // Function to get status summary
+            function getStatusData($startDate, $endDate) {
+                $query = FbAds::select('status', DB::raw('COUNT(*) as count'))
+                    ->whereBetween('created_at', [$startDate, $endDate])
+                    ->groupBy('status')
+                    ->get();
+
+                $labels = $query->pluck('status');
+                $values = $query->pluck('count');
+                $total = $values->sum();
+
+                $percentages = $query->map(function ($item) use ($total) {
+                    return $total > 0 ? round(($item->count / $total) * 100, 2) : 0;
+                });
+
+                return [
+                    'labels' => $labels,
+                    'values' => $values,
+                    'percentages' => $percentages
+                ];
+            }
+
+            $statusToday = getStatusData($today, now());
+            $status7 = getStatusData($sevenDaysAgo, now());
+            $status30 = getStatusData($thirtyDaysAgo, now());
+
+
+
+
+            function getOrdersAndRevenuePerHour($startDate, $endDate) {
+                $data = FbAds::whereBetween('created_at', [$startDate, $endDate])
+                    ->selectRaw('HOUR(created_at) as hour, COUNT(*) as orders, SUM(total) as revenue')
+                    ->groupBy('hour')
+                    ->orderBy('hour')
+                    ->get();
+
+                $labels = collect(range(0, 23))->map(function ($h) {
+                    return sprintf('%02d:00', $h);
+                });
+
+                $orders = $labels->map(function ($label) use ($data) {
+                    $hour = (int) substr($label, 0, 2);
+                    return (int) optional($data->firstWhere('hour', $hour))->orders ?? 0;
+                });
+
+                $revenue = $labels->map(function ($label) use ($data) {
+                    $hour = (int) substr($label, 0, 2);
+                    return (int) optional($data->firstWhere('hour', $hour))->revenue ?? 0;
+                });
+
+                return [
+                    'labels' => $labels,
+                    'orders' => $orders,
+                    'revenue' => $revenue
+                ];
+            }
+
+            $ordersRevenueToday = getOrdersAndRevenuePerHour(Carbon::today(), Carbon::today()->endOfDay());
+            $ordersRevenue7 = getOrdersAndRevenuePerHour(Carbon::today()->subDays(6), now());
+            $ordersRevenue30 = getOrdersAndRevenuePerHour(Carbon::today()->subDays(29), now());
+
+
+
+
+            // Helper function to calculate AOV
+            function getAOV($startDate, $endDate)
+            {
+                $orders = FbAds::whereBetween('created_at', [$startDate, $endDate])->count();
+                $revenue = FbAds::whereBetween('created_at', [$startDate, $endDate])->sum('total');
+
+                return $orders > 0 ? round($revenue / $orders, 2) : 0;
+            }
+
+            $aovToday = getAOV(Carbon::today(), Carbon::today()->endOfDay());
+            $aovWeek = getAOV(Carbon::today()->subDays(6), now());
+            $aovMonth = getAOV(Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth());
+
+
+        return view('admin.fbads.dashboard', compact(
+            'totalOrdersToday',
+            'totalRevenueToday',
+            'totalOrdersThisWeek',
+            'totalRevenueThisWeek',
+            'totalOrdersThisMonth',
+            'totalRevenueThisMonth',
+            'days',
+            'ordersPerDay',
+            'ordersByPromoToday',
+            'ordersByPromo7',
+            'ordersByPromo30',
+            'statusToday',
+            'status7',
+            'status30',
+
+            'ordersRevenueToday',
+            'ordersRevenue7',
+            'ordersRevenue30',
+
+            'aovToday',
+            'aovWeek',
+            'aovMonth'
+           
+        ));
     }
 
     public function create(){
