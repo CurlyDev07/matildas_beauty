@@ -86,10 +86,13 @@ class FbAdsCon extends Controller
         ]);
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
         $now = Carbon::now();
 
-        // Time ranges
+        // -------------------------
+        // TIME RANGES
+        // -------------------------
         $today = $now->toDateString();
         $startOfWeek = $now->copy()->startOfWeek();
         $endOfWeek = $now->copy()->endOfWeek();
@@ -98,7 +101,9 @@ class FbAdsCon extends Controller
         $sevenDaysAgo = $now->copy()->subDays(6);
         $thirtyDaysAgo = $now->copy()->subDays(29);
 
-        // Totals
+        // -------------------------
+        // TOTALS (Orders & Revenue)
+        // -------------------------
         $totalOrdersToday = FbAds::whereDate('created_at', $today)->count();
         $totalRevenueToday = FbAds::whereDate('created_at', $today)->sum('total');
 
@@ -108,7 +113,9 @@ class FbAdsCon extends Controller
         $totalOrdersThisMonth = FbAds::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
         $totalRevenueThisMonth = FbAds::whereBetween('created_at', [$startOfMonth, $endOfMonth])->sum('total');
 
-        // Orders per day for current month (for chart)
+        // -------------------------
+        // ORDERS PER DAY (This Month)
+        // -------------------------
         $days = collect();
         $ordersPerDay = collect();
 
@@ -123,7 +130,9 @@ class FbAdsCon extends Controller
             $currentDate->addDay();
         }
 
-        // Orders by promo: today, 7 days, 30 days
+        // -------------------------
+        // ORDERS BY PROMO
+        // -------------------------
         $ordersByPromoToday = FbAds::select('promo', DB::raw('COUNT(*) as count'))
             ->whereDate('created_at', $today)
             ->groupBy('promo')
@@ -139,89 +148,85 @@ class FbAdsCon extends Controller
             ->groupBy('promo')
             ->get();
 
+        // -------------------------
+        // ORDER STATUS SUMMARY (TODAY, 7, 30 DAYS)
+        // -------------------------
+        function getStatusData($startDate, $endDate) {
+            $query = FbAds::select('status', DB::raw('COUNT(*) as count'))
+                ->whereBetween('created_at', [$startDate, $endDate])
+                ->groupBy('status')
+                ->get();
 
-            $today = Carbon::today();
-            $sevenDaysAgo = Carbon::today()->subDays(6);
-            $thirtyDaysAgo = Carbon::today()->subDays(29);
+            $labels = $query->pluck('status');
+            $values = $query->pluck('count');
+            $total = $values->sum();
 
-            // Function to get status summary
-            function getStatusData($startDate, $endDate) {
-                $query = FbAds::select('status', DB::raw('COUNT(*) as count'))
-                    ->whereBetween('created_at', [$startDate, $endDate])
-                    ->groupBy('status')
-                    ->get();
+            $percentages = $query->map(function ($item) use ($total) {
+                return $total > 0 ? round(($item->count / $total) * 100, 2) : 0;
+            });
 
-                $labels = $query->pluck('status');
-                $values = $query->pluck('count');
-                $total = $values->sum();
+            return [
+                'labels' => $labels,
+                'values' => $values,
+                'percentages' => $percentages
+            ];
+        }
 
-                $percentages = $query->map(function ($item) use ($total) {
-                    return $total > 0 ? round(($item->count / $total) * 100, 2) : 0;
-                });
+        $statusToday = getStatusData($today, now());
+        $status7 = getStatusData($sevenDaysAgo, now());
+        $status30 = getStatusData($thirtyDaysAgo, now());
 
-                return [
-                    'labels' => $labels,
-                    'values' => $values,
-                    'percentages' => $percentages
-                ];
-            }
+        // -------------------------
+        // ORDERS & REVENUE BY HOUR
+        // -------------------------
+        function getOrdersAndRevenuePerHour($startDate, $endDate) {
+            $data = FbAds::whereBetween('created_at', [$startDate, $endDate])
+                ->selectRaw('HOUR(created_at) as hour, COUNT(*) as orders, SUM(total) as revenue')
+                ->groupBy('hour')
+                ->orderBy('hour')
+                ->get();
 
-            $statusToday = getStatusData($today, now());
-            $status7 = getStatusData($sevenDaysAgo, now());
-            $status30 = getStatusData($thirtyDaysAgo, now());
+            $labels = collect(range(0, 23))->map(function ($h) {
+                return sprintf('%02d:00', $h);
+            });
 
+            $orders = $labels->map(function ($label) use ($data) {
+                $hour = (int) substr($label, 0, 2);
+                return (int) optional($data->firstWhere('hour', $hour))->orders ?? 0;
+            });
 
+            $revenue = $labels->map(function ($label) use ($data) {
+                $hour = (int) substr($label, 0, 2);
+                return (int) optional($data->firstWhere('hour', $hour))->revenue ?? 0;
+            });
 
+            return [
+                'labels' => $labels,
+                'orders' => $orders,
+                'revenue' => $revenue
+            ];
+        }
 
-            function getOrdersAndRevenuePerHour($startDate, $endDate) {
-                $data = FbAds::whereBetween('created_at', [$startDate, $endDate])
-                    ->selectRaw('HOUR(created_at) as hour, COUNT(*) as orders, SUM(total) as revenue')
-                    ->groupBy('hour')
-                    ->orderBy('hour')
-                    ->get();
+        $ordersRevenueToday = getOrdersAndRevenuePerHour(Carbon::today(), Carbon::today()->endOfDay());
+        $ordersRevenue7 = getOrdersAndRevenuePerHour(Carbon::today()->subDays(6), now());
+        $ordersRevenue30 = getOrdersAndRevenuePerHour(Carbon::today()->subDays(29), now());
 
-                $labels = collect(range(0, 23))->map(function ($h) {
-                    return sprintf('%02d:00', $h);
-                });
+        // -------------------------
+        // AVERAGE ORDER VALUE (AOV)
+        // -------------------------
+        function getAOV($startDate, $endDate) {
+            $orders = FbAds::whereBetween('created_at', [$startDate, $endDate])->count();
+            $revenue = FbAds::whereBetween('created_at', [$startDate, $endDate])->sum('total');
+            return $orders > 0 ? round($revenue / $orders, 2) : 0;
+        }
 
-                $orders = $labels->map(function ($label) use ($data) {
-                    $hour = (int) substr($label, 0, 2);
-                    return (int) optional($data->firstWhere('hour', $hour))->orders ?? 0;
-                });
+        $aovToday = getAOV(Carbon::today(), Carbon::today()->endOfDay());
+        $aovWeek = getAOV(Carbon::today()->subDays(6), now());
+        $aovMonth = getAOV(Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth());
 
-                $revenue = $labels->map(function ($label) use ($data) {
-                    $hour = (int) substr($label, 0, 2);
-                    return (int) optional($data->firstWhere('hour', $hour))->revenue ?? 0;
-                });
-
-                return [
-                    'labels' => $labels,
-                    'orders' => $orders,
-                    'revenue' => $revenue
-                ];
-            }
-
-            $ordersRevenueToday = getOrdersAndRevenuePerHour(Carbon::today(), Carbon::today()->endOfDay());
-            $ordersRevenue7 = getOrdersAndRevenuePerHour(Carbon::today()->subDays(6), now());
-            $ordersRevenue30 = getOrdersAndRevenuePerHour(Carbon::today()->subDays(29), now());
-
-
-
-
-            // Helper function to calculate AOV
-            function getAOV($startDate, $endDate)
-            {
-                $orders = FbAds::whereBetween('created_at', [$startDate, $endDate])->count();
-                $revenue = FbAds::whereBetween('created_at', [$startDate, $endDate])->sum('total');
-
-                return $orders > 0 ? round($revenue / $orders, 2) : 0;
-            }
-
-            $aovToday = getAOV(Carbon::today(), Carbon::today()->endOfDay());
-            $aovWeek = getAOV(Carbon::today()->subDays(6), now());
-            $aovMonth = getAOV(Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth());
-
-
+        // -------------------------
+        // RETURN TO VIEW
+        // -------------------------
         return view('admin.fbads.dashboard', compact(
             'totalOrdersToday',
             'totalRevenueToday',
@@ -237,17 +242,15 @@ class FbAdsCon extends Controller
             'statusToday',
             'status7',
             'status30',
-
             'ordersRevenueToday',
             'ordersRevenue7',
             'ordersRevenue30',
-
             'aovToday',
             'aovWeek',
             'aovMonth'
-           
         ));
     }
+
 
     public function create(){
         return view('admin.fbads.create');
