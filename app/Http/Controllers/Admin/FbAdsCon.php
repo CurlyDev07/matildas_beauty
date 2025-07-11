@@ -225,6 +225,15 @@ class FbAdsCon extends Controller
         $aovMonth = getAOV(Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth());
 
         // -------------------------
+        // CUSTOMER LIFETIME VALUE (CLV)
+        // -------------------------
+        $ltvData = FbAds::select('phone_number', DB::raw('SUM(total) as revenue'), DB::raw('COUNT(*) as orders'))
+            ->groupBy('phone_number')
+            ->orderByDesc('revenue')
+            ->take(10) // Top 10 highest LTV
+            ->get();
+
+        // -------------------------
         // RETURN TO VIEW
         // -------------------------
         return view('admin.fbads.dashboard', compact(
@@ -247,7 +256,8 @@ class FbAdsCon extends Controller
             'ordersRevenue30',
             'aovToday',
             'aovWeek',
-            'aovMonth'
+            'aovMonth',
+            'ltvData'
         ));
     }
 

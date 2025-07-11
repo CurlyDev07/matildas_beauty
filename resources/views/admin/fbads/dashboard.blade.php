@@ -201,6 +201,20 @@
             <div id="ordersTimeChart"></div>
         </div>
 
+
+        <table class="tw-full ttext-left">
+            <thead><tr><th>Phone</th><th>Total Orders</th><th>LTV (₱)</th></tr></thead>
+            <tbody>
+                @foreach($ltvData as $customer)
+                    <tr>
+                        <td>{{ $customer->phone_number }}</td>
+                        <td>{{ $customer->orders }}</td>
+                        <td>₱{{ number_format($customer->revenue, 2) }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
     </div>
 @endsection
 
