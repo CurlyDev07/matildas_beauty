@@ -230,7 +230,7 @@ class FbAdsCon extends Controller
         $ltvData = FbAds::select('phone_number', DB::raw('SUM(total) as revenue'), DB::raw('COUNT(*) as orders'))
             ->groupBy('phone_number')
             ->orderByDesc('revenue')
-            ->take(10) // Top 10 highest LTV
+            ->take(30) // Top 10 highest LTV
             ->get();
 
         // -------------------------
