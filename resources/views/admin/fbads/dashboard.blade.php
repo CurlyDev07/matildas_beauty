@@ -153,14 +153,14 @@
 
 
         <div class="tpx-4 tpb-6">
-            <h2 class="ttext-xl tfont-bold ttext-gray-800 tmb-2">Orders by Promo</h2>
+            <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Orders by Promo</h2>
     
             <div class="tw-full tmax-w-4xl tbg-white trounded-lg tshadow tp-6 tmb-8">
                 <!-- Filter Buttons -->
                 <div class="tflex tgap-3 tmb-4">
-                    <button class="tbg-[#f02074] ttext-white tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('today')">Today</button>
-                    <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last7')">Last 7 Days</button>
-                    <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last30')">Last 30 Days</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('today')">Today</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last7')">Last 7 Days</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last30')">Last 30 Days</button>
                 </div>
     
                 <!-- Chart Container -->
@@ -173,14 +173,14 @@
 
 
         <div class="tpx-4 tpb-6">
-            <h2 class="ttext-xl tfont-bold ttext-gray-800 tmb-2">Order Fulfillment Status</h2>
+            <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Order Fulfillment Status</h2>
     
             <div class="tw-full tmax-w-4xl tbg-white trounded-lg tshadow tp-6 tmb-8">
                 <!-- Filter Buttons -->
                 <div class="tflex tgap-3 tmb-4">
-                    <button class="tbg-[#f02074] ttext-white tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('today')">Today</button>
-                    <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('last7')">Last 7 Days</button>
-                    <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('last30')">Last 30 Days</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('today')">Today</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('last7')">Last 7 Days</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('last30')">Last 30 Days</button>
                 </div>
     
                 <!-- Chart Container -->
@@ -192,14 +192,14 @@
 
         
         <div class="tpx-4 tpb-6">
-            <h2 class="ttext-xl tfont-bold ttext-gray-800 tmb-2">Orders & Revenue by Time of Day</h2>
+            <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Orders & Revenue by Time of Day</h2>
     
             <div class="tw-full tmax-w-6xl tbg-white trounded-lg tshadow tp-6 tmb-8">
                 <!-- Filter Buttons -->
                 <div class="tflex tgap-3 tmb-4">
-                    <button class="tbg-[#f02074] ttext-white tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('today')">Today</button>
-                    <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('last7')">Last 7 Days</button>
-                    <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('last30')">Last 30 Days</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('today')">Today</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('last7')">Last 7 Days</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('last30')">Last 30 Days</button>
                 </div>
     
                 <!-- Chart Container -->
