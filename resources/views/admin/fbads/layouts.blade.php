@@ -11,47 +11,55 @@
                         <div class="ttext-md ttext-black-100 tmy-1 ">
                             Orders
                             <a class="secondary-content">
-                                <i class="fas fa-users ttext-primary"></i>
+                                <i class="fas fa-shopping-cart ttext-primary  ttext-lg"></i>
                             </a>
                         </div>
                     </li>
-                      <li onclick="window.location.href = '/admin/fbads/dashboard'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/dashboard', 'tborder-primary tborder-l-4') }}">
+                    <li onclick="window.location.href = '/admin/fbads/dashboard'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/dashboard', 'tborder-pink-600 tborder-l-4') }}">
                         <div class="ttext-md ttext-black-100 tmy-1 ">
                             Dashboard
                             <a class="secondary-content">
-                                <i class="fas fa-chart-line"></i>
+                                <i class="fas fa-chart-line ttext-pink-600 ttext-lg"></i>
                             </a>
                         </div>
                     </li>
-                    <li onclick="window.location.href = '/admin/fbads/event-listener'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/event-listener', 'tborder-primary tborder-l-4') }}">
+                    <li onclick="window.location.href = '/admin/fbads/meta-metrics'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/meta-metrics', 'tborder-orange-600 tborder-l-4') }}">
+                        <div class="ttext-md ttext-black-100 tmy-1 ">
+                            Meta Metrics
+                            <a class="secondary-content">
+                                <i class="fas fa-chart-pie ttext-orange-600 ttext-lg"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li onclick="window.location.href = '/admin/fbads/event-listener'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/event-listener', 'tborder-green-600 tborder-l-4') }}">
                         <div class="ttext-md ttext-black-100 tmy-1 ">
                             Event Listener
                             <a class="secondary-content">
-                                <i class="fas fa-users ttext-primary"></i>
+                                <i class="fas fa-atlas ttext-green-600 ttext-lg"></i>
                             </a>
                         </div>
                     </li>
-                    <li onclick="window.location.href = '/admin/fbads/events'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/events', 'tborder-primary tborder-l-4') }}">
+                    <li onclick="window.location.href = '/admin/fbads/events'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/events', 'tborder-green-600 tborder-l-4') }}">
                         <div class="ttext-md ttext-black-100 tmy-1 ">
                             Events
                             <a class="secondary-content">
-                                <i class="fas fa-users ttext-primary"></i>
+                                <i class="fas fa-globe ttext-green-600 ttext-lg"></i>
                             </a>
                         </div>
                     </li>
-                    <li onclick="window.location.href = '/admin/fbads/create'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/create', 'tborder-primary tborder-l-4') }}">
+                    <li onclick="window.location.href = '/admin/fbads/create'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/create', 'tborder-blue-600 tborder-l-4') }}">
                         <div class="ttext-md ttext-black-100 tmy-1 ">
                             Create 
                             <a class="secondary-content">
-                                <i class="fas fa-users ttext-primary"></i>
+                                <i class="fas fa-cart-plus ttext-blue-600 ttext-lg"></i>
                             </a>
                         </div>
                     </li>
-                    <li onclick="window.location.href = '/admin/fbads/status-details'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/status-details', 'tborder-primary tborder-l-4') }}">
+                    <li onclick="window.location.href = '/admin/fbads/status-details'" class="collection-item tcursor-pointer waves-block waves-effect hover:tbg-blue-100 {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/status-details', 'tborder-red-600 tborder-l-4') }}">
                         <div class="ttext-md ttext-black-100 tmy-1 ">
                             Status Details
                             <a class="secondary-content">
-                                <i class="fas fa-users ttext-primary"></i>
+                                <i class="fas fa-headset ttext-red-600 ttext-lg"></i>
                             </a>
                         </div>
                     </li>

@@ -13,6 +13,9 @@ use App\StatusDetail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use App\MetaCampaignMetric;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
 class FbAdsCon extends Controller
@@ -249,6 +252,68 @@ class FbAdsCon extends Controller
             'aovWeek',
             'aovMonth'
         ));
+    }
+
+    public function meta_metrics(){
+
+        return view('admin.fbads.meta_metrics');
+    }
+  
+    public function meta_metrics_post(Request $request){
+
+        $request->validate([
+            'excel_file' => 'required|file|mimes:xlsx,xls'
+        ]);
+
+        $file = $request->file('excel_file');
+        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file->getRealPath());
+        $sheet = $spreadsheet->getSheet(0)->toArray();
+
+        $inserted = 0;
+        $skipped = 0;
+        $duplicates = [];
+
+        foreach (array_slice($sheet, 1) as $row) {
+            $reporting_start = isset($row[0]) ? date('Y-m-d', strtotime($row[0])) : null;
+            $reporting_end = isset($row[1]) ? date('Y-m-d', strtotime($row[1])) : null;
+            $campaign_name = $row[2] ?? null;
+
+            if (!$reporting_start || !$reporting_end || !$campaign_name) {
+                $skipped++;
+                continue;
+            }
+
+            // Check if duplicate exists
+            $exists = MetaCampaignMetric::where('reporting_start', $reporting_start)
+                ->where('reporting_end', $reporting_end)
+                ->where('campaign_name', $campaign_name)
+                ->exists();
+
+            if ($exists) {
+                $duplicates[] = $campaign_name;
+                $skipped++;
+                continue;
+            }
+
+            MetaCampaignMetric::create([
+                'reporting_start' => $reporting_start,
+                'reporting_end' => $reporting_end,
+                'campaign_name' => $campaign_name,
+                'ad_set_budget' => $row[3] ?? null,
+                'ad_set_budget_type' => $row[4] ?? null,
+                'amount_spent' => $row[5] ?? null,
+                'purchases' => $row[6] ?? null,
+                'purchases_conversion_value' => $row[7] ?? null,
+                'cost_per_purchase' => $row[8] ?? null,
+                'purchase_roas' => $row[9] ?? null,
+                // Continue mapping the rest if needed...
+            ]);
+
+            $inserted++;
+        }
+
+        return back()->with('success', "Upload complete. $inserted added, $skipped skipped.")
+                    ->with('duplicates', $duplicates);
     }
 
 

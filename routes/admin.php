@@ -225,6 +225,9 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     Route::prefix('fbads')->group(function () {
         Route::get('/', 'FbAdsCon@index')->name('fbads.index');
         Route::get('/dashboard', 'FbAdsCon@dashboard')->name('fbads.dashboard');
+        Route::get('/meta-metrics', 'FbAdsCon@meta_metrics')->name('fbads.meta_metrics');
+        Route::post('/meta-metrics/post', 'FbAdsCon@meta_metrics_post')->name('fbads.meta_metrics.post');
+
         Route::get('/create', 'FbAdsCon@create')->name('fbads.create');
         Route::post('/store', 'FbAdsCon@store')->name('fbads.store');
         Route::get('/order/{id}', 'FbAdsCon@order')->name('fbads.order');
