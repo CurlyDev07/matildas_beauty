@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
-use App\MetaCampaignMetric;
+use App\MetaCreativeMetric;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
@@ -89,8 +89,7 @@ class FbAdsCon extends Controller
         ]);
     }
 
-    public function dashboard()
-    {
+    public function dashboard(){
         $now = Carbon::now();
 
         // -------------------------
@@ -264,66 +263,159 @@ class FbAdsCon extends Controller
         ));
     }
 
-    public function meta_metrics(){
+    public function meta_metrics(Request $request){
+        // Date range filtering
+        $dateRangeInput = $request->input('date_range');
+        if ($dateRangeInput && str_contains($dateRangeInput, ' to ')) {
+            [$start, $end] = explode(' to ', $dateRangeInput);
+        } elseif ($dateRangeInput) {
+            $start = $dateRangeInput;
+            $end = $dateRangeInput;
+        } else {
+            // DEFAULT: last 7 days
+            $start = now()->subDays(6)->toDateString();
+            $end = now()->toDateString();
+        }
 
-        return view('admin.fbads.meta_metrics');
+        // Base query
+        $query = MetaCreativeMetric::whereBetween('reporting_start', [$start, $end]);
+
+        // Campaign filter
+        if ($request->filled('campaign_name')) {
+            $query->where('campaign_name', $request->campaign_name);
+        }
+
+        // Ad set filter
+        if ($request->filled('ad_set_name')) {
+            $query->where('ad_set_name', $request->ad_set_name);
+        }
+
+        // Fetch deduplicated metrics (keep latest per ad_name)
+        $metrics = $query
+            ->orderByDesc('reporting_start')
+            ->get()
+            ->unique('ad_name')   // ✅ remove duplicate creatives
+            ->values();           // ✅ reindex collection
+
+        // Dropdown lists
+        $campaigns = MetaCreativeMetric::select('campaign_name')->distinct()->pluck('campaign_name');
+        $adsets = MetaCreativeMetric::select('ad_set_name')->distinct()->pluck('ad_set_name');
+
+        // ROAS trend (grouped by date)
+        $roasTrend = MetaCreativeMetric::query()
+            ->selectRaw("DATE(reporting_start) as date, ROUND(AVG(purchase_roas), 2) as avg_roas")
+            ->whereBetween('reporting_start', [$start, $end])
+            ->when($request->filled('campaign_name'), function ($q) use ($request) {
+                $q->where('campaign_name', $request->campaign_name);
+            })
+            ->when($request->filled('ad_set_name'), function ($q) use ($request) {
+                $q->where('ad_set_name', $request->ad_set_name);
+            })
+            ->groupBy(DB::raw('DATE(reporting_start)'))
+            ->orderBy('date')
+            ->get();
+
+        $roasTrendLabels = $roasTrend->pluck('date');
+        $roasTrendValues = $roasTrend->pluck('avg_roas');
+
+        return view('admin.fbads.meta_metrics', [
+            'metrics' => $metrics,
+            'start' => $start,
+            'end' => $end,
+            'campaigns' => $campaigns,
+            'adsets' => $adsets,
+            'roasTrendLabels' => $roasTrendLabels,
+            'roasTrendValues' => $roasTrendValues,
+        ]);
     }
   
     public function meta_metrics_post(Request $request){
-
         $request->validate([
             'excel_file' => 'required|file|mimes:xlsx,xls'
         ]);
 
         $file = $request->file('excel_file');
-        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file->getRealPath());
+        $spreadsheet = IOFactory::load($file->getRealPath());
         $sheet = $spreadsheet->getSheet(0)->toArray();
 
+        $header = $sheet[0];
+        $rows = array_slice($sheet, 1);
         $inserted = 0;
-        $skipped = 0;
-        $duplicates = [];
+        $skipped = [];
 
-        foreach (array_slice($sheet, 1) as $row) {
-            $reporting_start = isset($row[0]) ? date('Y-m-d', strtotime($row[0])) : null;
-            $reporting_end = isset($row[1]) ? date('Y-m-d', strtotime($row[1])) : null;
-            $campaign_name = $row[2] ?? null;
+        foreach ($rows as $row) {
+            $data = array_combine($header, $row);
 
-            if (!$reporting_start || !$reporting_end || !$campaign_name) {
-                $skipped++;
+            if (empty($data['Ad name']) || empty($data['Reporting starts']) || empty($data['Reporting ends'])) {
                 continue;
             }
 
-            // Check if duplicate exists
-            $exists = MetaCampaignMetric::where('reporting_start', $reporting_start)
-                ->where('reporting_end', $reporting_end)
-                ->where('campaign_name', $campaign_name)
+            $exists = MetaCreativeMetric::where('reporting_start', date('Y-m-d', strtotime($data['Reporting starts'])))
+                ->where('reporting_end', date('Y-m-d', strtotime($data['Reporting ends'])))
+                ->where('ad_name', $data['Ad name'])
                 ->exists();
 
             if ($exists) {
-                $duplicates[] = $campaign_name;
-                $skipped++;
+                $skipped[] = $data['Ad name'];
                 continue;
             }
 
-            MetaCampaignMetric::create([
-                'reporting_start' => $reporting_start,
-                'reporting_end' => $reporting_end,
-                'campaign_name' => $campaign_name,
-                'ad_set_budget' => $row[3] ?? null,
-                'ad_set_budget_type' => $row[4] ?? null,
-                'amount_spent' => $row[5] ?? null,
-                'purchases' => $row[6] ?? null,
-                'purchases_conversion_value' => $row[7] ?? null,
-                'cost_per_purchase' => $row[8] ?? null,
-                'purchase_roas' => $row[9] ?? null,
-                // Continue mapping the rest if needed...
+            MetaCreativeMetric::create([
+                'reporting_start' => date('Y-m-d', strtotime($data['Reporting starts'])),
+                'reporting_end' => date('Y-m-d', strtotime($data['Reporting ends'])),
+                'ad_name' => $data['Ad name'] ?? null,
+                'campaign_name' => $data['Campaign name'] ?? null,
+                'ad_set_name' => $data['Ad set name'] ?? null,
+                'ad_set_budget' => $data['Ad set budget'] ?? null,
+                'ad_set_budget_type' => $data['Ad set budget type'] ?? null,
+                'amount_spent' => $data['Amount spent (PHP)'] ?? null,
+                'purchases' => $data['Purchases'] ?? null,
+                'purchases_conversion_value' => $data['Purchases conversion value'] ?? null,
+                'cost_per_purchase' => $data['Cost per purchase (PHP)'] ?? null,
+                'purchase_roas' => $data['Purchase ROAS (return on ad spend)'] ?? null,
+                'impressions' => $data['Impressions'] ?? null,
+                'reach' => $data['Reach'] ?? null,
+                'frequency' => $data['Frequency'] ?? null,
+                'ctr_all' => $data['CTR (all)'] ?? null,
+                'ctr_link_click' => $data['CTR (link click-through rate)'] ?? null,
+                'outbound_clicks' => $data['Outbound clicks'] ?? null,
+                'landing_page_views' => $data['Landing page views'] ?? null,
+                'video_plays_3s' => $data['3-second video plays'] ?? null,
+                'video_thruplays' => $data['ThruPlays'] ?? null,
+                'cost_per_thruplay' => $data['Cost per ThruPlay (PHP)'] ?? null,
+                'video_plays_25' => $data['Video plays at 25%'] ?? null,
+                'video_plays_50' => $data['Video plays at 50%'] ?? null,
+                'video_plays_75' => $data['Video plays at 75%'] ?? null,
+                'video_avg_play_time' => $data['Video average play time'] ?? null,
+                'cpm' => $data['CPM (cost per 1,000 impressions) (PHP)'] ?? null,
+                'quality_ranking' => $data['Quality ranking'] ?? null,
+                'engagement_rate_ranking' => $data['Engagement rate ranking'] ?? null,
+                'conversion_rate_ranking' => $data['Conversion rate ranking'] ?? null,
+                'adds_to_cart' => $data['Adds to cart'] ?? null,
+                'adds_to_cart_conversion_value' => $data['Adds to cart conversion value'] ?? null,
+                'cost_per_add_to_cart' => $data['Cost per add to cart (PHP)'] ?? null,
+                'checkouts_initiated' => $data['Checkouts initiated'] ?? null,
+                'checkouts_initiated_conversion_value' => $data['Checkouts initiated conversion value'] ?? null,
+                'cost_per_checkout_initiated' => $data['Cost per checkout initiated (PHP)'] ?? null,
+                'profit' => $data['Profit'] ?? null,
+                'conversion_rate' => $data['Conversion Rate'] ?? null,
+                'view_rate_25' => $data['25% View Rate'] ?? null,
+                'retention_50_from_25' => $data['50% Retention from 25%'] ?? null,
+                'retention_75_from_50' => $data['75% Retention from 50%'] ?? null,
+                'link_clicks' => $data['Link clicks'] ?? null,
+                'cpc' => $data['CPC (cost per link click) (PHP)'] ?? null,
+                'cost_per_landing_page_view' => $data['Cost per landing page view (PHP)'] ?? null,
+                'hold_rate' => $data['Hold Rate'] ?? null,
             ]);
 
             $inserted++;
         }
 
-        return back()->with('success', "Upload complete. $inserted added, $skipped skipped.")
-                    ->with('duplicates', $duplicates);
+        return back()->with([
+            'success' => "$inserted rows inserted.",
+            'skipped' => $skipped,
+        ]);
+
     }
 
 
