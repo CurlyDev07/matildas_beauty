@@ -65,11 +65,11 @@
             <!-- Orders & Revenue Cards -->
             <div class="tflex tflex-wrap tgap-6 tmb-6">
                 <!-- Today -->
-                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all thover:scale-[1.02] thover:shadow-lg tduration-200">
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
                     <div class="tbg-white trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
                         <div class="ttext-3xl tmb-2">📦</div>
                         <h3 class="ttext-lg tfont-semibold">Today</h3>
-                        <p class="ttext-4xl tfont-bold tmt-2">
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">
                             {{ $totalOrdersToday }}<br>
                             ₱{{ number_format($totalRevenueToday, 2) }}
                         </p>
@@ -77,11 +77,11 @@
                 </a>
 
                 <!-- This Week -->
-                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all thover:scale-[1.02] thover:shadow-lg tduration-200">
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
                     <div class="tbg-white trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
                         <div class="ttext-3xl tmb-2">💰</div>
                         <h3 class="ttext-lg tfont-semibold">This Week</h3>
-                        <p class="ttext-4xl tfont-bold tmt-2">
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">
                             {{ $totalOrdersThisWeek }}<br>
                             ₱{{ number_format($totalRevenueThisWeek, 2) }}
                         </p>
@@ -89,11 +89,11 @@
                 </a>
 
                 <!-- This Month -->
-                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all thover:scale-[1.02] thover:shadow-lg tduration-200">
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
                     <div class="tbg-white trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
                         <div class="ttext-3xl tmb-2">📦</div>
                         <h3 class="ttext-lg tfont-semibold">This Month</h3>
-                        <p class="ttext-4xl tfont-bold tmt-2">
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">
                             {{ $totalOrdersThisMonth }}<br>
                             ₱{{ number_format($totalRevenueThisMonth, 2) }}
                         </p>
@@ -104,29 +104,29 @@
             <!-- AOV Cards -->
             <div class="tflex tflex-wrap tgap-6">
                 <!-- AOV Today -->
-                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all thover:scale-[1.02] thover:shadow-lg tduration-200">
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
                     <div class="tbg-[#fde4ee] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
                         <div class="ttext-3xl tmb-2">📈</div>
                         <h3 class="ttext-lg tfont-semibold">AOV Today</h3>
-                        <p class="ttext-4xl tfont-bold tmt-2">₱{{ number_format($aovToday, 2) }}</p>
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">₱{{ number_format($aovToday, 2) }}</p>
                     </div>
                 </a>
 
                 <!-- AOV This Week -->
-                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all thover:scale-[1.02] thover:shadow-lg tduration-200">
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
                     <div class="tbg-[#e0f1ff] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
                         <div class="ttext-3xl tmb-2">📈</div>
                         <h3 class="ttext-lg tfont-semibold">AOV This Week</h3>
-                        <p class="ttext-4xl tfont-bold tmt-2">₱{{ number_format($aovWeek, 2) }}</p>
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">₱{{ number_format($aovWeek, 2) }}</p>
                     </div>
                 </a>
 
                 <!-- AOV This Month -->
-                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all thover:scale-[1.02] thover:shadow-lg tduration-200">
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
                     <div class="tbg-[#e3fcef] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
                         <div class="ttext-3xl tmb-2">📈</div>
                         <h3 class="ttext-lg tfont-semibold">AOV This Month</h3>
-                        <p class="ttext-4xl tfont-bold tmt-2">₱{{ number_format($aovMonth, 2) }}</p>
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">₱{{ number_format($aovMonth, 2) }}</p>
                     </div>
                 </a>
             </div>
@@ -139,67 +139,90 @@
         
 
 
-
-
-        <!-- Title -->
-        <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Orders in the Last 7 Days</h2>
-
-        <!-- Chart Container -->
-        <div class="tw-full tmax-w-4xl tmt-8">
-            <div id="ordersPerDayChart" class="tbg-white trounded-lg tshadow p-6"></div>
-        </div>
-
-
-
-        <h2 class="ttext-xl tfont-bold ttext-gray-800 tmb-2">Orders by Promo</h2>
-
-        <div class="tw-full tmax-w-4xl tbg-white trounded-lg tshadow tp-6 tmb-8">
-            <!-- Filter Buttons -->
-            <div class="tflex tgap-3 tmb-4">
-                <button class="tbg-[#f02074] ttext-white tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('today')">Today</button>
-                <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last7')">Last 7 Days</button>
-                <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last30')">Last 30 Days</button>
-            </div>
-
+        <div class="tpx-4 tpb-6">
+            <!-- Title -->
+            <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Orders in the Last 7 Days</h2>
+    
             <!-- Chart Container -->
-            <div id="ordersByPromoPieChart"></div>
+            <div class="tw-full tmax-w-4xl tmt-8">
+                <div id="ordersPerDayChart" class="tbg-white trounded-lg tshadow p-6"></div>
+            </div>
         </div>
 
 
 
 
-
-        <h2 class="ttext-xl tfont-bold ttext-gray-800 tmb-2">Order Fulfillment Status</h2>
-
-        <div class="tw-full tmax-w-4xl tbg-white trounded-lg tshadow tp-6 tmb-8">
-            <!-- Filter Buttons -->
-            <div class="tflex tgap-3 tmb-4">
-                <button class="tbg-[#f02074] ttext-white tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('today')">Today</button>
-                <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('last7')">Last 7 Days</button>
-                <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('last30')">Last 30 Days</button>
+        <div class="tpx-4 tpb-6">
+            <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Orders by Promo</h2>
+    
+            <div class="tw-full tmax-w-4xl tbg-white trounded-lg tshadow tp-6 tmb-8">
+                <!-- Filter Buttons -->
+                <div class="tflex tgap-3 tmb-4">
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('today')">Today</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last7')">Last 7 Days</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last30')">Last 30 Days</button>
+                </div>
+    
+                <!-- Chart Container -->
+                <div id="ordersByPromoPieChart"></div>
             </div>
+        </div>
 
-            <!-- Chart Container -->
-            <div id="statusPieChart"></div>
+
+
+
+
+        <div class="tpx-4 tpb-6">
+            <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Order Fulfillment Status</h2>
+    
+            <div class="tw-full tmax-w-4xl tbg-white trounded-lg tshadow tp-6 tmb-8">
+                <!-- Filter Buttons -->
+                <div class="tflex tgap-3 tmb-4">
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('today')">Today</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('last7')">Last 7 Days</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('last30')">Last 30 Days</button>
+                </div>
+    
+                <!-- Chart Container -->
+                <div id="statusPieChart"></div>
+            </div>
         </div>
 
 
 
         
-
-        <h2 class="ttext-xl tfont-bold ttext-gray-800 tmb-2">Orders & Revenue by Time of Day</h2>
-
-        <div class="tw-full tmax-w-6xl tbg-white trounded-lg tshadow tp-6 tmb-8">
-            <!-- Filter Buttons -->
-            <div class="tflex tgap-3 tmb-4">
-                <button class="tbg-[#f02074] ttext-white tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('today')">Today</button>
-                <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('last7')">Last 7 Days</button>
-                <button class="tbg-gray-300 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('last30')">Last 30 Days</button>
+        <div class="tpx-4 tpb-6">
+            <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Orders & Revenue by Time of Day</h2>
+    
+            <div class="tw-full tmax-w-6xl tbg-white trounded-lg tshadow tp-6 tmb-8">
+                <!-- Filter Buttons -->
+                <div class="tflex tgap-3 tmb-4">
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('today')">Today</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('last7')">Last 7 Days</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateTimeChart('last30')">Last 30 Days</button>
+                </div>
+    
+                <!-- Chart Container -->
+                <div id="ordersTimeChart"></div>
             </div>
-
-            <!-- Chart Container -->
-            <div id="ordersTimeChart"></div>
         </div>
+
+
+        <div class="tpx-4 tpb-6">
+            <table class="tw-full ttext-left">
+                <thead><tr><th>Phone</th><th>Total Orders</th><th>LTV (₱)</th></tr></thead>
+                <tbody>
+                    @foreach($ltvData as $customer)
+                        <tr>
+                            <td>{{ $customer->phone_number }}</td>
+                            <td>{{ $customer->orders }}</td>
+                            <td>₱{{ number_format($customer->revenue, 2) }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
 
     </div>
 @endsection
