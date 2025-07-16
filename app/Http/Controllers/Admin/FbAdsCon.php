@@ -264,66 +264,58 @@ class FbAdsCon extends Controller
     }
 
     public function meta_metrics(Request $request){
-        // Date range filtering
-        $dateRangeInput = $request->input('date_range');
-        if ($dateRangeInput && str_contains($dateRangeInput, ' to ')) {
-            [$start, $end] = explode(' to ', $dateRangeInput);
-        } elseif ($dateRangeInput) {
-            $start = $dateRangeInput;
-            $end = $dateRangeInput;
-        } else {
-            // DEFAULT: last 7 days
-            $start = now()->subDays(6)->toDateString();
-            $end = now()->toDateString();
-        }
+        
+         // ---------- 1. SPEND VS PROFIT ----------
+        $spendStart = $request->input('spend_start', now()->subDays(7)->toDateString());
+        $spendEnd = $request->input('spend_end', now()->toDateString());
 
-        // Base query
-        $query = MetaCreativeMetric::whereBetween('reporting_start', [$start, $end]);
+        $spendProfit = MetaCreativeMetric::whereBetween('reporting_start', [$spendStart, $spendEnd])
+            ->select(
+                'ad_name',
+                DB::raw('SUM(amount_spent) as amount_spent'),
+                DB::raw('SUM(profit) as profit')
+            )
+            ->groupBy('ad_name')
+            ->orderByDesc(DB::raw('SUM(amount_spent)'))
+            ->get();
 
-        // Campaign filter
-        if ($request->filled('campaign_name')) {
-            $query->where('campaign_name', $request->campaign_name);
-        }
+        // ---------- 2. ROAS PER AD ----------
+        $roasStart = $request->input('roas_start', now()->subDays(7)->toDateString());
+        $roasEnd = $request->input('roas_end', now()->toDateString());
 
-        // Ad set filter
-        if ($request->filled('ad_set_name')) {
-            $query->where('ad_set_name', $request->ad_set_name);
-        }
+        $roasPerAd = MetaCreativeMetric::whereBetween('reporting_start', [$roasStart, $roasEnd])
+            ->select('ad_name', DB::raw('AVG(purchase_roas) as purchase_roas'))
+            ->groupBy('ad_name')
+            ->orderByDesc(DB::raw('AVG(purchase_roas)'))
+            ->get();
 
-        // Fetch deduplicated metrics (keep latest per ad_name)
-        $metrics = $query
-            ->orderByDesc('reporting_start')
-            ->get()
-            ->unique('ad_name')   // ✅ remove duplicate creatives
-            ->values();           // ✅ reindex collection
+        // ---------- 3. CTR PER AD ----------
+        $ctrStart = $request->input('ctr_start', now()->subDays(7)->toDateString());
+        $ctrEnd = $request->input('ctr_end', now()->toDateString());
 
-        // Dropdown lists
-        $campaigns = MetaCreativeMetric::select('campaign_name')->distinct()->pluck('campaign_name');
-        $adsets = MetaCreativeMetric::select('ad_set_name')->distinct()->pluck('ad_set_name');
+        $ctrPerAd = MetaCreativeMetric::whereBetween('reporting_start', [$ctrStart, $ctrEnd])
+            ->select('ad_name', DB::raw('AVG(ctr_link_click) as ctr_link_click'))
+            ->groupBy('ad_name')
+            ->orderByDesc(DB::raw('AVG(ctr_link_click)'))
+            ->get();
 
-        // ROAS trend (grouped by date)
-        $roasTrend = MetaCreativeMetric::query()
+        // ---------- 4. ROAS TREND ----------
+        $roasTrendRange = (int) $request->input('roas_range', 30);
+        $roasTrendStart = now()->subDays($roasTrendRange)->toDateString();
+
+        $roasTrend = MetaCreativeMetric::whereBetween('reporting_start', [$roasTrendStart, now()->toDateString()])
             ->selectRaw("DATE(reporting_start) as date, ROUND(AVG(purchase_roas), 2) as avg_roas")
-            ->whereBetween('reporting_start', [$start, $end])
-            ->when($request->filled('campaign_name'), function ($q) use ($request) {
-                $q->where('campaign_name', $request->campaign_name);
-            })
-            ->when($request->filled('ad_set_name'), function ($q) use ($request) {
-                $q->where('ad_set_name', $request->ad_set_name);
-            })
-            ->groupBy(DB::raw('DATE(reporting_start)'))
-            ->orderBy('date')
+            ->groupBy(DB::raw("DATE(reporting_start)"))
+            ->orderBy("date")
             ->get();
 
         $roasTrendLabels = $roasTrend->pluck('date');
         $roasTrendValues = $roasTrend->pluck('avg_roas');
 
         return view('admin.fbads.meta_metrics', [
-            'metrics' => $metrics,
-            'start' => $start,
-            'end' => $end,
-            'campaigns' => $campaigns,
-            'adsets' => $adsets,
+            'spendProfit' => $spendProfit,
+            'roasPerAd' => $roasPerAd,
+            'ctrPerAd' => $ctrPerAd,
             'roasTrendLabels' => $roasTrendLabels,
             'roasTrendValues' => $roasTrendValues,
         ]);

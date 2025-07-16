@@ -225,8 +225,19 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     Route::prefix('fbads')->group(function () {
         Route::get('/', 'FbAdsCon@index')->name('fbads.index');
         Route::get('/dashboard', 'FbAdsCon@dashboard')->name('fbads.dashboard');
+
+
+
         Route::get('/meta-metrics', 'FbAdsCon@meta_metrics')->name('fbads.meta_metrics');
         Route::post('/meta-metrics/post', 'FbAdsCon@meta_metrics_post')->name('fbads.meta_metrics.post');
+        
+
+        // AJAX Endpoints (String Controller Syntax)
+        Route::get('/meta-metrics/data/spend-profit', 'MetaMetricsCon@getSpendProfit')->name('fbads.data.sp');
+        Route::get('/meta-metrics/data/roas-per-ad', 'MetaMetricsCon@getRoasPerAd')->name('fbads.data.roas');
+        Route::get('/meta-metrics/data/ctr-per-ad', 'MetaMetricsCon@getCtrPerAd')->name('fbads.data.ctr');
+        Route::get('/meta-metrics/data/roas-trend', 'MetaMetricsCon@getRoasTrend')->name('fbads.data.roasTrend');
+
 
         Route::get('/create', 'FbAdsCon@create')->name('fbads.create');
         Route::post('/store', 'FbAdsCon@store')->name('fbads.store');

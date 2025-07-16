@@ -86,92 +86,62 @@
                 <div class="ttext-red-500 tmt-2">{{ $message }}</div>
             @enderror
         </form>
-    </div>
+    </div> {{-- UPLOAD --}}
 
-    <div class="tmax-w-5xl tmx-auto tp-10">
-
-        <div class="tmb-6">
-            {{-- Quick Buttons --}}
-            <div class="tflex tgap-2 tmb-4 tflex-wrap">
-                <button type="button" class="tpx-3 tmr-2 tpy-1 tbg-gray-100 thover:tbg-gray-200 trounded ttext-sm" onclick="setQuickRange('today')">Today</button>
-                <button type="button" class="tpx-3 tmr-2 tpy-1 tbg-gray-100 thover:tbg-gray-200 trounded ttext-sm" onclick="setQuickRange('yesterday')">Yesterday</button>
-                <button type="button" class="tpx-3 tmr-2 tpy-1 tbg-gray-100 thover:tbg-gray-200 trounded ttext-sm" onclick="setQuickRange('7')">Last 7 Days</button>
-                <button type="button" class="tpx-3 tmr-2 tpy-1 tbg-gray-100 thover:tbg-gray-200 trounded ttext-sm" onclick="setQuickRange('30')">Last 30 Days</button>
-            </div>
-
-            {{-- Filter Form --}}
-            <form method="GET" id="dateFilterForm" action="{{ route('fbads.meta_metrics') }}" class="tflex tgap-4 titems-center">
-
-                <input 
-                    type="text" 
-                    id="dateRange" 
-                    name="date_range" 
-                    value="{{ request('date_range') ?? ($start . ' to ' . $end) }}" 
-                    class="tborder trounded tpx-3 tpy-3 tw-full tmax-w-xs browser-default tmr-2" 
-                    placeholder="Select date range"
-                />
-
-                <select name="campaign_name" class="tborder trounded tpx-3 tpy-2 ttext-sm tmax-w-xs browser-default tmr-2" onchange="this.form.submit()">
-                    <option value="">All Campaigns</option>
-                    @foreach ($campaigns as $name)
-                        <option value="{{ $name }}" {{ request('campaign_name') == $name ? 'selected' : '' }}>{{ $name }}</option>
-                    @endforeach
-                </select>
-
-                <select name="ad_set_name" class="tborder trounded tpx-3 tpy-2 ttext-sm tmax-w-xs browser-default tmr-2" onchange="this.form.submit()">
-                    <option value="">All Ad Sets</option>
-                    @foreach ($adsets as $name)
-                        <option value="{{ $name }}" {{ request('ad_set_name') == $name ? 'selected' : '' }}>{{ $name }}</option>
-                    @endforeach
-                </select>
-
-                @if(request()->hasAny(['date_range', 'campaign_name', 'ad_set_name']))
-                    <a href="{{ route('fbads.meta_metrics') }}" class="ttext-sm ttext-gray-600 tml-2 thover:tunderline tmr-2">
-                        <i class="far fa-times-circle ttext-red-500 ttext-2xl"></i>
-                    </a>
-                @endif
-
-                <button type="submit" class="tml-auto tbg-pink-600 thover:tbg-blue-700 ttext-white tpx-4 tpy-2 trounded">Filter</button>
-
+    <div class="tmax-w-6xl tmx-auto tp-10">
+        {{-- Spend vs Profit Chart --}}
+        <div class="tmb-10">
+            <form method="GET" class="tflex tgap-4 titems-center tmb-4">
+                <input type="date" name="spend_start" value="{{ request('spend_start') }}" class="tborder trounded tpx-3 tpy-2">
+                <input type="date" name="spend_end" value="{{ request('spend_end') }}" class="tborder trounded tpx-3 tpy-2">
+                <button class="tbg-pink-600 thover:tbg-blue-700 ttext-white tpx-4 tpy-2 trounded">Filter</button>
             </form>
+            <div class="tbg-white tshadow-sm trounded tpx-4 tpy-6">
+                <h2 class="ttext-lg tfont-semibold tmb-4">Spend vs Profit (Top Ads)</h2>
+                <div id="spendProfitChart"></div>
+            </div>
         </div>
 
-        {{-- Active Filters as Tags --}}
-        @if(request()->filled('date_range') || request()->filled('campaign_name') || request()->filled('ad_set_name'))
-        <div class="tmb-4 tflex tgap-2 tflex-wrap">
-            @if(request()->filled('date_range'))
-                <span class="tbg-pink-100 ttext-pink-700 ttext-sm tpx-2 tpy-1 trounded">📅 {{ request('date_range') }}</span>
-            @endif
-            @if(request()->filled('campaign_name'))
-                <span class="tbg-blue-100 ttext-blue-700 ttext-sm tpx-2 tpy-1 trounded">📢 {{ request('campaign_name') }}</span>
-            @endif
-            @if(request()->filled('ad_set_name'))
-                <span class="tbg-green-100 ttext-green-700 ttext-sm tpx-2 tpy-1 trounded">🎯 {{ request('ad_set_name') }}</span>
-            @endif
-        </div>
-        @endif
-
-        {{-- Charts --}}
-        <div class="tbg-white tshadow-sm trounded tpx-4 tpy-6">
-            <h2 class="ttext-lg tfont-semibold tmb-4">Spend vs Profit (Top Ads)</h2>
-            <div id="spendProfitChart"></div>
+        {{-- ROAS per Ad --}}
+        <div class="tmb-10">
+            <form method="GET" class="tflex tgap-4 titems-center tmb-4">
+                <input type="date" name="roas_start" value="{{ request('roas_start') }}" class="tborder trounded tpx-3 tpy-2">
+                <input type="date" name="roas_end" value="{{ request('roas_end') }}" class="tborder trounded tpx-3 tpy-2">
+                <button class="tbg-pink-600 thover:tbg-blue-700 ttext-white tpx-4 tpy-2 trounded">Filter</button>
+            </form>
+            <div class="tbg-white tshadow-sm trounded tpx-4 tpy-6">
+                <h2 class="ttext-lg tfont-semibold tmb-4">ROAS per Ad</h2>
+                <div id="roasChart"></div>
+            </div>
         </div>
 
-        <div class="tbg-white tshadow-sm trounded tpx-4 tpy-6 tmt-8">
-            <h2 class="ttext-lg tfont-semibold tmb-4">ROAS per Ad</h2>
-            <div id="roasChart"></div>
+        {{-- CTR per Ad --}}
+        <div class="tmb-10">
+            <form method="GET" class="tflex tgap-4 titems-center tmb-4">
+                <input type="date" name="ctr_start" value="{{ request('ctr_start') }}" class="tborder trounded tpx-3 tpy-2">
+                <input type="date" name="ctr_end" value="{{ request('ctr_end') }}" class="tborder trounded tpx-3 tpy-2">
+                <button class="tbg-pink-600 thover:tbg-blue-700 ttext-white tpx-4 tpy-2 trounded">Filter</button>
+            </form>
+            <div class="tbg-white tshadow-sm trounded tpx-4 tpy-6">
+                <h2 class="ttext-lg tfont-semibold tmb-4">CTR (Link Click) per Ad</h2>
+                <div id="ctrChart"></div>
+            </div>
         </div>
 
-        <div class="tbg-white tshadow-sm trounded tpx-4 tpy-6 tmt-8">
-            <h2 class="ttext-lg tfont-semibold tmb-4">CTR (Link Click) per Ad</h2>
-            <div id="ctrChart"></div>
+        {{-- ROAS Trend --}}
+        <div class="tmb-10">
+            <form method="GET" class="tflex tgap-4 titems-center tmb-4">
+                <select name="roas_range" onchange="this.form.submit()" class="tborder trounded tpx-3 tpy-2">
+                    <option value="30" {{ request('roas_range') == '30' ? 'selected' : '' }}>Last 30 Days</option>
+                    <option value="60" {{ request('roas_range') == '60' ? 'selected' : '' }}>Last 60 Days</option>
+                    <option value="90" {{ request('roas_range') == '90' ? 'selected' : '' }}>Last 90 Days</option>
+                </select>
+            </form>
+            <div class="tbg-white tshadow-sm trounded tpx-4 tpy-6">
+                <h2 class="ttext-lg tfont-semibold tmb-4">ROAS Trend Over Time</h2>
+                <div id="roasTrendChart"></div>
+            </div>
         </div>
-
-        <div class="tbg-white tshadow-sm trounded tpx-4 tpy-6 tmt-8">
-            <h2 class="ttext-lg tfont-semibold tmb-4">ROAS Trend Over Time</h2>
-            <div id="roasTrendChart"></div>
-        </div>
-
     </div>
 
 
@@ -180,243 +150,64 @@
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
+   
     <script>
-
-        const labels = @json($metrics->pluck('ad_name'));
-        const spent = @json($metrics->pluck('amount_spent'));
-        const profit = @json($metrics->pluck('profit'));
-        const roas = @json($metrics->pluck('purchase_roas'));
-        const ctr = @json($metrics->pluck('ctr_link_click'));
-
-        // Spend vs Profit
-        new ApexCharts(document.querySelector("#spendProfitChart"), {
-            chart: {
-                type: 'bar',
-                height: 450 // Optional: raise this if you have many rows
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: true,
-                    barHeight: '30px', // ⬅ Adjust row height here
-                    dataLabels: {
-                        position: 'top'
-                    }
-                }
-            },
-            colors: ['tomato', '#00a67d'],
-            dataLabels: {
-                enabled: true,
-                offsetX: -30,
-                style: {
-                    fontSize: '12px'
-                }
-            },
-            series: [
-                {
-                    name: 'Spend',
-                    data: spent
-                },
-                {
-                    name: 'Profit',
-                    data: profit
-                }
-            ],
-            xaxis: {
-                categories: labels,
-                labels: {
-                    style: { fontSize: '12px' }
-                }
-            },
-            tooltip: {
-                shared: true,
-                intersect: false,
-                y: {
-                    formatter: val => `₱${parseFloat(val).toLocaleString()}`
-                }
-            },
-            legend: {
-                position: 'top'
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: true,
-                    barHeight: '90%', // ✅ makes bar thicker inside same row
-                    dataLabels: {
-                        position: 'top'
-                    }
-                }
-            }
-        }).render();
-
-        // ROAS per Ad
-        new ApexCharts(document.querySelector("#roasChart"), {
-            chart: {
-                type: 'bar',
-                height: 350
-            },
-            colors: ['#f02074'],
-            plotOptions: {
-                bar: {
-                    horizontal: true,
-                    barHeight: '70%',
-                    borderRadius: 4,
-                    dataLabels: {
-                        position: 'center'
-                    }
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                formatter: function (val) {
-                    if (val === null || isNaN(val)) return '0.00 ROAS';
-                    return `${parseFloat(val).toFixed(2)} ROAS`;
-                },
-                style: {
-                    fontSize: '12px',
-                    colors: ['#fff']
-                }
-            },
-            series: [{
-                name: 'ROAS',
-                data: roas
-            }],
-            xaxis: {
-                categories: labels,
-                labels: {
-                    style: {
-                        fontSize: '12px'
-                    }
-                }
-            },
-            tooltip: {
-                y: {
-                    formatter: function (val) {
-                        if (val === null || isNaN(val)) return '0.00 ROAS';
-                        return `${parseFloat(val).toFixed(2)} ROAS`;
-                    }
-                }
-            }
-        }).render();
-
-        new ApexCharts(document.querySelector("#ctrChart"), {
-            chart: {
-                type: 'bar',
-                height: 350
-            },
-            colors: ['#3b82f6'], // current blue or change to pastel if you want
-            plotOptions: {
-                bar: {
-                    horizontal: true,
-                    barHeight: '80%',
-                    borderRadius: 4,
-                    dataLabels: {
-                        position: 'center'
-                    }
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                formatter: function (val) {
-                    return `${val.toFixed(2)}% CTR`;
-                },
-                style: {
-                    fontSize: '12px',
-                    colors: ['#fff']
-                }
-            },
-            series: [{
-                name: 'CTR (Link Click)',
-                data: ctr
-            }],
-            xaxis: {
-                categories: labels,
-                labels: {
-                    style: {
-                        fontSize: '12px'
-                    }
-                }
-            },
-            tooltip: {
-                y: {
-                    formatter: val => `${val.toFixed(2)}% CTR`
-                }
-            }
-        }).render();
-    </script>
-
-    {{-- // DATE PICKER --}}
-    <script>
-        const flatpickrInstance = flatpickr("#dateRange", {
-            mode: "range",
-            dateFormat: "Y-m-d",
-            defaultDate: "{{ request('date_range') }}"
-        });
-
-        function setQuickRange(type) {
-            const today = new Date();
-            let start = new Date();
-            let end = new Date();
-
-            if (type === 'today') {
-                // do nothing — already today
-            } else if (type === 'yesterday') {
-                start.setDate(today.getDate() - 1);
-                end.setDate(today.getDate() - 1);
-            } else if (type === '7') {
-                start.setDate(today.getDate() - 6);
-            } else if (type === '30') {
-                start.setDate(today.getDate() - 29);
-            }
-
-            const format = date => date.toISOString().split('T')[0];
-            const range = `${format(start)} to ${format(end)}`;
-
-            // Update Flatpickr + Input Field
-            flatpickrInstance.setDate([start, end], true);
-            document.getElementById('dateRange').value = range;
-
-            // Auto-submit the form
-            document.getElementById('dateFilterForm').submit();
-        }
-    </script>
-
-    {{-- ROAS TREND --}}
-   <script>
+        const labels = @json($spendProfit->pluck('ad_name'));
+        const spent = @json($spendProfit->pluck('amount_spent'));
+        const profit = @json($spendProfit->pluck('profit'));
+        const roasLabels = @json($roasPerAd->pluck('ad_name'));
+        const roas = @json($roasPerAd->pluck('avg_roas'));
+        const ctrLabels = @json($ctrPerAd->pluck('ad_name'));
+        const ctr = @json($ctrPerAd->pluck('avg_ctr'));
         const roasTrendLabels = @json($roasTrendLabels);
         const roasTrendValues = @json($roasTrendValues);
 
-        new ApexCharts(document.querySelector("#roasTrendChart"), {
-            chart: {
-                type: 'line',
-                height: 350,
-                zoom: { enabled: true }
-            },
-            series: [{
-                name: "ROAS",
-                data: roasTrendValues
-            }],
-            xaxis: {
-                categories: roasTrendLabels,
-                title: { text: "Date" },
-                labels: { rotate: -45 }
-            },
-            yaxis: {
-                title: { text: "ROAS" },
-                labels: {
-                    formatter: val => `${val.toFixed(2)}`
-                }
-            },
-            tooltip: {
-                y: {
-                    formatter: val => `${val.toFixed(2)} ROAS`
-                }
-            },
+        new ApexCharts(document.querySelector("#spendProfitChart"), {
+            chart: { type: 'bar', height: 400 },
+            plotOptions: { bar: { horizontal: true, barHeight: '80%' } },
+            colors: ['tomato', '#00a67d'],
+            series: [
+                { name: 'Spend', data: spent },
+                { name: 'Profit', data: profit }
+            ],
+            xaxis: { categories: labels }
+        }).render();
+
+        new ApexCharts(document.querySelector("#roasChart"), {
+            chart: { type: 'bar', height: 350 },
             colors: ['#f02074'],
-            stroke: {
-                curve: 'smooth',
-                width: 3
+            plotOptions: { bar: { horizontal: true, barHeight: '70%' } },
+            dataLabels: {
+                enabled: true,
+                formatter: val => `${val.toFixed(2)} ROAS`,
+                style: { colors: ['#fff'] }
+            },
+            series: [{ name: 'ROAS', data: roas }],
+            xaxis: { categories: roasLabels }
+        }).render();
+
+        new ApexCharts(document.querySelector("#ctrChart"), {
+            chart: { type: 'bar', height: 350 },
+            colors: ['#3b82f6'],
+            plotOptions: { bar: { horizontal: true, barHeight: '80%' } },
+            dataLabels: {
+                enabled: true,
+                formatter: val => `${val.toFixed(2)}% CTR`,
+                style: { colors: ['#fff'] }
+            },
+            series: [{ name: 'CTR (Link Click)', data: ctr }],
+            xaxis: { categories: ctrLabels }
+        }).render();
+
+        new ApexCharts(document.querySelector("#roasTrendChart"), {
+            chart: { type: 'line', height: 350 },
+            colors: ['#f02074'],
+            series: [{ name: 'ROAS', data: roasTrendValues }],
+            xaxis: { categories: roasTrendLabels },
+            tooltip: {
+                y: { formatter: val => `${val.toFixed(2)} ROAS` }
             }
         }).render();
     </script>
+
 @endsection
