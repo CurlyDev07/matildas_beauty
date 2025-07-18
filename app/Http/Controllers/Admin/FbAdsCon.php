@@ -264,61 +264,8 @@ class FbAdsCon extends Controller
     }
 
     public function meta_metrics(Request $request){
-        
-         // ---------- 1. SPEND VS PROFIT ----------
-        $spendStart = $request->input('spend_start', now()->subDays(7)->toDateString());
-        $spendEnd = $request->input('spend_end', now()->toDateString());
 
-        $spendProfit = MetaCreativeMetric::whereBetween('reporting_start', [$spendStart, $spendEnd])
-            ->select(
-                'ad_name',
-                DB::raw('SUM(amount_spent) as amount_spent'),
-                DB::raw('SUM(profit) as profit')
-            )
-            ->groupBy('ad_name')
-            ->orderByDesc(DB::raw('SUM(amount_spent)'))
-            ->get();
-
-        // ---------- 2. ROAS PER AD ----------
-        $roasStart = $request->input('roas_start', now()->subDays(7)->toDateString());
-        $roasEnd = $request->input('roas_end', now()->toDateString());
-
-        $roasPerAd = MetaCreativeMetric::whereBetween('reporting_start', [$roasStart, $roasEnd])
-            ->select('ad_name', DB::raw('AVG(purchase_roas) as purchase_roas'))
-            ->groupBy('ad_name')
-            ->orderByDesc(DB::raw('AVG(purchase_roas)'))
-            ->get();
-
-        // ---------- 3. CTR PER AD ----------
-        $ctrStart = $request->input('ctr_start', now()->subDays(7)->toDateString());
-        $ctrEnd = $request->input('ctr_end', now()->toDateString());
-
-        $ctrPerAd = MetaCreativeMetric::whereBetween('reporting_start', [$ctrStart, $ctrEnd])
-            ->select('ad_name', DB::raw('AVG(ctr_link_click) as ctr_link_click'))
-            ->groupBy('ad_name')
-            ->orderByDesc(DB::raw('AVG(ctr_link_click)'))
-            ->get();
-
-        // ---------- 4. ROAS TREND ----------
-        $roasTrendRange = (int) $request->input('roas_range', 30);
-        $roasTrendStart = now()->subDays($roasTrendRange)->toDateString();
-
-        $roasTrend = MetaCreativeMetric::whereBetween('reporting_start', [$roasTrendStart, now()->toDateString()])
-            ->selectRaw("DATE(reporting_start) as date, ROUND(AVG(purchase_roas), 2) as avg_roas")
-            ->groupBy(DB::raw("DATE(reporting_start)"))
-            ->orderBy("date")
-            ->get();
-
-        $roasTrendLabels = $roasTrend->pluck('date');
-        $roasTrendValues = $roasTrend->pluck('avg_roas');
-
-        return view('admin.fbads.meta_metrics', [
-            'spendProfit' => $spendProfit,
-            'roasPerAd' => $roasPerAd,
-            'ctrPerAd' => $ctrPerAd,
-            'roasTrendLabels' => $roasTrendLabels,
-            'roasTrendValues' => $roasTrendValues,
-        ]);
+        return view('admin.fbads.meta_metrics');
     }
   
     public function meta_metrics_post(Request $request){
