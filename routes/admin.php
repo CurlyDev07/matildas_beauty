@@ -235,6 +235,14 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         // AJAX Endpoints (String Controller Syntax)
         Route::get('/meta-metrics/data/spend-profit', 'MetaMetricsCon@getSpendProfit')->name('fbads.data.sp');
         Route::get('/meta-metrics/data/roas-per-ad', 'MetaMetricsCon@getRoasPerAd')->name('fbads.data.roas');
+
+        Route::get('/meta-metrics/data/profit-daily', 'MetaMetricsCon@getDailyProfit')->name('fbads.meta_metrics.daily_profit');
+
+        Route::get('/meta-metrics/data/ad-list', 'MetaMetricsCon@getAdList');
+        Route::get('/meta-metrics/data/ad-history', 'MetaMetricsCon@getAdHistory');
+
+
+
         Route::get('/meta-metrics/data/ctr-per-ad', 'MetaMetricsCon@getCtrPerAd')->name('fbads.data.ctr');
         Route::get('/meta-metrics/data/roas-trend', 'MetaMetricsCon@getRoasTrend')->name('fbads.data.roasTrend');
 
