@@ -567,29 +567,38 @@
 
                 <div class="tborder-2 tmb-2 tp-2 trelative" style="border-color: #ee2a7ba8">
                     <div class="tflex tflex-wrap tjustify-center">
+
+                         <div class="tborder-b-2 tborder-pink-400 tflex titems-center tw-full">
+                            <label>
+                                <input type="radio" id="promo6" name="promo" class="promo" value="Lotion_1pc|649|1pc">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-bold ttext-sm">₱649</span>
+                                    <span class="tfont-medium">Lotion Sunscreen SPF50 PA++++ 100g</span>
+                                </span>
+                            </label>
+                        </div><!-- PROMO 6-->
+
                         <div class="tflex titems-center tw-full ">
                             <label>
-                                <input type="radio" id="promo4" name="promo" class="promo" checked="" value="MissTisa_1pc|499|1pc">
+                                <input type="radio" id="promo5" name="promo" class="promo" value="MissTisa_1pc|499|1pc">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
                                     <span class="tfont-bold ttext-sm">₱499</span>
-                                    <span class="tfont-medium">Rejuv Set 1pc</span>
+                                    <span class="tfont-medium">MissTisa Set 1pc</span>
+                                </span>
+                            </label>
+                        </div><!-- PROMO 5-->
+
+                        <div class="tborder-b-2 tborder-pink-400 tflex titems-center tw-full">
+                            <label>
+                                <input type="radio" id="promo4" name="promo" class="promo" value="MissTisa_2pcs|849|2pcs">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-bold ttext-sm">₱849</span>
+                                    <span class="tfont-medium">MissTisa Set 2pcs</span>
                                 </span>
                             </label>
                         </div><!-- PROMO 4-->
 
-                        <hr>
-
-                        <div class="tflex titems-center tw-full ">
-                            <label>
-                                <input type="radio" id="promo3" name="promo" class="promo" value="MissTisaSerum_2pcs|999|2pcs">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-bold ttext-sm">₱999</span>
-                                    <span class="tfont-medium">Serum 2pcs</span>
-                                </span>
-                            </label>
-                        </div><!-- PROMO 3 -->
-
-                        <div class="tflex titems-center tw-full  tborder-t-2">
+                        <div class="tflex titems-center tw-full">
                             <label>
                                 <input type="radio" id="promo2" name="promo" class="promo" value="MissTisaSerum_1pc|749|1pcs">
                                 <span class="ttext-gray-900" style="font-size: 13px;">
@@ -599,11 +608,19 @@
                             </label>
                         </div><!-- PROMO 2 -->
 
-                        <hr>
-
-                        <div class="tflex titems-center tw-full  tborder-t-2 trelative">
+                        <div class="tflex titems-center tw-full tborder-b-2 tborder-pink-400 ">
                             <label>
-                                <input type="radio" id="promo1" name="promo" class="promo" value="1_MissTisa_Set_1Serum|1149|1each">
+                                <input type="radio" id="promo3" name="promo" class="promo" value="MissTisaSerum_2pcs|999|2pcs">
+                                <span class="ttext-gray-900" style="font-size: 13px;">
+                                    <span class="tfont-bold ttext-sm">₱999</span>
+                                    <span class="tfont-medium">Serum 2pcs</span>
+                                </span>
+                            </label>
+                        </div><!-- PROMO 3 -->
+
+                        <div class="tflex titems-center tw-full  trelative">
+                            <label>
+                                <input type="radio" id="promo1" name="promo" class="promo" checked="" value="1_MissTisa_Set_1Serum|1149|1each">
                                 <span class="ttext-gray-900">
                                     <span class="tfont-bold ttext-lg"  style=" color: #ff5500;">₱1149</span>
                                     <span class="tfont-bold ttext-lg"  style=" color: #ff5500;">MissTisa Set + Serum </span>
@@ -747,6 +764,8 @@
                 $("#promo2").prop('checked', false);
                 $("#promo3").prop('checked', false);
                 $("#promo4").prop('checked', false);
+                $("#promo5").prop('checked', false);
+                $("#promo6").prop('checked', false);
             });
 
             $('#promo2').change(function () {
@@ -754,6 +773,8 @@
                 $("#promo1").prop('checked', false);
                 $("#promo3").prop('checked', false);
                 $("#promo4").prop('checked', false);
+                $("#promo5").prop('checked', false);
+                $("#promo6").prop('checked', false);
             });
 
             $('#promo3').change(function () {
@@ -761,6 +782,8 @@
                 $("#promo1").prop('checked', false);
                 $("#promo2").prop('checked', false);
                 $("#promo4").prop('checked', false);
+                $("#promo5").prop('checked', false);
+                $("#promo6").prop('checked', false);
             });
 
             $('#promo4').change(function () {
@@ -768,6 +791,27 @@
                 $("#promo1").prop('checked', false);
                 $("#promo2").prop('checked', false);
                 $("#promo3").prop('checked', false);
+                $("#promo5").prop('checked', false);
+                $("#promo6").prop('checked', false);
+            });
+
+            $('#promo5').change(function () {
+                $('#total').html($(this).val().split('|')[1]);
+                $("#promo1").prop('checked', false);
+                $("#promo2").prop('checked', false);
+                $("#promo3").prop('checked', false);
+                $("#promo4").prop('checked', false);
+                $("#promo6").prop('checked', false);
+
+            });
+
+            $('#promo6').change(function () {
+                $('#total').html($(this).val().split('|')[1]);
+                $("#promo1").prop('checked', false);
+                $("#promo2").prop('checked', false);
+                $("#promo3").prop('checked', false);
+                $("#promo4").prop('checked', false);
+                $("#promo5").prop('checked', false);
             });
 
             var $window = $(window),x

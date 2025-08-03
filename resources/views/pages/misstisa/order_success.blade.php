@@ -62,22 +62,22 @@
     <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script>
 
 <!-- Meta Pixel Code -->
-<script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '375777585581364');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
-/></noscript>
-    <!-- End Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '375777585581364');
+        fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
+    /></noscript>
+<!-- End Meta Pixel Code -->
 
 
     <!----- Tiktok Pixel Code ----->
@@ -146,29 +146,44 @@
                 </div>  
 
                 <div class="tw-full tborder tborder-2 tp-3 tm-2">
-                    <div class="tflex titems-center tjustify-between">
-                        @if ($price_qty[0]== '1_MissTisa_Set_1Serum')
-                            <img width="100" src="https://matildasbeauty.com/filemanager/9d372f1034674394b23c84857fd1f2e8.png" class="tmr-3" alt="MissTisa Melasma Remover">
+                    <div class="tflex titems-center tjustify-around">
+
+                        @if ($price_qty[0]== 'MissTisa_1pc')
+                            <img width="100" src="https://matildasbeauty.com/filemanager/c19a289a43fd497fba9ff3b1bacdc086.png" class="tmr-3" alt="MissTisa Melasma Remover">
                         @endif
 
+                        @if ($price_qty[0]== 'MissTisa_2pcs')
+                            <img width="100" src="https://matildasbeauty.com/filemanager/e833ad2a5969409586d7b4f72e8078fd.png" class="tmr-3" alt="MissTisa Melasma Remover">
+                        @endif
+
+
                         @if ($price_qty[0]== 'MissTisaSerum_1pc')
-                            <img width="100" src="https://matildasbeauty.com/filemanager/b6d6e20c2ca549efb5d4e4ea2a83bc87.png" class="tmr-3" alt="MissTisa Melasma Remover">
+                            <img width="100" src="https://matildasbeauty.com/filemanager/9e6cef786dfb4e7cabd0c3e7fc0828db.png" class="tmr-3" alt="MissTisa Melasma Remover">
                         @endif
 
                         @if ($price_qty[0]== 'MissTisaSerum_2pcs')
-                            <img width="100" src="https://matildasbeauty.com/filemanager/8449a9bc19c341eea5488ca059d84e13.png" class="tmr-3" alt="MissTisa Melasma Remover">
+                            <img width="100" src="https://matildasbeauty.com/filemanager/445bfa5802954becaf9ac67115d28d60.png" class="tmr-3" alt="MissTisa Melasma Remover">
                         @endif
 
-                        @if ($price_qty[0]== 'MissTisa_1pc')
-                            <img width="100" src="https://matildasbeauty.com/filemanager/7c631048d01544f8bc9616f98ca66f59.png" class="tmr-3" alt="MissTisa Melasma Remover">
+
+                        @if ($price_qty[0]== 'Lotion_1pc')
+                            <img width="100" src="https://matildasbeauty.com/filemanager/309cb1057fbb4d2693487a8d1f8bf42c.png" class="tmr-3" alt="MissTisa Melasma Remover">
                         @endif
+
+                        @if ($price_qty[0]== '1_MissTisa_Set_1Serum')
+                            <img width="100" src="https://matildasbeauty.com/filemanager/2a29e783af0f446097d028cd8a4d02a8.png" class="tmr-3" alt="MissTisa Melasma Remover">
+                        @endif
+
+                       
+
+                       
 
                         <div class="">{{ str_replace('_', ' ', $price_qty[0]) }}</div>
                     </div>
 
                     <div class="tflex tjustify-end titems-center">
                         <span class="tfont-medium tmx-2 ttext-gray-700 ttext-md">Total: </span>
-                        <span class="tmr-3 tmb-2 ttext-xl tfont-medium" style="color: #ef0e5f">{{ $price_qty[1] }}₱</span>
+                        <span class="tmr-3 tmb-2 ttext-xl tfont-medium" style="color: #ef0e5f">₱{{ $price_qty[1] }}</span>
                         <input type="hidden" name="purchase_value" id="purchase_value" value="{{ $price_qty[1] }}">
                     </div>
                 </div>
