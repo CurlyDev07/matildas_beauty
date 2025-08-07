@@ -177,6 +177,7 @@
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/82efdea285894252a13f1c6dbf1020a7.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e835b9e4bc9f4cad803cf3c3a6ef4473.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/36f85481a2114cc891d25704ddfa02ae.webp" loading="lazy" width="480" height="480" alt="Happy Users">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/47e5c4f66a294471b45863de264aefa4.webp" loading="lazy" width="480" height="350" alt="28_days_challenge">
@@ -618,13 +619,38 @@
                             </label>
                         </div><!-- PROMO 3 -->
 
-                        <div class="tflex titems-center tw-full  trelative">
+                        <div class="tflex titems-center tw-full  trelative tborder-b-2 tborder-pink-400 tpb-3">
                             <label>
                                 <input type="radio" id="promo1" name="promo" class="promo" checked="" value="1_MissTisa_Set_1Serum|1149|1each">
                                 <span class="ttext-gray-900">
                                     <span class="tfont-bold ttext-lg"  style=" color: #ff5500;">₱1149</span>
                                     <span class="tfont-bold ttext-lg"  style=" color: #ff5500;">MissTisa Set + Serum </span>
-                                    <br> <span class="ttext-md tfont-bold" style="color: #2e2e2e;">🎁 Free Extra Soap & Sunscreen</span> 
+                                    {{-- <br> <span class="ttext-md tfont-bold" style="color: #2e2e2e;">🎁 Free Extra Soap & Sunscreen</span>  --}}
+                                    {{-- <br>
+                                    <div class="tflex tjustify-between">
+                                        <div class="ttext-md tfont-bold tmr-8" style="color: #ff0021;">🚨 Promo expires in </div> 
+                                        <div class="ttext-md tfont-bold tflex" style="color: #ff0021;">
+                                            ⏰
+                                            <div id="timer_bottom">29:38</div>
+                                            mins
+                                        </div> 
+                                        
+                                    </div> --}}
+                                </span>
+                            </label>
+                            {{-- <span class="tabsolute tfont-medium tright-0 ttext-red-700"> 
+                                <i class="fas fa-arrow-left"></i>
+                                 Best Seller
+                            </span> --}}
+                        </div><!-- PROMO 1 -->
+
+                        <div class="tflex titems-center tw-full  trelative tmt-2">
+                            <label>
+                                <input type="radio" id="promo7" name="promo" class="promo" checked="" value="MissTisa_Set+Serum+Lotion|1399|1each">
+                                <span class="ttext-gray-900">
+                                    <span class="tfont-bold ttext-lg tshadow-lg"  style=" color: hsl(340, 100%, 50%);">₱1399</span>
+                                    <span class="tfont-bold ttext-lg tshadow-lg"  style=" color: hsl(340, 100%, 50%);">MissTisa Set + Serum + Lotion</span>
+                                    <br> <span class="ttext-md tfont-bold" style="color: #2e2e2e;">🎁 8.8 Sale Promo Bundle</span> 
                                     <br>
                                     <div class="tflex tjustify-between">
                                         <div class="ttext-md tfont-bold tmr-8" style="color: #ff0021;">🚨 Promo expires in </div> 
@@ -641,7 +667,7 @@
                                 <i class="fas fa-arrow-left"></i>
                                  Best Seller
                             </span> --}}
-                        </div><!-- PROMO 1 -->
+                        </div><!-- PROMO 7 -->
                     </div>
                    
                     @error('promo')
@@ -652,7 +678,7 @@
                     <span class="ttext-gray-900" style="font-size: 16px;">
                         <span class="tfont-medium">TOTAL:</span>
                         <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">499</span>
+                        <span id="total" class="tfont-medium t-ml-1">1399</span>
                     </span>
                 </div>
                 <div class="tw-full ">
@@ -766,6 +792,7 @@
                 $("#promo4").prop('checked', false);
                 $("#promo5").prop('checked', false);
                 $("#promo6").prop('checked', false);
+                $("#promo7").prop('checked', false);
             });
 
             $('#promo2').change(function () {
@@ -775,6 +802,7 @@
                 $("#promo4").prop('checked', false);
                 $("#promo5").prop('checked', false);
                 $("#promo6").prop('checked', false);
+                $("#promo7").prop('checked', false);
             });
 
             $('#promo3').change(function () {
@@ -784,6 +812,7 @@
                 $("#promo4").prop('checked', false);
                 $("#promo5").prop('checked', false);
                 $("#promo6").prop('checked', false);
+                $("#promo7").prop('checked', false);
             });
 
             $('#promo4').change(function () {
@@ -793,6 +822,7 @@
                 $("#promo3").prop('checked', false);
                 $("#promo5").prop('checked', false);
                 $("#promo6").prop('checked', false);
+                $("#promo7").prop('checked', false);
             });
 
             $('#promo5').change(function () {
@@ -802,7 +832,7 @@
                 $("#promo3").prop('checked', false);
                 $("#promo4").prop('checked', false);
                 $("#promo6").prop('checked', false);
-
+                $("#promo7").prop('checked', false);
             });
 
             $('#promo6').change(function () {
@@ -812,6 +842,17 @@
                 $("#promo3").prop('checked', false);
                 $("#promo4").prop('checked', false);
                 $("#promo5").prop('checked', false);
+                $("#promo7").prop('checked', false);
+            });
+
+            $('#promo7').change(function () {
+                $('#total').html($(this).val().split('|')[1]);
+                $("#promo1").prop('checked', false);
+                $("#promo2").prop('checked', false);
+                $("#promo3").prop('checked', false);
+                $("#promo4").prop('checked', false);
+                $("#promo5").prop('checked', false);
+                $("#promo6").prop('checked', false);
             });
 
             var $window = $(window),x
