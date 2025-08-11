@@ -142,12 +142,12 @@
         </div><!-- Trusted Reviews --> --}}
 
         <div class="tfont-semibold tmx-3 tmy-4  ttext-center">
-            <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA Approved
+            <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
         </div>
 
 
          <div class="tborder-dashed ttext-center tmx-3 tmy-2 tpx-3 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
-            <span class="tfont-bold  ttext-center" style="font-size: 20px;">FREE Sunscreen & Soap - Today Only!</span>
+            <span class="tfont-bold  ttext-center" style="font-size: 20px;">All-in-1 Skincare Sale – Ends Soon!</span>
             <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
                 ⏰
                 <div id="timer_top">18:38</div>
@@ -177,7 +177,7 @@
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/82efdea285894252a13f1c6dbf1020a7.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/943b70fea8564d969e9275e6cdec5156.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e835b9e4bc9f4cad803cf3c3a6ef4473.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/36f85481a2114cc891d25704ddfa02ae.webp" loading="lazy" width="480" height="480" alt="Happy Users">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/47e5c4f66a294471b45863de264aefa4.webp" loading="lazy" width="480" height="350" alt="28_days_challenge">
@@ -650,7 +650,7 @@
                                 <span class="ttext-gray-900">
                                     <span class="tfont-bold ttext-lg tshadow-lg"  style=" color: hsl(340, 100%, 50%);">₱1399</span>
                                     <span class="tfont-bold ttext-lg tshadow-lg"  style=" color: hsl(340, 100%, 50%);">MissTisa Set + Serum + Lotion</span>
-                                    <br> <span class="ttext-md tfont-bold" style="color: #2e2e2e;">🎁 8.8 Sale Promo Bundle</span> 
+                                    <br> <span class="ttext-md tfont-bold" style="color: #2e2e2e;">🎁Kulubot, Melasma & Whitening Remover Kit🎁</span> 
                                     <br>
                                     <div class="tflex tjustify-between">
                                         <div class="ttext-md tfont-bold tmr-8" style="color: #ff0021;">🚨 Promo expires in </div> 
