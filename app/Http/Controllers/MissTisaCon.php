@@ -30,27 +30,36 @@ class MissTisaCon extends Controller
         return view('pages.misstisa.index', ['seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
     }
 
-    public function store(StoreFbAdsRequest $request){
-        $promo = explode ("|", $request->promo); 
+    public function store(Request $request){
+        $form_request = $request->all();
+        $ordered_products = $form_request['products'];
+        $promo = '';
+        $total = 0;
+
+        foreach ($ordered_products as $product) {
+            if ($promo !== '') {
+                $promo .= ' + ';
+            } 
+            $promo .= $product['qty'] .' - '.$product['name'];
+            $total += $product['subtotal'];
+        }
 
         $order = FbAds::create([
-            "full_name" => $request->full_name,
-            "phone_number" => $request->phone_number,
-            "address" => $request->address,
+            "full_name" => $form_request['customer']['full_name'],
+            "phone_number" => $form_request['customer']['phone_number'],
+            "address" => $form_request['customer']['address'],
             "province" => 'n/a',
             "city" => 'n/a',
             "barangay" => 'n/a',
-            "promo" => $promo[0],
-            "total" => $promo[1],
+            "promo" => $promo,
+            "total" => $total,
             "product" => 'MissTisa',
         ]);
-        // return redirect()->back(['a'=>'s'])->with('success', 'Success');
-        // return redirect()->route('miss_tisa', ['purchase' => 1, 'amount' => $promo[1]])->with('success', 'Success');
 
         $data = [
             "purchase" => 1,
             "promo" => request()->promo,
-            "amount" => $promo[1],
+            "amount" => $total,
             "full_name" => $request->full_name,
             "phone_number" => $request->phone_number,
             "address" => $request->address,
@@ -58,7 +67,14 @@ class MissTisaCon extends Controller
         ];
 
 
-        return redirect()->route('miss_tisa_success', $data);
+        // Return success response
+        return response()->json([
+            'success' => true,
+            'message' => 'Order submitted successfully!',
+            'customer' => $form_request['customer']['full_name'],
+            'promo' => $promo,
+            'total' => $total
+        ]);
     }
 
     public function success(){

@@ -1,3 +1,40 @@
+<?php
+// Products array - easy to manage and update
+$products = [
+    [
+        'id' => 0,
+        'name' => 'MissTisa Skincare Set',
+        'price' => 499,
+        'image' => 'https://matildasbeauty.com/filemanager/c19a289a43fd497fba9ff3b1bacdc086.png',
+        'description' => 'Advanced anti-aging and whitening serum'
+    ],
+    [
+        'id' => 1,
+        'name' => 'Lotion Sunscreen SPF50 PA++++',
+        'price' => 649,
+        'image' => 'https://matildasbeauty.com/filemanager/c19a289a43fd497fba9ff3b1bacdc086.png',
+        'description' => 'High protection sunscreen lotion'
+    ],
+    [
+        'id' => 2,
+        'name' => 'Serum Luminous Glow Pro',
+        'price' => 749,
+        'image' => 'https://matildasbeauty.com/filemanager/c19a289a43fd497fba9ff3b1bacdc086.png',
+        'description' => 'Specialized serum for melasma and wrinkles'
+    ],
+    [
+        'id' => 3,
+        'name' => 'Skincare Trio Set+Lotion+Serum',
+        'price' => 1399,
+        'image' => 'https://matildasbeauty.com/filemanager/c19a289a43fd497fba9ff3b1bacdc086.png',
+        'description' => 'Complete beauty set with serum and lotion'
+    ]
+];
+
+// Convert products to JavaScript format for frontend
+$products_json = json_encode($products);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +46,22 @@
     {{-- STYLE SHEETS --}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            prefix: 't',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-pink': '#e91e63',
+                        'custom-purple': '#9c27b0'
+                    }
+                }
+            }
+        }
+    </script>
+
     <link rel="shortcut icon" href="{{ asset('images/icons/favicon.ico') }}" >
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
@@ -59,28 +111,692 @@
 
     </style>
 
+
+    <style>/* Success Modal Overlay */
+        
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(64deg, #e91e63 0%, #e91e63 45%, #9c27b0 100%);
+            z-index: 9999;
+            animation: success-modal-fadeIn 0.3s ease-in-out;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .success-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Close Button */
+        .success-modal-close-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(64deg, #e91e63 0%, #e91e63 45%, #9c27b0 100%);
+            border: 1px solid white;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 10001;
+        }
+
+        .success-modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        /* Success Content */
+        .success-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin: 20px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: success-modal-slideUp 0.4s ease-out;
+            position: relative;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        /* Success Icon */
+        .success-modal-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #e91e63 0%, #e91e63 70%, #9c27b0 100%);
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: success-modal-bounce 0.6s ease-out;
+        }
+
+        .success-modal-icon::before {
+            content: '✓';
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+            /* Typography */
+        .success-modal-title {
+            color: #333;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .success-modal-message {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* Order Details */
+        .success-modal-order-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 12px 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .success-modal-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .success-modal-detail-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .success-modal-detail-label {
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+            min-width: 80px;
+        }
+
+        .success-modal-detail-value {
+            color: #666;
+            font-size: 14px;
+            flex: 1;
+            text-align: right;
+        }
+
+        .success-modal-customer-name {
+            color: #e91e63;
+            font-weight: 600;
+        }
+
+        .success-modal-promo-text {
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        .success-modal-total-amount {
+            color: #e91e63;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* Action Buttons */
+        .success-modal-action-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .success-modal-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+
+        .success-modal-btn-primary {
+            background: linear-gradient(135deg, #e91e63 0%, #e91e63 70%, #9c27b0 100%);
+            color: white;
+        }
+
+        .success-modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.3);
+        }
+        /* Animations */
+        @keyframes success-modal-fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes success-modal-slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes success-modal-bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-8px);
+            }
+            60% {
+                transform: translateY(-4px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .success-modal {
+                padding: 15px;
+            }
+            
+            .success-modal-content {
+                margin: 10px;
+                padding: 25px 20px;
+                max-height: calc(100vh - 30px);
+            }
+
+            .success-modal-title {
+                font-size: 22px;
+            }
+
+            .success-modal-close-btn {
+                top: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .success-modal-action-buttons {
+                flex-direction: column;
+            }
+
+            .success-modal-detail-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .success-modal-detail-value {
+                text-align: left;
+            }
+
+            .success-modal-promo-text {
+                max-width: 100%;
+            }
+        }
+    </style>
+
+
+    <style> /* Loading Modal Overlay */
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #e91e63 0%, #e91e63 70%, #9c27b0 100%);
+            z-index: 10000;
+            animation: loading-fadeIn 0.3s ease-in-out;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Loading Content */
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        /* Animated Skincare Icons */
+        .loading-animation {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 40px;
+        }
+
+        /* Main Bottle Animation */
+        .skincare-bottle {
+            width: 60px;
+            height: 80px;
+            background: white;
+            border-radius: 8px 8px 15px 15px;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            animation: loading-bounce 2s ease-in-out infinite;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .skincare-bottle::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 15px;
+            width: 30px;
+            height: 12px;
+            background: #f8f9fa;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .skincare-bottle::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 50px;
+            background: linear-gradient(135deg, #e91e63, #f8bbd9);
+            border-radius: 4px;
+            opacity: 0.8;
+        }
+
+        /* Floating Bubbles */
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: loading-float 3s ease-in-out infinite;
+        }
+
+        .bubble:nth-child(1) {
+            width: 12px;
+            height: 12px;
+            top: 15px;
+            left: 10px;
+            animation-delay: 0s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 8px;
+            height: 8px;
+            top: 30px;
+            right: 15px;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 15px;
+            height: 15px;
+            bottom: 20px;
+            left: 20px;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 10px;
+            height: 10px;
+            bottom: 35px;
+            right: 10px;
+            animation-delay: 0.5s;
+        }
+
+        /* Loading Text */
+        .loading-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            animation: loading-pulse 2s ease-in-out infinite;
+        }
+
+        .loading-message {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* Progress Dots */
+        .loading-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .loading-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: loading-dot-pulse 1.5s ease-in-out infinite;
+        }
+
+        .loading-dot:nth-child(1) { animation-delay: 0s; }
+        .loading-dot:nth-child(2) { animation-delay: 0.3s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.6s; }
+
+        /* Animations */
+        @keyframes loading-fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes loading-bounce {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+            }
+            50% { 
+                transform: translateY(-15px) rotate(5deg); 
+            }
+        }
+
+        @keyframes loading-float {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translateY(-20px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        @keyframes loading-pulse {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes loading-dot-pulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .loading-animation {
+                width: 100px;
+                height: 100px;
+            }
+
+            .skincare-bottle {
+                width: 50px;
+                height: 70px;
+                left: 25px;
+            }
+
+            .loading-title {
+                font-size: 24px;
+            }
+
+            .loading-message {
+                font-size: 14px;
+                padding: 0 20px;
+            }
+        }
+
+        /* Demo page styling */
+        .demo-page {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .demo-btn {
+            padding: 15px 30px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .demo-btn:hover {
+            background: #c2185b;
+        }
+    </style>
+
+    <style>/* Disable text selection and long press */
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Allow text selection only for input fields */
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+            -webkit-touch-callout: default;
+        }
+        
+        /* Custom gradient background */
+        .bg-gradient-purple-pink {
+            background: linear-gradient(135deg, #9c27b0 0%, #e91e63 100%);
+        }
+        
+        /* Default state for all checkmarks */
+        .check-circle {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-weight: bold !important;
+            background-color: transparent !important;
+            border: 2px solid #d1d5db !important;
+            color: transparent !important;
+        }
+        
+        /* Selected state styles */
+        .product-selected {
+            border-color: #e91e63 !important;
+            background-color: #fdf2f8 !important;
+        }
+        
+        .product-selected .check-circle {
+            background-color: #e91e63 !important;
+            color: white !important;
+            border: 2px solid #e91e63 !important;
+        }
+        
+        /* Unselected state styles */
+        .product-unselected .check-circle {
+            background-color: transparent !important;
+            border: 2px solid #d1d5db !important;
+            color: transparent !important;
+        }
+        
+        /* Beautiful popup modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .modal-overlay.show .modal-content {
+            transform: scale(1) translateY(0);
+        }
+        
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+            background: linear-gradient(135deg, #e91e63, #ad1457);
+        }
+        
+        .modal-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2d3748;
+            line-height: 1.2;
+        }
+        
+        .modal-message {
+            font-size: 20px;
+            color: #4a5568;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+        
+        .modal-button {
+            background: linear-gradient(135deg, #e91e63, #ad1457);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 140px;
+        }
+        
+        .modal-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
+        }
+        
+        .missing-fields {
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .missing-fields h4 {
+            margin: 0 0 15px 0;
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .missing-fields ul {
+            margin: 0;
+            padding-left: 25px;
+            color: #dc2626;
+        }
+        
+        .missing-fields li {
+            margin-bottom: 8px;
+            font-size: 16px;
+            line-height: 1.3;
+        }
+    </style>
+
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
     {{-- <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script> --}}
 
-@if (!request()->test)
-    <!-- Meta Pixel Code -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '375777585581364');
-        fbq('track', 'PageView');
-        </script>
-        <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
-@endif
+    @if (!request()->test)
+        {{-- <!-- Meta Pixel Code -->
+        <script>
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '375777585581364');
+            fbq('track', 'PageView');
+            </script>
+            <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
+        /></noscript> --}}
+        <!-- End Meta Pixel Code -->
+    @endif
 
 
     <!----- Tiktok Pixel Code ----->
@@ -504,20 +1220,20 @@
 
             {{-- <img src="https://matildasbeauty.com/filemanager/30ab80a0c85a4df69f8917950955e48f.webp" width="480" height="480" alt="buy 2 take 2"> --}}
 
-           <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
+           {{-- <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
                 <span class="ttext-lg">Enjoy our Free Soap & Sunscreen</span>
-                
                 <br> <span class="tfont-extrabold ttext-md ttext-red-900">Sold out twice, Don't Miss it <br> 
                 <span class="ttext-md">We'll never offer this again.</span>
                 </span> 
-            </div>
+            </div> --}}
 
-            <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
-                <input type="hidden" id="purchase_value" value="{{ request()->amount }}">
-                <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3>
+            {{-- <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="purchase_value" value="{{ request()->amount }}"> --}}
+                {{-- <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3> --}}
 
-                @csrf
-                <div class="tw-full tflex tmb-3">
+                {{-- @csrf --}}
+
+                {{-- <div class="tw-full tflex tmb-3">
                     <div class="tw-1/2 tmr-1">
                         <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Full Name</label>
                         <input required type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="browser-default input-control">
@@ -529,7 +1245,7 @@
                         <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Phone Number</label>
                         <input required type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default input-control">
                     </div>
-                </div><!--Fullname & Phone Number -->
+                </div><!--full_name & Phone Number -->
                 <div class="tw-full tflex tmb-3">
                     <div class="tw-auto tmr-1">
                         <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
@@ -538,150 +1254,184 @@
                         </label>
                         <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
                     </div>
-                </div><!--Address -->
+                </div><!--Address --> --}}
 
-                {{-- <div class="tflex tmb-3">
-                    <div class="tw-full">
-                        <label for="province" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Province</label>
-                        <select required name="province" id="province" class="browser-default input-control" style="font-size: 12px;">
-                            <option value="">Province</option>
-                            @foreach ($provinces as $province)
-                                <option value="{{ $province }}">{{ $province }}</option>
-                            @endforeach
-                        </select>
-                    </div><!--province -->
-                </div><!--province -->
-                <div class="tflex tmb-5">
-                    <div class="tw-1/2">
-                        <label for="city" class="tfont-medium ttext-sm tmb-2 ttext-black-100">City</label>
-                        <select required name="city" id="city" disabled class="browser-default input-control" style="font-size: 12px;border-right: 0px;">
-                            <option value="">City</option>
-                        </select>
-                    </div><!--city -->
-                    <div class="tw-1/2">
-                        <label for="barangay" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Barangay</label>
-                        <select required name="barangay" disabled id="barangay" class="browser-default input-control" style=" font-size: 12px;border-left: none;">
-                            <option value="">Barangay</option>
-                        </select>
-                    </div><!--barangay -->
-                </div><!--province/city/barangay --> --}}
+                {{-- ============================================================================================= --}}
 
-                <div class="tborder-2 tmb-2 tp-2 trelative" style="border-color: #ee2a7ba8">
-                    <div class="tflex tflex-wrap tjustify-center">
 
-                         <div class="tborder-b-2 tborder-pink-400 tflex titems-center tw-full">
-                            <label>
-                                <input type="radio" id="promo6" name="promo" class="promo" value="Lotion_1pc|649|1pc">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-bold ttext-sm">₱649</span>
-                                    <span class="tfont-medium">Lotion Sunscreen SPF50 PA++++ 100g</span>
-                                </span>
-                            </label>
-                        </div><!-- PROMO 6-->
-
-                        <div class="tflex titems-center tw-full ">
-                            <label>
-                                <input type="radio" id="promo5" name="promo" class="promo" value="MissTisa_1pc|499|1pc">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-bold ttext-sm">₱499</span>
-                                    <span class="tfont-medium">MissTisa Set 1pc</span>
-                                </span>
-                            </label>
-                        </div><!-- PROMO 5-->
-
-                        <div class="tborder-b-2 tborder-pink-400 tflex titems-center tw-full">
-                            <label>
-                                <input type="radio" id="promo4" name="promo" class="promo" value="MissTisa_2pcs|849|2pcs">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-bold ttext-sm">₱849</span>
-                                    <span class="tfont-medium">MissTisa Set 2pcs</span>
-                                </span>
-                            </label>
-                        </div><!-- PROMO 4-->
-
-                        <div class="tflex titems-center tw-full">
-                            <label>
-                                <input type="radio" id="promo2" name="promo" class="promo" value="MissTisaSerum_1pc|749|1pcs">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-bold ttext-sm">₱749</span>
-                                    <span class="tfont-medium">Serum 1pc</span>
-                                </span>
-                            </label>
-                        </div><!-- PROMO 2 -->
-
-                        <div class="tflex titems-center tw-full tborder-b-2 tborder-pink-400 ">
-                            <label>
-                                <input type="radio" id="promo3" name="promo" class="promo" value="MissTisaSerum_2pcs|999|2pcs">
-                                <span class="ttext-gray-900" style="font-size: 13px;">
-                                    <span class="tfont-bold ttext-sm">₱999</span>
-                                    <span class="tfont-medium">Serum 2pcs</span>
-                                </span>
-                            </label>
-                        </div><!-- PROMO 3 -->
-
-                        <div class="tflex titems-center tw-full  trelative tborder-b-2 tborder-pink-400 tpb-3">
-                            <label>
-                                <input type="radio" id="promo1" name="promo" class="promo" checked="" value="1_MissTisa_Set_1Serum|1149|1each">
-                                <span class="ttext-gray-900">
-                                    <span class="tfont-bold ttext-lg"  style=" color: #ff5500;">₱1149</span>
-                                    <span class="tfont-bold ttext-lg"  style=" color: #ff5500;">MissTisa Set + Serum </span>
-                                    {{-- <br> <span class="ttext-md tfont-bold" style="color: #2e2e2e;">🎁 Free Extra Soap & Sunscreen</span>  --}}
-                                    {{-- <br>
-                                    <div class="tflex tjustify-between">
-                                        <div class="ttext-md tfont-bold tmr-8" style="color: #ff0021;">🚨 Promo expires in </div> 
-                                        <div class="ttext-md tfont-bold tflex" style="color: #ff0021;">
-                                            ⏰
-                                            <div id="timer_bottom">29:38</div>
-                                            mins
-                                        </div> 
-                                        
-                                    </div> --}}
-                                </span>
-                            </label>
-                            {{-- <span class="tabsolute tfont-medium tright-0 ttext-red-700"> 
-                                <i class="fas fa-arrow-left"></i>
-                                 Best Seller
-                            </span> --}}
-                        </div><!-- PROMO 1 -->
-
-                        <div class="tflex titems-center tw-full  trelative tmt-2">
-                            <label>
-                                <input type="radio" id="promo7" name="promo" class="promo" checked="" value="MissTisa_Set+Serum+Lotion|1399|1each">
-                                <span class="ttext-gray-900">
-                                    <span class="tfont-bold ttext-lg tshadow-lg"  style=" color: hsl(340, 100%, 50%);">₱1399</span>
-                                    <span class="tfont-bold ttext-lg tshadow-lg"  style=" color: hsl(340, 100%, 50%);">MissTisa Set + Serum + Lotion</span>
-                                    <br> <span class="ttext-md tfont-bold" style="color: #2e2e2e;">🎁Kulubot, Melasma & Whitening Remover Kit🎁</span> 
-                                    <br>
-                                    <div class="tflex tjustify-between">
-                                        <div class="ttext-md tfont-bold tmr-8" style="color: #ff0021;">🚨 Promo expires in </div> 
-                                        <div class="ttext-md tfont-bold tflex" style="color: #ff0021;">
-                                            ⏰
-                                            <div id="timer_bottom">29:38</div>
-                                            mins
-                                        </div> 
-                                        
-                                    </div>
-                                </span>
-                            </label>
-                            {{-- <span class="tabsolute tfont-medium tright-0 ttext-red-700"> 
-                                <i class="fas fa-arrow-left"></i>
-                                 Best Seller
-                            </span> --}}
-                        </div><!-- PROMO 7 -->
+                <!-- ORDER PROMO -->
+                <div class="th-full tflex tflex-col tmax-w-2xl tmx-auto tbg-white tp-3">
+                    <!-- Header -->
+                    <h1 class="ttext-center ttext-xl tfont-black ttext-gray-900 tmb-3 ttracking-wide">ORDER FORM</h1>
+                    
+                    <!-- Customer Information Form -->
+                    <div class="tmb-3">
+                        <div class="tgrid tgrid-cols-2 tgap-2 tmb-2">
+                            <div>
+                                <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Full Name</label>
+                                <input 
+                                    type="text" 
+                                    id="full_name"
+                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-xs"
+                                    placeholder="Enter your full name"
+                                    name="full_name"
+                                >
+                            </div>
+                            <div>
+                                <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Contact Number</label>
+                                <input 
+                                    type="tel" 
+                                    id="phone_number"
+                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-xs"
+                                    placeholder="Enter your contact number"
+                                    name="phone_number" 
+                                >
+                            </div>
+                        </div>
+                        <div>
+                            <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Complete Address <span class="ttext-md ttext-gray-500">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</span> </label>
+                            <input 
+                                type="text" 
+                                id="address"
+                                class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-xs"
+                                placeholder="Enter your complete address"
+                                name="address"
+                            >
+                        </div>
                     </div>
-                   
-                    @error('promo')
-                        <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 32%;">{{ $message }}</span>
-                    @enderror
-                </div><!-- ORDER PROMO -->
-                <div class="tmt-3 ttext-right tw-full">
+
+                    <!-- Product Selection -->
+                    <div class="tflex tflex-col">
+                        <h2 class="ttext-center ttext-base tfont-bold ttext-gray-800 tmb-2">
+                            <span class="ttext-lg">🌟</span> MissTisa Beauty Collection
+                        </h2>
+                        
+                        <div class="tgrid tgrid-cols-2 tgap-2">
+                            <?php foreach ($products as $index => $product): ?>
+                            <div class="product-card <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" style="height: 150px;" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
+                                <div class="tflex titems-center tgap-2 tmb-1">
+                                    <div class="tflex titems-center tjustify-center trounded-md" style="height: 65px; width: 65px;">
+                                        <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="tw-full th-full tobject-cover trounded-md" />
+                                    </div>
+                                    <div class="tmx-auto">
+                                        <span class="tfont-bold ttext-2xl ttext-pink-600">₱<?= number_format($product['price']) ?></span>
+                                    </div>
+                                </div>
+                                <div class="check-circle tabsolute tw-6 th-6 trounded-full tflex titems-center tjustify-center ttext-xs tfont-bold" style="top: 4px;right: 4px;">✓</div>
+                                <h3 class="tfont-bold ttext-center ttext-gray-800 ttext-xs" style="font-size: 17px;"><?= htmlspecialchars($product['name']) ?></h3>
+                                <div id="quantity-container-<?= $product['id'] ?>" class="tflex titems-center tjustify-center tmb-1 tmt-2 <?= $index !== 0 ? 'thidden' : '' ?>">
+                                    <div class="tflex titems-center tbg-white tborder-2 tborder-pink-200 trounded-md tpx-1 tpy-1 tshadow-sm">
+                                        <button onclick="changeQuantity(<?= $product['id'] ?>, -1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">-</button>
+                                        <span id="quantity-<?= $product['id'] ?>" class="tmx-3 tfont-bold ttext-lg ttext-gray-800 tmin-w-[24px] ttext-center">1</span>
+                                        <button onclick="changeQuantity(<?= $product['id'] ?>, 1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <!-- Total and Buy Button -->
+                    <button 
+                        id="submit_btn"
+                        onclick="submitOrder()"
+                        class="bg-gradient-purple-pink trounded-xl tp-4 ttext-white tmt-3 tw-full tflex tjustify-between titems-center hover:opacity-90 ttransition-all tduration-300 tcursor-pointer tshadow-lg hover:tshadow-xl hover:transform hover:tscale-105 active:tscale-95"
+                        style="box-shadow: 0 8px 25px rgba(185, 36, 147, 0.3); transition: all 0.3s ease;"
+                    >
+                        <div>
+                            <div class="ttext-sm tfont-medium">Total Amount:</div>
+                            <div class="ttext-2xl tfont-bold" id="total">₱ <span><?= number_format($products[0]['price']) ?></span> </div>
+                        </div>
+                        <div class="tbg-white tpx-6 tpy-3 trounded-lg ttext-xl tfont-black ttracking-wide tshadow-md" style="color: rgb(185, 36, 147);">
+                            BUY NOW
+                        </div>
+                    </button>
+                </div> <!-- ORDER FOROM AND PROMO -->
+
+                <div id="validationModal" class="modal-overlay">
+                    <div class="modal-content">
+                        <div id="modalIcon" class="modal-icon">
+                            ⚠️
+                        </div>
+                        <h3 id="modalTitle" class="modal-title">Complete Your Information</h3>
+                        <p id="modalMessage" class="modal-message">Please fill in all required fields to continue with your order.</p>
+                        <div id="missingFields" class="missing-fields" style="display: none;">
+                            <h4>Missing Information:</h4>
+                            <ul id="fieldsList">
+                            </ul>
+                        </div>
+                        <button class="modal-button" onclick="closeModal()">Got It!</button>
+                    </div>
+                </div><!-- MODAL - VALIDATION -->
+
+                <!-- MODAL SUCCESS NEW-->
+                <div class="success-modal" id="successModal">
+                    <button class="success-modal-close-btn" onclick="closeSuccessModal()">✕</button>
+                    
+                    <div class="success-modal-content">
+                        <div class="success-modal-icon"></div>
+                        
+                        <h1 class="success-modal-title">Order Sucess!</h1>
+                        
+                        <div class="success-modal-order-details tbg-white tfont-medium tshadow-lg">
+                            <div class="success-modal-detail-row">
+                                <span class="success-modal-detail-label">Customer:</span>
+                                <span class="success-modal-detail-value success-modal-customer-name" id="successModalCustomerName">-</span>
+                            </div>
+                            
+                            <div class="success-modal-detail-row">
+                                <span class="success-modal-detail-label">Products:</span>
+                                <span class="success-modal-detail-value success-modal-promo-text" id="successModalPromoText">-</span>
+                            </div>
+                            
+                            <div class="success-modal-detail-row">
+                                <span class="success-modal-detail-label ttext-center tmx-auto">Total:</span>
+                                <span class="success-modal-detail-value ttext-center tmx-auto success-modal-total-amount" id="successModalTotalAmount">₱0</span>
+                            </div>
+                        </div>
+                         <div class="success-modal-action-buttons">
+                            <a href="https://www.facebook.com/groups/422982666836465" class="success-modal-btn success-modal-btn-primary zoom-in-out-box">Join Our MissTisa <br> VIP Facebook Group</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading Overlay -->
+                <div class="loading-overlay" id="loadingOverlay">
+                    <div class="loading-content">
+                        <div class="loading-animation">
+                            <div class="skincare-bottle"></div>
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                        </div>
+                        
+                        <h2 class="loading-title">Processing Your Order</h2>
+                        <p class="loading-message">
+                            Please wait while we prepare your<br>
+                            skincare products with love ✨
+                        </p>
+                        
+                        <div class="loading-dots">
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                        </div>
+                    </div>
+                </div> <!-- Loading Overlay -->
+
+                {{-- ============================================================================================= --}}
+
+                {{-- <div class="tmt-3 ttext-right tw-full">
                     <span class="ttext-gray-900" style="font-size: 16px;">
                         <span class="tfont-medium">TOTAL:</span>
                         <span class="tfont-medium">₱</span>
                         <span id="total" class="tfont-medium t-ml-1">1399</span>
                     </span>
-                </div>
-                <div class="tw-full ">
+                </div> --}}
+
+
+                {{-- <div class="tw-full ">
                     <button style="background-color: #ee2a7b" class="focus:tbg-pink-500 trelative tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
                         <span>Checkout Order</span>
                     </button>
@@ -690,10 +1440,10 @@
                         <span class="tmr-5">Loading please wait</span>
                     </span>
                 </div><!-- Submit Order -->
-            </form><!-- ORDER PROMO -->
+            </form><!-- ORDER PROMO --> --}}
 
 
-            <div id="modal1" class="modal">
+            {{-- <div id="modal1" class="modal">
                 <div class="modal-content" style="padding-bottom: 0px;">
                     <h4 class="tfont-medium ttext-3xl">Thank you</h4>
                     <h5 class="tfont-medium tmb-3 tmt-4 ttext-xl">Your order was completed successfully.</h5>
@@ -711,7 +1461,7 @@
                 <div class="modal-footer">
                     <a href="" class="modal-close waves-effect waves-green btn-flat">Close</a>
                 </div>
-            </div> <!-- Modal  -->
+            </div> <!-- Modal  --> --}}
 
             <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
                 style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
@@ -721,257 +1471,323 @@
     </div>
 
     <footer>
-        
-        <!----- Tiktok Pixel ViewContent ----->
-        <script>
 
-            // ttq.track('ViewContent', {
+        {{-- /// ORDER PROCESSING SCRIPT --}}
+    <script>
+        // Get products data from PHP
+        const products = <?= $products_json ?>;
+        
+        let currentTotal = products[0].price;
+        let selectedProducts = [0];
+        let quantities = <?= json_encode(array_fill(0, count($products), 0)) ?>;
+        quantities[0] = 1; // Set first product quantity to 1
+        
+        // Create prices array from products
+        const prices = products.map(product => product.price);
+
+        function showValidationModal(missingFields) {
+            const modal = document.getElementById('validationModal');
+            const fieldsList = document.getElementById('fieldsList');
+            const missingFieldsDiv = document.getElementById('missingFields');
+            
+            // Clear previous fields
+            fieldsList.innerHTML = '';
+            
+            // Add missing fields to list
+            missingFields.forEach(field => {
+                const li = document.createElement('li');
+                li.textContent = field;
+                fieldsList.appendChild(li);
+            });
+            
+            // Show missing fields section
+            missingFieldsDiv.style.display = 'block';
+            
+            // Show modal with animation
+            modal.classList.add('show');
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('validationModal');
+            modal.classList.remove('show');
+        }
+
+        function selectProduct(element, price, productIndex) {
+            // Check if this is the only selected product and prevent deselection
+            if (element.classList.contains('product-selected') && selectedProducts.length === 1) {
+                // Don't allow deselecting the last selected product
+                return;
+            }
+            
+            // Toggle selection
+            if (element.classList.contains('product-selected')) {
+                // Deselect product
+                element.classList.remove('product-selected');
+                element.classList.add('product-unselected');
+                element.classList.remove('tborder-pink-500', 'tbg-pink-50');
+                element.classList.add('tborder-gray-300', 'tbg-white');
+                
+                // Hide quantity container
+                document.getElementById(`quantity-container-${productIndex}`).classList.add('thidden');
+                
+                // Reset quantity and remove from selected products
+                quantities[productIndex] = 0;
+                document.getElementById(`quantity-${productIndex}`).textContent = 1;
+                selectedProducts = selectedProducts.filter(index => index !== productIndex);
+            } else {
+                // Select product
+                element.classList.remove('product-unselected');
+                element.classList.add('product-selected');
+                element.classList.remove('tborder-gray-300', 'tbg-white');
+                element.classList.add('tborder-pink-500', 'tbg-pink-50');
+                
+                // Show quantity container
+                document.getElementById(`quantity-container-${productIndex}`).classList.remove('thidden');
+                
+                // Set initial quantity and add to selected products
+                quantities[productIndex] = 1;
+                document.getElementById(`quantity-${productIndex}`).textContent = 1;
+                if (!selectedProducts.includes(productIndex)) {
+                    selectedProducts.push(productIndex);
+                }
+            }
+            
+            updateTotal();
+        }
+
+        function changeQuantity(productIndex, change) {
+            const newQuantity = Math.max(1, quantities[productIndex] + change);
+            quantities[productIndex] = newQuantity;
+            document.getElementById(`quantity-${productIndex}`).textContent = newQuantity;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            currentTotal = 0;
+            selectedProducts.forEach(productIndex => {
+                currentTotal += prices[productIndex] * quantities[productIndex];
+            });
+            document.getElementById('total').textContent = `₱${currentTotal.toLocaleString()}`;
+        }
+
+        // SUBMIT ORDER
+        function submitOrder() {
+            // Show loading before fetch
+            showLoading();
+
+            const full_name = document.getElementById('full_name').value.trim();
+            const phone_number = document.getElementById('phone_number').value.trim();
+            const address = document.getElementById('address').value.trim();
+
+            // Check for missing fields
+            const missingFields = [];
+            if (!full_name) missingFields.push('Full Name');
+            if (!phone_number) missingFields.push('Contact Number');
+            if (!address) missingFields.push('Complete Address');
+
+            if (missingFields.length > 0) {
+                hideLoading();// Hide loading
+
+                showValidationModal(missingFields);
+                return;
+            }
+
+            if (selectedProducts.length === 0) {
+                hideLoading();// Hide loading
+
+                showValidationModal(['At least one product selection']);
+                return;
+            }
+
+            // Create products array from selected products
+            const productsArray = selectedProducts.map(productIndex => ({
+                id: products[productIndex].id,
+                name: products[productIndex].name,
+                qty: quantities[productIndex],
+                price: products[productIndex].price,
+                subtotal: products[productIndex].price * quantities[productIndex]
+            }));
+
+            // Create order object
+            const orderData = {
+                customer: {
+                    full_name: full_name,
+                    phone_number: phone_number,
+                    address: address
+                },
+                products: productsArray,
+                total: currentTotal
+            };
+
+            // START =================== SUBMIT ORDER =======================
+
+            // ==== Get CSRF token from meta tag ====
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            // Make POST request using fetch
+            fetch('{{ route("miss_tisa_submit") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(orderData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {// Handle successful response
+                hideLoading();// Hide loading
+
+                if (data.success) {
+                    showSuccessModal(data);
+                }// Show the beautiful success modal
+
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                hideLoading();// Hide loading
+
+                // Handle errors
+                console.error('Error:', error);
+            });
+            // END ==================== SUBMIT ORDER =======================
+
+
+
+            $.post("/event-listener",{
+                submit_order: 1,
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });//  EVENT LISTENER Track SUBMIT ORDER
+
+            // Console log the complete order
+            console.log('=== ORDER SUBMITTED ===');
+            console.log('Order Data:', orderData);
+            console.log('=======================');
+        } // Submit Order
+
+        // Initialize with first product selected
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTotal();
+        });
+    </script>
+
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        var $window = $(window),x
+            $document = $(document),
+            button = $('.order_now');
+            
+        $window.on('scroll', function () {
+            let scrollH = $(window).height() + $(window).scrollTop();
+            let H = ($document.height() - 550);
+
+            if (scrollH > H) {
+                
+                button.stop(true).css('z-index', 0).animate({
+                    opacity: 0
+                }, 50);
+            } else {
+                button.stop(true).css('z-index', 999).animate({
+                    opacity: 1
+                }, 50);
+            }
+        });// hide show ORDER BUTTON on Scroll
+
+        $('.order_now').click(function (e) {
+            $('html, body').animate({
+                scrollTop: $('#submit_btn').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
+            }, 'slow');
+
+            $.post("/event-listener",{
+                order_form: 1, 
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });// EVENT LISTENER Track ORDER FORM
+        });
+
+        $('#full_name').change(function (e) {
+            $.post("/event-listener",{
+                full_name: $(this).val(),
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });// EVENT LISTENER Track ENTER FULL NAME
+        });
+        
+        $('#phone_number').change(function (e) {
+            $.post("/event-listener",{
+                phone_number: $(this).val(),
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });// EVENT LISTENER Track ENTER CONTACT NUMBER
+        });
+
+        $('#address').change(function (e) {
+            $.post("/event-listener",{
+                address: $(this).val(),
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });// EVENT LISTENER Track ENTER CONTACT NUMBER
+        });
+
+        $('.promo').click(function (e) {
+            $.post("/event-listener",{
+                promo: 1,
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });// EVENT LISTENER Track ENTER CONTACT NUMBER
+        });
+
+        $('#submit_btn').click(function () {
+            $.post("/event-listener",{
+                submit_order: 1,
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });//  EVENT LISTENER Track SUBMIT ORDER
+            
+            // let amount = $('#total').html();
+
+            // ttq.track('InitiateCheckout', {
             //     "contents": [
             //         {
             //             "content_id": "1",
-            //             "content_type": "product", 
-            //             "content_name": "Matilda's Beauty MissTisa Melasma Rejuvenating Skincare Set", 
-            //             "content_category": "Beauty Products",
-            //             "brand": "MissTisa"
+            //             "content_type": "product",
+            //             "content_name": "",
+            //             "quantity": 1,
+            //             "price": amount
             //         }
-            //     ]
-            // });
+            //     ],
+            //     "value": amount,
+            //     "currency": "PHP" 
+            // });//TIktok Event
 
-        </script>
+        })
 
-        @if (request()->amount)
-            <script>
-                let fb_purchase_value = $('#purchase_value').val()? $('#purchase_value').val() : 0;
-            </script>
-        @endif
+        $("#form").submit(function(event) {
+            $('#submit_btn').addClass('thidden');
+            $('#loader').removeClass('thidden');
+        });
 
-        <script>
-             $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+        $.post("/event-listener",{
+            visitors: 1,
+            website: '{{ $website }}',
+            session_id: '{{ $session_id }}',
+        });//  EVENT LISTENER Track VIEW
 
-            // ONCLICKS
-            $('#province').change(function () {
-                $.post("/get-cities",{
-                    province: $(this).val()
-                },
-                function(data, status){
-                    let html = "<option value=''>Pick your city</option>"
-                    $.each(JSON.parse(data), function(index, value) {
-                        html += "<option value='"+value.city+"'>"+value.city+"</option>";
-                    });
-                    $('#city').html();
-                    $('#barangay').html("<option value='Barangay'>Pick your barangay</option>");
-                    $('#city').html(html);
-
-                    $('#city').removeAttr("disabled");// Enable City
-                });
-            });
-
-            $('#city').change(function () {
-                $.post("/get-barangay",{
-                    city: $(this).val()
-                },
-                function(data, status){
-                    let html = "<option value=''>Pick your barangay</option>"
-                    $.each(JSON.parse(data), function(index, value) {
-                        html += "<option value='"+value.barangay+"'>"+value.barangay+"</option>";
-                    });
-                    $('#barangay').html(html);
-
-                    $('#barangay').removeAttr("disabled");// Enable City
-                });
-            });
-            
-            $('#promo1').change(function () {
-                $('#total').html($(this).val().split('|')[1]);
-                $("#promo2").prop('checked', false);
-                $("#promo3").prop('checked', false);
-                $("#promo4").prop('checked', false);
-                $("#promo5").prop('checked', false);
-                $("#promo6").prop('checked', false);
-                $("#promo7").prop('checked', false);
-            });
-
-            $('#promo2').change(function () {
-                $('#total').html($(this).val().split('|')[1]);
-                $("#promo1").prop('checked', false);
-                $("#promo3").prop('checked', false);
-                $("#promo4").prop('checked', false);
-                $("#promo5").prop('checked', false);
-                $("#promo6").prop('checked', false);
-                $("#promo7").prop('checked', false);
-            });
-
-            $('#promo3').change(function () {
-                $('#total').html($(this).val().split('|')[1]);
-                $("#promo1").prop('checked', false);
-                $("#promo2").prop('checked', false);
-                $("#promo4").prop('checked', false);
-                $("#promo5").prop('checked', false);
-                $("#promo6").prop('checked', false);
-                $("#promo7").prop('checked', false);
-            });
-
-            $('#promo4').change(function () {
-                $('#total').html($(this).val().split('|')[1]);
-                $("#promo1").prop('checked', false);
-                $("#promo2").prop('checked', false);
-                $("#promo3").prop('checked', false);
-                $("#promo5").prop('checked', false);
-                $("#promo6").prop('checked', false);
-                $("#promo7").prop('checked', false);
-            });
-
-            $('#promo5').change(function () {
-                $('#total').html($(this).val().split('|')[1]);
-                $("#promo1").prop('checked', false);
-                $("#promo2").prop('checked', false);
-                $("#promo3").prop('checked', false);
-                $("#promo4").prop('checked', false);
-                $("#promo6").prop('checked', false);
-                $("#promo7").prop('checked', false);
-            });
-
-            $('#promo6').change(function () {
-                $('#total').html($(this).val().split('|')[1]);
-                $("#promo1").prop('checked', false);
-                $("#promo2").prop('checked', false);
-                $("#promo3").prop('checked', false);
-                $("#promo4").prop('checked', false);
-                $("#promo5").prop('checked', false);
-                $("#promo7").prop('checked', false);
-            });
-
-            $('#promo7').change(function () {
-                $('#total').html($(this).val().split('|')[1]);
-                $("#promo1").prop('checked', false);
-                $("#promo2").prop('checked', false);
-                $("#promo3").prop('checked', false);
-                $("#promo4").prop('checked', false);
-                $("#promo5").prop('checked', false);
-                $("#promo6").prop('checked', false);
-            });
-
-            var $window = $(window),x
-                $document = $(document),
-                button = $('.order_now');
-
-              
-                
-            $window.on('scroll', function () {
-                let scrollH = $(window).height() + $(window).scrollTop();
-                let H = ($document.height() - 550);
-
-                if (scrollH > H) {
-                    
-                    button.stop(true).css('z-index', 0).animate({
-                        opacity: 0
-                    }, 50);
-                } else {
-                    button.stop(true).css('z-index', 999).animate({
-                        opacity: 1
-                    }, 50);
-                }
-            });// hide show ORDER BUTTON on Scroll
-
-            $('.order_now').click(function (e) {
-                $('html, body').animate({
-                    scrollTop: $('#form').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
-                }, 'slow');
-
-                $.post("/event-listener",{
-                    order_form: 1, 
-                    website: '{{ $website }}',
-                    session_id: '{{ $session_id }}',
-                });// EVENT LISTENER Track ORDER FORM
-
-                // ttq.track('AddPaymentInfo', {
-                //     "contents": [
-                //         {
-                //             "content_id": "1", 
-                //             "content_type": "product",
-                //             "content_name": "" 
-                //         }
-                //     ],
-                //     "description": "" 
-                // });// Tiktok Event
-            });
-
-            $('#full_name').change(function (e) {
-                $.post("/event-listener",{
-                    full_name: $(this).val(),
-                    website: '{{ $website }}',
-                    session_id: '{{ $session_id }}',
-                });// EVENT LISTENER Track ENTER FULL NAME
-            });
-            
-            $('#phone_number').change(function (e) {
-                $.post("/event-listener",{
-                    phone_number: $(this).val(),
-                    website: '{{ $website }}',
-                    session_id: '{{ $session_id }}',
-                });// EVENT LISTENER Track ENTER CONTACT NUMBER
-            });
-
-            $('#address').change(function (e) {
-                $.post("/event-listener",{
-                    address: $(this).val(),
-                    website: '{{ $website }}',
-                    session_id: '{{ $session_id }}',
-                });// EVENT LISTENER Track ENTER CONTACT NUMBER
-            });
-
-            $('.promo').click(function (e) {
-                $.post("/event-listener",{
-                    promo: 1,
-                    website: '{{ $website }}',
-                    session_id: '{{ $session_id }}',
-                });// EVENT LISTENER Track ENTER CONTACT NUMBER
-            });
-
-            $('#submit_btn').click(function () {
-                $.post("/event-listener",{
-                    submit_order: 1,
-                    website: '{{ $website }}',
-                    session_id: '{{ $session_id }}',
-                });//  EVENT LISTENER Track SUBMIT ORDER
-                
-                let amount = $('#total').html();
-
-                // ttq.track('InitiateCheckout', {
-                //     "contents": [
-                //         {
-                //             "content_id": "1",
-                //             "content_type": "product",
-                //             "content_name": "",
-                //             "quantity": 1,
-                //             "price": amount
-                //         }
-                //     ],
-                //     "value": amount,
-                //     "currency": "PHP" 
-                // });//TIktok Event
-
-            })
-
-            $("#form").submit(function(event) {
-                $('#submit_btn').addClass('thidden');
-                $('#loader').removeClass('thidden');
-            });
-
-            $.post("/event-listener",{
-                visitors: 1,
-                website: '{{ $website }}',
-                session_id: '{{ $session_id }}',
-            });//  EVENT LISTENER Track VIEW
-
-        </script>
+    </script>
 
 
-    {{-- timer --}}
     <script>
         let timeLeft = 27 * 43;
 
@@ -1006,37 +1822,82 @@
         updateTimerTop();
         updateTimerBottom();
     </script>
+        
+    <script> // LOADING SCRIPT
+        function showLoading() { // Function to show loading overlay
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideLoading() { // Function to hide loading overlay
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+    
+    <script>  // ORDER SUCCESS MODAL SCRIPT
+
+        // Function to show success modal with data */
+        function showSuccessModal(data = null) {
+            const modal = document.getElementById('successModal');
+            
+            // If data is provided, populate the modal
+            if (data && data.success) {
+                document.getElementById('successModalCustomerName').textContent = data.customer;
+                
+                // Format promo text with line breaks
+                const promoElement = document.getElementById('successModalPromoText');
+                const formattedPromo = data.promo.split(' + ').join('\n');
+                promoElement.style.whiteSpace = 'pre-line'; // This makes \n work
+                promoElement.textContent = formattedPromo;
+                
+                document.getElementById('successModalTotalAmount').textContent = '₱' + data.total.toLocaleString();
+            }
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close success modal
+        function closeSuccessModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Test function with sample data
+        function testSuccessModal() {
+            const sampleData = {
+                "success": true,
+                "message": "Order submitted successfully!",
+                "customer": "Reggie Frias",
+                "promo": "1 - MissTisa Skincare Set + 1 - Lotion Sunscreen SPF50 PA++++ + 1 - Serum Luminous Glow Pro + 1 - Skincare Trio Set+Lotion+Serum",
+                "total": 3296
+            };
+            showSuccessModal(sampleData);
+        }
+
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSuccessModal();
+            }
+        }); // Close modal when clicking outside content
+
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('successModal').classList.contains('show')) {
+                closeSuccessModal();
+            }
+        }); // Close modal with Escape key
+
+
+    </script> 
 
     </footer>
 
-    @if(session()->has('success'))
-    <script>
-        $(document).ready(function(){
-            $('.modal').modal();
-            $('.modal').modal('open');
-        });// OPEN THANK YOU MODAL
 
-        $.post("/event-listener",{
-            order_success: 1,
-            website: '{{ $website }}',
-            session_id: '{{ $session_id }}',
-        });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
-    </script>
-    @endif
-
-    @if(session()->get('errors'))
-        <script>
-            $('html, body').animate({
-                scrollTop: $('#form').offset().top + 9999
-            }, 'slow');// SCROLL BACK TO FORM AFTER Submit with error validation
-
-            $.post("/event-listener",{
-                form_validation_error: "{{ $errors->first() }}",
-                website: '{{ $website }}',
-                session_id: '{{ $session_id }}',
-            });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
-        </script>
-    @endif
 
 </body>
 </html>
