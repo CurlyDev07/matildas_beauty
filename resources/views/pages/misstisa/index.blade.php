@@ -779,7 +779,7 @@ $products_json = json_encode($products);
     {{-- <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script> --}}
 
     @if (!request()->test)
-        {{-- <!-- Meta Pixel Code -->
+        <!-- Meta Pixel Code -->
         <script>
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -794,7 +794,7 @@ $products_json = json_encode($products);
             </script>
             <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
-        /></noscript> --}}
+        /></noscript>
         <!-- End Meta Pixel Code -->
     @endif
 
