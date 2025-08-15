@@ -780,7 +780,7 @@ $products_json = json_encode($products);
 
     @if (!request()->test)
         <!-- Meta Pixel Code -->
-        <script>
+        {{-- <script>
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -794,21 +794,9 @@ $products_json = json_encode($products);
             </script>
             <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
-        /></noscript>
+        /></noscript> --}}
         <!-- End Meta Pixel Code -->
     @endif
-
-
-    <!----- Tiktok Pixel Code ----->
-    {{-- <script>
-        !function (w, d, t) {
-          w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
-        
-          ttq.load('CNAPJGJC77U3KI9K4LG0');
-          ttq.page();
-        }(window, document, 'ttq');
-    </script> --}}
-    <!----- Tiktok Pixel Code ----->
 
 </head>
 <body>
@@ -1685,37 +1673,184 @@ $products_json = json_encode($products);
             }
         });
 
-        var $window = $(window),x
-            $document = $(document),
-            button = $('.order_now');
-            
-        $window.on('scroll', function () {
-            let scrollH = $(window).height() + $(window).scrollTop();
-            let H = ($document.height() - 550);
-
-            if (scrollH > H) {
+        // var $window = $(window),x
+            //     $document = $(document),
+            //     button = $('.order_now');
                 
-                button.stop(true).css('z-index', 0).animate({
-                    opacity: 0
-                }, 50);
-            } else {
-                button.stop(true).css('z-index', 999).animate({
-                    opacity: 1
-                }, 50);
+            // $window.on('scroll', function () {
+            //     let scrollH = $(window).height() + $(window).scrollTop();
+            //     let H = ($document.height() - 550);
+
+            //     if (scrollH > H) {
+            //         $('.order_now').css('display', 'none');
+            //         button.stop(true).css('z-index', 0).animate({
+            //             opacity: 0,
+            //         }, 50);
+
+            //     } else {
+            //         $('.order_now').css('display', 'block');
+
+            //         button.stop(true).css('z-index', 999).animate({
+            //             opacity: 1
+            //         }, 50);
+            //     }
+            // });// hide show ORDER BUTTON on Scroll
+
+            // $('.order_now').click(function (e) {
+            //     $('html, body').animate({
+            //         scrollTop: $('#submit_btn').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
+            //     }, 'slow');
+
+            //     $.post("/event-listener",{
+            //         order_form: 1, 
+            //         website: '{{ $website }}',
+            //         session_id: '{{ $session_id }}',
+            //     });// EVENT LISTENER Track ORDER FORM
+        // });
+
+        $(document).ready(function() {
+            const $window = $(window);
+            const $document = $(document);
+            const $button = $('.order_now');
+            
+            let isHidden = false;
+            let scrollTimeout;
+            let isScrolling = false;
+            
+            // Cache the calculation that doesn't change frequently
+            let hideThreshold = $document.height() - 550;
+            
+            // Function to recalculate page dimensions
+            function recalculateThreshold() {
+                hideThreshold = $document.height() - 550;
             }
-        });// hide show ORDER BUTTON on Scroll
+            
+            // Recalculate on various events that might change page height
+            $window.on('resize', recalculateThreshold);
+            
+            // Listen for image load events to recalculate when lazy images load
+            $(document).on('load', 'img', recalculateThreshold);
+            
+            // Force recalculation when images finish loading
+            $('img').on('load', recalculateThreshold);
+            
+            // Fallback: periodically recalculate for any missed lazy loads
+            setInterval(recalculateThreshold, 1000);
+            
+            // Reset scrolling flag periodically in case it gets stuck
+            setInterval(function() {
+                if (isScrolling) {
+                    isScrolling = false;
+                }
+                console.log('aaa');
+            }, 2000); // Improve this in the future.
+            // The Problem here is this function runs every 3 seconds. which can cost performance bottleneck.
 
-        $('.order_now').click(function (e) {
-            $('html, body').animate({
-                scrollTop: $('#submit_btn').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
-            }, 'slow');
-
-            $.post("/event-listener",{
-                order_form: 1, 
-                website: '{{ $website }}',
-                session_id: '{{ $session_id }}',
-            });// EVENT LISTENER Track ORDER FORM
+            
+            function toggleButton(show) {
+                if (show && isHidden) {
+                    isHidden = false;
+                    $button.stop(true, true)
+                        .css({ 'display': 'block', 'z-index': 999 })
+                        .animate({ opacity: 1 }, 50);
+                } else if (!show && !isHidden) {
+                    isHidden = true;
+                    $button.stop(true, true)
+                        .css('z-index', 0)
+                        .animate({ opacity: 0 }, 50, function() {
+                            $(this).css('display', 'none');
+                        });
+                }
+            }
+            
+            // Throttled scroll handler
+            $window.on('scroll', function() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    const scrollPosition = $window.height() + $window.scrollTop();
+                    toggleButton(scrollPosition <= hideThreshold);
+                }, 16);
+            });
+            
+            // Improved scroll to bottom function with lazy load support
+            function scrollToBottom() {
+                isScrolling = true;
+                
+                // Force lazy images to load by triggering scroll events
+                const currentScroll = $window.scrollTop();
+                $window.trigger('scroll');
+                
+                // Small delay to allow lazy loading to trigger
+                setTimeout(function() {
+                    const $target = $('#submit_btn');
+                    let targetOffset;
+                    
+                    // Recalculate page height in case images loaded
+                    recalculateThreshold();
+                    
+                    if ($target.length) {
+                        targetOffset = $target.offset().top - 20;
+                    } else {
+                        // Fallback: scroll to actual bottom of page
+                        targetOffset = $document.height() - $window.height();
+                    }
+                    
+                    $('html, body').animate({
+                        scrollTop: targetOffset
+                    }, {
+                        duration: 'slow',
+                        complete: function() {
+                            // Double-check position after animation with multiple retries
+                            let retryCount = 0;
+                            const maxRetries = 3;
+                            
+                            function checkPosition() {
+                                const currentScroll = $window.scrollTop();
+                                const maxScroll = $document.height() - $window.height();
+                                
+                                // Recalculate in case more images loaded during scroll
+                                recalculateThreshold();
+                                
+                                let finalTarget;
+                                if ($target.length) {
+                                    finalTarget = $target.offset().top - 20;
+                                } else {
+                                    finalTarget = $document.height() - $window.height();
+                                }
+                                
+                                // If we're not at the intended position and haven't exceeded retries
+                                if (Math.abs(currentScroll - finalTarget) > 10 && retryCount < maxRetries) {
+                                    retryCount++;
+                                    $('html, body').animate({
+                                        scrollTop: finalTarget
+                                    }, 200, checkPosition);
+                                } else {
+                                    isScrolling = false;
+                                }
+                            }
+                            
+                            setTimeout(checkPosition, 100);
+                        }
+                    });
+                }, 100);
+            }
+            
+            // Order button click handler
+            $button.on('click', function(e) {
+                e.preventDefault();
+                scrollToBottom();
+                
+                // Event tracking
+                $.post('/event-listener', {
+                    order_form: 1,
+                    website: '{{ $website }}',
+                    session_id: '{{ $session_id }}'
+                }).fail(function() {
+                    console.warn('Failed to track order form event');
+                });
+            });
         });
+
 
         $('#full_name').change(function (e) {
             $.post("/event-listener",{
@@ -1786,7 +1921,6 @@ $products_json = json_encode($products);
         });//  EVENT LISTENER Track VIEW
 
     </script>
-
 
     <script>
         let timeLeft = 27 * 43;
