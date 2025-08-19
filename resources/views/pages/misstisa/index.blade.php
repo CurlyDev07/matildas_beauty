@@ -6,14 +6,34 @@ $products = [
         'name' => 'MissTisa Skincare Set',
         'price' => 499,
         'image' => 'https://matildasbeauty.com/filemanager/c19a289a43fd497fba9ff3b1bacdc086.png',
-        'description' => 'Advanced anti-aging and whitening serum'
+        'description' => 'Advanced anti-aging and whitening serum',
+        'promo' => [
+            [
+                'qty' => 2,
+                'bundle_price' => 849
+            ],
+            [
+                'qty' => 5,
+                'bundle_price' => 1999
+            ]
+        ]
     ],
     [
         'id' => 1,
         'name' => 'Lotion Sunscreen SPF50 PA++++',
         'price' => 649,
         'image' => 'https://matildasbeauty.com/filemanager/c19a289a43fd497fba9ff3b1bacdc086.png',
-        'description' => 'High protection sunscreen lotion'
+        'description' => 'High protection sunscreen lotion',
+        'promo' => [
+            [
+                'qty' => 2,
+                'bundle_price' => 999
+            ],
+            [
+                'qty' => 5,
+                'bundle_price' => 2347
+            ]
+        ]
     ],
     [
         'id' => 2,
@@ -40,6 +60,7 @@ $products_json = json_encode($products);
 
 <head>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MissTisa | Matilda's Beauty</title>
@@ -780,7 +801,7 @@ $products_json = json_encode($products);
 
     @if (!request()->test)
         <!-- Meta Pixel Code -->
-        {{-- <script>
+        <script>
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -794,7 +815,7 @@ $products_json = json_encode($products);
             </script>
             <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
-        /></noscript> --}}
+        /></noscript>
         <!-- End Meta Pixel Code -->
     @endif
 
@@ -1633,6 +1654,8 @@ $products_json = json_encode($products);
 
                 if (data.success) {
                     showSuccessModal(data);
+                    console.log(data.total)
+                    fbq('track', 'Purchase', {currency: "PHP", value: data.total});
                 }// Show the beautiful success modal
 
                 console.log('Success:', data);
@@ -1890,22 +1913,6 @@ $products_json = json_encode($products);
                 website: '{{ $website }}',
                 session_id: '{{ $session_id }}',
             });//  EVENT LISTENER Track SUBMIT ORDER
-            
-            // let amount = $('#total').html();
-
-            // ttq.track('InitiateCheckout', {
-            //     "contents": [
-            //         {
-            //             "content_id": "1",
-            //             "content_type": "product",
-            //             "content_name": "",
-            //             "quantity": 1,
-            //             "price": amount
-            //         }
-            //     ],
-            //     "value": amount,
-            //     "currency": "PHP" 
-            // });//TIktok Event
 
         })
 
