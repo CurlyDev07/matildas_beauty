@@ -11,10 +11,6 @@ $products = [
             [
                 'qty' => 2,
                 'bundle_price' => 849
-            ],
-            [
-                'qty' => 5,
-                'bundle_price' => 1999
             ]
         ]
     ],
@@ -28,10 +24,6 @@ $products = [
             [
                 'qty' => 2,
                 'bundle_price' => 999
-            ],
-            [
-                'qty' => 5,
-                'bundle_price' => 2347
             ]
         ]
     ],
@@ -1281,7 +1273,7 @@ $products_json = json_encode($products);
                                 <input 
                                     type="text" 
                                     id="full_name"
-                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-xs"
+                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
                                     placeholder="Enter your full name"
                                     name="full_name"
                                 >
@@ -1291,7 +1283,7 @@ $products_json = json_encode($products);
                                 <input 
                                     type="tel" 
                                     id="phone_number"
-                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-xs"
+                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
                                     placeholder="Enter your contact number"
                                     name="phone_number" 
                                 >
@@ -1302,7 +1294,7 @@ $products_json = json_encode($products);
                             <input 
                                 type="text" 
                                 id="address"
-                                class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-xs"
+                                class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
                                 placeholder="Enter your complete address"
                                 name="address"
                             >
@@ -1479,6 +1471,26 @@ $products_json = json_encode($products);
         </div>
     </div>
 
+        <!-- Promo Toast Container -->
+    <div id="promoToast" class="tfixed ttop-0 tleft-0 tright-0 tz-50 ttransform t-translate-y-full ttransition-transform tduration-300 tease-in-out">
+        <div class="tbg-gradient-to-r tfrom-pink-500 tto-red-500 ttext-white tpx-4 tpy-3 tshadow-lg">
+           <div class="tmax-w-6xl tmx-auto">
+                <div class="tflex titems-start tspace-x-3 tmb-2">
+                    <div class="tbg-white tbg-opacity-20 trounded-full tp-2 tmt-1">
+                        <svg class="tw-5 th-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div class="tflex-1">
+                        <div class="tfont-bold ttext-sm tmb-2">🔥 PROMO ACTIVE!</div>
+                        <div id="promoToastContent" class="ttext-sm topacity-90"></div>
+                    </div>
+                </div>
+                <div class="ttext-center ttext-xs topacity-75 tfont-medium">SAVE MORE!</div>
+            </div>
+        </div>
+    </div>
+
     <footer>
 
         {{-- /// ORDER PROCESSING SCRIPT --}}
@@ -1573,10 +1585,65 @@ $products_json = json_encode($products);
 
         function updateTotal() {
             currentTotal = 0;
+            let activePromos = [];
+            
             selectedProducts.forEach(productIndex => {
-                currentTotal += prices[productIndex] * quantities[productIndex];
+                const quantity = quantities[productIndex];
+                const product = products[productIndex];
+                let productTotal = 0;
+                
+                // Check if product has promo and if current quantity matches any promo qty
+                if (product.promo) {
+                    const matchingPromo = product.promo.find(promo => promo.qty === quantity);
+                    if (matchingPromo) {
+                        productTotal = matchingPromo.bundle_price;
+                        // Add to active promos for toast
+                        activePromos.push({
+                            name: product.name,
+                            qty: quantity,
+                            price: matchingPromo.bundle_price
+                        });
+                    } else {
+                        productTotal = prices[productIndex] * quantity;
+                    }
+                } else {
+                    productTotal = prices[productIndex] * quantity;
+                }
+                
+                currentTotal += productTotal;
             });
+            
             document.getElementById('total').textContent = `₱${currentTotal.toLocaleString()}`;
+            
+            // Update promo toast
+            updatePromoToast(activePromos);
+        }
+
+        function updatePromoToast(activePromos) {
+            const toast = document.getElementById('promoToast');
+            const content = document.getElementById('promoToastContent');
+            
+            if (activePromos.length > 0) {
+                // Build promo content with better formatting - border on all items
+                let promoHTML = activePromos.map((promo, index) => {
+                    return `
+                        <div class="tflex tjustify-between titems-center tborder-b tborder-white tborder-opacity-30 tpb-2 tmb-2 tlast:tborder-b-0 tlast:tmb-0 tlast:tpb-0">
+                            <span class="tfont-medium">${promo.name}</span>
+                            <span class="ttext-right">Qty: ${promo.qty}pcs = ₱${promo.price.toLocaleString()}</span>
+                        </div>
+                    `;
+                }).join('');
+                
+                content.innerHTML = promoHTML;
+                
+                // Show toast
+                toast.classList.remove('-ttranslate-y-full');
+                toast.classList.add('ttranslate-y-0');
+            } else {
+                // Hide toast
+                toast.classList.remove('ttranslate-y-0');
+                toast.classList.add('-ttranslate-y-full');
+            }
         }
 
         // SUBMIT ORDER
@@ -1609,13 +1676,34 @@ $products_json = json_encode($products);
             }
 
             // Create products array from selected products
-            const productsArray = selectedProducts.map(productIndex => ({
-                id: products[productIndex].id,
-                name: products[productIndex].name,
-                qty: quantities[productIndex],
-                price: products[productIndex].price,
-                subtotal: products[productIndex].price * quantities[productIndex]
-            }));
+            // Create products array from selected products with promo pricing
+            const productsArray = selectedProducts.map(productIndex => {
+                const quantity = quantities[productIndex];
+                const product = products[productIndex];
+                let subtotal = 0;
+                let unitPrice = product.price;
+                
+                // Check if product has promo and if current quantity matches any promo qty
+                if (product.promo) {
+                    const matchingPromo = product.promo.find(promo => promo.qty === quantity);
+                    if (matchingPromo) {
+                        subtotal = matchingPromo.bundle_price;
+                        unitPrice = matchingPromo.bundle_price; // Use bundle price as unit price for display
+                    } else {
+                        subtotal = product.price * quantity;
+                    }
+                } else {
+                    subtotal = product.price * quantity;
+                }
+                
+                return {
+                    id: product.id,
+                    name: product.name,
+                    qty: quantity,
+                    price: unitPrice,
+                    subtotal: subtotal
+                };
+            });
 
             // Create order object
             const orderData = {
@@ -2006,6 +2094,7 @@ $products_json = json_encode($products);
             const modal = document.getElementById('successModal');
             modal.classList.remove('show');
             document.body.style.overflow = 'auto';
+            location.reload();
         }
 
         // Test function with sample data
@@ -2026,7 +2115,7 @@ $products_json = json_encode($products);
             }
         }); // Close modal when clicking outside content
 
-        
+                
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && document.getElementById('successModal').classList.contains('show')) {
                 closeSuccessModal();
