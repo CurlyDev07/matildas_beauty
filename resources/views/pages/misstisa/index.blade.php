@@ -1716,6 +1716,12 @@ $products_json = json_encode($products);
                 total: currentTotal
             };
 
+            // =================== InitiateCheckout=======================
+            fbq('track', 'InitiateCheckout', {
+                currency: "PHP",
+                value: currentTotal
+            });
+
             // START =================== SUBMIT ORDER =======================
 
             // ==== Get CSRF token from meta tag ====
