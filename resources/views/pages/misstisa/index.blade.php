@@ -5,7 +5,7 @@ $products = [
         'id' => 0,
         'name' => 'MissTisa Skincare Set',
         'price' => 499,
-        'image' => 'https://matildasbeauty.com/filemanager/c19a289a43fd497fba9ff3b1bacdc086.png',
+        'image' => 'https://matildasbeauty.com/filemanager/6680dcdecd7042588a0a02b32f4bf3c3.png',
         'description' => 'Advanced anti-aging and whitening serum',
         'promo' => [
             [
@@ -18,7 +18,7 @@ $products = [
         'id' => 1,
         'name' => 'Lotion Sunscreen SPF50 PA++++',
         'price' => 649,
-        'image' => 'https://matildasbeauty.com/filemanager/c19a289a43fd497fba9ff3b1bacdc086.png',
+        'image' => 'https://matildasbeauty.com/filemanager/5c246cc372a546b79f0dc7f526206c4b.png',
         'description' => 'High protection sunscreen lotion',
         'promo' => [
             [
@@ -31,14 +31,14 @@ $products = [
         'id' => 2,
         'name' => 'Serum Luminous Glow Pro',
         'price' => 749,
-        'image' => 'https://matildasbeauty.com/filemanager/c19a289a43fd497fba9ff3b1bacdc086.png',
+        'image' => 'https://matildasbeauty.com/filemanager/e5c16860f7dd41f4b6296050ebe616d8.png',
         'description' => 'Specialized serum for melasma and wrinkles'
     ],
     [
         'id' => 3,
         'name' => 'Skincare Trio Set+Lotion+Serum',
         'price' => 1399,
-        'image' => 'https://matildasbeauty.com/filemanager/c19a289a43fd497fba9ff3b1bacdc086.png',
+        'image' => 'https://matildasbeauty.com/filemanager/e94f2d3153de4058ac5264dd31c0af0f.png',
         'description' => 'Complete beauty set with serum and lotion'
     ]
 ];
