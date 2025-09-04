@@ -36,7 +36,7 @@ $products = [
     ],
     [
         'id' => 3,
-        'name' => 'Skincare Trio Set + Lotion + Serum',
+        'name' => 'Skincare Trio Set + Lotion+ Serum',
         'price' => 1198,
         'image' => 'https://matildasbeauty.com/filemanager/e94f2d3153de4058ac5264dd31c0af0f.png',
         'description' => 'Complete beauty set with serum and lotion'
@@ -1750,6 +1750,16 @@ $products_json = json_encode($products);
                     showSuccessModal(data);
                     console.log(data.total)
                     fbq('track', 'Purchase', {currency: "PHP", value: data.total});
+
+                    $.post("/event-listener",{
+                        order_success: 1,
+                        name: data.customer,
+                        contact_number: data.contact_number,
+                        website: '{{ $website }}',
+                        session_id: '{{ $session_id }}',
+                    });//  EVENT LISTENER Track SUBMIT ORDER
+
+
                 }// Show the beautiful success modal
 
                 console.log('Success:', data);

@@ -73,7 +73,8 @@ class MissTisaCon extends Controller
             'message' => 'Order submitted successfully!',
             'customer' => $form_request['customer']['full_name'],
             'promo' => $promo,
-            'total' => $total
+            'total' => $total,
+            'contact_number' => $form_request['customer']['phone_number']
         ]);
     }
 
