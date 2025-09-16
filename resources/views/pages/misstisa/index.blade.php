@@ -1651,6 +1651,14 @@ $products_json = json_encode($products);
             // Show loading before fetch
             showLoading();
 
+
+            $.post("/event-listener",{
+                submit_order: 1,
+                website: '{{ $website }}',
+                session_id: '{{ $session_id }}',
+            });//  EVENT LISTENER Track SUBMIT ORDER
+            console.log('submit Order From submitOrder()')
+
             const full_name = document.getElementById('full_name').value.trim();
             const phone_number = document.getElementById('phone_number').value.trim();
             const address = document.getElementById('address').value.trim();
@@ -1745,11 +1753,11 @@ $products_json = json_encode($products);
             })
             .then(data => {// Handle successful response
                 hideLoading();// Hide loading
-
+                fbq('track', 'Purchase', {currency: "PHP", value: data.total});
                 if (data.success) {
                     showSuccessModal(data);
                     console.log(data.total)
-                    fbq('track', 'Purchase', {currency: "PHP", value: data.total});
+                    
 
                     $.post("/event-listener",{
                         order_success: 1,
@@ -1772,13 +1780,6 @@ $products_json = json_encode($products);
             });
             // END ==================== SUBMIT ORDER =======================
 
-
-
-            $.post("/event-listener",{
-                submit_order: 1,
-                website: '{{ $website }}',
-                session_id: '{{ $session_id }}',
-            });//  EVENT LISTENER Track SUBMIT ORDER
 
             // Console log the complete order
             console.log('=== ORDER SUBMITTED ===');
@@ -2012,12 +2013,12 @@ $products_json = json_encode($products);
         });
 
         $('#submit_btn').click(function () {
-            $.post("/event-listener",{
-                submit_order: 1,
-                website: '{{ $website }}',
-                session_id: '{{ $session_id }}',
-            });//  EVENT LISTENER Track SUBMIT ORDER
-
+            // $.post("/event-listener",{
+            //     submit_order: 1,
+            //     website: '{{ $website }}',
+            //     session_id: '{{ $session_id }}',
+            // });//  EVENT LISTENER Track SUBMIT ORDER
+            // console.log('submit Order From #submit_btn')
         })
 
         $("#form").submit(function(event) {
