@@ -894,22 +894,22 @@ $products_json = json_encode($products);
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/943b70fea8564d969e9275e6cdec5156.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
+        {{-- <img class="tmb-3" src="https://matildasbeauty.com/filemanager/943b70fea8564d969e9275e6cdec5156.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e835b9e4bc9f4cad803cf3c3a6ef4473.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/36f85481a2114cc891d25704ddfa02ae.webp" loading="lazy" width="480" height="480" alt="Happy Users">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/47e5c4f66a294471b45863de264aefa4.webp" loading="lazy" width="480" height="350" alt="28_days_challenge">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/caeeb8c393854078ab638ce543f2daea.webp" loading="lazy" width="480" height="480" alt="MissTisa Lotion - New Image">
 
-        <h4 class="tfont-medium tpy-3 tmt-8 ttext-xl ttext-center">HAPPY & SATISFIED CUSTOMERS</h4>
+        <h4 class="tfont-medium tpy-3 tmt-8 ttext-xl ttext-center">HAPPY & SATISFIED CUSTOMERS</h4> --}}
        
         {{-- REVIEWS --}}
 
-        <img src="https://matildasbeauty.com/filemanager/3de536b529bf4cfb9a3d81c5b6c537f6.webp" loading="lazy" width="480" height="1000" alt="satisfied_customer1">
+        {{-- <img src="https://matildasbeauty.com/filemanager/3de536b529bf4cfb9a3d81c5b6c537f6.webp" loading="lazy" width="480" height="1000" alt="satisfied_customer1">
         <img src="https://matildasbeauty.com/filemanager/9685bc8e635a480b84b7852dfd74b41f.webp" loading="lazy" width="480" height="1000"alt="satisfied_customer2">
-        <img src="https://matildasbeauty.com/filemanager/a04e4b8538014d62a80d3dd2d3446643.webp" loading="lazy" width="480" height="1000" alt="New Before and After">
+        <img src="https://matildasbeauty.com/filemanager/a04e4b8538014d62a80d3dd2d3446643.webp" loading="lazy" width="480" height="1000" alt="New Before and After"> --}}
 
 
-        <div class="tmx-auto trelative tp-5">
+        {{-- <div class="tmx-auto trelative tp-5">
             <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
 
             <p style="font-size: 20px;" class="ttext-center tmb-4">
@@ -931,9 +931,9 @@ $products_json = json_encode($products);
             <img class="" src="https://matildasbeauty.com/filemanager/07823d1b14684d76833e387789938baf.webp" loading="lazy" width="480" height="480" alt="how_to_use in the evening">
             <img class="" src="https://matildasbeauty.com/filemanager/db487fdc65274f6e91d92f590c93ec5a.webp" loading="lazy" width="480" height="480" alt="Buy 2 Take 2 Flash Sale">
 
-        </div><!-- PRODUCT DETAILS-->
+        </div><!-- PRODUCT DETAILS--> --}}
 
-        <div class="tmb-5 tborder-t" >
+        {{-- <div class="tmb-5 tborder-t" >
             <div class="tborder tpx-4 tpy-5">
                 <h1 class="tmb-3 ttext-2xl">Product Ratings</h1>
                 <div class="tflex titems-center tjustify-between tmb-3">
@@ -1185,37 +1185,37 @@ $products_json = json_encode($products);
                 </div><!-- REVIEW 6 -->
 
             </div>  <!-- RATINGS DIV -->
-        </div> <!-- RATINGS -->
+        </div> <!-- RATINGS --> --}}
 
-        <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">FDA CERTIFICATES</h3>
+        {{-- <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">FDA CERTIFICATES</h3> --}}
 
-        <img src="https://matildasbeauty.com/filemanager/b864e63d955f47289504464f0471a6a3.webp" loading="lazy" width="480" height="480" alt="fda_certificate MissTisa Set" class="tmb-5">
+        {{-- <img src="https://matildasbeauty.com/filemanager/b864e63d955f47289504464f0471a6a3.webp" loading="lazy" width="480" height="480" alt="fda_certificate MissTisa Set" class="tmb-5">
         <img src="https://matildasbeauty.com/filemanager/b83e1f3a40f24410aa5d25c089b7d62f.webp" loading="lazy" width="480" height="480" alt="fda_certificate Serum" class="tmb-5"> 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/caeeb8c393854078ab638ce543f2daea.webp" loading="lazy" width="480" height="480" alt="MissTisa Lotion - New Image">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/caeeb8c393854078ab638ce543f2daea.webp" loading="lazy" width="480" height="480" alt="MissTisa Lotion - New Image"> --}}
 
 
         <div class="tmx-auto trelative tborder tpx-5 tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
-                <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" alt="free shipping" width="330" height="123">
+                <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" alt="free shipping" width="200" height="123">
                 <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
             </div>
 
             <section class="tflex titems-baseline tmt-5 tmb-3">
                 <div class="ttext-center">
-                    <i class="fas fa-truck ttext-4xl" style="color: #2d3748; line-height: 1.2;"></i>
+                    <i class="fas fa-truck ttext-4xl" style="color: #ee2aa9; line-height: 1.2;"></i>
                     <span class="tinline-block tmt-1">Fast delivery nationwide</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fas fa-dollar-sign ttext-4xl" style="color: #2d3748; line-height: 1.2;" ></i>
+                    <i class="fas fa-dollar-sign ttext-4xl" style="color: #ee2aa9; line-height: 1.2;" ></i>
                     <span class="tinline-block tmt-1">Moneyback Guarantee</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fas fa-hand-holding-usd ttext-4xl" style="color: #2d3748; line-height: 1.2;" ></i>
+                    <i class="fas fa-hand-holding-usd ttext-4xl" style="color: #ee2aa9; line-height: 1.2;" ></i>
                     <span class="tinline-block tmt-1">Cash on Delivery</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fas fa-headset ttext-4xl" style="color: #2d3748; line-height: 1.2;"></i>
-                    <span class="tinline-block tmt-1">Aftersales Support</span>
+                    <i class="fas fa-headset ttext-4xl" style="color: #ee2aa9; line-height: 1.2;"></i>
+                    <span class="tinline-block tmt-1">Unlimited SkincareTips</span>
                 </div>
             </section>
 
