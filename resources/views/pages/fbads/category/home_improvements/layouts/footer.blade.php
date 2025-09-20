@@ -79,9 +79,9 @@
         $("form").on("submit", function (e) {
             e.preventDefault();
 
-            if (!isValid()) {
-                return;
-            }
+            // if (!isValid()) {
+            //     return;
+            // }
 
             $('.loader').removeClass('thidden');// SHOW LOADER
 
@@ -261,23 +261,23 @@
         // });
 
         $('#phone_number').keyup(function (e) { 
-            let count = $(this).val().length;
+            // let count = $(this).val().length;
 
-            $('#number_counter').html(count + '/11');
+            // $('#number_counter').html(count + '/11');
 
-            if (count == 11) {
-                $('#phone_number').css("border-color", "#4aa977");
-                $('#phone_number').css("outline-color", "#4aa977");
-                $('#number_counter').attr('class', 'tfont-medium ttext-green-600');
+            // if (count == 11) {
+            //     $('#phone_number').css("border-color", "#4aa977");
+            //     $('#phone_number').css("outline-color", "#4aa977");
+            //     $('#number_counter').attr('class', 'tfont-medium ttext-green-600');
 
-                $('#phone_number_validation').addClass('thidden');
+            //     $('#phone_number_validation').addClass('thidden');
 
-            }else{
-                $('#phone_number').css("border-color", "#e53e3e");
-                $('#phone_number').css("outline-color", "#e53e3e");
+            // }else{
+            //     $('#phone_number').css("border-color", "#e53e3e");
+            //     $('#phone_number').css("outline-color", "#e53e3e");
 
-                $('#number_counter').attr('class', 'tfont-medium ttext-red-600 focus-visible-red');
-            }
+            //     $('#number_counter').attr('class', 'tfont-medium ttext-red-600 focus-visible-red');
+            // }
         }); // Phone Number Validation
 
         // EVENT LISTENER

@@ -85,7 +85,7 @@
         </div><!--BENEFITS -->
 
 
-        <img src="https://matildasbeauty.com/filemanager/db487fdc65274f6e91d92f590c93ec5a.webp" alt="promo">
+        {{-- <img src="https://matildasbeauty.com/filemanager/6952e5ed4afe420e94d726c89837c073.webp" alt="promo"> --}}
         <img src="https://matildasbeauty.com/filemanager/bd4121b095194967a7dfbbd6b9298d2b.webp" alt="30_days_challenge">
         
 
@@ -101,7 +101,7 @@
         <img src="https://matildasbeauty.com/filemanager/409d8830a29940eea4f69b7ad9b0801a.webp" class="tw-full"  alt="Before & After 1">
         <img src="https://matildasbeauty.com/filemanager/008b94df938c460493ff2c3abeeef489.webp" class="tw-full"  alt="Before & After 2">
         <img src="https://matildasbeauty.com/filemanager/00b73e6229ef483ca934284422bd816b.webp" class="tw-full"  alt="Before & After 3">
-        <img src="https://matildasbeauty.com/filemanager/db487fdc65274f6e91d92f590c93ec5a.webp" alt="30_days_challenge">
+        <img src="https://matildasbeauty.com/filemanager/6952e5ed4afe420e94d726c89837c073.webp" alt="promo">
 
         {{-- <div class="tmb-5 tborder-t" >
             <div class="tborder tpx-4 tpy-5">
@@ -392,7 +392,7 @@
                         @enderror
                         <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">
                             Phone Number 
-                            <span id="number_counter" class="tfont-medium ttext-orange-500">0/11</span> 
+                            {{-- <span id="number_counter" class="tfont-medium ttext-orange-500">0/11</span>  --}}
                         </label>
                         <input required type="number" name="phone_number" id="phone_number" onkeyup="allnumeric(this)" value="{{ old('phone_number') }}" class="browser-default input-control">
                         <span><small id="phone_number_validation" class="tfont-medium ttext-red-600 ttext-xs thidden">Mobile Number is Incorrect</small></span>
@@ -412,11 +412,16 @@
 
 
                <div class="tbg-yellow-200 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
-                    <span class="ttext-lg">Enjoy our Free Soap & Sunscreen</span>
+
+                    <span class="ttext-lg"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Save more vs buying separately</span>
                     
-                    <div class="tfont-extrabold ttext-md ttext-red-900 tmt-1">Sold out twice, Don't Miss it again <br> 
-                        <span class="ttext-md">We'll never offer this again.</span>
+                    <div class="ttext-lg tmt-1">
+                        <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> See results faster when used together
                     </div> 
+                    <div class="ttext-lg tmt-1">
+                        <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Risk-free: 7-day money-back guarantee
+                    </div> 
+            
 
                      <div class="tflex tjustify-between tmt-2 tpx-3">
                         <div class="ttext-md tfont-bold" style="color: #ff0021;">🚨 Promo expires in </div> 
