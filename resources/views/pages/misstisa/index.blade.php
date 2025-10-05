@@ -16,28 +16,15 @@ $products = [
     ],
     [
         'id' => 1,
-        'name' => 'Lotion Sunscreen SPF50 PA++++',
-        'price' => 649,
-        'image' => 'https://matildasbeauty.com/filemanager/5c246cc372a546b79f0dc7f526206c4b.png',
+        'name' => 'Skincare Set + Serum',
+        'price' => 999,
+        'image' => 'https://matildasbeauty.com/filemanager/10f467f062ba4223b8a12bf02df940e4.png',
         'description' => 'High protection sunscreen lotion',
-        'promo' => [
-            [
-                'qty' => 2,
-                'bundle_price' => 999
-            ]
-        ]
     ],
     [
         'id' => 2,
-        'name' => 'Serum Luminous Glow Pro',
-        'price' => 749,
-        'image' => 'https://matildasbeauty.com/filemanager/e5c16860f7dd41f4b6296050ebe616d8.png',
-        'description' => 'Specialized serum for melasma and wrinkles'
-    ],
-    [
-        'id' => 3,
         'name' => 'Skincare Trio Set + Lotion+ Serum',
-        'price' => 1198,
+        'price' => 1399,
         'image' => 'https://matildasbeauty.com/filemanager/e94f2d3153de4058ac5264dd31c0af0f.png',
         'description' => 'Complete beauty set with serum and lotion'
     ]
