@@ -1259,6 +1259,7 @@ $products_json = json_encode($products);
                 <!-- ORDER PROMO -->
                 <div class="th-full tflex tflex-col tmax-w-2xl tmx-auto tbg-white tp-3">
                     <!-- Header -->
+                    
                     <h1 class="ttext-center ttext-xl tfont-black ttext-gray-900 tmb-3 ttracking-wide">ORDER FORM</h1>
                     
                     <!-- Customer Information Form -->
@@ -2104,6 +2105,10 @@ $products_json = json_encode($products);
 
         // Function to close success modal
         function closeSuccessModal() {
+            $('#full_name').val('');
+            $('#phone_number').val('');
+            $('#address').val('');
+
             const modal = document.getElementById('successModal');
             modal.classList.remove('show');
             document.body.style.overflow = 'auto';
