@@ -17,6 +17,11 @@ use App\Mail\Transactions\FbAdsOrderSuccess;
 
 class FbAdsCon extends Controller
 {
+
+    public function misstisa_toner(){
+        return view('pages.misstisa.toner');
+    }
+
     public function smart_home_ph(){
         $website = 'Smart Light Holder';
         $session_id = uuid();

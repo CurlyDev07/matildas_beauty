@@ -75,6 +75,10 @@ Route::get('MissTisaMelasma', 'FbAdsCon@misstisa_melasma')->name('misstisa_melas
 Route::get('MissTisaSerum', 'FbAdsCon@misstisa_serum')->name('misstisa_serum');// Old Pixel - Delete Once "MissTisaSerumNew" is ready
 Route::get('MissTisaSerumNew', 'FbAdsCon@misstisa_serum_new')->name('misstisa_serum_new');// New Pixel
 
+
+Route::get('MissTisa-Gentle-Exfoliating-Toner', 'FbAdsCon@misstisa_toner')->name('misstisa_toner');// New Pixel
+
+
 Route::post('Madella-Submit', 'FbAdsCon@store')->name('madella_submit');
 Route::post('Madella-Order-Success-Email', 'FbAdsCon@madella_order_success_email')->name('madella_order_success_email');
 
