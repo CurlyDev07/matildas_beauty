@@ -77,6 +77,7 @@ Route::get('MissTisaSerumNew', 'FbAdsCon@misstisa_serum_new')->name('misstisa_se
 
 
 Route::get('MissTisa-Gentle-Exfoliating-Toner', 'FbAdsCon@misstisa_toner')->name('misstisa_toner');// New Pixel
+Route::get('MissTisa-Advanced-Brightening-Night-Cream', 'FbAdsCon@nightcream')->name('nightcream');// New Pixel
 
 
 Route::post('Madella-Submit', 'FbAdsCon@store')->name('madella_submit');
