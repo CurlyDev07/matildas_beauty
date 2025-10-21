@@ -1310,8 +1310,9 @@ $products_json = json_encode($products);
                             
                             <?php foreach ($products as $index => $product): ?>
 
-                            <div class="product-card <?= $index === 0 ? 'product-selected' : '' ?> tmb-8 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" style="height: 150px;" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
-                                <h3 class="tabsolute tp-2 trounded-md ttext-center ttext-gray-800 ttext-white ttext-xs" style="background-color: #db2777;font-size: 17px;z-index: 999;top: -18%;right: 0%;width: 100%;"><?= htmlspecialchars($product['description']) ?></h3>
+                            <div class="product-card <?= $index === 0 ? 'product-selected' : '' ?> tmb-8 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" style="height: 150px; border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
+                                <h3 class="tabsolute tp-2 trounded-md ttext-center ttext-gray-800 ttext-white ttext-xs" style="background-color: #db2777;font-size: 17px;z-index: 999;bottom: -20%;right: 0%;width: 100%;     border-top-right-radius: 0; border-top-left-radius: 0;"><?= htmlspecialchars($product['description']) ?></h3>
 
                                 <div class="tflex titems-center tgap-2 tmb-1">
                                     <div class="tflex titems-center tjustify-center trounded-md" style="height: 65px; width: 65px;">
