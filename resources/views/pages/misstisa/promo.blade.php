@@ -26,7 +26,7 @@ $products = [
         'name' => 'Full Glow Experience',
         'price' => 1399,
         'image' => 'https://matildasbeauty.com/filemanager/e94f2d3153de4058ac5264dd31c0af0f.png',
-        'description' => 'Set + Lotion + Serum'
+        'description' => 'Set Lotion Serum'
     ]
 ];
 
