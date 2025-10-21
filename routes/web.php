@@ -65,6 +65,7 @@ Route::get('payment-error', 'PaymentController@payment_error');
 
 // MissTisa
 Route::get('MissTisa', 'MissTisaCon@index')->name('miss_tisa');
+Route::get('MissTisa-Promo', 'MissTisaCon@misstisa_promo')->name('misstisa_promo');
 Route::post('MissTisa-Submit', 'MissTisaCon@store')->name('miss_tisa_submit');
 Route::get('MissTisa-Success', 'MissTisaCon@success')->name('miss_tisa_success');
 

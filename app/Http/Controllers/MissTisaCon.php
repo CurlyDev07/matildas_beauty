@@ -30,6 +30,21 @@ class MissTisaCon extends Controller
         return view('pages.misstisa.index', ['seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
     }
 
+    public function misstisa_promo(){
+        $session_id = uuid();
+        $website = 'MissTisa';
+
+        $provinces = Province::orderBy('province', 'asc')->pluck('province');
+        $seo = [
+            'title' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
+            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'description' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
+            'robots' => 'none',
+        ];
+
+        return view('pages.misstisa.promo', ['seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
+    }
+
     public function store(Request $request){
         $form_request = $request->all();
         $ordered_products = $form_request['products'];
