@@ -3,7 +3,7 @@
 $products = [
     [
         'id' => 0,
-        'name' => 'MissTisa Skincare Set',
+        'name' => '1Pc MissTisa Set',
         'price' => 499,
         'image' => 'https://matildasbeauty.com/filemanager/6680dcdecd7042588a0a02b32f4bf3c3.png',
         'description' => 'Advanced anti-aging and whitening serum',
@@ -12,17 +12,24 @@ $products = [
                 'qty' => 2,
                 'bundle_price' => 849
             ]
-        ]
+        ]   
     ],
     [
-        'id' => 1,
+        'id' => 1, 
+        'name' => '2pcs MissTisa Set',
+        'price' => 799,
+        'image' => 'https://matildasbeauty.com/filemanager/ab38e19e27d840abbc96eb22a85f530f.png',
+        'description' => 'Advanced anti-aging and whitening serum',
+    ],
+    [
+        'id' => 2,
         'name' => 'Skincare Set + Serum',
         'price' => 999,
         'image' => 'https://matildasbeauty.com/filemanager/10f467f062ba4223b8a12bf02df940e4.png',
         'description' => 'High protection sunscreen lotion',
     ],
     [
-        'id' => 2,
+        'id' => 3,
         'name' => 'Skincare Trio Set + Lotion+ Serum',
         'price' => 1399,
         'image' => 'https://matildasbeauty.com/filemanager/e94f2d3153de4058ac5264dd31c0af0f.png',
