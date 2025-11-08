@@ -1,4 +1,5 @@
 <?php
+
 // Products array - easy to manage and update
 $products = [
     [
@@ -1729,10 +1730,17 @@ $products_json = json_encode($products);
             };
 
             // =================== InitiateCheckout=======================
-            fbq('track', 'InitiateCheckout', {
-                currency: "PHP",
-                value: currentTotal
-            });
+            
+
+            if (currentTotal < 3000) {
+                console.log('send Initiate Checkout value to Pixel: '+ currentTotal);
+
+                fbq('track', 'InitiateCheckout', {
+                    currency: "PHP",
+                    value: currentTotal
+                });
+            } // Fire FB Purchase Pixel if order value only lessthan 3k
+
 
             // START =================== SUBMIT ORDER =======================
 
@@ -1757,7 +1765,14 @@ $products_json = json_encode($products);
             })
             .then(data => {// Handle successful response
                 hideLoading();// Hide loading
-                fbq('track', 'Purchase', {currency: "PHP", value: data.total});
+
+
+                if (data.total < 3000) {
+                    console.log('send Initiate Checkout value to Pixel: '+ data.total);
+
+                    fbq('track', 'Purchase', {currency: "PHP", value: data.total});
+                } // If Order Value > 3000 = DONT Send data to FACEBOOK
+                
                 if (data.success) {
                     showSuccessModal(data);
                     console.log(data.total)
