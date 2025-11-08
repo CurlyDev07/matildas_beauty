@@ -1,5 +1,40 @@
+# --- Environment / secrets ---
 .env
-/node_modules
-/public/images/products
+.env.*
+.env.backup
+
+# --- Dependencies ---
 /vendor
+/node_modules
+
+# --- Laravel storage & cache (keep folder, ignore contents) ---
+/storage/*
+!/storage/.gitignore
+/storage/framework/*
+!/storage/framework/.gitignore
+/storage/logs/*
+!/storage/logs/.gitignore
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+
+# --- Public artifacts you DO want to ignore ---
+/public/storage
+/public/uploads
+/public/tmp
+/public/images/products
+
+
+# --- IDE / OS noise ---
 /.idea
+/.vscode
+.DS_Store
+Thumbs.db
+
+# --- Logs / temp ---
+*.log
+*.bak
+*.tmp
+*.swp
+
+# NOTE: We intentionally DO NOT ignore product images.
+# public/images/products is tracked by Git.
