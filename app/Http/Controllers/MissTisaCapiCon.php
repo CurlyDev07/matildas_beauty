@@ -69,6 +69,8 @@ class MissTisaCapiCon extends Controller
             "order_number" => 'MB'.date("mdy").'O'.$order->id,
         ]; /// NOT USED
 
+
+        // ========================= FOR CAPI  =========================
         // FIRE SERVER-SIDE PURCHASE
         $purchaseEventId = 'p_' . Str::uuid()->toString();
         
@@ -79,7 +81,9 @@ class MissTisaCapiCon extends Controller
                 'external_id' => 'MB'.date("mdy").'O'.$order->id, // your External ID
             ]);
         }
+        // ========================= FOR CAPI  =========================
 
+        
         // Return success response
         return response()->json([
             'success' => true,

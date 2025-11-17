@@ -11,7 +11,8 @@ use App\FbAds;
 use App\FbEventListener;
 use App\Http\Requests\FbAds\StoreFbAdsRequest;
 use GuzzleHttp\Client;
-
+use App\Services\FacebookCapi;
+use Illuminate\Support\Str;
 class MissTisaCon extends Controller
 {
 
@@ -45,7 +46,7 @@ class MissTisaCon extends Controller
         return view('pages.misstisa.promo', ['seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request, FacebookCapi $facebookCapi){
         $form_request = $request->all();
         $ordered_products = $form_request['products'];
         $promo = '';
@@ -82,6 +83,20 @@ class MissTisaCon extends Controller
         ];
 
 
+        // ========================= FOR CAPI  =========================
+        // FIRE SERVER-SIDE PURCHASE
+        $purchaseEventId = 'p_' . Str::uuid()->toString();
+        
+        if ($total < 3000) {
+             $facebookCapi->sendEvent('Purchase', $purchaseEventId, $request, [
+                'phone'       => $request->phone_number,
+                'value'       => $total,
+                'external_id' => 'MB'.date("mdy").'O'.$order->id, // your External ID
+            ]);
+        }
+        // ========================= FOR CAPI  =========================
+
+
         // Return success response
         return response()->json([
             'success' => true,
@@ -89,7 +104,8 @@ class MissTisaCon extends Controller
             'customer' => $form_request['customer']['full_name'],
             'promo' => $promo,
             'total' => $total,
-            'contact_number' => $form_request['customer']['phone_number']
+            'contact_number' => $form_request['customer']['phone_number'],
+            'purchase_event_id' => $purchaseEventId
         ]);
     }
 

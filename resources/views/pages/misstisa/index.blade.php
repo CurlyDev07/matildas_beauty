@@ -1768,9 +1768,14 @@ $products_json = json_encode($products);
 
 
                 if (data.total < 3000) {
-                    console.log('send Initiate Checkout value to Pixel: '+ data.total);
+                    console.log('send Purchase Checkout value to Pixel: '+ data.total);
+                    console.log('eventID:  '+ data.purchase_event_id);
+                    console.log('RAW RESPONSE:', data);                 // 👈 add this
 
-                    fbq('track', 'Purchase', {currency: "PHP", value: data.total});
+
+                    fbq('track', 'Purchase', { currency: "PHP",  value: data.total }, {
+                        eventID: data.purchase_event_id
+                    });
                 } // If Order Value > 3000 = DONT Send data to FACEBOOK
                 
                 if (data.success) {
