@@ -821,7 +821,7 @@ $products_json = json_encode($products);
         </div>
 
 
-        <img src="https://matildasbeauty.com/filemanager/afe4fc9e1c00485d9797336377793dff.webp" width="480" height="480" class="tw-full tmb-2" alt="#1 Kulubot Remover">
+        <img src="https://matildasbeauty.com/filemanager/09002552583e4d92a5c1b09992081b29.webp" width="480" height="480" class="tw-full" alt="BUY 1 take 1">
 
         {{-- <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
@@ -840,7 +840,7 @@ $products_json = json_encode($products);
             <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">⭐19,586 Trusted Reviews</div>
         </div><!-- Trusted Reviews --> --}}
 
-        <div class="tfont-semibold tmx-3 tmt-4  ttext-center">
+        <div class="tfont-semibold ttext-center ttext-white tp-2 ttext-lg" style="background-color: black;">
             <i class="fas fa-check-circle" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
         </div>
 
@@ -864,7 +864,8 @@ $products_json = json_encode($products);
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Safe</div>
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/09002552583e4d92a5c1b09992081b29.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
+
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/afe4fc9e1c00485d9797336377793dff.webp" loading="lazy" width="480" height="480" alt="#1 Kulubot Remover">
 
 
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/523e7f186fa140a59b0b1a823da23c5d.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
