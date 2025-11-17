@@ -69,6 +69,14 @@ Route::get('MissTisa-Promo', 'MissTisaCon@misstisa_promo')->name('misstisa_promo
 Route::post('MissTisa-Submit', 'MissTisaCon@store')->name('miss_tisa_submit');
 Route::get('MissTisa-Success', 'MissTisaCon@success')->name('miss_tisa_success');
 
+
+// TESTING FOR CAPI
+Route::get('MissTisa-Capi', 'MissTisaCapiCon@index')->name('misstisa.capi.index');
+Route::post('MissTisa-Submit-Capi', 'MissTisaCapiCon@store')->name('misstisa.capi.submit');
+
+
+
+
 // FB Ads Pages
 Route::get('smart-home-ph', 'FbAdsCon@smart_home_ph')->name('smart_home_ph');
 Route::get('ginger-oil', 'FbAdsCon@ginger_oil')->name('ginger_oil');
