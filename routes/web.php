@@ -67,6 +67,9 @@ Route::get('payment-error', 'PaymentController@payment_error');
 Route::get('MissTisa', 'MissTisaCon@index')->name('miss_tisa');
 Route::get('MissTisa-Buy1-Take1', 'MissTisaCon@b1t1')->name('miss_tisa');
 
+// MissTisa Lotion
+Route::get('MissTisa-Lotion', 'MissTisaCon@lotion')->name('misstisa.lotion');
+
 
 Route::get('MissTisa-Promo', 'MissTisaCon@misstisa_promo')->name('misstisa_promo'); // Working But not in use
 Route::post('MissTisa-Submit', 'MissTisaCon@store')->name('miss_tisa_submit');
