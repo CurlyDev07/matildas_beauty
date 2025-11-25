@@ -820,7 +820,7 @@ $products_json = json_encode($products);
         </div>
 
         <!-- <img src="https://matildasbeauty.com/filemanager/ebac5e3ae0014c9ebf182d37d8a7dea0.webp" width="480" height="480" class="tw-full tmb-2" alt="#1 Kulubot Remover"> -->
-        <img src="https://matildasbeauty.com/filemanager/8dc4ab92ce0344ddbded6e4951314708.png" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
+        <img src="https://matildasbeauty.com/filemanager/ebac5e3ae0014c9ebf182d37d8a7dea0.webp" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
 
         <!-- <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
