@@ -1260,7 +1260,7 @@ $products_json = json_encode($products);
                 <!-- Stat 2 -->
                 <div class="tspace-y-1 tpx-10" style=" border-bottom: 1px dashed #fffeff85; padding-bottom: 10px; ">
                     <div class="ttext-2xl tsm:text-3xl tfont-bold">
-                        3×
+                        3× Bigger
                     </div>
                     <div class="ttext-lg toppacity-90">
                         Bigger Than Regular Sunscreens
