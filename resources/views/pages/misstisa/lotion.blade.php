@@ -2586,7 +2586,7 @@ $products_json = json_encode($products);
 
             <!-- Your ORIGINAL button (unchanged) -->
             <button class="order_now zoom-in-out-box tabsolute tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-xl ttext-lg ttext-white tw-10/12 waves-effect"
-                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0px; margin-bottom: 69px; right: 0px; background-color: rgb(238, 42, 123); display: block;">
+                style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0px; margin-bottom: 20px; right: 0px; background-color: rgb(238, 42, 123); display: block;">
                     
 
                     <div class="tflex tjustify-around titems-center tpx-4">
