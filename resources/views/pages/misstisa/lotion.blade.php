@@ -814,26 +814,13 @@ $products_json = json_encode($products);
                     <p class="t-mt-2 tfont-medium  ttext-4xl ttext-white">Good Bye Kulubot</p>
                 </div> --}}
                 <div class="">
-                    <span class="ttext-sm ttext-white">
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                    </span>
-                    <span class="ttext-md ttext-white">
-                        <span><u>9.5k</u> Ratings</span>
-                        <span> | </span>
-                        <span><u>23.6k</u> Sold</span>
-                    </span>
+                    <span class="tfont-bold ttext-white" style="font-size: 20px;">3x Bigger 100g for face &amp; Body</span>
                 </div>
             </div>
-            <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="bottom: -447%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;background-color: #ee2a7b;">ORDER NOW!
-            </button>
         </div>
 
         <!-- <img src="https://matildasbeauty.com/filemanager/ebac5e3ae0014c9ebf182d37d8a7dea0.webp" width="480" height="480" class="tw-full tmb-2" alt="#1 Kulubot Remover"> -->
-        <img src="https://matildasbeauty.com/filemanager/8dc4ab92ce0344ddbded6e4951314708.png" width="480" height="480" class="tw-full tmb-2" alt="#1 Kulubot Remover">
+        <img src="https://matildasbeauty.com/filemanager/8dc4ab92ce0344ddbded6e4951314708.png" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
 
         <!-- <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
@@ -852,10 +839,30 @@ $products_json = json_encode($products);
             <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">⭐19,586 Trusted Reviews</div>
         </div>Trusted Reviews -->
 
+        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 31px;background: #ed1c59;">
+            <div>
+                
+                <div class="">
+                    <span class="ttext-sm ttext-white">
+                        <i class="fas fa-star ttext-yellow-300"></i>
+                        <i class="fas fa-star ttext-yellow-300"></i>
+                        <i class="fas fa-star ttext-yellow-300"></i>
+                        <i class="fas fa-star ttext-yellow-300"></i>
+                        <i class="fas fa-star ttext-yellow-300"></i>
+                    </span>
+                    <span class="ttext-md ttext-white">
+                        <span><u>9.5k</u> Ratings</span>
+                        <span> | </span>
+                        <span><u>23.6k</u> Sold</span>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
         <div class="tfont-semibold tmx-3  ttext-center">
             <i class="fas fa-check-circle tmt-5 tmb-2" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
         </div>
-
 
         <!-- <div class="tborder-dashed ttext-center tmx-3 tmy-2 tpx-3 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
             <span class="tfont-bold  ttext-center" style="font-size: 20px;">All-in-1 Skincare Sale – Ends Soon!</span>
@@ -868,7 +875,68 @@ $products_json = json_encode($products);
         </div>FREE 2 Gifts -->
 
 
+        <!-- SOLUTION -->
+        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 ">
+            <span class="tfont-bold  ttext-center" style="font-size: 25px;">
+                MissTisa Dewy Glow Lotion
+            </span>
+            <!-- <span class="tfont-medium  ttext-center tmb-5" style="font-size: 14px;">
+                MissTisa gives you the fresh, dewy glow you’ve always wanted —
+                without the oiliness, lagkit, or irritation. -->
+            </span>
 
+
+            <div class="tpt-3 ttext-md tw-full">
+                <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
+                <b>Dewy glow without the oiliness</b>
+                <div style="line-height: 0.5;" class="tml-5">Fresh, soft, glowing — never greasy.</div>
+            </div>
+
+            <div class="tpt-3 ttext-md tw-full">
+                <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
+                <b>Zero lagkit kahit mainit, humid, pawisin</b>
+                <br>
+                <div style="line-height: 0.5;" class="tml-5">Perfect for real Filipina weather.</div>
+            </div>
+
+            <div class="tpt-3 ttext-md tw-full">
+                <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
+                <b>No white cast on morena to misstisa skin</b>
+                <br>
+                <div style="line-height: 0.5;" class="tml-5">Blends like skincare, not chalk.</div>
+            </div>
+
+            <div class="tpt-3 ttext-md tw-full tmb-1">
+                <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
+                <b>Glow skincare + sun defense in one</b>
+                <br>
+                <div style="line-height: 0.5;" class="tml-5">Brightening Glow + High-Level Sun Defense.</div>
+            </div>
+
+            <div class="tpt-3 ttext-md tw-full tmb-1">
+                <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
+                <b>100g big size for daily face & body glow</b>
+                <br>
+                <div style="line-height: 0.5;" class="tml-5">Hindi mabilis maubos — lasts up to 3 months.</div>
+            </div>
+
+            <span class="tfont-bold tmt-5 tp-4 tshadow-lg trounded-full tmb-5 ttext-center" style="font-size: 18px; background-color: #faebebab;">
+                <i class="fas fa-times tmb-2  red-text tmr-1" style="transform:scale(1.2);"></i>
+                Goodbye lagkit & dullness.
+            </span>
+
+            <span class="tfont-bold tpx-10 tpy-5 tshadow-lg trounded-full  ttext-center tmb-5" style="font-size: 18px;">
+                <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i>
+                Hello soft, dewy glow.
+            </span>
+
+        </div>
+
+        <hr class="tmy-10">
+
+
+        <!-- PROBLEM -->
+                
         <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3">
             <span class="tfont-bold  ttext-center" style="font-size: 25px;">Sunscreen Issues We’re All Tired Of…</span>
         </div>
@@ -928,88 +996,9 @@ $products_json = json_encode($products);
                 <b>Nag buo-buo</b> 
             </div>
         
-            <!-- <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> Kulubot</b> </div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> Wrinkles</b> </div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Melasma Remover</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Korean Glass Skin</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> No More Pekas</b></div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i> <b>Pinkish Skin</b></div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No More Dark Spots</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Uneven Skin Tone</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Deep Scars</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Whiteheads</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Blackheads</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Skin Whitening</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> For Sensitive Skin</div>
-            <div class="tw-1/2 tmb-3"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No Irritation </div>
-          
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA Approved</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Safe</div>
-            <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div> -->
         </div>
 
         <hr class="tmy-5">
-
-
-        <!-- SOLUTION -->
-        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 ">
-            <span class="tfont-bold  ttext-center" style="font-size: 25px;">
-                🌸 “Your Glow Solution to All Sunscreen Problems.”
-            </span>
-            <span class="tfont-medium  ttext-center tmb-5" style="font-size: 14px;">
-                MissTisa gives you the fresh, dewy glow you’ve always wanted —
-                without the oiliness, lagkit, or irritation.
-            </span>
-
-
-            <div class="tmb-3 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full">
-                <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
-                <b>Dewy glow without the oiliness</b>
-                <br>
-                <div class="tml-5 tmb-3">Fresh, soft, glowing — never greasy.</div>
-            </div>
-
-            <div class="tmb-3 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full">
-                <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
-                <b>Zero lagkit kahit mainit, humid, pawisin</b>
-                <br>
-                <div class="tml-5 tmb-3">Perfect for real Filipina weather.</div>
-            </div>
-
-            <div class="tmb-3 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full">
-                <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
-                <b>No white cast on morena to misstisa skin</b>
-                <br>
-                <div class="tml-5 tmb-3">Blends like skincare, not chalk.</div>
-            </div>
-
-            <div class="tmb-3 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full">
-                <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
-                <b>Glow skincare + sun defense in one</b>
-                <br>
-                <div class="tml-5 tmb-3">Brightening Glow Trio + High-Level Sun Defense.</div>
-            </div>
-
-            <div class="tmb-10 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full">
-                <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
-                <b>100g big size for daily face & body glow</b>
-                <br>
-                <div class="tml-5 tmb-3">Hindi mabilis maubos — lasts up to 3 months.</div>
-            </div>
-
-            <span class="tfont-bold tp-4 tshadow-lg trounded-full tmb-5 ttext-center" style="font-size: 18px; background-color: #faebebab;">
-                <i class="fas fa-times tmb-2  red-text tmr-1" style="transform:scale(1.2);"></i>
-                Goodbye lagkit & dullness.
-            </span>
-
-            <span class="tfont-bold tpx-10 tpy-5 tshadow-lg trounded-full  ttext-center tmb-5" style="font-size: 18px;">
-                <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i>
-                Hello soft, dewy glow.
-            </span>
-
-        </div>
-
-        <hr class="tmy-10">
 
 
         <!-- BENEFITS -->
@@ -1024,42 +1013,42 @@ $products_json = json_encode($products);
                 without the oily, sticky, heavy feeling.
             </span>
 
-            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full">
+            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full tmb-1">
                 <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b>Soft, dewy glow all day</b>
                 <br>
                 <div class="tml-5 tmb-3">Fresh, radiant, and blooming — never oily, never greasy.</div>
             </div>
 
-            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full">
+            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full tmb-1">
                 <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b>Zero lagkit kahit mainit</b>
                 <br>
                 <div class="tml-5 tmb-3">Stays light and comfortable even in humid, pawisin weather.</div>
             </div>
 
-            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full">
+            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full tmb-1">
                 <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b>No white cast on morena to MissTisa skin</b>
                 <br>
                 <div class="tml-5 tmb-3">Natural, seamless finish that blends like skincare.</div>
             </div>
 
-            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full">
+            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full tmb-1">
                 <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b>Brightening care with every application</b>
                 <br>
                 <div class="tml-5 tmb-3">Powered by the Brightening Glow Trio for a fresh, glowing look.</div>
             </div>
 
-            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full">
+            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full tmb-1">
                 <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b>Smooth, fresh, younger-looking skin</b>
                 <br>
                 <div class="tml-5 tmb-3">Helps your complexion look alive — not flat, not dull.</div>
             </div>
 
-            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full">
+            <div class="tmb-5 tpt-3 tpx-5 trounded-2xl tshadow-lg ttext-md tw-full tmb-1">
                 <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b>Lightweight feel for daily face & body use</b>
                 <br>
@@ -1215,12 +1204,10 @@ $products_json = json_encode($products);
             </div>
         </div>
 
-        <img class="" src="https://matildasbeauty.com/filemanager/aa3ebc01a4504ca895cd61279646cbf6.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-
-
+        <!-- INGREDIENTS -->
         <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 tmx-3">
 
-             <span class="tfont-bold  ttext-center tmy-10" style="font-size: 19px;">
+             <span class="tfont-bold  ttext-center tmy-5" style="font-size: 19px;">
                 🌸 SKIN-LOVING SUPPORT ACTIVES
             </span>
             
@@ -1267,19 +1254,58 @@ $products_json = json_encode($products);
             
         </div>
 
+        <!-- PROOF METRICS -->
+        <section class="tpy-4 tpx-4 tmt-10" style="background: #ED1C59; background: radial-gradient(circle, rgba(237, 28, 89, 1) 8%, rgba(237, 28, 89, 0.93) 100%);">
+            <div class="tmax-w-5xl tmx-auto tgrid tgrid-cols-1 tsm:grid-cols-3 tgap-4 ttext-center ttext-white">
+                
+                <!-- Stat 1 -->
+                <div class="tspace-y-1 tpx-10" style=" border-bottom: 1px dashed #fffeff85; padding-bottom: 10px; ">
+                    <div class="ttext-2xl tsm:text-3xl tfont-bold">
+                        100g
+                    </div>
+                    <div class="ttext-lg toppacity-90">
+                        Big Glow Tube
+                    </div>
+                </div>
 
-        <hr class="tmy-10">
+                <!-- Stat 2 -->
+                <div class="tspace-y-1 tpx-10" style=" border-bottom: 1px dashed #fffeff85; padding-bottom: 10px; ">
+                    <div class="ttext-2xl tsm:text-3xl tfont-bold">
+                        3×
+                    </div>
+                    <div class="ttext-lg toppacity-90">
+                        Bigger Than Regular Sunscreens
+                    </div>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="tspace-y-1">
+                    <div class="ttext-2xl tsm:text-3xl tfont-bold">
+                        9,500+
+                    </div>
+                    <div class="ttext-lg toppacity-90">
+                        Happy Filipina Users
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <img class="" src="https://matildasbeauty.com/filemanager/aa3ebc01a4504ca895cd61279646cbf6.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
 
 
-        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 tmx-3">
+        <div class="ttext-center tmy-8">
             <span class="tfont-bold  ttext-center tmb-5 tmt-3" style="font-size: 25px;">
-                🌸 100g 3x Bigger Size, More Days of Glow.
+                🌸 100g 3x Bigger Size, <br> More Days of Glow.
             </span>
+        </div>
+
+        <img class="" src="https://matildasbeauty.com/filemanager/06e8bbd2f8a44638ab8a7bde6ce67b30.png" loading="lazy" width="480" height="480" alt="mudra before & After">
+
+
+        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3">
+
 
             <div class="tw-full ttext-md tmb-3">
-                <i class="fas fa-star tmb-2 ttext-lg" style="color:#ec4899d6;"></i>
-                <b style="font-size: 16px;">What Makes 100g So Sulit</b>
-                <br>
                 <div class="tml-5 tmb-3 tmt-3">
                         
                     <h6 class="tmb-3">
@@ -1323,16 +1349,20 @@ $products_json = json_encode($products);
         <img class="tmy-10" src="https://matildasbeauty.com/filemanager/2aa5f69f08704866a0d0b080b240e3f7.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
 
 
-        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 tmx-3">
 
-            <span class="tfont-bold  ttext-center tmb-5 tmt-3 tpx-2" style="font-size: 25px;">
-                🌸 Soft, Dewy Glow — Never Oily, Never Lagkit.
+        <div class="tpx-5 ttext-center">
+             <span class="tfont-bold  ttext-center tmb-5 tmt-3" style="font-size: 25px;">
+                🌸 Soft, Dewy Glow <br> Never Oily, Never Lagkit.
             </span>
-            <span class="tfont-medium  ttext-center tmb-8 tpx-3" style="font-size: 14px;">
+            <!-- <span class="tfont-medium  ttext-center tmb-8 tpx-3" style="font-size: 14px;">
                 MissTisa gives you that <b>fresh</b> , <b>dewy finish</b>  you love…
                 pero <b>hindi oily</b> ,<b> hindi sticky</b> , at <b>hindi mainit sa balat</b>  —
                 perfect for daily Filipina weather.
-            </span>
+            </span> -->
+        </div>
+        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3">
+
+           
 
             <div class="tw-full ttext-md tmb-3">
                 <i class="fas fa-star tmb-2 ttext-lg" style="color:#ec4899d6;"></i>
@@ -1398,9 +1428,9 @@ $products_json = json_encode($products);
         <hr class="tmy-10">
 
         <!-- TEXTURE -->
-        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 tmx-3 ">
+        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 ">
 
-            <span class="tfont-bold  ttext-center tmb-5 tmt-3 tpx-2" style="font-size: 25px;">
+            <span class="tfont-bold  ttext-center tmb-5 tmt-3" style="font-size: 25px;">
                 🌸 Stay Fresh, Stay Glowing Even in PH Heat.
             </span>
             <span class="tfont-medium  ttext-center tmb-8 tpx-3" style="font-size: 14px;">
@@ -1474,7 +1504,7 @@ $products_json = json_encode($products);
         <!-- MissTisa VS Other Brand -->
         <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 tmx-3 tmb-10">
 
-            <span class="tfont-bold  ttext-center tmb-5 tmt-3 tpx-2" style="font-size: 25px;">
+            <span class="tfont-bold  ttext-center tmb-5 tmt-3" style="font-size: 25px;">
                 🌸 Why MissTisa Stands Out vs Other Brands
             </span>
 
@@ -2536,9 +2566,20 @@ $products_json = json_encode($products);
             </div> <!-- Modal  --> --}}
 
             <!-- Your ORIGINAL button (unchanged) -->
-            <button class="order_now tabsolute tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect"
+            <button class="order_now zoom-in-out-box tabsolute tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-xl ttext-lg ttext-white tw-10/12 waves-effect"
                 style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0px; margin-bottom: 69px; right: 0px; background-color: rgb(238, 42, 123); display: block;">
-                ORDER NOW!
+                    
+
+                    <div class="tflex tjustify-around titems-center tpx-4">
+                        <div class="ttext-xs">
+                            <div class="">Dewy Finish. Zero Lagkit</div>
+                            <div class="">100g Big Size</div>
+                        </div>
+                        <div class=" ">
+                            <i class="fas fa-shopping-bag"></i>
+                            ORDER NOW!
+                        </div>
+                    </div>
             </button>
 
 
