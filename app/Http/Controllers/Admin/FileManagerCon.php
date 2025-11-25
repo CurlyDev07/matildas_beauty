@@ -18,7 +18,7 @@ class FileManagerCon extends Controller
 
     public function folder($id){
         $folder = Folder::find($id);
-        $files = File::where('folder_id', $id)->get();
+        $files = File::where('folder_id', $id)->latest()->get();
 
         return view('admin.file_manager.folder', ['files' => $files, 'folder' => $folder]);
     }// inside the folder
