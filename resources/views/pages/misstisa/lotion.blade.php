@@ -886,38 +886,38 @@ $products_json = json_encode($products);
             </span>
 
 
-            <div class="tpt-3 ttext-md tw-full">
+            <div class="tpt-3 ttext-md tw-full tmb-3">
                 <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b>Dewy glow without the oiliness</b>
-                <div style="line-height: 0.5;" class="tml-5">Fresh, soft, glowing — never greasy.</div>
+                <div style="line-height: 0.5;" class="tml-5 ttext-gray-600">Fresh, soft, glowing — never greasy.</div>
             </div>
 
-            <div class="tpt-3 ttext-md tw-full">
+            <div class="tpt-3 ttext-md tw-full tmb-3">
                 <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b>Zero lagkit kahit mainit, humid, pawisin</b>
                 <br>
-                <div style="line-height: 0.5;" class="tml-5">Perfect for real Filipina weather.</div>
+                <div style="line-height: 0.5;" class="tml-5 ttext-gray-600">Perfect for real Filipina weather.</div>
             </div>
 
-            <div class="tpt-3 ttext-md tw-full">
+            <div class="tpt-3 ttext-md tw-full tmb-3">
                 <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b>No white cast on morena to misstisa skin</b>
                 <br>
-                <div style="line-height: 0.5;" class="tml-5">Blends like skincare, not chalk.</div>
+                <div style="line-height: 0.5;" class="tml-5 ttext-gray-600">Blends like skincare, not chalk.</div>
             </div>
 
-            <div class="tpt-3 ttext-md tw-full tmb-1">
+            <div class="tpt-3 ttext-md tw-full tmb-3 tmb-1">
                 <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b>Glow skincare + sun defense in one</b>
                 <br>
-                <div style="line-height: 0.5;" class="tml-5">Brightening Glow + High-Level Sun Defense.</div>
+                <div style="line-height: 0.5;" class="tml-5 ttext-gray-600">Brightening Glow + High-Level Sun Defense.</div>
             </div>
 
-            <div class="tpt-3 ttext-md tw-full tmb-1">
+            <div class="tpt-3 ttext-md tw-full tmb-3 tmb-1">
                 <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b>100g big size for daily face & body glow</b>
                 <br>
-                <div style="line-height: 0.5;" class="tml-5">Hindi mabilis maubos — lasts up to 3 months.</div>
+                <div style="line-height: 0.5;" class="tml-5 ttext-gray-600">Hindi mabilis maubos — lasts up to 3 months.</div>
             </div>
 
             <span class="tfont-bold tmt-5 tp-4 tshadow-lg trounded-full tmb-5 ttext-center" style="font-size: 18px; background-color: #faebebab;">
@@ -1092,23 +1092,28 @@ $products_json = json_encode($products);
 
 
         <!-- BEFORE AND AFTER -->
-        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 tmx-3">
+        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3">
             <span class="tfont-bold  ttext-center tmb-2" style="font-size: 25px;">
                 ✨ The Top 3 Gentle Brightening Actives - Ranked
             </span>
-            <span class="tfont-medium  ttext-center tmb-5 tpx-3" style="font-size: 14px;">
+            <!-- <span class="tfont-medium  ttext-center tmb-5 tpx-3" style="font-size: 14px;">
                 Not all whitening ingredients are safe for daily use. But these three?
                 They’re known as the most trusted, gentle-but-effective glow actives loved worldwide.
-            </span>
+            </span> -->
 
 
-            <div class="tmb-10 tpt-5 tpx-5 tpy-5 trounded-lg tshadow-lg ttext-md tw-full">
+            <div class="tmb-10 tmt-10 tpt-5 tpx-5 tpy-5 trelative trounded-lg tshadow-lg ttext-md tw-full">
                 <i class="fas fa-star tmb-2 ttext-lg" style="color:#f52d87;"></i>
-                <b style="font-size: 16px;">Tranexamic <small style="color: #f62d87;">(Strongest Gentle Brightener)</small> </b>
-                <h6>(Top choice for uneven skin tone & dull areas)</h6>
-                <br>
-                <div class="tml-5 tmb-3">
-                        
+                <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/c328011b5037496da95e79317c1f38f1.png" loading="lazy" width="100" height="100" alt="mudra before &amp; After" style="
+                    top: -50px;
+                    right: 27px;
+                ">
+                <b class="tmt-10" style="font-size: 16px;">Tranexamic</b>
+                <div class="tml-5 tmb-3 ">
+                    <h6>
+                        <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #03af1a;"></i>    
+                        <span style="color: #f62d87"><b> Strongest Gentle Brightener </b></span>
+                    </h6>
                     <h6>
                         <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #03af1a;"></i>    
                         Helps the skin look clearer
@@ -1139,13 +1144,22 @@ $products_json = json_encode($products);
                 <h6>It gives the strongest brightening clarity without irritation.</h6>
             </div>
 
-            <div class="tmb-10 tpt-5 tpx-5 tpy-5 trounded-lg tshadow-lg ttext-md tw-full">
+            <div class="tmb-10 tmt-10 tpt-5 tpx-5 tpy-5 trelative trounded-lg tshadow-lg ttext-md tw-full">
                 <i class="fas fa-star tmb-2 ttext-lg" style="color:#f52d87;"></i>
-                <b style="font-size: 16px;">Alpha Arbutin <small style="color: #f62d87;">(Ultra Brightening Expert)</small> </b>
-                <h6>(Golden standard for daily whitening)</h6>
-                <br>
-                <div class="tml-5 tmb-3">
-                        
+                <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/2dbb913c862a46e78ae37b249d71dde5.png" loading="lazy" width="100" height="100" alt="mudra before &amp; After" style="
+                    top: -50px;
+                    right: 27px;
+                ">
+                <b class="tmt-10" style="font-size: 16px;">Alpha Arbutin</b>
+                <div class="tml-5 tmb-3 ">
+                    <h6>
+                        <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #03af1a;"></i>    
+                        <span style="color: #f62d87"><b> Ultra Brightening Expert </b></span>
+                    </h6>
+                    <h6>
+                        <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #03af1a;"></i>    
+                        Golden standard for daily whitening
+                    </h6>
                     <h6>
                         <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #03af1a;"></i>    
                         Helps brighten dark-looking areas
@@ -1153,7 +1167,7 @@ $products_json = json_encode($products);
 
                     <h6>
                         <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #03af1a;"></i>    
-                        Helps the complexion appear more even
+                        Helps the complexion more even
                     </h6>
 
                     <h6>
@@ -1169,20 +1183,24 @@ $products_json = json_encode($products);
 
                 <h6 class="tmb-2"><b> Why it ranks #2:</b> </h6>
                 <h6>Very effective — but stays gentle and safe for sensitive skin.</h6>
-            </div>
+            </div><!-- arbutin  -->
 
-            <div class="tmb-10 tpt-5 tpx-5 tpy-5 trounded-lg tshadow-lg ttext-md tw-full">
+            <div class="tmb-10 tmt-10 tpt-5 tpx-5 tpy-5 trelative trounded-lg tshadow-lg ttext-md tw-full">
                 <i class="fas fa-star tmb-2 ttext-lg" style="color:#f52d87;"></i>
-                <b style="font-size: 16px;">Niacinamide<small style="color: #f62d87;">(Glow & Texture Perfector)</small> </b>
-                <h6>(Multi-benefit brightening + smoothing)</h6>
-                <br>
-                <div class="tml-5 tmb-3">
-                        
+                <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/e1af5d5b9be14e619b7f7e287ee3dc7c.png" loading="lazy" width="100" height="100" alt="mudra before &amp; After" style="
+                    top: -50px;
+                    right: 27px;
+                ">
+                <b class="tmt-10" style="font-size: 16px;">Niacinamide</b>
+                <div class="tml-5 tmb-3 ">
+                    <h6>
+                        <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #03af1a;"></i>    
+                        <span style="color: #f62d87"><b> (Glow & Texture Perfector) </b></span>
+                    </h6>
                     <h6>
                         <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #03af1a;"></i>    
                         Helps soften dullness
                     </h6>
-
                     <h6>
                         <i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #03af1a;"></i>    
                         Helps smooth & refine skin look
@@ -1199,13 +1217,14 @@ $products_json = json_encode($products);
                     </h6>
                 </div>
 
-                <h6 class="tpb-2"><b> Why it ranks #3:</b> </h6>
-                <h6 class="tmb-5">It brightens and improves texture — the perfect support active.</h6>
-            </div>
+                <h6 class="tmb-2"><b> Why it ranks #3:</b> </h6>
+                <h6>It brightens and improves texture — the perfect support active.</h6>
+            </div><!-- Niacinamide  -->
+
         </div>
 
         <!-- INGREDIENTS -->
-        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 tmx-3">
+        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3">
 
              <span class="tfont-bold  ttext-center tmy-5" style="font-size: 19px;">
                 🌸 SKIN-LOVING SUPPORT ACTIVES
@@ -1502,7 +1521,7 @@ $products_json = json_encode($products);
         <img class="tmy-10" src="https://matildasbeauty.com/filemanager/efbe898f0d5842539e82f1747a65fdc3.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
 
         <!-- MissTisa VS Other Brand -->
-        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 tmx-3 tmb-10">
+        <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 tmb-10">
 
             <span class="tfont-bold  ttext-center tmb-5 tmt-3" style="font-size: 25px;">
                 🌸 Why MissTisa Stands Out vs Other Brands
