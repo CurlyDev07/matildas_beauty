@@ -819,25 +819,7 @@ $products_json = json_encode($products);
             </div>
         </div>
 
-        <!-- <img src="https://matildasbeauty.com/filemanager/ebac5e3ae0014c9ebf182d37d8a7dea0.webp" width="480" height="480" class="tw-full tmb-2" alt="#1 Kulubot Remover"> -->
         <img src="https://matildasbeauty.com/filemanager/ebac5e3ae0014c9ebf182d37d8a7dea0.webp" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
-
-        <!-- <div class="tmx-3 tflex titems-center tmy-5">
-            <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
-                <span class="ttext-sm ttext-white">
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                </span>
-                <span class="ttext-md ttext-green-900">
-                    <span class="tfont-bold"> &nbsp; 4.8</span>
-                    <span class="tfont-medium">Ratings</span>
-                </span>
-            </div>
-            <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">⭐19,586 Trusted Reviews</div>
-        </div>Trusted Reviews -->
 
         <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 31px;background: #ed1c59;">
             <div>
@@ -863,17 +845,6 @@ $products_json = json_encode($products);
         <div class="tfont-semibold tmx-3  ttext-center">
             <i class="fas fa-check-circle tmt-5 tmb-2" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
         </div>
-
-        <!-- <div class="tborder-dashed ttext-center tmx-3 tmy-2 tpx-3 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
-            <span class="tfont-bold  ttext-center" style="font-size: 20px;">All-in-1 Skincare Sale – Ends Soon!</span>
-            <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
-                ⏰
-                <div id="timer_top">18:38</div>
-                mins
-            </span>
-            {{-- <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span> --}}
-        </div>FREE 2 Gifts -->
-
 
         <!-- SOLUTION -->
         <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3 ">
@@ -936,7 +907,6 @@ $products_json = json_encode($products);
 
 
         <!-- PROBLEM -->
-                
         <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3">
             <span class="tfont-bold  ttext-center" style="font-size: 25px;">Sunscreen Issues We’re All Tired Of…</span>
         </div>
@@ -1104,7 +1074,7 @@ $products_json = json_encode($products);
 
             <div class="tmb-10 tmt-10 tpt-5 tpx-5 tpy-5 trelative trounded-lg tshadow-lg ttext-md tw-full">
                 <i class="fas fa-star tmb-2 ttext-lg" style="color:#f52d87;"></i>
-                <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/c328011b5037496da95e79317c1f38f1.png" loading="lazy" width="100" height="100" alt="mudra before &amp; After" style="
+                <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/0f015d7f1aaa4daba6188184592f793a.webp" loading="lazy" width="100" height="100" alt="mudra before &amp; After" style="
                     top: -50px;
                     right: 27px;
                 ">
@@ -1146,7 +1116,7 @@ $products_json = json_encode($products);
 
             <div class="tmb-10 tmt-10 tpt-5 tpx-5 tpy-5 trelative trounded-lg tshadow-lg ttext-md tw-full">
                 <i class="fas fa-star tmb-2 ttext-lg" style="color:#f52d87;"></i>
-                <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/2dbb913c862a46e78ae37b249d71dde5.png" loading="lazy" width="100" height="100" alt="mudra before &amp; After" style="
+                <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/2cbcf5e1da2f43d7b46ba62b46ebc3b1.webp" loading="lazy" width="100" height="100" alt="mudra before &amp; After" style="
                     top: -50px;
                     right: 27px;
                 ">
@@ -1187,7 +1157,7 @@ $products_json = json_encode($products);
 
             <div class="tmb-10 tmt-10 tpt-5 tpx-5 tpy-5 trelative trounded-lg tshadow-lg ttext-md tw-full">
                 <i class="fas fa-star tmb-2 ttext-lg" style="color:#f52d87;"></i>
-                <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/e1af5d5b9be14e619b7f7e287ee3dc7c.png" loading="lazy" width="100" height="100" alt="mudra before &amp; After" style="
+                <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/9eeb7b26df784e2b8bb4f9ef6e03f8ed.webp" loading="lazy" width="100" height="100" alt="mudra before &amp; After" style="
                     top: -50px;
                     right: 27px;
                 ">
@@ -1318,7 +1288,7 @@ $products_json = json_encode($products);
             </span>
         </div>
 
-        <img class="" src="https://matildasbeauty.com/filemanager/06e8bbd2f8a44638ab8a7bde6ce67b30.png" loading="lazy" width="480" height="480" alt="mudra before & After">
+        <img class="" src="https://matildasbeauty.com/filemanager/0a698a16beeb406c9bb74094a00f21e9.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
 
 
         <div class="tflex tw-full tflex-wrap tjustify-center tpt-3 tpx-3">
@@ -2052,291 +2022,81 @@ $products_json = json_encode($products);
 
         </div><!-- PRODUCT DETAILS--> --}}
 
-        {{-- <div class="tmb-5 tborder-t" >
-            <div class="tborder tpx-4 tpy-5">
-                <h1 class="tmb-3 ttext-2xl">Product Ratings</h1>
-                <div class="tflex titems-center tjustify-between tmb-3">
-                    <p>
-                        <span class="ttext-2xl tfont-semibold" style="color: #f51773">5.0</span>
-                        <span class="ttext-xl tfont-medium" style="color: #f51773"> out of 5</span>
-                    </p>
-                    <div class="">
-                        <i class="fas fa-star" style="color: #f51773;"></i>
-                        <i class="fas fa-star" style="color: #f51773;"></i>
-                        <i class="fas fa-star" style="color: #f51773;"></i>
-                        <i class="fas fa-star" style="color: #f51773;"></i>
-                        <i class="fas fa-star" style="color: #f51773;"></i>
-                    </div>
-                </div>    
-                <div class="tflex titems-center tjustify-between">
+   
 
-                    <div class="trounded ttext-sm tmr-1 ttext-center trelative" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773; background: #f51773; color: white;">
-                        <p>5 <i class="fas fa-star" style="color: white;"></i> (9.5k)</p>
-                    </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        4<i class="fas fa-star" style="color: #f51773;"></i> (0)
-                    </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        3<i class="fas fa-star" style="color: #f51773;"></i> (0)
-                    </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        2<i class="fas fa-star" style="color: #f51773;"></i> (0)
-                    </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        1<i class="fas fa-star" style="color: #f51773;"></i> (0)
-                    </div>
-                </div>
-                
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review1/profile.png') }}" class="trounded-full" style="width: 40px;" alt="Emerlita manao" loading="lazy" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Emerlita Manao</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">April 14, 2023 09:07AM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                        Hala grabi. <b>Effective pala talaga ang MissTisa</b> totoo pala ung napnoud ko na video.
-                        Kitang kita naman sa picture ko nag <b>fade talga ung melasma ko in 3 Weeks.</b> 
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 1 -->
-
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review2/profile.png') }}" class="trounded-full" style="width: 40px;" alt="batang" loading="lazy" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Maricel Batang</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 14, 2023 12:48PM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                       <b> Sobrang problemado talaga ako sa Melasma ko.</b> Maputi naman ung face ko
-                       Kaya lalong naging Visible ung Melasma ko. Nakuha ko to sa panga-nganak
-                       sa Pangalawa ko. Ang dami ko na din nasubukan ok naman <b> kaso mas na satisfy
-                       lang talga ako dito sa MissTisa </b>lang ung may pinaka magandang Effect.
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 2 -->
-
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review3/profile.png') }}" class="trounded-full" style="width: 40px;" alt="analiza" loading="lazy" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Analiza Pareo</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                        Hi!. <b>I was so frustrated with my melasma.</b>  i'm a korean living here in philippines.
-                        My Filipino husband bought me this product. <b>I tried many korean products</b>  but this is only 
-                        The Rejuvenating set worked for me. this is my result after using for month </b>
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 3 -->
-                
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review4/profile.png') }}" class="trounded-full" style="width: 40px;" alt="sharon" loading="lazy" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Sharon Temon</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 25, 2023 04:22PM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                        The before and after of my face is proof that MissTisa Product is very Effective.
-                        The Glass Skin Effect is superb, And my melasma is totally Gone.
-                        I would definitely recommend this to my co mother who suffer also from melasma.
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 4 -->
-
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review5/profile.png') }}" class="trounded-full" style="width: 40px;" alt="liza manalo" loading="lazy" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Liza Manalo</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 02, 2023 07:27AM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                        <b>Wag kayo bibili nito! Kung ayaw nyo Mawala agad ang melasma nyo ng 1 week.</b> 
-                        Mga sis Legit at Effective Talga sya lalo na kapag wala ka palya sa pag lagay.
-                        1 Week kitang kita na result tulad ng pic ko dito oh.
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 5 -->
-
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review6/profile.png') }}" class="trounded-full" loading="lazy" style="width: 40px;" alt="" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Rebecca Morales</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 16, 2023 01:29PM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                        <b> Dati Palagi nalang ako naka Mask.</b> Kasi Ang Dami kong Melasma. 
-                        kaya Thankful ako kasi nakita ko itong MISSTISA isang Set palang
-                        at <b>1 week Kitang kita na agad ang effect nya.</b>  at nag Glass SKin pa face ko.
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 6 -->
-
-            </div>  <!-- RATINGS DIV -->
-        </div> <!-- RATINGS --> --}}
-
-        {{-- <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">FDA CERTIFICATES</h3> --}}
-
-        {{-- <img src="https://matildasbeauty.com/filemanager/b864e63d955f47289504464f0471a6a3.webp" loading="lazy" width="480" height="480" alt="fda_certificate MissTisa Set" class="tmb-5">
-        <img src="https://matildasbeauty.com/filemanager/b83e1f3a40f24410aa5d25c089b7d62f.webp" loading="lazy" width="480" height="480" alt="fda_certificate Serum" class="tmb-5"> 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/caeeb8c393854078ab638ce543f2daea.webp" loading="lazy" width="480" height="480" alt="MissTisa Lotion - New Image"> --}}
 
 
         <div class="tmx-auto trelative tpx-5 tpb-5">
-            <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
-                <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" alt="free shipping" width="200" height="123">
-                <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
-            </div>
+            <!-- Benefits Bar -->
+            <section class="tbg-white tpy-6 tpx-4">
+                <div class="tmax-w-5xl tmx-auto ttext-center tspace-y-4">
 
-            <section class="tflex titems-baseline tmt-5 tmb-3">
-                <div class="ttext-center">
-                    <i class="fas fa-truck ttext-4xl" style="color: #ee2aa9; line-height: 1.2;"></i>
-                    <span class="tinline-block tmt-1">Fast delivery nationwide</span>
-                </div>
-                <div class="ttext-center">
-                    <i class="fas fa-dollar-sign ttext-4xl" style="color: #ee2aa9; line-height: 1.2;" ></i>
-                    <span class="tinline-block tmt-1">Moneyback Guarantee</span>
-                </div>
-                <div class="ttext-center">
-                    <i class="fas fa-hand-holding-usd ttext-4xl" style="color: #ee2aa9; line-height: 1.2;" ></i>
-                    <span class="tinline-block tmt-1">Cash on Delivery</span>
-                </div>
-                <div class="ttext-center">
-                    <i class="fas fa-headset ttext-4xl" style="color: #ee2aa9; line-height: 1.2;"></i>
-                    <span class="tinline-block tmt-1">Unlimited SkincareTips</span>
+                    <!-- Top line -->
+                    <p class="ttext-lg tsm:text-base tfont-medium ttext-gray-800">
+                    Nationwide shipping — Luzon, Visayas & Mindanao
+                    </p>
+
+                    <!-- Icons row -->
+                    <div class="tgrid tgrid-cols-2 tsm:grid-cols-4 tgap-4 tmt-2">
+                    
+                    <!-- Fast Delivery -->
+                    <div class="tflex tflex-col titems-center tgap-1">
+                        <div class="tw-20 th-20 trounded-full tbg-pink-100 tflex titems-center tjustify-center">
+                            <i class="fas fa-truck ttext-pink-500 ttext-3xl"></i>
+                        </div>
+                        <p class="ttext-[11px] ttext-lg tfont-semibold ttext-gray-800">
+                            Fast Delivery
+                        </p>
+                        <p class="ttext-sm ttext-gray-500">
+                            Nationwide
+                        </p>
+                    </div>
+
+                    <!-- Safe & Worry-Free Purchase -->
+                    <div class="tflex tflex-col titems-center tgap-1">
+                        <div class="tw-20 th-20 trounded-full tbg-pink-100 tflex titems-center tjustify-center">
+                        <i class="fas fa-hand-holding-heart ttext-pink-500  ttext-3xl"></i>
+                        </div>
+                        <p class="ttext-[11px] ttext-lg tfont-semibold ttext-gray-800">
+                        Safe & Trusted
+                        </p>
+                        <p class="ttext-sm ttext-gray-500">
+                        Purchase
+                        </p>
+                    </div>
+
+                    <!-- Cash on Delivery -->
+                    <div class="tflex tflex-col titems-center tgap-1">
+                        <div class="tw-20 th-20 trounded-full tbg-pink-100 tflex titems-center tjustify-center">
+                        <i class="fas fa-hand-holding-usd ttext-pink-500  ttext-3xl"></i>
+                        </div>
+                        <p class="ttext-[11px] ttext-lg tfont-semibold ttext-gray-800">
+                        Cash on Delivery
+                        </p>
+                        <p class="ttext-sm ttext-gray-500">
+                        (COD)
+                        </p>
+                    </div>
+
+                    <!-- Unlimited Skincare Tips -->
+                    <div class="tflex tflex-col titems-center tgap-1">
+                        <div class="tw-20 th-20 trounded-full tbg-pink-100 tflex titems-center tjustify-center">
+                        <i class="fas fa-headset ttext-pink-500  ttext-3xl"></i>
+                        </div>
+                        <p class="ttext-[11px] ttext-lg tfont-semibold ttext-gray-800">
+                        Unlimited
+                        </p>
+                        <p class="ttext-sm ttext-gray-500">
+                        Skincare Tips
+                        </p>
+                    </div>
+
+                    </div>
                 </div>
             </section>
+
+
+
 
             {{-- <img src="https://matildasbeauty.com/filemanager/30ab80a0c85a4df69f8917950955e48f.webp" width="480" height="480" alt="buy 2 take 2"> --}}
 
