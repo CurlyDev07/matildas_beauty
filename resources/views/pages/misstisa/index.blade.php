@@ -24,14 +24,14 @@ $products = [
     ],
     [
         'id' => 2,
-        'name' => 'Skincare Set + Serum',
+        'name' => 'Set + Serum FREE VITAMIN C',
         'price' => 999,
-        'image' => 'https://matildasbeauty.com/filemanager/10f467f062ba4223b8a12bf02df940e4.png',
+        'image' => 'https://matildasbeauty.com/filemanager/9071030cb8ab448d95211aac0e9093bc.png',
         'description' => 'High protection sunscreen lotion',
     ],
     [
         'id' => 3,
-        'name' => 'Skincare Trio Set + Lotion+ Serum',
+        'name' => 'Set + Lotion+ Serum',
         'price' => 1399,
         'image' => 'https://matildasbeauty.com/filemanager/e94f2d3153de4058ac5264dd31c0af0f.png',
         'description' => 'Complete beauty set with serum and lotion'
@@ -859,7 +859,7 @@ $products_json = json_encode($products);
 
 
          <div class="tborder-dashed ttext-center tmx-3 tmy-2 tpx-3 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
-            <span class="tfont-bold  ttext-center" style="font-size: 20px;">All-in-1 Skincare Sale – Ends Soon!</span>
+            <span class="tfont-bold  ttext-center" style="font-size: 20px;">FREE Pomelo Vitamin C – Ends Soon!</span>
             <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
                 ⏰
                 <div id="timer_top">18:38</div>
@@ -1197,8 +1197,17 @@ $products_json = json_encode($products);
         <img src="https://matildasbeauty.com/filemanager/b83e1f3a40f24410aa5d25c089b7d62f.webp" loading="lazy" width="480" height="480" alt="fda_certificate Serum" class="tmb-5"> 
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/caeeb8c393854078ab638ce543f2daea.webp" loading="lazy" width="480" height="480" alt="MissTisa Lotion - New Image"> --}}
 
+        <h1 class="tfont-bold tpy-5 ttext-3xl ttext-center ttext-red ttext-white tmt-10" style="
+            background: #ff5f29;
+            background: linear-gradient(90deg, rgba(255, 95, 41, 1) 0%, rgba(253, 29, 29, 1) 40%, rgba(252, 145, 69, 1) 100%);
+        ">NEW PRODUCT!</h1>
 
-        <div class="tmx-auto trelative tborder tpx-5 tpb-5">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/55c2868e86fc435aae2b55a4c96fe6f8.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
+        <img class="" src="https://matildasbeauty.com/filemanager/7463ba9ebfd44727a67b35d1777826a4.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
+
+
+
+        <div class="tmx-auto trelative tborder tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
                 <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" alt="free shipping" width="200" height="123">
                 <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
@@ -1324,7 +1333,7 @@ $products_json = json_encode($products);
                                     </div>
                                 </div>
                                 <div class="check-circle tabsolute tw-6 th-6 trounded-full tflex titems-center tjustify-center ttext-xs tfont-bold" style="top: 4px;right: 4px;">✓</div>
-                                <h3 class="tfont-bold ttext-center ttext-gray-800 ttext-xs" style="font-size: 17px;"><?= htmlspecialchars($product['name']) ?></h3>
+                                <h3 class="tfont-bold ttext-center ttext-gray-800 ttext-xs" style="font-size: 17px; line-height: 1.1rem;"><?= htmlspecialchars($product['name']) ?></h3>
                                 <div id="quantity-container-<?= $product['id'] ?>" class="tflex titems-center tjustify-center tmb-1 tmt-2 <?= $index !== 0 ? 'thidden' : '' ?>">
                                     <div class="tflex titems-center tbg-white tborder-2 tborder-pink-200 trounded-md tpx-1 tpy-1 tshadow-sm">
                                         <button onclick="changeQuantity(<?= $product['id'] ?>, -1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">-</button>
