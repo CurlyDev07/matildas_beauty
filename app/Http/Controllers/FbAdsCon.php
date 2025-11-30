@@ -76,22 +76,22 @@ class FbAdsCon extends Controller
 
         $promos = [
             'promo1' => [
-                'promo' => '1_Lotion_1_Set_1_Serum|1299|3pcs',
-                'promo_text' => 'Skincare Set +  Serum | Free Lotion',
-                'price' => 1299,
-                'each_price' => 'Free Lotion (worth ₱649)'
+                'promo' => 'MissTisaSerum_2pcs_FREE_VITAMIN_C|999|3pcs',
+                'promo_text' => '2pcs Serum + FREE Vitamin C Serum',
+                'price' => 999,
+                'each_price' => '499/each with Free Vitamin C'
             ], 
             'promo2' => [
-                'promo' => 'MissTisaSerum_2pcs|999|2pcs',
-                'promo_text' => '2pcs Serum',
-                'price' => 999,
-                'each_price' => '499/each'
-            ], 
-            'promo3' => [
                 'promo' => 'MissTisaSerum_1pc|749|1pc',
                 'promo_text' => '1pc MissTisa Serum',
                 'price' =>749,
                 'each_price' => '749/each'
+            ], 
+            'promo3' => [
+                'promo' => '1_Lotion_1_Set_1_Serum|1299|4pcs',
+                'promo_text' => 'Skincare Set + Serum + Free Lotion & Vitamin C',
+                'price' => 1299,
+                'each_price' => 'Free Lotion & Vitamin C'
             ], 
            
         ];

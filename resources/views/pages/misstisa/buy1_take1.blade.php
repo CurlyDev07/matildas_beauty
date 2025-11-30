@@ -11,9 +11,9 @@ $products = [
     ],
     [
         'id' => 1,
-        'name' => 'Skincare Set + Serum',
+        'name' => 'Set + Serum FREE VITAMIN C',
         'price' => 999,
-        'image' => 'https://matildasbeauty.com/filemanager/10f467f062ba4223b8a12bf02df940e4.png',
+        'image' => 'https://matildasbeauty.com/filemanager/9071030cb8ab448d95211aac0e9093bc.png',
         'description' => 'High protection sunscreen lotion',
     ],
     [
@@ -1176,7 +1176,7 @@ $products_json = json_encode($products);
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/caeeb8c393854078ab638ce543f2daea.webp" loading="lazy" width="480" height="480" alt="MissTisa Lotion - New Image"> --}}
 
 
-        <div class="tmx-auto trelative tborder tpx-5 tpb-5">
+        <div class="tmx-auto trelative tborder tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
                 <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" alt="free shipping" width="200" height="123">
                 <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
@@ -1242,6 +1242,16 @@ $products_json = json_encode($products);
                 {{-- ============================================================================================= --}}
 
 
+                <h1 class="tfont-bold tpy-5 ttext-3xl ttext-center ttext-red ttext-white tmt-10" style="
+                    background: #ff5f29;
+                    background: linear-gradient(90deg, rgba(255, 95, 41, 1) 0%, rgba(253, 29, 29, 1) 40%, rgba(252, 145, 69, 1) 100%);
+                ">NEW PRODUCT!</h1>
+
+                <img class="tmb-3" src="https://matildasbeauty.com/filemanager/55c2868e86fc435aae2b55a4c96fe6f8.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
+                <img class="" src="https://matildasbeauty.com/filemanager/7463ba9ebfd44727a67b35d1777826a4.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
+
+
+
                 <!-- ORDER PROMO -->
                 <div class="th-full tflex tflex-col tmax-w-2xl tmx-auto tbg-white tp-3">
                     <!-- Header -->
@@ -1290,7 +1300,7 @@ $products_json = json_encode($products);
                             <span class="ttext-lg">🌟</span> MissTisa Beauty Collection
                         </h2>
 
-                        <div class="tborder-dashed ttext-center tmx-3 tmy-2 tpx-3 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
+                        <div class="tborder-dashed ttext-center tmy-2 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
                             <span class="tfont-bold  ttext-center" style="font-size: 20px;">BUY 1 TAKE 1 – Ends Soon!</span>
                             <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
                                 ⏰

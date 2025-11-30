@@ -101,7 +101,9 @@
         <img src="https://matildasbeauty.com/filemanager/409d8830a29940eea4f69b7ad9b0801a.webp" class="tw-full"  alt="Before & After 1">
         <img src="https://matildasbeauty.com/filemanager/008b94df938c460493ff2c3abeeef489.webp" class="tw-full"  alt="Before & After 2">
         <img src="https://matildasbeauty.com/filemanager/00b73e6229ef483ca934284422bd816b.webp" class="tw-full"  alt="Before & After 3">
-        <img src="https://matildasbeauty.com/filemanager/6952e5ed4afe420e94d726c89837c073.webp" alt="promo">
+        <img src="https://matildasbeauty.com/filemanager/6952e5ed4afe420e94d726c89837c073.webp" alt="promo 1">
+        <hr>
+        <img src="https://matildasbeauty.com/filemanager/a743d5c067d542ee99bc4aff4fcfa3e9.webp" alt="promo 2>
 
         {{-- <div class="tmb-5 tborder-t" >
             <div class="tborder tpx-4 tpy-5">
@@ -381,34 +383,36 @@
                 <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3>
 
                 @csrf
-                <div class="tw-full tflex tmb-3">
-                    <div class="tw-1/2 tmr-1">
-                        <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Full Name</label>
-                        <input required type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="browser-default input-control">
-                    </div>
-                    <div class="tw-1/2 tml-1 trelative">
-                        @error('phone_number')
-                            <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 1%;">{{ $message }}</span>
-                        @enderror
-                        <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">
-                            Phone Number 
-                            {{-- <span id="number_counter" class="tfont-medium ttext-orange-500">0/11</span>  --}}
-                        </label>
-                        <input required type="number" name="phone_number" id="phone_number" onkeyup="allnumeric(this)" value="{{ old('phone_number') }}" class="browser-default input-control">
-                        <span><small id="phone_number_validation" class="tfont-medium ttext-red-600 ttext-xs thidden">Mobile Number is Incorrect</small></span>
-                    </div>
-                </div><!--Fullname & Phone Number -->
-
-                <div class="tw-full tflex tmb-3">
-                    <div class="tw-auto tmr-1">
-                        <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
-                            <span class="tfont-medium">Complete Address</span>
-                            <small class="ttext-gray-600">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</small>
-                            <small class="ttext-green-600">make sure to complete the address</small>
-                        </label>
-                        <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
-                    </div>
-                </div><!--Address -->
+                <div class="tpx-3">
+                    <div class="tw-full tflex tmb-3">
+                        <div class="tw-1/2 tmr-1">
+                            <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Full Name</label>
+                            <input required type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="browser-default input-control">
+                        </div>
+                        <div class="tw-1/2 tml-1 trelative">
+                            @error('phone_number')
+                                <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 1%;">{{ $message }}</span>
+                            @enderror
+                            <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">
+                                Phone Number 
+                                {{-- <span id="number_counter" class="tfont-medium ttext-orange-500">0/11</span>  --}}
+                            </label>
+                            <input required type="number" name="phone_number" id="phone_number" onkeyup="allnumeric(this)" value="{{ old('phone_number') }}" class="browser-default input-control">
+                            <span><small id="phone_number_validation" class="tfont-medium ttext-red-600 ttext-xs thidden">Mobile Number is Incorrect</small></span>
+                        </div>
+                    </div><!--Fullname & Phone Number -->
+    
+                    <div class="tw-full tflex tmb-3">
+                        <div class="tw-auto tmr-1">
+                            <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
+                                <span class="tfont-medium">Complete Address</span>
+                                <small class="ttext-gray-600">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</small>
+                                <small class="ttext-green-600">make sure to complete the address</small>
+                            </label>
+                            <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
+                        </div>
+                    </div><!--Address -->
+                </div>
 
 
                <div class="tbg-yellow-200 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
@@ -514,14 +518,14 @@
 
 
 
-                <div class="tmt-3 ttext-right tw-full">
+                <div class="tmt-3 ttext-right tw-full tpx-5">
                     <span class="ttext-gray-900" style="font-size: 16px;">
                         <span class="tfont-medium">TOTAL:</span>
                         <span class="tfont-medium">₱</span>
                         <span id="total" class="tfont-medium t-ml-1">1149</span>
                     </span>
                 </div> <!-- DEFAULT VALUE NEAR BUTTON -->
-                <div class="tw-full ">
+                <div class="tw-full tpx-5 tmb-5">
                     <button  class="misstisa-bg focus:tbg-pink-500 trelative tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
                         <span>Checkout Order</span>
                     </button>
@@ -548,7 +552,7 @@
             
                         <div class="tflex titems-center tflex-col">
                             
-                            <p class="ttext-center tfont-medium ttext-2xl tmt-10" style="color: #ee2a7b">{{ $product_name }}</p>
+                            <p class="ttext-center tfont-medium ttext-2xl tmt-10" style="color: #ee2a7b">MissTIsa</p>
             
                             <div class="tflex tjustify-center tw-full tmt-3 tborder tp-3">
                                 <i class="fa-regular fas fa-check-circle ttext-5xl ttext-green-500 tmr-3" aria-hidden="true"></i>
@@ -561,10 +565,10 @@
                             </div>
             
                             <div class="tw-full tp-3 tm-2">
-                                <div class="tfont-medium tmb-5 ttext-center"  id="product_promo_name">{{ $product_name }}</div>
+                                {{-- <div class="tfont-medium tmb-5 ttext-center"  id="product_promo_name">{{ $product_name }}</div> --}}
 
                                 <div class="tflex titems-between titems-center">
-                                    <img width="75" id="order_success_image" data-src="https://matildasbeauty.com/filemanager/59f319c429c34cb582c414974a26bcc1.webp" class="tmr-3 lazy" alt="Product Image">
+                                    {{-- <img width="75" id="order_success_image" data-src="https://matildasbeauty.com/filemanager/59f319c429c34cb582c414974a26bcc1.webp" class="tmr-3 lazy" alt="Product Image"> --}}
                                     <div class="">
                                         <div class="">
                                             <span class="tfont-medium tmx-2 ttext-gray-700 ttext-md">Qty: </span>
