@@ -88,7 +88,7 @@ class FbAdsCon extends Controller
                 'each_price' => '749/each'
             ], 
             'promo3' => [
-                'promo' => '1_Lotion_1_Set_1_Serum|1299|4pcs',
+                'promo' => 'Lotion+Set+Serum_FREE_VITAMIN_C|1299|4pcs',
                 'promo_text' => 'Skincare Set + Serum + Free Lotion & Vitamin C',
                 'price' => 1299,
                 'each_price' => 'Free Lotion & Vitamin C'
