@@ -17,4 +17,13 @@ class FbAds extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    // In app/FbAds.php
+
+    public function upsells()
+    {
+        // This assumes your Upsell model is 'App\FbAdsUpsell' 
+        // and the foreign key is 'fb_ads_id'
+        return $this->hasMany(\App\FbAdsUpsell::class, 'fb_ads_id');
+    }
 }

@@ -149,6 +149,7 @@
             @endforeach
         </div>
         <div class="tpx-3 tpy-4 tflex tjustify-center">
+            <div class="tw-full" style="overflow-x: auto;">
             <table class="tmb-4 tbg-white ttext-md tw-full">
                     <tr class="tborder-0">
 
@@ -179,8 +180,25 @@
                                 @elseif ($order->product == 'MissTisa Serum')
                                     <span class="tfont-medium" style="color: #ff6206;">{{ $order->promo }}</span>
                                 @endif
+
+                                @if($order->upsells->count() > 0)
+                                    <div class="bg-gray-100 p-2">
+                                            @foreach($order->upsells as $upsell)
+                                                <div class="tbg-yellow-200 tpx-4 trounded ttext-yellow-800">
+                                                    {{ $upsell->product_name }}
+                                                     <!-- - ₱{{ number_format($upsell->amount, 2) }} -->
+                                                </div>
+                                            @endforeach
+                                        <!-- <div class="text-green-600 font-bold">
+                                            Total Upsell: ₱{{ number_format($order->upsells->sum('amount'), 2) }}
+                                        </div> -->
+                                    </div>
+                                @endif
                             </td>
-                            <td class="ttext-sm ttext-center tpy-1 amount">{{ $order->total }}</td>
+                            <td class="ttext-sm ttext-center tpy-1 ">
+                                <small class="ttext-gray-500">{{ $order->total }} +  {{ $order->upsells->sum('amount') }}</small>
+                                <span class="tfont-semibold  ttext-lg"><br> ₱<span class="amount">{{ $order->upsells->sum('amount') + $order->total }}</span> </span>
+                            </td>
                             <td class="ttext-sm ttext-center tpy-1 tooltipped" data-position="top" data-tooltip="Status was changed by {{ $order->user->first_name ?? 'System' }}">
                                 {{ $order->user->first_name ?? 'System' }}
                             </td>

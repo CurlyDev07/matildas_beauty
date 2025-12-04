@@ -21,30 +21,94 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 class FbAdsCon extends Controller
 {
 
+    // public function index(Request $request){
+
+    //     // Get grouped counts
+    //     $grouped = FbAds::select('status', DB::raw('count(*) as total'))
+    //         ->when(!$request->date, function($q){ // Show DEFAULT DATA For TODAY
+    //             return $q->whereDate('created_at', now());
+    //         })->when($request->date, function($q){
+    //             $date = explode(" - ",request()->date);
+    //             $from = carbon($date[0]);
+    //             $to = carbon($date[1]);
+
+    //             if ($from == $to) {
+    //                 return $q->whereDate('created_at', $from);
+    //             }
+
+    //             return $q->whereBetween('created_at', [$from, $to]);
+    //         })// FILTER DATE
+    //         ->groupBy('status')
+    //         ->get();
+
+    //     // Get total count of all records
+    //     $overallTotal = $grouped->sum('total');
+
+    //     // Map into array with percentage
+    //     $statusCounts = $grouped->mapWithKeys(function ($item) use ($overallTotal) {
+    //         $percentage = $overallTotal > 0 ? round(($item->total / $overallTotal) * 100, 2) : 0;
+    //         return [
+    //             $item->status => [
+    //                 'count' => $item->total,
+    //                 'percent' => $percentage
+    //             ]
+    //         ];
+    //     });
+        
+    //     // dd($statusCounts);
+
+    //     // ======================== STATUS COUNT ========================
+
+
+    //     $stores = Store::all();
+
+    //     $orders = FbAds::orderBy('created_at', 'desc')
+    //     ->when(!$request->date, function($q){
+    //         return $q->whereDate('created_at', now());
+    //     })// Show DEFAULT DATA For TODAY
+    //     ->when($request->date, function($q){
+    //         $date = explode(" - ",request()->date);
+    //         $from = carbon($date[0]);
+    //         $to = carbon($date[1]);
+
+    //         if ($from == $to) {
+    //             return $q->whereDate('created_at', $from);
+    //         }
+
+    //         return $q->whereBetween('created_at', [$from, $to]);
+    //     })// FILTER DATE
+    //     ->when($request->status, function($q){
+    //         return $q->where('status', request()->status);
+    //     })// Filter by STATUS
+    //     ->get();
+
+    //     return view('admin.fbads.index', [
+    //         'orders' => $orders,
+    //         'stores' => $stores,
+    //         'statusCounts' => $statusCounts
+    //     ]);
+    // }
+
     public function index(Request $request){
 
-        // Get grouped counts
+        // ... [Your existing grouped counts code remains exactly the same] ...
         $grouped = FbAds::select('status', DB::raw('count(*) as total'))
-            ->when(!$request->date, function($q){ // Show DEFAULT DATA For TODAY
+            ->when(!$request->date, function($q){
                 return $q->whereDate('created_at', now());
             })->when($request->date, function($q){
                 $date = explode(" - ",request()->date);
                 $from = carbon($date[0]);
                 $to = carbon($date[1]);
-
                 if ($from == $to) {
                     return $q->whereDate('created_at', $from);
                 }
-
                 return $q->whereBetween('created_at', [$from, $to]);
-            })// FILTER DATE
+            })
             ->groupBy('status')
             ->get();
 
-        // Get total count of all records
         $overallTotal = $grouped->sum('total');
 
-        // Map into array with percentage
         $statusCounts = $grouped->mapWithKeys(function ($item) use ($overallTotal) {
             $percentage = $overallTotal > 0 ? round(($item->total / $overallTotal) * 100, 2) : 0;
             return [
@@ -55,17 +119,16 @@ class FbAdsCon extends Controller
             ];
         });
         
-        // dd($statusCounts);
-
         // ======================== STATUS COUNT ========================
-
 
         $stores = Store::all();
 
-        $orders = FbAds::orderBy('created_at', 'desc')
+        // UPDATED QUERY HERE
+        $orders = FbAds::with('upsells') // <--- ADD THIS LINE (Eager Loading)
+        ->orderBy('created_at', 'desc')
         ->when(!$request->date, function($q){
             return $q->whereDate('created_at', now());
-        })// Show DEFAULT DATA For TODAY
+        })
         ->when($request->date, function($q){
             $date = explode(" - ",request()->date);
             $from = carbon($date[0]);
@@ -76,10 +139,10 @@ class FbAdsCon extends Controller
             }
 
             return $q->whereBetween('created_at', [$from, $to]);
-        })// FILTER DATE
+        })
         ->when($request->status, function($q){
             return $q->where('status', request()->status);
-        })// Filter by STATUS
+        })
         ->get();
 
         return view('admin.fbads.index', [

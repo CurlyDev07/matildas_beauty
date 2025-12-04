@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\MissTisaCon;
+
 // phpinfo();
 /*
 |--------------------------------------------------------------------------
@@ -75,11 +77,13 @@ Route::get('MissTisa-Promo', 'MissTisaCon@misstisa_promo')->name('misstisa_promo
 Route::post('MissTisa-Submit', 'MissTisaCon@store')->name('miss_tisa_submit');
 Route::get('MissTisa-Success', 'MissTisaCon@success')->name('miss_tisa_success');
 
+// UPSELL ROUTE
+Route::post('/misstisa/upsell', [MissTisaCon::class, 'upsellPurchase'])
+    ->name('miss_tisa.upsell');
 
 // TESTING FOR CAPI
 Route::get('MissTisa-Capi', 'MissTisaCapiCon@index')->name('misstisa.capi.index');
 Route::post('MissTisa-Submit-Capi', 'MissTisaCapiCon@store')->name('misstisa.capi.submit');
-
 
 
 

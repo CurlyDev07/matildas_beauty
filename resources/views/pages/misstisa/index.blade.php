@@ -186,8 +186,8 @@ $products_json = json_encode($products);
 
         /* Success Icon */
         .success-modal-icon {
-            width: 80px;
-            height: 80px;
+            width: 65px;
+            height: 65px;
             background: linear-gradient(135deg, #e91e63 0%, #e91e63 70%, #9c27b0 100%);
             border-radius: 50%;
             margin: 0 auto 25px;
@@ -224,7 +224,8 @@ $products_json = json_encode($products);
             background: #f8f9fa;
             border-radius: 15px;
             padding: 12px 20px;
-            margin: 25px 0;
+            padding-bottom: 0px;
+            margin: 2px 0;
             text-align: left;
         }
 
@@ -232,9 +233,9 @@ $products_json = json_encode($products);
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 18px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 7px;
+            padding-bottom: 7px;
+            border-bottom: 1px dashed #dbdbdb;
         }
 
         .success-modal-detail-row:last-child {
@@ -339,7 +340,7 @@ $products_json = json_encode($products);
             }
             
             .success-modal-content {
-                margin: 10px;
+                margin: 0px;
                 padding: 25px 20px;
                 max-height: calc(100vh - 30px);
             }
@@ -1379,16 +1380,18 @@ $products_json = json_encode($products);
                     </div>
                 </div><!-- MODAL - VALIDATION -->
 
-                <!-- MODAL SUCCESS NEW-->
+                <!-- MODAL SUCCESS NEW (Pink New Original Modal working)-->
                 <div class="success-modal" id="successModal">
                     <button class="success-modal-close-btn" onclick="closeSuccessModal()">✕</button>
                     
                     <div class="success-modal-content">
-                        <div class="success-modal-icon"></div>
+                        <div class="success-modal-icon tmb-3"></div>
                         
-                        <h1 class="success-modal-title">Order Sucess!</h1>
+                        <h1 class="success-modal-title tmb-1">Order Sucess!</h1>
+                        <p class="ttext-gray-500 ttext-sm tmt-1">Thank you for your purchase.</p>
+
                         
-                        <div class="success-modal-order-details tbg-white tfont-medium tshadow-lg">
+                        <div class="success-modal-order-details tbg-white tborder-b tborder-l tfont-medium">
                             <div class="success-modal-detail-row">
                                 <span class="success-modal-detail-label">Customer:</span>
                                 <span class="success-modal-detail-value success-modal-customer-name" id="successModalCustomerName">-</span>
@@ -1399,11 +1402,49 @@ $products_json = json_encode($products);
                                 <span class="success-modal-detail-value success-modal-promo-text" id="successModalPromoText">-</span>
                             </div>
                             
-                            <div class="success-modal-detail-row">
-                                <span class="success-modal-detail-label ttext-center tmx-auto">Total:</span>
-                                <span class="success-modal-detail-value ttext-center tmx-auto success-modal-total-amount" id="successModalTotalAmount">₱0</span>
+                            <div class="tflex tjustify-between">
+                                <div class="">Total:</div>
+                                <div class="success-modal-total-amount" id="successModalTotalAmount">₱0</div>
                             </div>
                         </div>
+
+                        <div class="tbg-gradient-to-b  tto-white tpy-3">
+                            <div class="ttext-center tmb-4 tmt-2">
+                                <h3 class="ttext-lg tfont-bold ttext-gray-900">Add this now for a Glow Upgrade</h3>
+                                <p class="ttext-xs ttext-pink-600 tfont-medium">Add this now and enjoy extra savings</p>
+                            </div>
+
+                            <!-- Horizontal Scrollable Container -->
+                            <div class="tflex toverflow-x-auto tspace-x-4 tp-2 no-scrollbar tsnap-x tsnap-mandatory">
+                                
+
+                                <?php foreach($fbads_products as $fbads_product) { ?>
+
+                                <!-- Upsell Product 1 -->
+                                <div class="tsnap-center tshrink-0 tw-64 tbg-white trounded-2xl tshadow-md tborder tborder-gray-100 toverflow-hidden">
+                                    <div class="th-32 tbg-gray-100 trelative">
+                                        <img src="{{ $fbads_product->image1 }}" alt="{{ $fbads_product->sku }}" class="tw-full th-full tobject-cover">
+                                        <span class="tabsolute ttop-2 tright-2 tbg-red-500 ttext-white ttext-[10px] tfont-bold tpx-2 tpy-1 trounded-full">{{ $fbads_product->discount_tag }}</span>
+                                    </div>
+                                    <div class="tp-3">
+                                        <h4 class="tfont-bold ttext-gray-800 ttext-sm ttruncate">{{ $fbads_product->promo_line1 }}</h4>
+                                        <span class="upsell_product thidden">{{ $fbads_product->sku }}</span>
+                                        <input type="hidden" class="product_id" value="{{ $fbads_product->id }}">
+                                        <div class="tjustify-center tflex titems-baseline tspace-x-2 tmt-1">
+                                            <span class="ttext-xl tfont-black ttext-pink-600">₱{{ $fbads_product->price }}</span>
+                                            <span class="ttext-sm ttext-gray-400 tline-through">₱{{ $fbads_product->slashed_price }}</span>
+                                        </div>
+                                        <button class=" tw-full tbg-gray-900 ttext-white ttext-xs tfont-bold tpy-2 trounded-lg hover:tbg-gray-800 ttransition tflex titems-center tjustify-center tgap-2">
+                                            Add to Order
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <?php  } ?>
+                               
+                            </div>
+                        </div>
+
                          <div class="success-modal-action-buttons">
                             <a href="https://www.facebook.com/groups/422982666836465" class="success-modal-btn success-modal-btn-primary zoom-in-out-box">Join Our MissTisa <br> VIP Facebook Group</a>
                         </div>
@@ -1776,16 +1817,23 @@ $products_json = json_encode($products);
                 hideLoading();// Hide loading
 
 
-                if (data.total < 3000) {
-                    console.log('send Purchase Checkout value to Pixel: '+ data.total);
-                    console.log('eventID:  '+ data.purchase_event_id);
-                    console.log('RAW RESPONSE:', data);                 // 👈 add this
-
+                if (data.total < 3000) {// original working
 
                     fbq('track', 'Purchase', { currency: "PHP",  value: data.total }, {
                         eventID: data.purchase_event_id
-                    });
+                    });  // WORKING 
+
+                    // Save phone for upsell use global variable
+                    window.missTisaCustomerPhone = window.missTisaCustomerPhone || {};
+                    window.missTisaCustomerPhone = data.contact_number; // or data.phone_number – depende sa response mo
+
+                    // GLOBAL VARIABLE ORDER ID
+                    window.global_order_id = window.global_order_id || {};
+                    window.global_order_id = data.order_id;
+
                 } // If Order Value > 3000 = DONT Send data to FACEBOOK
+
+
                 
                 if (data.success) {
                     showSuccessModal(data);
@@ -2178,6 +2226,156 @@ $products_json = json_encode($products);
 
 
     </script> 
+
+
+    <script> // UPSELL
+        $(document).ready(function() {
+            // Keep track of added upsell products
+            let upsellProducts = [];
+            let initialProducts = ''; // Store the original products
+            let initialTotal = 0;     // Store the original total
+            let isInitialized = false;
+
+            // Handle Add to Order button clicks
+            $('.success-modal').on('click', '.tbg-gray-900', function(e) {
+                e.preventDefault();
+                
+                // Initialize on first click
+                if (!isInitialized) {
+                    initialProducts = $('#successModalPromoText').text().trim();
+                    initialTotal = parseInt(
+                        $('#successModalTotalAmount').text()
+                            .replace('₱', '')
+                            .replace(/,/g, '')
+                    );
+                    isInitialized = true;
+                    
+                    // Add white-space style to the products element
+                    $('#successModalPromoText').css('white-space', 'pre-line');
+                }
+                
+                // Get the product card
+                const productCard = $(this).closest('.tsnap-center');
+                
+                // Extract product details
+                const productName = productCard.find('.upsell_product').text().trim();
+                const productId = parseInt(productCard.find('.product_id').val());
+
+                const productPrice = parseInt(
+                    productCard.find('.tfont-black.ttext-pink-600').text()
+                        .replace('₱', '')
+                        .replace(/,/g, '')
+                );
+                
+                // Check if product already added
+                const existingProduct = upsellProducts.find(p => p.name === productName);
+                if (existingProduct) {
+                    alert('This product has already been added to your order.');
+                    return;
+                }
+                
+                // Add to upsell products array
+                upsellProducts.push({
+                    name: productName,
+                    price: productPrice,
+                    productId: productId
+                });
+                
+                // Update the products display (UI only)
+                updateOrderDetails();
+                
+                // Change button state
+                $(this)
+                    .text('Added ✓')
+                    .removeClass('tbg-gray-900 hover:tbg-gray-800')
+                    .addClass('tbg-green-600')
+                    .prop('disabled', true);
+
+                // 🔥 NEW: fire upsell to backend + Pixel
+                triggerUpsellPurchase(productName, productPrice, productId);
+            });
+
+            function updateOrderDetails() {
+                // Start with initial products
+                let productsText = initialProducts;
+                let addedTotal = 0;
+                
+                // Add each upsell product on a new line
+                upsellProducts.forEach((product) => {
+                    productsText += '\n+ ' + product.name;
+                    addedTotal += product.price;
+                });
+                
+                // Calculate new total
+                const newTotal = initialTotal + addedTotal;
+                
+                // Update the DOM
+                $('#successModalPromoText').text(productsText);
+                $('#successModalTotalAmount').text('₱' + newTotal.toLocaleString());
+            }
+
+            // 🔥 NEW: send upsell purchase to backend + fire Pixel Purchase
+            function triggerUpsellPurchase(productName, productPrice, productId) {
+                const customerPhone = window.missTisaCustomerPhone || null;
+                const global_order_id = window.global_order_id || null;
+
+                const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                if (!customerPhone) {
+                    console.warn('No customer phone available for upsell tracking.');
+                    return;
+                }
+
+                const payload = {
+                    phone_number: customerPhone,
+                    order_id: global_order_id,
+                    product_name: productName,
+                    upsell_total: productPrice,
+                    product_id: productId
+                };
+
+                console.log(payload);
+
+                fetch("{{ route('miss_tisa.upsell') }}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken,
+                    },
+                    body: JSON.stringify(payload),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Upsell request failed with status ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data.success) {
+                        console.warn('Upsell response not successful:', data);
+                        return;
+                    }
+
+                    console.log('Upsell CAPI sent. Amount:', data.upsell_total);
+                    console.log('Upsell eventID:', data.upsell_purchase_event_id);
+
+                    // Pixel Purchase for the upsell
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Purchase', {
+                            value: data.upsell_total,
+                            currency: 'PHP',
+                        }, {
+                            eventID: data.upsell_purchase_event_id
+                        }); //WORKING
+                    }
+                })
+                .catch(error => {
+                    console.error('Error sending upsell purchase:', error);
+                });
+            }
+        });
+    </script>
 
     </footer>
 

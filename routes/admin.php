@@ -35,7 +35,11 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
     Route::get('dashboard', 'DashboardCon@index')->middleware(['masterAcess']);
     
+
+
+    Route::resource('fb-ads', 'FbAdsProductController');
      
+
     /*
     |--------------------------------------------------------------------------
     | PRODUCTS Routes

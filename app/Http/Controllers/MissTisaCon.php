@@ -8,7 +8,9 @@ use App\Province;
 use App\City;
 use App\Barangay;
 use App\FbAds;
+use App\FbAdsProduct;
 use App\FbEventListener;
+use App\FbAdsUpsell;
 use App\Http\Requests\FbAds\StoreFbAdsRequest;
 use GuzzleHttp\Client;
 use App\Services\FacebookCapi;
@@ -20,7 +22,9 @@ class MissTisaCon extends Controller
         $session_id = uuid();
         $website = 'MissTisa';
 
-        $provinces = Province::orderBy('province', 'asc')->pluck('province');
+        $provinces = [];
+        $fbads_products = FbAdsProduct::select('id', 'sku', 'product_name', 'price', 'slashed_price', 'image1', 'discount_tag', 'promo_line1')->get();
+
         $seo = [
             'title' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
             'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
@@ -28,7 +32,7 @@ class MissTisaCon extends Controller
             'robots' => 'none',
         ];
 
-        return view('pages.misstisa.index', ['seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
+        return view('pages.misstisa.index', ['fbads_products' => $fbads_products, 'seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
     }
 
     public function b1t1(){
@@ -134,7 +138,8 @@ class MissTisaCon extends Controller
             'promo' => $promo,
             'total' => $total,
             'contact_number' => $form_request['customer']['phone_number'],
-            'purchase_event_id' => $purchaseEventId
+            'purchase_event_id' => $purchaseEventId,
+            'order_id' => $order->id
         ]);
     }
 
@@ -144,6 +149,53 @@ class MissTisaCon extends Controller
 
         $data = request()->all();
         return view('pages.misstisa.order_success', ['data' => $data, 'session_id' => $session_id, 'website' => $website]);
+    }
+
+    public function upsellPurchase(Request $request, FacebookCapi $facebookCapi)
+    {
+
+        // 1) Basic validation
+        $request->validate([
+            'phone_number' => 'required|string',
+            'upsell_total' => 'required|numeric',
+        ]);
+
+        // 2) Parse amount
+        $upsellTotal = (float) $request->input('upsell_total');
+
+        // Simple safety check: dapat positive lang
+        if ($upsellTotal <= 0) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid upsell amount',
+            ], 400);
+        }
+
+        // 3) Generate NEW event ID for this upsell only
+        $upsellEventId = 'p_upsell_' . Str::uuid()->toString();
+
+        // 4) Send CAPI Purchase for UPSell ONLY
+        $facebookCapi->sendEvent('Purchase', $upsellEventId, $request, [
+            'phone' => $request->input('phone_number'),
+            'value' => $upsellTotal,
+            // optional: external_id kung gusto mong i-link sa main order
+            // 'external_id' => 'UPS-' . now()->format('YmdHis'),
+        ]);
+
+        // 2. Create the Upsell Record
+        $upsell = FbAdsUpsell::create([
+            'fb_ads_id'         => $request->order_id,
+            'fb_ads_product_id' => $request->product_id,
+            'product_name'      => $request->product_name, // Saving the name from the DB
+            'amount'            => $request->upsell_total,
+        ]);
+
+        // 5) Return JSON so JS can fire Pixel with same eventID
+        return response()->json([
+            'success'                  => true,
+            'upsell_total'             => $upsellTotal,
+            'upsell_purchase_event_id' => $upsellEventId,
+        ]);
     }
 
     public function cities(Request $request){
