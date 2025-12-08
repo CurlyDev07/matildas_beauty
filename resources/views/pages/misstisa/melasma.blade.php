@@ -846,7 +846,7 @@ $products_json = json_encode($products);
         </div> -->
 
 
-        <img src="https://matildasbeauty.com/filemanager/2c921a7a56d84181b33af588873c435f.webp" width="480" height="480" class="tw-full tmb-2" alt="#1 Kulubot Remover">
+        <img src="https://matildasbeauty.com/filemanager/2c921a7a56d84181b33af588873c435f.webp" width="480" height="480" class="tw-full tmb-1" alt="#1 Kulubot Remover">
 
         {{-- <div class="tmx-3 tflex titems-center tmy-5">
             <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
@@ -865,10 +865,153 @@ $products_json = json_encode($products);
             <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">⭐19,586 Trusted Reviews</div>
         </div><!-- Trusted Reviews --> --}}
 
+        <div class="trelative tmax-w-[480px] tw-full taspect-square tbg-white tshadow-2xl toverflow-hidden tmb-10">
+
+            <div id="slider-track" class="tflex th-full ttransition-transform tduration-500 tease-in-out tww-full">
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img src="https://matildasbeauty.com/filemanager/0a951067295d4c7d81d85610b5c49547.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">3 Days</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">5 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Maria F. (42 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            “Sis, akala ko wala nang pag-asa yung melasma ko.
+                            Pero after 7 weeks, ibang-iba — mas clear at mas fresh na talaga.”
+                        </p>
+                    </div>
+                </div><!-- before and after 7-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img src="https://matildasbeauty.com/filemanager/52a23f367576404da69ed185a24a5996.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">7 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Marites L. (45 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            "Nag-lighten talaga yung melasma ko after a few weeks.
+                            Mas angat yung glow ko ngayon."
+                        </p>
+                    </div>
+                </div><!-- before and after 2-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img src="https://matildasbeauty.com/filemanager/9f5c0a04a28a4a379806936e30a63ec9.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">3 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Mika T. (36 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            "3 weeks pa lang, sis… lumalambot na yung melasma ko.
+                            Nakikita ko na yung glow ko unti-unti bumabalik."
+                        </p>
+                    </div>
+                </div><!-- before and after 8-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img src="https://matildasbeauty.com/filemanager/a7da15f4fc6f4d82aab6d498202e29d5.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">0 Day</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">5 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Tessa J. (41 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            “Ang bilis nag-soften ng melasma ko.
+                            After 7 weeks, mas malinaw at mas fresh na talaga yung skin ko.”
+                        </p>
+                    </div>
+                </div><!-- before and after 9-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img src="https://matildasbeauty.com/filemanager/a0999349fc354961832984ac6c2e2a04.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">4 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Minda T. (52 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            "4 weeks pa lang, sis… ang laking ginhawa sa melasma ko.
+                            Mas malinaw yung skin ko at mas confident na ulit ako."
+                        </p>
+                    </div>
+                </div><!-- before and after 10-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img src="https://matildasbeauty.com/filemanager/b31c1b82909c434da6577530880207fb.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">7 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Chinie J. (41 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            "ang bilis nag-soften ng melasma ko.
+                            After 7 weeks, mas malinaw at mas fresh na talaga yung skin ko."
+                        </p>
+                    </div>
+                </div><!-- before and after 11-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img src="https://matildasbeauty.com/filemanager/9eec8f529fa744f2b85fa9cc44839409.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">4 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Minda T. (52 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            “Hindi ko in-expect na ganito kabilis.
+                            4 weeks and sis, mas fresh na talaga yung face ko.”
+                        </p>
+                    </div>
+                </div><!-- before and after 12-->
+
+            </div>
+
+            <button id="prev-btn" class="tabsolute ttop-1/2 tleft-2 -ttranslate-y-1/2 tbg-black/40 thover:tbg-black/60 ttext-white trounded-full tp-3 ttransition-colors tfocus:toutline-none z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="tw-5 th-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+            <button id="next-btn" class="tabsolute ttop-1/2 tright-2 -ttranslate-y-1/2 tbg-black/40 thover:tbg-black/60 ttext-white trounded-full tp-3 ttransition-colors tfocus:toutline-none z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="tw-5 th-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </button>
+        </div><!-- SLIDER BEFORE AND AFTER -->
+          
         <div class="tfont-semibold tmx-3 tmb-10 tmy-5 ttext-center">
             <h1 class="ttext-4xl" style="color: #3a1b31;">Bakit dumadami ang pekas after manganak?</h1>
         </div>
-            
+
         <div class="tflex titems-center tmb-8">
             <div class="tw-1/2">
                 <img src="https://matildasbeauty.com/filemanager/073957c9a57d43d2a9f6a1750ca03569.png" class="tw-full trounded-2xl" alt="">
