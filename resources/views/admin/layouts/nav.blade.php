@@ -105,8 +105,8 @@
                 @endif
                 <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'rts', 'active') }}" onclick="location.href = '/admin/rts'">
-                       <i class="fas fa-users tmr-1 fa-lg"></i>
-                        RTS
+                        <i class="fas fa-shopping-bag tmr-1 fa-lg"></i>
+                        FB Products
                     </a>
                 </li>
                 @if (auth()->user()->isMaster())

@@ -71,6 +71,7 @@ Route::get('MissTisa-Buy1-Take1', 'MissTisaCon@b1t1')->name('miss_tisa');
 
 // MissTisa Lotion
 Route::get('MissTisa-Lotion', 'MissTisaCon@lotion')->name('misstisa.lotion');
+Route::get('MissTisa-Melasma', 'MissTisaCon@melasma')->name('misstisa.melasma');
 
 
 Route::get('MissTisa-Promo', 'MissTisaCon@misstisa_promo')->name('misstisa_promo'); // Working But not in use
