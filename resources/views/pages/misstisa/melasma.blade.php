@@ -53,7 +53,9 @@ $products_json = json_encode($products);
     <title>MissTisa | Matilda's Beauty</title>
     {{-- STYLE SHEETS --}}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    
+    <!-- <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}"> -->
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -816,7 +818,7 @@ $products_json = json_encode($products);
             fbq('init', '2247979439043990');
             fbq('track', 'PageView');
             </script>
-            <noscript><img height="1" width="1" style="display:none"
+            <noscript><img loading="lazy" height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=2247979439043990&ev=PageView&noscript=1"
         /></noscript>
         <!-- End Meta Pixel Code -->
@@ -826,44 +828,9 @@ $products_json = json_encode($products);
 <body>
 
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
-        <!-- <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 31px; background: #fa199e;">
-            <div class="">
-                <span class="ttext-sm ttext-white">
-                    <i class="fas fa-star ttext-yellow-300"></i>
-                    <i class="fas fa-star ttext-yellow-300"></i>
-                    <i class="fas fa-star ttext-yellow-300"></i>
-                    <i class="fas fa-star ttext-yellow-300"></i>
-                    <i class="fas fa-star ttext-yellow-300"></i>
-                </span>
-                <span class="ttext-md ttext-white">
-                    <span><u>9.5k</u> Ratings</span>
-                    <span> | </span>
-                    <span><u>23.6k</u> Sold</span>
-                </span>
-            </div>
-            <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="bottom: -447%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;background-color: #ee2a7b;">ORDER NOW!
-            </button>
-        </div> -->
 
+        <img loading="lazy" src="https://matildasbeauty.com/filemanager/2c921a7a56d84181b33af588873c435f.webp" width="480" height="480" class="tw-full tmb-1" alt="#1 Kulubot Remover">
 
-        <img src="https://matildasbeauty.com/filemanager/2c921a7a56d84181b33af588873c435f.webp" width="480" height="480" class="tw-full tmb-1" alt="#1 Kulubot Remover">
-
-        {{-- <div class="tmx-3 tflex titems-center tmy-5">
-            <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
-                <span class="ttext-sm ttext-white">
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                </span>
-                <span class="ttext-md ttext-green-900">
-                    <span class="tfont-bold"> &nbsp; 4.8</span>
-                    <span class="tfont-medium">Ratings</span>
-                </span>
-            </div>
-            <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">⭐19,586 Trusted Reviews</div>
-        </div><!-- Trusted Reviews --> --}}
 
         <div class="trelative tmax-w-[480px] tw-full taspect-square tbg-white tshadow-2xl toverflow-hidden tmb-10">
 
@@ -887,7 +854,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 7-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/52a23f367576404da69ed185a24a5996.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/52a23f367576404da69ed185a24a5996.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
@@ -905,7 +872,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 2-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/9f5c0a04a28a4a379806936e30a63ec9.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/9f5c0a04a28a4a379806936e30a63ec9.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
@@ -923,7 +890,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 8-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/a7da15f4fc6f4d82aab6d498202e29d5.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/a7da15f4fc6f4d82aab6d498202e29d5.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">0 Day</span>
@@ -941,7 +908,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 9-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/a0999349fc354961832984ac6c2e2a04.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/a0999349fc354961832984ac6c2e2a04.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
@@ -959,7 +926,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 10-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/b31c1b82909c434da6577530880207fb.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/b31c1b82909c434da6577530880207fb.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
@@ -977,7 +944,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 11-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/9eec8f529fa744f2b85fa9cc44839409.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/9eec8f529fa744f2b85fa9cc44839409.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
@@ -1014,7 +981,7 @@ $products_json = json_encode($products);
 
         <div class="tflex titems-center tmb-8">
             <div class="tw-1/2">
-                <img src="https://matildasbeauty.com/filemanager/073957c9a57d43d2a9f6a1750ca03569.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/073957c9a57d43d2a9f6a1750ca03569.png" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2">
                 <p class="tpx-5 ttext-lg"><b>Hormones.</b> <b>Puyat.</b> <b>Stress.</b> Sis, normal ‘yan… pero hindi ibig sabihin wala kang choice.</p>
@@ -1026,13 +993,13 @@ $products_json = json_encode($products);
                 <p class="tpx-5 ttext-lg"><b>Kahit anong skincare…</b>  ayaw<b> mawala.</b>  Parang dumikit na talaga.</p>
             </div>
              <div class="tw-1/2">
-                <img src="https://matildasbeauty.com/filemanager/6c2530ddd02c40f9bfb379220096a110.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/6c2530ddd02c40f9bfb379220096a110.png" class="tw-full trounded-2xl" alt="">
             </div>
         </div><!-- SLIDE 2 -->
 
         <div class="tflex titems-center tmb-8">
             <div class="tw-1/2">
-                <img src="https://matildasbeauty.com/filemanager/2e885e9ce7fd4ddcb9028c078b72ecd1.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/2e885e9ce7fd4ddcb9028c078b72ecd1.png" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2">
                 <p class="tpx-5 ttext-lg"><b>Ayaw</b>  mo na mag- <b>selfie …
@@ -1048,13 +1015,13 @@ $products_json = json_encode($products);
                 </p>
             </div>
              <div class="tw-1/2">
-                <img src="https://matildasbeauty.com/filemanager/0ad80d6c336c4e73aa157e969a0cbfcb.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/0ad80d6c336c4e73aa157e969a0cbfcb.png" class="tw-full trounded-2xl" alt="">
             </div>
         </div><!-- SLIDE  4-->
 
          <div class="tflex titems-center tmb-8">
             <div class="tw-1/2">
-                <img src="https://matildasbeauty.com/filemanager/caea7e9a027a41e7ae3d869000f3a673.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/caea7e9a027a41e7ae3d869000f3a673.png" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2">
                 <p class="tpx-5 ttext-lg">
@@ -1072,17 +1039,14 @@ $products_json = json_encode($products);
 
         <div class="tfont-semibold trelative tmx-3 tmb-10 tmy-5 ttext-center" style="margin-top: 50px;">
             <h1 class="" style="color: #3a1b31; font-size: 25px;">
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512;left: -30px;top: -30px;" xml:space="preserve" class="tabsolute"><g transform="matrix(0.3099999999999998,0,0,0.3099999999999998,8.280098787546157,8.27999999999999)"><path d="m15.654 13.773-4.599 7.884A1.558 1.558 0 0 0 12.401 24h9.197a1.558 1.558 0 0 0 1.346-2.343l-4.599-7.884a1.558 1.558 0 0 0-2.692 0ZM17 23a1 1 0 0 1 0-2 1 1 0 0 1 0 2Zm-1-4v-2a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0Zm-6.94 4.652a7.993 7.993 0 0 1-3.417-2.084L.646 16.412c-.713-.715-.88-1.87-.276-2.68a2 2 0 0 1 2.584-.561c.201.131.353.245.441.333L6 16.154V3.5a1.5 1.5 0 0 1 1.752-1.479C8.489 2.141 9 2.834 9 3.581v5.42a1 1 0 0 0 2 0V1.5a1.5 1.5 0 0 1 3 0V9a1 1 0 0 0 2 0V2.5a1.5 1.5 0 0 1 3 0V9a1 1 0 0 0 2 0V4.5a1.5 1.5 0 0 1 3 0V19c0 .145-.031.282-.043.424l-3.883-6.658c-.645-1.106-1.794-1.767-3.074-1.767s-2.43.66-3.074 1.767l-4.597 7.882a3.503 3.503 0 0 0-.269 3.003Z" fill="#ff0000" opacity="1" data-original="#000000" class=""></path></g></svg> -->
-               
                 <i class="fas fa-exclamation-circle" style="color: #ff4300"></i>
 
                 Maling paniniwala na <br> nag  papalala ng melasma</h1>
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512;right: -30px;top: -30px;" xml:space="preserve" class="tabsolute"><g transform="matrix(0.3199999999999997,0,0,0.3199999999999997,8.173254144946114,8.148348373621701)"><path d="M21.02 19.051V14c0-4.963-4.037-9-9-9s-9 4.037-9 9v5.051c-1.692.245-3 1.691-3 3.449a1.5 1.5 0 0 0 1.5 1.5h21a1.5 1.5 0 0 0 1.5-1.5c0-1.758-1.308-3.204-3-3.449ZM12.02 8c3.309 0 6 2.691 6 6v5h-12v-5c0-3.309 2.691-6 6-6ZM.459 5.561A1.5 1.5 0 1 1 2.58 3.44l1.5 1.5a1.5 1.5 0 1 1-2.122 2.121l-1.5-1.5Zm4.638-3.586a1.499 1.499 0 1 1 2.845-.949l.5 1.5A1.499 1.499 0 0 1 7.019 4.5a1.5 1.5 0 0 1-1.423-1.025l-.5-1.5Zm14.862 5.086a1.5 1.5 0 0 1 0-2.121l1.5-1.5a1.5 1.5 0 1 1 2.121 2.121l-1.5 1.5c-.293.293-.677.439-1.061.439s-.768-.146-1.061-.439Zm-4.362-4.535.5-1.5a1.5 1.5 0 1 1 2.845.949l-.5 1.5a1.5 1.5 0 0 1-2.846-.949ZM8.02 13.501c0-1.93 1.57-3.5 3.5-3.5a1.5 1.5 0 0 1 0 3c-.275 0-.5.225-.5.5a1.5 1.5 0 0 1-3 0Z" fill="#ff0000" opacity="1" data-original="#000000" class=""></path></g></svg> -->
         </div>
 
         <div class="tflex titems-center tmb-8 tpx-2">
             <div class="tw-1/2">
-                <img src="https://matildasbeauty.com/filemanager/8fcc3adf254e467a967adea27c19909c.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/8fcc3adf254e467a967adea27c19909c.png" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2 ">
                 <p class="tpx-5 ttext-md">
@@ -1097,7 +1061,7 @@ $products_json = json_encode($products);
 
         <div class="tflex titems-center tmb-8 tpx-2">
             <div class="tw-1/2">
-                <img src="https://matildasbeauty.com/filemanager/b0eb2271a79b4cfca2ec9a0831f3199e.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/b0eb2271a79b4cfca2ec9a0831f3199e.png" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2">
                 <p class="tpx-5 ttext-md">
@@ -1110,7 +1074,7 @@ $products_json = json_encode($products);
 
         <div class="tflex titems-center tmb-8 tpx-2">
             <div class="tw-1/2">
-                <img src="https://matildasbeauty.com/filemanager/36ba16536b094cdca925fa6081233775.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/36ba16536b094cdca925fa6081233775.png" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2">
                 <p class="tpx-5 ttext-md">
@@ -1132,7 +1096,7 @@ $products_json = json_encode($products);
 
         <div class="tmb-10 tmt-10 tpt-5 tpx-5 tpy-5 trelative trounded-lg tshadow-lg ttext-md tw-full">
             <i class="fas fa-star tmb-2 ttext-lg" style="color:#f52d87;"></i>
-            <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/0f015d7f1aaa4daba6188184592f793a.webp" loading="lazy" width="75" height="75" alt="mudra before &amp; After" style="
+            <img loading="lazy" class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/0f015d7f1aaa4daba6188184592f793a.webp" loading="lazy" width="75" height="75" alt="mudra before &amp; After" style="
                 top: -26px;
                 right: 27px;
             ">
@@ -1159,7 +1123,7 @@ $products_json = json_encode($products);
 
         <div class="tmb-10 tmt-10 tpt-5 tpx-5 tpy-5 trelative trounded-lg tshadow-lg ttext-md tw-full">
             <i class="fas fa-star tmb-2 ttext-lg" style="color:#f52d87;"></i>
-            <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/2cbcf5e1da2f43d7b46ba62b46ebc3b1.webp" loading="lazy" width="75" height="75" alt="mudra before &amp; After" style="
+            <img loading="lazy" class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/2cbcf5e1da2f43d7b46ba62b46ebc3b1.webp" loading="lazy" width="75" height="75" alt="mudra before &amp; After" style="
                 top: -9px;
                 right: 27px;
             ">
@@ -1186,7 +1150,7 @@ $products_json = json_encode($products);
 
         <div class="tmy-10 tpt-5 tpx-5 tpy-5 trelative trounded-lg tshadow-lg ttext-md tw-full">
             <i class="fas fa-star tmb-2 ttext-lg" style="color:#f52d87;"></i>
-            <img class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/9eeb7b26df784e2b8bb4f9ef6e03f8ed.webp" loading="lazy" width="75" height="75" alt="mudra before &amp; After" style="
+            <img loading="lazy" class="tabsolute trounded-full" src="https://matildasbeauty.com/filemanager/9eeb7b26df784e2b8bb4f9ef6e03f8ed.webp" loading="lazy" width="75" height="75" alt="mudra before &amp; After" style="
                 top: -9px;
                 right: 27px;
             ">
@@ -1227,20 +1191,9 @@ $products_json = json_encode($products);
         <p class="tpx-2 ttext-center tmb-5">the gentle way. Safe, simple, and made for melasma-prone, sensitive skin.</p>
         
         <div class="titems-center ">
-            <img src="https://matildasbeauty.com/filemanager/02cac66ae5ff4ea3875a6aadb6dc0d86.png" class="tmx-auto" loading="lazy" alt="" srcset="">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/02cac66ae5ff4ea3875a6aadb6dc0d86.png" class="tmx-auto" loading="lazy" alt="" srcset="">
         </div>    
 
-
-
-         <!-- <div class="tborder-dashed ttext-center tmx-3 tmy-2 tpx-3 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
-            <span class="tfont-bold  ttext-center" style="font-size: 20px;">FREE Pomelo Vitamin C – Ends Soon!</span>
-            <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
-                ⏰
-                <div id="timer_top">18:38</div>
-                mins
-            </span>
-            {{-- <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span> --}}
-        </div>FREE 2 Gifts -->
         <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b> Melasma Killer </b> 
@@ -1304,7 +1257,7 @@ $products_json = json_encode($products);
             <div class="tflex titems-center tjustify-between tmb-5 trelative">
                 
                 <div class="tw-[45%] tpr-3">
-                    <img src="https://matildasbeauty.com/filemanager/a384f81eb94d4bb1b19c00c0ccbf7844.png" alt="Calming Phase" class="tw-full th-auto tobject-cover trounded-tl-[40px] trounded-br-[40px] trounded-tr-[15px] trounded-bl-[15px] tshadow-sm">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/a384f81eb94d4bb1b19c00c0ccbf7844.png" alt="Calming Phase" class="tw-full th-auto tobject-cover trounded-tl-[40px] trounded-br-[40px] trounded-tr-[15px] trounded-bl-[15px] tshadow-sm">
                 </div>
 
                 <div class="tabsolute tleft-1/2 ttop-0 ttransform -ttranslate-x-1/2 -ttranslate-y-1/4 tw-4 th-4 tbg-brand-pink trounded-full tborder-[3px] tborder-white tshadow-sm tz-10"></div>
@@ -1379,14 +1332,14 @@ $products_json = json_encode($products);
                 <div class="tabsolute tleft-1/2 ttop-0 ttransform -ttranslate-x-1/2 -ttranslate-y-1/4 tw-4 th-4 tbg-brand-pink trounded-full tborder-[3px] tborder-white tshadow-sm tz-10"></div>
 
                 <div class="tw-[45%] tpl-3">
-                    <img src="https://matildasbeauty.com/filemanager/0842b5e490de4e5f94f11a173a344533.png" alt="Softening Phase" class="tw-full th-auto tobject-cover trounded-[30px] tshadow-sm">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/0842b5e490de4e5f94f11a173a344533.png" alt="Softening Phase" class="tw-full th-auto tobject-cover trounded-[30px] tshadow-sm">
                 </div>
             </div>
 
             <div class="tflex titems-center tjustify-between trelative">
                 
                 <div class="tw-[45%] tpr-3">
-                    <img src="https://matildasbeauty.com/filemanager/7e5a82da4eef4633abbd84d67197d55d.png" alt="Glow Phase" class="tw-full th-auto tobject-cover trounded-tl-[40px] trounded-br-[40px] trounded-tr-[15px] trounded-bl-[15px] tshadow-sm">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/7e5a82da4eef4633abbd84d67197d55d.png" alt="Glow Phase" class="tw-full th-auto tobject-cover trounded-tl-[40px] trounded-br-[40px] trounded-tr-[15px] trounded-bl-[15px] tshadow-sm">
                 </div>
 
                 <div class="tabsolute tleft-1/2 ttop-0 ttransform -ttranslate-x-1/2 -ttranslate-y-1/4 tw-4 th-4 tbg-brand-pink trounded-full tborder-[3px] tborder-white tshadow-sm tz-10"></div>
@@ -1434,151 +1387,9 @@ $products_json = json_encode($products);
 
         <br>
 
-        <div class="trelative tmax-w-[480px] tw-full taspect-square tbg-white tshadow-2xl toverflow-hidden">
-
-            <div id="slider-track" class="tflex th-full ttransition-transform tduration-500 tease-in-out tww-full">
-                <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/0a951067295d4c7d81d85610b5c49547.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
-                    
-                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
-                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">3 Days</span>
-
-                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
-                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">5 Weeks</span>
-
-                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
-                        <p class="tfont-bold ttext-sm tmb-1">Maria F. (42 yrs old)</p>
-                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
-                            “Sis, akala ko wala nang pag-asa yung melasma ko.
-                            Pero after 7 weeks, ibang-iba — mas clear at mas fresh na talaga.”
-                        </p>
-                    </div>
-                </div><!-- before and after 7-->
-
-                <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/52a23f367576404da69ed185a24a5996.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
-                    
-                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
-                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
-
-                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
-                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">7 Weeks</span>
-
-                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
-                        <p class="tfont-bold ttext-sm tmb-1">Marites L. (45 yrs old)</p>
-                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
-                            "Nag-lighten talaga yung melasma ko after a few weeks.
-                            Mas angat yung glow ko ngayon."
-                        </p>
-                    </div>
-                </div><!-- before and after 2-->
-
-                <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/9f5c0a04a28a4a379806936e30a63ec9.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
-                    
-                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
-                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
-
-                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
-                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">3 Weeks</span>
-
-                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
-                        <p class="tfont-bold ttext-sm tmb-1">Mika T. (36 yrs old)</p>
-                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
-                            "3 weeks pa lang, sis… lumalambot na yung melasma ko.
-                            Nakikita ko na yung glow ko unti-unti bumabalik."
-                        </p>
-                    </div>
-                </div><!-- before and after 8-->
-
-                <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/a7da15f4fc6f4d82aab6d498202e29d5.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
-                    
-                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
-                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">0 Day</span>
-
-                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
-                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">5 Weeks</span>
-
-                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
-                        <p class="tfont-bold ttext-sm tmb-1">Tessa J. (41 yrs old)</p>
-                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
-                            “Ang bilis nag-soften ng melasma ko.
-                            After 7 weeks, mas malinaw at mas fresh na talaga yung skin ko.”
-                        </p>
-                    </div>
-                </div><!-- before and after 9-->
-
-                <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/a0999349fc354961832984ac6c2e2a04.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
-                    
-                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
-                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
-
-                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
-                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">4 Weeks</span>
-
-                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
-                        <p class="tfont-bold ttext-sm tmb-1">Minda T. (52 yrs old)</p>
-                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
-                            "4 weeks pa lang, sis… ang laking ginhawa sa melasma ko.
-                            Mas malinaw yung skin ko at mas confident na ulit ako."
-                        </p>
-                    </div>
-                </div><!-- before and after 10-->
-
-                <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/b31c1b82909c434da6577530880207fb.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
-                    
-                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
-                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
-
-                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
-                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">7 Weeks</span>
-
-                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
-                        <p class="tfont-bold ttext-sm tmb-1">Chinie J. (41 yrs old)</p>
-                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
-                            "ang bilis nag-soften ng melasma ko.
-                            After 7 weeks, mas malinaw at mas fresh na talaga yung skin ko."
-                        </p>
-                    </div>
-                </div><!-- before and after 11-->
-
-                <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/9eec8f529fa744f2b85fa9cc44839409.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
-                    
-                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
-                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
-
-                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
-                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">4 Weeks</span>
-
-                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
-                        <p class="tfont-bold ttext-sm tmb-1">Minda T. (52 yrs old)</p>
-                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
-                            “Hindi ko in-expect na ganito kabilis.
-                            4 weeks and sis, mas fresh na talaga yung face ko.”
-                        </p>
-                    </div>
-                </div><!-- before and after 12-->
-
-            </div>
-
-            <button id="prev-btn" class="tabsolute ttop-1/2 tleft-2 -ttranslate-y-1/2 tbg-black/40 thover:tbg-black/60 ttext-white trounded-full tp-3 ttransition-colors tfocus:toutline-none z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="tw-5 th-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                </svg>
-            </button>
-            <button id="next-btn" class="tabsolute ttop-1/2 tright-2 -ttranslate-y-1/2 tbg-black/40 thover:tbg-black/60 ttext-white trounded-full tp-3 ttransition-colors tfocus:toutline-none z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="tw-5 th-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-            </button>
-        </div><!-- SLIDER BEFORE AND AFTER -->
 
         <div class="tflex-shrink-0 tw-full th-full trelative">
-            <img src="https://matildasbeauty.com/filemanager/66292ccc42dd45e9b0ea4e83ea595f1b.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/66292ccc42dd45e9b0ea4e83ea595f1b.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
             <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
             <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">1 Weeks</span>
@@ -1596,7 +1407,7 @@ $products_json = json_encode($products);
         </div>
 
         <div class="tflex-shrink-0 tw-full th-full trelative">
-            <img src="https://matildasbeauty.com/filemanager/3cb3ce4b0f92438db4b953ae657a1ecb.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/3cb3ce4b0f92438db4b953ae657a1ecb.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
             <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
             <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">1 Weeks</span>
@@ -1614,7 +1425,7 @@ $products_json = json_encode($products);
         </div>
 
         <div class="tflex-shrink-0 tw-full th-full trelative">
-            <img src="https://matildasbeauty.com/filemanager/181ef5ad6f8f47f2895c4b5bfe054975.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/181ef5ad6f8f47f2895c4b5bfe054975.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
             <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
             <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
@@ -1629,7 +1440,7 @@ $products_json = json_encode($products);
         </div>
 
         <div class="tflex-shrink-0 tw-full th-full trelative">
-            <img src="https://matildasbeauty.com/filemanager/0d250eaee2284e10bb648cf206226552.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/0d250eaee2284e10bb648cf206226552.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
             <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
             <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">0 Days</span>
@@ -1647,7 +1458,7 @@ $products_json = json_encode($products);
         </div>
 
         <div class="tflex-shrink-0 tw-full th-full trelative">
-            <img src="https://matildasbeauty.com/filemanager/e8fcad609ec74b61af4d68f663b35a14.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/e8fcad609ec74b61af4d68f663b35a14.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
             <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
             <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
@@ -1677,22 +1488,22 @@ $products_json = json_encode($products);
         <div class="tflex tpx-2 tmt-10">
             <div class="tw-1/2 tflex tflex-wrap">
                 <div class="tmt-16">
-                    <img src="https://matildasbeauty.com/filemanager/452fadb8d77a455da516e4c63a5fdab9.png" alt="">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/452fadb8d77a455da516e4c63a5fdab9.png" alt="">
                 </div>
                 <div class="">
-                    <img src="https://matildasbeauty.com/filemanager/fab6642ee2454e7ab9a06a8b5338d1e0.png" alt="">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/fab6642ee2454e7ab9a06a8b5338d1e0.png" alt="">
                 </div>
                 <div class="">
-                    <img src="https://matildasbeauty.com/filemanager/db4c31681864423992ab7c1e894e6b85.png" alt="" class="tmt-16">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/db4c31681864423992ab7c1e894e6b85.png" alt="" class="tmt-16">
                 </div>
                 <div class="">
-                    <img src="https://matildasbeauty.com/filemanager/ba5ba27b7ce34c37ac45fb0280fb9d73.png" alt="" class="tmb-16">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/ba5ba27b7ce34c37ac45fb0280fb9d73.png" alt="" class="tmb-16">
                 </div>
                 <div class="">
-                    <img src="https://matildasbeauty.com/filemanager/d7c85db2562a4f2cb26dde475b07affd.png" alt="" class="tmt-16">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/d7c85db2562a4f2cb26dde475b07affd.png" alt="" class="tmt-16">
                 </div>
                 <div class="">
-                    <img src="https://matildasbeauty.com/filemanager/912eef78ef1a4ca9a0bfc36710556ea1.png" alt="" class="tmb-16">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/912eef78ef1a4ca9a0bfc36710556ea1.png" alt="" class="tmb-16">
                 </div>
             </div>
             <div class="tw-1/2 tflex tflex-wrap">
@@ -1751,7 +1562,7 @@ $products_json = json_encode($products);
                 </h2>
 
                 <div class="tw-28 th-24 trounded-lg tflex titems-center tjustify-center tshadow-2xl tmb-6">
-                    <img src="https://matildasbeauty.com/filemanager/93d5e47eb5f147b4bd11c8782a8de2cb.png" alt="">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/93d5e47eb5f147b4bd11c8782a8de2cb.png" alt="">
                     <!-- <span class="ttext-white tfont-medium ttext-sm">MissTisa Soap</span> -->
                 </div>
 
@@ -1769,7 +1580,7 @@ $products_json = json_encode($products);
                 </div>
 
                 <div class="tw-28 th-24 trounded-lg tflex titems-center tjustify-center tshadow-2xl tmb-6">
-                    <img src="https://matildasbeauty.com/filemanager/b4b8252984834489a5ceac3387b21bad.png" alt="">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/b4b8252984834489a5ceac3387b21bad.png" alt="">
                 </div>
 
                 <h3 class="ttext-xl tfont-bold ttext-gray-900 ttext-center tmax-w-xs">
@@ -1789,7 +1600,7 @@ $products_json = json_encode($products);
                 </h2>
 
                 <div class="tw-28 th-24 trounded-lg tflex titems-center tjustify-center tshadow-2xl tmb-4">
-                    <img src="https://matildasbeauty.com/filemanager/93d5e47eb5f147b4bd11c8782a8de2cb.png" alt="">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/93d5e47eb5f147b4bd11c8782a8de2cb.png" alt="">
                 </div>
 
                 <h3 class="ttext-lg tfont-bold ttext-gray-900 ttext-center">
@@ -1806,7 +1617,7 @@ $products_json = json_encode($products);
                 </div>
 
                 <div class="tw-24 th-36 trounded-lg tflex titems-center tjustify-center tshadow-2xl tmb-4">
-                    <img src="https://matildasbeauty.com/filemanager/b79b18fec1764116979c8ef199b1a4cc.png" alt="">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/b79b18fec1764116979c8ef199b1a4cc.png" alt="">
                 </div>
 
                 <h3 class="ttext-lg tfont-bold ttext-gray-900 ttext-center">
@@ -1823,7 +1634,7 @@ $products_json = json_encode($products);
                 </div>
 
                 <div class="tw-28 th-24 trounded-lg tflex titems-center tjustify-center tshadow-2xl tmb-4">
-                    <img src="https://matildasbeauty.com/filemanager/ad92bc9237154872978fd33495ac44af.png" alt="">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/ad92bc9237154872978fd33495ac44af.png" alt="">
                 </div>
 
                 <h3 class="ttext-lg tfont-bold ttext-gray-900 ttext-center tmax-w-xs">
@@ -1840,7 +1651,7 @@ $products_json = json_encode($products);
 
         <div class="tmx-auto trelative tborder tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
-                <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" alt="free shipping" width="200" height="123">
+                <img loading="lazy" src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" alt="free shipping" width="200" height="123">
                 <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
             </div>
 
@@ -1862,48 +1673,6 @@ $products_json = json_encode($products);
                     <span class="tinline-block tmt-1">Unlimited SkincareTips</span>
                 </div>
             </section>
-
-
-            
-            {{-- <img src="https://matildasbeauty.com/filemanager/30ab80a0c85a4df69f8917950955e48f.webp" width="480" height="480" alt="buy 2 take 2"> --}}
-
-           {{-- <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
-                <span class="ttext-lg">Enjoy our Free Soap & Sunscreen</span>
-                <br> <span class="tfont-extrabold ttext-md ttext-red-900">Sold out twice, Don't Miss it <br> 
-                <span class="ttext-md">We'll never offer this again.</span>
-                </span> 
-            </div> --}}
-
-            {{-- <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
-                <input type="hidden" id="purchase_value" value="{{ request()->amount }}"> --}}
-                {{-- <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3> --}}
-
-                {{-- @csrf --}}
-
-                {{-- <div class="tw-full tflex tmb-3">
-                    <div class="tw-1/2 tmr-1">
-                        <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Full Name</label>
-                        <input required type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="browser-default input-control">
-                    </div>
-                    <div class="tw-1/2 tml-1 trelative">
-                        @error('phone_number')
-                            <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 1%;">{{ $message }}</span>
-                        @enderror
-                        <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Phone Number</label>
-                        <input required type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default input-control">
-                    </div>
-                </div><!--full_name & Phone Number -->
-                <div class="tw-full tflex tmb-3">
-                    <div class="tw-auto tmr-1">
-                        <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
-                            <span class="tfont-medium">Complete Address</span>
-                            <small class="ttext-gray-600">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</small>
-                        </label>
-                        <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
-                    </div>
-                </div><!--Address --> --}}
-
-                {{-- ============================================================================================= --}}
 
 
                 <!-- ORDER PROMO -->
@@ -1959,7 +1728,7 @@ $products_json = json_encode($products);
                             <div class="product-card <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" style="height: 150px;" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
                                 <div class="tflex titems-center tgap-2 tmb-1">
                                     <div class="tflex titems-center tjustify-center trounded-md" style="height: 65px; width: 65px;">
-                                        <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="tw-full th-full tobject-cover trounded-md" />
+                                        <img loading="lazy" src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="tw-full th-full tobject-cover trounded-md" />
                                     </div>
                                     <div class="tmx-auto">
                                         <span class="tfont-bold ttext-2xl ttext-pink-600">₱<?= number_format($product['price']) ?></span>
@@ -2055,7 +1824,7 @@ $products_json = json_encode($products);
                                 <!-- Upsell Product 1 -->
                                 <div class="tsnap-center tshrink-0 tw-64 tbg-white trounded-2xl tshadow-md tborder tborder-gray-100 toverflow-hidden">
                                     <div class="th-32 tbg-gray-100 trelative">
-                                        <img src="{{ $fbads_product->image1 }}" alt="{{ $fbads_product->sku }}" class="tw-full th-full tobject-cover">
+                                        <img loading="lazy" src="{{ $fbads_product->image1 }}" alt="{{ $fbads_product->sku }}" class="tw-full th-full tobject-cover">
                                         <span class="tabsolute ttop-2 tright-2 tbg-red-500 ttext-white ttext-[10px] tfont-bold tpx-2 tpy-1 trounded-full">{{ $fbads_product->discount_tag }}</span>
                                     </div>
                                     <div class="tp-3">
@@ -2108,48 +1877,7 @@ $products_json = json_encode($products);
                     </div>
                 </div> <!-- Loading Overlay -->
 
-                {{-- ============================================================================================= --}}
-
-                {{-- <div class="tmt-3 ttext-right tw-full">
-                    <span class="ttext-gray-900" style="font-size: 16px;">
-                        <span class="tfont-medium">TOTAL:</span>
-                        <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">1399</span>
-                    </span>
-                </div> --}}
-
-
-                {{-- <div class="tw-full ">
-                    <button style="background-color: #ee2a7b" class="focus:tbg-pink-500 trelative tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
-                        <span>Checkout Order</span>
-                    </button>
-                    <span style="background-color: #ee2a7b" class="thidden focus:tbg-pink-500 trelative ttext-center tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="loader">
-                        <img src="{{ asset('/loader/four_dots_loader.svg') }}" style="display: initial; position: absolute; top: -29%; right: 35px;">
-                        <span class="tmr-5">Loading please wait</span>
-                    </span>
-                </div><!-- Submit Order -->
-            </form><!-- ORDER PROMO --> --}}
-
-
-            {{-- <div id="modal1" class="modal">
-                <div class="modal-content" style="padding-bottom: 0px;">
-                    <h4 class="tfont-medium ttext-3xl">Thank you</h4>
-                    <h5 class="tfont-medium tmb-3 tmt-4 ttext-xl">Your order was completed successfully.</h5>
-                
-                    <p>We want to assure you that we are working diligently to process and ship your order as quickly as possible.</p><br>
-                    <p><span class="tfont-medium">Metro Manila:</span>  1-3 working days.</p>
-                    <p><span class="tfont-medium">Visayas & Mindanao:</span> 4-7 days.</p>
-                    <br>
-                    <p>
-                        We truly appreciate your business and look forward to serving you again in the future.
-                    </p><br>
-                    <p class="tfont-medium">We appreciate your business!</p>
-
-                </div>
-                <div class="modal-footer">
-                    <a href="" class="modal-close waves-effect waves-green btn-flat">Close</a>
-                </div>
-            </div> <!-- Modal  --> --}}
+ 
 
             <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
                 style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
@@ -2514,40 +2242,7 @@ $products_json = json_encode($products);
             }
         });
 
-        // var $window = $(window),x
-            //     $document = $(document),
-            //     button = $('.order_now');
-                
-            // $window.on('scroll', function () {
-            //     let scrollH = $(window).height() + $(window).scrollTop();
-            //     let H = ($document.height() - 550);
 
-            //     if (scrollH > H) {
-            //         $('.order_now').css('display', 'none');
-            //         button.stop(true).css('z-index', 0).animate({
-            //             opacity: 0,
-            //         }, 50);
-
-            //     } else {
-            //         $('.order_now').css('display', 'block');
-
-            //         button.stop(true).css('z-index', 999).animate({
-            //             opacity: 1
-            //         }, 50);
-            //     }
-            // });// hide show ORDER BUTTON on Scroll
-
-            // $('.order_now').click(function (e) {
-            //     $('html, body').animate({
-            //         scrollTop: $('#submit_btn').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
-            //     }, 'slow');
-
-            //     $.post("/event-listener",{
-            //         order_form: 1, 
-            //         website: '{{ $website }}',
-            //         session_id: '{{ $session_id }}',
-            //     });// EVENT LISTENER Track ORDER FORM
-        // });
 
         $(document).ready(function() {
             const $window = $(window);
@@ -2745,41 +2440,6 @@ $products_json = json_encode($products);
             session_id: '{{ $session_id }}',
         });//  EVENT LISTENER Track VIEW
 
-    </script>
-
-    <script>
-        let timeLeft = 27 * 43;
-
-        function updateTimerTop() {
-            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
-            const s = (timeLeft % 60).toString().padStart(2, '0');
-            $('#timer_top').text(`${m}:${s}`);
-
-            if (timeLeft > 0) {
-            timeLeft--;
-            } else {
-            clearInterval(timer);
-                alert("Time's up!");
-            }
-        }
-
-        function updateTimerBottom() {
-            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
-            const s = (timeLeft % 60).toString().padStart(2, '0');
-            $('#timer_bottom').text(`${m}:${s}`);
-
-            if (timeLeft > 0) {
-            timeLeft--;
-            } else {
-            clearInterval(timer);
-                alert("Time's up!");
-            }
-        }
-
-        const timer_top = setInterval(updateTimerTop, 1000);
-        const timer_bottom = setInterval(updateTimerBottom, 1000);
-        updateTimerTop();
-        updateTimerBottom();
     </script>
         
     <script> // LOADING SCRIPT
