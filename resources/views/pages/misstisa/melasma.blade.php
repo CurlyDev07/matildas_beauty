@@ -5,7 +5,7 @@ $products = [
     [
         'id' => 0,
         'name' => '1Pc MissTisa Set',
-        'price' => 499,
+        'price' => 649,
         'image' => 'https://matildasbeauty.com/filemanager/6680dcdecd7042588a0a02b32f4bf3c3.png',
         'description' => 'Advanced anti-aging and whitening serum',
         'promo' => [
@@ -17,25 +17,12 @@ $products = [
     ],
     [
         'id' => 1, 
-        'name' => '2pcs MissTisa Set',
-        'price' => 799,
-        'image' => 'https://matildasbeauty.com/filemanager/ab38e19e27d840abbc96eb22a85f530f.png',
+        'name' => 'Buy 1 Take 1 Get Free Vitamin C',
+        'price' => 849,
+        'image' => 'https://matildasbeauty.com/filemanager/61d432d1a5144aee8cbd8be22a357f08.png',
         'description' => 'Advanced anti-aging and whitening serum',
     ],
-    [
-        'id' => 2,
-        'name' => 'Set + Serum FREE VITAMIN C',
-        'price' => 999,
-        'image' => 'https://matildasbeauty.com/filemanager/9071030cb8ab448d95211aac0e9093bc.png',
-        'description' => 'High protection sunscreen lotion',
-    ],
-    [
-        'id' => 3,
-        'name' => 'Set + Lotion+ Serum',
-        'price' => 1399,
-        'image' => 'https://matildasbeauty.com/filemanager/e94f2d3153de4058ac5264dd31c0af0f.png',
-        'description' => 'Complete beauty set with serum and lotion'
-    ]
+   
 ];
 
 // Convert products to JavaScript format for frontend
@@ -815,11 +802,11 @@ $products_json = json_encode($products);
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '2247979439043990');
+            fbq('init', '375777585581364');
             fbq('track', 'PageView');
             </script>
             <noscript><img loading="lazy" height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=2247979439043990&ev=PageView&noscript=1"
+            src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
         /></noscript>
         <!-- End Meta Pixel Code -->
     @endif
@@ -829,14 +816,13 @@ $products_json = json_encode($products);
 
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
 
-        <img loading="lazy" src="https://matildasbeauty.com/filemanager/2c921a7a56d84181b33af588873c435f.webp" width="480" height="480" class="tw-full tmb-1" alt="#1 Kulubot Remover">
-
+        <img  src="https://matildasbeauty.com/filemanager/2c921a7a56d84181b33af588873c435f.webp" width="480" height="480" class="tw-full tmb-1" alt="#1 Kulubot Remover">
 
         <div class="trelative tmax-w-[480px] tw-full taspect-square tbg-white tshadow-2xl toverflow-hidden tmb-10">
 
             <div id="slider-track" class="tflex th-full ttransition-transform tduration-500 tease-in-out tww-full">
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img src="https://matildasbeauty.com/filemanager/0a951067295d4c7d81d85610b5c49547.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    <img src="https://matildasbeauty.com/filemanager/0a951067295d4c7d81d85610b5c49547.webp" width="412" height="412" class="tobject-fill th-full tw-full" alt="Testimonial 1">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">3 Days</span>
@@ -854,7 +840,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 7-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/52a23f367576404da69ed185a24a5996.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/52a23f367576404da69ed185a24a5996.webp" width="412" height="412"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
@@ -872,7 +858,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 2-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/9f5c0a04a28a4a379806936e30a63ec9.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/9f5c0a04a28a4a379806936e30a63ec9.webp" width="412" height="412"   class="tobject-fill th-full tw-full" alt="Testimonial 2">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
@@ -890,7 +876,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 8-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/a7da15f4fc6f4d82aab6d498202e29d5.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/a7da15f4fc6f4d82aab6d498202e29d5.webp" width="412" height="412"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">0 Day</span>
@@ -908,7 +894,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 9-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/a0999349fc354961832984ac6c2e2a04.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/a0999349fc354961832984ac6c2e2a04.webp" width="412" height="412"  class="tobject-fill th-full tw-full" alt="Testimonial 2">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
@@ -926,7 +912,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 10-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/b31c1b82909c434da6577530880207fb.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/b31c1b82909c434da6577530880207fb.webp" width="412" height="412" class="tobject-fill th-full tw-full" alt="Testimonial 1">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
@@ -944,7 +930,7 @@ $products_json = json_encode($products);
                 </div><!-- before and after 11-->
 
                 <div class="tflex-shrink-0 tw-full th-full trelative">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/9eec8f529fa744f2b85fa9cc44839409.webp" class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/9eec8f529fa744f2b85fa9cc44839409.webp" width="412" height="412" class="tobject-fill th-full tw-full" alt="Testimonial 2">
                     
                     <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
                     <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
@@ -981,7 +967,7 @@ $products_json = json_encode($products);
 
         <div class="tflex titems-center tmb-8">
             <div class="tw-1/2">
-                <img loading="lazy" src="https://matildasbeauty.com/filemanager/073957c9a57d43d2a9f6a1750ca03569.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/073957c9a57d43d2a9f6a1750ca03569.png" width="206" height="128.75" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2">
                 <p class="tpx-5 ttext-lg"><b>Hormones.</b> <b>Puyat.</b> <b>Stress.</b> Sis, normal ‘yan… pero hindi ibig sabihin wala kang choice.</p>
@@ -993,13 +979,13 @@ $products_json = json_encode($products);
                 <p class="tpx-5 ttext-lg"><b>Kahit anong skincare…</b>  ayaw<b> mawala.</b>  Parang dumikit na talaga.</p>
             </div>
              <div class="tw-1/2">
-                <img loading="lazy" src="https://matildasbeauty.com/filemanager/6c2530ddd02c40f9bfb379220096a110.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/6c2530ddd02c40f9bfb379220096a110.png" width="206" height="128.75" class="tw-full trounded-2xl" alt="">
             </div>
         </div><!-- SLIDE 2 -->
 
         <div class="tflex titems-center tmb-8">
             <div class="tw-1/2">
-                <img loading="lazy" src="https://matildasbeauty.com/filemanager/2e885e9ce7fd4ddcb9028c078b72ecd1.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/2e885e9ce7fd4ddcb9028c078b72ecd1.png" width="206" height="128.75" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2">
                 <p class="tpx-5 ttext-lg"><b>Ayaw</b>  mo na mag- <b>selfie …
@@ -1015,13 +1001,13 @@ $products_json = json_encode($products);
                 </p>
             </div>
              <div class="tw-1/2">
-                <img loading="lazy" src="https://matildasbeauty.com/filemanager/0ad80d6c336c4e73aa157e969a0cbfcb.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/0ad80d6c336c4e73aa157e969a0cbfcb.png" width="206" height="128.75" class="tw-full trounded-2xl" alt="">
             </div>
         </div><!-- SLIDE  4-->
 
          <div class="tflex titems-center tmb-8">
             <div class="tw-1/2">
-                <img loading="lazy" src="https://matildasbeauty.com/filemanager/caea7e9a027a41e7ae3d869000f3a673.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/caea7e9a027a41e7ae3d869000f3a673.png" width="206" height="128.75" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2">
                 <p class="tpx-5 ttext-lg">
@@ -1046,7 +1032,7 @@ $products_json = json_encode($products);
 
         <div class="tflex titems-center tmb-8 tpx-2">
             <div class="tw-1/2">
-                <img loading="lazy" src="https://matildasbeauty.com/filemanager/8fcc3adf254e467a967adea27c19909c.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/8fcc3adf254e467a967adea27c19909c.png" width="206" height="128.75" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2 ">
                 <p class="tpx-5 ttext-md">
@@ -1061,7 +1047,7 @@ $products_json = json_encode($products);
 
         <div class="tflex titems-center tmb-8 tpx-2">
             <div class="tw-1/2">
-                <img loading="lazy" src="https://matildasbeauty.com/filemanager/b0eb2271a79b4cfca2ec9a0831f3199e.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/b0eb2271a79b4cfca2ec9a0831f3199e.png" width="206" height="128.75" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2">
                 <p class="tpx-5 ttext-md">
@@ -1074,7 +1060,7 @@ $products_json = json_encode($products);
 
         <div class="tflex titems-center tmb-8 tpx-2">
             <div class="tw-1/2">
-                <img loading="lazy" src="https://matildasbeauty.com/filemanager/36ba16536b094cdca925fa6081233775.png" class="tw-full trounded-2xl" alt="">
+                <img loading="lazy" src="https://matildasbeauty.com/filemanager/36ba16536b094cdca925fa6081233775.png" width="206" height="128.75" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2">
                 <p class="tpx-5 ttext-md">
@@ -1179,7 +1165,7 @@ $products_json = json_encode($products);
         <br>
 
         <!-- MISSTISA INTRODUCTION -->
-        <h5  class="tfont-bold  ttext-center tmb-8 tpx-2 tmt-5" style="font-size: 25px;">
+        <h5 id="show_cta" class="tfont-bold  ttext-center tmb-8 tpx-2 tmt-5" style="font-size: 25px;">
             “Saan ko makikita lahat ‘yan in one?”
             Sis, good news.
         </h5>
@@ -1191,10 +1177,10 @@ $products_json = json_encode($products);
         <p class="tpx-2 ttext-center tmb-5">the gentle way. Safe, simple, and made for melasma-prone, sensitive skin.</p>
         
         <div class="titems-center ">
-            <img loading="lazy" src="https://matildasbeauty.com/filemanager/02cac66ae5ff4ea3875a6aadb6dc0d86.png" class="tmx-auto" loading="lazy" alt="" srcset="">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/02cac66ae5ff4ea3875a6aadb6dc0d86.png" width="300" height="160" class="tmx-auto" loading="lazy" alt="" srcset="">
         </div>    
 
-        <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
+        <div  class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i>
                 <b> Melasma Killer </b> 
             </div>
@@ -1246,7 +1232,7 @@ $products_json = json_encode($products);
         </div>
 
         <!-- TIMELINE -->
-        <h5 class="tfont-bold  ttext-center tpx-2 tmt-10" style="font-size: 25px;">
+        <h5  class="tfont-bold  ttext-center tpx-2 tmt-10" style="font-size: 25px;">
             What Happens to Your Skin When You Use MissTisa?
         </h5>
 
@@ -1257,7 +1243,7 @@ $products_json = json_encode($products);
             <div class="tflex titems-center tjustify-between tmb-5 trelative">
                 
                 <div class="tw-[45%] tpr-3">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/a384f81eb94d4bb1b19c00c0ccbf7844.png" alt="Calming Phase" class="tw-full th-auto tobject-cover trounded-tl-[40px] trounded-br-[40px] trounded-tr-[15px] trounded-bl-[15px] tshadow-sm">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/a384f81eb94d4bb1b19c00c0ccbf7844.png" width="166.2" height="166.2" alt="Calming Phase" class="tw-full th-auto tobject-cover trounded-tl-[40px] trounded-br-[40px] trounded-tr-[15px] trounded-bl-[15px] tshadow-sm">
                 </div>
 
                 <div class="tabsolute tleft-1/2 ttop-0 ttransform -ttranslate-x-1/2 -ttranslate-y-1/4 tw-4 th-4 tbg-brand-pink trounded-full tborder-[3px] tborder-white tshadow-sm tz-10"></div>
@@ -1332,14 +1318,14 @@ $products_json = json_encode($products);
                 <div class="tabsolute tleft-1/2 ttop-0 ttransform -ttranslate-x-1/2 -ttranslate-y-1/4 tw-4 th-4 tbg-brand-pink trounded-full tborder-[3px] tborder-white tshadow-sm tz-10"></div>
 
                 <div class="tw-[45%] tpl-3">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/0842b5e490de4e5f94f11a173a344533.png" alt="Softening Phase" class="tw-full th-auto tobject-cover trounded-[30px] tshadow-sm">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/0842b5e490de4e5f94f11a173a344533.png" width="166.2" height="166.2" alt="Softening Phase" class="tw-full th-auto tobject-cover trounded-[30px] tshadow-sm">
                 </div>
             </div>
 
             <div class="tflex titems-center tjustify-between trelative">
                 
                 <div class="tw-[45%] tpr-3">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/7e5a82da4eef4633abbd84d67197d55d.png" alt="Glow Phase" class="tw-full th-auto tobject-cover trounded-tl-[40px] trounded-br-[40px] trounded-tr-[15px] trounded-bl-[15px] tshadow-sm">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/7e5a82da4eef4633abbd84d67197d55d.png" width="166.2" height="166.2" alt="Glow Phase" class="tw-full th-auto tobject-cover trounded-tl-[40px] trounded-br-[40px] trounded-tr-[15px] trounded-bl-[15px] tshadow-sm">
                 </div>
 
                 <div class="tabsolute tleft-1/2 ttop-0 ttransform -ttranslate-x-1/2 -ttranslate-y-1/4 tw-4 th-4 tbg-brand-pink trounded-full tborder-[3px] tborder-white tshadow-sm tz-10"></div>
@@ -1389,7 +1375,7 @@ $products_json = json_encode($products);
 
 
         <div class="tflex-shrink-0 tw-full th-full trelative">
-            <img loading="lazy" src="https://matildasbeauty.com/filemanager/66292ccc42dd45e9b0ea4e83ea595f1b.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/66292ccc42dd45e9b0ea4e83ea595f1b.webp"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
             <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
             <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">1 Weeks</span>
@@ -1407,7 +1393,7 @@ $products_json = json_encode($products);
         </div>
 
         <div class="tflex-shrink-0 tw-full th-full trelative">
-            <img loading="lazy" src="https://matildasbeauty.com/filemanager/3cb3ce4b0f92438db4b953ae657a1ecb.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/3cb3ce4b0f92438db4b953ae657a1ecb.webp"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
             <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
             <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">1 Weeks</span>
@@ -1425,7 +1411,7 @@ $products_json = json_encode($products);
         </div>
 
         <div class="tflex-shrink-0 tw-full th-full trelative">
-            <img loading="lazy" src="https://matildasbeauty.com/filemanager/181ef5ad6f8f47f2895c4b5bfe054975.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/181ef5ad6f8f47f2895c4b5bfe054975.webp"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
             <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
             <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
@@ -1440,7 +1426,7 @@ $products_json = json_encode($products);
         </div>
 
         <div class="tflex-shrink-0 tw-full th-full trelative">
-            <img loading="lazy" src="https://matildasbeauty.com/filemanager/0d250eaee2284e10bb648cf206226552.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/0d250eaee2284e10bb648cf206226552.webp"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
             <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
             <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">0 Days</span>
@@ -1458,7 +1444,7 @@ $products_json = json_encode($products);
         </div>
 
         <div class="tflex-shrink-0 tw-full th-full trelative">
-            <img loading="lazy" src="https://matildasbeauty.com/filemanager/e8fcad609ec74b61af4d68f663b35a14.webp" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/e8fcad609ec74b61af4d68f663b35a14.webp"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
             <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
             <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
@@ -1488,22 +1474,22 @@ $products_json = json_encode($products);
         <div class="tflex tpx-2 tmt-10">
             <div class="tw-1/2 tflex tflex-wrap">
                 <div class="tmt-16">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/452fadb8d77a455da516e4c63a5fdab9.png" alt="">
+                    <img loading="lazy" width="75" height="75" src="https://matildasbeauty.com/filemanager/452fadb8d77a455da516e4c63a5fdab9.png" alt="">
                 </div>
                 <div class="">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/fab6642ee2454e7ab9a06a8b5338d1e0.png" alt="">
+                    <img loading="lazy" width="75" height="75" src="https://matildasbeauty.com/filemanager/fab6642ee2454e7ab9a06a8b5338d1e0.png" alt="">
                 </div>
                 <div class="">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/db4c31681864423992ab7c1e894e6b85.png" alt="" class="tmt-16">
+                    <img loading="lazy" width="75" height="75" src="https://matildasbeauty.com/filemanager/db4c31681864423992ab7c1e894e6b85.png" alt="" class="tmt-16">
                 </div>
                 <div class="">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/ba5ba27b7ce34c37ac45fb0280fb9d73.png" alt="" class="tmb-16">
+                    <img loading="lazy" width="75" height="75" src="https://matildasbeauty.com/filemanager/ba5ba27b7ce34c37ac45fb0280fb9d73.png" alt="" class="tmb-16">
                 </div>
                 <div class="">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/d7c85db2562a4f2cb26dde475b07affd.png" alt="" class="tmt-16">
+                    <img loading="lazy" width="75" height="75" src="https://matildasbeauty.com/filemanager/d7c85db2562a4f2cb26dde475b07affd.png" alt="" class="tmt-16">
                 </div>
                 <div class="">
-                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/912eef78ef1a4ca9a0bfc36710556ea1.png" alt="" class="tmb-16">
+                    <img loading="lazy" width="75" height="75" src="https://matildasbeauty.com/filemanager/912eef78ef1a4ca9a0bfc36710556ea1.png" alt="" class="tmb-16">
                 </div>
             </div>
             <div class="tw-1/2 tflex tflex-wrap">
@@ -1881,7 +1867,7 @@ $products_json = json_encode($products);
 
             <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
                 style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
-                ORDER NOW!
+                Start My Melasma Journey
             </button>
         </div>
     </div>
@@ -2244,148 +2230,313 @@ $products_json = json_encode($products);
 
 
 
-        $(document).ready(function() {
-            const $window = $(window);
-            const $document = $(document);
-            const $button = $('.order_now');
+        // $(document).ready(function() {
+        //     const $window = $(window);
+        //     const $document = $(document);
+        //     const $button = $('.order_now');
             
-            let isHidden = false;
-            let scrollTimeout;
-            let isScrolling = false;
+        //     let isHidden = false;
+        //     let scrollTimeout;
+        //     let isScrolling = false;
             
-            // Cache the calculation that doesn't change frequently
-            let hideThreshold = $document.height() - 550;
+        //     // Cache the calculation that doesn't change frequently
+        //     let hideThreshold = $document.height() - 550;
             
-            // Function to recalculate page dimensions
-            function recalculateThreshold() {
-                hideThreshold = $document.height() - 550;
-            }
+        //     // Function to recalculate page dimensions
+        //     function recalculateThreshold() {
+        //         hideThreshold = $document.height() - 550;
+        //     }
             
-            // Recalculate on various events that might change page height
-            $window.on('resize', recalculateThreshold);
+        //     // Recalculate on various events that might change page height
+        //     $window.on('resize', recalculateThreshold);
             
-            // Listen for image load events to recalculate when lazy images load
-            $(document).on('load', 'img', recalculateThreshold);
+        //     // Listen for image load events to recalculate when lazy images load
+        //     $(document).on('load', 'img', recalculateThreshold);
             
-            // Force recalculation when images finish loading
-            $('img').on('load', recalculateThreshold);
+        //     // Force recalculation when images finish loading
+        //     $('img').on('load', recalculateThreshold);
             
-            // Fallback: periodically recalculate for any missed lazy loads
-            setInterval(recalculateThreshold, 1000);
+        //     // Fallback: periodically recalculate for any missed lazy loads
+        //     setInterval(recalculateThreshold, 1000);
             
-            // Reset scrolling flag periodically in case it gets stuck
-            setInterval(function() {
-                if (isScrolling) {
-                    isScrolling = false;
-                }
-                console.log('aaa');
-            }, 2000); // Improve this in the future.
-            // The Problem here is this function runs every 3 seconds. which can cost performance bottleneck.
+        //     // Reset scrolling flag periodically in case it gets stuck
+        //     setInterval(function() {
+        //         if (isScrolling) {
+        //             isScrolling = false;
+        //         }
+        //         console.log('aaa');
+        //     }, 2000); // Improve this in the future.
+        //     // The Problem here is this function runs every 3 seconds. which can cost performance bottleneck.
 
             
-            function toggleButton(show) {
-                if (show && isHidden) {
-                    isHidden = false;
-                    $button.stop(true, true)
-                        .css({ 'display': 'block', 'z-index': 999 })
-                        .animate({ opacity: 1 }, 50);
-                } else if (!show && !isHidden) {
-                    isHidden = true;
-                    $button.stop(true, true)
-                        .css('z-index', 0)
-                        .animate({ opacity: 0 }, 50, function() {
-                            $(this).css('display', 'none');
-                        });
-                }
+        //     function toggleButton(show) {
+        //         if (show && isHidden) {
+        //             isHidden = false;
+        //             $button.stop(true, true)
+        //                 .css({ 'display': 'block', 'z-index': 999 })
+        //                 .animate({ opacity: 1 }, 50);
+        //         } else if (!show && !isHidden) {
+        //             isHidden = true;
+        //             $button.stop(true, true)
+        //                 .css('z-index', 0)
+        //                 .animate({ opacity: 0 }, 50, function() {
+        //                     $(this).css('display', 'none');
+        //                 });
+        //         }
+        //     }
+            
+        //     // Throttled scroll handler
+        //     $window.on('scroll', function() {
+        //         clearTimeout(scrollTimeout);
+        //         scrollTimeout = setTimeout(function() {
+        //             const scrollPosition = $window.height() + $window.scrollTop();
+        //             toggleButton(scrollPosition <= hideThreshold);
+        //         }, 16);
+        //     });
+            
+        //     // Improved scroll to bottom function with lazy load support
+        //     function scrollToBottom() {
+        //         isScrolling = true;
+                
+        //         // Force lazy images to load by triggering scroll events
+        //         const currentScroll = $window.scrollTop();
+        //         $window.trigger('scroll');
+                
+        //         // Small delay to allow lazy loading to trigger
+        //         setTimeout(function() {
+        //             const $target = $('#submit_btn');
+        //             let targetOffset;
+                    
+        //             // Recalculate page height in case images loaded
+        //             recalculateThreshold();
+                    
+        //             if ($target.length) {
+        //                 targetOffset = $target.offset().top - 20;
+        //             } else {
+        //                 // Fallback: scroll to actual bottom of page
+        //                 targetOffset = $document.height() - $window.height();
+        //             }
+                    
+        //             $('html, body').animate({
+        //                 scrollTop: targetOffset
+        //             }, {
+        //                 duration: 'slow',
+        //                 complete: function() {
+        //                     // Double-check position after animation with multiple retries
+        //                     let retryCount = 0;
+        //                     const maxRetries = 3;
+                            
+        //                     function checkPosition() {
+        //                         const currentScroll = $window.scrollTop();
+        //                         const maxScroll = $document.height() - $window.height();
+                                
+        //                         // Recalculate in case more images loaded during scroll
+        //                         recalculateThreshold();
+                                
+        //                         let finalTarget;
+        //                         if ($target.length) {
+        //                             finalTarget = $target.offset().top - 20;
+        //                         } else {
+        //                             finalTarget = $document.height() - $window.height();
+        //                         }
+                                
+        //                         // If we're not at the intended position and haven't exceeded retries
+        //                         if (Math.abs(currentScroll - finalTarget) > 10 && retryCount < maxRetries) {
+        //                             retryCount++;
+        //                             $('html, body').animate({
+        //                                 scrollTop: finalTarget
+        //                             }, 200, checkPosition);
+        //                         } else {
+        //                             isScrolling = false;
+        //                         }
+        //                     }
+                            
+        //                     setTimeout(checkPosition, 100);
+        //                 }
+        //             });
+        //         }, 100);
+        //     }
+            
+        //     // Order button click handler
+        //     $button.on('click', function(e) {
+        //         e.preventDefault();
+        //         scrollToBottom();
+                
+        //         // Event tracking
+        //         $.post('/event-listener', {
+        //             order_form: 1,
+        //             website: '{{ $website }}',
+        //             session_id: '{{ $session_id }}'
+        //         }).fail(function() {
+        //             console.warn('Failed to track order form event');
+        //         });
+        //     });
+        // });
+
+        $(document).ready(function() {
+    const $window = $(window);
+    const $document = $(document);
+    const $button = $('.order_now');
+    
+    let isHidden = false; // Note: You might want to start this as true if you want it hidden on load
+    let scrollTimeout;
+    let isScrolling = false;
+    
+    // Cache the calculation that doesn't change frequently
+    let hideThreshold = $document.height() - 550;
+    
+    // --- NEW: Variable to store where the CTA section is ---
+    let showCtaThreshold = 0;
+    
+    // Function to recalculate page dimensions
+    function recalculateThreshold() {
+        hideThreshold = $document.height() - 550;
+        
+        // --- NEW: Calculate the position of the #show_cta element ---
+        const $ctaElement = $('#show_cta');
+        if ($ctaElement.length) {
+            // We use offset().top so we know how far down the page it is
+            showCtaThreshold = $ctaElement.offset().top;
+        }
+    }
+    
+    // Recalculate on various events that might change page height
+    $window.on('resize', recalculateThreshold);
+    
+    // Listen for image load events to recalculate when lazy images load
+    $(document).on('load', 'img', recalculateThreshold);
+    
+    // Force recalculation when images finish loading
+    $('img').on('load', recalculateThreshold);
+    
+    // Fallback: periodically recalculate for any missed lazy loads
+    setInterval(recalculateThreshold, 1000);
+    
+    // Reset scrolling flag periodically in case it gets stuck
+    setInterval(function() {
+        if (isScrolling) {
+            isScrolling = false;
+        }
+        console.log('aaa');
+    }, 2000); 
+
+    
+    function toggleButton(show) {
+        if (show && isHidden) {
+            isHidden = false;
+            $button.stop(true, true)
+                .css({ 'display': 'block', 'z-index': 999 })
+                .animate({ opacity: 1 }, 50);
+        } else if (!show && !isHidden) {
+            isHidden = true;
+            $button.stop(true, true)
+                .css('z-index', 0)
+                .animate({ opacity: 0 }, 50, function() {
+                    $(this).css('display', 'none');
+                });
+        }
+    }
+    
+    // Throttled scroll handler
+    $window.on('scroll', function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(function() {
+            // We need the current top position to compare with #show_cta
+            const currentScrollTop = $window.scrollTop();
+            
+            // We need the bottom position to compare with footer (existing logic)
+            const scrollBottomPosition = $window.height() + currentScrollTop;
+            
+            // --- NEW CONDITION ---
+            // 1. Have we passed the #show_cta element? (currentScrollTop >= showCtaThreshold)
+            // 2. Are we still above the bottom/footer? (scrollBottomPosition <= hideThreshold)
+            const shouldShow = (currentScrollTop >= showCtaThreshold) && (scrollBottomPosition <= hideThreshold);
+            
+            toggleButton(shouldShow);
+        }, 16);
+    });
+    
+    // Improved scroll to bottom function with lazy load support
+    function scrollToBottom() {
+        isScrolling = true;
+        
+        // Force lazy images to load by triggering scroll events
+        const currentScroll = $window.scrollTop();
+        $window.trigger('scroll');
+        
+        // Small delay to allow lazy loading to trigger
+        setTimeout(function() {
+            const $target = $('#submit_btn');
+            let targetOffset;
+            
+            // Recalculate page height in case images loaded
+            recalculateThreshold();
+            
+            if ($target.length) {
+                targetOffset = $target.offset().top - 20;
+            } else {
+                // Fallback: scroll to actual bottom of page
+                targetOffset = $document.height() - $window.height();
             }
             
-            // Throttled scroll handler
-            $window.on('scroll', function() {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(function() {
-                    const scrollPosition = $window.height() + $window.scrollTop();
-                    toggleButton(scrollPosition <= hideThreshold);
-                }, 16);
-            });
-            
-            // Improved scroll to bottom function with lazy load support
-            function scrollToBottom() {
-                isScrolling = true;
-                
-                // Force lazy images to load by triggering scroll events
-                const currentScroll = $window.scrollTop();
-                $window.trigger('scroll');
-                
-                // Small delay to allow lazy loading to trigger
-                setTimeout(function() {
-                    const $target = $('#submit_btn');
-                    let targetOffset;
+            $('html, body').animate({
+                scrollTop: targetOffset
+            }, {
+                duration: 'slow',
+                complete: function() {
+                    // Double-check position after animation with multiple retries
+                    let retryCount = 0;
+                    const maxRetries = 3;
                     
-                    // Recalculate page height in case images loaded
-                    recalculateThreshold();
-                    
-                    if ($target.length) {
-                        targetOffset = $target.offset().top - 20;
-                    } else {
-                        // Fallback: scroll to actual bottom of page
-                        targetOffset = $document.height() - $window.height();
+                    function checkPosition() {
+                        const currentScroll = $window.scrollTop();
+                        const maxScroll = $document.height() - $window.height();
+                        
+                        // Recalculate in case more images loaded during scroll
+                        recalculateThreshold();
+                        
+                        let finalTarget;
+                        if ($target.length) {
+                            finalTarget = $target.offset().top - 20;
+                        } else {
+                            finalTarget = $document.height() - $window.height();
+                        }
+                        
+                        // If we're not at the intended position and haven't exceeded retries
+                        if (Math.abs(currentScroll - finalTarget) > 10 && retryCount < maxRetries) {
+                            retryCount++;
+                            $('html, body').animate({
+                                scrollTop: finalTarget
+                            }, 200, checkPosition);
+                        } else {
+                            isScrolling = false;
+                        }
                     }
                     
-                    $('html, body').animate({
-                        scrollTop: targetOffset
-                    }, {
-                        duration: 'slow',
-                        complete: function() {
-                            // Double-check position after animation with multiple retries
-                            let retryCount = 0;
-                            const maxRetries = 3;
-                            
-                            function checkPosition() {
-                                const currentScroll = $window.scrollTop();
-                                const maxScroll = $document.height() - $window.height();
-                                
-                                // Recalculate in case more images loaded during scroll
-                                recalculateThreshold();
-                                
-                                let finalTarget;
-                                if ($target.length) {
-                                    finalTarget = $target.offset().top - 20;
-                                } else {
-                                    finalTarget = $document.height() - $window.height();
-                                }
-                                
-                                // If we're not at the intended position and haven't exceeded retries
-                                if (Math.abs(currentScroll - finalTarget) > 10 && retryCount < maxRetries) {
-                                    retryCount++;
-                                    $('html, body').animate({
-                                        scrollTop: finalTarget
-                                    }, 200, checkPosition);
-                                } else {
-                                    isScrolling = false;
-                                }
-                            }
-                            
-                            setTimeout(checkPosition, 100);
-                        }
-                    });
-                }, 100);
-            }
-            
-            // Order button click handler
-            $button.on('click', function(e) {
-                e.preventDefault();
-                scrollToBottom();
-                
-                // Event tracking
-                $.post('/event-listener', {
-                    order_form: 1,
-                    website: '{{ $website }}',
-                    session_id: '{{ $session_id }}'
-                }).fail(function() {
-                    console.warn('Failed to track order form event');
-                });
+                    setTimeout(checkPosition, 100);
+                }
             });
+        }, 100);
+    }
+    
+    // Order button click handler
+    $button.on('click', function(e) {
+        e.preventDefault();
+        scrollToBottom();
+        
+        // Event tracking
+        $.post('/event-listener', {
+            order_form: 1,
+            website: '{{ $website }}',
+            session_id: '{{ $session_id }}'
+        }).fail(function() {
+            console.warn('Failed to track order form event');
         });
+    });
+    
+    // --- NEW: Trigger initial calculation immediately ---
+    recalculateThreshold();
+});
 
 
         $('#full_name').change(function (e) {
