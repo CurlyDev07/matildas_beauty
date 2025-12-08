@@ -5,15 +5,15 @@ $products = [
     [
         'id' => 0,
         'name' => '1Pc MissTisa Set',
-        'price' => 649,
+        'price' => 1,
         'image' => 'https://matildasbeauty.com/filemanager/6680dcdecd7042588a0a02b32f4bf3c3.png',
         'description' => 'Advanced anti-aging and whitening serum',
-        'promo' => [
-            [
-                'qty' => 2,
-                'bundle_price' => 849
-            ]
-        ]   
+        // 'promo' => [
+        //     [
+        //         'qty' => 2,
+        //         'bundle_price' => 849
+        //     ]
+        // ]   
     ],
     [
         'id' => 1, 
