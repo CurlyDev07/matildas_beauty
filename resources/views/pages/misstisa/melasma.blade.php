@@ -816,7 +816,7 @@ $products_json = json_encode($products);
 
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
 
-        <img  src="https://matildasbeauty.com/filemanager/9dec2d58ee994c38882f3a5583153e95.webp" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
+        <img  src="https://matildasbeauty.com/filemanager/bb8a80d9254f4648b1c42d7bebb86c6c.png" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
         <div class="tfont-semibold tmx-3 tmy-4  ttext-center">
             <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
         </div>
