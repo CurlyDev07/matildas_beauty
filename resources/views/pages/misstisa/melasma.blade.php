@@ -816,7 +816,40 @@ $products_json = json_encode($products);
 
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
 
-        <img  src="https://matildasbeauty.com/filemanager/79fffce1b8c4407caae8efa9490f23e1.webp" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
+        <img  src="https://matildasbeauty.com/filemanager/9dec2d58ee994c38882f3a5583153e95.webp" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
+        <div class="tfont-semibold tmx-3 tmy-4  ttext-center">
+            <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
+        </div>
+         <div class="tborder-dashed ttext-center tmx-3 tmy-2 tpx-3 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
+            <span class="tfont-bold  ttext-center" style="font-size: 20px;">FREE Pomelo Vitamin C – Ends Soon!</span>
+            <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
+                ⏰
+                <div id="timer_top">18:38</div>
+                mins
+            </span>
+            {{-- <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span> --}}
+        </div><!-- FREE 2 Gifts -->
+
+        <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> Kulubot</b> </div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> Wrinkles</b> </div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Melasma Remover</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Korean Glass Skin</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> No More Pekas</b></div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i> <b>Pinkish Skin</b></div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No More Dark Spots</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Uneven Skin Tone</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Deep Scars</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Whiteheads</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Blackheads</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Skin Whitening</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> For Sensitive Skin</div>
+            <div class="tw-1/2 tmb-3"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No Irritation </div>
+          
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA Approved</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Safe</div>
+            <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven &amp; tested by many users</div>
+        </div>
 
         <div class="trelative tmax-w-[480px] tw-full taspect-square tbg-white tshadow-2xl toverflow-hidden tmb-10">
 
@@ -962,7 +995,7 @@ $products_json = json_encode($products);
         </div><!-- SLIDER BEFORE AND AFTER -->
           
         <div class="tfont-semibold tmx-3 tmb-10 tmy-5 ttext-center">
-            <h1 class="ttext-4xl" style="color: #3a1b31;">Bakit dumadami ang pekas after manganak?</h1>
+            <h1 class="ttext-4xl" style="color: #c70059;">Ano ang totoong dahilan bakit ka may melasma?</h1>
         </div>
 
         <div class="tflex titems-center tmb-8">
@@ -976,7 +1009,7 @@ $products_json = json_encode($products);
 
         <div class="tflex titems-center tmb-8">
             <div class="tw-1/2">
-                <p class="tpx-5 ttext-lg"><b>Kahit anong skincare…</b>  ayaw<b> mawala.</b>  Parang dumikit na talaga.</p>
+                <p class="tpx-5 ttext-lg"><b>Kahit anong skincare…</b>  ayaw<b> mawala.</b> </p>
             </div>
              <div class="tw-1/2">
                 <img loading="lazy" src="https://matildasbeauty.com/filemanager/6c2530ddd02c40f9bfb379220096a110.png" width="206" height="128.75" class="tw-full trounded-2xl" alt="">
@@ -988,8 +1021,7 @@ $products_json = json_encode($products);
                 <img loading="lazy" src="https://matildasbeauty.com/filemanager/2e885e9ce7fd4ddcb9028c078b72ecd1.png" width="206" height="128.75" class="tw-full trounded-2xl" alt="">
             </div>
             <div class="tw-1/2">
-                <p class="tpx-5 ttext-lg"><b>Ayaw</b>  mo na mag- <b>selfie …
-                Filters, foundation…</b>  paulit-ulit na lang.</p>
+                <p class="tpx-5 ttext-lg"><b>Nakikiya kana mag Selfie</b>  puro <b>  Filters, foundation…</b> </p>
             </div>
         </div><!-- SLIDE  3-->
 
@@ -1011,8 +1043,8 @@ $products_json = json_encode($products);
             </div>
             <div class="tw-1/2">
                 <p class="tpx-5 ttext-lg">
-                    Pero sis… <b>Normal</b>  ang <b>Melasma</b> 
-                    at May paraan para mawala...
+                    <b>Normal</b>  ang <b>Melasma</b> 
+                    at May paraan para <b>mawala</b>
                     <br>
                     Ang <b>hindi normal</b>  ung pa <b>bayaan</b>   mo lang
 
@@ -1867,7 +1899,7 @@ $products_json = json_encode($products);
 
             <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
                 style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
-                Start My Melasma Journey
+                Order Now!
             </button>
         </div>
     </div>
@@ -2230,313 +2262,313 @@ $products_json = json_encode($products);
 
 
 
-        // $(document).ready(function() {
-        //     const $window = $(window);
-        //     const $document = $(document);
-        //     const $button = $('.order_now');
-            
-        //     let isHidden = false;
-        //     let scrollTimeout;
-        //     let isScrolling = false;
-            
-        //     // Cache the calculation that doesn't change frequently
-        //     let hideThreshold = $document.height() - 550;
-            
-        //     // Function to recalculate page dimensions
-        //     function recalculateThreshold() {
-        //         hideThreshold = $document.height() - 550;
-        //     }
-            
-        //     // Recalculate on various events that might change page height
-        //     $window.on('resize', recalculateThreshold);
-            
-        //     // Listen for image load events to recalculate when lazy images load
-        //     $(document).on('load', 'img', recalculateThreshold);
-            
-        //     // Force recalculation when images finish loading
-        //     $('img').on('load', recalculateThreshold);
-            
-        //     // Fallback: periodically recalculate for any missed lazy loads
-        //     setInterval(recalculateThreshold, 1000);
-            
-        //     // Reset scrolling flag periodically in case it gets stuck
-        //     setInterval(function() {
-        //         if (isScrolling) {
-        //             isScrolling = false;
-        //         }
-        //         console.log('aaa');
-        //     }, 2000); // Improve this in the future.
-        //     // The Problem here is this function runs every 3 seconds. which can cost performance bottleneck.
-
-            
-        //     function toggleButton(show) {
-        //         if (show && isHidden) {
-        //             isHidden = false;
-        //             $button.stop(true, true)
-        //                 .css({ 'display': 'block', 'z-index': 999 })
-        //                 .animate({ opacity: 1 }, 50);
-        //         } else if (!show && !isHidden) {
-        //             isHidden = true;
-        //             $button.stop(true, true)
-        //                 .css('z-index', 0)
-        //                 .animate({ opacity: 0 }, 50, function() {
-        //                     $(this).css('display', 'none');
-        //                 });
-        //         }
-        //     }
-            
-        //     // Throttled scroll handler
-        //     $window.on('scroll', function() {
-        //         clearTimeout(scrollTimeout);
-        //         scrollTimeout = setTimeout(function() {
-        //             const scrollPosition = $window.height() + $window.scrollTop();
-        //             toggleButton(scrollPosition <= hideThreshold);
-        //         }, 16);
-        //     });
-            
-        //     // Improved scroll to bottom function with lazy load support
-        //     function scrollToBottom() {
-        //         isScrolling = true;
-                
-        //         // Force lazy images to load by triggering scroll events
-        //         const currentScroll = $window.scrollTop();
-        //         $window.trigger('scroll');
-                
-        //         // Small delay to allow lazy loading to trigger
-        //         setTimeout(function() {
-        //             const $target = $('#submit_btn');
-        //             let targetOffset;
-                    
-        //             // Recalculate page height in case images loaded
-        //             recalculateThreshold();
-                    
-        //             if ($target.length) {
-        //                 targetOffset = $target.offset().top - 20;
-        //             } else {
-        //                 // Fallback: scroll to actual bottom of page
-        //                 targetOffset = $document.height() - $window.height();
-        //             }
-                    
-        //             $('html, body').animate({
-        //                 scrollTop: targetOffset
-        //             }, {
-        //                 duration: 'slow',
-        //                 complete: function() {
-        //                     // Double-check position after animation with multiple retries
-        //                     let retryCount = 0;
-        //                     const maxRetries = 3;
-                            
-        //                     function checkPosition() {
-        //                         const currentScroll = $window.scrollTop();
-        //                         const maxScroll = $document.height() - $window.height();
-                                
-        //                         // Recalculate in case more images loaded during scroll
-        //                         recalculateThreshold();
-                                
-        //                         let finalTarget;
-        //                         if ($target.length) {
-        //                             finalTarget = $target.offset().top - 20;
-        //                         } else {
-        //                             finalTarget = $document.height() - $window.height();
-        //                         }
-                                
-        //                         // If we're not at the intended position and haven't exceeded retries
-        //                         if (Math.abs(currentScroll - finalTarget) > 10 && retryCount < maxRetries) {
-        //                             retryCount++;
-        //                             $('html, body').animate({
-        //                                 scrollTop: finalTarget
-        //                             }, 200, checkPosition);
-        //                         } else {
-        //                             isScrolling = false;
-        //                         }
-        //                     }
-                            
-        //                     setTimeout(checkPosition, 100);
-        //                 }
-        //             });
-        //         }, 100);
-        //     }
-            
-        //     // Order button click handler
-        //     $button.on('click', function(e) {
-        //         e.preventDefault();
-        //         scrollToBottom();
-                
-        //         // Event tracking
-        //         $.post('/event-listener', {
-        //             order_form: 1,
-        //             website: '{{ $website }}',
-        //             session_id: '{{ $session_id }}'
-        //         }).fail(function() {
-        //             console.warn('Failed to track order form event');
-        //         });
-        //     });
-        // });
-
         $(document).ready(function() {
-    const $window = $(window);
-    const $document = $(document);
-    const $button = $('.order_now');
-    
-    let isHidden = false; // Note: You might want to start this as true if you want it hidden on load
-    let scrollTimeout;
-    let isScrolling = false;
-    
-    // Cache the calculation that doesn't change frequently
-    let hideThreshold = $document.height() - 550;
-    
-    // --- NEW: Variable to store where the CTA section is ---
-    let showCtaThreshold = 0;
-    
-    // Function to recalculate page dimensions
-    function recalculateThreshold() {
-        hideThreshold = $document.height() - 550;
-        
-        // --- NEW: Calculate the position of the #show_cta element ---
-        const $ctaElement = $('#show_cta');
-        if ($ctaElement.length) {
-            // We use offset().top so we know how far down the page it is
-            showCtaThreshold = $ctaElement.offset().top;
-        }
-    }
-    
-    // Recalculate on various events that might change page height
-    $window.on('resize', recalculateThreshold);
-    
-    // Listen for image load events to recalculate when lazy images load
-    $(document).on('load', 'img', recalculateThreshold);
-    
-    // Force recalculation when images finish loading
-    $('img').on('load', recalculateThreshold);
-    
-    // Fallback: periodically recalculate for any missed lazy loads
-    setInterval(recalculateThreshold, 1000);
-    
-    // Reset scrolling flag periodically in case it gets stuck
-    setInterval(function() {
-        if (isScrolling) {
-            isScrolling = false;
-        }
-        console.log('aaa');
-    }, 2000); 
-
-    
-    function toggleButton(show) {
-        if (show && isHidden) {
-            isHidden = false;
-            $button.stop(true, true)
-                .css({ 'display': 'block', 'z-index': 999 })
-                .animate({ opacity: 1 }, 50);
-        } else if (!show && !isHidden) {
-            isHidden = true;
-            $button.stop(true, true)
-                .css('z-index', 0)
-                .animate({ opacity: 0 }, 50, function() {
-                    $(this).css('display', 'none');
-                });
-        }
-    }
-    
-    // Throttled scroll handler
-    $window.on('scroll', function() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(function() {
-            // We need the current top position to compare with #show_cta
-            const currentScrollTop = $window.scrollTop();
+            const $window = $(window);
+            const $document = $(document);
+            const $button = $('.order_now');
             
-            // We need the bottom position to compare with footer (existing logic)
-            const scrollBottomPosition = $window.height() + currentScrollTop;
+            let isHidden = false;
+            let scrollTimeout;
+            let isScrolling = false;
             
-            // --- NEW CONDITION ---
-            // 1. Have we passed the #show_cta element? (currentScrollTop >= showCtaThreshold)
-            // 2. Are we still above the bottom/footer? (scrollBottomPosition <= hideThreshold)
-            const shouldShow = (currentScrollTop >= showCtaThreshold) && (scrollBottomPosition <= hideThreshold);
+            // Cache the calculation that doesn't change frequently
+            let hideThreshold = $document.height() - 550;
             
-            toggleButton(shouldShow);
-        }, 16);
-    });
-    
-    // Improved scroll to bottom function with lazy load support
-    function scrollToBottom() {
-        isScrolling = true;
-        
-        // Force lazy images to load by triggering scroll events
-        const currentScroll = $window.scrollTop();
-        $window.trigger('scroll');
-        
-        // Small delay to allow lazy loading to trigger
-        setTimeout(function() {
-            const $target = $('#submit_btn');
-            let targetOffset;
-            
-            // Recalculate page height in case images loaded
-            recalculateThreshold();
-            
-            if ($target.length) {
-                targetOffset = $target.offset().top - 20;
-            } else {
-                // Fallback: scroll to actual bottom of page
-                targetOffset = $document.height() - $window.height();
+            // Function to recalculate page dimensions
+            function recalculateThreshold() {
+                hideThreshold = $document.height() - 550;
             }
             
-            $('html, body').animate({
-                scrollTop: targetOffset
-            }, {
-                duration: 'slow',
-                complete: function() {
-                    // Double-check position after animation with multiple retries
-                    let retryCount = 0;
-                    const maxRetries = 3;
+            // Recalculate on various events that might change page height
+            $window.on('resize', recalculateThreshold);
+            
+            // Listen for image load events to recalculate when lazy images load
+            $(document).on('load', 'img', recalculateThreshold);
+            
+            // Force recalculation when images finish loading
+            $('img').on('load', recalculateThreshold);
+            
+            // Fallback: periodically recalculate for any missed lazy loads
+            setInterval(recalculateThreshold, 1000);
+            
+            // Reset scrolling flag periodically in case it gets stuck
+            setInterval(function() {
+                if (isScrolling) {
+                    isScrolling = false;
+                }
+                console.log('aaa');
+            }, 2000); // Improve this in the future.
+            // The Problem here is this function runs every 3 seconds. which can cost performance bottleneck.
+
+            
+            function toggleButton(show) {
+                if (show && isHidden) {
+                    isHidden = false;
+                    $button.stop(true, true)
+                        .css({ 'display': 'block', 'z-index': 999 })
+                        .animate({ opacity: 1 }, 50);
+                } else if (!show && !isHidden) {
+                    isHidden = true;
+                    $button.stop(true, true)
+                        .css('z-index', 0)
+                        .animate({ opacity: 0 }, 50, function() {
+                            $(this).css('display', 'none');
+                        });
+                }
+            }
+            
+            // Throttled scroll handler
+            $window.on('scroll', function() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    const scrollPosition = $window.height() + $window.scrollTop();
+                    toggleButton(scrollPosition <= hideThreshold);
+                }, 16);
+            });
+            
+            // Improved scroll to bottom function with lazy load support
+            function scrollToBottom() {
+                isScrolling = true;
+                
+                // Force lazy images to load by triggering scroll events
+                const currentScroll = $window.scrollTop();
+                $window.trigger('scroll');
+                
+                // Small delay to allow lazy loading to trigger
+                setTimeout(function() {
+                    const $target = $('#submit_btn');
+                    let targetOffset;
                     
-                    function checkPosition() {
-                        const currentScroll = $window.scrollTop();
-                        const maxScroll = $document.height() - $window.height();
-                        
-                        // Recalculate in case more images loaded during scroll
-                        recalculateThreshold();
-                        
-                        let finalTarget;
-                        if ($target.length) {
-                            finalTarget = $target.offset().top - 20;
-                        } else {
-                            finalTarget = $document.height() - $window.height();
-                        }
-                        
-                        // If we're not at the intended position and haven't exceeded retries
-                        if (Math.abs(currentScroll - finalTarget) > 10 && retryCount < maxRetries) {
-                            retryCount++;
-                            $('html, body').animate({
-                                scrollTop: finalTarget
-                            }, 200, checkPosition);
-                        } else {
-                            isScrolling = false;
-                        }
+                    // Recalculate page height in case images loaded
+                    recalculateThreshold();
+                    
+                    if ($target.length) {
+                        targetOffset = $target.offset().top - 20;
+                    } else {
+                        // Fallback: scroll to actual bottom of page
+                        targetOffset = $document.height() - $window.height();
                     }
                     
-                    setTimeout(checkPosition, 100);
-                }
+                    $('html, body').animate({
+                        scrollTop: targetOffset
+                    }, {
+                        duration: 'slow',
+                        complete: function() {
+                            // Double-check position after animation with multiple retries
+                            let retryCount = 0;
+                            const maxRetries = 3;
+                            
+                            function checkPosition() {
+                                const currentScroll = $window.scrollTop();
+                                const maxScroll = $document.height() - $window.height();
+                                
+                                // Recalculate in case more images loaded during scroll
+                                recalculateThreshold();
+                                
+                                let finalTarget;
+                                if ($target.length) {
+                                    finalTarget = $target.offset().top - 20;
+                                } else {
+                                    finalTarget = $document.height() - $window.height();
+                                }
+                                
+                                // If we're not at the intended position and haven't exceeded retries
+                                if (Math.abs(currentScroll - finalTarget) > 10 && retryCount < maxRetries) {
+                                    retryCount++;
+                                    $('html, body').animate({
+                                        scrollTop: finalTarget
+                                    }, 200, checkPosition);
+                                } else {
+                                    isScrolling = false;
+                                }
+                            }
+                            
+                            setTimeout(checkPosition, 100);
+                        }
+                    });
+                }, 100);
+            }
+            
+            // Order button click handler
+            $button.on('click', function(e) {
+                e.preventDefault();
+                scrollToBottom();
+                
+                // Event tracking
+                $.post('/event-listener', {
+                    order_form: 1,
+                    website: '{{ $website }}',
+                    session_id: '{{ $session_id }}'
+                }).fail(function() {
+                    console.warn('Failed to track order form event');
+                });
             });
-        }, 100);
-    }
-    
-    // Order button click handler
-    $button.on('click', function(e) {
-        e.preventDefault();
-        scrollToBottom();
-        
-        // Event tracking
-        $.post('/event-listener', {
-            order_form: 1,
-            website: '{{ $website }}',
-            session_id: '{{ $session_id }}'
-        }).fail(function() {
-            console.warn('Failed to track order form event');
         });
-    });
+
+    // $(document).ready(function() {
+    //     const $window = $(window);
+    //     const $document = $(document);
+    //     const $button = $('.order_now');
+        
+    //     let isHidden = false; // Note: You might want to start this as true if you want it hidden on load
+    //     let scrollTimeout;
+    //     let isScrolling = false;
+        
+    //     // Cache the calculation that doesn't change frequently
+    //     let hideThreshold = $document.height() - 550;
+        
+    //     // --- NEW: Variable to store where the CTA section is ---
+    //     let showCtaThreshold = 0;
+        
+    //     // Function to recalculate page dimensions
+    //     function recalculateThreshold() {
+    //         hideThreshold = $document.height() - 550;
+            
+    //         // --- NEW: Calculate the position of the #show_cta element ---
+    //         const $ctaElement = $('#show_cta');
+    //         if ($ctaElement.length) {
+    //             // We use offset().top so we know how far down the page it is
+    //             showCtaThreshold = $ctaElement.offset().top;
+    //         }
+    //     }
+        
+    //     // Recalculate on various events that might change page height
+    //     $window.on('resize', recalculateThreshold);
+        
+    //     // Listen for image load events to recalculate when lazy images load
+    //     $(document).on('load', 'img', recalculateThreshold);
+        
+    //     // Force recalculation when images finish loading
+    //     $('img').on('load', recalculateThreshold);
+        
+    //     // Fallback: periodically recalculate for any missed lazy loads
+    //     setInterval(recalculateThreshold, 1000);
+        
+    //     // Reset scrolling flag periodically in case it gets stuck
+    //     setInterval(function() {
+    //         if (isScrolling) {
+    //             isScrolling = false;
+    //         }
+    //         console.log('aaa');
+    //     }, 2000); 
+
+        
+    //     function toggleButton(show) {
+    //         if (show && isHidden) {
+    //             isHidden = false;
+    //             $button.stop(true, true)
+    //                 .css({ 'display': 'block', 'z-index': 999 })
+    //                 .animate({ opacity: 1 }, 50);
+    //         } else if (!show && !isHidden) {
+    //             isHidden = true;
+    //             $button.stop(true, true)
+    //                 .css('z-index', 0)
+    //                 .animate({ opacity: 0 }, 50, function() {
+    //                     $(this).css('display', 'none');
+    //                 });
+    //         }
+    //     }
+        
+    //     // Throttled scroll handler
+    //     $window.on('scroll', function() {
+    //         clearTimeout(scrollTimeout);
+    //         scrollTimeout = setTimeout(function() {
+    //             // We need the current top position to compare with #show_cta
+    //             const currentScrollTop = $window.scrollTop();
+                
+    //             // We need the bottom position to compare with footer (existing logic)
+    //             const scrollBottomPosition = $window.height() + currentScrollTop;
+                
+    //             // --- NEW CONDITION ---
+    //             // 1. Have we passed the #show_cta element? (currentScrollTop >= showCtaThreshold)
+    //             // 2. Are we still above the bottom/footer? (scrollBottomPosition <= hideThreshold)
+    //             const shouldShow = (currentScrollTop >= showCtaThreshold) && (scrollBottomPosition <= hideThreshold);
+                
+    //             toggleButton(shouldShow);
+    //         }, 16);
+    //     });
+        
+    //     // Improved scroll to bottom function with lazy load support
+    //     function scrollToBottom() {
+    //         isScrolling = true;
+            
+    //         // Force lazy images to load by triggering scroll events
+    //         const currentScroll = $window.scrollTop();
+    //         $window.trigger('scroll');
+            
+    //         // Small delay to allow lazy loading to trigger
+    //         setTimeout(function() {
+    //             const $target = $('#submit_btn');
+    //             let targetOffset;
+                
+    //             // Recalculate page height in case images loaded
+    //             recalculateThreshold();
+                
+    //             if ($target.length) {
+    //                 targetOffset = $target.offset().top - 20;
+    //             } else {
+    //                 // Fallback: scroll to actual bottom of page
+    //                 targetOffset = $document.height() - $window.height();
+    //             }
+                
+    //             $('html, body').animate({
+    //                 scrollTop: targetOffset
+    //             }, {
+    //                 duration: 'slow',
+    //                 complete: function() {
+    //                     // Double-check position after animation with multiple retries
+    //                     let retryCount = 0;
+    //                     const maxRetries = 3;
+                        
+    //                     function checkPosition() {
+    //                         const currentScroll = $window.scrollTop();
+    //                         const maxScroll = $document.height() - $window.height();
+                            
+    //                         // Recalculate in case more images loaded during scroll
+    //                         recalculateThreshold();
+                            
+    //                         let finalTarget;
+    //                         if ($target.length) {
+    //                             finalTarget = $target.offset().top - 20;
+    //                         } else {
+    //                             finalTarget = $document.height() - $window.height();
+    //                         }
+                            
+    //                         // If we're not at the intended position and haven't exceeded retries
+    //                         if (Math.abs(currentScroll - finalTarget) > 10 && retryCount < maxRetries) {
+    //                             retryCount++;
+    //                             $('html, body').animate({
+    //                                 scrollTop: finalTarget
+    //                             }, 200, checkPosition);
+    //                         } else {
+    //                             isScrolling = false;
+    //                         }
+    //                     }
+                        
+    //                     setTimeout(checkPosition, 100);
+    //                 }
+    //             });
+    //         }, 100);
+    //     }
     
-    // --- NEW: Trigger initial calculation immediately ---
-    recalculateThreshold();
-});
+    //     // Order button click handler
+    //     $button.on('click', function(e) {
+    //         e.preventDefault();
+    //         scrollToBottom();
+            
+    //         // Event tracking
+    //         $.post('/event-listener', {
+    //             order_form: 1,
+    //             website: '{{ $website }}',
+    //             session_id: '{{ $session_id }}'
+    //         }).fail(function() {
+    //             console.warn('Failed to track order form event');
+    //         });
+    //     });
+        
+    //     // --- NEW: Trigger initial calculation immediately ---
+    //     recalculateThreshold();
+    // });
 
 
         $('#full_name').change(function (e) {
@@ -2670,6 +2702,40 @@ $products_json = json_encode($products);
 
     </script> 
 
+    <script>
+        let timeLeft = 27 * 43;
+
+        function updateTimerTop() {
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            $('#timer_top').text(`${m}:${s}`);
+
+            if (timeLeft > 0) {
+            timeLeft--;
+            } else {
+            clearInterval(timer);
+                alert("Time's up!");
+            }
+        }
+
+        function updateTimerBottom() {
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            $('#timer_bottom').text(`${m}:${s}`);
+
+            if (timeLeft > 0) {
+            timeLeft--;
+            } else {
+            clearInterval(timer);
+                alert("Time's up!");
+            }
+        }
+
+        const timer_top = setInterval(updateTimerTop, 1000);
+        const timer_bottom = setInterval(updateTimerBottom, 1000);
+        updateTimerTop();
+        updateTimerBottom();
+    </script>
 
     <script> // UPSELL
         $(document).ready(function() {
