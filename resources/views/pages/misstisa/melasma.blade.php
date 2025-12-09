@@ -816,7 +816,7 @@ $products_json = json_encode($products);
 
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
 
-        <img  src="https://matildasbeauty.com/filemanager/2c921a7a56d84181b33af588873c435f.webp" width="480" height="480" class="tw-full tmb-1" alt="#1 Kulubot Remover">
+        <img  src="https://matildasbeauty.com/filemanager/79fffce1b8c4407caae8efa9490f23e1.webp" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
 
         <div class="trelative tmax-w-[480px] tw-full taspect-square tbg-white tshadow-2xl toverflow-hidden tmb-10">
 
