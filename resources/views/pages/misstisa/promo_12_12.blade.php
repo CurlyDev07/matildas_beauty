@@ -825,38 +825,19 @@ $products_json = json_encode($products);
                     </span>
                 </div>
             </div>
-            <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="bottom: -447%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;background-color: #ee2a7b;">ORDER NOW!
-            </button>
         </div>
 
 
-        <img src="https://matildasbeauty.com/filemanager/09002552583e4d92a5c1b09992081b29.webp" width="480" height="480" class="tw-full" alt="BUY 1 take 1">
-
-        {{-- <div class="tmx-3 tflex titems-center tmy-5">
-            <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
-                <span class="ttext-sm ttext-white">
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                </span>
-                <span class="ttext-md ttext-green-900">
-                    <span class="tfont-bold"> &nbsp; 4.8</span>
-                    <span class="tfont-medium">Ratings</span>
-                </span>
-            </div>
-            <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">⭐19,586 Trusted Reviews</div>
-        </div><!-- Trusted Reviews --> --}}
+        <img src="https://matildasbeauty.com/filemanager/2d1059ece00b4946b78152dbede7aeb6.webp" width="480" height="480" class="tw-full" alt="BUY 1 take 1">
 
         <div class="tfont-semibold ttext-center ttext-white tp-2 ttext-lg" style="background-color: black;">
             <i class="fas fa-check-circle" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
         </div>
 
         <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i><b>Melasma Remover</b></div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> Kulubot</b> </div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> Wrinkles</b> </div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Melasma Remover</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Korean Glass Skin</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> No More Pekas</b></div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i> <b>Pinkish Skin</b></div>
@@ -866,24 +847,14 @@ $products_json = json_encode($products);
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Whiteheads</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Blackheads</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Skin Whitening</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> For Sensitive Skin</div>
-            <div class="tw-1/2 tmb-3"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No Irritation </div>
           
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA Approved</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Safe</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> No Irritation</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> For Sensitive Skin</div>
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/afe4fc9e1c00485d9797336377793dff.webp" loading="lazy" width="480" height="480" alt="#1 Kulubot Remover">
-
-
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/523e7f186fa140a59b0b1a823da23c5d.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/9cbf82ef5abd4084990a43b52cea2684.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/8a66857048fd4e4f82bc93b744ebc68f.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/82ad83ef37b343f9a85b7cee0c3f9c1a.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/51c18c57bf684bad88bfafb3b69efe5f.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/a6a15a12a7e04b06b0ae681342f201c6.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/1cdb4585573a43ccbfb6a75ca6680cff.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/32e8113fd8504c0581a3565324431709.webp" loading="lazy" width="480" height="480" alt="#1 Kulubot Remover">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/c5b58614be4248d782519b523c1d27be.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
 
         {{-- <img class="tmb-3" src="https://matildasbeauty.com/filemanager/943b70fea8564d969e9275e6cdec5156.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e835b9e4bc9f4cad803cf3c3a6ef4473.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
@@ -1251,57 +1222,19 @@ $products_json = json_encode($products);
                 {{-- ============================================================================================= --}}
 
 
-                <h1 class="tfont-bold tpy-5 ttext-3xl ttext-center ttext-red ttext-white tmt-10" style="
+                <!-- <h1 class="tfont-bold tpy-5 ttext-3xl ttext-center ttext-red ttext-white tmt-10" style="
                     background: #ff5f29;
                     background: linear-gradient(90deg, rgba(255, 95, 41, 1) 0%, rgba(253, 29, 29, 1) 40%, rgba(252, 145, 69, 1) 100%);
-                ">NEW PRODUCT!</h1>
+                ">NEW PRODUCT!</h1> -->
 
-                <img class="tmb-3" src="https://matildasbeauty.com/filemanager/55c2868e86fc435aae2b55a4c96fe6f8.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
-                <img class="" src="https://matildasbeauty.com/filemanager/7463ba9ebfd44727a67b35d1777826a4.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
+                <!-- <img class="tmb-3" src="https://matildasbeauty.com/filemanager/55c2868e86fc435aae2b55a4c96fe6f8.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
+                <img class="" src="https://matildasbeauty.com/filemanager/7463ba9ebfd44727a67b35d1777826a4.webp" loading="lazy" width="480" height="480" alt="pmelo serum"> -->
 
 
 
                 <!-- ORDER PROMO -->
                 <div class="th-full tflex tflex-col tmax-w-2xl tmx-auto tbg-white tp-3">
                     <!-- Header -->
-                    
-                    <h1 class="ttext-center ttext-xl tfont-black ttext-gray-900 tmb-3 ttracking-wide">ORDER FORM</h1>
-                    
-                    <!-- Customer Information Form -->
-                    <div class="tmb-3">
-                        <div class="tgrid tgrid-cols-2 tgap-2 tmb-2">
-                            <div>
-                                <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Full Name</label>
-                                <input 
-                                    type="text" 
-                                    id="full_name"
-                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
-                                    placeholder="Enter your full name"
-                                    name="full_name"
-                                >
-                            </div>
-                            <div>
-                                <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Contact Number</label>
-                                <input 
-                                    type="tel" 
-                                    id="phone_number"
-                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
-                                    placeholder="Enter your contact number"
-                                    name="phone_number" 
-                                >
-                            </div>
-                        </div>
-                        <div>
-                            <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Complete Address <span class="ttext-md ttext-gray-500">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</span> </label>
-                            <input 
-                                type="text" 
-                                id="address"
-                                class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
-                                placeholder="Enter your complete address"
-                                name="address"
-                            >
-                        </div>
-                    </div>
 
                     <!-- Product Selection -->
                     <div class="tflex tflex-col">
@@ -1365,6 +1298,44 @@ $products_json = json_encode($products);
                             <?php endforeach; ?>
                         </div>
                     </div>
+                    
+                                        <h1 class="ttext-center ttext-xl tfont-black ttext-gray-900 tmb-3 ttracking-wide">ORDER FORM</h1>
+                    
+                    <!-- Customer Information Form -->
+                    <div class="tmb-3">
+                        <div class="tgrid tgrid-cols-2 tgap-2 tmb-2">
+                            <div>
+                                <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Full Name</label>
+                                <input 
+                                    type="text" 
+                                    id="full_name"
+                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
+                                    placeholder="Enter your full name"
+                                    name="full_name"
+                                >
+                            </div>
+                            <div>
+                                <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Contact Number</label>
+                                <input 
+                                    type="tel" 
+                                    id="phone_number"
+                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
+                                    placeholder="Enter your contact number"
+                                    name="phone_number" 
+                                >
+                            </div>
+                        </div>
+                        <div>
+                            <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Complete Address <span class="ttext-md ttext-gray-500">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</span> </label>
+                            <input 
+                                type="text" 
+                                id="address"
+                                class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
+                                placeholder="Enter your complete address"
+                                name="address"
+                            >
+                        </div>
+                    </div>
 
                     <!-- Total and Buy Button -->
                     <button 
@@ -1381,6 +1352,8 @@ $products_json = json_encode($products);
                             BUY NOW
                         </div>
                     </button>
+
+
                 </div> <!-- ORDER FOROM AND PROMO -->
 
                 <div id="validationModal" class="modal-overlay">
@@ -1498,10 +1471,10 @@ $products_json = json_encode($products);
                 </div>
             </div> <!-- Modal  --> --}}
 
-            <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
+            <!-- <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
                 style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
                 ORDER NOW!
-            </button>
+            </button> -->
         </div>
     </div>
 
