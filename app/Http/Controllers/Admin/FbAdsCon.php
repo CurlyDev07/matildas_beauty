@@ -299,6 +299,40 @@ class FbAdsCon extends Controller
             ->get();
 
         // -------------------------
+        // AVERAGE ORDER VALUE (AOV) - Including Upsells
+        // -------------------------
+
+        // Today
+        $statsToday = DB::table('fb_ads')
+            ->leftJoin('fb_ads_upsell', 'fb_ads.id', '=', 'fb_ads_upsell.fb_ads_id')
+            ->whereBetween('fb_ads.created_at', [Carbon::today(), Carbon::today()->endOfDay()])
+            ->selectRaw('COUNT(DISTINCT fb_ads.id) as total_orders, SUM(fb_ads.total) as base_total, COALESCE(SUM(fb_ads_upsell.amount), 0) as upsell_total')
+            ->first();
+        $new_aovToday = $statsToday->total_orders > 0 ? round(($statsToday->base_total + $statsToday->upsell_total) / $statsToday->total_orders, 2) : 0;
+
+        // This Week
+        $statsWeek = DB::table('fb_ads')
+            ->leftJoin('fb_ads_upsell', 'fb_ads.id', '=', 'fb_ads_upsell.fb_ads_id')
+            ->whereBetween('fb_ads.created_at', [$startOfWeek, $endOfWeek])
+            ->selectRaw('COUNT(DISTINCT fb_ads.id) as total_orders, SUM(fb_ads.total) as base_total, COALESCE(SUM(fb_ads_upsell.amount), 0) as upsell_total')
+            ->first();
+        $new_aovWeek = $statsWeek->total_orders > 0 ? round(($statsWeek->base_total + $statsWeek->upsell_total) / $statsWeek->total_orders, 2) : 0;
+
+        // This Month
+        $statsMonth = DB::table('fb_ads')
+            ->leftJoin('fb_ads_upsell', 'fb_ads.id', '=', 'fb_ads_upsell.fb_ads_id')
+            ->whereBetween('fb_ads.created_at', [$startOfMonth, $endOfMonth])
+            ->selectRaw('COUNT(DISTINCT fb_ads.id) as total_orders, SUM(fb_ads.total) as base_total, COALESCE(SUM(fb_ads_upsell.amount), 0) as upsell_total')
+            ->first();
+        $new_aovMonth = $statsMonth->total_orders > 0 ? round(($statsMonth->base_total + $statsMonth->upsell_total) / $statsMonth->total_orders, 2) : 0;
+
+
+
+        // You already have these from the AOV calculation:
+        $upsellToday = $statsToday->upsell_total ?? 0;
+        $upsellWeek = $statsWeek->upsell_total ?? 0;
+        $upsellMonth = $statsMonth->upsell_total ?? 0;
+        // -------------------------
         // RETURN TO VIEW
         // -------------------------
         return view('admin.fbads.dashboard', compact(
@@ -322,10 +356,19 @@ class FbAdsCon extends Controller
             'aovToday',
             'aovWeek',
             'aovMonth',
+            'new_aovToday',
+            'new_aovWeek',
+            'new_aovMonth',
+            'upsellToday',
+            'upsellWeek',
+            'upsellMonth',
             'ltvData'
         ));
     }
 
+    
+    
+    
     public function meta_metrics(Request $request){
 
         return view('admin.fbads.meta_metrics');

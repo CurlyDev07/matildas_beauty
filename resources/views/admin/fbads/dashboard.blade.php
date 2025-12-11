@@ -130,6 +130,68 @@
                     </div>
                 </a>
             </div>
+
+            <!-- AOV Cards -->
+            <div class="tflex tflex-wrap tgap-6">
+                <!-- AOV Today -->
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
+                    <div class="tbg-[#fde4ee] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
+                        <div class="ttext-3xl tmb-2">📈</div>
+                        <h3 class="ttext-lg tfont-semibold">New AOV Today</h3>
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">₱{{ number_format($new_aovToday, 2) }}</p>
+                    </div>
+                </a>
+
+                <!-- AOV This Week -->
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
+                    <div class="tbg-[#e0f1ff] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
+                        <div class="ttext-3xl tmb-2">📈</div>
+                        <h3 class="ttext-lg tfont-semibold">New AOV This Week</h3>
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">₱{{ number_format($new_aovWeek, 2) }}</p>
+                    </div>
+                </a>
+
+                <!-- AOV This Month -->
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
+                    <div class="tbg-[#e3fcef] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
+                        <div class="ttext-3xl tmb-2">📈</div>
+                        <h3 class="ttext-lg tfont-semibold">New AOV This Month</h3>
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">₱{{ number_format($new_aovMonth, 2) }}</p>
+                    </div>
+                </a>
+            </div>
+            
+            <hr>
+
+                        <!-- AOV Cards -->
+            <div class="tflex tflex-wrap tgap-6">
+                <!-- AOV Today -->
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
+                    <div class="tbg-[#fde4ee] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
+                        <div class="ttext-3xl tmb-2">📈</div>
+                        <h3 class="ttext-lg tfont-semibold">Upsell Today</h3>
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">₱{{ number_format($upsellToday, 2) }}</p>
+                    </div>
+                </a>
+
+                <!-- AOV This Week -->
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
+                    <div class="tbg-[#e0f1ff] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
+                        <div class="ttext-3xl tmb-2">📈</div>
+                        <h3 class="ttext-lg tfont-semibold">Upsell This Week</h3>
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">₱{{ number_format($upsellWeek, 2) }}</p>
+                    </div>
+                </a>
+
+                <!-- AOV This Month -->
+                <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
+                    <div class="tbg-[#e3fcef] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
+                        <div class="ttext-3xl tmb-2">📈</div>
+                        <h3 class="ttext-lg tfont-semibold">Upsell This Month</h3>
+                        <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">₱{{ number_format($upsellMonth, 2) }}</p>
+                    </div>
+                </a>
+            </div>
         </div>
 
 
