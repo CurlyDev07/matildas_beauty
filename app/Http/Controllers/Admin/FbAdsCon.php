@@ -276,18 +276,18 @@ class FbAdsCon extends Controller
         $ordersRevenue7 = getOrdersAndRevenuePerHour(Carbon::today()->subDays(6), now());
         $ordersRevenue30 = getOrdersAndRevenuePerHour(Carbon::today()->subDays(29), now());
 
-        // -------------------------
-        // AVERAGE ORDER VALUE (AOV)
-        // -------------------------
-        function getAOV($startDate, $endDate) {
-            $orders = FbAds::whereBetween('created_at', [$startDate, $endDate])->count();
-            $revenue = FbAds::whereBetween('created_at', [$startDate, $endDate])->sum('total');
-            return $orders > 0 ? round($revenue / $orders, 2) : 0;
-        }
+        // // -------------------------
+        // // AVERAGE ORDER VALUE (AOV)
+        // // -------------------------
+        // function getAOV($startDate, $endDate) {
+        //     $orders = FbAds::whereBetween('created_at', [$startDate, $endDate])->count();
+        //     $revenue = FbAds::whereBetween('created_at', [$startDate, $endDate])->sum('total');
+        //     return $orders > 0 ? round($revenue / $orders, 2) : 0;
+        // }
 
-        $aovToday = getAOV(Carbon::today(), Carbon::today()->endOfDay());
-        $aovWeek = getAOV(Carbon::today()->subDays(6), now());
-        $aovMonth = getAOV(Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth());
+        // $aovToday = getAOV(Carbon::today(), Carbon::today()->endOfDay());
+        // $aovWeek = getAOV(Carbon::today()->subDays(6), now());
+        // $aovMonth = getAOV(Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth());
 
         // -------------------------
         // CUSTOMER LIFETIME VALUE (CLV)
@@ -332,6 +332,36 @@ class FbAdsCon extends Controller
         $upsellToday = $statsToday->upsell_total ?? 0;
         $upsellWeek = $statsWeek->upsell_total ?? 0;
         $upsellMonth = $statsMonth->upsell_total ?? 0;
+
+
+        // -------------------------
+        // UPSELL RATE - Percentage of orders with upsells
+        // -------------------------
+
+        // Today
+        $ordersWithUpsellToday = DB::table('fb_ads')
+            ->join('fb_ads_upsell', 'fb_ads.id', '=', 'fb_ads_upsell.fb_ads_id')
+            ->whereBetween('fb_ads.created_at', [Carbon::today(), Carbon::today()->endOfDay()])
+            ->distinct('fb_ads.id')
+            ->count('fb_ads.id');
+        $upsellRateToday = $statsToday->total_orders > 0 ? round(($ordersWithUpsellToday / $statsToday->total_orders) * 100, 2) : 0;
+
+        // This Week
+        $ordersWithUpsellWeek = DB::table('fb_ads')
+            ->join('fb_ads_upsell', 'fb_ads.id', '=', 'fb_ads_upsell.fb_ads_id')
+            ->whereBetween('fb_ads.created_at', [$startOfWeek, $endOfWeek])
+            ->distinct('fb_ads.id')
+            ->count('fb_ads.id');
+        $upsellRateWeek = $statsWeek->total_orders > 0 ? round(($ordersWithUpsellWeek / $statsWeek->total_orders) * 100, 2) : 0;
+
+        // This Month
+        $ordersWithUpsellMonth = DB::table('fb_ads')
+            ->join('fb_ads_upsell', 'fb_ads.id', '=', 'fb_ads_upsell.fb_ads_id')
+            ->whereBetween('fb_ads.created_at', [$startOfMonth, $endOfMonth])
+            ->distinct('fb_ads.id')
+            ->count('fb_ads.id');
+        $upsellRateMonth = $statsMonth->total_orders > 0 ? round(($ordersWithUpsellMonth / $statsMonth->total_orders) * 100, 2) : 0;
+
         // -------------------------
         // RETURN TO VIEW
         // -------------------------
@@ -353,16 +383,16 @@ class FbAdsCon extends Controller
             'ordersRevenueToday',
             'ordersRevenue7',
             'ordersRevenue30',
-            'aovToday',
-            'aovWeek',
-            'aovMonth',
             'new_aovToday',
             'new_aovWeek',
             'new_aovMonth',
             'upsellToday',
             'upsellWeek',
             'upsellMonth',
-            'ltvData'
+            'ltvData',
+            'upsellRateToday',
+            'upsellRateWeek',
+            'upsellRateMonth'
         ));
     }
 
