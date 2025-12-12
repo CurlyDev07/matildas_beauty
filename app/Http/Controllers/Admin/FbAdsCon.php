@@ -397,8 +397,6 @@ class FbAdsCon extends Controller
     }
 
     
-    
-    
     public function meta_metrics(Request $request){
 
         return view('admin.fbads.meta_metrics');

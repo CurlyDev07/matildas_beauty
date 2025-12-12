@@ -141,7 +141,7 @@
                 <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
                     <div class="tbg-[#fde4ee] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
                         <div class="ttext-3xl tmb-2"> <i class="fas fa-cart-plus ttext-green-600"></i></div>
-                        <h3 class="ttext-md tfont-medium ttext-green-700"> {{ $upsellRateMonth }}% </h3>
+                        <h3 class="ttext-md tfont-medium ttext-green-700"> {{ $upsellRateToday }}% </h3>
                         <h3 class="ttext-lg tfont-semibold tmt-2"> Today</h3>
                         <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">₱{{ number_format($upsellToday, 2) }}</p>
                     </div>
@@ -151,7 +151,7 @@
                 <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
                     <div class="tbg-[#e0f1ff] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
                         <div class="ttext-3xl tmb-2"> <i class="fas fa-cart-plus ttext-green-600"></i></div>
-                        <h3 class="ttext-md tfont-medium ttext-green-700"> {{ $upsellRateMonth }}% </h3>
+                        <h3 class="ttext-md tfont-medium ttext-green-700"> {{ $upsellRateWeek }}% </h3>
                         <h3 class="ttext-lg tfont-semibold tmt-2"> This Week</h3>
                         <p class="ttext-4xl tfont-bold tmt-2" style="color: #2d2d2d;">₱{{ number_format($upsellWeek, 2) }}</p>
                     </div>
