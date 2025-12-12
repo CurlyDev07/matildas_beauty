@@ -17,16 +17,16 @@ $products = [
     ],
     [
         'id' => 1, 
-        'name' => 'Buy 1 Get 1 HALF PRICE',
+        'name' => 'Buy 1 Take 1 Free VITAMIN C',
         'price' => 973,
-        'image' => 'https://matildasbeauty.com/filemanager/bddbaac773644f63bf8a6aefc4e3cac6.png',
+        'image' => 'https://matildasbeauty.com/filemanager/331990edbb36426283bcdccd90a47e80.png',
         'description' => 'Advanced anti-aging and whitening serum',
     ],
     [
         'id' => 2,
-        'name' => 'Buy 2 Get 1 for Free',
+        'name' => 'Buy 3 Get 2 Free Vitamin C',
         'price' => 1298,
-        'image' => 'https://matildasbeauty.com/filemanager/cd45d7b5bce74dd1a0fc3449e7a03393.png',
+        'image' => 'https://matildasbeauty.com/filemanager/bc1edf0f890e445f92284032e98ff24e.png',
         'description' => 'High protection sunscreen lotion',
     ],
     // [
@@ -2145,7 +2145,39 @@ $products_json = json_encode($products);
                     
                     <h1 class="ttext-center ttext-xl tfont-black ttext-gray-900 tmb-3 ttracking-wide">ORDER FORM</h1>
                     
-                    <!-- Customer Information Form -->
+
+                    <!-- Product Selection -->
+                    <div class="tflex tflex-col">
+                        <h2 class="ttext-center ttext-base tfont-bold ttext-gray-800 tmb-2">
+                            <span class="ttext-lg">🌟</span> MissTisa Beauty Collection
+                        </h2>
+                        
+                        <div class="tgrid tgrid-cols-2 tgap-2">
+                            <?php foreach ($products as $index => $product): ?>
+                            <div class="product-card <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" style="height: 150px;" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
+                                <div class="tflex titems-center tgap-2 tmb-1">
+                                    <div class="tflex titems-center tjustify-center trounded-md" style="height: 65px; width: 65px;">
+                                        <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="tw-full th-full tobject-cover trounded-md" />
+                                    </div>
+                                    <div class="tmx-auto">
+                                        <span class="tfont-bold ttext-2xl ttext-pink-600">₱<?= number_format($product['price']) ?></span>
+                                    </div>
+                                </div>
+                                <div class="check-circle tabsolute tw-6 th-6 trounded-full tflex titems-center tjustify-center ttext-xs tfont-bold" style="top: 4px;right: 4px;">✓</div>
+                                <h3 class="tfont-bold ttext-center ttext-gray-800 ttext-xs" style="font-size: 17px; line-height: 1.2;"><?= htmlspecialchars($product['name']) ?></h3>
+                                <div id="quantity-container-<?= $product['id'] ?>" class="tflex titems-center tjustify-center tmb-1 tmt-2 <?= $index !== 0 ? 'thidden' : '' ?>">
+                                    <div class="tflex titems-center tbg-white tborder-2 tborder-pink-200 trounded-md tpx-1 tpy-1 tshadow-sm">
+                                        <button onclick="changeQuantity(<?= $product['id'] ?>, -1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">-</button>
+                                        <span id="quantity-<?= $product['id'] ?>" class="tmx-3 tfont-bold ttext-lg ttext-gray-800 tmin-w-[24px] ttext-center">1</span>
+                                        <button onclick="changeQuantity(<?= $product['id'] ?>, 1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                                        <!-- Customer Information Form -->
                     <div class="tmb-3">
                         <div class="tgrid tgrid-cols-2 tgap-2 tmb-2">
                             <div>
@@ -2181,36 +2213,6 @@ $products_json = json_encode($products);
                         </div>
                     </div>
 
-                    <!-- Product Selection -->
-                    <div class="tflex tflex-col">
-                        <h2 class="ttext-center ttext-base tfont-bold ttext-gray-800 tmb-2">
-                            <span class="ttext-lg">🌟</span> MissTisa Beauty Collection
-                        </h2>
-                        
-                        <div class="tgrid tgrid-cols-2 tgap-2">
-                            <?php foreach ($products as $index => $product): ?>
-                            <div class="product-card <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" style="height: 150px;" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
-                                <div class="tflex titems-center tgap-2 tmb-1">
-                                    <div class="tflex titems-center tjustify-center trounded-md" style="height: 65px; width: 65px;">
-                                        <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="tw-full th-full tobject-cover trounded-md" />
-                                    </div>
-                                    <div class="tmx-auto">
-                                        <span class="tfont-bold ttext-2xl ttext-pink-600">₱<?= number_format($product['price']) ?></span>
-                                    </div>
-                                </div>
-                                <div class="check-circle tabsolute tw-6 th-6 trounded-full tflex titems-center tjustify-center ttext-xs tfont-bold" style="top: 4px;right: 4px;">✓</div>
-                                <h3 class="tfont-bold ttext-center ttext-gray-800 ttext-xs" style="font-size: 17px; line-height: 1.2;"><?= htmlspecialchars($product['name']) ?></h3>
-                                <div id="quantity-container-<?= $product['id'] ?>" class="tflex titems-center tjustify-center tmb-1 tmt-2 <?= $index !== 0 ? 'thidden' : '' ?>">
-                                    <div class="tflex titems-center tbg-white tborder-2 tborder-pink-200 trounded-md tpx-1 tpy-1 tshadow-sm">
-                                        <button onclick="changeQuantity(<?= $product['id'] ?>, -1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">-</button>
-                                        <span id="quantity-<?= $product['id'] ?>" class="tmx-3 tfont-bold ttext-lg ttext-gray-800 tmin-w-[24px] ttext-center">1</span>
-                                        <button onclick="changeQuantity(<?= $product['id'] ?>, 1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
 
                     <!-- Total and Buy Button -->
                     <button 
