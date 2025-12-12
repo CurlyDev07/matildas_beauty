@@ -104,7 +104,7 @@
                     </li>
                 @endif
                 <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'rts', 'active') }}" onclick="location.href = '/admin/rts'">
+                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'rts', 'active') }}" onclick="location.href = '/admin/fb-ads'">
                         <i class="fas fa-shopping-bag tmr-1 fa-lg"></i>
                         FB Products
                     </a>
