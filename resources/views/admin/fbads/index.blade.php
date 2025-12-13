@@ -169,8 +169,8 @@
                             <td class="ttext-sm ttext-center tpy-1 tcapitalize">
                                 <a href="{{ route('fbads.order', ['id' => $order->id]) }}" class="ttext-blue-700 tooltipped" data-tooltip="Click to view/edit order">{{ $order->id }}</a>
                             </td>
-                            <td class="ttext-sm ttext-center tpy-1 tcapitalize tbreak-all">{{ $order->full_name }}</td>
-                            <td class="ttext-sm ttext-center tpy-1 tbreak-all">{{ $order->phone_number }}</td>
+                            <td class="ttext-sm ttext-center tpy-1 tcapitalize tbreak-all full_name">{{ $order->full_name }}</td>
+                            <td class="ttext-sm ttext-center tpy-1 tbreak-all phone_number">{{ $order->phone_number }}</td>
                             <td class="ttext-sm ttext-center tpy-1 tbreak-all">{{ $order->address }}</td>
                             <td class="ttext-sm ttext-center tpy-1 ">
                                 @if ($order->product == 'MissTisa')
@@ -306,28 +306,23 @@
                 let status = $(this).val();
                 let id = $(this).data('id');
                 let problematic_status = ['CANCELLED', 'TO CALL'];
+                let phone_number = $(this).parent().parent().find('.phone_number').html();
+                let full_name = $(this).parent().parent().find('.full_name').html();
 
-                if (problematic_status.includes(status)) {
-                    window.location.href = `/admin/fbads/change-status-problematic?status=${encodeURIComponent(status)}&id=${encodeURIComponent(id)}`;
-                }else{
-                    if (result.isConfirmed) {
-    
-                        $.ajax({
-                            url: '/admin/fbads/change-status',
-                            type: 'POST',
-                            data: { id: id, status: status },
-                            success: ()=>{
-                                status_color(self, $(this).val())
-                                Swal.fire(
-                                    'Status Changed Successfully!',
-                                    'The order has been updated.',
-                                    'success'
-                                )// success prompt
-                            }
-                        });// update via Ajax request
+
+                $.ajax({
+                    url: '/admin/fbads/change-status',
+                    type: 'POST',
+                    data: { id: id, status: status, phone_number: phone_number, full_name: full_name },
+                    success: ()=>{
+                        status_color(self, $(this).val())
+                        Swal.fire(
+                            'Status Changed Successfully!',
+                            'The order has been updated.',
+                            'success'
+                        )// success prompt
                     }
-                }
-
+                });// update via Ajax request
 
             })// swal
         });

@@ -577,16 +577,84 @@ class FbAdsCon extends Controller
     }
 
     public function change_status(){
+        $fbAd = FbAds::find(request()->id);
+        
+        if (!$fbAd) {
+            return response(['error' => 'Record not found'], 404);
+        }
+        
+        // Map your statuses to flow IDs
+        $statusToFlowMapping = [
+            'TO CALL' => 1,
+            'CANCELLED' => 2,
+            'DELETE' => 3,
+        ];
+        
         if (request()->status == "DELETE") {
-            FbAds::find(request()->id)->delete();
-        }else{
-            FbAds::find(request()->id)->update([
+            $fbAd->delete();
+            $this->sendStatusSMS(request()->phone_number, request()->full_name ?? 'Customer', 3);
+        } else {
+            $fbAd->update([
                 'status' => request()->status,
                 'user_id' => auth()->user()->id
             ]);
+            
+            if (isset($statusToFlowMapping[request()->status])) {
+                $statusCode = $statusToFlowMapping[request()->status];
+                $this->sendStatusSMS(request()->phone_number, request()->full_name ?? 'Customer', $statusCode);
+            }
         }
 
         return response(['success' => 'Success!']);
+    }
+
+    private function sendStatusSMS($phoneNumber, $name, $statusCode)
+    {
+        try {
+            $url = 'http://52.41.148.38/api/v1/customer/register-status';
+            
+            $data = [
+                'name' => $name,
+                'mobile_number' => $phoneNumber,
+                'status' => $statusCode
+            ];
+
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: application/json',
+                'Accept: application/json'
+            ]);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $curlError = curl_error($ch);
+            curl_close($ch);
+
+            $result = json_decode($response, true);
+
+            \Log::info('SMS Status Change', [
+                'phone_number' => $phoneNumber,
+                'name' => $name,
+                'status_code' => $statusCode,
+                'http_code' => $httpCode,
+                'response' => $result,
+                'curl_error' => $curlError
+            ]);
+
+            return $httpCode == 200 && !empty($result['success']);
+            
+        } catch (\Exception $e) {
+            \Log::error('SMS API Error', [
+                'phone_number' => $phoneNumber,
+                'error' => $e->getMessage()
+            ]);
+            
+            return false;
+        }
     }
 
     public function status_details(Request $request){
@@ -606,6 +674,8 @@ class FbAdsCon extends Controller
 
         return view('admin.fbads.status_details', compact('status_details'));
     }
+
+    
 
 
     public function change_status_problematic(Request $request){
