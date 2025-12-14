@@ -220,7 +220,7 @@
             <div id="ordersRevenueChart" style="min-height: 400px;"></div>
             
             <!-- Summary Cards -->
-            <div class="tgrid tgrid-cols-3 tgap-4 tmt-6">
+            <div class="tflex tmt-6">
                 <div class="tbg-gradient-to-br tfrom-pink-600 tto-pink-600 trounded-lg tp-6">
                     <div class="ttext-sm topacity-90">Total Orders</div>
                     <div id="chartTotalOrders" class="ttext-3xl tfont-bold tmt-2">0</div>
@@ -276,7 +276,7 @@
     <div id="orderHeatmap" style="min-height: 400px;"></div>
     
     <!-- Summary Cards -->
-    <div class="tgrid tgrid-cols-3 tgap-4 tmt-6">
+    <div class="tflex tmt-6">
         <div class="tbg-gradient-to-br tfrom-purple-500 tto-purple-600 trounded-lg tp-6">
             <div class="ttext-sm topacity-90">Peak Hour</div>
             <div id="heatmapPeakHour" class="ttext-2xl tfont-bold tmt-2">--</div>
