@@ -822,125 +822,125 @@
         let currentHeatmapFilter = 'last30';
 
 
-        function initOrderHeatmap(data) {
-            console.log('initOrderHeatmap called with data:', data);
-            
-            if (!data || !data.heatmap || data.heatmap.length === 0) {
-                console.warn('No heatmap data available');
-                document.getElementById('heatmapLoadingIndicator').classList.add('thidden');
-                document.getElementById('orderHeatmap').innerHTML = '<div class="tflex tjustify-center titems-center tpy-20 ttext-gray-500">No data available for this period</div>';
-                return;
-            }
+function initOrderHeatmap(data) {
+    console.log('initOrderHeatmap called with data:', data);
+    
+    if (!data || !data.heatmap || data.heatmap.length === 0) {
+        console.warn('No heatmap data available');
+        document.getElementById('heatmapLoadingIndicator').classList.add('thidden');
+        document.getElementById('orderHeatmap').innerHTML = '<div class="tflex tjustify-center titems-center tpy-20 ttext-gray-500">No data available for this period</div>';
+        return;
+    }
 
-            var options = {
-                series: data.heatmap,
-                chart: {
-                    height: 450,
-                    type: 'heatmap',
-                    toolbar: { show: true }
-                },
-                plotOptions: {
-                    heatmap: {
-                        shadeIntensity: 0.5,
-                        radius: 0,
-                        useFillColorAsStroke: true,
-                        colorScale: {
-                            ranges: [
-                                {
-                                    from: 0,
-                                    to: 0,
-                                    name: 'No Orders',
-                                    color: '#e5e7eb'  // Gray - Coldest
-                                },
-                                {
-                                    from: 0.1,
-                                    to: 2,
-                                    name: '0-2 Orders',
-                                    color: '#bfdbfe'  // Light Blue
-                                },
-                                {
-                                    from: 2.1,
-                                    to: 5,
-                                    name: '2-5 Orders',
-                                    color: '#60a5fa'  // Blue
-                                },
-                                {
-                                    from: 5.1,
-                                    to: 10,
-                                    name: '5-10 Orders',
-                                    color: '#fbbf24'  // Yellow/Orange
-                                },
-                                {
-                                    from: 10.1,
-                                    to: 15,
-                                    name: '10-15 Orders',
-                                    color: '#f97316'  // Orange
-                                },
-                                {
-                                    from: 15.1,
-                                    to: 999,
-                                    name: '15+ Orders',
-                                    color: '#dc2626'  // Red - Hottest
-                                }
-                            ]
+    var options = {
+        series: data.heatmap,
+        chart: {
+            height: 450,
+            type: 'heatmap',
+            toolbar: { show: true }
+        },
+        plotOptions: {
+            heatmap: {
+                shadeIntensity: 0.5,
+                radius: 0,
+                useFillColorAsStroke: true,
+                colorScale: {
+                    ranges: [
+                        {
+                            from: 0,
+                            to: 0,
+                            name: 'No Orders',
+                            color: '#e5e7eb'  // Gray - Coldest
+                        },
+                        {
+                            from: 0.1,
+                            to: 1,
+                            name: '< 1 avg',
+                            color: '#bfdbfe'  // Light Blue
+                        },
+                        {
+                            from: 1.1,
+                            to: 3,
+                            name: '1-3 avg',
+                            color: '#60a5fa'  // Blue
+                        },
+                        {
+                            from: 3.1,
+                            to: 5,
+                            name: '3-5 avg',
+                            color: '#fbbf24'  // Yellow/Orange
+                        },
+                        {
+                            from: 5.1,
+                            to: 8,
+                            name: '5-8 avg',
+                            color: '#f97316'  // Orange
+                        },
+                        {
+                            from: 8.1,
+                            to: 999,
+                            name: '8+ avg',
+                            color: '#dc2626'  // Red - Hottest
                         }
-                    }
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                xaxis: {
-                    type: 'category',
-                    labels: {
-                        rotate: -45,
-                        style: {
-                            fontSize: '11px'
-                        }
-                    }
-                },
-                yaxis: {
-                    labels: {
-                        style: {
-                            fontSize: '12px'
-                        }
-                    }
-                },
-                title: {
-                    text: 'Orders by Day of Week and Hour',
-                    align: 'center',
-                    style: {
-                        fontSize: '16px',
-                        fontWeight: 600,
-                        color: '#374151'
-                    }
-                },
-                tooltip: {
-                    y: {
-                        formatter: function(value) {
-                            return value + ' orders';
-                        }
-                    }
-                },
-                legend: {
-                    show: true,
-                    position: 'bottom',
-                    horizontalAlign: 'center',
+                    ]
+                }
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            type: 'category',
+            labels: {
+                rotate: -45,
+                style: {
+                    fontSize: '11px'
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                style: {
                     fontSize: '12px'
                 }
-            };
+            }
+        },
+        title: {
+            text: 'Average Orders by Day of Week and Hour',
+            align: 'center',
+            style: {
+                fontSize: '16px',
+                fontWeight: 600,
+                color: '#374151'
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function(value) {
+                    return value.toFixed(1) + ' avg orders';
+                }
+            }
+        },
+        legend: {
+            show: true,
+            position: 'bottom',
+            horizontalAlign: 'center',
+            fontSize: '12px'
+        }
+    };
 
-            if (orderHeatmap !== null) {
-                orderHeatmap.destroy();
-            }
-            
-            const chartElement = document.querySelector("#orderHeatmap");
-            if (chartElement) {
-                chartElement.innerHTML = '';
-                orderHeatmap = new ApexCharts(chartElement, options);
-                orderHeatmap.render();
-                console.log('Heatmap rendered successfully');
-            }
-        }   
+    if (orderHeatmap !== null) {
+        orderHeatmap.destroy();
+    }
+    
+    const chartElement = document.querySelector("#orderHeatmap");
+    if (chartElement) {
+        chartElement.innerHTML = '';
+        orderHeatmap = new ApexCharts(chartElement, options);
+        orderHeatmap.render();
+        console.log('Heatmap rendered successfully');
+    }
+}
 
 
         // Update heatmap button states
