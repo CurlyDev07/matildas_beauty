@@ -24,48 +24,40 @@
                 </li>
             </ul>
         </div>
-        <div class="tp-3 ">
+
+
+        <div class="tp-3">
             <div class="tflex tflex-wrap">
                 <table class="tmb-4 tbg-white ttext-md tw-full">
                     <tr class="tborder-0">
-
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Session ID</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">CP#</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Product</th>
                         <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Details</th>
                     </tr>
-                    {{-- {{dd($contact_number)}} --}}
+                    
                     @foreach ($events as $event)
-                       
-                            
-                        
-                        <tr  @if (!in_array($event->value, $contact_number)) class="tbg-red-200" @endif>
+                        <tr @if (!in_array($event->value, $contact_number)) class="tbg-red-200" @endif>
                             <td class="ttext-sm ttext-center tpy-1 tcapitalize">{{ $event->session_id }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $event->value }}</td>
                             <td class="ttext-sm ttext-center tpy-1">{{ $event->website }}</td>
                             <td class="ttext-sm ttext-center tpy-1">
-                                @php
-                                    $details = \App\FbEventListener::select('data', 'value')->whereIn('data', ['full_name', 'address'])->where(['session_id' => $event->session_id])->get();
-                                @endphp
-                                @if ($event->session_id != '')
-                                    @foreach ($details as $index => $detail)
+                                @if ($event->session_id != '' && isset($allDetails[$event->session_id]))
+                                    @foreach ($allDetails[$event->session_id] as $index => $detail)
                                         @if ($index == 0)
-                                            <span class="tfont-medium"> {{ $detail->value }} </span>
+                                            <span class="tfont-medium">{{ $detail->value }}</span>
                                             /
                                         @else 
-                                            <span class="tfont-medium">{{ $detail->value }} </span>
+                                            <span class="tfont-medium">{{ $detail->value }}</span>
                                         @endif
-                                    
                                     @endforeach
                                 @endif
-                                
-
                             </td>
                         </tr>
                     @endforeach
-            </table>
+                </table>
             </div>
-        </div><!-- TABLE -->
+        </div>
 
         <!-- Pagination with Bootstrap 4 styling -->
         <div class="d-flex tpx-5 justify-content-between align-items-center mt-4">

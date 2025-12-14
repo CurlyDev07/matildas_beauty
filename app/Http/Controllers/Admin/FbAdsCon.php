@@ -536,45 +536,6 @@ class FbAdsCon extends Controller
 
         return view('admin.fbads.event_listener', ['events' => $events]);
     }
-   
-    // public function events(Request $request){
-
-    //     $contact_number = FbAds::select('phone_number')
-    //     ->when(!$request->date, function($q){
-    //         return $q->whereDate('created_at', now());
-    //     })->when($request->date, function($q){
-    //         $date = explode(" - ",request()->date);
-    //         $from = carbon($date[0]);
-    //         $to = carbon($date[1]);
-
-    //         if ($from == $to) {
-    //             return $q->whereDate('created_at', $from);
-    //         }
-
-    //         return $q->whereBetween('created_at', [$from, $to]);
-    //     })->pluck('phone_number')->toArray();
-
-    //     $events = FbEventListener::select('data', 'value', 'session_id', 'website')
-    //     ->where('data', 'phone_number')
-    //     ->when(!$request->date, function($q){
-    //         return $q->whereDate('created_at', now());
-    //     })// Show DEFAULT DATA For Today
-        
-    //     ->when($request->date, function($q){
-    //         $date = explode(" - ",request()->date);
-    //         $from = carbon($date[0]);
-    //         $to = carbon($date[1]);
-
-    //         if ($from == $to) {
-    //             return $q->whereDate('created_at', $from);
-    //         }
-
-    //         return $q->whereBetween('created_at', [$from, $to]);
-    //     })// FILTER DATE
-    //     ->orderBy('id', 'desc')
-    //     ->get();
-    //     return view('admin.fbads.events', ['events' => $events, 'contact_number' => $contact_number]);
-    // }
 
     public function events(Request $request)
     {
@@ -595,14 +556,25 @@ class FbAdsCon extends Controller
             ->pluck('phone_number')
             ->all();
 
+        // Get main events
         $events = FbEventListener::select('data', 'value', 'session_id', 'website')
             ->where('data', 'phone_number')
             ->tap($dateQuery)
             ->latest('id')
             ->paginate(50)
-            ->appends($request->except('page')); // Add this line
+            ->appends($request->except('page'));
 
-        return view('admin.fbads.events', compact('events', 'contact_number'));
+        // Get ALL session IDs from current page
+        $sessionIds = $events->pluck('session_id')->filter()->unique()->toArray();
+        
+        // Single query to get all details for all sessions on this page
+        $allDetails = FbEventListener::select('session_id', 'data', 'value')
+            ->whereIn('session_id', $sessionIds)
+            ->whereIn('data', ['full_name', 'address'])
+            ->get()
+            ->groupBy('session_id');
+
+        return view('admin.fbads.events', compact('events', 'contact_number', 'allDetails'));
     }
 
     public function change_status(){
