@@ -60,7 +60,7 @@
         </div>
     
 
- <!-- ORDERS CHARTS -->
+        <!-- ORDERS CHARTS -->
        <div class="tpx-4 tpy-6">
             <!-- Orders & Revenue Cards -->
             <div class="tflex tflex-wrap tgap-6 tmb-6">
@@ -235,63 +235,417 @@
                 </div>
             </div>
         </div>
+        <!-- ORDERS CHARTS -->
 
 
-        <!-- Order Volume Heatmap -->
+        <!-- Top Products Performance -->
+        <div class="tbg-white trounded-lg tshadow-lg tp-6 tmb-6">
+            <!-- Header -->
+            <div class="tflex tjustify-between titems-center tmb-6 tflex-wrap tgap-4">
+                <h2 class="ttext-xl tfont-semibold ttext-gray-800">Top Products Performance</h2>
+                
+                <div class="tflex tgap-2 titems-center tflex-wrap">
+                    <!-- View Toggle -->
+                    <div class="tbg-gray-100 trounded-lg tp-1 tflex tgap-1">
+                        <button onclick="toggleProductView('orders')" 
+                            id="product-view-orders"
+                            class="product-view-btn tpx-3 tpy-1 trounded-md ttransition-all tbg-white ttext-gray-900 tshadow-sm ttext-sm tfont-medium">
+                            By Orders
+                        </button>
+                        <button onclick="toggleProductView('revenue')" 
+                            id="product-view-revenue"
+                            class="product-view-btn tpx-3 tpy-1 trounded-md ttransition-all ttext-gray-600 ttext-sm tfont-medium">
+                            By Revenue
+                        </button>
+                    </div>
+                    
+                    <!-- Filter Buttons -->
+                    <button onclick="filterTopProducts('last30')" 
+                        id="products-btn-last30"
+                        class="products-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-pink-600 ttext-white ttext-sm">
+                        Last 30 Days
+                    </button>
+                    <button onclick="filterTopProducts('month')" 
+                        id="products-btn-month"
+                        class="products-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
+                        This Month
+                    </button>
+                    <button onclick="filterTopProducts('lastmonth')" 
+                        id="products-btn-lastmonth"
+                        class="products-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
+                        Last Month
+                    </button>
+                    <button onclick="filterTopProducts('year')" 
+                        id="products-btn-year"
+                        class="products-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
+                        Year
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="productsLoadingIndicator" class="thidden tflex tjustify-center titems-center tpy-8">
+                <div class="tborder-4 tborder-pink-200 tborder-t-pink-600 trounded-full tw-10 th-10 tanimate-spin"></div>
+            </div>
+
+            <!-- Chart Container -->
+            <div id="topProductsChart" style="min-height: 500px;"></div>
+            
+            <!-- Summary Cards -->
+            <div class="tflex tmt-6">
+                <div class="tbg-gradient-to-br tfrom-indigo-500 tto-indigo-600 trounded-lg tp-6">
+                    <div class="ttext-sm topacity-90">Total Products</div>
+                    <div id="productsTotalProducts" class="ttext-2xl tfont-bold tmt-2">0</div>
+                </div>
+                <div class="tbg-gradient-to-br tfrom-pink-500 tto-pink-600 trounded-lg tp-6">
+                    <div class="ttext-sm topacity-90">Top by Orders</div>
+                    <div id="productsTopProduct" class="ttext-lg tfont-bold tmt-2 tline-clamp-2">--</div>
+                </div>
+                <div class="tbg-gradient-to-br tfrom-green-500 tto-green-600 trounded-lg tp-6">
+                    <div class="ttext-sm topacity-90">Top by Revenue</div>
+                    <div id="productsTopRevenue" class="ttext-lg tfont-bold tmt-2 tline-clamp-2">--</div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Products Performance -->
+
+
+
+
+
+
+
+        <!-- Customer Repeat Rate -->
 <div class="tbg-white trounded-lg tshadow-lg tp-6 tmb-6">
     <!-- Header -->
     <div class="tflex tjustify-between titems-center tmb-6 tflex-wrap tgap-4">
-        <h2 class="ttext-xl tfont-semibold ttext-gray-800">Daily Order Volume Heatmap</h2>
+        <h2 class="ttext-xl tfont-semibold ttext-gray-800">Customer Repeat Rate</h2>
         
         <div class="tflex tgap-2 titems-center tflex-wrap">
-            <button onclick="filterHeatmap('last30')" 
-                id="heatmap-btn-last30"
-                class="heatmap-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1 tbg-pink-600 ttext-white">
+            <button onclick="filterRepeatRate('last30')" 
+                id="repeat-btn-last30"
+                class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-pink-600 ttext-white ttext-sm">
                 Last 30 Days
             </button>
-            <button onclick="filterHeatmap('month')" 
-                id="heatmap-btn-month"
-                class="heatmap-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1 tbg-pink-600 ttext-white">
+            <button onclick="filterRepeatRate('month')" 
+                id="repeat-btn-month"
+                class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
                 This Month
             </button>
-            <button onclick="filterHeatmap('lastmonth')" 
-                id="heatmap-btn-lastmonth"
-                class="heatmap-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1 tbg-pink-600 ttext-white">
+            <button onclick="filterRepeatRate('lastmonth')" 
+                id="repeat-btn-lastmonth"
+                class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
                 Last Month
             </button>
-            <button onclick="filterHeatmap('year')" 
-                id="heatmap-btn-year"
-                class="heatmap-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1 tbg-pink-600 ttext-white">
-                Year
-            </button>
+           <button onclick="filterRepeatRate('year')" 
+                id="repeat-btn-year"
+                class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
+                All Time
+            </button>   
         </div>
     </div>
 
     <!-- Loading Indicator -->
-    <div id="heatmapLoadingIndicator" class="thidden tflex tjustify-center titems-center tpy-8">
+    <div id="repeatRateLoadingIndicator" class="thidden tflex tjustify-center titems-center tpy-8">
         <div class="tborder-4 tborder-pink-200 tborder-t-pink-600 trounded-full tw-10 th-10 tanimate-spin"></div>
     </div>
 
-    <!-- Heatmap Chart -->
-    <div id="orderHeatmap" style="min-height: 400px;"></div>
+    <div class="tgrid tgrid-cols-2 tgap-6">
+        <!-- Gauge Chart -->
+        <div>
+            <div id="repeatRateGauge" style="min-height: 350px;"></div>
+        </div>
+        
+        <!-- Breakdown Chart -->
+        <div>
+            <div id="customerBreakdownChart" style="min-height: 350px;"></div>
+        </div>
+    </div>
     
     <!-- Summary Cards -->
     <div class="tflex tmt-6">
         <div class="tbg-gradient-to-br tfrom-purple-500 tto-purple-600 trounded-lg tp-6">
-            <div class="ttext-sm topacity-90">Peak Hour</div>
-            <div id="heatmapPeakHour" class="ttext-2xl tfont-bold tmt-2">--</div>
+            <div class="ttext-sm topacity-90">Total Customers</div>
+            <div id="repeatTotalCustomers" class="ttext-3xl tfont-bold tmt-2">0</div>
+        </div>
+        <div class="tbg-gradient-to-br tfrom-green-500 tto-green-600 trounded-lg tp-6">
+            <div class="ttext-sm topacity-90">Repeat Customers</div>
+            <div id="repeatRepeatCustomers" class="ttext-3xl tfont-bold tmt-2">0</div>
         </div>
         <div class="tbg-gradient-to-br tfrom-orange-500 tto-orange-600 trounded-lg tp-6">
-            <div class="ttext-sm topacity-90">Peak Day</div>
-            <div id="heatmapPeakDay" class="ttext-2xl tfont-bold tmt-2">--</div>
+            <div class="ttext-sm topacity-90">One-Time Customers</div>
+            <div id="repeatOneTimeCustomers" class="ttext-3xl tfont-bold tmt-2">0</div>
         </div>
-        <div class="tbg-gradient-to-br tfrom-teal-500 tto-teal-600 trounded-lg tp-6">
-            <div class="ttext-sm topacity-90">Busiest Period Orders</div>
-            <div id="heatmapBusiestOrders" class="ttext-2xl tfont-bold tmt-2">0</div>
+        <div class="tbg-gradient-to-br tfrom-blue-500 tto-blue-600 trounded-lg tp-6">
+            <div class="ttext-sm topacity-90">Avg Orders/Customer</div>
+            <div id="repeatAvgOrders" class="ttext-3xl tfont-bold tmt-2">0</div>
+        </div>
+    </div>
+    
+    <!-- Top Repeat Customers Table -->
+    <div class="tmt-6">
+        <h3 class="ttext-lg tfont-semibold ttext-gray-800 tmb-4">Top Repeat Customers</h3>
+        <div class="toverflow-x-auto">
+            <table class="tw-full tborder-collapse">
+                <thead>
+                    <tr class="tbg-gray-50">
+                        <th class="ttext-left tp-3 ttext-sm tfont-semibold ttext-gray-700">#</th>
+                        <th class="ttext-left tp-3 ttext-sm tfont-semibold ttext-gray-700">Phone Number</th>
+                        <th class="ttext-center tp-3 ttext-sm tfont-semibold ttext-gray-700">Orders</th>
+                        <th class="ttext-right tp-3 ttext-sm tfont-semibold ttext-gray-700">Revenue</th>
+                        <th class="ttext-right tp-3 ttext-sm tfont-semibold ttext-gray-700">AOV</th>
+                    </tr>
+                </thead>
+                <tbody id="topRepeatCustomersTable">
+                    <tr>
+                        <td colspan="5" class="ttext-center tpy-8 ttext-gray-500">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
+<script>
+let repeatRateGauge = null;
+let customerBreakdownChart = null;
+let currentRepeatRateFilter = 'last30';
+
+// Initialize gauge chart
+function initRepeatRateGauge(repeatRate) {
+    var options = {
+        series: [repeatRate],
+        chart: {
+            height: 350,
+            type: 'radialBar',
+        },
+        plotOptions: {
+            radialBar: {
+                startAngle: -135,
+                endAngle: 135,
+                hollow: {
+                    margin: 0,
+                    size: '70%',
+                    background: '#fff',
+                },
+                track: {
+                    background: '#e7e7e7',
+                    strokeWidth: '97%',
+                    margin: 5,
+                },
+                dataLabels: {
+                    show: true,
+                    name: {
+                        offsetY: -10,
+                        show: true,
+                        color: '#374151',
+                        fontSize: '16px',
+                        fontWeight: 600
+                    },
+                    value: {
+                        formatter: function(val) {
+                            return val.toFixed(1) + '%';
+                        },
+                        color: '#111',
+                        fontSize: '42px',
+                        fontWeight: 700,
+                        show: true,
+                    }
+                }
+            }
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shade: 'dark',
+                type: 'horizontal',
+                shadeIntensity: 0.5,
+                gradientToColors: ['#10b981'],
+                inverseColors: false,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100]
+            }
+        },
+        colors: ['#ec4899'],
+        labels: ['Repeat Rate'],
+    };
+
+    if (repeatRateGauge !== null) {
+        repeatRateGauge.destroy();
+    }
+    
+    const chartElement = document.querySelector("#repeatRateGauge");
+    if (chartElement) {
+        chartElement.innerHTML = '';
+        repeatRateGauge = new ApexCharts(chartElement, options);
+        repeatRateGauge.render();
+    }
+}
+
+// Initialize breakdown chart
+function initCustomerBreakdownChart(breakdown) {
+    var options = {
+        series: [
+            breakdown['1_order'],
+            breakdown['2_orders'],
+            breakdown['3_orders'],
+            breakdown['4_orders'],
+            breakdown['5_plus_orders']
+        ],
+        chart: {
+            height: 350,
+            type: 'donut',
+        },
+        labels: ['1 Order', '2 Orders', '3 Orders', '4 Orders', '5+ Orders'],
+        colors: ['#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6'],
+        legend: {
+            position: 'bottom',
+            fontSize: '13px'
+        },
+        plotOptions: {
+            pie: {
+                donut: {
+                    size: '65%',
+                    labels: {
+                        show: true,
+                        total: {
+                            show: true,
+                            label: 'Total Customers',
+                            fontSize: '14px',
+                            fontWeight: 600,
+                            color: '#374151',
+                            formatter: function (w) {
+                                return w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function(val, opts) {
+                return opts.w.config.series[opts.seriesIndex];
+            },
+            style: {
+                fontSize: '13px',
+                fontWeight: 600
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function(val) {
+                    return val + ' customers';
+                }
+            }
+        }
+    };
+
+    if (customerBreakdownChart !== null) {
+        customerBreakdownChart.destroy();
+    }
+    
+    const chartElement = document.querySelector("#customerBreakdownChart");
+    if (chartElement) {
+        chartElement.innerHTML = '';
+        customerBreakdownChart = new ApexCharts(chartElement, options);
+        customerBreakdownChart.render();
+    }
+}
+
+// Update summary cards
+function updateRepeatRateSummary(data) {
+    if (!data) return;
+    
+    document.getElementById('repeatTotalCustomers').textContent = data.total_customers.toLocaleString();
+    document.getElementById('repeatRepeatCustomers').textContent = data.repeat_customers.toLocaleString();
+    document.getElementById('repeatOneTimeCustomers').textContent = data.one_time_customers.toLocaleString();
+    document.getElementById('repeatAvgOrders').textContent = data.avg_orders_per_customer.toFixed(1);
+}
+
+// Update top customers table
+function updateTopCustomersTable(customers) {
+    const tableBody = document.getElementById('topRepeatCustomersTable');
+    
+    if (!customers || customers.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="5" class="ttext-center tpy-8 ttext-gray-500">No repeat customers found</td></tr>';
+        return;
+    }
+    
+    let html = '';
+    customers.forEach((customer, index) => {
+        html += `
+            <tr class="tborder-t hover:tbg-gray-50">
+                <td class="tp-3 ttext-sm ttext-gray-900">${index + 1}</td>
+                <td class="tp-3 ttext-sm tfont-medium ttext-gray-900">${customer.phone}</td>
+                <td class="tp-3 ttext-sm ttext-center ttext-gray-900">
+                    <span class="tbg-pink-100 ttext-pink-800 tpx-2 tpy-1 trounded-full ttext-xs tfont-semibold">
+                        ${customer.orders} orders
+                    </span>
+                </td>
+                <td class="tp-3 ttext-sm ttext-right ttext-gray-900 tfont-semibold">₱${customer.revenue.toLocaleString()}</td>
+                <td class="tp-3 ttext-sm ttext-right ttext-gray-600">₱${customer.aov.toLocaleString()}</td>
+            </tr>
+        `;
+    });
+    
+    tableBody.innerHTML = html;
+}
+
+// Update button states
+function updateRepeatRateButtonState(filter) {
+    document.querySelectorAll('.repeat-filter-btn').forEach(btn => {
+        btn.classList.remove('tbg-pink-600', 'ttext-white');
+        btn.classList.add('tbg-gray-100', 'ttext-gray-700');
+    });
+    
+    const activeBtn = document.getElementById('repeat-btn-' + filter);
+    if (activeBtn) {
+        activeBtn.classList.remove('tbg-gray-100', 'ttext-gray-700');
+        activeBtn.classList.add('tbg-pink-600', 'ttext-white');
+    }
+}
+
+// Filter repeat rate
+function filterRepeatRate(filter) {
+    console.log('filterRepeatRate called with filter:', filter);
+    
+    currentRepeatRateFilter = filter;
+    updateRepeatRateButtonState(filter);
+    
+    document.getElementById('repeatRateLoadingIndicator').classList.remove('thidden');
+    document.getElementById('repeatRateGauge').style.opacity = '0.3';
+    document.getElementById('customerBreakdownChart').style.opacity = '0.3';
+    
+    fetch('{{ url("/admin/fbads/api/customer-repeat-rate") }}?filter=' + filter)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Repeat rate data received:', data);
+            initRepeatRateGauge(data.repeat_rate);
+            initCustomerBreakdownChart(data.breakdown);
+            updateRepeatRateSummary(data);
+            updateTopCustomersTable(data.top_repeat_customers);
+            document.getElementById('repeatRateLoadingIndicator').classList.add('thidden');
+            document.getElementById('repeatRateGauge').style.opacity = '1';
+            document.getElementById('customerBreakdownChart').style.opacity = '1';
+        })
+        .catch(error => {
+            console.error('Error loading repeat rate:', error);
+            document.getElementById('repeatRateLoadingIndicator').classList.add('thidden');
+            document.getElementById('repeatRateGauge').style.opacity = '1';
+            document.getElementById('customerBreakdownChart').style.opacity = '1';
+        });
+}
+
+// Load on page load
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        console.log('Loading initial repeat rate data...');
+        filterRepeatRate('last30');
+    }, 400);
+});
+</script>
 
 
 
@@ -300,21 +654,77 @@
 
 
 
-            <div class="tpx-4 tpb-6">
-                <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Orders by Promo</h2>
-        
-                <div class="tw-full tbg-white trounded-lg tshadow tp-6 tmb-8">
-                    <!-- Filter Buttons -->
-                    <div class="tflex tgap-3 tmb-4">
-                        <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('today')">Today</button>
-                        <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last7')">Last 7 Days</button>
-                        <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last30')">Last 30 Days</button>
-                    </div>
-        
-                    <!-- Chart Container -->
-                    <div id="ordersByPromoPieChart"></div>
+        <!-- Order Volume Heatmap -->
+        <div class="tbg-white trounded-lg tshadow-lg tp-6 tmb-6">
+            <!-- Header -->
+            <div class="tflex tjustify-between titems-center tmb-6 tflex-wrap tgap-4">
+                <h2 class="ttext-xl tfont-semibold ttext-gray-800">Daily Order Volume Heatmap</h2>
+                
+                <div class="tflex tgap-2 titems-center tflex-wrap">
+                    <button onclick="filterHeatmap('last30')" 
+                        id="heatmap-btn-last30"
+                        class="heatmap-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1 tbg-pink-600 ttext-white">
+                        Last 30 Days
+                    </button>
+                    <button onclick="filterHeatmap('month')" 
+                        id="heatmap-btn-month"
+                        class="heatmap-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1 tbg-pink-600 ttext-white">
+                        This Month
+                    </button>
+                    <button onclick="filterHeatmap('lastmonth')" 
+                        id="heatmap-btn-lastmonth"
+                        class="heatmap-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1 tbg-pink-600 ttext-white">
+                        Last Month
+                    </button>
+                    <button onclick="filterHeatmap('year')" 
+                        id="heatmap-btn-year"
+                        class="heatmap-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1 tbg-pink-600 ttext-white">
+                        Year
+                    </button>
                 </div>
             </div>
+
+            <!-- Loading Indicator -->
+            <div id="heatmapLoadingIndicator" class="thidden tflex tjustify-center titems-center tpy-8">
+                <div class="tborder-4 tborder-pink-200 tborder-t-pink-600 trounded-full tw-10 th-10 tanimate-spin"></div>
+            </div>
+
+            <!-- Heatmap Chart -->
+            <div id="orderHeatmap" style="min-height: 400px;"></div>
+            
+            <!-- Summary Cards -->
+            <div class="tflex tmt-6">
+                <div class="tbg-gradient-to-br tfrom-purple-500 tto-purple-600 trounded-lg tp-6">
+                    <div class="ttext-sm topacity-90">Peak Hour</div>
+                    <div id="heatmapPeakHour" class="ttext-2xl tfont-bold tmt-2">--</div>
+                </div>
+                <div class="tbg-gradient-to-br tfrom-orange-500 tto-orange-600 trounded-lg tp-6">
+                    <div class="ttext-sm topacity-90">Peak Day</div>
+                    <div id="heatmapPeakDay" class="ttext-2xl tfont-bold tmt-2">--</div>
+                </div>
+                <div class="tbg-gradient-to-br tfrom-teal-500 tto-teal-600 trounded-lg tp-6">
+                    <div class="ttext-sm topacity-90">Busiest Period Orders</div>
+                    <div id="heatmapBusiestOrders" class="ttext-2xl tfont-bold tmt-2">0</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="tpx-4 tpb-6">
+            <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Orders by Promo</h2>
+    
+            <div class="tw-full tbg-white trounded-lg tshadow tp-6 tmb-8">
+                <!-- Filter Buttons -->
+                <div class="tflex tgap-3 tmb-4">
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('today')">Today</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last7')">Last 7 Days</button>
+                    <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('last30')">Last 30 Days</button>
+                </div>
+    
+                <!-- Chart Container -->
+                <div id="ordersByPromoPieChart"></div>
+            </div>
+        </div>
 
 
 
@@ -817,189 +1227,441 @@
         </script>
 
         <!-- Heatmap Chart -->
-    <script>
-        let orderHeatmap = null;
-        let currentHeatmapFilter = 'last30';
+        <script>
+            let orderHeatmap = null;
+            let currentHeatmapFilter = 'last30';
 
 
-function initOrderHeatmap(data) {
-    console.log('initOrderHeatmap called with data:', data);
-    
-    if (!data || !data.heatmap || data.heatmap.length === 0) {
-        console.warn('No heatmap data available');
-        document.getElementById('heatmapLoadingIndicator').classList.add('thidden');
-        document.getElementById('orderHeatmap').innerHTML = '<div class="tflex tjustify-center titems-center tpy-20 ttext-gray-500">No data available for this period</div>';
-        return;
-    }
+            function initOrderHeatmap(data) {
+        console.log('initOrderHeatmap called with data:', data);
+        
+        if (!data || !data.heatmap || data.heatmap.length === 0) {
+            console.warn('No heatmap data available');
+            document.getElementById('heatmapLoadingIndicator').classList.add('thidden');
+            document.getElementById('orderHeatmap').innerHTML = '<div class="tflex tjustify-center titems-center tpy-20 ttext-gray-500">No data available for this period</div>';
+            return;
+        }
 
-    var options = {
-        series: data.heatmap,
-        chart: {
-            height: 450,
-            type: 'heatmap',
-            toolbar: { show: true }
-        },
-        plotOptions: {
-            heatmap: {
-                shadeIntensity: 0.5,
-                radius: 0,
-                useFillColorAsStroke: true,
-                colorScale: {
-                    ranges: [
-                        {
-                            from: 0,
-                            to: 0,
-                            name: 'No Orders',
-                            color: '#e5e7eb'  // Gray - Coldest
-                        },
-                        {
-                            from: 0.1,
-                            to: 1,
-                            name: '< 1 avg',
-                            color: '#bfdbfe'  // Light Blue
-                        },
-                        {
-                            from: 1.1,
-                            to: 3,
-                            name: '1-3 avg',
-                            color: '#60a5fa'  // Blue
-                        },
-                        {
-                            from: 3.1,
-                            to: 5,
-                            name: '3-5 avg',
-                            color: '#fbbf24'  // Yellow/Orange
-                        },
-                        {
-                            from: 5.1,
-                            to: 8,
-                            name: '5-8 avg',
-                            color: '#f97316'  // Orange
-                        },
-                        {
-                            from: 8.1,
-                            to: 999,
-                            name: '8+ avg',
-                            color: '#dc2626'  // Red - Hottest
-                        }
-                    ]
+        var options = {
+            series: data.heatmap,
+            chart: {
+                height: 450,
+                type: 'heatmap',
+                toolbar: { show: true }
+            },
+            plotOptions: {
+                heatmap: {
+                    shadeIntensity: 0.5,
+                    radius: 0,
+                    useFillColorAsStroke: true,
+                    colorScale: {
+                        ranges: [
+                            {
+                                from: 0,
+                                to: 0,
+                                name: 'No Orders',
+                                color: '#e5e7eb'  // Gray - Coldest
+                            },
+                            {
+                                from: 0.1,
+                                to: 1,
+                                name: '< 1 avg',
+                                color: '#bfdbfe'  // Light Blue
+                            },
+                            {
+                                from: 1.1,
+                                to: 3,
+                                name: '1-3 avg',
+                                color: '#60a5fa'  // Blue
+                            },
+                            {
+                                from: 3.1,
+                                to: 5,
+                                name: '3-5 avg',
+                                color: '#fbbf24'  // Yellow/Orange
+                            },
+                            {
+                                from: 5.1,
+                                to: 8,
+                                name: '5-8 avg',
+                                color: '#f97316'  // Orange
+                            },
+                            {
+                                from: 8.1,
+                                to: 999,
+                                name: '8+ avg',
+                                color: '#dc2626'  // Red - Hottest
+                            }
+                        ]
+                    }
                 }
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        xaxis: {
-            type: 'category',
-            labels: {
-                rotate: -45,
+            },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                type: 'category',
+                labels: {
+                    rotate: -45,
+                    style: {
+                        fontSize: '11px'
+                    }
+                }
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        fontSize: '12px'
+                    }
+                }
+            },
+            title: {
+                text: 'Average Orders by Day of Week and Hour',
+                align: 'center',
                 style: {
-                    fontSize: '11px'
+                    fontSize: '16px',
+                    fontWeight: 600,
+                    color: '#374151'
                 }
-            }
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    fontSize: '12px'
+            },
+            tooltip: {
+                y: {
+                    formatter: function(value) {
+                        return value.toFixed(1) + ' avg orders';
+                    }
                 }
+            },
+            legend: {
+                show: true,
+                position: 'bottom',
+                horizontalAlign: 'center',
+                fontSize: '12px'
             }
-        },
-        title: {
-            text: 'Average Orders by Day of Week and Hour',
-            align: 'center',
-            style: {
-                fontSize: '16px',
-                fontWeight: 600,
-                color: '#374151'
-            }
-        },
-        tooltip: {
-            y: {
-                formatter: function(value) {
-                    return value.toFixed(1) + ' avg orders';
-                }
-            }
-        },
-        legend: {
-            show: true,
-            position: 'bottom',
-            horizontalAlign: 'center',
-            fontSize: '12px'
-        }
-    };
+        };
 
-    if (orderHeatmap !== null) {
-        orderHeatmap.destroy();
+        if (orderHeatmap !== null) {
+            orderHeatmap.destroy();
+        }
+        
+        const chartElement = document.querySelector("#orderHeatmap");
+        if (chartElement) {
+            chartElement.innerHTML = '';
+            orderHeatmap = new ApexCharts(chartElement, options);
+            orderHeatmap.render();
+            console.log('Heatmap rendered successfully');
+        }
     }
-    
-    const chartElement = document.querySelector("#orderHeatmap");
-    if (chartElement) {
-        chartElement.innerHTML = '';
-        orderHeatmap = new ApexCharts(chartElement, options);
-        orderHeatmap.render();
-        console.log('Heatmap rendered successfully');
-    }
-}
 
 
-        // Update heatmap button states
-        function updateHeatmapButtonState(filter) {
-            document.querySelectorAll('.heatmap-filter-btn').forEach(btn => {
-                btn.classList.remove('tbg-pink-600', 'ttext-white');
-                btn.classList.add('tbg-gray-100', 'ttext-gray-700');
-            });
-            
-            const activeBtn = document.getElementById('heatmap-btn-' + filter);
-            if (activeBtn) {
-                activeBtn.classList.remove('tbg-gray-100', 'ttext-gray-700');
-                activeBtn.classList.add('tbg-pink-600', 'ttext-white');
-            }
-        }
-
-        // Update heatmap summary
-        function updateHeatmapSummary(data) {
-            if (!data || !data.summary) return;
-            
-            document.getElementById('heatmapPeakHour').textContent = data.summary.peak_hour;
-            document.getElementById('heatmapPeakDay').textContent = data.summary.peak_day;
-            document.getElementById('heatmapBusiestOrders').textContent = data.summary.busiest_orders.toLocaleString();
-        }
-
-        // Filter heatmap
-        function filterHeatmap(filter) {
-            console.log('filterHeatmap called with filter:', filter);
-            
-            currentHeatmapFilter = filter;
-            updateHeatmapButtonState(filter);
-            
-            document.getElementById('heatmapLoadingIndicator').classList.remove('thidden');
-            document.getElementById('orderHeatmap').style.opacity = '0.3';
-            
-            fetch('{{ url("/admin/fbads/api/order-heatmap") }}?filter=' + filter)
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Heatmap data received:', data);
-                    initOrderHeatmap(data);
-                    updateHeatmapSummary(data);
-                    document.getElementById('heatmapLoadingIndicator').classList.add('thidden');
-                    document.getElementById('orderHeatmap').style.opacity = '1';
-                })
-                .catch(error => {
-                    console.error('Error loading heatmap:', error);
-                    document.getElementById('heatmapLoadingIndicator').classList.add('thidden');
-                    document.getElementById('orderHeatmap').style.opacity = '1';
+            // Update heatmap button states
+            function updateHeatmapButtonState(filter) {
+                document.querySelectorAll('.heatmap-filter-btn').forEach(btn => {
+                    btn.classList.remove('tbg-pink-600', 'ttext-white');
+                    btn.classList.add('tbg-gray-100', 'ttext-gray-700');
                 });
-        }
+                
+                const activeBtn = document.getElementById('heatmap-btn-' + filter);
+                if (activeBtn) {
+                    activeBtn.classList.remove('tbg-gray-100', 'ttext-gray-700');
+                    activeBtn.classList.add('tbg-pink-600', 'ttext-white');
+                }
+            }
 
-        // Load heatmap on page load
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                console.log('Loading initial heatmap data...');
-                filterHeatmap('last30');
-            }, 200);
-        });
-    </script>
+            // Update heatmap summary
+            function updateHeatmapSummary(data) {
+                if (!data || !data.summary) return;
+                
+                document.getElementById('heatmapPeakHour').textContent = data.summary.peak_hour;
+                document.getElementById('heatmapPeakDay').textContent = data.summary.peak_day;
+                document.getElementById('heatmapBusiestOrders').textContent = data.summary.busiest_orders.toLocaleString();
+            }
+
+            // Filter heatmap
+            function filterHeatmap(filter) {
+                console.log('filterHeatmap called with filter:', filter);
+                
+                currentHeatmapFilter = filter;
+                updateHeatmapButtonState(filter);
+                
+                document.getElementById('heatmapLoadingIndicator').classList.remove('thidden');
+                document.getElementById('orderHeatmap').style.opacity = '0.3';
+                
+                fetch('{{ url("/admin/fbads/api/order-heatmap") }}?filter=' + filter)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Heatmap data received:', data);
+                        initOrderHeatmap(data);
+                        updateHeatmapSummary(data);
+                        document.getElementById('heatmapLoadingIndicator').classList.add('thidden');
+                        document.getElementById('orderHeatmap').style.opacity = '1';
+                    })
+                    .catch(error => {
+                        console.error('Error loading heatmap:', error);
+                        document.getElementById('heatmapLoadingIndicator').classList.add('thidden');
+                        document.getElementById('orderHeatmap').style.opacity = '1';
+                    });
+            }
+
+            // Load heatmap on page load
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    console.log('Loading initial heatmap data...');
+                    filterHeatmap('last30');
+                }, 200);
+            });
+        </script>
+        <!-- Heatmap Chart -->
+
+
+        <!-- TOP 10 Products By Order Volume -->
+        <script>
+            let topProductsChart = null;
+            let currentProductsFilter = 'last30';
+            let currentProductsView = 'orders'; // 'orders' or 'revenue'
+            let productsData = null;
+
+
+            function initTopProductsChart(data, view) {
+                console.log('initTopProductsChart called with view:', view);
+                
+                if (!data || !data.by_orders || !data.by_revenue) {
+                    console.warn('No products data available');
+                    document.getElementById('productsLoadingIndicator').classList.add('thidden');
+                    document.getElementById('topProductsChart').innerHTML = '<div class="tflex tjustify-center titems-center tpy-20 ttext-gray-500">No data available for this period</div>';
+                    return;
+                }
+                
+                productsData = data;
+                
+                // Select data based on view
+                const chartData = view === 'orders' ? data.by_orders : data.by_revenue;
+                
+                // Truncate long product names
+                const truncatedProducts = chartData.products.map(p => {
+                    return p.length > 40 ? p.substring(0, 37) + '...' : p;
+                });
+
+                var options = {
+                    series: [
+                        {
+                            name: 'Orders',
+                            type: 'bar',
+                            data: chartData.orders
+                        },
+                        {
+                            name: 'Revenue (₱)',
+                            type: 'bar',
+                            data: chartData.revenue
+                        }
+                    ],
+                    chart: {
+                        height: 600, // Increased height
+                        type: 'bar',
+                        toolbar: { show: true },
+                        animations: {
+                            enabled: true,
+                            easing: 'easeinout',
+                            speed: 800
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: true,
+                            barHeight: '80%', // Increased bar height
+                            dataLabels: {
+                                position: 'right' // Changed from 'top' to 'right'
+                            }
+                        }
+                    },
+                    colors: ['#ec4899', '#6bafeaff'], // Pink for orders, your green for revenue
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function(val, opts) {
+                            if (opts.seriesIndex === 0) {
+                                return val + ' orders';
+                            } else {
+                                return '₱' + val.toLocaleString();
+                            }
+                        },
+                        offsetX: 5,
+                        style: {
+                            fontSize: '12px',
+                            fontWeight: 600,
+                            colors: ['#fff', 'black']
+                        },
+                        background: {
+                            enabled: true,
+                            foreColor: '#fff',
+                            padding: 4,
+                            borderRadius: 2,
+                            borderWidth: 0,
+                            opacity: 0.9
+                        }
+                    },
+                    xaxis: {
+                        categories: truncatedProducts,
+                        labels: {
+                            formatter: function(val) {
+                                if (typeof val === 'number') {
+                                    return val.toLocaleString();
+                                }
+                                return val;
+                            },
+                            style: {
+                                fontSize: '11px'
+                            }
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '13px',
+                                fontWeight: 500
+                            },
+                            maxWidth: 250 // Increased max width for product names
+                        }
+                    },
+                    title: {
+                        text: view === 'orders' ? 'Top 10 Products by Order Volume' : 'Top 10 Products by Revenue',
+                        align: 'center',
+                        style: {
+                            fontSize: '16px',
+                            fontWeight: 600,
+                            color: '#374151'
+                        }
+                    },
+                    tooltip: {
+                        shared: true,
+                        intersect: false,
+                        y: {
+                            formatter: function (y, { seriesIndex, dataPointIndex }) {
+                                if (seriesIndex === 0) {
+                                    return y + ' orders';
+                                } else {
+                                    const aov = chartData.aov[dataPointIndex];
+                                    return '₱' + y.toLocaleString() + ' (AOV: ₱' + aov.toLocaleString() + ')';
+                                }
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                        horizontalAlign: 'left',
+                        fontSize: '14px',
+                        markers: { width: 12, height: 12, radius: 12 }
+                    },
+                    grid: {
+                        borderColor: '#f1f1f1',
+                        padding: {
+                            right: 30 // Add padding on the right for labels
+                        }
+                    }
+                };
+
+                if (topProductsChart !== null) {
+                    topProductsChart.destroy();
+                }
+                
+                const chartElement = document.querySelector("#topProductsChart");
+                if (chartElement) {
+                    chartElement.innerHTML = '';
+                    topProductsChart = new ApexCharts(chartElement, options);
+                    topProductsChart.render();
+                    console.log('Products chart rendered successfully');
+                }
+            }
+
+            // Toggle between orders and revenue view
+            function toggleProductView(view) {
+                currentProductsView = view;
+                
+                // Update button states
+                document.querySelectorAll('.product-view-btn').forEach(btn => {
+                    btn.classList.remove('tbg-white', 'ttext-gray-900', 'tshadow-sm');
+                    btn.classList.add('ttext-gray-600');
+                });
+                
+                const activeBtn = document.getElementById('product-view-' + view);
+                if (activeBtn) {
+                    activeBtn.classList.remove('ttext-gray-600');
+                    activeBtn.classList.add('tbg-white', 'ttext-gray-900', 'tshadow-sm');
+                }
+                
+                // Re-render chart with new view
+                if (productsData) {
+                    initTopProductsChart(productsData, view);
+                }
+            }
+
+            // Update products button states
+            function updateProductsButtonState(filter) {
+                document.querySelectorAll('.products-filter-btn').forEach(btn => {
+                    btn.classList.remove('tbg-pink-600', 'ttext-white');
+                    btn.classList.add('tbg-gray-100', 'ttext-gray-700');
+                });
+                
+                const activeBtn = document.getElementById('products-btn-' + filter);
+                if (activeBtn) {
+                    activeBtn.classList.remove('tbg-gray-100', 'ttext-gray-700');
+                    activeBtn.classList.add('tbg-pink-600', 'ttext-white');
+                }
+            }
+
+            // Update products summary
+            function updateProductsSummary(data) {
+                if (!data || !data.summary) return;
+                
+                document.getElementById('productsTotalProducts').textContent = data.summary.total_products;
+                document.getElementById('productsTopProduct').textContent = data.summary.top_product;
+                document.getElementById('productsTopRevenue').textContent = data.summary.top_revenue_product;
+            }
+
+
+            // Filter products
+            function filterTopProducts(filter) {
+                console.log('filterTopProducts called with filter:', filter);
+                
+                currentProductsFilter = filter;
+                updateProductsButtonState(filter);
+                
+                document.getElementById('productsLoadingIndicator').classList.remove('thidden');
+                document.getElementById('topProductsChart').style.opacity = '0.3';
+                
+                const url = '{{ url("/admin/fbads/api/top-products") }}?filter=' + filter;
+                console.log('Fetching from URL:', url); // Debug log
+                
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Products data received:', data);
+                        initTopProductsChart(data, currentProductsView);
+                        updateProductsSummary(data);
+                        document.getElementById('productsLoadingIndicator').classList.add('thidden');
+                        document.getElementById('topProductsChart').style.opacity = '1';
+                    })
+                    .catch(error => {
+                        console.error('Error loading products:', error);
+                        document.getElementById('productsLoadingIndicator').classList.add('thidden');
+                        document.getElementById('topProductsChart').style.opacity = '1';
+                        alert('Failed to load products data. Check console for details.');
+                    });
+            }
+
+
+            // Load products on page load
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    console.log('Loading initial products data...');
+                    filterTopProducts('last30');
+                }, 300);
+            });
+        </script>
+        <!-- TOP 10 Products By Order Volume -->
 
 
 @endsection

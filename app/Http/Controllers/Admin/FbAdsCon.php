@@ -840,110 +840,340 @@ class FbAdsCon extends Controller
         return response()->json($response);
     }
 
-public function getOrderHeatmap(Request $request)
-{
-    $filter = $request->get('filter', 'last30');
-    
-    $query = FbAds::query();
-    
-    // Apply date filter
-    switch ($filter) {
-        case 'last30':
-            $startDate = now()->subDays(29)->startOfDay();
-            $endDate = now()->endOfDay();
-            $query->whereBetween('created_at', [$startDate, $endDate]);
-            break;
-        case 'month':
-            $startDate = now()->startOfMonth();
-            $endDate = now()->endOfDay();
-            $query->whereMonth('created_at', now()->month)
-                  ->whereYear('created_at', now()->year);
-            break;
-        case 'lastmonth':
-            $lastMonth = now()->subMonth();
-            $startDate = $lastMonth->startOfMonth();
-            $endDate = $lastMonth->endOfMonth();
-            $query->whereMonth('created_at', $lastMonth->month)
-                  ->whereYear('created_at', $lastMonth->year);
-            break;
-        case 'year':
-            $startDate = now()->startOfYear();
-            $endDate = now()->endOfDay();
-            $query->whereYear('created_at', now()->year);
-            break;
-        default:
-            $startDate = now()->subDays(29)->startOfDay();
-            $endDate = now()->endOfDay();
-    }
-    
-    // Get orders grouped by day of week and hour
-    $data = $query->selectRaw('
-            DAYOFWEEK(created_at) as day_of_week,
-            HOUR(created_at) as hour,
-            COUNT(*) as count
-        ')
-        ->groupBy('day_of_week', 'hour')
-        ->get();
-    
-    // Calculate number of weeks in the period for averaging
-    $daysDiff = $startDate->diffInDays($endDate) + 1;
-    $weeksInPeriod = ceil($daysDiff / 7);
-    
-    // Build heatmap data structure
-    $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    $hours = range(0, 23);
-    
-    $heatmapData = [];
-    
-    foreach ($days as $dayIndex => $dayName) {
-        $dayData = [];
+    public function getOrderHeatmap(Request $request)
+    {
+        $filter = $request->get('filter', 'last30');
         
-        foreach ($hours as $hour) {
-            $mysqlDayIndex = $dayIndex + 1;
+        $query = FbAds::query();
+        
+        // Apply date filter
+        switch ($filter) {
+            case 'last30':
+                $startDate = now()->subDays(29)->startOfDay();
+                $endDate = now()->endOfDay();
+                $query->whereBetween('created_at', [$startDate, $endDate]);
+                break;
+            case 'month':
+                $startDate = now()->startOfMonth();
+                $endDate = now()->endOfDay();
+                $query->whereMonth('created_at', now()->month)
+                    ->whereYear('created_at', now()->year);
+                break;
+            case 'lastmonth':
+                $lastMonth = now()->subMonth();
+                $startDate = $lastMonth->startOfMonth();
+                $endDate = $lastMonth->endOfMonth();
+                $query->whereMonth('created_at', $lastMonth->month)
+                    ->whereYear('created_at', $lastMonth->year);
+                break;
+            case 'year':
+                $startDate = now()->startOfYear();
+                $endDate = now()->endOfDay();
+                $query->whereYear('created_at', now()->year);
+                break;
+            default:
+                $startDate = now()->subDays(29)->startOfDay();
+                $endDate = now()->endOfDay();
+        }
+        
+        // Get orders grouped by day of week and hour
+        $data = $query->selectRaw('
+                DAYOFWEEK(created_at) as day_of_week,
+                HOUR(created_at) as hour,
+                COUNT(*) as count
+            ')
+            ->groupBy('day_of_week', 'hour')
+            ->get();
+        
+        // Calculate number of weeks in the period for averaging
+        $daysDiff = $startDate->diffInDays($endDate) + 1;
+        $weeksInPeriod = ceil($daysDiff / 7);
+        
+        // Build heatmap data structure
+        $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        $hours = range(0, 23);
+        
+        $heatmapData = [];
+        
+        foreach ($days as $dayIndex => $dayName) {
+            $dayData = [];
             
-            $count = $data->where('day_of_week', $mysqlDayIndex)
-                         ->where('hour', $hour)
-                         ->first();
+            foreach ($hours as $hour) {
+                $mysqlDayIndex = $dayIndex + 1;
+                
+                $count = $data->where('day_of_week', $mysqlDayIndex)
+                            ->where('hour', $hour)
+                            ->first();
+                
+                // Calculate average per occurrence
+                $totalCount = $count ? $count->count : 0;
+                $avgCount = $weeksInPeriod > 0 ? round($totalCount / $weeksInPeriod, 1) : 0;
+                
+                $dayData[] = [
+                    'x' => sprintf('%02d:00', $hour),
+                    'y' => $avgCount // Using average instead of total
+                ];
+            }
             
-            // Calculate average per occurrence
-            $totalCount = $count ? $count->count : 0;
-            $avgCount = $weeksInPeriod > 0 ? round($totalCount / $weeksInPeriod, 1) : 0;
-            
-            $dayData[] = [
-                'x' => sprintf('%02d:00', $hour),
-                'y' => $avgCount // Using average instead of total
+            $heatmapData[] = [
+                'name' => $dayName,
+                'data' => $dayData
             ];
         }
         
-        $heatmapData[] = [
-            'name' => $dayName,
-            'data' => $dayData
-        ];
+        // Calculate summary stats
+        $totalOrders = $data->sum('count');
+        $peakHour = $data->sortByDesc('count')->first();
+        
+        $dayTotals = $data->groupBy('day_of_week')->map(function($day) {
+            return $day->sum('count');
+        })->sortByDesc(function($count) {
+            return $count;
+        });
+        
+        $peakDay = $dayTotals->keys()->first();
+        
+        return response()->json([
+            'heatmap' => $heatmapData,
+            'summary' => [
+                'total_orders' => $totalOrders,
+                'peak_hour' => $peakHour ? sprintf('%s at %02d:00', $days[$peakHour->day_of_week - 1], $peakHour->hour) : 'N/A',
+                'peak_day' => $peakDay ? $days[$peakDay - 1] : 'N/A',
+                'busiest_orders' => $peakHour ? $peakHour->count : 0,
+                'period_weeks' => $weeksInPeriod
+            ]
+        ]);
     }
-    
-    // Calculate summary stats
-    $totalOrders = $data->sum('count');
-    $peakHour = $data->sortByDesc('count')->first();
-    
-    $dayTotals = $data->groupBy('day_of_week')->map(function($day) {
-        return $day->sum('count');
-    })->sortByDesc(function($count) {
-        return $count;
-    });
-    
-    $peakDay = $dayTotals->keys()->first();
-    
-    return response()->json([
-        'heatmap' => $heatmapData,
-        'summary' => [
-            'total_orders' => $totalOrders,
-            'peak_hour' => $peakHour ? sprintf('%s at %02d:00', $days[$peakHour->day_of_week - 1], $peakHour->hour) : 'N/A',
-            'peak_day' => $peakDay ? $days[$peakDay - 1] : 'N/A',
-            'busiest_orders' => $peakHour ? $peakHour->count : 0,
-            'period_weeks' => $weeksInPeriod
-        ]
-    ]);
-}
+
+    public function getTopProducts(Request $request)
+    {
+
+        try {
+        $filter = $request->get('filter', 'last30');
+        $limit = 10;
+        
+        // Build base query
+        $query = FbAds::query();
+        
+        // Apply date filter
+        switch ($filter) {
+            case 'last30':
+                $query->whereBetween('created_at', [now()->subDays(29)->startOfDay(), now()->endOfDay()]);
+                break;
+            case 'month':
+                $query->whereMonth('created_at', now()->month)
+                    ->whereYear('created_at', now()->year);
+                break;
+            case 'lastmonth':
+                $lastMonth = now()->subMonth();
+                $query->whereMonth('created_at', $lastMonth->month)
+                    ->whereYear('created_at', $lastMonth->year);
+                break;
+            case 'year':
+                $query->whereYear('created_at', now()->year);
+                break;
+        }
+        
+        // Get top products by order count
+        $topByOrders = $query->selectRaw('promo, COUNT(*) as order_count, SUM(total) as total_revenue')
+            ->groupBy('promo')
+            ->orderByRaw('COUNT(*) DESC')
+            ->limit($limit)
+            ->get();
+        
+        // Get top products by revenue (fresh query)
+        $queryRevenue = FbAds::query();
+        
+        switch ($filter) {
+            case 'last30':
+                $queryRevenue->whereBetween('created_at', [now()->subDays(29)->startOfDay(), now()->endOfDay()]);
+                break;
+            case 'month':
+                $queryRevenue->whereMonth('created_at', now()->month)
+                            ->whereYear('created_at', now()->year);
+                break;
+            case 'lastmonth':
+                $lastMonth = now()->subMonth();
+                $queryRevenue->whereMonth('created_at', $lastMonth->month)
+                            ->whereYear('created_at', $lastMonth->year);
+                break;
+            case 'year':
+                $queryRevenue->whereYear('created_at', now()->year);
+                break;
+        }
+        
+        $topByRevenue = $queryRevenue->selectRaw('promo, COUNT(*) as order_count, SUM(total) as total_revenue')
+            ->groupBy('promo')
+            ->orderByRaw('SUM(total) DESC')
+            ->limit($limit)
+            ->get();
+        
+        // Prepare response
+        $byOrders = [
+            'products' => [],
+            'orders' => [],
+            'revenue' => [],
+            'aov' => []
+        ];
+        
+        foreach ($topByOrders as $product) {
+            $byOrders['products'][] = $product->promo;
+            $byOrders['orders'][] = (int)$product->order_count;
+            $byOrders['revenue'][] = (float)$product->total_revenue;
+            $byOrders['aov'][] = round($product->total_revenue / $product->order_count, 2);
+        }
+        
+        $byRevenue = [
+            'products' => [],
+            'orders' => [],
+            'revenue' => [],
+            'aov' => []
+        ];
+        
+        foreach ($topByRevenue as $product) {
+            $byRevenue['products'][] = $product->promo;
+            $byRevenue['orders'][] = (int)$product->order_count;
+            $byRevenue['revenue'][] = (float)$product->total_revenue;
+            $byRevenue['aov'][] = round($product->total_revenue / $product->order_count, 2);
+        }
+        
+        return response()->json([
+            'by_orders' => $byOrders,
+            'by_revenue' => $byRevenue,
+            'summary' => [
+                'total_products' => FbAds::distinct('promo')->count('promo'),
+                'top_product' => $topByOrders->first() ? $topByOrders->first()->promo : 'N/A',
+                'top_revenue_product' => $topByRevenue->first() ? $topByRevenue->first()->promo : 'N/A'
+            ]
+        ]);
+
+        } catch (\Exception $e) {
+            \Log::error('Top Products Error: ' . $e->getMessage());
+            return response()->json([
+                'error' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => $e->getFile()
+            ], 500);
+        }
+    }
+
+    public function getCustomerRepeatRate(Request $request)
+    {
+        try {
+            $filter = $request->get('filter', 'last30');
+            
+            $query = FbAds::query();
+            
+            // Apply date filter
+            switch ($filter) {
+                case 'last30':
+                    $query->whereBetween('created_at', [now()->subDays(29)->startOfDay(), now()->endOfDay()]);
+                    break;
+                case 'month':
+                    $query->whereMonth('created_at', now()->month)
+                        ->whereYear('created_at', now()->year);
+                    break;
+                case 'lastmonth':
+                    $lastMonth = now()->subMonth();
+                    $query->whereMonth('created_at', $lastMonth->month)
+                        ->whereYear('created_at', $lastMonth->year);
+                    break;
+                case 'year':
+                    // ALL TIME DATA - No filter!
+                    // This shows all customers ever
+                    break;
+            }
+            
+            // Get customer order counts
+            $customerOrders = $query->selectRaw('phone_number, COUNT(*) as order_count')
+                ->groupBy('phone_number')
+                ->get();
+            
+            $totalCustomers = $customerOrders->count();
+            $repeatCustomers = $customerOrders->filter(function($customer) {
+                return $customer->order_count > 1;
+            })->count();
+            
+            $oneTimeCustomers = $customerOrders->filter(function($customer) {
+                return $customer->order_count == 1;
+            })->count();
+            
+            $repeatRate = $totalCustomers > 0 ? round(($repeatCustomers / $totalCustomers) * 100, 1) : 0;
+            
+            // Get breakdown by order count
+            $orderCountBreakdown = [
+                '1_order' => $customerOrders->filter(fn($c) => $c->order_count == 1)->count(),
+                '2_orders' => $customerOrders->filter(fn($c) => $c->order_count == 2)->count(),
+                '3_orders' => $customerOrders->filter(fn($c) => $c->order_count == 3)->count(),
+                '4_orders' => $customerOrders->filter(fn($c) => $c->order_count == 4)->count(),
+                '5_plus_orders' => $customerOrders->filter(fn($c) => $c->order_count >= 5)->count(),
+            ];
+            
+            // Get top repeat customers
+            $topRepeatCustomers = $customerOrders
+                ->sortByDesc('order_count')
+                ->take(10)
+                ->values()
+                ->map(function($customer) use ($filter) {
+                    // Get total revenue for this customer
+                    $revenueQuery = FbAds::where('phone_number', $customer->phone_number);
+                    
+                    // Apply same filter
+                    switch ($filter) {
+                        case 'last30':
+                            $revenueQuery->whereBetween('created_at', [now()->subDays(29)->startOfDay(), now()->endOfDay()]);
+                            break;
+                        case 'month':
+                            $revenueQuery->whereMonth('created_at', now()->month)
+                                    ->whereYear('created_at', now()->year);
+                            break;
+                        case 'lastmonth':
+                            $lastMonth = now()->subMonth();
+                            $revenueQuery->whereMonth('created_at', $lastMonth->month)
+                                    ->whereYear('created_at', $lastMonth->year);
+                            break;
+                        case 'year':
+                            // All time - no filter
+                            break;
+                    }
+                    
+                    $revenue = $revenueQuery->sum('total');
+                    
+                    return [
+                        'phone' => $customer->phone_number,
+                        'orders' => (int)$customer->order_count,
+                        'revenue' => (float)$revenue,
+                        'aov' => $customer->order_count > 0 ? round($revenue / $customer->order_count, 2) : 0
+                    ];
+                })
+                ->toArray();
+            
+            // Calculate average orders per customer
+            $avgOrdersPerCustomer = $totalCustomers > 0 
+                ? round($customerOrders->sum('order_count') / $totalCustomers, 1) 
+                : 0;
+            
+            return response()->json([
+                'repeat_rate' => $repeatRate,
+                'total_customers' => $totalCustomers,
+                'repeat_customers' => $repeatCustomers,
+                'one_time_customers' => $oneTimeCustomers,
+                'avg_orders_per_customer' => $avgOrdersPerCustomer,
+                'breakdown' => $orderCountBreakdown,
+                'top_repeat_customers' => $topRepeatCustomers
+            ]);
+            
+        } catch (\Exception $e) {
+            \Log::error('Customer Repeat Rate Error: ' . $e->getMessage());
+            \Log::error('Stack trace: ' . $e->getTraceAsString());
+            
+            return response()->json([
+                'error' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => $e->getFile()
+            ], 500);
+        }
+    }
 
 }
 
