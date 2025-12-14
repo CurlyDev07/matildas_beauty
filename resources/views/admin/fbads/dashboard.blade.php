@@ -316,336 +316,355 @@
 
 
         <!-- Customer Repeat Rate -->
+        <div class="tbg-white trounded-lg tshadow-lg tp-6 tmb-6">
+            <!-- Header -->
+            <div class="tflex tjustify-between titems-center tmb-6 tflex-wrap tgap-4">
+                <h2 class="ttext-xl tfont-semibold ttext-gray-800">Customer Repeat Rate</h2>
+                
+                <div class="tflex tgap-2 titems-center tflex-wrap">
+                    <button onclick="filterRepeatRate('last30')" 
+                        id="repeat-btn-last30"
+                        class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-pink-600 ttext-white ttext-sm">
+                        Last 30 Days
+                    </button>
+                    <button onclick="filterRepeatRate('month')" 
+                        id="repeat-btn-month"
+                        class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
+                        This Month
+                    </button>
+                    <button onclick="filterRepeatRate('lastmonth')" 
+                        id="repeat-btn-lastmonth"
+                        class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
+                        Last Month
+                    </button>
+                <button onclick="filterRepeatRate('year')" 
+                        id="repeat-btn-year"
+                        class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
+                        All Time
+                    </button>   
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="repeatRateLoadingIndicator" class="thidden tflex tjustify-center titems-center tpy-8">
+                <div class="tborder-4 tborder-pink-200 tborder-t-pink-600 trounded-full tw-10 th-10 tanimate-spin"></div>
+            </div>
+
+            <div class="tflex tjustify-around tgap-6">
+                <!-- Gauge Chart -->
+                <div id="repeatRateGauge" style="min-height: 350px;"></div>
+            
+                <!-- Breakdown Chart -->
+                <div id="customerBreakdownChart" style="min-height: 350px;"></div>
+
+                    <!-- Summary Cards -->
+                <div class="tmt-6">
+                    <div class="tbg-gradient-to-br tfrom-purple-500 tto-purple-600 trounded-lg tp-6">
+                        <div class="ttext-sm topacity-90">Total Customers</div>
+                        <div id="repeatTotalCustomers" class="ttext-3xl tfont-bold tmt-2">0</div>
+                    </div>
+                    <div class="tbg-gradient-to-br tfrom-green-500 tto-green-600 trounded-lg tp-6">
+                        <div class="ttext-sm topacity-90">Repeat Customers</div>
+                        <div id="repeatRepeatCustomers" class="ttext-3xl tfont-bold tmt-2">0</div>
+                    </div>
+                    <div class="tbg-gradient-to-br tfrom-orange-500 tto-orange-600 trounded-lg tp-6">
+                        <div class="ttext-sm topacity-90">One-Time Customers</div>
+                        <div id="repeatOneTimeCustomers" class="ttext-3xl tfont-bold tmt-2">0</div>
+                    </div>
+                    <div class="tbg-gradient-to-br tfrom-blue-500 tto-blue-600 trounded-lg tp-6">
+                        <div class="ttext-sm topacity-90">Avg Orders/Customer</div>
+                        <div id="repeatAvgOrders" class="ttext-3xl tfont-bold tmt-2">0</div>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+            <!-- Top Repeat Customers Table -->
+            <div class="tmt-6">
+                <h3 class="ttext-lg tfont-semibold ttext-gray-800 tmb-4">Top Repeat Customers</h3>
+                <div class="toverflow-x-auto">
+                    <table class="tw-full tborder-collapse">
+                        <thead>
+                            <tr class="tbg-gray-50">
+                                <th class="ttext-left tp-3 ttext-sm tfont-semibold ttext-gray-700">#</th>
+                                <th class="ttext-left tp-3 ttext-sm tfont-semibold ttext-gray-700">Phone Number</th>
+                                <th class="ttext-center tp-3 ttext-sm tfont-semibold ttext-gray-700">Orders</th>
+                                <th class="ttext-right tp-3 ttext-sm tfont-semibold ttext-gray-700">Revenue</th>
+                                <th class="ttext-right tp-3 ttext-sm tfont-semibold ttext-gray-700">AOV</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topRepeatCustomersTable">
+                            <tr>
+                                <td colspan="5" class="ttext-center tpy-8 ttext-gray-500">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Revenue Comparison -->
 <div class="tbg-white trounded-lg tshadow-lg tp-6 tmb-6">
     <!-- Header -->
-    <div class="tflex tjustify-between titems-center tmb-6 tflex-wrap tgap-4">
-        <h2 class="ttext-xl tfont-semibold ttext-gray-800">Customer Repeat Rate</h2>
-        
-        <div class="tflex tgap-2 titems-center tflex-wrap">
-            <button onclick="filterRepeatRate('last30')" 
-                id="repeat-btn-last30"
-                class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-pink-600 ttext-white ttext-sm">
-                Last 30 Days
-            </button>
-            <button onclick="filterRepeatRate('month')" 
-                id="repeat-btn-month"
-                class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
-                This Month
-            </button>
-            <button onclick="filterRepeatRate('lastmonth')" 
-                id="repeat-btn-lastmonth"
-                class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
-                Last Month
-            </button>
-           <button onclick="filterRepeatRate('year')" 
-                id="repeat-btn-year"
-                class="repeat-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
-                All Time
-            </button>   
-        </div>
+    <div class="tflex tjustify-between titems-center tmb-6">
+        <h2 class="ttext-xl tfont-semibold ttext-gray-800">Revenue Comparison</h2>
+        <button onclick="loadRevenueComparison()" class="tpx-4 tpy-2 tbg-gray-100 hover:tbg-gray-200 trounded-lg ttext-sm tfont-medium ttransition-all">
+            <i class="fas fa-sync-alt tmr-2"></i> Refresh
+        </button>
     </div>
 
     <!-- Loading Indicator -->
-    <div id="repeatRateLoadingIndicator" class="thidden tflex tjustify-center titems-center tpy-8">
+    <div id="comparisonLoadingIndicator" class="thidden tflex tjustify-center titems-center tpy-8">
         <div class="tborder-4 tborder-pink-200 tborder-t-pink-600 trounded-full tw-10 th-10 tanimate-spin"></div>
     </div>
 
-    <div class="tgrid tgrid-cols-2 tgap-6">
-        <!-- Gauge Chart -->
-        <div>
-            <div id="repeatRateGauge" style="min-height: 350px;"></div>
+    <!-- Comparison Cards -->
+    <div class="tgrid tgrid-cols-1 lg:tgrid-cols-3 tgap-6">
+        <!-- Today vs Yesterday -->
+        <div class="tborder-2 trounded-lg tp-6">
+            <div class="tflex titems-center tjustify-between tmb-4">
+                <h3 class="ttext-lg tfont-semibold ttext-gray-800">Today vs Yesterday</h3>
+                <span id="todayChangePercent" class="tpx-3 tpy-1 trounded-full ttext-sm tfont-bold">--</span>
+            </div>
+            <div id="todayVsYesterdayChart" style="height: 300px;"></div>
+            <div class="tgrid tgrid-cols-2 tgap-4 tmt-4">
+                <div>
+                    <div class="ttext-xs ttext-gray-500 tmb-1" id="todayLabel">Today</div>
+                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="todayRevenue">₱0</div>
+                    <div class="ttext-sm ttext-gray-600" id="todayOrders">0 orders</div>
+                </div>
+                <div>
+                    <div class="ttext-xs ttext-gray-500 tmb-1" id="yesterdayLabel">Yesterday</div>
+                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="yesterdayRevenue">₱0</div>
+                    <div class="ttext-sm ttext-gray-600" id="yesterdayOrders">0 orders</div>
+                </div>
+            </div>
         </div>
-        
-        <!-- Breakdown Chart -->
-        <div>
-            <div id="customerBreakdownChart" style="min-height: 350px;"></div>
+
+        <!-- Last 7 Days vs Previous 7 Days -->
+        <div class="tborder-2 trounded-lg tp-6">
+            <div class="tflex titems-center tjustify-between tmb-4">
+                <h3 class="ttext-lg tfont-semibold ttext-gray-800">Last 7 vs Prev 7</h3>
+                <span id="week7ChangePercent" class="tpx-3 tpy-1 trounded-full ttext-sm tfont-bold">--</span>
+            </div>
+            <div id="last7VsPrev7Chart" style="height: 300px;"></div>
+            <div class="tgrid tgrid-cols-2 tgap-4 tmt-4">
+                <div>
+                    <div class="ttext-xs ttext-gray-500 tmb-1">Last 7 Days</div>
+                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="last7Revenue">₱0</div>
+                    <div class="ttext-sm ttext-gray-600" id="last7Orders">0 orders</div>
+                </div>
+                <div>
+                    <div class="ttext-xs ttext-gray-500 tmb-1">Days 8-14 Ago</div>
+                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="prev7Revenue">₱0</div>
+                    <div class="ttext-sm ttext-gray-600" id="prev7Orders">0 orders</div>
+                </div>
+            </div>
         </div>
-    </div>
-    
-    <!-- Summary Cards -->
-    <div class="tflex tmt-6">
-        <div class="tbg-gradient-to-br tfrom-purple-500 tto-purple-600 trounded-lg tp-6">
-            <div class="ttext-sm topacity-90">Total Customers</div>
-            <div id="repeatTotalCustomers" class="ttext-3xl tfont-bold tmt-2">0</div>
-        </div>
-        <div class="tbg-gradient-to-br tfrom-green-500 tto-green-600 trounded-lg tp-6">
-            <div class="ttext-sm topacity-90">Repeat Customers</div>
-            <div id="repeatRepeatCustomers" class="ttext-3xl tfont-bold tmt-2">0</div>
-        </div>
-        <div class="tbg-gradient-to-br tfrom-orange-500 tto-orange-600 trounded-lg tp-6">
-            <div class="ttext-sm topacity-90">One-Time Customers</div>
-            <div id="repeatOneTimeCustomers" class="ttext-3xl tfont-bold tmt-2">0</div>
-        </div>
-        <div class="tbg-gradient-to-br tfrom-blue-500 tto-blue-600 trounded-lg tp-6">
-            <div class="ttext-sm topacity-90">Avg Orders/Customer</div>
-            <div id="repeatAvgOrders" class="ttext-3xl tfont-bold tmt-2">0</div>
-        </div>
-    </div>
-    
-    <!-- Top Repeat Customers Table -->
-    <div class="tmt-6">
-        <h3 class="ttext-lg tfont-semibold ttext-gray-800 tmb-4">Top Repeat Customers</h3>
-        <div class="toverflow-x-auto">
-            <table class="tw-full tborder-collapse">
-                <thead>
-                    <tr class="tbg-gray-50">
-                        <th class="ttext-left tp-3 ttext-sm tfont-semibold ttext-gray-700">#</th>
-                        <th class="ttext-left tp-3 ttext-sm tfont-semibold ttext-gray-700">Phone Number</th>
-                        <th class="ttext-center tp-3 ttext-sm tfont-semibold ttext-gray-700">Orders</th>
-                        <th class="ttext-right tp-3 ttext-sm tfont-semibold ttext-gray-700">Revenue</th>
-                        <th class="ttext-right tp-3 ttext-sm tfont-semibold ttext-gray-700">AOV</th>
-                    </tr>
-                </thead>
-                <tbody id="topRepeatCustomersTable">
-                    <tr>
-                        <td colspan="5" class="ttext-center tpy-8 ttext-gray-500">Loading...</td>
-                    </tr>
-                </tbody>
-            </table>
+
+        <!-- This Month vs Last Month -->
+        <div class="tborder-2 trounded-lg tp-6">
+            <div class="tflex titems-center tjustify-between tmb-4">
+                <h3 class="ttext-lg tfont-semibold ttext-gray-800">This vs Last Month</h3>
+                <span id="monthChangePercent" class="tpx-3 tpy-1 trounded-full ttext-sm tfont-bold">--</span>
+            </div>
+            <div id="thisVsLastMonthChart" style="height: 300px;"></div>
+            <div class="tgrid tgrid-cols-2 tgap-4 tmt-4">
+                <div>
+                    <div class="ttext-xs ttext-gray-500 tmb-1">This Month</div>
+                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="thisMonthRevenue">₱0</div>
+                    <div class="ttext-sm ttext-gray-600" id="thisMonthOrders">0 orders</div>
+                </div>
+                <div>
+                    <div class="ttext-xs ttext-gray-500 tmb-1">Last Month</div>
+                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="lastMonthRevenue">₱0</div>
+                    <div class="ttext-sm ttext-gray-600" id="lastMonthOrders">0 orders</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-let repeatRateGauge = null;
-let customerBreakdownChart = null;
-let currentRepeatRateFilter = 'last30';
+let todayChart = null;
+let week7Chart = null;
+let monthChart = null;
 
-// Initialize gauge chart
-function initRepeatRateGauge(repeatRate) {
-    var options = {
-        series: [repeatRate],
+// Create comparison bar chart
+function createComparisonChart(elementId, current, previous, currentLabel, previousLabel) {
+    const options = {
+        series: [{
+            name: 'Revenue',
+            data: [current.revenue, previous.revenue]
+        }],
         chart: {
-            height: 350,
-            type: 'radialBar',
+            type: 'bar',
+            height: 300,
+            toolbar: { show: false }
         },
         plotOptions: {
-            radialBar: {
-                startAngle: -135,
-                endAngle: 135,
-                hollow: {
-                    margin: 0,
-                    size: '70%',
-                    background: '#fff',
-                },
-                track: {
-                    background: '#e7e7e7',
-                    strokeWidth: '97%',
-                    margin: 5,
-                },
+            bar: {
+                horizontal: false,
+                columnWidth: '50%',
+                borderRadius: 8,
                 dataLabels: {
-                    show: true,
-                    name: {
-                        offsetY: -10,
-                        show: true,
-                        color: '#374151',
-                        fontSize: '16px',
-                        fontWeight: 600
-                    },
-                    value: {
-                        formatter: function(val) {
-                            return val.toFixed(1) + '%';
-                        },
-                        color: '#111',
-                        fontSize: '42px',
-                        fontWeight: 700,
-                        show: true,
-                    }
-                }
-            }
-        },
-        fill: {
-            type: 'gradient',
-            gradient: {
-                shade: 'dark',
-                type: 'horizontal',
-                shadeIntensity: 0.5,
-                gradientToColors: ['#10b981'],
-                inverseColors: false,
-                opacityFrom: 1,
-                opacityTo: 1,
-                stops: [0, 100]
-            }
-        },
-        colors: ['#ec4899'],
-        labels: ['Repeat Rate'],
-    };
-
-    if (repeatRateGauge !== null) {
-        repeatRateGauge.destroy();
-    }
-    
-    const chartElement = document.querySelector("#repeatRateGauge");
-    if (chartElement) {
-        chartElement.innerHTML = '';
-        repeatRateGauge = new ApexCharts(chartElement, options);
-        repeatRateGauge.render();
-    }
-}
-
-// Initialize breakdown chart
-function initCustomerBreakdownChart(breakdown) {
-    var options = {
-        series: [
-            breakdown['1_order'],
-            breakdown['2_orders'],
-            breakdown['3_orders'],
-            breakdown['4_orders'],
-            breakdown['5_plus_orders']
-        ],
-        chart: {
-            height: 350,
-            type: 'donut',
-        },
-        labels: ['1 Order', '2 Orders', '3 Orders', '4 Orders', '5+ Orders'],
-        colors: ['#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6'],
-        legend: {
-            position: 'bottom',
-            fontSize: '13px'
-        },
-        plotOptions: {
-            pie: {
-                donut: {
-                    size: '65%',
-                    labels: {
-                        show: true,
-                        total: {
-                            show: true,
-                            label: 'Total Customers',
-                            fontSize: '14px',
-                            fontWeight: 600,
-                            color: '#374151',
-                            formatter: function (w) {
-                                return w.globals.seriesTotals.reduce((a, b) => a + b, 0);
-                            }
-                        }
-                    }
+                    position: 'top'
                 }
             }
         },
         dataLabels: {
             enabled: true,
-            formatter: function(val, opts) {
-                return opts.w.config.series[opts.seriesIndex];
+            formatter: function(val) {
+                return '₱' + val.toLocaleString();
             },
+            offsetY: -25,
             style: {
-                fontSize: '13px',
-                fontWeight: 600
+                fontSize: '12px',
+                fontWeight: 600,
+                colors: ['#374151']
             }
+        },
+        colors: ['#ec4899'],
+        xaxis: {
+            categories: [currentLabel, previousLabel],
+            labels: {
+                style: {
+                    fontSize: '12px',
+                    fontWeight: 500
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                formatter: function(val) {
+                    return '₱' + val.toLocaleString();
+                }
+            }
+        },
+        grid: {
+            borderColor: '#f1f1f1'
         },
         tooltip: {
             y: {
                 formatter: function(val) {
-                    return val + ' customers';
+                    return '₱' + val.toLocaleString();
                 }
             }
         }
     };
 
-    if (customerBreakdownChart !== null) {
-        customerBreakdownChart.destroy();
+    const element = document.querySelector('#' + elementId);
+    if (element) {
+        element.innerHTML = '';
+        const chart = new ApexCharts(element, options);
+        chart.render();
+        return chart;
     }
-    
-    const chartElement = document.querySelector("#customerBreakdownChart");
-    if (chartElement) {
-        chartElement.innerHTML = '';
-        customerBreakdownChart = new ApexCharts(chartElement, options);
-        customerBreakdownChart.render();
-    }
+    return null;
 }
 
-// Update summary cards
-function updateRepeatRateSummary(data) {
-    if (!data) return;
+// Update change indicator
+function updateChangeIndicator(elementId, change) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
     
-    document.getElementById('repeatTotalCustomers').textContent = data.total_customers.toLocaleString();
-    document.getElementById('repeatRepeatCustomers').textContent = data.repeat_customers.toLocaleString();
-    document.getElementById('repeatOneTimeCustomers').textContent = data.one_time_customers.toLocaleString();
-    document.getElementById('repeatAvgOrders').textContent = data.avg_orders_per_customer.toFixed(1);
+    const isPositive = change >= 0;
+    const arrow = isPositive ? '↑' : '↓';
+    const colorClass = isPositive ? 'tbg-green-100 ttext-green-800' : 'tbg-red-100 ttext-red-800';
+    
+    element.className = 'tpx-3 tpy-1 trounded-full ttext-sm tfont-bold ' + colorClass;
+    element.textContent = arrow + ' ' + Math.abs(change) + '%';
 }
 
-// Update top customers table
-function updateTopCustomersTable(customers) {
-    const tableBody = document.getElementById('topRepeatCustomersTable');
+// Load revenue comparison
+function loadRevenueComparison() {
+    console.log('Loading revenue comparison...');
     
-    if (!customers || customers.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="5" class="ttext-center tpy-8 ttext-gray-500">No repeat customers found</td></tr>';
-        return;
-    }
+    document.getElementById('comparisonLoadingIndicator').classList.remove('thidden');
     
-    let html = '';
-    customers.forEach((customer, index) => {
-        html += `
-            <tr class="tborder-t hover:tbg-gray-50">
-                <td class="tp-3 ttext-sm ttext-gray-900">${index + 1}</td>
-                <td class="tp-3 ttext-sm tfont-medium ttext-gray-900">${customer.phone}</td>
-                <td class="tp-3 ttext-sm ttext-center ttext-gray-900">
-                    <span class="tbg-pink-100 ttext-pink-800 tpx-2 tpy-1 trounded-full ttext-xs tfont-semibold">
-                        ${customer.orders} orders
-                    </span>
-                </td>
-                <td class="tp-3 ttext-sm ttext-right ttext-gray-900 tfont-semibold">₱${customer.revenue.toLocaleString()}</td>
-                <td class="tp-3 ttext-sm ttext-right ttext-gray-600">₱${customer.aov.toLocaleString()}</td>
-            </tr>
-        `;
-    });
-    
-    tableBody.innerHTML = html;
-}
-
-// Update button states
-function updateRepeatRateButtonState(filter) {
-    document.querySelectorAll('.repeat-filter-btn').forEach(btn => {
-        btn.classList.remove('tbg-pink-600', 'ttext-white');
-        btn.classList.add('tbg-gray-100', 'ttext-gray-700');
-    });
-    
-    const activeBtn = document.getElementById('repeat-btn-' + filter);
-    if (activeBtn) {
-        activeBtn.classList.remove('tbg-gray-100', 'ttext-gray-700');
-        activeBtn.classList.add('tbg-pink-600', 'ttext-white');
-    }
-}
-
-// Filter repeat rate
-function filterRepeatRate(filter) {
-    console.log('filterRepeatRate called with filter:', filter);
-    
-    currentRepeatRateFilter = filter;
-    updateRepeatRateButtonState(filter);
-    
-    document.getElementById('repeatRateLoadingIndicator').classList.remove('thidden');
-    document.getElementById('repeatRateGauge').style.opacity = '0.3';
-    document.getElementById('customerBreakdownChart').style.opacity = '0.3';
-    
-    fetch('{{ url("/admin/fbads/api/customer-repeat-rate") }}?filter=' + filter)
+    fetch('{{ url("/admin/fbads/api/revenue-comparison") }}')
         .then(response => response.json())
         .then(data => {
-            console.log('Repeat rate data received:', data);
-            initRepeatRateGauge(data.repeat_rate);
-            initCustomerBreakdownChart(data.breakdown);
-            updateRepeatRateSummary(data);
-            updateTopCustomersTable(data.top_repeat_customers);
-            document.getElementById('repeatRateLoadingIndicator').classList.add('thidden');
-            document.getElementById('repeatRateGauge').style.opacity = '1';
-            document.getElementById('customerBreakdownChart').style.opacity = '1';
+            console.log('Comparison data received:', data);
+            
+            // Today vs Yesterday
+            const todayData = data.today_vs_yesterday;
+            todayChart = createComparisonChart(
+                'todayVsYesterdayChart',
+                todayData.today,
+                todayData.yesterday,
+                todayData.today.label,
+                todayData.yesterday.label
+            );
+            document.getElementById('todayLabel').textContent = todayData.today.label;
+            document.getElementById('yesterdayLabel').textContent = todayData.yesterday.label;
+            document.getElementById('todayRevenue').textContent = '₱' + todayData.today.revenue.toLocaleString();
+            document.getElementById('todayOrders').textContent = todayData.today.orders + ' orders';
+            document.getElementById('yesterdayRevenue').textContent = '₱' + todayData.yesterday.revenue.toLocaleString();
+            document.getElementById('yesterdayOrders').textContent = todayData.yesterday.orders + ' orders';
+            updateChangeIndicator('todayChangePercent', todayData.change);
+            
+            // Last 7 vs Previous 7
+            const week7Data = data.last_7_vs_previous_7;
+            week7Chart = createComparisonChart(
+                'last7VsPrev7Chart',
+                week7Data.last_7,
+                week7Data.previous_7,
+                week7Data.last_7.label,
+                week7Data.previous_7.label
+            );
+            document.getElementById('last7Revenue').textContent = '₱' + week7Data.last_7.revenue.toLocaleString();
+            document.getElementById('last7Orders').textContent = week7Data.last_7.orders + ' orders';
+            document.getElementById('prev7Revenue').textContent = '₱' + week7Data.previous_7.revenue.toLocaleString();
+            document.getElementById('prev7Orders').textContent = week7Data.previous_7.orders + ' orders';
+            updateChangeIndicator('week7ChangePercent', week7Data.change);
+            
+            // This Month vs Last Month
+            const monthData = data.this_month_vs_last_month;
+            monthChart = createComparisonChart(
+                'thisVsLastMonthChart',
+                monthData.this_month,
+                monthData.last_month,
+                monthData.this_month.label,
+                monthData.last_month.label
+            );
+            document.getElementById('thisMonthRevenue').textContent = '₱' + monthData.this_month.revenue.toLocaleString();
+            document.getElementById('thisMonthOrders').textContent = monthData.this_month.orders + ' orders';
+            document.getElementById('lastMonthRevenue').textContent = '₱' + monthData.last_month.revenue.toLocaleString();
+            document.getElementById('lastMonthOrders').textContent = monthData.last_month.orders + ' orders';
+            updateChangeIndicator('monthChangePercent', monthData.change);
+            
+            document.getElementById('comparisonLoadingIndicator').classList.add('thidden');
         })
         .catch(error => {
-            console.error('Error loading repeat rate:', error);
-            document.getElementById('repeatRateLoadingIndicator').classList.add('thidden');
-            document.getElementById('repeatRateGauge').style.opacity = '1';
-            document.getElementById('customerBreakdownChart').style.opacity = '1';
+            console.error('Error loading comparison:', error);
+            document.getElementById('comparisonLoadingIndicator').classList.add('thidden');
         });
 }
 
 // Load on page load
 window.addEventListener('load', function() {
     setTimeout(function() {
-        console.log('Loading initial repeat rate data...');
-        filterRepeatRate('last30');
-    }, 400);
+        loadRevenueComparison();
+    }, 500);
 });
 </script>
+
+
+
 
 
 
@@ -1663,5 +1682,247 @@ window.addEventListener('load', function() {
         </script>
         <!-- TOP 10 Products By Order Volume -->
 
+        <!-- Revenue Comparison with Smart Time Periods! 🚀 -->
+        <script>
+            let repeatRateGauge = null;
+            let customerBreakdownChart = null;
+            let currentRepeatRateFilter = 'last30';
+
+            // Initialize gauge chart
+            function initRepeatRateGauge(repeatRate) {
+                var options = {
+                    series: [repeatRate],
+                    chart: {
+                        height: 350,
+                        type: 'radialBar',
+                    },
+                    plotOptions: {
+                        radialBar: {
+                            startAngle: -135,
+                            endAngle: 135,
+                            hollow: {
+                                margin: 0,
+                                size: '70%',
+                                background: '#fff',
+                            },
+                            track: {
+                                background: '#e7e7e7',
+                                strokeWidth: '97%',
+                                margin: 5,
+                            },
+                            dataLabels: {
+                                show: true,
+                                name: {
+                                    offsetY: -10,
+                                    show: true,
+                                    color: '#374151',
+                                    fontSize: '16px',
+                                    fontWeight: 600
+                                },
+                                value: {
+                                    formatter: function(val) {
+                                        return val.toFixed(1) + '%';
+                                    },
+                                    color: '#111',
+                                    fontSize: '42px',
+                                    fontWeight: 700,
+                                    show: true,
+                                }
+                            }
+                        }
+                    },
+                    fill: {
+                        type: 'gradient',
+                        gradient: {
+                            shade: 'dark',
+                            type: 'horizontal',
+                            shadeIntensity: 0.5,
+                            gradientToColors: ['#10b981'],
+                            inverseColors: false,
+                            opacityFrom: 1,
+                            opacityTo: 1,
+                            stops: [0, 100]
+                        }
+                    },
+                    colors: ['#ec4899'],
+                    labels: ['Repeat Rate'],
+                };
+
+                if (repeatRateGauge !== null) {
+                    repeatRateGauge.destroy();
+                }
+                
+                const chartElement = document.querySelector("#repeatRateGauge");
+                if (chartElement) {
+                    chartElement.innerHTML = '';
+                    repeatRateGauge = new ApexCharts(chartElement, options);
+                    repeatRateGauge.render();
+                }
+            }
+
+            // Initialize breakdown chart
+            function initCustomerBreakdownChart(breakdown) {
+                var options = {
+                    series: [
+                        breakdown['1_order'],
+                        breakdown['2_orders'],
+                        breakdown['3_orders'],
+                        breakdown['4_orders'],
+                        breakdown['5_plus_orders']
+                    ],
+                    chart: {
+                        height: 350,
+                        type: 'donut',
+                    },
+                    labels: ['1 Order', '2 Orders', '3 Orders', '4 Orders', '5+ Orders'],
+                    colors: ['#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6'],
+                    legend: {
+                        position: 'bottom',
+                        fontSize: '13px'
+                    },
+                    plotOptions: {
+                        pie: {
+                            donut: {
+                                size: '65%',
+                                labels: {
+                                    show: true,
+                                    total: {
+                                        show: true,
+                                        label: 'Total Customers',
+                                        fontSize: '14px',
+                                        fontWeight: 600,
+                                        color: '#374151',
+                                        formatter: function (w) {
+                                            return w.globals.seriesTotals.reduce((a, b) => a + b, 0);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function(val, opts) {
+                            return opts.w.config.series[opts.seriesIndex];
+                        },
+                        style: {
+                            fontSize: '13px',
+                            fontWeight: 600
+                        }
+                    },
+                    tooltip: {
+                        y: {
+                            formatter: function(val) {
+                                return val + ' customers';
+                            }
+                        }
+                    }
+                };
+
+                if (customerBreakdownChart !== null) {
+                    customerBreakdownChart.destroy();
+                }
+                
+                const chartElement = document.querySelector("#customerBreakdownChart");
+                if (chartElement) {
+                    chartElement.innerHTML = '';
+                    customerBreakdownChart = new ApexCharts(chartElement, options);
+                    customerBreakdownChart.render();
+                }
+            }
+
+            // Update summary cards
+            function updateRepeatRateSummary(data) {
+                if (!data) return;
+                
+                document.getElementById('repeatTotalCustomers').textContent = data.total_customers.toLocaleString();
+                document.getElementById('repeatRepeatCustomers').textContent = data.repeat_customers.toLocaleString();
+                document.getElementById('repeatOneTimeCustomers').textContent = data.one_time_customers.toLocaleString();
+                document.getElementById('repeatAvgOrders').textContent = data.avg_orders_per_customer.toFixed(1);
+            }
+
+            // Update top customers table
+            function updateTopCustomersTable(customers) {
+                const tableBody = document.getElementById('topRepeatCustomersTable');
+                
+                if (!customers || customers.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="5" class="ttext-center tpy-8 ttext-gray-500">No repeat customers found</td></tr>';
+                    return;
+                }
+                
+                let html = '';
+                customers.forEach((customer, index) => {
+                    html += `
+                        <tr class="tborder-t hover:tbg-gray-50">
+                            <td class="tp-3 ttext-sm ttext-gray-900">${index + 1}</td>
+                            <td class="tp-3 ttext-sm tfont-medium ttext-gray-900">${customer.phone}</td>
+                            <td class="tp-3 ttext-sm ttext-center ttext-gray-900">
+                                <span class="tbg-pink-100 ttext-pink-800 tpx-2 tpy-1 trounded-full ttext-xs tfont-semibold">
+                                    ${customer.orders} orders
+                                </span>
+                            </td>
+                            <td class="tp-3 ttext-sm ttext-right ttext-gray-900 tfont-semibold">₱${customer.revenue.toLocaleString()}</td>
+                            <td class="tp-3 ttext-sm ttext-right ttext-gray-600">₱${customer.aov.toLocaleString()}</td>
+                        </tr>
+                    `;
+                });
+                
+                tableBody.innerHTML = html;
+            }
+
+            // Update button states
+            function updateRepeatRateButtonState(filter) {
+                document.querySelectorAll('.repeat-filter-btn').forEach(btn => {
+                    btn.classList.remove('tbg-pink-600', 'ttext-white');
+                    btn.classList.add('tbg-gray-100', 'ttext-gray-700');
+                });
+                
+                const activeBtn = document.getElementById('repeat-btn-' + filter);
+                if (activeBtn) {
+                    activeBtn.classList.remove('tbg-gray-100', 'ttext-gray-700');
+                    activeBtn.classList.add('tbg-pink-600', 'ttext-white');
+                }
+            }
+
+            // Filter repeat rate
+            function filterRepeatRate(filter) {
+                console.log('filterRepeatRate called with filter:', filter);
+                
+                currentRepeatRateFilter = filter;
+                updateRepeatRateButtonState(filter);
+                
+                document.getElementById('repeatRateLoadingIndicator').classList.remove('thidden');
+                document.getElementById('repeatRateGauge').style.opacity = '0.3';
+                document.getElementById('customerBreakdownChart').style.opacity = '0.3';
+                
+                fetch('{{ url("/admin/fbads/api/customer-repeat-rate") }}?filter=' + filter)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Repeat rate data received:', data);
+                        initRepeatRateGauge(data.repeat_rate);
+                        initCustomerBreakdownChart(data.breakdown);
+                        updateRepeatRateSummary(data);
+                        updateTopCustomersTable(data.top_repeat_customers);
+                        document.getElementById('repeatRateLoadingIndicator').classList.add('thidden');
+                        document.getElementById('repeatRateGauge').style.opacity = '1';
+                        document.getElementById('customerBreakdownChart').style.opacity = '1';
+                    })
+                    .catch(error => {
+                        console.error('Error loading repeat rate:', error);
+                        document.getElementById('repeatRateLoadingIndicator').classList.add('thidden');
+                        document.getElementById('repeatRateGauge').style.opacity = '1';
+                        document.getElementById('customerBreakdownChart').style.opacity = '1';
+                    });
+            }
+
+            // Load on page load
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    console.log('Loading initial repeat rate data...');
+                    filterRepeatRate('last30');
+                }, 400);
+            });
+        </script>
+        <!-- Revenue Comparison with Smart Time Periods! 🚀 -->
 
 @endsection

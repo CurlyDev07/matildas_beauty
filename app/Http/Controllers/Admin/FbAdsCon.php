@@ -1175,6 +1175,131 @@ class FbAdsCon extends Controller
         }
     }
 
+    public function getRevenueComparison(Request $request)
+    {
+        try {
+            $now = now();
+            
+            // TODAY vs YESTERDAY (at current time)
+            $todayStart = $now->copy()->startOfDay();
+            $todayNow = $now->copy();
+            $yesterdayStart = $now->copy()->subDay()->startOfDay();
+            $yesterdayEnd = $now->copy()->subDay()->setTime($now->hour, $now->minute, $now->second);
+            
+            $todayData = FbAds::whereBetween('created_at', [$todayStart, $todayNow])
+                ->selectRaw('COUNT(*) as orders, SUM(total) as revenue')
+                ->first();
+            
+            $yesterdayData = FbAds::whereBetween('created_at', [$yesterdayStart, $yesterdayEnd])
+                ->selectRaw('COUNT(*) as orders, SUM(total) as revenue')
+                ->first();
+            
+            $todayRevenue = (float)($todayData->revenue ?? 0);
+            $todayOrders = (int)($todayData->orders ?? 0);
+            $yesterdayRevenue = (float)($yesterdayData->revenue ?? 0);
+            $yesterdayOrders = (int)($yesterdayData->orders ?? 0);
+            
+            $todayVsYesterdayChange = $yesterdayRevenue > 0 
+                ? round((($todayRevenue - $yesterdayRevenue) / $yesterdayRevenue) * 100, 1)
+                : 0;
+            
+            // LAST 7 DAYS vs PREVIOUS 7 DAYS (Days 8-14)
+            $last7DaysStart = $now->copy()->subDays(6)->startOfDay();
+            $last7DaysEnd = $now->copy()->endOfDay();
+            $previous7DaysStart = $now->copy()->subDays(13)->startOfDay();
+            $previous7DaysEnd = $now->copy()->subDays(7)->endOfDay();
+            
+            $last7DaysData = FbAds::whereBetween('created_at', [$last7DaysStart, $last7DaysEnd])
+                ->selectRaw('COUNT(*) as orders, SUM(total) as revenue')
+                ->first();
+            
+            $previous7DaysData = FbAds::whereBetween('created_at', [$previous7DaysStart, $previous7DaysEnd])
+                ->selectRaw('COUNT(*) as orders, SUM(total) as revenue')
+                ->first();
+            
+            $last7DaysRevenue = (float)($last7DaysData->revenue ?? 0);
+            $last7DaysOrders = (int)($last7DaysData->orders ?? 0);
+            $previous7DaysRevenue = (float)($previous7DaysData->revenue ?? 0);
+            $previous7DaysOrders = (int)($previous7DaysData->orders ?? 0);
+            
+            $last7DaysChange = $previous7DaysRevenue > 0 
+                ? round((($last7DaysRevenue - $previous7DaysRevenue) / $previous7DaysRevenue) * 100, 1)
+                : 0;
+            
+            // THIS MONTH vs LAST MONTH
+            $thisMonthStart = $now->copy()->startOfMonth();
+            $thisMonthEnd = $now->copy()->endOfDay();
+            $lastMonthStart = $now->copy()->subMonth()->startOfMonth();
+            $lastMonthEnd = $now->copy()->subMonth()->endOfMonth();
+            
+            $thisMonthData = FbAds::whereBetween('created_at', [$thisMonthStart, $thisMonthEnd])
+                ->selectRaw('COUNT(*) as orders, SUM(total) as revenue')
+                ->first();
+            
+            $lastMonthData = FbAds::whereBetween('created_at', [$lastMonthStart, $lastMonthEnd])
+                ->selectRaw('COUNT(*) as orders, SUM(total) as revenue')
+                ->first();
+            
+            $thisMonthRevenue = (float)($thisMonthData->revenue ?? 0);
+            $thisMonthOrders = (int)($thisMonthData->orders ?? 0);
+            $lastMonthRevenue = (float)($lastMonthData->revenue ?? 0);
+            $lastMonthOrders = (int)($lastMonthData->orders ?? 0);
+            
+            $monthChange = $lastMonthRevenue > 0 
+                ? round((($thisMonthRevenue - $lastMonthRevenue) / $lastMonthRevenue) * 100, 1)
+                : 0;
+            
+            return response()->json([
+                'today_vs_yesterday' => [
+                    'today' => [
+                        'revenue' => $todayRevenue,
+                        'orders' => $todayOrders,
+                        'label' => 'Today (' . $now->format('h:i A') . ')'
+                    ],
+                    'yesterday' => [
+                        'revenue' => $yesterdayRevenue,
+                        'orders' => $yesterdayOrders,
+                        'label' => 'Yesterday (' . $now->format('h:i A') . ')'
+                    ],
+                    'change' => $todayVsYesterdayChange
+                ],
+                'last_7_vs_previous_7' => [
+                    'last_7' => [
+                        'revenue' => $last7DaysRevenue,
+                        'orders' => $last7DaysOrders,
+                        'label' => 'Last 7 Days'
+                    ],
+                    'previous_7' => [
+                        'revenue' => $previous7DaysRevenue,
+                        'orders' => $previous7DaysOrders,
+                        'label' => 'Days 8-14 Ago'
+                    ],
+                    'change' => $last7DaysChange
+                ],
+                'this_month_vs_last_month' => [
+                    'this_month' => [
+                        'revenue' => $thisMonthRevenue,
+                        'orders' => $thisMonthOrders,
+                        'label' => 'This Month'
+                    ],
+                    'last_month' => [
+                        'revenue' => $lastMonthRevenue,
+                        'orders' => $lastMonthOrders,
+                        'label' => 'Last Month'
+                    ],
+                    'change' => $monthChange
+                ]
+            ]);
+            
+        } catch (\Exception $e) {
+            \Log::error('Revenue Comparison Error: ' . $e->getMessage());
+            
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
 }
 
 // conversions/visitors * 100
