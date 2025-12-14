@@ -741,13 +741,31 @@ class FbAdsCon extends Controller
     
     public function getOrdersChart(Request $request)
     {
-        $filter = $request->get('filter', 'month');
+        $filter = $request->get('filter', 'last30'); // Default to last 30 days
         $customDate = $request->get('date');
         
         \Log::info('getOrdersChart called', ['filter' => $filter, 'date' => $customDate]);
         
+        $categories = [];
+        $orders = [];
+        $revenue = [];
+        
         switch ($filter) {
+            case 'last30':
+                // Last 30 days
+                $data = FbAds::selectRaw('DATE(created_at) as date, COUNT(*) as total, SUM(total) as revenue')
+                    ->whereBetween('created_at', [now()->subDays(29)->startOfDay(), now()->endOfDay()])
+                    ->groupBy('date')
+                    ->orderBy('date', 'asc')
+                    ->get();
+                
+                $categories = $data->pluck('date')->map(fn($d) => \Carbon\Carbon::parse($d)->format('M d'));
+                $orders = $data->pluck('total');
+                $revenue = $data->pluck('revenue');
+                break;
+                
             case 'month':
+                // This Month (current month)
                 $data = FbAds::selectRaw('DATE(created_at) as date, COUNT(*) as total, SUM(total) as revenue')
                     ->whereMonth('created_at', now()->month)
                     ->whereYear('created_at', now()->year)
@@ -755,25 +773,68 @@ class FbAdsCon extends Controller
                     ->orderBy('date', 'asc')
                     ->get();
                 
-                \Log::info('Month data query result', ['count' => $data->count()]);
-                
-                $categories = $data->pluck('date')->map(fn($d) => carbon($d)->format('M d'));
+                $categories = $data->pluck('date')->map(fn($d) => \Carbon\Carbon::parse($d)->format('M d'));
                 $orders = $data->pluck('total');
                 $revenue = $data->pluck('revenue');
                 break;
                 
-            // ... rest of your cases
+            case 'lastmonth':
+                // Last Month
+                $lastMonth = now()->subMonth();
+                $data = FbAds::selectRaw('DATE(created_at) as date, COUNT(*) as total, SUM(total) as revenue')
+                    ->whereMonth('created_at', $lastMonth->month)
+                    ->whereYear('created_at', $lastMonth->year)
+                    ->groupBy('date')
+                    ->orderBy('date', 'asc')
+                    ->get();
+                
+                $categories = $data->pluck('date')->map(fn($d) => \Carbon\Carbon::parse($d)->format('M d'));
+                $orders = $data->pluck('total');
+                $revenue = $data->pluck('revenue');
+                break;
+                
+            case 'year':
+                // Full Year (Jan to present) - Monthly data
+                $data = FbAds::selectRaw('MONTH(created_at) as month, COUNT(*) as total, SUM(total) as revenue')
+                    ->whereYear('created_at', now()->year)
+                    ->groupBy('month')
+                    ->orderBy('month', 'asc')
+                    ->get();
+                
+                $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                $categories = $data->pluck('month')->map(fn($m) => $months[$m - 1]);
+                $orders = $data->pluck('total');
+                $revenue = $data->pluck('revenue');
+                break;
+                
+            case 'custom':
+                if ($customDate) {
+                    $dates = explode(" - ", $customDate);
+                    $from = \Carbon\Carbon::createFromFormat('m/d/Y', trim($dates[0]))->startOfDay();
+                    $to = \Carbon\Carbon::createFromFormat('m/d/Y', trim($dates[1]))->endOfDay();
+                    
+                    $data = FbAds::selectRaw('DATE(created_at) as date, COUNT(*) as total, SUM(total) as revenue')
+                        ->whereBetween('created_at', [$from, $to])
+                        ->groupBy('date')
+                        ->orderBy('date', 'asc')
+                        ->get();
+                    
+                    $categories = $data->pluck('date')->map(fn($d) => \Carbon\Carbon::parse($d)->format('M d'));
+                    $orders = $data->pluck('total');
+                    $revenue = $data->pluck('revenue');
+                }
+                break;
         }
         
         $response = [
-            'categories' => $categories ?? [],
-            'orders' => $orders ?? [],
-            'revenue' => $revenue ?? [],
+            'categories' => $categories->toArray(),
+            'orders' => $orders->toArray(),
+            'revenue' => $revenue->map(fn($r) => (float)$r)->toArray(),
             'summary' => [
-                'total_orders' => ($orders ?? collect())->sum(),
-                'total_revenue' => ($revenue ?? collect())->sum(),
-                'avg_order_value' => ($orders ?? collect())->sum() > 0 
-                    ? round(($revenue ?? collect())->sum() / ($orders ?? collect())->sum(), 2) 
+                'total_orders' => $orders->sum(),
+                'total_revenue' => $revenue->sum(),
+                'avg_order_value' => $orders->sum() > 0 
+                    ? round($revenue->sum() / $orders->sum(), 2) 
                     : 0
             ]
         ];
