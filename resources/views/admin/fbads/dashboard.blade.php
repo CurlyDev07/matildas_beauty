@@ -327,7 +327,7 @@ function initOrdersChart(data) {
                 stops: [50, 0, 100]
             }
         },
-        colors: ['#ec4899', '#10b981'],
+        colors: ['#f165a9', '#10b981'],
         labels: data.categories,
         markers: { size: 0 },
         xaxis: {
@@ -342,9 +342,9 @@ function initOrdersChart(data) {
             {
                 title: {
                     text: 'Number of Orders',
-                    style: { color: '#ec4899', fontSize: '14px', fontWeight: 600 }
+                    style: { color: '#f165a9', fontSize: '14px', fontWeight: 600 }
                 },
-                labels: { style: { colors: '#ec4899' } }
+                labels: { style: { colors: '#f165a9' } }
             },
             {
                 opposite: true,
