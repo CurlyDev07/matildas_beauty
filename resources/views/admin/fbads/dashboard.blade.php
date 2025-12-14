@@ -303,7 +303,7 @@
             <div class="tpx-4 tpb-6">
                 <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Orders by Promo</h2>
         
-                <div class="tw-full tmax-w-4xl tbg-white trounded-lg tshadow tp-6 tmb-8">
+                <div class="tw-full tbg-white trounded-lg tshadow tp-6 tmb-8">
                     <!-- Filter Buttons -->
                     <div class="tflex tgap-3 tmb-4">
                         <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updatePromoChart('today')">Today</button>
@@ -323,7 +323,7 @@
             <div class="tpx-4 tpb-6">
                 <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Order Fulfillment Status</h2>
         
-                <div class="tw-full tmax-w-4xl tbg-white trounded-lg tshadow tp-6 tmb-8">
+                <div class="tw-full tbg-white trounded-lg tshadow tp-6 tmb-8">
                     <!-- Filter Buttons -->
                     <div class="tflex tgap-3 tmb-4">
                         <button class="tbg-gray-300 tmr-1 ttext-black tpx-4 tpy-2 trounded ttext-sm" onclick="updateStatusChart('today')">Today</button>
