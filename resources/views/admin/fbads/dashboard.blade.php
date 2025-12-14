@@ -221,15 +221,15 @@
             
             <!-- Summary Cards -->
             <div class="tgrid tgrid-cols-3 tgap-4 tmt-6">
-                <div class="tbg-gradient-to-br tfrom-pink-600 tto-pink-600 trounded-lg tp-6 ttext-white">
+                <div class="tbg-gradient-to-br tfrom-pink-600 tto-pink-600 trounded-lg tp-6">
                     <div class="ttext-sm topacity-90">Total Orders</div>
                     <div id="chartTotalOrders" class="ttext-3xl tfont-bold tmt-2">0</div>
                 </div>
-                <div class="tbg-gradient-to-br tfrom-green-500 tto-green-600 trounded-lg tp-6 ttext-white">
+                <div class="tbg-gradient-to-br tfrom-green-500 tto-green-600 trounded-lg tp-6">
                     <div class="ttext-sm topacity-90">Total Revenue</div>
                     <div id="chartTotalRevenue" class="ttext-3xl tfont-bold tmt-2">₱0.00</div>
                 </div>
-                <div class="tbg-gradient-to-br tfrom-blue-500 tto-blue-600 trounded-lg tp-6 ttext-white">
+                <div class="tbg-gradient-to-br tfrom-blue-500 tto-blue-600 trounded-lg tp-6">
                     <div class="ttext-sm topacity-90">Average Order Value</div>
                     <div id="chartAvgOrderValue" class="ttext-3xl tfont-bold tmt-2">₱0.00</div>
                 </div>
@@ -277,15 +277,15 @@
     
     <!-- Summary Cards -->
     <div class="tgrid tgrid-cols-3 tgap-4 tmt-6">
-        <div class="tbg-gradient-to-br tfrom-purple-500 tto-purple-600 trounded-lg tp-6 ttext-white">
+        <div class="tbg-gradient-to-br tfrom-purple-500 tto-purple-600 trounded-lg tp-6">
             <div class="ttext-sm topacity-90">Peak Hour</div>
             <div id="heatmapPeakHour" class="ttext-2xl tfont-bold tmt-2">--</div>
         </div>
-        <div class="tbg-gradient-to-br tfrom-orange-500 tto-orange-600 trounded-lg tp-6 ttext-white">
+        <div class="tbg-gradient-to-br tfrom-orange-500 tto-orange-600 trounded-lg tp-6">
             <div class="ttext-sm topacity-90">Peak Day</div>
             <div id="heatmapPeakDay" class="ttext-2xl tfont-bold tmt-2">--</div>
         </div>
-        <div class="tbg-gradient-to-br tfrom-teal-500 tto-teal-600 trounded-lg tp-6 ttext-white">
+        <div class="tbg-gradient-to-br tfrom-teal-500 tto-teal-600 trounded-lg tp-6">
             <div class="ttext-sm topacity-90">Busiest Period Orders</div>
             <div id="heatmapBusiestOrders" class="ttext-2xl tfont-bold tmt-2">0</div>
         </div>
