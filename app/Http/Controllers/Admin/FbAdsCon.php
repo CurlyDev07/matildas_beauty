@@ -675,10 +675,6 @@ class FbAdsCon extends Controller
 
         return view('admin.fbads.status_details', compact('status_details'));
     }
-
-    
-
-
     public function change_status_problematic(Request $request){
         $previous_status = FbAds::where('id', $request['id'])->first('status')->status;
         $fbads_id = $request['id'];
@@ -741,6 +737,50 @@ class FbAdsCon extends Controller
         ]);
 
         return redirect()->route('fbads.status_details');
+    }
+    
+    public function getOrdersChart(Request $request)
+    {
+        $filter = $request->get('filter', 'month');
+        $customDate = $request->get('date');
+        
+        \Log::info('getOrdersChart called', ['filter' => $filter, 'date' => $customDate]);
+        
+        switch ($filter) {
+            case 'month':
+                $data = FbAds::selectRaw('DATE(created_at) as date, COUNT(*) as total, SUM(total) as revenue')
+                    ->whereMonth('created_at', now()->month)
+                    ->whereYear('created_at', now()->year)
+                    ->groupBy('date')
+                    ->orderBy('date', 'asc')
+                    ->get();
+                
+                \Log::info('Month data query result', ['count' => $data->count()]);
+                
+                $categories = $data->pluck('date')->map(fn($d) => carbon($d)->format('M d'));
+                $orders = $data->pluck('total');
+                $revenue = $data->pluck('revenue');
+                break;
+                
+            // ... rest of your cases
+        }
+        
+        $response = [
+            'categories' => $categories ?? [],
+            'orders' => $orders ?? [],
+            'revenue' => $revenue ?? [],
+            'summary' => [
+                'total_orders' => ($orders ?? collect())->sum(),
+                'total_revenue' => ($revenue ?? collect())->sum(),
+                'avg_order_value' => ($orders ?? collect())->sum() > 0 
+                    ? round(($revenue ?? collect())->sum() / ($orders ?? collect())->sum(), 2) 
+                    : 0
+            ]
+        ];
+        
+        \Log::info('Response data', $response);
+        
+        return response()->json($response);
     }
 
 }

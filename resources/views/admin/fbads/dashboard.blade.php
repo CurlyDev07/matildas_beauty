@@ -187,6 +187,73 @@
         </div>
 
 
+ 
+
+
+
+
+
+
+
+
+
+        <!-- Orders & Revenue Analytics -->
+        <div class="tbg-white trounded-lg tshadow-lg tp-6 tmb-6">
+            <!-- Filter Buttons -->
+            <div class="tflex tjustify-between titems-center tmb-6">
+                <h2 class="ttext-xl tfont-semibold ttext-gray-800">Orders & Revenue Analytics</h2>
+                
+                <div class="tflex tgap-2 titems-center tflex-wrap">
+                    <button onclick="filterOrdersChart('month')" 
+                        id="chart-btn-month"
+                        class="chart-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-pink-600 ttext-white">
+                        Month
+                    </button>
+                    <button onclick="filterOrdersChart('year')" 
+                        id="chart-btn-year"
+                        class="chart-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200">
+                        Year
+                    </button>
+                    
+                    <!-- Custom Date Range -->
+                    <div class="tflex tgap-2 titems-center">
+                        <input type="text" 
+                            id="chartCustomDateRange" 
+                            class="form-control tpx-4 tpy-2 tborder trounded-lg ttext-sm" 
+                            placeholder="Custom Range"
+                            style="width: 200px;">
+                        <button onclick="applyCustomDateChart()" 
+                            class="tpx-4 tpy-2 tbg-blue-600 ttext-white trounded-lg hover:tbg-blue-700 ttransition-all ttext-sm">
+                            Apply
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="chartLoadingIndicator" class="tflex tjustify-center titems-center tpy-8">
+                <div class="tborder-4 tborder-pink-200 tborder-t-pink-600 trounded-full tw-10 th-10 tanimate-spin"></div>
+            </div>
+
+            <!-- Chart Container -->
+            <div id="ordersRevenueChart" style="min-height: 400px;"></div>
+            
+            <!-- Summary Cards -->
+            <div class="tgrid tgrid-cols-3 tgap-4 tmt-6">
+                <div class="tbg-gradient-to-br tfrom-pink-500 tto-pink-600 trounded-lg tp-6 ttext-white">
+                    <div class="ttext-sm topacity-90">Total Orders</div>
+                    <div id="chartTotalOrders" class="ttext-3xl tfont-bold tmt-2">0</div>
+                </div>
+                <div class="tbg-gradient-to-br tfrom-green-500 tto-green-600 trounded-lg tp-6 ttext-white">
+                    <div class="ttext-sm topacity-90">Total Revenue</div>
+                    <div id="chartTotalRevenue" class="ttext-3xl tfont-bold tmt-2">₱0.00</div>
+                </div>
+                <div class="tbg-gradient-to-br tfrom-blue-500 tto-blue-600 trounded-lg tp-6 ttext-white">
+                    <div class="ttext-sm topacity-90">Average Order Value</div>
+                    <div id="chartAvgOrderValue" class="ttext-3xl tfont-bold tmt-2">₱0.00</div>
+                </div>
+            </div>
+        </div>
 
 
         <div class="tpx-4 tpb-6">
@@ -512,6 +579,256 @@
                     xaxis: { categories: timeData[range].labels }
                 });
             };
+        });
+    </script>
+
+
+    <script>
+        let ordersChart = null;
+        let currentChartFilter = 'month';
+
+        // Initialize chart
+        function initOrdersChart(data) {
+            console.log('initOrdersChart called with data:', data);
+            
+            if (!data || !data.categories || data.categories.length === 0) {
+                console.warn('No chart data available');
+                document.getElementById('chartLoadingIndicator').classList.add('thidden');
+                return;
+            }
+
+            var options = {
+                series: [
+                    {
+                        name: 'Orders',
+                        type: 'column',
+                        data: data.orders
+                    },
+                    {
+                        name: 'Revenue (₱)',
+                        type: 'line',
+                        data: data.revenue
+                    }
+                ],
+                chart: {
+                    height: 400,
+                    type: 'line',
+                    toolbar: { show: true },
+                    animations: {
+                        enabled: true,
+                        easing: 'easeinout',
+                        speed: 800
+                    }
+                },
+                stroke: {
+                    width: [0, 4],
+                    curve: 'smooth'
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 8,
+                        columnWidth: '50%'
+                    }
+                },
+                fill: {
+                    type: ['solid', 'gradient'],
+                    gradient: {
+                        shade: 'light',
+                        type: "vertical",
+                        shadeIntensity: 0.25,
+                        inverseColors: true,
+                        opacityFrom: 0.85,
+                        opacityTo: 0.85,
+                        stops: [50, 0, 100]
+                    }
+                },
+                colors: ['#ec4899', '#10b981'],
+                labels: data.categories,
+                markers: { size: 0 },
+                xaxis: {
+                    type: 'category',
+                    labels: { 
+                        style: { fontSize: '12px' },
+                        rotate: -45,
+                        rotateAlways: false
+                    }
+                },
+                yaxis: [
+                    {
+                        title: {
+                            text: 'Number of Orders',
+                            style: { color: '#ec4899', fontSize: '14px', fontWeight: 600 }
+                        },
+                        labels: { style: { colors: '#ec4899' } }
+                    },
+                    {
+                        opposite: true,
+                        title: {
+                            text: 'Revenue (₱)',
+                            style: { color: '#10b981', fontSize: '14px', fontWeight: 600 }
+                        },
+                        labels: {
+                            style: { colors: '#10b981' },
+                            formatter: function(val) {
+                                return '₱' + val.toLocaleString();
+                            }
+                        }
+                    }
+                ],
+                tooltip: {
+                    shared: true,
+                    intersect: false,
+                    y: {
+                        formatter: function (y, { seriesIndex }) {
+                            if (seriesIndex === 1) {
+                                return '₱' + y.toLocaleString();
+                            }
+                            return y + ' orders';
+                        }
+                    }
+                },
+                legend: {
+                    position: 'top',
+                    horizontalAlign: 'left',
+                    fontSize: '14px',
+                    markers: { width: 12, height: 12, radius: 12 }
+                },
+                grid: { borderColor: '#f1f1f1' }
+            };
+
+            // Destroy existing chart
+            if (ordersChart !== null) {
+                ordersChart.destroy();
+            }
+            
+            // Create new chart
+            const chartElement = document.querySelector("#ordersRevenueChart");
+            if (chartElement) {
+                ordersChart = new ApexCharts(chartElement, options);
+                ordersChart.render();
+                console.log('Chart rendered successfully');
+            } else {
+                console.error('Chart element not found');
+            }
+        }
+
+        // Update button states
+        function updateChartButtonState(filter) {
+            document.querySelectorAll('.chart-filter-btn').forEach(btn => {
+                btn.classList.remove('tbg-pink-600', 'ttext-white');
+                btn.classList.add('tbg-gray-100', 'ttext-gray-700');
+            });
+            
+            const activeBtn = document.getElementById('chart-btn-' + filter);
+            if (activeBtn) {
+                activeBtn.classList.remove('tbg-gray-100', 'ttext-gray-700');
+                activeBtn.classList.add('tbg-pink-600', 'ttext-white');
+            }
+        }
+
+        // Update summary cards
+        function updateChartSummary(data) {
+            if (!data || !data.summary) return;
+            
+            document.getElementById('chartTotalOrders').textContent = data.summary.total_orders.toLocaleString();
+            document.getElementById('chartTotalRevenue').textContent = '₱' + data.summary.total_revenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('chartAvgOrderValue').textContent = '₱' + data.summary.avg_order_value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+
+        // Filter chart with fetch (no jQuery)
+        function filterOrdersChart(filter) {
+            console.log('filterOrdersChart called with filter:', filter);
+            
+            currentChartFilter = filter;
+            updateChartButtonState(filter);
+            
+            // Show loading
+            document.getElementById('chartLoadingIndicator').classList.remove('thidden');
+            document.getElementById('ordersRevenueChart').style.opacity = '0.3';
+            
+            // Use fetch instead of $.ajax
+            fetch('{{ url("/admin/fbads/api/orders-chart") }}?filter=' + filter)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Chart data received:', data);
+                    initOrdersChart(data);
+                    updateChartSummary(data);
+                    document.getElementById('chartLoadingIndicator').classList.add('thidden');
+                    document.getElementById('ordersRevenueChart').style.opacity = '1';
+                })
+                .catch(error => {
+                    console.error('Error loading chart:', error);
+                    document.getElementById('chartLoadingIndicator').classList.add('thidden');
+                    document.getElementById('ordersRevenueChart').style.opacity = '1';
+                    alert('Failed to load chart data: ' + error.message);
+                });
+        }
+
+        // Apply custom date
+        function applyCustomDateChart() {
+            const dateRange = document.getElementById('chartCustomDateRange').value;
+            if (!dateRange) {
+                alert('Please select a date range');
+                return;
+            }
+            
+            console.log('Applying custom date:', dateRange);
+            
+            currentChartFilter = 'custom';
+            updateChartButtonState('custom');
+            
+            // Show loading
+            document.getElementById('chartLoadingIndicator').classList.remove('thidden');
+            document.getElementById('ordersRevenueChart').style.opacity = '0.3';
+            
+            fetch('{{ url("/admin/fbads/api/orders-chart") }}?filter=custom&date=' + encodeURIComponent(dateRange))
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Chart data received:', data);
+                    initOrdersChart(data);
+                    updateChartSummary(data);
+                    document.getElementById('chartLoadingIndicator').classList.add('thidden');
+                    document.getElementById('ordersRevenueChart').style.opacity = '1';
+                })
+                .catch(error => {
+                    console.error('Error loading chart:', error);
+                    document.getElementById('chartLoadingIndicator').classList.add('thidden');
+                    document.getElementById('ordersRevenueChart').style.opacity = '1';
+                    alert('Failed to load chart data: ' + error.message);
+                });
+        }
+
+        // Wait for everything to load
+        window.addEventListener('load', function() {
+            console.log('Page fully loaded, initializing chart...');
+            
+            // Initialize date range picker
+            $('#chartCustomDateRange').daterangepicker({
+                autoUpdateInput: false,
+                locale: {
+                    cancelLabel: 'Clear',
+                    format: 'MM/DD/YYYY'
+                }
+            });
+            
+            $('#chartCustomDateRange').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+            });
+            
+            $('#chartCustomDateRange').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });
+            
+            // Small delay to ensure ApexCharts is fully loaded
+            setTimeout(function() {
+                console.log('Loading initial month data...');
+                filterOrdersChart('month');
+            }, 100);
         });
     </script>
 
