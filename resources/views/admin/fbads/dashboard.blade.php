@@ -821,7 +821,7 @@
         let orderHeatmap = null;
         let currentHeatmapFilter = 'last30';
 
-        // Initialize heatmap
+
         function initOrderHeatmap(data) {
             console.log('initOrderHeatmap called with data:', data);
             
@@ -850,37 +850,37 @@
                                     from: 0,
                                     to: 0,
                                     name: 'No Orders',
-                                    color: '#f3f4f6'
+                                    color: '#e5e7eb'  // Gray - Coldest
                                 },
                                 {
-                                    from: 1,
+                                    from: 0.1,
+                                    to: 2,
+                                    name: '0-2 Orders',
+                                    color: '#bfdbfe'  // Light Blue
+                                },
+                                {
+                                    from: 2.1,
                                     to: 5,
-                                    name: '1-5 Orders',
-                                    color: '#fde68a'
+                                    name: '2-5 Orders',
+                                    color: '#60a5fa'  // Blue
                                 },
                                 {
-                                    from: 6,
+                                    from: 5.1,
                                     to: 10,
-                                    name: '6-10 Orders',
-                                    color: '#fcd34d'
+                                    name: '5-10 Orders',
+                                    color: '#fbbf24'  // Yellow/Orange
                                 },
                                 {
-                                    from: 11,
-                                    to: 20,
-                                    name: '11-20 Orders',
-                                    color: '#f59e0b'
+                                    from: 10.1,
+                                    to: 15,
+                                    name: '10-15 Orders',
+                                    color: '#f97316'  // Orange
                                 },
                                 {
-                                    from: 21,
-                                    to: 50,
-                                    name: '21-50 Orders',
-                                    color: '#d97706'
-                                },
-                                {
-                                    from: 51,
+                                    from: 15.1,
                                     to: 999,
-                                    name: '50+ Orders',
-                                    color: '#b45309'
+                                    name: '15+ Orders',
+                                    color: '#dc2626'  // Red - Hottest
                                 }
                             ]
                         }
@@ -940,7 +940,8 @@
                 orderHeatmap.render();
                 console.log('Heatmap rendered successfully');
             }
-        }
+        }   
+
 
         // Update heatmap button states
         function updateHeatmapButtonState(filter) {
