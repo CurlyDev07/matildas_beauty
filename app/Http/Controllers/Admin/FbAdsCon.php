@@ -840,6 +840,111 @@ class FbAdsCon extends Controller
         return response()->json($response);
     }
 
+public function getOrderHeatmap(Request $request)
+{
+    $filter = $request->get('filter', 'last30');
+    
+    $query = FbAds::query();
+    
+    // Apply date filter
+    switch ($filter) {
+        case 'last30':
+            $startDate = now()->subDays(29)->startOfDay();
+            $endDate = now()->endOfDay();
+            $query->whereBetween('created_at', [$startDate, $endDate]);
+            break;
+        case 'month':
+            $startDate = now()->startOfMonth();
+            $endDate = now()->endOfDay();
+            $query->whereMonth('created_at', now()->month)
+                  ->whereYear('created_at', now()->year);
+            break;
+        case 'lastmonth':
+            $lastMonth = now()->subMonth();
+            $startDate = $lastMonth->startOfMonth();
+            $endDate = $lastMonth->endOfMonth();
+            $query->whereMonth('created_at', $lastMonth->month)
+                  ->whereYear('created_at', $lastMonth->year);
+            break;
+        case 'year':
+            $startDate = now()->startOfYear();
+            $endDate = now()->endOfDay();
+            $query->whereYear('created_at', now()->year);
+            break;
+        default:
+            $startDate = now()->subDays(29)->startOfDay();
+            $endDate = now()->endOfDay();
+    }
+    
+    // Get orders grouped by day of week and hour
+    $data = $query->selectRaw('
+            DAYOFWEEK(created_at) as day_of_week,
+            HOUR(created_at) as hour,
+            COUNT(*) as count
+        ')
+        ->groupBy('day_of_week', 'hour')
+        ->get();
+    
+    // Calculate number of weeks in the period for averaging
+    $daysDiff = $startDate->diffInDays($endDate) + 1;
+    $weeksInPeriod = ceil($daysDiff / 7);
+    
+    // Build heatmap data structure
+    $days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    $hours = range(0, 23);
+    
+    $heatmapData = [];
+    
+    foreach ($days as $dayIndex => $dayName) {
+        $dayData = [];
+        
+        foreach ($hours as $hour) {
+            $mysqlDayIndex = $dayIndex + 1;
+            
+            $count = $data->where('day_of_week', $mysqlDayIndex)
+                         ->where('hour', $hour)
+                         ->first();
+            
+            // Calculate average per occurrence
+            $totalCount = $count ? $count->count : 0;
+            $avgCount = $weeksInPeriod > 0 ? round($totalCount / $weeksInPeriod, 1) : 0;
+            
+            $dayData[] = [
+                'x' => sprintf('%02d:00', $hour),
+                'y' => $avgCount // Using average instead of total
+            ];
+        }
+        
+        $heatmapData[] = [
+            'name' => $dayName,
+            'data' => $dayData
+        ];
+    }
+    
+    // Calculate summary stats
+    $totalOrders = $data->sum('count');
+    $peakHour = $data->sortByDesc('count')->first();
+    
+    $dayTotals = $data->groupBy('day_of_week')->map(function($day) {
+        return $day->sum('count');
+    })->sortByDesc(function($count) {
+        return $count;
+    });
+    
+    $peakDay = $dayTotals->keys()->first();
+    
+    return response()->json([
+        'heatmap' => $heatmapData,
+        'summary' => [
+            'total_orders' => $totalOrders,
+            'peak_hour' => $peakHour ? sprintf('%s at %02d:00', $days[$peakHour->day_of_week - 1], $peakHour->hour) : 'N/A',
+            'peak_day' => $peakDay ? $days[$peakDay - 1] : 'N/A',
+            'busiest_orders' => $peakHour ? $peakHour->count : 0,
+            'period_weeks' => $weeksInPeriod
+        ]
+    ]);
+}
+
 }
 
 // conversions/visitors * 100
