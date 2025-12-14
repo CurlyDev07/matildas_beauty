@@ -175,26 +175,6 @@
 
         
 
-
-        <div class="tpx-4 tpb-6">
-            <!-- Title -->
-            <h2 class="ttext-md tmt-5 ttext-center tfont-bold ttext-gray-800 tmb-2">Orders in the Last 7 Days</h2>
-    
-            <!-- Chart Container -->
-            <div class="tw-full tmax-w-4xl tmt-8">
-                <div id="ordersPerDayChart" class="tbg-white trounded-lg tshadow p-6"></div>
-            </div>
-        </div>
-
-
- 
-
-
-
-
-
-
-
         <div class="tbg-white trounded-lg tshadow-lg tp-6 tmb-6">
     <!-- Filter Buttons -->
     <div class="tflex tjustify-between titems-center tmb-6 tflex-wrap tgap-4">
@@ -203,34 +183,34 @@
         <div class="tflex tgap-2 titems-center tflex-wrap">
             <button onclick="filterOrdersChart('last30')" 
                 id="chart-btn-last30"
-                class="chart-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-pink-600 ttext-white">
+                class="chart-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1">
                 Last 30 Days
             </button>
             <button onclick="filterOrdersChart('month')" 
                 id="chart-btn-month"
-                class="chart-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200">
+                class="chart-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1">
                 This Month
             </button>
             <button onclick="filterOrdersChart('lastmonth')" 
                 id="chart-btn-lastmonth"
-                class="chart-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200">
+                class="chart-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1">
                 Last Month
             </button>
             <button onclick="filterOrdersChart('year')" 
                 id="chart-btn-year"
-                class="chart-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200">
+                class="chart-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-white hover:ttext-pink-700 tborder hover:tborder-pink-600 focus:tbg-pink-600 focus:ttext-white browser-default tmx-1">
                 Year
             </button>
             
             <!-- Custom Date Range -->
-            <div class="tflex tgap-2 titems-center">
+            <div class="tflex tgap-2 titems-center ">
                 <input type="text" 
                     id="chartCustomDateRange" 
-                    class="form-control tpx-4 tpy-2 tborder trounded-lg ttext-sm" 
+                    class="form-control tpx-4 tpy-2 tborder trounded-lg ttext-sm browser-default tmx-1" 
                     placeholder="Custom Range"
                     style="width: 200px;">
                 <button onclick="applyCustomDateChart()" 
-                    class="tpx-4 tpy-2 tbg-blue-600 ttext-white trounded-lg hover:tbg-blue-700 ttransition-all ttext-sm">
+                    class="tpx-4 tml-1 tpy-2 tbg-blue-600 ttext-white trounded-lg hover:tbg-blue-700 ttransition-all ttext-sm browser-default">
                     Apply
                 </button>
             </div>
@@ -247,7 +227,7 @@
     
     <!-- Summary Cards -->
     <div class="tgrid tgrid-cols-3 tgap-4 tmt-6">
-        <div class="tbg-gradient-to-br tfrom-pink-500 tto-pink-600 trounded-lg tp-6 ttext-white">
+        <div class="tbg-gradient-to-br tfrom-pink-600 tto-pink-600 trounded-lg tp-6 ttext-white">
             <div class="ttext-sm topacity-90">Total Orders</div>
             <div id="chartTotalOrders" class="ttext-3xl tfont-bold tmt-2">0</div>
         </div>
@@ -327,7 +307,7 @@ function initOrdersChart(data) {
                 stops: [50, 0, 100]
             }
         },
-        colors: ['#f165a9', '#10b981'],
+        colors: ['#ff1e8bff', '#10b981'],
         labels: data.categories,
         markers: { size: 0 },
         xaxis: {
@@ -342,9 +322,9 @@ function initOrdersChart(data) {
             {
                 title: {
                     text: 'Number of Orders',
-                    style: { color: '#f165a9', fontSize: '14px', fontWeight: 600 }
+                    style: { color: '#ff1e8bff', fontSize: '14px', fontWeight: 600 }
                 },
-                labels: { style: { colors: '#f165a9' } }
+                labels: { style: { colors: '#ff1e8bff' } }
             },
             {
                 opposite: true,
@@ -620,46 +600,6 @@ window.addEventListener('load', function() {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-    </script>
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const options = {
-                chart: {
-                    type: 'bar',
-                    height: 350,
-                    toolbar: { show: true }
-                },
-                series: [{
-                    name: 'Orders',
-                    data: @json($ordersPerDay)
-                }],
-                xaxis: {
-                    categories: @json($days),
-                    labels: {
-                        style: {
-                            colors: '#333',
-                            fontSize: '14px'
-                        }
-                    }
-                },
-                colors: ['#f02074'],
-                plotOptions: {
-                    bar: {
-                        borderRadius: 6,
-                        columnWidth: '50%'
-                    }
-                },
-                dataLabels: { enabled: false },
-                yaxis: {
-                    title: { text: 'Order Count' }
-                }
-            };
-
-            const chart = new ApexCharts(document.querySelector("#ordersPerDayChart"), options);
-            chart.render();
-        });
     </script>
 
     <script>

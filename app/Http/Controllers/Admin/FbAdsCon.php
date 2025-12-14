@@ -182,7 +182,6 @@ class FbAdsCon extends Controller
         // ORDERS PER DAY (This Month)
         // -------------------------
         $days = collect();
-        $ordersPerDay = collect();
 
         $currentDate = $startOfMonth->copy();
         while ($currentDate <= $now) {
@@ -190,8 +189,6 @@ class FbAdsCon extends Controller
             $count = FbAds::whereDate('created_at', $currentDate->toDateString())->count();
 
             $days->push($label);
-            $ordersPerDay->push($count);
-
             $currentDate->addDay();
         }
 
@@ -373,7 +370,6 @@ class FbAdsCon extends Controller
             'totalOrdersThisMonth',
             'totalRevenueThisMonth',
             'days',
-            'ordersPerDay',
             'ordersByPromoToday',
             'ordersByPromo7',
             'ordersByPromo30',
