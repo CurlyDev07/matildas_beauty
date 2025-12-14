@@ -412,256 +412,174 @@
 
 
 
-
-
-
-
         <!-- Revenue Comparison -->
-<div class="tbg-white trounded-lg tshadow-lg tp-6 tmb-6">
-    <!-- Header -->
-    <div class="tflex tjustify-between titems-center tmb-6">
-        <h2 class="ttext-xl tfont-semibold ttext-gray-800">Revenue Comparison</h2>
-        <button onclick="loadRevenueComparison()" class="tpx-4 tpy-2 tbg-gray-100 hover:tbg-gray-200 trounded-lg ttext-sm tfont-medium ttransition-all">
-            <i class="fas fa-sync-alt tmr-2"></i> Refresh
-        </button>
-    </div>
-
-    <!-- Loading Indicator -->
-    <div id="comparisonLoadingIndicator" class="thidden tflex tjustify-center titems-center tpy-8">
-        <div class="tborder-4 tborder-pink-200 tborder-t-pink-600 trounded-full tw-10 th-10 tanimate-spin"></div>
-    </div>
-
-    <!-- Comparison Cards -->
-    <div class="tgrid tgrid-cols-1 lg:tgrid-cols-3 tgap-6">
-        <!-- Today vs Yesterday -->
-        <div class="tborder-2 trounded-lg tp-6">
-            <div class="tflex titems-center tjustify-between tmb-4">
-                <h3 class="ttext-lg tfont-semibold ttext-gray-800">Today vs Yesterday</h3>
-                <span id="todayChangePercent" class="tpx-3 tpy-1 trounded-full ttext-sm tfont-bold">--</span>
+        <div class="tbg-white trounded-lg tshadow-lg tp-6 tmb-6">
+            <!-- Header -->
+            <div class="tflex tjustify-between titems-center tmb-6">
+                <h2 class="ttext-xl tfont-semibold ttext-gray-800">Revenue Comparison</h2>
+                <button onclick="loadRevenueComparison()" class="tpx-4 tpy-2 tbg-gray-100 hover:tbg-gray-200 trounded-lg ttext-sm tfont-medium ttransition-all">
+                    <i class="fas fa-sync-alt tmr-2"></i> Refresh
+                </button>
             </div>
-            <div id="todayVsYesterdayChart" style="height: 300px;"></div>
-            <div class="tgrid tgrid-cols-2 tgap-4 tmt-4">
-                <div>
-                    <div class="ttext-xs ttext-gray-500 tmb-1" id="todayLabel">Today</div>
-                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="todayRevenue">₱0</div>
-                    <div class="ttext-sm ttext-gray-600" id="todayOrders">0 orders</div>
+
+            <!-- Loading Indicator -->
+            <div id="comparisonLoadingIndicator" class="thidden tflex tjustify-center titems-center tpy-8">
+                <div class="tborder-4 tborder-pink-200 tborder-t-pink-600 trounded-full tw-10 th-10 tanimate-spin"></div>
+            </div>
+
+            <!-- Comparison Grid -->
+            <div class="tflex tjustify-around">
+                
+                <!-- Today vs Yesterday -->
+                <div class="tborder-2 tborder-gray-200 trounded-lg tp-6 hover:tshadow-md ttransition-shadow">
+                    <div class="tflex titems-center tjustify-between tmb-4">
+                        <h3 class="ttext-sm tfont-semibold ttext-gray-500 tuppercase ttracking-wide">Today vs Yesterday</h3>
+                        <span id="todayChangePercent" class="tpx-3 tpy-1 trounded-full ttext-xs tfont-bold tbg-gray-100 ttext-gray-600">--</span>
+                    </div>
+                    
+                    <div class="tspace-y-4">
+                        <!-- Today -->
+                        <div class="tbg-gradient-to-br tfrom-pink-50 tto-pink-100 trounded-lg tp-4">
+                            <div class="ttext-xs ttext-pink-700 tfont-medium tmb-1" id="todayLabel">Today</div>
+                            <div class="ttext-3xl tfont-bold ttext-pink-900" id="todayRevenue">₱0</div>
+                            <div class="ttext-sm ttext-pink-700 tmt-1" id="todayOrders">0 orders</div>
+                        </div>
+                        
+                        <!-- Yesterday -->
+                        <div class="tbg-gray-50 trounded-lg tp-4">
+                            <div class="ttext-xs ttext-gray-600 tfont-medium tmb-1" id="yesterdayLabel">Yesterday</div>
+                            <div class="ttext-2xl tfont-bold ttext-gray-800" id="yesterdayRevenue">₱0</div>
+                            <div class="ttext-sm ttext-gray-600 tmt-1" id="yesterdayOrders">0 orders</div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <div class="ttext-xs ttext-gray-500 tmb-1" id="yesterdayLabel">Yesterday</div>
-                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="yesterdayRevenue">₱0</div>
-                    <div class="ttext-sm ttext-gray-600" id="yesterdayOrders">0 orders</div>
+
+                <!-- Last 7 Days vs Previous 7 Days -->
+                <div class="tborder-2 tborder-gray-200 trounded-lg tp-6 hover:tshadow-md ttransition-shadow">
+                    <div class="tflex titems-center tjustify-between tmb-4">
+                        <h3 class="ttext-sm tfont-semibold ttext-gray-500 tuppercase ttracking-wide">Last 7 vs Prev 7</h3>
+                        <span id="week7ChangePercent" class="tpx-3 tpy-1 trounded-full ttext-xs tfont-bold tbg-gray-100 ttext-gray-600">--</span>
+                    </div>
+                    
+                    <div class="tspace-y-4">
+                        <!-- Last 7 Days -->
+                        <div class="tbg-gradient-to-br tfrom-blue-50 tto-blue-100 trounded-lg tp-4">
+                            <div class="ttext-xs ttext-blue-700 tfont-medium tmb-1">Last 7 Days</div>
+                            <div class="ttext-3xl tfont-bold ttext-blue-900" id="last7Revenue">₱0</div>
+                            <div class="ttext-sm ttext-blue-700 tmt-1" id="last7Orders">0 orders</div>
+                        </div>
+                        
+                        <!-- Days 8-14 Ago -->
+                        <div class="tbg-gray-50 trounded-lg tp-4">
+                            <div class="ttext-xs ttext-gray-600 tfont-medium tmb-1">Days 8-14 Ago</div>
+                            <div class="ttext-2xl tfont-bold ttext-gray-800" id="prev7Revenue">₱0</div>
+                            <div class="ttext-sm ttext-gray-600 tmt-1" id="prev7Orders">0 orders</div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- This Month vs Last Month -->
+                <div class="tborder-2 tborder-gray-200 trounded-lg tp-6 hover:tshadow-md ttransition-shadow">
+                    <div class="tflex titems-center tjustify-between tmb-4">
+                        <h3 class="ttext-sm tfont-semibold ttext-gray-500 tuppercase ttracking-wide">This vs Last Month</h3>
+                        <span id="monthChangePercent" class="tpx-3 tpy-1 trounded-full ttext-xs tfont-bold tbg-gray-100 ttext-gray-600">--</span>
+                    </div>
+                    
+                    <div class="tspace-y-4">
+                        <!-- This Month -->
+                        <div class="tbg-gradient-to-br tfrom-green-50 tto-green-100 trounded-lg tp-4">
+                            <div class="ttext-xs ttext-green-700 tfont-medium tmb-1">This Month</div>
+                            <div class="ttext-3xl tfont-bold ttext-green-900" id="thisMonthRevenue">₱0</div>
+                            <div class="ttext-sm ttext-green-700 tmt-1" id="thisMonthOrders">0 orders</div>
+                        </div>
+                        
+                        <!-- Last Month -->
+                        <div class="tbg-gray-50 trounded-lg tp-4">
+                            <div class="ttext-xs ttext-gray-600 tfont-medium tmb-1">Last Month</div>
+                            <div class="ttext-2xl tfont-bold ttext-gray-800" id="lastMonthRevenue">₱0</div>
+                            <div class="ttext-sm ttext-gray-600 tmt-1" id="lastMonthOrders">0 orders</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <!-- Last 7 Days vs Previous 7 Days -->
-        <div class="tborder-2 trounded-lg tp-6">
-            <div class="tflex titems-center tjustify-between tmb-4">
-                <h3 class="ttext-lg tfont-semibold ttext-gray-800">Last 7 vs Prev 7</h3>
-                <span id="week7ChangePercent" class="tpx-3 tpy-1 trounded-full ttext-sm tfont-bold">--</span>
-            </div>
-            <div id="last7VsPrev7Chart" style="height: 300px;"></div>
-            <div class="tgrid tgrid-cols-2 tgap-4 tmt-4">
-                <div>
-                    <div class="ttext-xs ttext-gray-500 tmb-1">Last 7 Days</div>
-                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="last7Revenue">₱0</div>
-                    <div class="ttext-sm ttext-gray-600" id="last7Orders">0 orders</div>
-                </div>
-                <div>
-                    <div class="ttext-xs ttext-gray-500 tmb-1">Days 8-14 Ago</div>
-                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="prev7Revenue">₱0</div>
-                    <div class="ttext-sm ttext-gray-600" id="prev7Orders">0 orders</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- This Month vs Last Month -->
-        <div class="tborder-2 trounded-lg tp-6">
-            <div class="tflex titems-center tjustify-between tmb-4">
-                <h3 class="ttext-lg tfont-semibold ttext-gray-800">This vs Last Month</h3>
-                <span id="monthChangePercent" class="tpx-3 tpy-1 trounded-full ttext-sm tfont-bold">--</span>
-            </div>
-            <div id="thisVsLastMonthChart" style="height: 300px;"></div>
-            <div class="tgrid tgrid-cols-2 tgap-4 tmt-4">
-                <div>
-                    <div class="ttext-xs ttext-gray-500 tmb-1">This Month</div>
-                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="thisMonthRevenue">₱0</div>
-                    <div class="ttext-sm ttext-gray-600" id="thisMonthOrders">0 orders</div>
-                </div>
-                <div>
-                    <div class="ttext-xs ttext-gray-500 tmb-1">Last Month</div>
-                    <div class="ttext-2xl tfont-bold ttext-gray-900" id="lastMonthRevenue">₱0</div>
-                    <div class="ttext-sm ttext-gray-600" id="lastMonthOrders">0 orders</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-let todayChart = null;
-let week7Chart = null;
-let monthChart = null;
-
-// Create comparison bar chart
-function createComparisonChart(elementId, current, previous, currentLabel, previousLabel) {
-    const options = {
-        series: [{
-            name: 'Revenue',
-            data: [current.revenue, previous.revenue]
-        }],
-        chart: {
-            type: 'bar',
-            height: 300,
-            toolbar: { show: false }
-        },
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                columnWidth: '50%',
-                borderRadius: 8,
-                dataLabels: {
-                    position: 'top'
-                }
+        <script>
+        // Update change indicator
+        function updateChangeIndicator(elementId, change) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            const isPositive = change >= 0;
+            const arrow = isPositive ? '↑' : '↓';
+            
+            let colorClass;
+            if (change > 0) {
+                colorClass = 'tbg-green-100 ttext-green-800';
+            } else if (change < 0) {
+                colorClass = 'tbg-red-100 ttext-red-800';
+            } else {
+                colorClass = 'tbg-gray-100 ttext-gray-600';
             }
-        },
-        dataLabels: {
-            enabled: true,
-            formatter: function(val) {
-                return '₱' + val.toLocaleString();
-            },
-            offsetY: -25,
-            style: {
-                fontSize: '12px',
-                fontWeight: 600,
-                colors: ['#374151']
-            }
-        },
-        colors: ['#ec4899'],
-        xaxis: {
-            categories: [currentLabel, previousLabel],
-            labels: {
-                style: {
-                    fontSize: '12px',
-                    fontWeight: 500
-                }
-            }
-        },
-        yaxis: {
-            labels: {
-                formatter: function(val) {
-                    return '₱' + val.toLocaleString();
-                }
-            }
-        },
-        grid: {
-            borderColor: '#f1f1f1'
-        },
-        tooltip: {
-            y: {
-                formatter: function(val) {
-                    return '₱' + val.toLocaleString();
-                }
-            }
+            
+            element.className = 'tpx-3 tpy-1 trounded-full ttext-xs tfont-bold ' + colorClass;
+            element.textContent = arrow + ' ' + Math.abs(change).toFixed(1) + '%';
         }
-    };
 
-    const element = document.querySelector('#' + elementId);
-    if (element) {
-        element.innerHTML = '';
-        const chart = new ApexCharts(element, options);
-        chart.render();
-        return chart;
-    }
-    return null;
-}
+        // Load revenue comparison
+        function loadRevenueComparison() {
+            console.log('Loading revenue comparison...');
+            
+            document.getElementById('comparisonLoadingIndicator').classList.remove('thidden');
+            
+            fetch('{{ url("/admin/fbads/api/revenue-comparison") }}')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Comparison data received:', data);
+                    
+                    // Today vs Yesterday
+                    const todayData = data.today_vs_yesterday;
+                    document.getElementById('todayLabel').textContent = todayData.today.label;
+                    document.getElementById('yesterdayLabel').textContent = todayData.yesterday.label;
+                    document.getElementById('todayRevenue').textContent = '₱' + todayData.today.revenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById('todayOrders').textContent = todayData.today.orders.toLocaleString() + ' orders';
+                    document.getElementById('yesterdayRevenue').textContent = '₱' + todayData.yesterday.revenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById('yesterdayOrders').textContent = todayData.yesterday.orders.toLocaleString() + ' orders';
+                    updateChangeIndicator('todayChangePercent', todayData.change);
+                    
+                    // Last 7 vs Previous 7
+                    const week7Data = data.last_7_vs_previous_7;
+                    document.getElementById('last7Revenue').textContent = '₱' + week7Data.last_7.revenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById('last7Orders').textContent = week7Data.last_7.orders.toLocaleString() + ' orders';
+                    document.getElementById('prev7Revenue').textContent = '₱' + week7Data.previous_7.revenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById('prev7Orders').textContent = week7Data.previous_7.orders.toLocaleString() + ' orders';
+                    updateChangeIndicator('week7ChangePercent', week7Data.change);
+                    
+                    // This Month vs Last Month
+                    const monthData = data.this_month_vs_last_month;
+                    document.getElementById('thisMonthRevenue').textContent = '₱' + monthData.this_month.revenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById('thisMonthOrders').textContent = monthData.this_month.orders.toLocaleString() + ' orders';
+                    document.getElementById('lastMonthRevenue').textContent = '₱' + monthData.last_month.revenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    document.getElementById('lastMonthOrders').textContent = monthData.last_month.orders.toLocaleString() + ' orders';
+                    updateChangeIndicator('monthChangePercent', monthData.change);
+                    
+                    document.getElementById('comparisonLoadingIndicator').classList.add('thidden');
+                })
+                .catch(error => {
+                    console.error('Error loading comparison:', error);
+                    document.getElementById('comparisonLoadingIndicator').classList.add('thidden');
+                });
+        }
 
-// Update change indicator
-function updateChangeIndicator(elementId, change) {
-    const element = document.getElementById(elementId);
-    if (!element) return;
-    
-    const isPositive = change >= 0;
-    const arrow = isPositive ? '↑' : '↓';
-    const colorClass = isPositive ? 'tbg-green-100 ttext-green-800' : 'tbg-red-100 ttext-red-800';
-    
-    element.className = 'tpx-3 tpy-1 trounded-full ttext-sm tfont-bold ' + colorClass;
-    element.textContent = arrow + ' ' + Math.abs(change) + '%';
-}
-
-// Load revenue comparison
-function loadRevenueComparison() {
-    console.log('Loading revenue comparison...');
-    
-    document.getElementById('comparisonLoadingIndicator').classList.remove('thidden');
-    
-    fetch('{{ url("/admin/fbads/api/revenue-comparison") }}')
-        .then(response => response.json())
-        .then(data => {
-            console.log('Comparison data received:', data);
-            
-            // Today vs Yesterday
-            const todayData = data.today_vs_yesterday;
-            todayChart = createComparisonChart(
-                'todayVsYesterdayChart',
-                todayData.today,
-                todayData.yesterday,
-                todayData.today.label,
-                todayData.yesterday.label
-            );
-            document.getElementById('todayLabel').textContent = todayData.today.label;
-            document.getElementById('yesterdayLabel').textContent = todayData.yesterday.label;
-            document.getElementById('todayRevenue').textContent = '₱' + todayData.today.revenue.toLocaleString();
-            document.getElementById('todayOrders').textContent = todayData.today.orders + ' orders';
-            document.getElementById('yesterdayRevenue').textContent = '₱' + todayData.yesterday.revenue.toLocaleString();
-            document.getElementById('yesterdayOrders').textContent = todayData.yesterday.orders + ' orders';
-            updateChangeIndicator('todayChangePercent', todayData.change);
-            
-            // Last 7 vs Previous 7
-            const week7Data = data.last_7_vs_previous_7;
-            week7Chart = createComparisonChart(
-                'last7VsPrev7Chart',
-                week7Data.last_7,
-                week7Data.previous_7,
-                week7Data.last_7.label,
-                week7Data.previous_7.label
-            );
-            document.getElementById('last7Revenue').textContent = '₱' + week7Data.last_7.revenue.toLocaleString();
-            document.getElementById('last7Orders').textContent = week7Data.last_7.orders + ' orders';
-            document.getElementById('prev7Revenue').textContent = '₱' + week7Data.previous_7.revenue.toLocaleString();
-            document.getElementById('prev7Orders').textContent = week7Data.previous_7.orders + ' orders';
-            updateChangeIndicator('week7ChangePercent', week7Data.change);
-            
-            // This Month vs Last Month
-            const monthData = data.this_month_vs_last_month;
-            monthChart = createComparisonChart(
-                'thisVsLastMonthChart',
-                monthData.this_month,
-                monthData.last_month,
-                monthData.this_month.label,
-                monthData.last_month.label
-            );
-            document.getElementById('thisMonthRevenue').textContent = '₱' + monthData.this_month.revenue.toLocaleString();
-            document.getElementById('thisMonthOrders').textContent = monthData.this_month.orders + ' orders';
-            document.getElementById('lastMonthRevenue').textContent = '₱' + monthData.last_month.revenue.toLocaleString();
-            document.getElementById('lastMonthOrders').textContent = monthData.last_month.orders + ' orders';
-            updateChangeIndicator('monthChangePercent', monthData.change);
-            
-            document.getElementById('comparisonLoadingIndicator').classList.add('thidden');
-        })
-        .catch(error => {
-            console.error('Error loading comparison:', error);
-            document.getElementById('comparisonLoadingIndicator').classList.add('thidden');
+        // Load on page load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                loadRevenueComparison();
+            }, 500);
         });
-}
+        </script>
 
-// Load on page load
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        loadRevenueComparison();
-    }, 500);
-});
-</script>
 
 
 
