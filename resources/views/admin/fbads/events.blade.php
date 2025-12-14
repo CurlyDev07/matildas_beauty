@@ -25,7 +25,6 @@
             </ul>
         </div>
         <div class="tp-3 ">
-
             <div class="tflex tflex-wrap">
                 <table class="tmb-4 tbg-white ttext-md tw-full">
                     <tr class="tborder-0">
@@ -66,8 +65,17 @@
                     @endforeach
             </table>
             </div>
-            
         </div><!-- TABLE -->
+
+        <!-- Pagination with Bootstrap 4 styling -->
+        <div class="d-flex tpx-5 justify-content-between align-items-center mt-4">
+            <div>
+                Showing {{ $events->firstItem() }} to {{ $events->lastItem() }} of {{ $events->total() }} results
+            </div>
+            <div>
+                {{ $events->links() }}
+            </div>
+        </div>
 
     </div>
 @endsection

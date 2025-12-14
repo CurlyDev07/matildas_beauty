@@ -537,43 +537,72 @@ class FbAdsCon extends Controller
         return view('admin.fbads.event_listener', ['events' => $events]);
     }
    
-    public function events(Request $request){
+    // public function events(Request $request){
+
+    //     $contact_number = FbAds::select('phone_number')
+    //     ->when(!$request->date, function($q){
+    //         return $q->whereDate('created_at', now());
+    //     })->when($request->date, function($q){
+    //         $date = explode(" - ",request()->date);
+    //         $from = carbon($date[0]);
+    //         $to = carbon($date[1]);
+
+    //         if ($from == $to) {
+    //             return $q->whereDate('created_at', $from);
+    //         }
+
+    //         return $q->whereBetween('created_at', [$from, $to]);
+    //     })->pluck('phone_number')->toArray();
+
+    //     $events = FbEventListener::select('data', 'value', 'session_id', 'website')
+    //     ->where('data', 'phone_number')
+    //     ->when(!$request->date, function($q){
+    //         return $q->whereDate('created_at', now());
+    //     })// Show DEFAULT DATA For Today
+        
+    //     ->when($request->date, function($q){
+    //         $date = explode(" - ",request()->date);
+    //         $from = carbon($date[0]);
+    //         $to = carbon($date[1]);
+
+    //         if ($from == $to) {
+    //             return $q->whereDate('created_at', $from);
+    //         }
+
+    //         return $q->whereBetween('created_at', [$from, $to]);
+    //     })// FILTER DATE
+    //     ->orderBy('id', 'desc')
+    //     ->get();
+    //     return view('admin.fbads.events', ['events' => $events, 'contact_number' => $contact_number]);
+    // }
+
+    public function events(Request $request)
+    {
+        $dateQuery = function($query) use ($request) {
+            if (!$request->date) {
+                return $query->whereDate('created_at', now());
+            }
+            
+            [$from, $to] = array_map('carbon', explode(" - ", $request->date));
+            
+            return $from->isSameDay($to) 
+                ? $query->whereDate('created_at', $from)
+                : $query->whereBetween('created_at', [$from, $to]);
+        };
 
         $contact_number = FbAds::select('phone_number')
-        ->when(!$request->date, function($q){
-            return $q->whereDate('created_at', now());
-        })->when($request->date, function($q){
-            $date = explode(" - ",request()->date);
-            $from = carbon($date[0]);
-            $to = carbon($date[1]);
-
-            if ($from == $to) {
-                return $q->whereDate('created_at', $from);
-            }
-
-            return $q->whereBetween('created_at', [$from, $to]);
-        })->pluck('phone_number')->toArray();
+            ->tap($dateQuery)
+            ->pluck('phone_number')
+            ->all();
 
         $events = FbEventListener::select('data', 'value', 'session_id', 'website')
-        ->where('data', 'phone_number')
-        ->when(!$request->date, function($q){
-            return $q->whereDate('created_at', now());
-        })// Show DEFAULT DATA For Today
-        
-        ->when($request->date, function($q){
-            $date = explode(" - ",request()->date);
-            $from = carbon($date[0]);
-            $to = carbon($date[1]);
+            ->where('data', 'phone_number')
+            ->tap($dateQuery)
+            ->latest('id')
+            ->paginate(50)
+            ->appends($request->except('page')); // Add this line
 
-            if ($from == $to) {
-                return $q->whereDate('created_at', $from);
-            }
-
-            return $q->whereBetween('created_at', [$from, $to]);
-        })// FILTER DATE
-        ->orderBy('id', 'desc')
-        ->get();
-        return view('admin.fbads.events', ['events' => $events, 'contact_number' => $contact_number]);
+        return view('admin.fbads.events', compact('events', 'contact_number'));
     }
 
     public function change_status(){
