@@ -61,9 +61,9 @@
     
 
         <!-- ORDERS CHARTS -->
-       <div class="tpx-4 tpy-6">
+       <div class="tpx-4 tpy-6 tflex titems-stretch">
             <!-- Orders & Revenue Cards -->
-            <div class="tflex tflex-wrap tgap-6 tmb-6">
+            <div class="tw-1/2 tflex tflex-wrap tgap-6 tmb-6">
                 <!-- Today -->
                 <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
                     <div class="tbg-white trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
@@ -101,10 +101,10 @@
                 </a>
             </div>
 
-            <h2 class="tfont-bold tmb-2 tmt-5 tpl-5 ttext-2xl ttext-gray-800">AOV</h2>
+            <!-- <h2 class="tfont-bold tmb-2 tmt-5 tpl-5 ttext-2xl ttext-gray-800">AOV</h2> -->
 
             <!-- AOV Cards -->
-            <div class="tflex tflex-wrap tgap-6 tpy-8">
+            <div class="tw-1/2 tflex tflex-wrap tgap-6 tpy-8">
                 <!-- AOV Today -->
                 <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
                     <div class="tbg-[#fde4ee] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
@@ -133,13 +133,13 @@
                 </a>
             </div>
             
-            <h2 class="tfont-bold tmb-2 tmt-5 tpl-5 ttext-2xl ttext-gray-800">Upsell</h2>
+            <!-- <h2 class="tfont-bold tmb-2 tmt-5 tpl-5 ttext-2xl ttext-gray-800">Upsell</h2> -->
 
             <!-- Upsell -->
-            <div class="tflex tflex-wrap tgap-6">
+            <div class="tw-1/2 tflex tflex-wrap tgap-6 tpy-8">
                 <!-- Upsell Today -->
                 <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
-                    <div class="tbg-[#fde4ee] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
+                    <div class="trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
                         <div class="ttext-3xl tmb-2"> <i class="fas fa-cart-plus ttext-green-600"></i></div>
                         <h3 class="ttext-md tfont-medium ttext-green-700"> {{ $upsellRateToday }}% </h3>
                         <h3 class="ttext-lg tfont-semibold tmt-2"> Today</h3>
@@ -149,7 +149,7 @@
 
                 <!-- Upsell This Week -->
                 <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
-                    <div class="tbg-[#e0f1ff] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
+                    <div class="trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
                         <div class="ttext-3xl tmb-2"> <i class="fas fa-cart-plus ttext-green-600"></i></div>
                         <h3 class="ttext-md tfont-medium ttext-green-700"> {{ $upsellRateWeek }}% </h3>
                         <h3 class="ttext-lg tfont-semibold tmt-2"> This Week</h3>
@@ -159,7 +159,7 @@
 
                 <!-- Upsell This Month -->
                 <a href="#" class="tgroup tflex-1 tmin-w-[250px] ttransition-all hover:tscale-[1.02] hover:tshadow-lg tduration-200 tm-5">
-                    <div class="tbg-[#e3fcef] trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
+                    <div class="trounded-2xl tp-4 tpx-6 tshadow-md ttext-center tfade-in">
                         <div class="ttext-3xl tmb-2"> <i class="fas fa-cart-plus ttext-green-600"></i></div>
                         <h3 class="ttext-md tfont-medium ttext-green-700"> {{ $upsellRateMonth }}% </h3>
                         <h3 class="ttext-lg tfont-semibold tmt-2"> This Month </h3>

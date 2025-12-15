@@ -15,6 +15,14 @@
                         <span>Orders</span>
                     </div>
                 </li>
+
+                <li onclick="window.location.href = '/admin/fbads/create'" 
+                    class="tcursor-pointer waves-block waves-effect hover:tbg-blue-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/create', 'tbg-blue-50') }}">
+                    <div class="tflex titems-center tjustify-center tpx-5 th-16">
+                        <i class="fas fa-cart-plus ttext-green-600 ttext-xl tmr-2"></i>
+                        <span>Create</span>
+                    </div>
+                </li>
                 
                 <li onclick="window.location.href = '/admin/fbads/dashboard'" 
                     class="tcursor-pointer waves-block waves-effect hover:tbg-pink-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/dashboard', 'tbg-pink-50') }}">
@@ -41,12 +49,7 @@
                     </div>
                 </li>
                 
-                <!-- <li onclick="window.location.href = '/admin/fbads/create'" 
-                    class="tcursor-pointer waves-block waves-effect hover:tbg-blue-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/create', 'tbg-blue-50') }}">
-                    <div class="tflex titems-center tjustify-center tw-16 th-16">
-                        <i class="fas fa-cart-plus ttext-blue-600 ttext-xl"></i>
-                    </div>
-                </li> -->
+               
                 
                 <!-- <li onclick="window.location.href = '/admin/fbads/status-details'" 
                     class="tcursor-pointer waves-block waves-effect hover:tbg-red-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/status-details', 'tbg-red-50') }}">
