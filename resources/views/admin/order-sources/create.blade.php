@@ -30,30 +30,33 @@
             <div class="tmb-4">
                 <label class="tblock ttext-sm tfont-medium ttext-gray-700 tmb-2">Source Name *</label>
                 <input type="text" name="name" value="{{ old('name') }}" required
-                    class="tw-full tpx-4 tpy-2 tborder tborder-gray-300 trounded-lg focus:toutline-none focus:tborder-pink-500"
+                    class="browser-default tw-full tpx-4 tpy-2 tborder tborder-gray-300 trounded-lg focus:toutline-none focus:tborder-pink-500"
                     placeholder="e.g., Facebook Messenger">
             </div>
 
-            <!-- Type -->
-            <div class="tmb-4">
-                <label class="tblock ttext-sm tfont-medium ttext-gray-700 tmb-2">Source Type *</label>
-                <select name="type" required class="tw-full tpx-4 tpy-2 tborder tborder-gray-300 trounded-lg focus:toutline-none focus:tborder-pink-500">
-                    <option value="">-- Select Type --</option>
-                    <option value="website" {{ old('type') == 'website' ? 'selected' : '' }}>Website</option>
-                    <option value="social" {{ old('type') == 'social' ? 'selected' : '' }}>Social Media</option>
-                    <option value="sms" {{ old('type') == 'sms' ? 'selected' : '' }}>SMS/Text</option>
-                    <option value="call" {{ old('type') == 'call' ? 'selected' : '' }}>Phone Call</option>
-                    <option value="event" {{ old('type') == 'event' ? 'selected' : '' }}>Event</option>
-                    <option value="referral" {{ old('type') == 'referral' ? 'selected' : '' }}>Referral</option>
-                    <option value="other" {{ old('type') == 'other' ? 'selected' : '' }}>Other</option>
-                </select>
-            </div>
+           <!-- Type -->
+        <div class="tmb-4">
+            <label class="tblock ttext-sm tfont-medium ttext-gray-700 tmb-2">Source Type *</label>
+            <select name="type"  required class="browser-default tw-full tpx-4 tpy-2 tborder tborder-gray-300 trounded-lg focus:toutline-none focus:tborder-pink-500">
+                <option value="">-- Select Type --</option>
+                <option value="website" {{ old('type') == 'website' ? 'selected' : '' }}>Website</option>
+                <option value="social" {{ old('type') == 'social' ? 'selected' : '' }}>Social Media</option>
+                <option value="sms" {{ old('type') == 'sms' ? 'selected' : '' }}>SMS/Text</option>
+                <option value="call" {{ old('type') == 'call' ? 'selected' : '' }}>Phone Call</option>
+                <option value="event" {{ old('type') == 'event' ? 'selected' : '' }}>Event</option>
+                <option value="referral" {{ old('type') == 'referral' ? 'selected' : '' }}>Referral</option>
+                <option value="other" {{ old('type') == 'other' ? 'selected' : '' }}>Other</option>
+            </select>
+            @error('type')
+                <p class="ttext-red-500 ttext-xs tmt-1">{{ $message }}</p>
+            @enderror
+        </div>
 
             <!-- Description -->
             <div class="tmb-4">
                 <label class="tblock ttext-sm tfont-medium ttext-gray-700 tmb-2">Description</label>
                 <textarea name="description" rows="3"
-                    class="tw-full tpx-4 tpy-2 tborder tborder-gray-300 trounded-lg focus:toutline-none focus:tborder-pink-500"
+                    class="browser-default tw-full tpx-4 tpy-2 tborder tborder-gray-300 trounded-lg focus:toutline-none focus:tborder-pink-500"
                     placeholder="Brief description of this source">{{ old('description') }}</textarea>
             </div>
 
@@ -61,10 +64,10 @@
             <div class="tmb-4">
                 <label class="tblock ttext-sm tfont-medium ttext-gray-700 tmb-2">Color (Hex Code)</label>
                 <div class="tflex titems-center tgap-2">
-                    <input type="color" id="colorPicker" value="{{ old('color', '#ec4899') }}"
-                        class="tw-12 th-10 tborder tborder-gray-300 trounded">
+                    <input type="color" id="colorPicker"  value="{{ old('color', '#ec4899') }}"
+                        class="browser-default tw-12 th-10 tborder tborder-gray-300 trounded">
                     <input type="text" name="color" id="colorHex" value="{{ old('color', '#ec4899') }}"
-                        class="tflex-1 tpx-4 tpy-2 tborder tborder-gray-300 trounded-lg focus:toutline-none focus:tborder-pink-500"
+                        class="browser-default tflex-1 tpx-4 tpy-2 tborder tborder-gray-300 trounded-lg focus:toutline-none focus:tborder-pink-500"
                         pattern="^#[0-9A-Fa-f]{6}$" placeholder="#ec4899">
                 </div>
             </div>
