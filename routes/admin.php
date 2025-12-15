@@ -13,6 +13,21 @@ use Illuminate\Http\Request;
 Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
 
+    // Order Sources CRUD
+    Route::group(['prefix' => 'order-sources', 'middleware' => 'auth'], function() {
+        Route::get('/', 'OrderSourceController@index')->name('order-sources.index');
+        Route::get('/create', 'OrderSourceController@create')->name('order-sources.create');
+        Route::post('/', 'OrderSourceController@store')->name('order-sources.store');
+        Route::get('/{id}/edit', 'OrderSourceController@edit')->name('order-sources.edit');
+        Route::put('/{id}', 'OrderSourceController@update')->name('order-sources.update');
+        Route::delete('/{id}', 'OrderSourceController@destroy')->name('order-sources.destroy');
+        Route::post('/{id}/toggle', 'OrderSourceController@toggleActive')->name('order-sources.toggle');
+    });
+
+    // API endpoint for active sources
+    Route::get('/api/order-sources/active', 'OrderSourceController@getActiveSources');
+
+
      /*
     |--------------------------------------------------------------------------
     | This code is used to transfer local files to s3 storage
@@ -358,6 +373,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
             return view('admin_panel.index');
         });
     });
+
 
 });
 

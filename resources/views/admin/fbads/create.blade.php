@@ -20,15 +20,15 @@
                 <div class="tflex tflex-wrap tpx-5">
                     <div class="tw-1/5 tmb-2 lg:tmb-0 tpx-1 tpb-3">
                         <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Full name</label>
-                        <input type="text" id="full_name" name="full_name" class="browser-default form-control" value="" style="padding: 6px;">
+                        <input type="text" id="full_name" name="full_name" class="browser-default form-control" value="" required style="padding: 6px;">
                     </div>
                     <div class="tw-1/5 tmb-2 lg:tmb-0 tpx-1 tpb-3">
                         <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Phone number</label>
-                        <input type="number" id="phone_number" name="phone_number" class="browser-default form-control" value="" style="padding: 6px;">
+                        <input type="number" id="phone_number" name="phone_number" class="browser-default form-control" value="" required style="padding: 6px;">
                     </div>
                     <div class="tw-full tmb-2 lg:tmb-0 tpx-1 tpb-3">
                         <label for="address" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Address</label>
-                        <textarea name="address" id="address" cols="30" rows="3" class="browser-default form-control"  style="padding: 6px;"></textarea>
+                        <textarea name="address" id="address" cols="30" rows="3" class="browser-default form-control"  required style="padding: 6px;"></textarea>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,6 @@
 
                 <div class="tflex tflex-wrap tpx-5">
                     <div class="tw-1/5 tpx-1">
-
                         <select id="promo" class="browser-default tfont-normal ttext-sm tmb-2 ttext-black-100">
                             <option value="" style="color: #f43958">choose ....</option>
                             <option value="MissTisa|MissTisa_1pc_+_1pcSerum|1149" style="color: #ff002b">MissTisa 1pc + 1 Serum</option>
@@ -52,7 +51,13 @@
                             <option value="Smart Light Holder|SmartLight_2pcs|899" style="color: #12b101">Smart Light 2pcs</option>
                             <option value="Smart Light Holder|SmartLight_3pcs|1199" style="color: #12b101">Smart Light 3pcs</option>
                         </select>
-                     
+                    </div>
+                    <div class="tw-1/5 tpx-1">
+                        <select id="source_id" name="source_id" class="browser-default tfont-normal ttext-sm tmb-2 ttext-black-100">
+                            @foreach ($sources as $source)
+                                <option value="{{ $source->id }}" style="color: #f43958">{{ $source->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
@@ -71,6 +76,7 @@
                     </div>
                 </div>
             </div>
+
             
             <div class="tmt-10 ttext-right">
                 <button class="focus:tbg-primary tbg-primary tml-auto tpy-2 trounded ttext-white tw-24 waves-effect" id="submit_btn">Update</button>

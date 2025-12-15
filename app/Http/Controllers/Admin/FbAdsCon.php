@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use App\MetaCreativeMetric;
+use App\OrderSource;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
@@ -489,10 +490,16 @@ class FbAdsCon extends Controller
 
 
     public function create(){
-        return view('admin.fbads.create');
+        $sources = \App\OrderSource::active()
+            ->orderBy('type')
+            ->orderBy('name')
+            ->get();
+        
+        return view('admin.fbads.create', compact('sources'));
     }
 
     public function store(){
+        // dd(request()->all());
         $order = FbAds::create(request()->all() + ['province' => '', 'city' => '', 'barangay' => '']);
 
        return redirect()->route('fbads.index');
@@ -1298,6 +1305,11 @@ class FbAdsCon extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function source()
+    {
+        return $this->belongsTo(OrderSource::class, 'source_id');
     }
 
 }
