@@ -23,7 +23,8 @@ class MissTisaCon extends Controller
         $website = 'MissTisa';
 
         $provinces = [];
-        $fbads_products = FbAdsProduct::select('id', 'sku', 'product_name', 'price', 'slashed_price', 'image1', 'discount_tag', 'promo_line1')->get();
+        // $fbads_products = FbAdsProduct::select('id', 'sku', 'product_name', 'price', 'slashed_price', 'image1', 'discount_tag', 'promo_line1')->get();
+        $fbads_products = FbAdsProduct::orderBy('order', 'asc')->get();
 
         $seo = [
             'title' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
@@ -86,7 +87,7 @@ class MissTisaCon extends Controller
         $website = 'MissTisa';
 
         $provinces = [];
-        $fbads_products = FbAdsProduct::select('id', 'sku', 'product_name', 'price', 'slashed_price', 'image1', 'discount_tag', 'promo_line1')->get();
+        $fbads_products = FbAdsProduct::orderBy('order', 'asc')->get();
 
         $seo = [
             'title' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
