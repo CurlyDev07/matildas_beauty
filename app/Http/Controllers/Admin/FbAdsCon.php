@@ -542,6 +542,7 @@ class FbAdsCon extends Controller
 
     public function events(Request $request)
     {
+
         $dateQuery = function($query) use ($request) {
             if (!$request->date) {
                 return $query->whereDate('created_at', now());

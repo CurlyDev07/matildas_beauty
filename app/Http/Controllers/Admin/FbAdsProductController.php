@@ -10,8 +10,8 @@ class FbAdsProductController extends Controller
 {
     public function index()
     {
-        $products = FbAdsProduct::latest()->paginate(10);
-        return view('admin.fb_ads_products.index', compact('products'));
+        $products = FbAdsProduct::orderBy('order', 'asc')->get();
+        return view('admin.fb_ads_products.index', compact( 'products'));
     }
 
     public function create()
@@ -76,5 +76,36 @@ class FbAdsProductController extends Controller
             'image4' => 'nullable|string|max:255',
             'image5' => 'nullable|string|max:255',
         ]);
+    }
+
+
+    public function updateOrder(Request $request, $id)
+    {
+        $product = FbAdsProduct::findOrFail($id);
+        $direction = $request->input('direction');
+        
+        if ($direction === 'up') {
+            // Get the product immediately above this one
+            $swapProduct = FbAdsProduct::where('order', '<', $product->order)
+                ->orderBy('order', 'desc')
+                ->first();
+        } elseif ($direction === 'down') {
+            // Get the product immediately below this one
+            $swapProduct = FbAdsProduct::where('order', '>', $product->order)
+                ->orderBy('order', 'asc')
+                ->first();
+        }
+        
+        if (isset($swapProduct)) {
+            // Swap the order values
+            $currentOrder = $product->order;
+            $product->order = $swapProduct->order;
+            $swapProduct->order = $currentOrder;
+            
+            $product->save();
+            $swapProduct->save();
+        }
+        
+        return redirect()->back()->with('success', 'Order updated');
     }
 }

@@ -25,5 +25,6 @@ class FbAdsProduct extends Model
         'promo_line2',
         'promo_line3',
         'scarcity_text',
+        'order'
     ];
 }

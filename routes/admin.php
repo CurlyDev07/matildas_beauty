@@ -57,7 +57,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
 
     Route::resource('fb-ads', 'FbAdsProductController');
-     
+    Route::post('/fb-ads/{id}/update-order',  'FbAdsProductController@updateOrder')->name('fb-ads.update-order');
 
     /*
     |--------------------------------------------------------------------------
