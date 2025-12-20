@@ -494,20 +494,27 @@ class FbAdsCon extends Controller
             ->orderBy('type')
             ->orderBy('name')
             ->get();
-        
-        return view('admin.fbads.create', compact('sources'));
+
+            return view('admin.fbads.create', compact('sources'));
     }
 
     public function store(){
         // dd(request()->all());
         $order = FbAds::create(request()->all() + ['province' => '', 'city' => '', 'barangay' => '']);
+        
 
        return redirect()->route('fbads.index');
     }
 
     public function order($id){
-        $order = FbAds::find($id);
-        return view('admin.fbads.order', ['order' => $order]);
+        $order = FbAds::with('source')->find($id);
+        $sources = \App\OrderSource::active()
+            ->orderBy('type')
+            ->orderBy('name')
+            ->get();
+
+
+        return view('admin.fbads.order', ['order' => $order, 'sources' => $sources]);
     }
 
     public function patch(){

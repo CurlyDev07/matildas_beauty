@@ -48,8 +48,14 @@
 
                     </div>
                 </li>
-                
-               
+
+                <li onclick="window.location.href = '/admin/order-sources'" 
+                    class="tcursor-pointer waves-block waves-effect hover:tbg-green-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/events', 'tbg-green-50') }}">
+                    <div class="tflex titems-center tjustify-center tpx-5 th-16">
+                        <i class="fas fa-code-branch ttext-purple-600 ttext-xl tmr-2"></i>
+                        <span>Order Source</span>
+                    </div>
+                </li>
                 
                 <!-- <li onclick="window.location.href = '/admin/fbads/status-details'" 
                     class="tcursor-pointer waves-block waves-effect hover:tbg-red-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/status-details', 'tbg-red-50') }}">
@@ -61,7 +67,8 @@
                 <li onclick="window.location.href = '/admin/fbads/meta-metrics'" 
                     class="tcursor-pointer waves-block waves-effect hover:tbg-orange-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/meta-metrics', 'tbg-orange-50') }}">
                     <div class="tflex titems-center tjustify-center tpx-5 th-16">
-                        <i class="fas fa-chart-pie ttext-orange-600 ttext-xl"></i>
+                        <i class="fas fa-chart-pie ttext-orange-600 ttext-xl tmr-2"></i>
+                        <span>Metadata</span>
                     </div>
                 </li>
             </ul>

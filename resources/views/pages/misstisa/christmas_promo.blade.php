@@ -4,38 +4,18 @@
 $products = [
     [
         'id' => 0,
-        'name' => '1Pc MissTisa Set',
-        'price' => 499,
-        'image' => 'https://matildasbeauty.com/filemanager/6680dcdecd7042588a0a02b32f4bf3c3.png',
-        'description' => 'Advanced anti-aging and whitening serum',
-        'promo' => [
-            [
-                'qty' => 2,
-                'bundle_price' => 849
-            ]
-        ]   
-    ],
-    [
-        'id' => 1, 
-        'name' => '2pcs MissTisa Set',
-        'price' => 799,
-        'image' => 'https://matildasbeauty.com/filemanager/ab38e19e27d840abbc96eb22a85f530f.png',
-        'description' => 'Advanced anti-aging and whitening serum',
-    ],
-    [
-        'id' => 2,
-        'name' => 'Set + Serum FREE VITAMIN C',
-        'price' => 999,
-        'image' => 'https://matildasbeauty.com/filemanager/9071030cb8ab448d95211aac0e9093bc.png',
-        'description' => 'High protection sunscreen lotion',
-    ],
-    [
-        'id' => 3,
-        'name' => 'Set + Lotion+ Serum',
+        'name' => '1 SET + SERUM + LOTION Free Victoria Secret Perfume',
         'price' => 1399,
-        'image' => 'https://matildasbeauty.com/filemanager/e94f2d3153de4058ac5264dd31c0af0f.png',
-        'description' => 'Complete beauty set with serum and lotion'
+        'image' => 'https://matildasbeauty.com/filemanager/17c005862728434dab8a2aa98b687250.png',
+        'description' => 'Advanced anti-aging and whitening serum',
+        // 'promo' => [
+        //     [
+        //         'qty' => 2,
+        //         'bundle_price' => 849
+        //     ]
+        // ]   
     ]
+   
 ];
 
 // Convert products to JavaScript format for frontend
@@ -53,7 +33,9 @@ $products_json = json_encode($products);
     <title>MissTisa | Matilda's Beauty</title>
     {{-- STYLE SHEETS --}}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    
+    <!-- <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}"> -->
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -73,6 +55,21 @@ $products_json = json_encode($products);
     <link rel="shortcut icon" href="{{ asset('images/icons/favicon.ico') }}" >
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+    <!-- TESTIMONIAL CSS -->
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+    <style>
+        .ttext-brand-pink{
+            color: #ec407a;
+        }
+        .tbg-brand-pink {
+            --tw-bg-opacity: 1;
+            background-color: rgb(236 64 122 / var(--tw-bg-opacity, 1));
+        }
+    </style>
     <style>
        .input-control {
             width: 100%;
@@ -801,7 +798,7 @@ $products_json = json_encode($products);
             fbq('init', '375777585581364');
             fbq('track', 'PageView');
             </script>
-            <noscript><img height="1" width="1" style="display:none"
+            <noscript><img loading="lazy" height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=375777585581364&ev=PageView&noscript=1"
         /></noscript>
         <!-- End Meta Pixel Code -->
@@ -809,58 +806,15 @@ $products_json = json_encode($products);
 
 </head>
 <body>
+
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
-        <div class="tflex tfont-medium titems-center tjustify-center trelative tshadow-md ttext-center" style="height: 31px; background: #fa199e;">
-            <div >
-                {{-- <div class="">
-                    <p class="t-mt-2 tfont-medium  ttext-4xl ttext-white">Good Bye Kulubot</p>
-                </div> --}}
-                <div class="">
-                    <span class="ttext-sm ttext-white">
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                        <i class="fas fa-star ttext-yellow-300"></i>
-                    </span>
-                    <span class="ttext-md ttext-white">
-                        <span><u>9.5k</u> Ratings</span>
-                        <span> | </span>
-                        <span><u>23.6k</u> Sold</span>
-                    </span>
-                </div>
-            </div>
-            <button class="focus:tbg-pink-300 order_now tabsolute tbottom-0 tfixed tfont-medium tpy-2 trounded-full tshadow-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" style="bottom: -447%;max-width: 240px;width: 36%;right: 4%;color: #ffffff;background-color: #ee2a7b;">ORDER NOW!
-            </button>
-        </div>
 
-
-        <img src="https://matildasbeauty.com/filemanager/afe4fc9e1c00485d9797336377793dff.webp" width="480" height="480" class="tw-full tmb-2" alt="#1 Kulubot Remover">
-
-        {{-- <div class="tmx-3 tflex titems-center tmy-5">
-            <div class="tw-1/2 tborder-gray-200 tborder-r-2 ttext-center ">
-                <span class="ttext-sm ttext-white">
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                    <i class="fas fa-star" style="color: #ee4d2d;" aria-hidden="true"></i>
-                </span>
-                <span class="ttext-md ttext-green-900">
-                    <span class="tfont-bold"> &nbsp; 4.8</span>
-                    <span class="tfont-medium">Ratings</span>
-                </span>
-            </div>
-            <div class="tw-1/2 ttext-green-900 ttext-center tfont-medium ">⭐19,586 Trusted Reviews</div>
-        </div><!-- Trusted Reviews --> --}}
-
+        <img  src="https://matildasbeauty.com/filemanager/0ab3ce90323b470cac1636117d95ae73.png" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
         <div class="tfont-semibold tmx-3 tmy-4  ttext-center">
             <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
         </div>
-
-
          <div class="tborder-dashed ttext-center tmx-3 tmy-2 tpx-3 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
-            <span class="tfont-bold  ttext-center" style="font-size: 20px;">FREE Pomelo Vitamin C – Ends Soon!</span>
+            <span class="tfont-bold  ttext-center" style="font-size: 20px; ">FREE Victoria Secret Perfume</span>
             <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
                 ⏰
                 <div id="timer_top">18:38</div>
@@ -870,408 +824,270 @@ $products_json = json_encode($products);
         </div><!-- FREE 2 Gifts -->
 
         <div class="tflex tw-full tflex-wrap tjustify-center tpy-3 tpx-3 tmb-3">
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> <b>Melasma</b></div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> Kulubot</b> </div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> Wrinkles</b> </div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Melasma Remover</div>
+            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i> Wrinkles </div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Korean Glass Skin</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i><b> No More Pekas</b></div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2 ttext-lg" style="color: #f52d87;"></i> <b>Pinkish Skin</b></div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No More Dark Spots</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Uneven Skin Tone</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Deep Scars</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Whiteheads</div>
-            <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Blackheads</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> Skin Whitening</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> For Sensitive Skin</div>
             <div class="tw-1/2 tmb-3"><i class="fas fa-check-circle tmb-2" style="color: #f52d87;"></i> No Irritation </div>
           
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA Approved</div>
             <div class="tw-1/2"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Safe</div>
-            <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
+            <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven &amp; tested by many users</div>
         </div>
 
 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/523e7f186fa140a59b0b1a823da23c5d.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/9cbf82ef5abd4084990a43b52cea2684.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/8a66857048fd4e4f82bc93b744ebc68f.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/82ad83ef37b343f9a85b7cee0c3f9c1a.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/51c18c57bf684bad88bfafb3b69efe5f.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/a6a15a12a7e04b06b0ae681342f201c6.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/1cdb4585573a43ccbfb6a75ca6680cff.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
+        <div class="trelative tmax-w-[480px] tw-full taspect-square tbg-white tshadow-2xl toverflow-hidden ">
 
-        {{-- <img class="tmb-3" src="https://matildasbeauty.com/filemanager/943b70fea8564d969e9275e6cdec5156.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e835b9e4bc9f4cad803cf3c3a6ef4473.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/36f85481a2114cc891d25704ddfa02ae.webp" loading="lazy" width="480" height="480" alt="Happy Users">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/47e5c4f66a294471b45863de264aefa4.webp" loading="lazy" width="480" height="350" alt="28_days_challenge">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/caeeb8c393854078ab638ce543f2daea.webp" loading="lazy" width="480" height="480" alt="MissTisa Lotion - New Image">
+            <div id="slider-track" class="tflex th-full ttransition-transform tduration-500 tease-in-out tww-full">
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img src="https://matildasbeauty.com/filemanager/0a951067295d4c7d81d85610b5c49547.webp" width="412" height="412" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">3 Days</span>
 
-        <h4 class="tfont-medium tpy-3 tmt-8 ttext-xl ttext-center">HAPPY & SATISFIED CUSTOMERS</h4> --}}
-       
-        {{-- REVIEWS --}}
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">5 Weeks</span>
 
-        {{-- <img src="https://matildasbeauty.com/filemanager/3de536b529bf4cfb9a3d81c5b6c537f6.webp" loading="lazy" width="480" height="1000" alt="satisfied_customer1">
-        <img src="https://matildasbeauty.com/filemanager/9685bc8e635a480b84b7852dfd74b41f.webp" loading="lazy" width="480" height="1000"alt="satisfied_customer2">
-        <img src="https://matildasbeauty.com/filemanager/a04e4b8538014d62a80d3dd2d3446643.webp" loading="lazy" width="480" height="1000" alt="New Before and After"> --}}
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Maria F. (42 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            “Sis, akala ko wala nang pag-asa yung melasma ko.
+                            Pero after 7 weeks, ibang-iba — mas clear at mas fresh na talaga.”
+                        </p>
+                    </div>
+                </div><!-- before and after 7-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/52a23f367576404da69ed185a24a5996.webp" width="412" height="412"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">7 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Marites L. (45 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            "Nag-lighten talaga yung melasma ko after a few weeks.
+                            Mas angat yung glow ko ngayon."
+                        </p>
+                    </div>
+                </div><!-- before and after 2-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/9f5c0a04a28a4a379806936e30a63ec9.webp" width="412" height="412"   class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">3 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Mika T. (36 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            "3 weeks pa lang, sis… lumalambot na yung melasma ko.
+                            Nakikita ko na yung glow ko unti-unti bumabalik."
+                        </p>
+                    </div>
+                </div><!-- before and after 8-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/a7da15f4fc6f4d82aab6d498202e29d5.webp" width="412" height="412"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">0 Day</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">5 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Tessa J. (41 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            “Ang bilis nag-soften ng melasma ko.
+                            After 7 weeks, mas malinaw at mas fresh na talaga yung skin ko.”
+                        </p>
+                    </div>
+                </div><!-- before and after 9-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/a0999349fc354961832984ac6c2e2a04.webp" width="412" height="412"  class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">4 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Minda T. (52 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            "4 weeks pa lang, sis… ang laking ginhawa sa melasma ko.
+                            Mas malinaw yung skin ko at mas confident na ulit ako."
+                        </p>
+                    </div>
+                </div><!-- before and after 10-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/b31c1b82909c434da6577530880207fb.webp" width="412" height="412" class="tobject-fill th-full tw-full" alt="Testimonial 1">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">7 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Chinie J. (41 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            "ang bilis nag-soften ng melasma ko.
+                            After 7 weeks, mas malinaw at mas fresh na talaga yung skin ko."
+                        </p>
+                    </div>
+                </div><!-- before and after 11-->
+
+                <div class="tflex-shrink-0 tw-full th-full trelative">
+                    <img loading="lazy" src="https://matildasbeauty.com/filemanager/9eec8f529fa744f2b85fa9cc44839409.webp" width="412" height="412" class="tobject-fill th-full tw-full" alt="Testimonial 2">
+                    
+                    <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+                    <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">Day 1</span>
+
+                    <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+                    <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">4 Weeks</span>
+
+                    <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                        <p class="tfont-bold ttext-sm tmb-1">Minda T. (52 yrs old)</p>
+                        <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                            “Hindi ko in-expect na ganito kabilis.
+                            4 weeks and sis, mas fresh na talaga yung face ko.”
+                        </p>
+                    </div>
+                </div><!-- before and after 12-->
+
+            </div>
+
+            <button id="prev-btn" class="tabsolute ttop-1/2 tleft-2 -ttranslate-y-1/2 tbg-black/40 thover:tbg-black/60 ttext-white trounded-full tp-3 ttransition-colors tfocus:toutline-none z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="tw-5 th-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+            <button id="next-btn" class="tabsolute ttop-1/2 tright-2 -ttranslate-y-1/2 tbg-black/40 thover:tbg-black/60 ttext-white trounded-full tp-3 ttransition-colors tfocus:toutline-none z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="tw-5 th-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </button>
+        </div><!-- SLIDER BEFORE AND AFTER -->
+          
+        <img  src="https://matildasbeauty.com/filemanager/faafe279a73049f998415d486ce96012.png" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
 
 
-        {{-- <div class="tmx-auto trelative tp-5">
-            <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">PRODUCT DETAILS</h3>
+        <!-- BEFORE AND AFTER -->
+        <h5 class="tfont-bold  ttext-center tpx-2 tmt-10" style="font-size: 25px;">
+            "Melasma Stories"
+        </h5>
+        <p class="ttext-2xl ttext-center">From melasma struggles to gentle glow results.</p>
 
-            <p style="font-size: 20px;" class="ttext-center tmb-4">
-                <b><b>"</b>Revitalize Your Skin with Our Melasma Rejuvenating Set<b>"</b></b>
-            </p><br>
+        <br>
 
-            <h4 class="tfont-medium tmb-4 ttext-xl">BENEFITS:</h4>
+        <div class="tflex-shrink-0 tw-full th-full trelative">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/3cb3ce4b0f92438db4b953ae657a1ecb.webp"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
-            <img class="tmb-5" src="https://matildasbeauty.com/filemanager/092361f04f9f4b3195f3959100ac26a9.webp" loading="lazy" width="480" height="1000" alt="benefits">
-     
-            <img class="tmb-5" src="https://matildasbeauty.com/filemanager/b6dabd41a66a4871a61ecee70fc1b59a.webp" loading="lazy" width="480" height="1000" alt="What to expect">
-            <!--WHAT TO EXPECT: -->
+            <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+            <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">1 Weeks</span>
+
+            <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+            <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">8 Weeks</span>
+
+            <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                <p class="tfont-bold ttext-sm tmb-1">Jocelyn S. (53yrs old).</p>
+                <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                    "Walang hapdi at walang pamumula —
+                    pero ang bilis nag-soften ng melasma ko. ngayon halos wala na"
+                </p>
+            </div>
+        </div>
+
+        <div class="tflex-shrink-0 tw-full th-full trelative">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/181ef5ad6f8f47f2895c4b5bfe054975.webp"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
             
-            <img class="" src="https://matildasbeauty.com/filemanager/bf4b1d217b1b4654aaae8d13809d47fd.webp" loading="lazy" width="480" height="790" alt="how_to_use in the morning">
-            <img class="" src="https://matildasbeauty.com/filemanager/70dae3d024234c7b9ec182fb30aa027e.webp" loading="lazy" width="480" height="1000" alt="how_to_use in the evening">
-            <img class="" src="https://matildasbeauty.com/filemanager/e8c15e1cb22e4fb6b966cae11086700a.webp" loading="lazy" width="480" height="480" alt="Serum Image">
+            <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+            <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
 
-            <img class="" src="https://matildasbeauty.com/filemanager/ae7c490cd31240b8bc0bf6a66aec5193.webp" loading="lazy" width="480" height="480" alt="how_to_use in the evening">
-            <img class="" src="https://matildasbeauty.com/filemanager/07823d1b14684d76833e387789938baf.webp" loading="lazy" width="480" height="480" alt="how_to_use in the evening">
-            <img class="" src="https://matildasbeauty.com/filemanager/db487fdc65274f6e91d92f590c93ec5a.webp" loading="lazy" width="480" height="480" alt="Buy 2 Take 2 Flash Sale">
+            <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+            <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">7 Weeks</span>
 
-        </div><!-- PRODUCT DETAILS--> --}}
+            <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                <p class="tfont-bold ttext-sm tmb-1">Sarah J. (55 yrs old)</p>
+                <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">"After 7 weeks, iba na talaga… mas soft, mas even, at mas confident na ulit ako lumabas."</p>
+            </div>
+        </div>
 
-        {{-- <div class="tmb-5 tborder-t" >
-            <div class="tborder tpx-4 tpy-5">
-                <h1 class="tmb-3 ttext-2xl">Product Ratings</h1>
-                <div class="tflex titems-center tjustify-between tmb-3">
-                    <p>
-                        <span class="ttext-2xl tfont-semibold" style="color: #f51773">5.0</span>
-                        <span class="ttext-xl tfont-medium" style="color: #f51773"> out of 5</span>
-                    </p>
-                    <div class="">
-                        <i class="fas fa-star" style="color: #f51773;"></i>
-                        <i class="fas fa-star" style="color: #f51773;"></i>
-                        <i class="fas fa-star" style="color: #f51773;"></i>
-                        <i class="fas fa-star" style="color: #f51773;"></i>
-                        <i class="fas fa-star" style="color: #f51773;"></i>
-                    </div>
-                </div>    
-                <div class="tflex titems-center tjustify-between">
+        <div class="tflex-shrink-0 tw-full th-full trelative">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/0d250eaee2284e10bb648cf206226552.webp"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            
+            <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+            <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">0 Days</span>
 
-                    <div class="trounded ttext-sm tmr-1 ttext-center trelative" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773; background: #f51773; color: white;">
-                        <p>5 <i class="fas fa-star" style="color: white;"></i> (9.5k)</p>
-                    </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        4<i class="fas fa-star" style="color: #f51773;"></i> (0)
-                    </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        3<i class="fas fa-star" style="color: #f51773;"></i> (0)
-                    </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        2<i class="fas fa-star" style="color: #f51773;"></i> (0)
-                    </div>
-                    <div class="trounded ttext-sm tmr-1 ttext-center" style="padding: 5px 5px; border: #f51773 1px solid; color: #f51773;">
-                        1<i class="fas fa-star" style="color: #f51773;"></i> (0)
-                    </div>
-                </div>
-                
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review1/profile.png') }}" class="trounded-full" style="width: 40px;" alt="Emerlita manao" loading="lazy" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Emerlita Manao</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">April 14, 2023 09:07AM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                        Hala grabi. <b>Effective pala talaga ang MissTisa</b> totoo pala ung napnoud ko na video.
-                        Kitang kita naman sa picture ko nag <b>fade talga ung melasma ko in 3 Weeks.</b> 
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review1/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 1 -->
+            <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+            <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">8 Weeks</span>
 
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review2/profile.png') }}" class="trounded-full" style="width: 40px;" alt="batang" loading="lazy" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Maricel Batang</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 14, 2023 12:48PM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                       <b> Sobrang problemado talaga ako sa Melasma ko.</b> Maputi naman ung face ko
-                       Kaya lalong naging Visible ung Melasma ko. Nakuha ko to sa panga-nganak
-                       sa Pangalawa ko. Ang dami ko na din nasubukan ok naman <b> kaso mas na satisfy
-                       lang talga ako dito sa MissTisa </b>lang ung may pinaka magandang Effect.
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review2/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 2 -->
+            <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                <p class="tfont-bold ttext-sm tmb-1">Elidina G. (65yrs old)</p>
+                <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                    “Ang dami ko nang sinubukan. lahat walang effect.
+                    MissTisa lang talaga nagpa-lighten ng melasma ko.”
+                </p>
+            </div>
+        </div>
 
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review3/profile.png') }}" class="trounded-full" style="width: 40px;" alt="analiza" loading="lazy" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Analiza Pareo</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 01, 2023 08:03PM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                        Hi!. <b>I was so frustrated with my melasma.</b>  i'm a korean living here in philippines.
-                        My Filipino husband bought me this product. <b>I tried many korean products</b>  but this is only 
-                        The Rejuvenating set worked for me. this is my result after using for month </b>
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review3/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 3 -->
-                
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review4/profile.png') }}" class="trounded-full" style="width: 40px;" alt="sharon" loading="lazy" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Sharon Temon</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 25, 2023 04:22PM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                        The before and after of my face is proof that MissTisa Product is very Effective.
-                        The Glass Skin Effect is superb, And my melasma is totally Gone.
-                        I would definitely recommend this to my co mother who suffer also from melasma.
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review4/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 4 -->
+        <div class="tflex-shrink-0 tw-full th-full trelative">
+            <img loading="lazy" src="https://matildasbeauty.com/filemanager/e8fcad609ec74b61af4d68f663b35a14.webp"  class="tobject-fill th-full tw-full" alt="Testimonial 1">
+            
+            <span class="tabsolute ttop-4 tleft-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">Before</span>
+            <span class="tabsolute tbg-brand-pink tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white ttop-4 z-10" style="left: 28%;">2 Weeks</span>
 
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review5/profile.png') }}" class="trounded-full" style="width: 40px;" alt="liza manalo" loading="lazy" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Liza Manalo</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">July 02, 2023 07:27AM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                        <b>Wag kayo bibili nito! Kung ayaw nyo Mawala agad ang melasma nyo ng 1 week.</b> 
-                        Mga sis Legit at Effective Talga sya lalo na kapag wala ka palya sa pag lagay.
-                        1 Week kitang kita na result tulad ng pic ko dito oh.
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review5/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 5 -->
+            <span class="tabsolute ttop-4 tright-4 tbg-black/60 ttext-white ttext-xs tuppercase tfont-bold tpx-3 tpy-1 trounded z-10">After</span>
+            <span class="tabsolute tbg-green-500 tfont-medium tpx-3 tpy-1 trounded-full tshadow-sm ttext-[10px] ttext-white z-10" style="top: 5%; left: 52%;">6 Weeks</span>
 
-                <div class="tmt-5 tpb-5">
-                    <div class="tflex titems-center">
-                        <img src="{{ asset('images/kasoy_oil/reviews/review6/profile.png') }}" class="trounded-full" loading="lazy" style="width: 40px;" alt="" width="100" height="100">
-                        <div class="tml-2">
-                            <p>Rebecca Morales</p>
-                            <div class="">
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                                <i class="fas fa-star" style="color: #f51773;"></i>
-                            </div>
-                            <span style="margin-top: 0.25rem;margin-bottom: 0.9375rem;font-size: .75rem;color: rgba(0,0,0,.54);">June 16, 2023 01:29PM</span>
-                        </div>
-                    </div>
-                    <div class="tpy-2" >
-                        <b> Dati Palagi nalang ako naka Mask.</b> Kasi Ang Dami kong Melasma. 
-                        kaya Thankful ako kasi nakita ko itong MISSTISA isang Set palang
-                        at <b>1 week Kitang kita na agad ang effect nya.</b>  at nag Glass SKin pa face ko.
-                    </div>
-                    <div class="tflex" style="">
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/1.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/2.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/3.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                        <div class="tmr-2">
-                            <img src="{{ asset('images/kasoy_oil/reviews/review6/4.png') }}" loading="lazy" width="100" height="100" class="tmr-1 trounded">
-                        </div>
-                    </div>
-                </div><!-- REVIEW 6 -->
-
-            </div>  <!-- RATINGS DIV -->
-        </div> <!-- RATINGS --> --}}
-
-        {{-- <h3 class="tfont-medium tmb-5 ttext-2xl ttext-center">FDA CERTIFICATES</h3> --}}
-
-        {{-- <img src="https://matildasbeauty.com/filemanager/b864e63d955f47289504464f0471a6a3.webp" loading="lazy" width="480" height="480" alt="fda_certificate MissTisa Set" class="tmb-5">
-        <img src="https://matildasbeauty.com/filemanager/b83e1f3a40f24410aa5d25c089b7d62f.webp" loading="lazy" width="480" height="480" alt="fda_certificate Serum" class="tmb-5"> 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/caeeb8c393854078ab638ce543f2daea.webp" loading="lazy" width="480" height="480" alt="MissTisa Lotion - New Image"> --}}
-
-        <h1 class="tfont-bold tpy-5 ttext-3xl ttext-center ttext-red ttext-white tmt-10" style="
-            background: #ff5f29;
-            background: linear-gradient(90deg, rgba(255, 95, 41, 1) 0%, rgba(253, 29, 29, 1) 40%, rgba(252, 145, 69, 1) 100%);
-        ">NEW PRODUCT!</h1>
-
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/55c2868e86fc435aae2b55a4c96fe6f8.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
-        <img class="" src="https://matildasbeauty.com/filemanager/7463ba9ebfd44727a67b35d1777826a4.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
-
-
+            <div class="tabsolute tbottom-0 tleft-0 tright-0 tbg-gradient-to-t tfrom-black/90 tvia-black/60 tto-transparent tpt-20 tpb-6 tpx-6 ttext-white">
+                <p class="tfont-bold ttext-sm tmb-1">Luz M. (62 yrs old)</p>
+                <p class="ttext-sm tleading-relaxed titalic ttext-gray-100">
+                    "ang laki ng ginhawa…
+                    mas gumaan at nag-lighten talaga yung melasma ko."
+                </p>
+            </div>
+        </div>
 
         <div class="tmx-auto trelative tborder tpb-5">
             <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
-                <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" alt="free shipping" width="200" height="123">
+                <img loading="lazy" src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" alt="free shipping" width="200" height="123">
                 <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
             </div>
 
             <section class="tflex titems-baseline tmt-5 tmb-3">
                 <div class="ttext-center">
-                    <i class="fas fa-truck ttext-4xl" style="color: #ee2aa9; line-height: 1.2;"></i>
+                    <i class="fas fa-truck ttext-4xl" style="color: #ff1075; line-height: 1.2;"></i>
                     <span class="tinline-block tmt-1">Fast delivery nationwide</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fas fa-dollar-sign ttext-4xl" style="color: #ee2aa9; line-height: 1.2;" ></i>
+                    <i class="fas fa-dollar-sign ttext-4xl" style="color: #ff1075; line-height: 1.2;" ></i>
                     <span class="tinline-block tmt-1">Moneyback Guarantee</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fas fa-hand-holding-usd ttext-4xl" style="color: #ee2aa9; line-height: 1.2;" ></i>
+                    <i class="fas fa-hand-holding-usd ttext-4xl" style="color: #ff1075; line-height: 1.2;" ></i>
                     <span class="tinline-block tmt-1">Cash on Delivery</span>
                 </div>
                 <div class="ttext-center">
-                    <i class="fas fa-headset ttext-4xl" style="color: #ee2aa9; line-height: 1.2;"></i>
+                    <i class="fas fa-headset ttext-4xl" style="color: #ff1075; line-height: 1.2;"></i>
                     <span class="tinline-block tmt-1">Unlimited SkincareTips</span>
                 </div>
             </section>
-
-            {{-- <img src="https://matildasbeauty.com/filemanager/30ab80a0c85a4df69f8917950955e48f.webp" width="480" height="480" alt="buy 2 take 2"> --}}
-
-           {{-- <div class="tbg-yellow-300 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
-                <span class="ttext-lg">Enjoy our Free Soap & Sunscreen</span>
-                <br> <span class="tfont-extrabold ttext-md ttext-red-900">Sold out twice, Don't Miss it <br> 
-                <span class="ttext-md">We'll never offer this again.</span>
-                </span> 
-            </div> --}}
-
-            {{-- <form action="{{ route('miss_tisa_submit') }}" id="form" class="relative" method="post" enctype="multipart/form-data">
-                <input type="hidden" id="purchase_value" value="{{ request()->amount }}"> --}}
-                {{-- <h3 class="tfont-medium tmb-4 tpt-5 ttext-center">ORDER FORM</h3> --}}
-
-                {{-- @csrf --}}
-
-                {{-- <div class="tw-full tflex tmb-3">
-                    <div class="tw-1/2 tmr-1">
-                        <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Full Name</label>
-                        <input required type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" class="browser-default input-control">
-                    </div>
-                    <div class="tw-1/2 tml-1 trelative">
-                        @error('phone_number')
-                            <span class="tabsolute tfont-bold ttext-red-600 ttext-xs" style="bottom: -29%;left: 1%;">{{ $message }}</span>
-                        @enderror
-                        <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Phone Number</label>
-                        <input required type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" class="browser-default input-control">
-                    </div>
-                </div><!--full_name & Phone Number -->
-                <div class="tw-full tflex tmb-3">
-                    <div class="tw-auto tmr-1">
-                        <label for="address" class=" ttext-sm tmb-2 ttext-black-100">
-                            <span class="tfont-medium">Complete Address</span>
-                            <small class="ttext-gray-600">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</small>
-                        </label>
-                        <input required type="text" name="address" id="address" value="{{ old('address') }}" class="browser-default input-control">
-                    </div>
-                </div><!--Address --> --}}
-
-                {{-- ============================================================================================= --}}
 
 
                 <!-- ORDER PROMO -->
@@ -1322,21 +1138,22 @@ $products_json = json_encode($products);
                             <span class="ttext-lg">🌟</span> MissTisa Beauty Collection
                         </h2>
                         
-                        <div class="tgrid tgrid-cols-2 tgap-2">
+                        <div class="tgrid tgap-2">
                             <?php foreach ($products as $index => $product): ?>
-                            <div class="product-card <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" style="height: 150px;" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
-                                <div class="tflex titems-center tgap-2 tmb-1">
-                                    <div class="tflex titems-center tjustify-center trounded-md" style="height: 65px; width: 65px;">
-                                        <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="tw-full th-full tobject-cover trounded-md" />
+                            <div class="product-card <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all"  onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
+                                <div class="tflex tjustify-center tmb-1">
+                                    <div class="tflex tjustify-center trounded-md" style="height: 150px; width: 150px;">
+                                        <img loading="lazy" src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="tw-full th-full tobject-cover trounded-md" />
                                     </div>
-                                    <div class="tmx-auto">
-                                        <span class="tfont-bold ttext-2xl ttext-pink-600">₱<?= number_format($product['price']) ?></span>
-                                    </div>
+                                  
                                 </div>
                                 <div class="check-circle tabsolute tw-6 th-6 trounded-full tflex titems-center tjustify-center ttext-xs tfont-bold" style="top: 4px;right: 4px;">✓</div>
-                                <h3 class="tfont-bold ttext-center ttext-gray-800 ttext-xs" style="font-size: 17px; line-height: 1.1rem;"><?= htmlspecialchars($product['name']) ?></h3>
+                                <h3 class="tfont-bold ttext-center ttext-gray-800 ttext-xs tmt-3" style="font-size: 17px; line-height: 1.1rem;"><?= htmlspecialchars($product['name']) ?></h3>
                                 <div id="quantity-container-<?= $product['id'] ?>" class="tflex titems-center tjustify-center tmb-1 tmt-2 <?= $index !== 0 ? 'thidden' : '' ?>">
-                                    <div class="tflex titems-center tbg-white tborder-2 tborder-pink-200 trounded-md tpx-1 tpy-1 tshadow-sm">
+                                  <div class="tmx-auto">
+                                        <span class="tfont-bold ttext-2xl ttext-pink-600 tmt-">₱<?= number_format($product['price']) ?></span>
+                                    </div>    
+                                <div class="tflex titems-center tbg-white tborder-2 tborder-pink-200 trounded-md tpx-1 tpy-1 tshadow-sm">
                                         <button onclick="changeQuantity(<?= $product['id'] ?>, -1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">-</button>
                                         <span id="quantity-<?= $product['id'] ?>" class="tmx-3 tfont-bold ttext-lg ttext-gray-800 tmin-w-[24px] ttext-center">1</span>
                                         <button onclick="changeQuantity(<?= $product['id'] ?>, 1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">+</button>
@@ -1423,7 +1240,7 @@ $products_json = json_encode($products);
                                 <!-- Upsell Product 1 -->
                                 <div class="tsnap-center tshrink-0 tw-64 tbg-white trounded-2xl tshadow-md tborder tborder-gray-100 toverflow-hidden">
                                     <div class="th-32 tbg-gray-100 trelative">
-                                        <img src="{{ $fbads_product->image1 }}" alt="{{ $fbads_product->sku }}" class="tw-full th-full tobject-cover">
+                                        <img loading="lazy" src="{{ $fbads_product->image1 }}" alt="{{ $fbads_product->sku }}" class="tw-full th-full tobject-cover">
                                         <span class="tabsolute ttop-2 tright-2 tbg-red-500 ttext-white ttext-[10px] tfont-bold tpx-2 tpy-1 trounded-full">{{ $fbads_product->discount_tag }}</span>
                                     </div>
                                     <div class="tp-3">
@@ -1476,52 +1293,11 @@ $products_json = json_encode($products);
                     </div>
                 </div> <!-- Loading Overlay -->
 
-                {{-- ============================================================================================= --}}
-
-                {{-- <div class="tmt-3 ttext-right tw-full">
-                    <span class="ttext-gray-900" style="font-size: 16px;">
-                        <span class="tfont-medium">TOTAL:</span>
-                        <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">1399</span>
-                    </span>
-                </div> --}}
-
-
-                {{-- <div class="tw-full ">
-                    <button style="background-color: #ee2a7b" class="focus:tbg-pink-500 trelative tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="submit_btn">
-                        <span>Checkout Order</span>
-                    </button>
-                    <span style="background-color: #ee2a7b" class="thidden focus:tbg-pink-500 trelative ttext-center tshadow tfont-medium tmt-4 tpy-3 trounded-full ttext-2xl ttext-white tw-full waves-effect z-depth-5" id="loader">
-                        <img src="{{ asset('/loader/four_dots_loader.svg') }}" style="display: initial; position: absolute; top: -29%; right: 35px;">
-                        <span class="tmr-5">Loading please wait</span>
-                    </span>
-                </div><!-- Submit Order -->
-            </form><!-- ORDER PROMO --> --}}
-
-
-            {{-- <div id="modal1" class="modal">
-                <div class="modal-content" style="padding-bottom: 0px;">
-                    <h4 class="tfont-medium ttext-3xl">Thank you</h4>
-                    <h5 class="tfont-medium tmb-3 tmt-4 ttext-xl">Your order was completed successfully.</h5>
-                
-                    <p>We want to assure you that we are working diligently to process and ship your order as quickly as possible.</p><br>
-                    <p><span class="tfont-medium">Metro Manila:</span>  1-3 working days.</p>
-                    <p><span class="tfont-medium">Visayas & Mindanao:</span> 4-7 days.</p>
-                    <br>
-                    <p>
-                        We truly appreciate your business and look forward to serving you again in the future.
-                    </p><br>
-                    <p class="tfont-medium">We appreciate your business!</p>
-
-                </div>
-                <div class="modal-footer">
-                    <a href="" class="modal-close waves-effect waves-green btn-flat">Close</a>
-                </div>
-            </div> <!-- Modal  --> --}}
+ 
 
             <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
                 style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
-                ORDER NOW!
+                Order
             </button>
         </div>
     </div>
@@ -1591,6 +1367,7 @@ $products_json = json_encode($products);
 
 
 
+        // PRODUCT SELECTIONS
         let firstClickMade = false;
 
         function selectProduct(element, price, productIndex) {
@@ -1742,6 +1519,8 @@ $products_json = json_encode($products);
                 toast.classList.add('-ttranslate-y-full');
             }
         }
+        // PRODUCT SELECTIONS
+
 
 
 
@@ -1927,40 +1706,7 @@ $products_json = json_encode($products);
             }
         });
 
-        // var $window = $(window),x
-            //     $document = $(document),
-            //     button = $('.order_now');
-                
-            // $window.on('scroll', function () {
-            //     let scrollH = $(window).height() + $(window).scrollTop();
-            //     let H = ($document.height() - 550);
 
-            //     if (scrollH > H) {
-            //         $('.order_now').css('display', 'none');
-            //         button.stop(true).css('z-index', 0).animate({
-            //             opacity: 0,
-            //         }, 50);
-
-            //     } else {
-            //         $('.order_now').css('display', 'block');
-
-            //         button.stop(true).css('z-index', 999).animate({
-            //             opacity: 1
-            //         }, 50);
-            //     }
-            // });// hide show ORDER BUTTON on Scroll
-
-            // $('.order_now').click(function (e) {
-            //     $('html, body').animate({
-            //         scrollTop: $('#submit_btn').offset().top - 20 //#DIV_ID is an example. Use the id of your destination on the page
-            //     }, 'slow');
-
-            //     $.post("/event-listener",{
-            //         order_form: 1, 
-            //         website: '{{ $website }}',
-            //         session_id: '{{ $session_id }}',
-            //     });// EVENT LISTENER Track ORDER FORM
-        // });
 
         $(document).ready(function() {
             const $window = $(window);
@@ -2105,6 +1851,171 @@ $products_json = json_encode($products);
             });
         });
 
+    // $(document).ready(function() {
+    //     const $window = $(window);
+    //     const $document = $(document);
+    //     const $button = $('.order_now');
+        
+    //     let isHidden = false; // Note: You might want to start this as true if you want it hidden on load
+    //     let scrollTimeout;
+    //     let isScrolling = false;
+        
+    //     // Cache the calculation that doesn't change frequently
+    //     let hideThreshold = $document.height() - 550;
+        
+    //     // --- NEW: Variable to store where the CTA section is ---
+    //     let showCtaThreshold = 0;
+        
+    //     // Function to recalculate page dimensions
+    //     function recalculateThreshold() {
+    //         hideThreshold = $document.height() - 550;
+            
+    //         // --- NEW: Calculate the position of the #show_cta element ---
+    //         const $ctaElement = $('#show_cta');
+    //         if ($ctaElement.length) {
+    //             // We use offset().top so we know how far down the page it is
+    //             showCtaThreshold = $ctaElement.offset().top;
+    //         }
+    //     }
+        
+    //     // Recalculate on various events that might change page height
+    //     $window.on('resize', recalculateThreshold);
+        
+    //     // Listen for image load events to recalculate when lazy images load
+    //     $(document).on('load', 'img', recalculateThreshold);
+        
+    //     // Force recalculation when images finish loading
+    //     $('img').on('load', recalculateThreshold);
+        
+    //     // Fallback: periodically recalculate for any missed lazy loads
+    //     setInterval(recalculateThreshold, 1000);
+        
+    //     // Reset scrolling flag periodically in case it gets stuck
+    //     setInterval(function() {
+    //         if (isScrolling) {
+    //             isScrolling = false;
+    //         }
+    //         console.log('aaa');
+    //     }, 2000); 
+
+        
+    //     function toggleButton(show) {
+    //         if (show && isHidden) {
+    //             isHidden = false;
+    //             $button.stop(true, true)
+    //                 .css({ 'display': 'block', 'z-index': 999 })
+    //                 .animate({ opacity: 1 }, 50);
+    //         } else if (!show && !isHidden) {
+    //             isHidden = true;
+    //             $button.stop(true, true)
+    //                 .css('z-index', 0)
+    //                 .animate({ opacity: 0 }, 50, function() {
+    //                     $(this).css('display', 'none');
+    //                 });
+    //         }
+    //     }
+        
+    //     // Throttled scroll handler
+    //     $window.on('scroll', function() {
+    //         clearTimeout(scrollTimeout);
+    //         scrollTimeout = setTimeout(function() {
+    //             // We need the current top position to compare with #show_cta
+    //             const currentScrollTop = $window.scrollTop();
+                
+    //             // We need the bottom position to compare with footer (existing logic)
+    //             const scrollBottomPosition = $window.height() + currentScrollTop;
+                
+    //             // --- NEW CONDITION ---
+    //             // 1. Have we passed the #show_cta element? (currentScrollTop >= showCtaThreshold)
+    //             // 2. Are we still above the bottom/footer? (scrollBottomPosition <= hideThreshold)
+    //             const shouldShow = (currentScrollTop >= showCtaThreshold) && (scrollBottomPosition <= hideThreshold);
+                
+    //             toggleButton(shouldShow);
+    //         }, 16);
+    //     });
+        
+    //     // Improved scroll to bottom function with lazy load support
+    //     function scrollToBottom() {
+    //         isScrolling = true;
+            
+    //         // Force lazy images to load by triggering scroll events
+    //         const currentScroll = $window.scrollTop();
+    //         $window.trigger('scroll');
+            
+    //         // Small delay to allow lazy loading to trigger
+    //         setTimeout(function() {
+    //             const $target = $('#submit_btn');
+    //             let targetOffset;
+                
+    //             // Recalculate page height in case images loaded
+    //             recalculateThreshold();
+                
+    //             if ($target.length) {
+    //                 targetOffset = $target.offset().top - 20;
+    //             } else {
+    //                 // Fallback: scroll to actual bottom of page
+    //                 targetOffset = $document.height() - $window.height();
+    //             }
+                
+    //             $('html, body').animate({
+    //                 scrollTop: targetOffset
+    //             }, {
+    //                 duration: 'slow',
+    //                 complete: function() {
+    //                     // Double-check position after animation with multiple retries
+    //                     let retryCount = 0;
+    //                     const maxRetries = 3;
+                        
+    //                     function checkPosition() {
+    //                         const currentScroll = $window.scrollTop();
+    //                         const maxScroll = $document.height() - $window.height();
+                            
+    //                         // Recalculate in case more images loaded during scroll
+    //                         recalculateThreshold();
+                            
+    //                         let finalTarget;
+    //                         if ($target.length) {
+    //                             finalTarget = $target.offset().top - 20;
+    //                         } else {
+    //                             finalTarget = $document.height() - $window.height();
+    //                         }
+                            
+    //                         // If we're not at the intended position and haven't exceeded retries
+    //                         if (Math.abs(currentScroll - finalTarget) > 10 && retryCount < maxRetries) {
+    //                             retryCount++;
+    //                             $('html, body').animate({
+    //                                 scrollTop: finalTarget
+    //                             }, 200, checkPosition);
+    //                         } else {
+    //                             isScrolling = false;
+    //                         }
+    //                     }
+                        
+    //                     setTimeout(checkPosition, 100);
+    //                 }
+    //             });
+    //         }, 100);
+    //     }
+    
+    //     // Order button click handler
+    //     $button.on('click', function(e) {
+    //         e.preventDefault();
+    //         scrollToBottom();
+            
+    //         // Event tracking
+    //         $.post('/event-listener', {
+    //             order_form: 1,
+    //             website: '{{ $website }}',
+    //             session_id: '{{ $session_id }}'
+    //         }).fail(function() {
+    //             console.warn('Failed to track order form event');
+    //         });
+    //     });
+        
+    //     // --- NEW: Trigger initial calculation immediately ---
+    //     recalculateThreshold();
+    // });
+
 
         $('#full_name').change(function (e) {
             $.post("/event-listener",{
@@ -2158,41 +2069,6 @@ $products_json = json_encode($products);
             session_id: '{{ $session_id }}',
         });//  EVENT LISTENER Track VIEW
 
-    </script>
-
-    <script>
-        let timeLeft = 27 * 43;
-
-        function updateTimerTop() {
-            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
-            const s = (timeLeft % 60).toString().padStart(2, '0');
-            $('#timer_top').text(`${m}:${s}`);
-
-            if (timeLeft > 0) {
-            timeLeft--;
-            } else {
-            clearInterval(timer);
-                alert("Time's up!");
-            }
-        }
-
-        function updateTimerBottom() {
-            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
-            const s = (timeLeft % 60).toString().padStart(2, '0');
-            $('#timer_bottom').text(`${m}:${s}`);
-
-            if (timeLeft > 0) {
-            timeLeft--;
-            } else {
-            clearInterval(timer);
-                alert("Time's up!");
-            }
-        }
-
-        const timer_top = setInterval(updateTimerTop, 1000);
-        const timer_bottom = setInterval(updateTimerBottom, 1000);
-        updateTimerTop();
-        updateTimerBottom();
     </script>
         
     <script> // LOADING SCRIPT
@@ -2272,6 +2148,40 @@ $products_json = json_encode($products);
 
     </script> 
 
+    <script>
+        let timeLeft = 27 * 43;
+
+        function updateTimerTop() {
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            $('#timer_top').text(`${m}:${s}`);
+
+            if (timeLeft > 0) {
+            timeLeft--;
+            } else {
+            clearInterval(timer);
+                alert("Time's up!");
+            }
+        }
+
+        function updateTimerBottom() {
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            $('#timer_bottom').text(`${m}:${s}`);
+
+            if (timeLeft > 0) {
+            timeLeft--;
+            } else {
+            clearInterval(timer);
+                alert("Time's up!");
+            }
+        }
+
+        const timer_top = setInterval(updateTimerTop, 1000);
+        const timer_bottom = setInterval(updateTimerBottom, 1000);
+        updateTimerTop();
+        updateTimerBottom();
+    </script>
 
     <script> // UPSELL
         $(document).ready(function() {
@@ -2421,6 +2331,37 @@ $products_json = json_encode($products);
             }
         });
     </script>
+
+    <script> // TESTIMONIAL SCRIPT
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('slider-track');
+            const slides = Array.from(track.children);
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            function updateSliderPosition() {
+                // width is dynamic now, so we calculate based on the container's current width
+                const slideWidth = track.parentElement.getBoundingClientRect().width;
+                track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSliderPosition();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSliderPosition();
+            });
+
+            // Update position on window resize to keep alignment correct
+            window.addEventListener('resize', updateSliderPosition);
+        });
+    </script>   
 
     </footer>
 

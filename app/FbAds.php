@@ -26,4 +26,10 @@ class FbAds extends Model
         // and the foreign key is 'fb_ads_id'
         return $this->hasMany(\App\FbAdsUpsell::class, 'fb_ads_id');
     }
+
+
+    public function source()
+    {
+        return $this->belongsTo(\App\OrderSource::class, 'source_id', 'id');
+    }
 }

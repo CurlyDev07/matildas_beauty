@@ -1966,10 +1966,41 @@ $products_json = json_encode($products);
             modal.classList.remove('show');
         }
 
+
+
+
+        // PRODUCT SELECTIONS
+        let firstClickMade = false;
+
         function selectProduct(element, price, productIndex) {
+            // On first click, auto-deselect the default (index 0) if clicking a different product
+            if (!firstClickMade && productIndex !== 0 && selectedProducts.includes(0)) {
+                const defaultCard = document.querySelector('.product-card.product-selected');
+                if (defaultCard) {
+                    defaultCard.classList.remove('product-selected');
+                    defaultCard.classList.add('product-unselected');
+                    defaultCard.classList.remove('tborder-pink-500', 'tbg-pink-50');
+                    defaultCard.classList.add('tborder-gray-300', 'tbg-white');
+                    
+                    // Hide quantity container for default
+                    const defaultQuantityContainer = document.getElementById('quantity-container-0');
+                    if (defaultQuantityContainer) {
+                        defaultQuantityContainer.classList.add('thidden');
+                    }
+                    
+                    // Reset quantity and remove from selected products
+                    quantities[0] = 0;
+                    const defaultQuantitySpan = document.getElementById('quantity-0');
+                    if (defaultQuantitySpan) {
+                        defaultQuantitySpan.textContent = 1;
+                    }
+                    selectedProducts = selectedProducts.filter(index => index !== 0);
+                }
+                firstClickMade = true;
+            }
+            
             // Check if this is the only selected product and prevent deselection
             if (element.classList.contains('product-selected') && selectedProducts.length === 1) {
-                // Don't allow deselecting the last selected product
                 return;
             }
             
@@ -1982,11 +2013,17 @@ $products_json = json_encode($products);
                 element.classList.add('tborder-gray-300', 'tbg-white');
                 
                 // Hide quantity container
-                document.getElementById(`quantity-container-${productIndex}`).classList.add('thidden');
+                const quantityContainer = document.getElementById(`quantity-container-${productIndex}`);
+                if (quantityContainer) {
+                    quantityContainer.classList.add('thidden');
+                }
                 
                 // Reset quantity and remove from selected products
                 quantities[productIndex] = 0;
-                document.getElementById(`quantity-${productIndex}`).textContent = 1;
+                const quantitySpan = document.getElementById(`quantity-${productIndex}`);
+                if (quantitySpan) {
+                    quantitySpan.textContent = 1;
+                }
                 selectedProducts = selectedProducts.filter(index => index !== productIndex);
             } else {
                 // Select product
@@ -1996,11 +2033,17 @@ $products_json = json_encode($products);
                 element.classList.add('tborder-pink-500', 'tbg-pink-50');
                 
                 // Show quantity container
-                document.getElementById(`quantity-container-${productIndex}`).classList.remove('thidden');
+                const quantityContainer = document.getElementById(`quantity-container-${productIndex}`);
+                if (quantityContainer) {
+                    quantityContainer.classList.remove('thidden');
+                }
                 
                 // Set initial quantity and add to selected products
                 quantities[productIndex] = 1;
-                document.getElementById(`quantity-${productIndex}`).textContent = 1;
+                const quantitySpan = document.getElementById(`quantity-${productIndex}`);
+                if (quantitySpan) {
+                    quantitySpan.textContent = 1;
+                }
                 if (!selectedProducts.includes(productIndex)) {
                     selectedProducts.push(productIndex);
                 }
@@ -2078,6 +2121,11 @@ $products_json = json_encode($products);
                 toast.classList.add('-ttranslate-y-full');
             }
         }
+        // PRODUCT SELECTIONS
+
+
+
+
 
         // SUBMIT ORDER
         function submitOrder() {

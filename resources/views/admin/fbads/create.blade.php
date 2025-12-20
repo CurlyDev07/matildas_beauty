@@ -24,7 +24,7 @@
                     </div>
                     <div class="tw-1/5 tmb-2 lg:tmb-0 tpx-1 tpb-3">
                         <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Phone number</label>
-                        <input type="number" id="phone_number" name="phone_number" class="browser-default form-control" value="" required style="padding: 6px;">
+                        <input type="text" id="phone_number" name="phone_number" class="browser-default form-control" value="" required style="padding: 6px;">
                     </div>
                     <div class="tw-full tmb-2 lg:tmb-0 tpx-1 tpb-3">
                         <label for="address" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Address</label>
@@ -35,12 +35,13 @@
     
             <div class="tbg-white tpb-5 trounded-lg tshadow-2xl ttext-black-100 tmt-5">
                 <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-                    Order Details
+                    Order Details<i class="far fa-bags-shopping"></i>
                 </div>
 
                 <div class="tflex tflex-wrap tpx-5">
                     <div class="tw-1/5 tpx-1">
-                        <select id="promo" class="browser-default tfont-normal ttext-sm tmb-2 ttext-black-100">
+                    <div class="tfont-medium ttext-sm tmb-2 ttext-black-100">Promo</div>
+                        <select id="promo" class="browser-default tfont-normal ttext-sm tmb-2 ttext-black-100" required>
                             <option value="" style="color: #f43958">choose ....</option>
                             <option value="MissTisa|MissTisa_1pc_+_1pcSerum|1149" style="color: #ff002b">MissTisa 1pc + 1 Serum</option>
                             <option value="MissTisa|MissTisa_1pc|499" style="color: #f43958">MissTisa 1pc</option>
@@ -53,7 +54,9 @@
                         </select>
                     </div>
                     <div class="tw-1/5 tpx-1">
-                        <select id="source_id" name="source_id" class="browser-default tfont-normal ttext-sm tmb-2 ttext-black-100">
+                        <div class="tfont-medium ttext-sm tmb-2 ttext-black-100">Order Source</div>
+                        <select id="source_id" name="source_id" class="browser-default tfont-normal ttext-sm tmb-2 ttext-black-100" required>
+                            <option value="" style="color: #f43958">choose ....</option>
                             @foreach ($sources as $source)
                                 <option value="{{ $source->id }}" style="color: #f43958">{{ $source->name }}</option>
                             @endforeach

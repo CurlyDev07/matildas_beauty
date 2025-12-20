@@ -99,6 +99,23 @@ class MissTisaCon extends Controller
         return view('pages.misstisa.melasma', ['fbads_products' => $fbads_products, 'seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
     }
 
+    public function christmas_promo(){
+        $session_id = uuid();
+        $website = 'christmas_promo';
+
+        $provinces = [];
+        $fbads_products = FbAdsProduct::orderBy('order', 'asc')->get();
+
+        $seo = [
+            'title' => "MissTisa Christmas Promo Free Luxury Perfume",
+            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'description' => "MissTisa Christmas Promo Free Luxury Perfume",
+            'robots' => 'none',
+        ];
+
+        return view('pages.misstisa.christmas_promo', ['fbads_products' => $fbads_products, 'seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
+    }
+
     public function misstisa_promo(){
         $session_id = uuid();
         $website = 'MissTisa';

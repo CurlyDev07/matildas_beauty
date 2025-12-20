@@ -21,15 +21,15 @@
                 <div class="tflex tflex-wrap tpx-5">
                     <div class="tw-1/5 tmb-2 lg:tmb-0 tpx-1 tpb-3">
                         <label for="full_name" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Full name</label>
-                        <input type="text" id="full_name" name="full_name" class="browser-default form-control" value="{{ $order->full_name }}" style="padding: 6px;">
+                        <input required type="text" id="full_name" name="full_name" class="browser-default form-control" value="{{ $order->full_name }}" style="padding: 6px;">
                     </div>
                     <div class="tw-1/5 tmb-2 lg:tmb-0 tpx-1 tpb-3">
                         <label for="phone_number" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Phone number</label>
-                        <input type="number" id="phone_number" name="phone_number" class="browser-default form-control" value="{{ $order->phone_number }}" style="padding: 6px;">
+                        <input required type="text" id="phone_number" name="phone_number" class="browser-default form-control" value="{{ $order->phone_number }}" style="padding: 6px;">
                     </div>
                     <div class="tw-full tmb-2 lg:tmb-0 tpx-1 tpb-3">
                         <label for="address" class="tfont-medium ttext-sm tmb-2 ttext-black-100 active">Address</label>
-                        <textarea name="address" id="address" cols="30" rows="3" class="browser-default form-control"  style="padding: 6px;">{{ $order->address }}</textarea>
+                        <textarea required name="address" id="address" cols="30" rows="3" class="browser-default form-control"  style="padding: 6px;">{{ $order->address }}</textarea>
                     </div>
                 </div>
             </div>
@@ -41,17 +41,34 @@
                 <div class="tflex tflex-wrap tpx-5">
                     <div class="tw-1/5 tpx-1">
                         <label for="product" class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Product</label>
-                        <input type="text" id="product" name="product" class="browser-default form-control" value="{{ $order->product }}" style="padding: 6px;">
+                        <input required type="text" id="product" name="product" class="browser-default form-control" value="{{ $order->product }}" style="padding: 6px;">
                     </div>
                     <div class="tw-1/5 tpx-1">
                         <label for="promo" class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Promo</label>
-                        <input type="text" id="promo" name="promo" class="browser-default form-control" value="{{ $order->promo }}" style="padding: 6px;">
+                        <input required type="text" id="promo" name="promo" class="browser-default form-control" value="{{ $order->promo }}" style="padding: 6px;">
                     </div>
                     <div class="tw-1/5 tpx-1 tpx-1 tmb-2 lg:tmb-0">
                         <label for="total" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Amount</label>
-                        <input type="text" id="total" name="total" class="browser-default form-control" value="{{ $order->total }}" style="padding: 6px;">
+                        <input required type="text" id="total" name="total" class="browser-default form-control" value="{{ $order->total }}" style="padding: 6px;">
+                    </div>
+                    <div class="tw-1/5 tpx-1">
+                        <label for="total" class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Order Source</label>
+                        <select id="source_id" name="source_id" class="browser-default tfont-normal ttext-sm tmb-2 ttext-black-100" required>
+                            <option value="" style="color: #f43958">choose ....</option>
+                            @foreach ($sources as $source)
+
+                                @if ($order->source_id == $source->id)
+                                    <option selected value="{{ $source->id }}" style="color: #f43958">{{ $source->name }}</option>
+                                @endif
+
+                                    <option value="{{ $source->id }}" style="color: #f43958">{{ $source->name }}</option>
+
+                            @endforeach
+                        </select>
                     </div>
                 </div>
+
+                
             </div>
             
             <div class="tmt-10 ttext-right">
@@ -59,4 +76,5 @@
             </div>
         </form>
     </div>
+    
 @endsection
