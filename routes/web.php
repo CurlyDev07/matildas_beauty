@@ -71,6 +71,7 @@ Route::get('MissTisa-Buy1-Take1', 'MissTisaCon@b1t1')->name('miss_tisa');
 Route::get('MissTisa-12-12', 'MissTisaCon@promo_12_12')->name('miss_tisa');
 Route::get('MissTisa-ChristmasPromo', 'MissTisaCon@christmas_promo')->name('christmas_promo');
 
+Route::get('MadellaEnterprisesInc', 'MissTisaCon@MadellaEnterprisesInc')->name('christmas_promo');
 
 
 

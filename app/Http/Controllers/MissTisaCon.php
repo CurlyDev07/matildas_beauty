@@ -116,6 +116,24 @@ class MissTisaCon extends Controller
         return view('pages.misstisa.christmas_promo', ['fbads_products' => $fbads_products, 'seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
     }
 
+    public function MadellaEnterprisesInc(){
+        $session_id = uuid();
+        $website = 'MadellaEnterprisesInc';
+
+        $provinces = [];
+        $fbads_products = FbAdsProduct::orderBy('order', 'asc')->get();
+
+        $seo = [
+            'title' => "Madella Enterprises Inc - Ecommerce Website",
+            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'description' => "Madella Enterprises Inc - Ecommerce Website",
+            'robots' => 'none',
+        ];
+
+        return view('pages.misstisa.madella_enterprises_inc', ['fbads_products' => $fbads_products, 'seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
+    }
+
+
     public function misstisa_promo(){
         $session_id = uuid();
         $website = 'MissTisa';
