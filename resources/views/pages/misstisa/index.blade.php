@@ -31,9 +31,9 @@ $products = [
     ],
     [
         'id' => 3,
-        'name' => 'Set + Lotion+ Serum',
+        'name' => 'Set + Lotion+ Serum Free Victoria Secret',
         'price' => 1399,
-        'image' => 'https://matildasbeauty.com/filemanager/e94f2d3153de4058ac5264dd31c0af0f.png',
+        'image' => 'https://matildasbeauty.com/filemanager/a657f8a7c4e04717ab90214ce3221948.png',
         'description' => 'Complete beauty set with serum and lotion'
     ]
 ];
