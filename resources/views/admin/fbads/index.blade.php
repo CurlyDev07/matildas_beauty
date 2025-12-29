@@ -78,7 +78,7 @@
             <ul class="tflex titems-center">
                 <li class="tmr-4">
                     <form action="{{ route('fbads.index') }}" class="tflex titems-center">
-                        <input type="text" name="search" id="barcode" value="" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
+                        <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" class="tw-64 browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search CP# | Name | Address">
                         <button type="submit" class="focus:tbg-white focus:toutline-none grey-text tborder tborder-gray-200 tborder-l-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-r-full waves-effect">
                             <i class="fa-flip-horizontal fa-lg fa-search fas"></i>
                         </button>
