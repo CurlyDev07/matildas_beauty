@@ -90,44 +90,65 @@ class FbAdsCon extends Controller
     //     ]);
     // }
 
+
     public function index(Request $request){
+    // dd('dsds');
+    // ... [Your existing grouped counts code remains exactly the same] ...
 
-        // ... [Your existing grouped counts code remains exactly the same] ...
-        $grouped = FbAds::select('status', DB::raw('count(*) as total'))
-            ->when(!$request->date, function($q){
-                return $q->whereDate('created_at', now());
-            })->when($request->date, function($q){
-                $date = explode(" - ",request()->date);
-                $from = carbon($date[0]);
-                $to = carbon($date[1]);
-                if ($from == $to) {
-                    return $q->whereDate('created_at', $from);
-                }
-                return $q->whereBetween('created_at', [$from, $to]);
-            })
-            ->groupBy('status')
-            ->get();
+    $search = trim((string) $request->search);
 
-        $overallTotal = $grouped->sum('total');
+    $grouped = FbAds::select('status', DB::raw('count(*) as total'))
+        ->when(!$request->date, function($q) use ($request){
+            // ✅ ignore default date filter when searching
+            if ($request->filled('search')) {
+                return $q;
+            }
+            return $q->whereDate('created_at', now());
+        })
+        ->when($request->date, function($q){
+            $date = explode(" - ",request()->date);
+            $from = carbon($date[0]);
+            $to = carbon($date[1]);
+            if ($from == $to) {
+                return $q->whereDate('created_at', $from);
+            }
+            return $q->whereBetween('created_at', [$from, $to]);
+        })
+        // ✅ SEARCH: phone_number OR full_name OR address
+        ->when($search !== '', function($q) use ($search){
+            return $q->where(function($qq) use ($search){
+                $qq->where('phone_number', 'LIKE', '%' . $search . '%')
+                   ->orWhere('full_name', 'LIKE', '%' . $search . '%')
+                   ->orWhere('address', 'LIKE', '%' . $search . '%');
+            });
+        })
+        ->groupBy('status')
+        ->get();
 
-        $statusCounts = $grouped->mapWithKeys(function ($item) use ($overallTotal) {
-            $percentage = $overallTotal > 0 ? round(($item->total / $overallTotal) * 100, 2) : 0;
-            return [
-                $item->status => [
-                    'count' => $item->total,
-                    'percent' => $percentage
-                ]
-            ];
-        });
-        
-        // ======================== STATUS COUNT ========================
+    $overallTotal = $grouped->sum('total');
 
-        $stores = Store::all();
+    $statusCounts = $grouped->mapWithKeys(function ($item) use ($overallTotal) {
+        $percentage = $overallTotal > 0 ? round(($item->total / $overallTotal) * 100, 2) : 0;
+        return [
+            $item->status => [
+                'count' => $item->total,
+                'percent' => $percentage
+            ]
+        ];
+    });
 
-        // UPDATED QUERY HERE
-        $orders = FbAds::with('upsells') // <--- ADD THIS LINE (Eager Loading)
+    // ======================== STATUS COUNT ========================
+
+    $stores = Store::all();
+
+    // UPDATED QUERY HERE
+    $orders = FbAds::with('upsells') // <--- ADD THIS LINE (Eager Loading)
         ->orderBy('created_at', 'desc')
-        ->when(!$request->date, function($q){
+        ->when(!$request->date, function($q) use ($request){
+            // ✅ ignore default date filter when searching
+            if ($request->filled('search')) {
+                return $q;
+            }
             return $q->whereDate('created_at', now());
         })
         ->when($request->date, function($q){
@@ -144,14 +165,24 @@ class FbAdsCon extends Controller
         ->when($request->status, function($q){
             return $q->where('status', request()->status);
         })
+        // ✅ SEARCH: phone_number OR full_name OR address
+        ->when($search !== '', function($q) use ($search){
+            return $q->where(function($qq) use ($search){
+                $qq->where('phone_number', 'LIKE', '%' . $search . '%')
+                   ->orWhere('full_name', 'LIKE', '%' . $search . '%')
+                   ->orWhere('address', 'LIKE', '%' . $search . '%');
+            });
+        })
         ->get();
 
-        return view('admin.fbads.index', [
-            'orders' => $orders,
-            'stores' => $stores,
-            'statusCounts' => $statusCounts
-        ]);
-    }
+    return view('admin.fbads.index', [
+        'orders' => $orders,
+        'stores' => $stores,
+        'statusCounts' => $statusCounts
+    ]);
+}
+
+
 
     public function dashboard(){
         $now = Carbon::now();
