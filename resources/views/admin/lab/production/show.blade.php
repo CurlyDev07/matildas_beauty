@@ -2,59 +2,180 @@
 
 
 @section('page')
-        <div class="tbg-white tshadow-md trounded tpx-6 tpy-4 tmb-6">
-            <h2 class="ttext-xl tfont-semibold ttext-gray-800 tmb-4">Production Details</h2>
 
-            <div class="tgrid tgrid-cols-3 tgap-x-6 tgap-y-3 ttext-sm ttext-gray-700">
-                <div class="tflex tjustify-around">
-                    <div class="tw-1/3">
-                        <p class="ttext-lg tmb-2"><span class="tfont-semibold">Product:</span> <span class="ttext-orange-700"> {{ $production->product_name }}</span></p>
-                        <p class="ttext-lg tmb-2"><span class="tfont-semibold">Batch #:</span><span class="ttext-orange-700"> {{ $production->batch_number }}</span> </p>
-                        <p class="ttext-lg tmb-2"><span class="tfont-semibold">Total Weight:</span><span class="ttext-orange-700"> {{ $production->total_weight }}g</span> </p>
-                        <p class="ttext-lg tmb-2"><span class="tfont-semibold">Total Cost:</span> <span class="ttext-orange-700"> ₱{{ number_format($production->total, 2) }}</span></p>
-                    </div>
-                    <div class="tw-1/3">
-                        <p class="ttext-lg tmb-2"><span class="tfont-semibold">Total Quantity:</span> <span class="ttext-orange-700"> {{ $production->total_quantity }} pcs</span></p>
-                        <p class="ttext-lg tmb-2"><span class="tfont-semibold">Actual Quantity:</span><span class="ttext-orange-700">  —<</span>/p>
-                        <p class="ttext-lg tmb-2"><span class="tfont-semibold">Date:</span> <span class="ttext-orange-700"> {{ date_f($production->date, 'M, d, Y') }}</span></p>
-                    </div>
-                    <div class="tw-1/3">
-                        <p class="tcol-span-3 tmt-2">
-                            <span class="tfont-semibold">Comment:</span> {{ $production->comment }}
-                        </p>
-                    </div>
+
+<!-- Production Details (Ultra-Compact) -->
+<div class="chem-card" style="margin-bottom:12px;">
+
+    <!-- Header -->
+    <div style="
+        padding:12px 14px;
+        border-bottom:1px solid #eef2f7;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+    ">
+        <div style="display:flex;align-items:center;gap:10px;">
+            <div style="
+                width:32px;height:32px;
+                border-radius:10px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                background:#f1f5f9;
+                border:1px solid #e2e8f0;
+                color:#334155;
+            ">
+                <i class="fas fa-industry"></i>
+            </div>
+
+            <div>
+                <div style="font-size:15px;font-weight:900;color:#0f172a;line-height:1;">
+                    {{ $production->product_name }}
+                </div>
+                <div style="font-size:12px;color:#64748b;">
+                    Batch <strong style="color:#0f172a;">{{ $production->batch_number }}</strong>
                 </div>
             </div>
         </div>
 
-        <div class="tbg-white tshadow-md trounded tpx-6 tpy-4">
-        <h3 class="ttext-lg tfont-semibold ttext-gray-800 tmb-4">Ingredients Used</h3>
+        <div style="display:flex;align-items:center;gap:14px;">
+            <div style="text-align:right;">
+                <div style="font-size:11px;color:#94a3b8;font-weight:700;">Date</div>
+                <div style="font-size:13px;font-weight:800;">
+                    {{ date_f($production->date, 'M, d, Y') }}
+                </div>
+            </div>
 
-            <div class="toverflow-x-auto">
-                <table class="tmin-w-full tborder-collapse">
-                    <thead>
-                        <tr class="tbg-gray-100 ttext-left ttext-sm ttext-gray-700">
-                        <th class="tpy-2 tpx-4">Ingredient</th>
-                        <th class="tpy-2 tpx-4">Price/Gram</th>
-                        <th class="tpy-2 tpx-4">% Used</th>
-                        <th class="tpy-2 tpx-4">Grams</th>
-                        <th class="tpy-2 tpx-4">Price</th>
-                        </tr>
-                    </thead>
-                    <tbody class="ttext-sm ttext-gray-800">
-                        @foreach ($production->ingredients as $ingredient)
-                        <tr class="tborder-t">
-                            <td class="tpy-2 tpx-4">{{ $ingredient->product_name }}</td>
-                            <td class="tpy-2 tpx-4">₱{{ $ingredient->product_price_per_grams }}</td>
-                            <td class="tpy-2 tpx-4">{{ $ingredient->product_percentage }}%</td>
-                            <td class="tpy-2 tpx-4">{{ $ingredient->grams }}</td>
-                            <td class="tpy-2 tpx-4">₱{{ $ingredient->price }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div style="text-align:right;">
+                <div style="font-size:11px;color:#94a3b8;font-weight:700;">Total Cost</div>
+                <div style="font-size:14px;font-weight:900;color:#166534;">
+                    ₱{{ number_format($production->total, 2) }}
+                </div>
+            </div>
+
+            <a href="/admin/lab/production"
+               class="inv-icon-btn"
+               style="width:36px;height:36px;background:#fff;border-color:#e2e8f0;color:#64748b;"
+               title="Back">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Compact Stats Row -->
+    <div style="padding:10px 14px;">
+        <div style="
+            display:grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap:8px;
+        ">
+            <div style="padding:8px 10px;border:1px solid #eef2f7;border-radius:10px;">
+                <div style="font-size:11px;color:#94a3b8;font-weight:700;">Weight</div>
+                <div style="font-size:14px;font-weight:900;">
+                    {{ number_format($production->total_weight, 2) }}g
+                </div>
+            </div>
+
+            <div style="padding:8px 10px;border:1px solid #eef2f7;border-radius:10px;">
+                <div style="font-size:11px;color:#94a3b8;font-weight:700;">Quantity</div>
+                <div style="font-size:14px;font-weight:900;">
+                    {{ number_format($production->total_quantity, 2) }} pcs
+                </div>
+            </div>
+
+            <div style="padding:8px 10px;border:1px solid #eef2f7;border-radius:10px;">
+                <div style="font-size:11px;color:#94a3b8;font-weight:700;">Actual</div>
+                <div style="font-size:14px;font-weight:900;">
+                    {{ $production->actual_quantity ? number_format($production->actual_quantity,2).' pcs' : '—' }}
+                </div>
             </div>
         </div>
+
+        <!-- Comment (inline, small) -->
+        @if(!empty($production->comment))
+            <div style="
+                margin-top:8px;
+                padding:8px 10px;
+                border:1px dashed #e5e7eb;
+                border-radius:10px;
+                background:#f9fafb;
+                font-size:13px;
+                color:#334155;
+            ">
+                <strong style="font-size:11px;color:#94a3b8;">Comment:</strong>
+                {{ $production->comment }}
+            </div>
+        @endif
+    </div>
+</div>
+
+
+<!-- Ingredients Used (Tight Table) -->
+<div class="chem-card">
+    <div style="padding:14px 16px; border-bottom:1px solid #eef2f7; display:flex; align-items:center; justify-content:space-between; gap:10px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:34px; height:34px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#f1f5f9; border:1px solid #e2e8f0; color:#334155;">
+                <i class="fas fa-flask"></i>
+            </div>
+            <div>
+                <div style="font-size:15px; font-weight:900; color:#0f172a; line-height:1.1;">Ingredients Used</div>
+                <div style="font-size:12px; color:#94a3b8; margin-top:2px;">Materials breakdown</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toverflow-x-auto">
+        <table class="chem-table">
+            <thead>
+                <tr>
+                    <th>Ingredient</th>
+                    <th class="">₱/Gram</th>
+                    <th class="">% Used</th>
+                    <th class="">Grams</th>
+                    <th class="">Price</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach ($production->ingredients as $ingredient)
+                    <tr>
+                        <td>
+                            <div class="chem-name">{{ $ingredient->product_name }}</div>
+                            <div class="chem-sub">Material</div>
+                        </td>
+
+                        <td class=" tfont-semibold">
+                            ₱{{ number_format($ingredient->product_price_per_grams, 2) }}
+                        </td>
+
+                        <td class=" tfont-semibold">
+                            {{ number_format($ingredient->product_percentage, 2) }}%
+                        </td>
+
+                        <td class=" tfont-semibold">
+                            {{ number_format($ingredient->grams, 2) }}
+                        </td>
+
+                        <td class=" tfont-semibold" style="color:#166534;">
+                            ₱{{ number_format($ingredient->price, 2) }}
+                        </td>
+                    </tr>
+                @endforeach
+
+                @if(count($production->ingredients) == 0)
+                    <tr>
+                        <td colspan="5" class="chem-center" style="padding:28px 18px; color:#94a3b8;">
+                            No ingredients recorded for this batch.
+                        </td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 
 

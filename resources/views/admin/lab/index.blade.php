@@ -2,15 +2,152 @@
 
 
 @section('page')
-    <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
-        <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
+
+    <style>
+        <style>
+            .add-chemical-btn{
+        transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+        -webkit-tap-highlight-color: transparent;
+        }
+
+        .add-chemical-btn:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 10px 18px rgba(0,0,0,.12);
+        background-color: #bbf7d0; /* close to Tailwind green-200 */
+        }
+
+        .add-chemical-btn:active{
+        transform: translateY(0) scale(.96);
+        box-shadow: 0 6px 12px rgba(0,0,0,.10);
+        }
+
+        .add-chemical-btn .add-chemical-flask{
+        transition: transform .15s ease;
+        }
+
+        .add-chemical-btn:hover .add-chemical-flask{
+        transform: rotate(-8deg) scale(1.06);
+        }
+
+        .add-chemical-btn .add-chemical-plus{
+        transition: transform .15s ease;
+        }
+
+        .add-chemical-btn:hover .add-chemical-plus{
+        transform: scale(1.25);
+        }
+
+        .add-chemical-btn:active .add-chemical-plus{
+        transform: scale(1.1);
+        }
+
+    </style> <!-- Add Chemical icon -->
+
+    <style>
+        /* Modern modal sizing */
+        #modal1.modal{
+        width: min(720px, 92vw) !important;
+        max-height: 86vh !important;
+        }
+
+        /* Close button */
+        .modal-x-btn{
+        width: 36px;
+        height: 36px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        border-radius: 10px;
+        background: #f1f5f9;
+        color: #334155;
+        transition: transform .12s ease, background-color .12s ease;
+        }
+        .modal-x-btn:hover{ background:#e2e8f0; transform: translateY(-1px); }
+        .modal-x-btn:active{ transform: scale(.96); }
+
+        /* Inputs */
+        .modal-input{
+        width:100%;
+        padding: 10px 12px !important;
+        border-radius: 12px !important;
+        border: 1px solid #e2e8f0 !important;
+        background: #ffffff !important;
+        outline: none !important;
+        transition: box-shadow .12s ease, border-color .12s ease, transform .12s ease;
+        }
+        .modal-input:focus{
+        border-color:#22c55e !important;
+        box-shadow: 0 0 0 4px rgba(34,197,94,.18) !important;
+        }
+        .modal-input-readonly{
+        background:#f8fafc !important;
+        cursor:not-allowed !important;
+        color:#475569 !important;
+        }
+
+        /* Buttons */
+        .modal-btn{
+        border: 0;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        gap:8px;
+        transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+        text-decoration:none;
+        }
+        .modal-btn:active{ transform: scale(.98); }
+
+        .modal-btn-ghost{
+        background:#f1f5f9;
+        color:#0f172a;
+        }
+        .modal-btn-ghost:hover{ background:#e2e8f0; }
+
+        .modal-btn-primary{
+        background:#16a34a;
+        color:#fff;
+        box-shadow: 0 10px 18px rgba(22,163,74,.18);
+        }
+        .modal-btn-primary:hover{
+        background:#15803d;
+        box-shadow: 0 14px 24px rgba(22,163,74,.22);
+        }
+
+        /* Optional: soften Materialize overlay a bit */
+        .modal-overlay{
+        background: rgba(15, 23, 42, .55) !important;
+        }
+
+    </style> <!-- Modal -->
+
+
+
+    <div class=" tpb-5 ttext-black-100">
+        <div class="tbg-white tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
             <span class="ttext-base ttext-title tfont-medium">Chemicals & Equipments</span>
             <ul class="tflex titems-center">
-                <li class="tmr-4">
-                    <a href="#modal1" class="tbg-green-200 tmr-4 tpx-3 tpy-2 trounded ttext-green-900 waves-effect waves-light  modal-trigger">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </li><!-- Add Chemical -->
+
+            <li class="tmr-4">
+                <a href="#modal1"
+                class="modal-trigger add-chemical-btn
+                        trelative
+                        tbg-green-100
+                        ttext-green-800
+                        tw-11 th-11
+                        tflex titems-center tjustify-center
+                        trounded-full
+                        tshadow-sm
+                        ttransition">
+                    <i class="fas fa-flask ttext-2xl add-chemical-flask"></i>
+                    <i class="fas fa-plus tabsolute tmr-6 ttext-xs ttop-1 tright-1 add-chemical-plus"></i>
+                </a>
+            </li><!-- Add Chemical -->
+
+
                 <li class="tmr-4">
                     <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
                         <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
@@ -49,87 +186,131 @@
                 </li>
             </ul>
         </div>
-        <div class="tpx-3 tpy-4 tflex tjustify-center">
-            <table class="tmb-4 tbg-white ttext-md tw-full">
-                <tbody>
-                    <tr class="tborder-0">
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">#</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Name</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Price</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Weight</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Price/Grams</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Action</th>
+        
+        <div class=" tpy-4">
+        <div class="chem-card">
+            <div class="toverflow-x-auto">
+            <table class="chem-table">
+                <thead>
+                <tr>
+                    <th style="width:60px;">#</th>
+                    <th>Name</th>
+                    <th class="">Price</th>
+                    <th class="">Weight</th>
+                    <th class="">Price/Gram</th>
+                    <th class="chem-center" style="width:110px;">Action</th>
+                </tr>
+                </thead>
+
+                <tbody >
+                @forelse ($ingredients as $ingredient)
+                    <tr>
+                        <td style="color:#64748b;">{{ $ingredient->id }}</td>
+                        <td>
+                            <div class="chem-name">{{ $ingredient->name }}</div>
+                            <div class="chem-sub">Chemical</div>
+                        </td>
+                        <td class="" style="font-weight:600;">
+                            {{ currency() }}{{ number_format($ingredient->price, 2) }}
+                        </td>
+                        <td class="">
+                            {{ number_format($ingredient->weight, 2) }}
+                        </td>
+                        <td class="" style="font-weight:700; color:#16a34a;">
+                            {{ number_format($ingredient->price_per_grams, 2) }}
+                        </td>
+                        <td class="chem-center">
+                            <a href="/admin/lab/update/{{ $ingredient->id }}" class="chem-action" title="Update">
+                            <i class="fas fa-pen"></i>
+                            </a>
+                        </td>
                     </tr>
-
-                    @foreach ($ingredients as $ingredient)
-                    
-                        <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="ttext-center tpx-5">{{ $ingredient->id }}</td>
-                            <td class="ttext-center tpx-5">{{ $ingredient->name }}</td>
-                            <td class="ttext-center tpx-5">{{ currency() }}{{ $ingredient->price }}</td>
-                            <td class="ttext-center tpx-5">{{ $ingredient->weight }}</td>
-                            <td class="ttext-center tpx-5">{{ $ingredient->price_per_grams }}</td>
-                            <td class="ttext-center tpx-5">
-                                <a href="/admin/lab/update/{{ $ingredient->id }}" >
-                                    <i class="fas fa-edit ttext-green-600 gray-text tcursor-pointer tooltipped" data-position="left" data-tooltip="Update"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-
+                @empty
+                    <tr>
+                    <td colspan="6" class="chem-empty">
+                        No chemicals yet. Click the plus button to add one.
+                    </td>
+                    </tr>
+                @endforelse
                 </tbody>
             </table>
+            </div>
+        </div>
+        </div>
 
-        </div><!-- TABLE -->
+
 
 
 
 
         <!-- Modal Structure -->
-        <div id="modal1" class="modal modal-fixed-footer tw-full md:tw-1/2  tbg-white">
-            <div class="modal-content">
+        <div id="modal1" class="modal modal-fixed-footer tbg-transparent tbg-white" style="border-radius:16px; overflow:hidden;">
+            <div class="modal-content " style="padding:0;">
 
-                <form action="{{ route('lab.create') }}" method="post" class="tbg-white trounded-lg ttext-black-100">
+                <!-- Header -->
+                <div class="tflex titems-center tjustify-between tpx-6 tpy-4 tborder-b" style="border-color:#eef2f7;">
+                    <div>
+                        <div class="ttext-base tfont-semibold" style="color:#0f172a;">Add Chemical</div>
+                        <div class="ttext-xs" style="color:#64748b; margin-top:2px;">Enter supplier price & weight to auto-calc price per gram.</div>
+                    </div>
+
+                    <a href="#!" class="modal-close modal-x-btn" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+
+                <form action="{{ route('lab.create') }}" method="post" class="tpx-6 tpy-5">
                     @csrf
-                    <div class="text-sm tfont-medium tpx-5 tpy-4 t ttext-title">
-                        Customer Info
+
+                    <!-- Fields -->
+                    <div class="tflex tflex-wrap -tmx-2">
+                        <div class="tw-full md:tw-1/2 tpx-2 tmb-4">
+                            <label for="name" class="tblock ttext-xs tfont-semibold" style="color:#334155;">Chemical Name</label>
+                            <input type="text" id="name" name="name" class="modal-input browser-default" placeholder="e.g., Niacinamide">
+                        </div>
+
+                        <div class="tw-1/2 md:tw-1/4 tpx-2 tmb-4">
+                            <label for="price" class="tblock ttext-xs tfont-semibold" style="color:#334155;">Price</label>
+                            <input type="text" id="price" name="price" class="price modal-input browser-default" placeholder="₱">
+                        </div>
+
+                        <div class="tw-1/2 md:tw-1/4 tpx-2 tmb-4">
+                            <label for="weight" class="tblock ttext-xs tfont-semibold" style="color:#334155;">Weight</label>
+                            <input type="text" id="weight" name="weight" class="weight modal-input browser-default" placeholder="grams">
+                        </div>
+
+                        <div class="tw-full md:tw-1/2 tpx-2 tmb-4">
+                            <label for="price_per_grams" class="tblock ttext-xs tfont-semibold" style="color:#334155;">Price / Gram</label>
+                            <div class="trelative">
+                                <input type="text" id="price_per_grams" name="price_per_grams"
+                                    class="modal-input browser-default modal-input-readonly"
+                                    value="" readonly>
+                                <span class="tabsolute" style="right:12px; top:50%; transform:translateY(-50%); color:#94a3b8; font-size:12px;">
+                                    auto
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="tw-full tpx-2 tmb-2">
+                            <label for="note" class="tblock ttext-xs tfont-semibold" style="color:#334155;">Note</label>
+                            <textarea name="note" id="note" rows="4" class="modal-input browser-default" placeholder="Optional notes..."></textarea>
+                        </div>
                     </div>
 
-                    <div class="tflex tflex-wrap tpx-5">
-                        <div class="tw-1/5 tmb-2 lg:tmb-0 tpx-1 tpb-3">
-                            <label for="name" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Chemical Name</label>
-                            <input type="text" id="name" name="name" class="browser-default form-control" value="" style="padding: 6px;">
-                        </div>
-                        <div class="tw-1/5 tpx-1">
-                            <label for="price" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price</label>
-                            <input type="text" id="price" name="price" class="price browser-default form-control" value="" style="padding: 6px;">
-                        </div>
-                        <div class="tw-1/5 tpx-1">
-                            <label for="weight" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Weight</label>
-                            <input type="text" id="weight" name="weight" class="weight browser-default form-control" value="" style="padding: 6px;">
-                        </div>
-                        <div class="tw-1/5 tpx-1 tpx-1 tmb-2 lg:tmb-0">
-                            <label for="price_per_grams" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Price/Grams</label>
-                            <input type="text" id="price_per_grams" name="price_per_grams" class="browser-default form-control tbg-red tcursor-not-allowed ttext" value="" style="padding: 6px;background-color: #eaeaea;/* opacity: 0.6; *//* color: red!important; */">
-                        </div>
-                    </div>
-
-                    <div class="tflex tflex-wrap tpx-5">
-                        <div class="tw-full tmb-2 lg:tmb-0 tpx-1 tpb-3">
-                            <label for="note" class="tfont-medium ttext-sm tmb-2 ttext-black-100">Note</label>
-                            <textarea name="note" id="note" cols="30" rows="3" class="browser-default form-control" style="padding: 6px;"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="tflex tjustify-center tmt-3">
-                        <button type="submit" class="focus:tbg-primary tbg-primary tpy-2 trounded ttext-white tw-1/3 tw-24 waves-effect">Submit</button><!-- Save -->
+                    <!-- Actions -->
+                    <div class="tflex tjustify-end tgap-2 tmt-4 tpt-4 tborder-t" style="border-color:#eef2f7;">
+                        <a href="#!" class="modal-close modal-btn modal-btn-ghost">Cancel</a>
+                        <button type="submit" class="modal-btn modal-btn-primary">
+                            <i class="fas fa-check tmr-2"></i> Save Chemical
+                        </button>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
+
+            <!-- Remove boring footer (optional). If you want it kept, tell me -->
+            <div class="modal-footer" style="display:none;"></div>
         </div>
+
 
     </div>
 @endsection

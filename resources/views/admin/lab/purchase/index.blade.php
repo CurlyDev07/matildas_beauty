@@ -2,89 +2,161 @@
 
 
 @section('page')
-    <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
-        <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
-            <span class="ttext-base ttext-title tfont-medium">Purchase List</span>
-            <ul class="tflex titems-center">
-                <li class="tmr-4">
-                    <a href="{{ route('lab.purchase.create') }}" class="tbg-green-200 tmr-4 tpx-3 tpy-2 trounded ttext-green-900 waves-effect waves-light  modal-trigger">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </li><!-- Add Chemical -->
-                <li class="tmr-4">
-                    <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
-                        <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
-                        <button type="submit" class="focus:tbg-white focus:toutline-none grey-text tborder tborder-gray-200 tborder-l-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-r-full waves-effect">
-                            <i class="fa-flip-horizontal fa-lg fa-search fas"></i>
-                        </button>
-                    </form>
-                </li><!-- SEARCH -->
-                <li class="tmr-2">
-                    <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
-                        <img class="tpr-1" src="{{ asset('images/icons/store.png') }}" alt="">
-                        <select id="supplier" class="supplier tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
-                            <option value="#" selected>Choose ...</option>
 
-                            @foreach ($suppliers as $supplier)
-                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                            @endforeach
-                        </select> 
-                    </div>
-                </li><!-- Store Filter-->
-                <li class="tmr-4 tpt-1">
-                    @if (request()->sort == 'asc')
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by newest">
-                            <i class="material-icons grey-text tmr-3">sort_by_alpha</i>
-                        </a>
-                    @else
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'asc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by oldest">
-                            <i class="material-icons grey-text">sort_by_alpha</i>
-                        </a>
-                    @endif
-                </li><!-- SORT -->
-                <li>
-                    <a href="/admin/lab/purchase">
-                        <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
+
+    <div class=" tpb-5 trounded-lg ttext-black-100">
+
+        <!-- HEADER -->
+        <div class="inv-header">
+            <span class="inv-title">
+                <i class="fas fa-receipt" style="color:#334155;"></i>
+                Purchase List
+            </span>
+
+            <div class="inv-tools">
+               <div class="inv-tools">
+    <!-- Add Chemical Purchase -->
+    <a href="{{ route('lab.purchase.create') }}"
+       class="inv-icon-btn"
+       title="Add Chemical Purchase"
+       style="position:relative;">
+        
+        <!-- Flask -->
+        <i class="fas fa-flask" style="font-size:20px;"></i>
+
+        <!-- Plus badge -->
+        <i class="fas fa-plus tmr-6"
+           style="
+             position:absolute;
+             top:10px;
+             right:10px;
+             font-size:9px;
+             background:#166534;
+             color:#fff;
+             width:14px;
+             height:14px;
+             border-radius:50%;
+             display:flex;
+             align-items:center;
+             justify-content:center;
+           ">
+        </i>
+    </a>
+</div>
+
+                <!-- Search -->
+                <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="inv-search">
+                    <input type="text"
+                        name="search"
+                        value="{{ request()->search ?? '' }}"
+                        placeholder="Search supplier or date">
+                    <button type="submit">
+                        <i class="fa-flip-horizontal fa-lg fa-search fas"></i>
+                    </button>
+                </form>
+
+                <!-- Supplier Filter -->
+                <div class="inv-select">
+                    <img src="{{ asset('images/icons/store.png') }}" alt="">
+                    <select id="supplier" class="supplier browser-default form-control">
+                        <option value="#" selected>Choose ...</option>
+                        @foreach ($suppliers as $supplier)
+                            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Sort -->
+                @if (request()->sort == 'asc')
+                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}"
+                    class="inv-icon-btn"
+                    title="Sort by newest"
+                    style="background:#fff;border-color:#e2e8f0;color:#64748b;">
+                        <i class="material-icons">sort_by_alpha</i>
                     </a>
-                </li>
-            </ul>
+                @else
+                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'asc']) }}"
+                    class="inv-icon-btn"
+                    title="Sort by oldest"
+                    style="background:#fff;border-color:#e2e8f0;color:#64748b;">
+                        <i class="material-icons">sort_by_alpha</i>
+                    </a>
+                @endif
+
+                <!-- Clear Filter -->
+                <a href="/admin/lab/purchase"
+                class="inv-icon-btn"
+                title="Remove filter"
+                style="background:#fff;border-color:#fee2e2;color:#ef4444;">
+                    <img src="{{ asset('images/icons/clear_filter.png') }}"
+                        style="width:22px;height:22px;">
+                </a>
+            </div>
         </div>
-        <div class="tpx-3 tpy-4 tflex tjustify-center">
-            <table class="tmb-4 tbg-white ttext-md tw-full">
-                <tbody>
-                    <tr class="tborder-0">
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Supplier</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Ingredients Qty</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Total Price</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Purchase Date</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Date Created</th>
-                        <th class="ttext-center tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
-                    </tr>
+        <!-- /HEADER -->
 
-                    @foreach ($purchases as $purchase)
-                    {{-- {{ dd($purchase) }} --}}
-                        <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="tp-3 tpx-5 ttext-center">{{ $purchase->supplierInfo->name }}</td>
-                            <td class="tp-3 tpx-5 ttext-center">{{ number_format(count($purchase->ingredients)) }}</td>
-                            <td class="tp-3 tpx-5 ttext-center">{{ number_format($purchase->total_price) }}</td>
-                            <td class="tp-3 tpx-5 ttext-center">{{ $purchase->date }}</td>
-                            <td class="tp-3 tpx-5 ttext-center">{{ $purchase->created_at }}</td>
-                            <td class="tp-3 tpx-5 ttext-center ttext-center">
-                                <a href="{{ route('lab.purchase.update', $purchase->id) }}" >
-                                    <i class="fas fa-edit tmx-2 tcursor-pointer tooltipped ttext-green-600" data-position="left" data-tooltip="Update"></i>
-                                </a>
-                                    |
-                                <a href="{{ route('lab.purchase.update', $purchase->id) }}" >
-                                    <i class="fas fa-trash tmx-2 tcursor-pointer tooltipped ttext-red-600" data-position="left" data-tooltip="Delete"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
 
-                </tbody>
-            </table>
+        <div class="tpy-4">
+            <div class="chem-card">
+                <div class="toverflow-x-auto">
+                    <table class="chem-table">
+                        <thead>
+                            <tr>
+                                <th>Supplier</th>
+                                <th class="chem-center">Items</th>
+                                <th class="">Total Price</th>
+                                <th>Purchase Date</th>
+                                <th>Date Created</th>
+                                <th class="chem-center" style="width:120px;">Action</th>
+                            </tr>
+                        </thead>
 
-        </div><!-- TABLE -->
+                        <tbody>
+                            @foreach ($purchases as $purchase)
+                                <tr>
+                                    <td>
+                                        <div class="chem-name">{{ $purchase->supplierInfo->name }}</div>
+                                        <div class="chem-sub">Supplier</div>
+                                    </td>
+
+                                    <td class=" tfont-semibold">
+                                        {{ number_format(count($purchase->ingredients)) }}
+                                    </td>
+
+                                    <td class=" tfont-semibold">
+                                        {{ currency() }}{{ number_format($purchase->total_price, 2) }}
+                                    </td>
+
+                                    <td>
+                                        {{ $purchase->date }}
+                                    </td>
+
+                                    <td>
+                                        {{ $purchase->created_at }}
+                                    </td>
+
+                                    <td class="">
+                                        <a href="{{ route('lab.purchase.update', $purchase->id) }}"
+                                        class="chem-action"
+                                        title="Edit">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+
+                                        <a href="{{ route('lab.purchase.update', $purchase->id) }}"
+                                        class="chem-action"
+                                        style="margin-left:6px;border-color:#fee2e2;background:#fff;color:#ef4444;"
+                                        title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
 
 
 

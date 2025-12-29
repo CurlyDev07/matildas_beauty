@@ -2,78 +2,113 @@
 
 
 @section('page')
-    <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
-        <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
-            <span class="ttext-base ttext-title tfont-medium">Formulation List</span>
-            <ul class="tflex titems-center">
-                <li class="tmr-4">
-                    <a href="{{ route('lab.formulation.create') }}" class="tbg-green-200 tmr-4 tpx-3 tpy-2 trounded ttext-green-900 waves-effect waves-light  modal-trigger">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </li><!-- Add Chemical -->
-                <li class="tmr-4">
-                    <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
-                        <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
-                        <button type="submit" class="focus:tbg-white focus:toutline-none grey-text tborder tborder-gray-200 tborder-l-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-r-full waves-effect">
-                            <i class="fa-flip-horizontal fa-lg fa-search fas"></i>
-                        </button>
-                    </form>
-                </li><!-- SEARCH -->
-                <li class="tmr-2">
-                    <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
-                        <img class="tpr-1" src="{{ asset('images/icons/store.png') }}" alt="">
-                        <select id="supplier" class="supplier tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
-                            <option value="#" selected>Choose ...</option>
+    <div class="tpb-5 trounded-lg ttext-black-100">
+        <div class="inv-header">
+            <span class="inv-title">
+                <i class="fas fa-clipboard-list" style="color:#334155;"></i>
+                Formulation List
+            </span>
 
-                            {{-- @foreach ($suppliers as $supplier)
-                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                            @endforeach --}}
-                        </select> 
-                    </div>
-                </li><!-- Store Filter-->
-                <li class="tmr-4 tpt-1">
-                    @if (request()->sort == 'asc')
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by newest">
-                            <i class="material-icons grey-text tmr-3">sort_by_alpha</i>
-                        </a>
-                    @else
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'asc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by oldest">
-                            <i class="material-icons grey-text">sort_by_alpha</i>
-                        </a>
-                    @endif
-                </li><!-- SORT -->
-                <li>
-                    <a href="/admin/lab/purchase">
-                        <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
+            <div class="inv-tools">
+                <!-- Add Formulation -->
+                <a href="{{ route('lab.formulation.create') }}"
+                class="inv-icon-btn"
+                title="Add Formulation">
+                    <i class="fas fa-plus"></i>
+                </a>
+
+                <!-- Search -->
+                <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="inv-search">
+                    <input type="text" name="search" value="{{ request()->search ?? '' }}" placeholder="Search product name">
+                    <button type="submit">
+                        <i class="fa-flip-horizontal fa-lg fa-search fas"></i>
+                    </button>
+                </form>
+
+                <!-- Supplier/Filter (optional – keep if you really use it) -->
+                <div class="inv-select">
+                    <img src="{{ asset('images/icons/store.png') }}" alt="">
+                    <select id="supplier" class="supplier browser-default form-control">
+                        <option value="#" selected>Choose ...</option>
+                        {{-- @foreach ($suppliers as $supplier)
+                            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                        @endforeach --}}
+                    </select>
+                </div>
+
+                <!-- Sort -->
+                @if (request()->sort == 'asc')
+                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}"
+                    class="inv-icon-btn"
+                    title="Sort by newest"
+                    style="background:#fff;border-color:#e2e8f0;color:#64748b;">
+                        <i class="material-icons">sort_by_alpha</i>
                     </a>
-                </li>
-            </ul>
+                @else
+                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'asc']) }}"
+                    class="inv-icon-btn"
+                    title="Sort by oldest"
+                    style="background:#fff;border-color:#e2e8f0;color:#64748b;">
+                        <i class="material-icons">sort_by_alpha</i>
+                    </a>
+                @endif
+
+                <!-- Clear Filter -->
+                <a href="/admin/lab/formulation"
+                class="inv-icon-btn"
+                title="Remove filter"
+                style="background:#fff;border-color:#fee2e2;color:#ef4444;">
+                    <img src="{{ asset('images/icons/clear_filter.png') }}" style="width:22px;height:22px;">
+                </a>
+            </div>
         </div>
-        <div class="tpx-3 tpy-4 tflex">
-            <table class="tmb-4 tbg-white ttext-md tw-full">
-                <tbody>
-                    <tr class="tborder-0">
-                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Product</th>
-                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Net Content</th>
-                        <th class="tp-3 tpx-5 ttext-black-100 tfont-medium">Action</th>
-                    </tr>
-                    
-                    @foreach ($formulations as $formulation)
-                        <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="tp-3 tpx-5 ">{{ $formulation->product_name }}</td>
-                            <td class="tp-3 tpx-5 ">{{ $formulation->net_content }}</td>
-                            <td class="tp-3 tpx-5 ">
-                                <a href="{{ route('lab.production.create', ['id' => $formulation->id]) }}" >
-                                    <i class="fas fa-plus-circle tmx-2 tcursor-pointer tooltipped ttext-green-600" data-position="left" data-tooltip="Make"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
 
-                </tbody>
-            </table>
+        <div class="tpy-4">
+            <div class="chem-card">
+                <div class="toverflow-x-auto">
+                    <table class="chem-table">
+                        <thead>
+                            <tr class="tflex titems-center">
+                                <th>Product</th>
+                                <th class="">Net Content</th>
+                                <th class="" style="width:140px;">Action</th>
+                            </tr>
+                        </thead>
 
-        </div><!-- TABLE -->
+                        <tbody>
+                            @foreach ($formulations as $formulation)
+                                <tr class="tflex titems-center">
+                                    <td>
+                                        <div class="chem-name">{{ $formulation->product_name }}</div>
+                                    </td>
+
+                                    <td class="tfont-semibold">
+                                        {{ $formulation->net_content }}g
+                                    </td>
+
+                                    <td class="">
+                                        <a href="{{ route('lab.production.create', ['id' => $formulation->id]) }}"
+                                        class="tbg-green-300 tfont-medium tpx-5 tpy-3 trounded ttext-green-900"
+                                        title="Make / Produce">
+                                            <i class="fas fa-plus"></i> Create Formulation
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                            @if(count($formulations) == 0)
+                                <tr>
+                                    <td colspan="3" class="chem-center" style="padding:36px 18px; color:#94a3b8;">
+                                        No formulations yet. Click the + button to add one.
+                                    </td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
 
 
 

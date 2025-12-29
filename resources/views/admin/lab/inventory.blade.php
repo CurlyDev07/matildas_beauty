@@ -2,80 +2,241 @@
 
 
 @section('page')
-    <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
-        <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
-            <span class="ttext-base ttext-title tfont-medium">Total Stock Value: <span class="tfont-bold ttext-green-800">₱{{ number_format($totalStockValue) }}</span></span>
-            <span class="ttext-base ttext-title tfont-medium tfont-bold ttext-2xl"><i class="fas fa-clipboard-list"></i> Inventory</span>
-            <ul class="tflex titems-center">
-                <li class="tmr-4">
-                    <a href="#modal1" class="tbg-green-200 tmr-4 tpx-3 tpy-2 trounded ttext-green-900 waves-effect waves-light  modal-trigger">
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-                </li><!-- Add Chemical -->
-                <li class="tmr-4">
-                    <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tflex titems-center">
-                        <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
-                        <button type="submit" class="focus:tbg-white focus:toutline-none grey-text tborder tborder-gray-200 tborder-l-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-r-full waves-effect">
-                            <i class="fa-flip-horizontal fa-lg fa-search fas"></i>
-                        </button>
-                    </form>
-                </li><!-- SEARCH -->
-                <li class="tmr-2">
-                    <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
-                        <img class="tpr-1" src="{{ asset('images/icons/store.png') }}" alt="">
-                        <select id="supplier" class="supplier tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
-                            <option value="#" selected>Choose ...</option>
+    <style>
+        /* ===== Inventory Card ===== */
+        .inv-card{
+        background:#fff;
+        border:1px solid #e9eef6;
+        border-radius:16px;
+        box-shadow:0 10px 26px rgba(15,23,42,.06);
+        overflow:hidden;
+        }
 
-                            {{-- @foreach ($suppliers as $supplier)
-                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                            @endforeach --}}
-                        </select> 
-                    </div>
-                </li><!-- Store Filter-->
-                <li class="tmr-4 tpt-1">
+        /* ===== Header / Toolbar ===== */
+        .inv-header{
+        padding:14px 18px;
+        border-bottom:1px solid #eef2f7;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+        }
+
+        .inv-title{
+        font-size:24px;
+        font-weight:800;
+        color:#0f172a;
+        display:flex;
+        align-items:center;
+        gap:10px;
+        white-space:nowrap;
+        }
+
+        .inv-meta{
+        font-size:14px;
+        font-weight:600;
+        color:#475569;
+        white-space:nowrap;
+        }
+        .inv-meta b{ color:#166534; }
+
+        /* Toolbar group */
+        .inv-tools{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        flex-wrap:wrap;
+        justify-content:flex-end;
+        }
+
+        /* ===== Buttons ===== */
+        .inv-icon-btn{
+        width:44px;
+        height:44px;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        border-radius:12px;
+        border:1px solid #dbeafe;
+        background:#dcfce7;
+        color:#166534;
+        text-decoration:none;
+        transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+        }
+        .inv-icon-btn:hover{
+        background:#bbf7d0;
+        box-shadow:0 14px 24px rgba(22,163,74,.16);
+        transform: translateY(-1px);
+        }
+        .inv-icon-btn:active{ transform: scale(.96); }
+
+        /* ===== Search group ===== */
+        .inv-search{
+        display:flex;
+        align-items:center;
+        border:1px solid #e2e8f0;
+        border-radius:14px;
+        overflow:hidden;
+        background:#fff;
+        height:44px;
+        }
+        .inv-search input{
+        border:0 !important;
+        outline:none !important;
+        padding:10px 14px !important;
+        width:280px;
+        font-size:14px;
+        color:#0f172a;
+        }
+        .inv-search button{
+        border:0;
+        background:#fff;
+        width:48px;
+        height:44px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#64748b;
+        cursor:pointer;
+        transition: background-color .12s ease, transform .12s ease;
+        }
+        .inv-search button:hover{ background:#f1f5f9; }
+        .inv-search button:active{ transform: scale(.96); }
+
+        /* ===== Select wrapper ===== */
+        .inv-select{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        border:1px solid #e2e8f0;
+        border-radius:14px;
+        padding:0 10px;
+        height:44px;
+        background:#fff;
+        }
+        .inv-select img{ width:20px; height:20px; }
+        .inv-select select{
+        border:0 !important;
+        outline:none !important;
+        background:transparent !important;
+        height:42px;
+        cursor:pointer;
+        font-size:13px;
+        color:#334155;
+        }
+
+        /* ===== Table ===== */
+        .inv-table-wrap{ padding: 8px 8px 16px; }
+        .inv-table{
+        width:100%;
+        border-collapse:separate;
+        border-spacing:0;
+        font-size:14px;
+        }
+        .inv-table thead th{
+        background:#f8fafc;
+        color:#64748b;
+        font-weight:800;
+        padding:16px 18px;
+        border-bottom:1px solid #eef2f7;
+        text-align:left;
+        white-space:nowrap;
+        }
+        .inv-table tbody td{
+        padding:16px 18px;
+        border-bottom:1px solid #f1f5f9;
+        color:#0f172a;
+        vertical-align:middle;
+        }
+        .inv-table tbody tr:nth-child(even){ background:#fcfdff; }
+        .inv-table tbody tr{
+        transition: background-color .12s ease;
+        }
+        .inv-table tbody tr:hover{ background:#eff6ff; }
+
+        .inv-right{ text-align:right; }
+        .inv-center{ text-align:center; }
+        .inv-green{ color:#166534; font-weight:800; }
+        .inv-name{ font-weight:800; color:#0f172a; }
+    </style>
+
+
+    <div class="tpb-5 trounded-lg ttext-black-100">
+        <div class="inv-card tpb-5 ttext-black-100">
+        <div class="inv-header">
+            <span class="inv-title">
+                <i class="fas fa-clipboard-list" style="color:#334155;"></i>
+                Inventory
+            </span>
+
+            <span class="inv-meta">Total Stock Value: <b>₱{{ number_format($totalStockValue) }}</b></span>
+
+            <div class="inv-tools">
+                <!-- Search -->
+                <form action="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="inv-search">
+                    <input type="text" name="search" id="barcode" value="{{ request()->search ?? '' }}" placeholder="Search order number">
+                    <button type="submit" aria-label="Search">
+                        <i class="fa-flip-horizontal fa-lg fa-search fas"></i>
+                    </button>
+                </form>
+
+                <!-- Store Filter -->
+                <div class="inv-select">
+                    <img src="{{ asset('images/icons/store.png') }}" alt="">
+                    <select id="supplier" class="supplier browser-default form-control">
+                        <option value="#" selected>Choose ...</option>
+                    </select>
+                </div>
+
+                <!-- Sort -->
+                <div>
                     @if (request()->sort == 'asc')
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by newest">
-                            <i class="material-icons grey-text tmr-3">sort_by_alpha</i>
+                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}" class="inv-icon-btn" title="Sort by newest" style="background:#fff;border-color:#e2e8f0;color:#64748b;">
+                            <i class="material-icons">sort_by_alpha</i>
                         </a>
                     @else
-                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'asc']) }}" class="tooltipped" data-position="top" data-tooltip="Sort by oldest">
-                            <i class="material-icons grey-text">sort_by_alpha</i>
+                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'asc']) }}" class="inv-icon-btn" title="Sort by oldest" style="background:#fff;border-color:#e2e8f0;color:#64748b;">
+                            <i class="material-icons">sort_by_alpha</i>
                         </a>
                     @endif
-                </li><!-- SORT -->
-                <li>
-                    <a href="/admin/lab/">
-                        <img src="{{ asset('images/icons/clear_filter.png') }}" class="tooltipped" data-position="top" data-tooltip="Remove filter">
-                    </a>
-                </li>
-            </ul>
+                </div>
+
+                <!-- Clear Filter -->
+                <a href="/admin/lab/inventory" class="inv-icon-btn" title="Remove filter" style="background:#fff;border-color:#fee2e2;color:#ef4444;">
+                    <img src="{{ asset('images/icons/clear_filter.png') }}" style="width:22px;height:22px;" alt="">
+                </a>
+            </div>
         </div>
-        <div class="tpx-3 tpy-4 tflex tjustify-center">
-            <table class="tmb-4 tbg-white ttext-md tw-full">
-                <tbody>
-                    <tr class="tborder-0">
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Chemical</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Price</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Weight</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Price/Grams</th>
-                        <th class="ttext-center tpx-5 ttext-black-100 tfont-medium">Stock Value</th>
-                    </tr>
 
-                    @foreach ($inventory as $stock)
-                        <tr class="tborder-0 hover:tbg-blue-100">
-                            <td class="ttext-center tpx-5">{{ $stock['name'] }}</td>
-                            <td class="ttext-center tpx-5">{{ currency() }}{{ $stock['price'] }}</td>
-                            <td class="ttext-center tpx-5 ">{{ number_format($stock['weight']) }}g</td>
-                            <td class="ttext-center tpx-5">{{ currency() }}{{ $stock['price_per_grams'] }}</td>
-                            <td class="ttext-center tpx-5 ttext-green-700 tfont-medium">{{ currency() }}{{ number_format($stock['total_value']) }}</td>
+
+
+        <div class="inv-table-wrap">
+            <div class="toverflow-x-auto">
+                <table class="inv-table">
+                    <thead>
+                        <tr>
+                            <th>Chemical</th>
+                            <th class="">Price</th>
+                            <th class="">Weight</th>
+                            <th class="">Price/Grams</th>
+                            <th class="">Stock Value</th>
                         </tr>
-                    @endforeach
+                    </thead>
 
-                </tbody>
-            </table>
-
-        </div><!-- TABLE -->
-
+                    <tbody>
+                        @foreach ($inventory as $stock)
+                            <tr>
+                                <td class="inv-name">{{ $stock['name'] }}</td>
+                                <td class="">{{ currency() }}{{ number_format($stock['price'], 2) }}</td>
+                                <td class="">{{ number_format($stock['weight'], 0) }}g</td>
+                                <td class="">{{ currency() }}{{ number_format($stock['price_per_grams'], 2) }}</td>
+                                <td class=" inv-green">{{ currency() }}{{ number_format($stock['total_value'], 0) }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
 
 
