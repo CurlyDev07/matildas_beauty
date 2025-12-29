@@ -549,18 +549,27 @@ class FbAdsCon extends Controller
 
     public function events(Request $request)
     {
+        $dateQuery = function ($query) use ($request) {
 
-        $dateQuery = function($query) use ($request) {
+            // ✅ If searching → ignore default "today" filter (search across ALL dates)
+            if ($request->filled('search')) {
+                return $query;
+            }
+
+            // ✅ Default: show today's records only (when no date filter is provided)
             if (!$request->date) {
                 return $query->whereDate('created_at', now());
             }
-            
+
             [$from, $to] = array_map('carbon', explode(" - ", $request->date));
-            
-            return $from->isSameDay($to) 
+
+            return $from->isSameDay($to)
                 ? $query->whereDate('created_at', $from)
                 : $query->whereBetween('created_at', [$from, $to]);
         };
+
+        // 🔍 Search keyword (trimmed)
+        $search = trim((string) $request->search);
 
         $contact_number = FbAds::select('phone_number')
             ->tap($dateQuery)
@@ -571,13 +580,19 @@ class FbAdsCon extends Controller
         $events = FbEventListener::select('data', 'value', 'session_id', 'website')
             ->where('data', 'phone_number')
             ->tap($dateQuery)
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where('value', 'LIKE', '%' . $search . '%');
+            })
             ->latest('id')
             ->paginate(50)
             ->appends($request->except('page'));
 
         // Get ALL session IDs from current page
-        $sessionIds = $events->pluck('session_id')->filter()->unique()->toArray();
-        
+        $sessionIds = $events->pluck('session_id')
+            ->filter()
+            ->unique()
+            ->toArray();
+
         // Single query to get all details for all sessions on this page
         $allDetails = FbEventListener::select('session_id', 'data', 'value')
             ->whereIn('session_id', $sessionIds)
@@ -587,6 +602,8 @@ class FbAdsCon extends Controller
 
         return view('admin.fbads.events', compact('events', 'contact_number', 'allDetails'));
     }
+
+
 
     public function change_status(){
         $fbAd = FbAds::find(request()->id);

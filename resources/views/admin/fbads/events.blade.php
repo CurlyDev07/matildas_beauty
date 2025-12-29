@@ -9,7 +9,16 @@
     <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100">
         <div class="tborder-b tflex titems-center tjustify-between tpx-5 tpy-3">
             <span class="ttext-base ttext-title tfont-medium">FB Event Listener</span>
+
             <ul class="tflex titems-center">
+                <li class="tmr-4">
+                    <form action="{{ route('fbads.events') }}" class="tflex titems-center">
+                        <input type="text" name="search" id="barcode" value="" class="browser-default tborder-b tborder-gray-200 tborder-l tborder-t toutline-none tpx-3 tpy-2 trounded-bl trounded-tl" placeholder="Search order number">
+                        <button type="submit" class="focus:tbg-white focus:toutline-none grey-text tborder tborder-gray-200 tborder-l-0 tcursor-pointer toutline-none tpx-3 tpy-2 trounded-r-full waves-effect">
+                            <i class="fa-flip-horizontal fa-lg fa-search fas"></i>
+                        </button>
+                    </form>
+                </li>
                 <li class="tmr-2">
                     <div class="tborder tflex titems-center tpx-2 tpy-1 trounded ttext-sm" >
                         <img class="tpr-1" src="{{ asset('images/icons/calendar.png') }}" alt="">
