@@ -156,10 +156,15 @@
                                     <img src="https://myfoodsafety.net/wp-content/uploads/2020/03/RAW-MATERIALS-SMALL.png" class="product_img" style="height: 50px; width: 50px;" alt="">
                                     <div class="tpx-2">
                                         <p class="product_name truncate ttext-sm ">{{ $ingredient->ingredient->name }}</p>
-                                        <small>
-                                            ₱
-                                            <small class="product_price_per_grams">{{ $ingredient->price / $ingredient->weight }}</small>
+                                       <small class="product_price_per_grams">
+                                            @php
+                                                $weight = (float) ($ingredient->weight ?? 0);
+                                                $price  = (float) ($ingredient->price ?? 0);
+
+                                                echo $weight > 0 ? number_format($price / $weight, 4) : '0.0000';
+                                            @endphp
                                         </small>
+
                                     </div>
                                 </div>
                             </div><!-- Product -->
