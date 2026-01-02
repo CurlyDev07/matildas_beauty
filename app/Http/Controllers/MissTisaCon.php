@@ -133,6 +133,23 @@ class MissTisaCon extends Controller
         return view('pages.misstisa.madella_enterprises_inc', ['fbads_products' => $fbads_products, 'seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
     }
 
+    public function beef_tallow(){
+        $session_id = uuid();
+        $website = 'BeefTallow';
+
+        $provinces = [];
+        $fbads_products = FbAdsProduct::orderBy('order', 'asc')->get();
+
+        $seo = [
+            'title' => "Premium Beef Tallow",
+            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'description' => "Premium Beef Tallow",
+            'robots' => 'none',
+        ];
+
+        return view('pages.misstisa.beef_tallow', ['fbads_products' => $fbads_products, 'seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
+    }
+
 
     public function misstisa_promo(){
         $session_id = uuid();
