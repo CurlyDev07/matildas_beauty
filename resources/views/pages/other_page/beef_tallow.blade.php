@@ -4,7 +4,7 @@
     $products = [
         [
             'id' => 0, 
-            'name' => 'Beef Tallow – Solo Jar',
+            'name' => 'Beef Tallow Solo Jar',
             'price' => 499,
             'image' => 'https://matildasbeauty.com/filemanager/3c6452a4d1194ae4a334a4fe51e5d334.png',
             'description' => '25g Beef Tallow Balm',
@@ -14,7 +14,7 @@
         ],
         [
             'id' => 1,
-            'name' => 'Buy 1 Take 1 - Beef Tallow',
+            'name' => 'Buy 1 Take 1 Beef Tallow',
             'price' => 649,
             'image' => 'https://matildasbeauty.com/filemanager/1668ac73ee9b4d578c9c18a91cfce454.png',
             'description' => 'High protection sunscreen lotion',
@@ -2080,7 +2080,7 @@
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
             // Make POST request using fetch
-            fetch('{{ route("miss_tisa_submit") }}', {
+            fetch('{{ route("beef_tallow_submit") }}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

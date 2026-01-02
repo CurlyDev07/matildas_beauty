@@ -187,6 +187,8 @@
                                     <span class="tfont-medium ttext-green-700">{{ $order->promo }}</span>
                                 @elseif ($order->product == 'MissTisa Serum')
                                     <span class="tfont-medium" style="color: #ff6206;">{{ $order->promo }}</span>
+                                @elseif ($order->product == 'BeefTallow')
+                                    <span class="tfont-medium" style="color: #682b07ff;">{{ $order->promo }}</span>
                                 @endif
 
                                 @if($order->upsells->count() > 0)

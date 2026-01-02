@@ -40,5 +40,10 @@ return [
         'access_token' => env('FB_ACCESS_TOKEN'),
         'currency'     => env('FB_CURRENCY', 'PHP'),
     ],
+    'facebook_capi_tallow' => [
+        'pixel_id_tallow'     => env('FB_PIXEL_ID_TALLOW'),
+        'access_token_tallow' => env('FB_ACCESS_TOKEN_TALLOW'),
+        'currency_tallow'     => env('FB_CURRENCY_TALLOW', 'PHP'),
+    ],
 
 ];
