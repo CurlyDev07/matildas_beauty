@@ -282,6 +282,10 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::post('/status-details/store', 'FbAdsCon@status_details_store')->name('fbads.status_details.store');
         Route::get('/change-status-problematic', 'FbAdsCon@change_status_problematic');
 
+
+        Route::get('/jandt-reconcile', 'ExcelController@jandt_reconcile')->name("jandt_reconcile");
+        Route::post('/jandt-reconcile/process', 'ExcelController@jandt_reconcile_process')->name("jandt_reconcile_process");
+
     });
 
 

@@ -71,6 +71,14 @@
                         <span>Metadata</span>
                     </div>
                 </li>
+
+                <li onclick="window.location.href = '/admin/fbads/jandt-reconcile'" 
+                    class="tcursor-pointer waves-block waves-effect hover:tbg-orange-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/jandt-reconcile', 'tbg-orange-50') }}">
+                    <div class="tflex titems-center tjustify-center tpx-5 th-16">
+                        <i class="fas fa-truck ttext-red-600 ttext-xl tmr-2"></i>
+                        <span>J&T</span>
+                    </div>
+                </li>
             </ul>
         </div><!-- Compact Horizontal NAV -->
         
