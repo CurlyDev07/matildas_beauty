@@ -68,29 +68,40 @@
                 <div class="toverflow-x-auto">
                     <table class="chem-table">
                         <thead>
-                            <tr class="tflex titems-center">
-                                <th>Product</th>
-                                <th class="">Net Content</th>
-                                <th class="" style="width:140px;">Action</th>
+                            <tr class="tw-full tflex titems-center">
+                                <th class="tw-1/3 ttext-left">Product</th>
+                                <th class="tw-1/3 ttext-left">Net Content</th>
+                                <th class="tw-1/3 ttext-left" style="width:140px;">Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             @foreach ($formulations as $formulation)
-                                <tr class="tflex titems-center">
-                                    <td>
+                                <tr class="tw-full tflex titems-center tjustify-between">
+                                    <td class="tw-1/3 ttext-left">
                                         <div class="chem-name">{{ $formulation->product_name }}</div>
                                     </td>
 
-                                    <td class="tfont-semibold">
+                                    <td class="tw-1/3 tfont-semibold">
                                         {{ $formulation->net_content }}g
                                     </td>
 
-                                    <td class="">
+                                    <td class="tw-1/3 ">
                                         <a href="{{ route('lab.production.create', ['id' => $formulation->id]) }}"
-                                        class="tbg-green-300 tfont-medium tpx-5 tpy-3 trounded ttext-green-900"
+                                        class="tbg-green-100 tborder tborder-green-400 tfont-medium tmr-2 tpx-5 tpy-3 trounded ttext-green-900"
                                         title="Make / Produce">
-                                            <i class="fas fa-plus"></i> Create Formulation
+                                            <span class="fa-stack fa-md">
+                                                <i class="fas fa-flask fa-stack-1x ttext-purple-600"></i>
+                                                <i class="fas fa-plus fa-stack-1x ttext-purple-600" style="left: -28%;top: -5%;"></i>
+                                            </span>
+                                            
+                                            Create Formulation
+                                            
+                                        </a>
+                                        <a href="{{ route('lab.formulation.update', ['id' => $formulation->id]) }}"
+                                            class="tbg-blue-100 tborder tborder-blue-400 tfont-medium tpx-5 tpy-3 trounded ttext-blue-800"
+                                            title="Make / Produce">
+                                            <i class="fas fa-pen"></i> Edit
                                         </a>
                                     </td>
                                 </tr>

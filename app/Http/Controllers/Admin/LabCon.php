@@ -256,6 +256,14 @@ class LabCon extends Controller
 
         return view('admin.lab.formulations.create', compact('ingredients', 'suppliers'));
     }
+
+    public function formulation_update($id){
+        $formulations = Formulation::where('id', $id)->with('formulationIngredients', 'formulationIngredients.ingredient')->first();
+        $ingredients  = Ingredients::all();
+        $suppliers = Suppliers::select('id', 'name', 'surname')->get();
+
+        return view('admin.lab.formulations.update', compact('ingredients', 'suppliers', 'formulations'));
+    }
     
     public function formulation_store(Request $request){
         $formulation = Formulation::create([
@@ -275,6 +283,31 @@ class LabCon extends Controller
         return response()->json([
             'message' => 'Formulation saved successfully.',
             'formulation_id' => $formulation->id
+        ], 201);
+
+    }
+
+    public function formulation_patch(Request $request){
+        $formulation = Formulation::where('id', request()->formulation_id)->update([
+            'product_name' => $request->product_name ?? 'Untitled Formula',
+            'net_content' => $request->net_content ?? 30
+        ]);
+
+        FormulationIngredients::where('formulation_id', request()->formulation_id)->delete();
+
+
+        // 2. Save ingredients with given percentages
+        foreach ($request->ingredients as $item) {
+            FormulationIngredients::create([
+                'formulation_id' => request()->formulation_id,
+                'ingredient_id' => $item['ingredient_id'],      
+                'percentage' => round((float) $item['percentage'], 2)
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Formulation saved successfully.',
+            'formulation_id' => request()->formulation_id
         ], 201);
 
     }
