@@ -95,6 +95,10 @@
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Net Content ( grams/ml )</label>
                 <input type="text" value="{{ $formulations->net_content }}" class="net_content tcursor-pointer browser-default form-control">
             </div><!-- Net Content -->
+             <div class="tw-2/5 tmr-2">
+                <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">%</label>
+                <input type="text" value="" class="percentage tcursor-pointer browser-default form-control">
+            </div><!-- Net Content -->
         </div>
      
         <div class="tbg-white tpb-5 trounded-lg tshadow-lg ttext-black-100 tmt-3">
@@ -388,6 +392,33 @@
             }
           }
         }
+    </script>
+
+
+     {{-- Percentage Calculation --}}
+    <script>
+        function updatePercentageTotal() {
+            let totalCents = 0;
+
+            const inputs = document.querySelectorAll('.product_percentage');
+
+            inputs.forEach((input, index) => {
+                if (index === 0) return; // 👈 ignore first (hidden) input
+
+                const val = parseFloat(input.value);
+                if (!isNaN(val)) {
+                    totalCents += Math.round(val * 100);
+                }
+            });
+
+            document.querySelector('.percentage').value = (totalCents / 100).toFixed(2);
+        }
+
+        $('.product_percentage').change(function() {
+            updatePercentageTotal();
+        });
+
+        updatePercentageTotal();
     </script>
 
 @endsection
