@@ -243,6 +243,7 @@
                 </label>
                 <input type="text"
                        name="price"
+                       id="price"
                        value="{{ $ingredient->price }}"
                        class="txn-input price browser-default">
             </div>
@@ -254,6 +255,7 @@
                 </label>
                 <input type="text"
                        name="weight"
+                       id="weight"
                        value="{{ $ingredient->weight }}"
                        class="txn-input weight browser-default">
             </div>
@@ -268,6 +270,7 @@
                            name="price_per_grams"
                            value="{{ $ingredient->price_per_grams }}"
                            class="txn-input txn-readonly price_per_grams browser-default"
+                           id="price_per_grams"
                            readonly>
                     <span class="txn-badge">auto</span>
                 </div>

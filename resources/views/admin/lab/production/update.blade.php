@@ -97,7 +97,7 @@
             </div><!-- Total Weight -->
             <div class="tw-2/5 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100">Total Quantity</label>
-                <input type="text" data-netcontent="{{ $production->total_quantity }}" value="" class="total_quantity tcursor-pointer browser-default form-control" style="background-color: #b0b0b02b;" readonly>
+                <input type="text" data-netcontent="{{ $production->total_quantity }}" value="{{ $production->total_quantity }}" class="total_quantity tcursor-pointer browser-default form-control" style="background-color: #b0b0b02b;" readonly>
             </div><!-- Total Quantity Name -->
              <div class="tw-2/5 tmr-3">
                 <label for="#" class="tfont-normal ttext-sm tmb-2 ttext-black-100">Date <small class="ttext-gray-600"> (Date of purchased)</small></label>
