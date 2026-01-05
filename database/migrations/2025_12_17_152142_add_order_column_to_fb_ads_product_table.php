@@ -11,18 +11,20 @@ class AddOrderColumnToFbAdsProductTable extends Migration
      */
     public function up()
     {
-        Schema::table('fb_ads_product', function (Blueprint $table) {
-            $table->integer('order')->default(0)->after('sku');
-        });
+        if (!Schema::hasColumn('fb_ads_product', 'order')) {
+            Schema::table('fb_ads_product', function (Blueprint $table) {
+                $table->integer('order')->default(0)->after('sku');
+            });
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down()
     {
-        Schema::table('fb_ads_product', function (Blueprint $table) {
-            $table->dropColumn('order');
-        });
+        if (Schema::hasColumn('fb_ads_product', 'order')) {
+            Schema::table('fb_ads_product', function (Blueprint $table) {
+                $table->dropColumn('order');
+            });
+        }
     }
+
 }

@@ -322,6 +322,17 @@ class LabCon extends Controller
         return view('admin.lab.production.create', compact('ingredients', 'suppliers', 'formulation'));
     }
 
+    public function production_update(Request $request, $id){
+        $ingredients  = Ingredients::all();
+        $suppliers = Suppliers::select('id', 'name', 'surname')->get();
+
+        $production = Production::with(['ingredients', 'ingredients.ingredient'])->find($id);
+
+
+        // dd($production);
+        return view('admin.lab.production.update', compact('ingredients', 'suppliers', 'production'));
+    }
+
     public function production_index(){
         $productions = Production::get();
         return view('admin.lab.production.index', compact('productions'));
@@ -335,6 +346,7 @@ class LabCon extends Controller
 
     public function production_store(Request $request){
         $data = $request->all();
+
 
         DB::beginTransaction();
 
@@ -364,6 +376,7 @@ class LabCon extends Controller
                 // Save production ingredient
                 ProductionIngredient::create([
                     'production_id'            => $production->id,
+                    'ingredient_id'             => $product['ingredient_id'],
                     'product_name'             => $product['product_name'],
                     'product_price_per_grams'  => $product['product_price_per_grams'],
                     'product_percentage'       => $product['product_percentage'],

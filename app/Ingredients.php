@@ -25,4 +25,9 @@ class Ingredients extends Model
                     ->withPivot('percentage')
                     ->withTimestamps();
     }
+
+    public function productionIngredients()
+    {
+        return $this->hasMany(ProductionIngredient::class, 'ingredient_id', 'id');
+    }
 }

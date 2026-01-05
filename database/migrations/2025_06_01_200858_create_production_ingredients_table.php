@@ -16,6 +16,7 @@ class CreateProductionIngredientsTable extends Migration
         Schema::create('production_ingredients', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('production_id');
+            $table->unsignedBigInteger('ingredient_id'); // <-- add this
             $table->string('product_name');
             $table->decimal('product_price_per_grams', 10, 2);
             $table->decimal('product_percentage', 10, 2);
@@ -24,6 +25,7 @@ class CreateProductionIngredientsTable extends Migration
             $table->timestamps();
 
             $table->foreign('production_id')->references('id')->on('productions')->onDelete('cascade');
+            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade'); // <-- add this
         });
 
     }

@@ -103,7 +103,13 @@
                                         {{ date_f($production->date, 'M, d, Y') }}
                                     </td>
 
-                                    <td class="chem-center">
+                                    <td class="chem-center tflex">
+                                         <a href="{{ route('lab.production.update', ['id' => $production->id]) }}"
+                                        class="chem-action"
+                                        title="View">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+
                                         <a href="{{ route('lab.production.show', ['id' => $production->id]) }}"
                                         class="chem-action"
                                         title="View">

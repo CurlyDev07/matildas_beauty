@@ -334,6 +334,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/production', 'LabCon@production_index')->name('lab.production.index');
         Route::get('/production/show/{id}', 'LabCon@production_show')->name('lab.production.show');
         Route::get('/production/create/{id}', 'LabCon@production_create')->name('lab.production.create');
+        Route::get('/production/update/{id}', 'LabCon@production_update')->name('lab.production.update');
         Route::post('/production/store', 'LabCon@production_store')->name('lab.production.store');
     });
 

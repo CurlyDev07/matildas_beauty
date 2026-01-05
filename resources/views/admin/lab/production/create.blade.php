@@ -367,6 +367,7 @@
                     let $product = $(this);
 
                     let name = $product.find('.product_name').text().trim();
+                    let ingredient_id = $product.attr('id');
                     let pricePerGram = parseFloat($product.find('.product_price_per_grams').text()) || 0;
                     let percentage = parseFloat($product.find('.product_percentage').val()) || 0;
                     let grams = parseFloat($product.find('.grams').val()) || 0;
@@ -375,6 +376,7 @@
                     // Skip hidden template row or incomplete entries
                     if (name && grams > 0) {
                         products.push({
+                            ingredient_id: ingredient_id,
                             product_name: name,
                             product_price_per_grams: pricePerGram,
                             product_percentage: percentage,
