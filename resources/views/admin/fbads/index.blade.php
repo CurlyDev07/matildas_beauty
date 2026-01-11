@@ -126,6 +126,18 @@
 
                 <li class="tmr-2">
                     <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
+                        <i class="fas fa-user ttext-xl" style="color: #f05538;"></i>
+                        <select id="agent" class="agent ttext-center tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
+                            <option value="" selected>Choose/ALL</option>
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->first_name }}</option>
+                            @endforeach
+                        </select> 
+                    </div>
+                </li><!-- USER Filter-->
+
+                <li class="tmr-2">
+                    <div class="tborder tflex titems-center tpx-2 trounded ttext-sm tw-16" >
                         <i class="fas fa-shipping-fast ttext-xl" style="color: #f05538;"></i>
                         <select id="status" class="status ttext-center tcursor-pointer browser-default form-control" style="border: none;padding-top: 5px;padding-bottom: 5px;">
                             <option value="" selected>Choose</option>
@@ -295,6 +307,16 @@
 
             const parser = new URL(window.location.href);
             parser.searchParams.set("status", $(this).val());
+            window.location = parser.href;
+
+            return false;
+        });
+
+        $('#agent').change(function (e) {
+            e.preventDefault();
+
+            const parser = new URL(window.location.href);
+            parser.searchParams.set("agent", $(this).val());
             window.location = parser.href;
 
             return false;

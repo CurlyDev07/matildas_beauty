@@ -8,6 +8,7 @@ use App\FbAds;
 use App\FbEventListener;
 use Illuminate\Support\Facades\DB;
 use App\Store;
+use App\User;
 use App\StatusReason;
 use App\StatusDetail;
 use Illuminate\Support\Str;
@@ -92,11 +93,10 @@ class FbAdsCon extends Controller
 
 
     public function index(Request $request){
-    // dd('dsds');
-    // ... [Your existing grouped counts code remains exactly the same] ...
 
     $search = trim((string) $request->search);
-
+    $users = User::where('role', '!=', 'user')->get();
+    
     $grouped = FbAds::select('status', DB::raw('count(*) as total'))
         ->when(!$request->date, function($q) use ($request){
             // ✅ ignore default date filter when searching
@@ -122,6 +122,13 @@ class FbAdsCon extends Controller
                    ->orWhere('address', 'LIKE', '%' . $search . '%');
             });
         })
+
+        // ✅ SEARCH: user
+        ->when($request->agent, function ($q) use ($request) {
+            $q->where('user_id', $request->agent);
+        })
+
+
         ->groupBy('status')
         ->get();
 
@@ -173,12 +180,17 @@ class FbAdsCon extends Controller
                    ->orWhere('address', 'LIKE', '%' . $search . '%');
             });
         })
+        // ✅ SEARCH: user
+        ->when($request->agent, function ($q) use ($request) {
+            $q->where('user_id', $request->agent);
+        })
         ->get();
 
     return view('admin.fbads.index', [
         'orders' => $orders,
         'stores' => $stores,
-        'statusCounts' => $statusCounts
+        'statusCounts' => $statusCounts,
+        'users' => $users
     ]);
 }
 
