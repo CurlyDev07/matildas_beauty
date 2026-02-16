@@ -38,6 +38,7 @@ class LabCon extends Controller
             $totalStockValue += $totalValue;
 
             return [
+                'ingredient_id'    => $ingredient->id,
                 'name'             => $ingredient->name,
                 'price'            => $ingredient->price,
                 'weight'           => $weight,
@@ -402,6 +403,31 @@ class LabCon extends Controller
             DB::rollBack();
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
         }
+    }
+
+    public function manual_change_stock(Request $request){
+        $validated = $request->validate([
+            'ingredient_id' => 'required|integer',
+            'weight'        => 'required|numeric|min:0',
+        ]);
+
+        $stock = IngredientStock::where('ingredient_id', $validated['ingredient_id'])->first();
+
+        if ($stock) {
+            $stock->total_weight = $validated['weight'];
+            $stock->save();
+        } else {
+            IngredientStock::create([
+                'ingredient_id' => $validated['ingredient_id'],
+                'total_weight'  => $validated['weight'],
+            ]);
+            $stock = IngredientStock::where('ingredient_id', $validated['ingredient_id'])->first();
+        }
+
+        return response()->json([
+            'success'      => true,
+            'new_weight'   => $stock->total_weight,
+        ]);
     }
 }
 

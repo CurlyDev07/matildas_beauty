@@ -1,6 +1,7 @@
 @extends('admin.lab.layouts')
 
 
+
 @section('page')
     <style>
         /* ===== Inventory Card ===== */
@@ -224,13 +225,26 @@
                     </thead>
 
                     <tbody>
+                        
                         @foreach ($inventory as $stock)
                             <tr>
                                 <td class="inv-name">{{ $stock['name'] }}</td>
                                 <td class="">{{ currency() }}{{ number_format($stock['price'], 2) }}</td>
-                                <td class="">{{ number_format($stock['weight'], 0) }}g</td>
+                                <td class="">
+                                    <input
+                                        type="number"
+                                        class="stock-weight-input browser-default"
+                                        style="width:80px;padding:4px 6px;border:1px solid #e2e8f0;border-radius:8px;text-align:right;"
+                                        data-ingredient-id="{{ $stock['ingredient_id'] }}"
+                                        data-price-per-grams="{{ $stock['price_per_grams'] }}"
+                                        value="{{ number_format($stock['weight'], 0, '.', '') }}"
+                                        min="0"
+                                        step="0.01"
+                                        {{ auth()->user()->role =='master'? '': 'disabled'}}
+                                    > g
+                                </td>
                                 <td class="">{{ currency() }}{{ number_format($stock['price_per_grams'], 2) }}</td>
-                                <td class=" inv-green">{{ currency() }}{{ number_format($stock['total_value'], 0) }}</td>
+                                <td class="inv-green stock-value-cell">{{ currency() }}{{ number_format($stock['total_value'], 0) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -307,7 +321,7 @@
 
             $('#price_per_grams').val(price_per_grams);
         }
-        
+
         $('#price').keyup(function () {
             pricePerUnit();
         })
@@ -330,7 +344,7 @@
                     status: status,
                 },
                 success: ()=>{
-                   
+
                 }
             });
         });
@@ -344,7 +358,39 @@
 
         return false;
 
-    });
+        });
+
+        // AJAX CSRF token
+        $.ajaxSetup({
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        });
+
+        $(document).on('change', '.stock-weight-input', function () {
+            const $input       = $(this);
+            const ingredientId = $input.data('ingredient-id');
+            const newWeight    = parseFloat($input.val()) || 0;
+            const pricePerGram = parseFloat($input.data('price-per-grams')) || 0;
+            const $row         = $input.closest('tr');
+            const $valueCell   = $row.find('.stock-value-cell');
+
+            $.ajax({
+                url: '{{ route("lab.manual-change-stock") }}',
+                type: 'POST',
+                data: {
+                    ingredient_id: ingredientId,
+                    weight:        newWeight,
+                },
+                success: function (res) {
+                    if (res.success) {
+                        const newValue = (res.new_weight * pricePerGram).toFixed(0);
+                        $valueCell.text('{{ currency() }}' + Number(newValue).toLocaleString());
+                    }
+                },
+                error: function () {
+                    alert('Failed to update stock. Please try again.');
+                }
+            });
+        });
     });
 </script>
 @endsection
