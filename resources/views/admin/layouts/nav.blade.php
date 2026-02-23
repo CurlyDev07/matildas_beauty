@@ -47,32 +47,24 @@
                         </a>
                     </li>
                 @endif --}}
-               
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'orders', 'active') }}" onclick="location.href = '/admin/orders'">
-                        <i class="fas fa-shopping-cart tmr-1 fa-lg" style="color: #ff0083;"></i>
-                        <span class="tfont-medium" style="color: #4f4f4f;">Orders</span>
-                        
-                    </a>
-                </li>
+
+                @if (auth()->user()->isMaster())
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'orders', 'active') }}" onclick="location.href = '/admin/orders'">
+                            <i class="fas fa-shopping-cart tmr-1 fa-lg" style="color: #ff0083;"></i>
+                            <span class="tfont-medium" style="color: #4f4f4f;">Orders</span>
+                            
+                        </a>
+                    </li>
+                @endif
+                
                 {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'shopee', 'active') }}" onclick="location.href = '/admin/shopee'">
                         <i class="fas fa-shopping-cart tmr-1 fa-lg"></i>
                         Shopee Orders
                     </a>
                 </li> --}}
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'products', 'active') }}" onclick="location.href = '/admin/products'">
-                        <i class="fas fa-box-open tmr-1 fa-lg"></i> 
-                        <span class="tfont-medium" style="color: #4f4f4f;">Products</span>
-                    </a>
-                </li>
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'inventory', 'active') }}" onclick="location.href = '/admin/inventory'">
-                        <i class="fas fa-warehouse tmr-1 fa-lg" style="color: #0c9919;"></i>
-                        <span class="tfont-medium" style="color: #4f4f4f;">Inventory</span>
-                    </a>
-                </li>
+               
                 {{-- <li class="tab col">
                     <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'inventory', 'active') }}" onclick="location.href = '/admin/inventory'">
                         <i class="fas fa-comment tmr-1 fa-lg"></i> 
@@ -80,6 +72,21 @@
                     </a>
                 </li> --}}
                 {{-- {{ dd(auth()->user()->role) }} --}}
+                
+                
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'products', 'active') }}" onclick="location.href = '/admin/products'">
+                            <i class="fas fa-box-open tmr-1 fa-lg"></i> 
+                            <span class="tfont-medium" style="color: #4f4f4f;">Products</span>
+                        </a>
+                    </li>
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'inventory', 'active') }}" onclick="location.href = '/admin/inventory'">
+                            <i class="fas fa-warehouse tmr-1 fa-lg" style="color: #0c9919;"></i>
+                            <span class="tfont-medium" style="color: #4f4f4f;">Inventory</span>
+                        </a>
+                    </li>
+                    
                 @if (in_array(auth()->user()->role, ['master', 'inventory']))
                     <li class="tab col">
                         <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'purchase', 'active') }}" onclick="location.href = '/admin/purchase'">
@@ -103,14 +110,16 @@
                         <span class="tfont-medium" style="color: #4f4f4f;">Suppliers</span>
                         </a>
                     </li>
+
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'rts', 'active') }}" onclick="location.href = '/admin/fb-ads'">
+                            <i class="fas fa-gem tmr-1 fa-lg" style="color: #00969b"></i>
+                            <span class="tfont-medium" style="color: #4f4f4f;">FB Products</span>
+                            
+                        </a>
+                    </li>
                 @endif
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'rts', 'active') }}" onclick="location.href = '/admin/fb-ads'">
-                        <i class="fas fa-gem tmr-1 fa-lg" style="color: #00969b"></i>
-                        <span class="tfont-medium" style="color: #4f4f4f;">FB Products</span>
-                        
-                    </a>
-                </li>
+
                 @if (auth()->user()->isMaster())
                     <li class="tab col">
                         <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'users', 'active') }}" onclick="location.href = '/admin/users'">
@@ -141,34 +150,46 @@
                     </li> --}}
                 @endif
 
-                <li class="tab col">
-                    <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'fbads', 'active') }}" onclick="location.href = '/admin/fbads'">
-                        <i class="fas fa-users tmr-1 fa-lg"></i> 
-                        FB
-                    </a>
-                </li>
-
-
-                @if (auth()->user()->isMaster())
-
+                @if (in_array(auth()->user()->role, ['master', 'sa', 'admin', 'sales']))
                     <li class="tab col">
-                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'file-manager', 'active') }}" onclick="location.href = '/admin/file-manager'">
-                            <i class="fas fa-images tmr-1 fa-lg" style="color: #ff0075"></i>
-                            <span class="tfont-medium" style="color: #4f4f4f;">Gallery</span>
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'fbads', 'active') }}" onclick="location.href = '/admin/fbads'">
+                            <i class="fas fa-users tmr-1 fa-lg"></i> 
+                            FB
                         </a>
                     </li>
+
+                @endif
+
+                
+
+                @if (in_array(auth()->user()->role, ['master', 'lab']))
+
+                    @if (auth()->user()->isMaster())
+                        <li class="tab col">
+                            <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'file-manager', 'active') }}" onclick="location.href = '/admin/file-manager'">
+                                <i class="fas fa-images tmr-1 fa-lg" style="color: #ff0075"></i>
+                                <span class="tfont-medium" style="color: #4f4f4f;">Gallery</span>
+                            </a>
+                        </li>
+                    @endif
+
+
                     <li class="tab col">
                         <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'Lab', 'active') }}" onclick="location.href = '/admin/lab'">
                             <i class="fas fa-flask tmr-1 fa-lg" style="color: #73009dff"></i>
                             <span class="tfont-medium" style="color: #4f4f4f;">Lab</span>
                         </a>
                     </li>
-                    <li class="tab col">
-                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'sms', 'active') }}" onclick="location.href = '/admin/sms'">
-                            <i class="fas fa-flask tmr-1 fa-lg" style="color: #2ca300ff"></i>
-                            <span class="tfont-medium" style="color: #4f4f4f;">SMS</span>
-                        </a>
-                    </li>
+
+                    @if (auth()->user()->isMaster())
+                        <li class="tab col">
+                            <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'sms', 'active') }}" onclick="location.href = '/admin/sms'">
+                                <i class="fas fa-flask tmr-1 fa-lg" style="color: #2ca300ff"></i>
+                                <span class="tfont-medium" style="color: #4f4f4f;">SMS</span>
+                            </a>
+                        </li>
+                    @endif
+                   
                 @endif
 
 

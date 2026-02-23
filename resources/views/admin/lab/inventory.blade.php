@@ -225,7 +225,6 @@
                     </thead>
 
                     <tbody>
-                        
                         @foreach ($inventory as $stock)
                             <tr>
                                 <td class="inv-name">{{ $stock['name'] }}</td>

@@ -2,35 +2,44 @@
 
 // Products array - easy to manage and update
 $products = [
-    [
-        'id' => 0, 
-        'name' => 'Melasma Brightening Duo',
-        'price' => 649,
-        'image' => 'https://matildasbeauty.com/filemanager/3479431c5cf54729a1d3656e47c8d86c.png',
-        'description' => 'Advanced anti-aging and whitening serum',
-        'promo_text_1' => 'MissTisa SET + VIT C',
-        'promo_text_2' => 'Fade • Brighten • Glow',
-        'stock' => '8',
-    ],
-    [
-        'id' => 1,
+     [
+        'id' => 0,
         'name' => 'Triple Action Brightening',
         'price' => 999,
         'image' => 'https://matildasbeauty.com/filemanager/5e0aff13946b42deaf311f422d479884.png',
-        'description' => 'High protection sunscreen lotion',
+        'description' => 'Includes Gold Serum (worth ₱799)',
         'promo_text_1' => 'SET + SERUM + VIT C',
         'promo_text_2' => 'Repair • Fade • Glow',
-        'stock' => '8',
+        'promo_text_3' => '⚡ Best for Faster Results',
+        'badge' => '⭐ Best for Faster Results',
+        'stock' => '4',
+        'most_recommended' => '⭐ Most Recommended for 40+ Skin',
+    ],
+    [
+        'id' => 1, 
+        'name' => 'Melasma Brightening Duo',
+        'price' => 649,
+        'image' => 'https://matildasbeauty.com/filemanager/3479431c5cf54729a1d3656e47c8d86c.png',
+        'description' => '',
+        'promo_text_1' => 'MissTisa SET + VIT C',
+        'promo_text_2' => 'Fade • Brighten • Glow',
+        'promo_text_3' => '',
+        'badge' => 'Good for Maintenance Glow',
+        'stock' => '22',
+        'most_recommended' => ''
     ],
     [
         'id' => 2,
         'name' => 'Complete Glow Restoration Kit',
         'price' => 1399,
         'image' => 'https://matildasbeauty.com/filemanager/19b7853f1b664481bcabf940b0786a53.png',
-        'description' => 'Complete beauty set with serum and lotion',
+        'description' => '',
         'promo_text_1' => 'SET•SERUM•LOTION',
         'promo_text_2' => '🎁 FREE 3pcs VIT C',
-        'stock' => '8',
+        'promo_text_3' => '',
+        'badge' => 'for Severe Melasma & Wrinkles',
+        'stock' => '2',
+        'most_recommended' => ''
     ]
 ];
 
@@ -114,7 +123,6 @@ $products_json = json_encode($products);
         }
 
     </style>
-
 
     <style>/* Success Modal Overlay */
         
@@ -370,7 +378,6 @@ $products_json = json_encode($products);
             }
         }
     </style>
-
 
     <style> /* Loading Modal Overlay */
 
@@ -1254,9 +1261,9 @@ $products_json = json_encode($products);
                         
                         
 
-                        <div class="tgrid tgap-2">
+                        <div class="tgrid tgap-2 tmt-5">
                             <?php foreach ($products as $index => $product): ?>
-                            <div class="product-card tgrid tgrid-cols-2 tgap-2 <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
+                            <div class="product-card tgrid tgrid-cols-2 tgap-2 trelative <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
                                 <div class="tcol-span-2">
                                     <h2 class="ttext-2xl ttext-misstisa-pink tfont-semibold ttext-center"><?= htmlspecialchars($product['name']) ?></h2>
                                 </div>
@@ -1270,16 +1277,16 @@ $products_json = json_encode($products);
                                 </div>    
                                 
                                 <div class="tcol-span-1">
+                                    <span class="tbg-pink-600 ttext-white tpx-2 tpy-1 trounded-md ttext-xs">{{ $product['badge'] }}</span>
                                     <div class="tmt-4">
                                         <!-- TITLE -->
                                         <!-- <h3 class="tfont-bold ttext-center ttext-gray-800 ttext-xs" style="font-size: 17px;"><?= htmlspecialchars($product['name']) ?></h3> -->
                                         <p class="ttext-gray-700 tfont-semibold">{{ $product['promo_text_1'] }}</p>
                                         <p class="ttext-gray-700 ">{{ $product['promo_text_2'] }}</p>
-                                        <p style="color: red;" class="ttext-sm ttext-center">(Only {{ $product['stock'] }} Left!)</p>
+                                        <span style="font-size: 11px;">{{ $product['description'] }}</span>
+                                        <!-- <p class="ttext-gray-700 ">{{ $product['promo_text_3'] }}</p> -->
                                     </div>
-                                    
                                    
-                                    
                                     <!-- CIRCLE RADIO BUTTON -->
                                     <div class="check-circle tabsolute tw-6 th-6 trounded-full tflex titems-center tjustify-center ttext-xs tfont-bold" style="top: 4px;right: 4px;">✓</div>
                                     
@@ -1293,10 +1300,17 @@ $products_json = json_encode($products);
                                     </div>
                                 </div>    
 
-                                
+                                <p style="color: red; bottom: 2%; left: 31%; font-weight: 500;" class="ttext-sm ttext-center tabsolute">(Only {{ $product['stock'] }} Left!)</p>
+
+                                @if ($product['most_recommended'])
+                                    <span class="tabsolute tbg-white tborder-2 tborder-pink-600 tpx-3 trounded-md ttext-sm" 
+                                    style="top: -6%; left: 23%; top: 5;">{{ $product['most_recommended'] }}</span>
+                                @endif
+
                             </div>
                             <?php endforeach; ?>
                         </div>
+
                     </div>
                     
                                         <h1 class="ttext-center ttext-xl tfont-black ttext-gray-900 tmb-3 ttracking-wide">ORDER FORM</h1>
@@ -1584,85 +1598,50 @@ $products_json = json_encode($products);
         // }
 
 
-        let firstClickMade = false;
-
         function selectProduct(element, price, productIndex) {
-            // On first click, auto-deselect the default (index 0) if clicking a different product
-            if (!firstClickMade && productIndex !== 0 && selectedProducts.includes(0)) {
-                const defaultCard = document.querySelector('.product-card.product-selected');
-                if (defaultCard) {
-                    defaultCard.classList.remove('product-selected');
-                    defaultCard.classList.add('product-unselected');
-                    defaultCard.classList.remove('tborder-pink-500', 'tbg-pink-50');
-                    defaultCard.classList.add('tborder-gray-300', 'tbg-white');
-                    
-                    // Hide quantity container for default
-                    const defaultQuantityContainer = document.getElementById('quantity-container-0');
-                    if (defaultQuantityContainer) {
-                        defaultQuantityContainer.classList.add('thidden');
+            // Deselect all other products
+            document.querySelectorAll('.product-card').forEach((card, index) => {
+                if (index !== productIndex) {
+                    card.classList.remove('product-selected');
+                    card.classList.add('product-unselected');
+                    card.classList.remove('tborder-pink-500', 'tbg-pink-50');
+                    card.classList.add('tborder-gray-300', 'tbg-white');
+
+                    // Hide quantity container
+                    const quantityContainer = document.getElementById(`quantity-container-${index}`);
+                    if (quantityContainer) {
+                        quantityContainer.classList.add('thidden');
                     }
-                    
-                    // Reset quantity and remove from selected products
-                    quantities[0] = 0;
-                    const defaultQuantitySpan = document.getElementById('quantity-0');
-                    if (defaultQuantitySpan) {
-                        defaultQuantitySpan.textContent = 1;
+
+                    // Reset quantity
+                    quantities[index] = 0;
+                    const quantitySpan = document.getElementById(`quantity-${index}`);
+                    if (quantitySpan) {
+                        quantitySpan.textContent = 1;
                     }
-                    selectedProducts = selectedProducts.filter(index => index !== 0);
                 }
-                firstClickMade = true;
+            });
+
+            // Select current product
+            element.classList.remove('product-unselected');
+            element.classList.add('product-selected');
+            element.classList.remove('tborder-gray-300', 'tbg-white');
+            element.classList.add('tborder-pink-500', 'tbg-pink-50');
+
+            // Show quantity container
+            const quantityContainer = document.getElementById(`quantity-container-${productIndex}`);
+            if (quantityContainer) {
+                quantityContainer.classList.remove('thidden');
             }
-            
-            // Check if this is the only selected product and prevent deselection
-            if (element.classList.contains('product-selected') && selectedProducts.length === 1) {
-                return;
+
+            // Set quantity and selected products
+            quantities[productIndex] = 1;
+            const quantitySpan = document.getElementById(`quantity-${productIndex}`);
+            if (quantitySpan) {
+                quantitySpan.textContent = 1;
             }
-            
-            // Toggle selection
-            if (element.classList.contains('product-selected')) {
-                // Deselect product
-                element.classList.remove('product-selected');
-                element.classList.add('product-unselected');
-                element.classList.remove('tborder-pink-500', 'tbg-pink-50');
-                element.classList.add('tborder-gray-300', 'tbg-white');
-                
-                // Hide quantity container
-                const quantityContainer = document.getElementById(`quantity-container-${productIndex}`);
-                if (quantityContainer) {
-                    quantityContainer.classList.add('thidden');
-                }
-                
-                // Reset quantity and remove from selected products
-                quantities[productIndex] = 0;
-                const quantitySpan = document.getElementById(`quantity-${productIndex}`);
-                if (quantitySpan) {
-                    quantitySpan.textContent = 1;
-                }
-                selectedProducts = selectedProducts.filter(index => index !== productIndex);
-            } else {
-                // Select product
-                element.classList.remove('product-unselected');
-                element.classList.add('product-selected');
-                element.classList.remove('tborder-gray-300', 'tbg-white');
-                element.classList.add('tborder-pink-500', 'tbg-pink-50');
-                
-                // Show quantity container
-                const quantityContainer = document.getElementById(`quantity-container-${productIndex}`);
-                if (quantityContainer) {
-                    quantityContainer.classList.remove('thidden');
-                }
-                
-                // Set initial quantity and add to selected products
-                quantities[productIndex] = 1;
-                const quantitySpan = document.getElementById(`quantity-${productIndex}`);
-                if (quantitySpan) {
-                    quantitySpan.textContent = 1;
-                }
-                if (!selectedProducts.includes(productIndex)) {
-                    selectedProducts.push(productIndex);
-                }
-            }
-            
+            selectedProducts = [productIndex];
+
             updateTotal();
         }
 
