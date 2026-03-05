@@ -248,6 +248,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     Route::prefix('fbads')->group(function () {
         Route::get('/', 'FbAdsCon@index')->name('fbads.index');
         Route::get('/dashboard', 'FbAdsCon@dashboard')->name('fbads.dashboard');
+        Route::get('/staff-performance', 'FbAdsCon@staff_performance')->name('fbads.staff_performance');
 
 
 

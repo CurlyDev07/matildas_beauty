@@ -1380,6 +1380,103 @@ class FbAdsCon extends Controller
         return $this->belongsTo(OrderSource::class, 'source_id');
     }
 
+    // ---------------------------------------------------------------
+    // STAFF PERFORMANCE
+    // ---------------------------------------------------------------
+
+    public function staff_performance(Request $request)
+    {
+        $period = $request->period ?? 'today';
+
+        $statuses = ['TO ENCODE', 'TO CALL', 'TO SHIP', 'SHIPPED', 'DUPPLICATE', 'DELIVERED'];
+
+        $query = DB::table('fb_ads')
+            ->leftJoin('users', 'fb_ads.user_id', '=', 'users.id')
+            ->select(
+                'fb_ads.user_id',
+                DB::raw("COALESCE(CONCAT(users.first_name, ' ', users.last_name), 'Unassigned') as name"),
+                'fb_ads.status',
+                DB::raw('COUNT(*) as cnt')
+            );
+
+        switch ($period) {
+            case 'yesterday':
+                $query->whereDate('fb_ads.created_at', Carbon::yesterday());
+                break;
+            case '7days':
+                $query->whereBetween('fb_ads.created_at', [
+                    Carbon::now()->subDays(6)->startOfDay(),
+                    Carbon::now()->endOfDay(),
+                ]);
+                break;
+            case '14days':
+                $query->whereBetween('fb_ads.created_at', [
+                    Carbon::now()->subDays(13)->startOfDay(),
+                    Carbon::now()->endOfDay(),
+                ]);
+                break;
+            case '30days':
+                $query->whereBetween('fb_ads.created_at', [
+                    Carbon::now()->subDays(29)->startOfDay(),
+                    Carbon::now()->endOfDay(),
+                ]);
+                break;
+            case 'thismonth':
+                $query->whereYear('fb_ads.created_at', Carbon::now()->year)
+                      ->whereMonth('fb_ads.created_at', Carbon::now()->month);
+                break;
+            case 'lastmonth':
+                $last = Carbon::now()->subMonth();
+                $query->whereYear('fb_ads.created_at', $last->year)
+                      ->whereMonth('fb_ads.created_at', $last->month);
+                break;
+            default:
+                $period = 'today';
+                $query->whereDate('fb_ads.created_at', Carbon::today());
+        }
+
+        $rows = $query
+            ->groupBy('fb_ads.user_id', 'users.first_name', 'users.last_name', 'fb_ads.status')
+            ->orderBy('name')
+            ->get();
+
+        // Pivot: user → [status → count]
+        $staffData = [];
+        foreach ($rows as $row) {
+            $key = $row->user_id ?? 'null';
+            if (!isset($staffData[$key])) {
+                $staffData[$key] = [
+                    'name'   => $row->name,
+                    'counts' => array_fill_keys($statuses, 0),
+                    'total'  => 0,
+                ];
+            }
+            if (in_array($row->status, $statuses)) {
+                $staffData[$key]['counts'][$row->status] = (int) $row->cnt;
+            }
+            $staffData[$key]['total'] += (int) $row->cnt;
+        }
+
+        // Sort by total desc
+        usort($staffData, function ($a, $b) {
+            return $b['total'] - $a['total'];
+        });
+
+        $periodLabels = [
+            'today'     => 'Today — ' . Carbon::today()->format('M d, Y'),
+            'yesterday' => 'Yesterday — ' . Carbon::yesterday()->format('M d, Y'),
+            '7days'     => 'Last 7 Days',
+            '14days'    => 'Last 14 Days',
+            '30days'    => 'Last 30 Days',
+            'thismonth' => 'This Month — ' . Carbon::now()->format('F Y'),
+            'lastmonth' => 'Last Month — ' . Carbon::now()->subMonth()->format('F Y'),
+        ];
+
+        $periodLabel = $periodLabels[$period] ?? $periodLabels['today'];
+
+        return view('admin.fbads.staff_performance', compact('staffData', 'statuses', 'period', 'periodLabel'));
+    }
+
 }
 
 // conversions/visitors * 100
