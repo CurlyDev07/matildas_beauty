@@ -371,6 +371,9 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/stock-out/create', 'PackagingCon@stock_out_create')->name('packaging.stock-out.create');
         Route::post('/stock-out/store', 'PackagingCon@stock_out_store')->name('packaging.stock-out.store');
         Route::get('/stock-out/view/{id}', 'PackagingCon@stock_out_view')->name('packaging.stock-out.view');
+
+        // Movements
+        Route::get('/movements', 'PackagingCon@movements')->name('packaging.movements');
     });
 
 

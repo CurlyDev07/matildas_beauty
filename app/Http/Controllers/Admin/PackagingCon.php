@@ -249,6 +249,7 @@ class PackagingCon extends Controller
                 'material_id' => $item->packaging_material_id,
                 'name'        => $item->material ? $item->material->name : 'Unknown',
                 'unit'        => $item->material ? $item->material->unit : '',
+                'image'       => $item->material && $item->material->image ? asset($item->material->image) : '',
                 'quantity'    => (float) $item->quantity,
                 'unit_cost'   => (float) $item->unit_cost,
                 'total_cost'  => (float) $item->total_cost,
@@ -387,5 +388,55 @@ class PackagingCon extends Controller
         $stockOut = PackagingStockOut::with('items.material')->findOrFail($id);
 
         return view('admin.packaging.stock_out.view', compact('stockOut'));
+    }
+    // ---------------------------------------------------------------
+    // MOVEMENTS
+    // ---------------------------------------------------------------
+
+    public function movements()
+    {
+        $purchases = PackagingPurchase::with(['items.material', 'supplier'])
+            ->orderBy('purchase_date', 'desc')
+            ->get()
+            ->map(function ($p) {
+                return [
+                    'type'  => 'stock_in',
+                    'date'  => $p->purchase_date,
+                    'ref'   => 'Purchase #' . $p->id,
+                    'notes' => $p->supplier ? $p->supplier->name . ' ' . $p->supplier->surname : null,
+                    'items' => $p->items->map(function ($i) {
+                        return [
+                            'name' => $i->material ? $i->material->name : 'Unknown',
+                            'unit' => $i->material ? $i->material->unit : '',
+                            'qty'  => $i->quantity,
+                        ];
+                    })->toArray(),
+                ];
+            });
+
+        $stockOuts = PackagingStockOut::with('items.material')
+            ->orderBy('date', 'desc')
+            ->get()
+            ->map(function ($s) {
+                return [
+                    'type'  => 'stock_out',
+                    'date'  => $s->date,
+                    'ref'   => $s->reference ?: null,
+                    'notes' => $s->notes,
+                    'items' => $s->items->map(function ($i) {
+                        return [
+                            'name' => $i->material ? $i->material->name : 'Unknown',
+                            'unit' => $i->material ? $i->material->unit : '',
+                            'qty'  => $i->quantity,
+                        ];
+                    })->toArray(),
+                ];
+            });
+
+        $movements = $purchases->concat($stockOuts)
+            ->sortByDesc('date')
+            ->values();
+
+        return view('admin.packaging.movements', compact('movements'));
     }
 }

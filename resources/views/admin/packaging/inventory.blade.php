@@ -67,17 +67,30 @@
                             <td>{{ $material->unit ?? '—' }}</td>
                             <td>{{ currency() }}{{ number_format($cost, 4) }}</td>
                             <td>
+                                @if(auth()->user()->role == 'master')
+                                <div style="display:flex;align-items:center;gap:6px;">
+                                    <input
+                                        type="number"
+                                        class="qty-input browser-default"
+                                        style="width:90px;padding:6px 10px;border:2px solid #d97706;border-radius:8px;text-align:right;font-size:14px;background:#fffbeb;font-weight:600;outline:none;"
+                                        data-material-id="{{ $material->id }}"
+                                        data-cost="{{ $cost }}"
+                                        value="{{ number_format($qty, 2, '.', '') }}"
+                                        min="0"
+                                        step="0.01"
+                                        title="Click to edit quantity"
+                                    >
+                                    <span class="qty-saved-badge" style="display:none;color:#16a34a;font-size:12px;font-weight:700;"><i class="fas fa-check"></i></span>
+                                </div>
+                                @else
                                 <input
                                     type="number"
-                                    class="qty-input browser-default"
-                                    style="width:90px;padding:5px 8px;border:1px solid #e2e8f0;border-radius:8px;text-align:right;font-size:14px;"
-                                    data-material-id="{{ $material->id }}"
-                                    data-cost="{{ $cost }}"
+                                    class="browser-default"
+                                    style="width:90px;padding:6px 10px;border:1px solid #e2e8f0;border-radius:8px;text-align:right;font-size:14px;background:#f8fafc;color:#94a3b8;"
                                     value="{{ number_format($qty, 2, '.', '') }}"
-                                    min="0"
-                                    step="0.01"
-                                    {{ auth()->user()->role == 'master' ? '' : 'disabled' }}
+                                    disabled
                                 >
+                                @endif
                             </td>
                             <td class="pkg-right">
                                 <span class="stock-value-cell tfont-bold" style="color:#16a34a;">
@@ -107,12 +120,15 @@
     });
 
     $(document).on('change', '.qty-input', function () {
-        const $input     = $(this);
-        const materialId = $input.data('material-id');
-        const newQty     = parseFloat($input.val()) || 0;
-        const cost       = parseFloat($input.data('cost')) || 0;
-        const $row       = $input.closest('tr');
-        const $cell      = $row.find('.stock-value-cell');
+        var $input     = $(this);
+        var materialId = $input.data('material-id');
+        var newQty     = parseFloat($input.val()) || 0;
+        var cost       = parseFloat($input.data('cost')) || 0;
+        var $row       = $input.closest('tr');
+        var $cell      = $row.find('.stock-value-cell');
+        var $badge     = $input.siblings('.qty-saved-badge');
+
+        $input.css('border-color', '#d97706');
 
         $.ajax({
             url: '{{ route("packaging.inventory.manual-change") }}',
@@ -120,12 +136,20 @@
             data: { material_id: materialId, quantity: newQty },
             success: function (res) {
                 if (res.success) {
-                    const newValue = (res.new_quantity * cost).toFixed(2);
+                    var newValue = (res.new_quantity * cost).toFixed(2);
                     $cell.text('₱' + Number(newValue).toLocaleString('en', { minimumFractionDigits: 2 }));
+                    $input.css('border-color', '#16a34a');
+                    $badge.fadeIn(150);
+                    setTimeout(function () {
+                        $badge.fadeOut(400);
+                        $input.css('border-color', '#d97706');
+                    }, 2000);
                 }
             },
             error: function () {
+                $input.css('border-color', '#ef4444');
                 alert('Failed to update stock. Please try again.');
+                $input.css('border-color', '#d97706');
             }
         });
     });

@@ -284,6 +284,14 @@
                         Stock Out
                     </div>
                 </li>
+                <li onclick="window.location.href = '/admin/packaging/movements'"
+                    class="tmy-1 tpx-5 tpy-2 tcursor-pointer waves-block waves-effect hover:tbg-orange-50"
+                    style="{{ strpos(url()->current(), '/admin/packaging/movements') !== false ? 'border-left: 4px solid #d97706;' : '' }}">
+                    <div class="ttext-md ttext-black-100 tmy-1">
+                        <a class="tmr-2"><i class="fas fa-history" style="color:#7c3aed;"></i></a>
+                        Movements
+                    </div>
+                </li>
             </ul>
         </div><!-- NAV -->
 
