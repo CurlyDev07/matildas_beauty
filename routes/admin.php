@@ -250,6 +250,14 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/dashboard', 'FbAdsCon@dashboard')->name('fbads.dashboard');
         Route::get('/staff-performance', 'FbAdsCon@staff_performance')->name('fbads.staff_performance');
 
+        // Incentives Monitoring
+        Route::get('/incentives', 'IncentiveEntryCon@index')->name('fbads.incentives.index');
+        Route::get('/incentives/create', 'IncentiveEntryCon@create')->name('fbads.incentives.create');
+        Route::post('/incentives', 'IncentiveEntryCon@store')->name('fbads.incentives.store');
+        Route::get('/incentives/{id}/edit', 'IncentiveEntryCon@edit')->name('fbads.incentives.edit');
+        Route::put('/incentives/{id}', 'IncentiveEntryCon@update')->name('fbads.incentives.update');
+        Route::delete('/incentives/{id}', 'IncentiveEntryCon@destroy')->name('fbads.incentives.destroy');
+
 
 
         Route::get('/meta-metrics', 'FbAdsCon@meta_metrics')->name('fbads.meta_metrics');
