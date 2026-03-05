@@ -85,7 +85,7 @@ foreach ($staffData as $staff) {
 </style>
 
 {{-- ══ HEADER ══════════════════════════════════════════════ --}}
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+<div class="tborder tbg-white tpx-5 tpy-2" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px; border-radius:12px;">
     <div>
         <h2 style="font-size:18px;font-weight:800;color:#0f172a;margin:0;">
             <i class="fas fa-users" style="color:#7c3aed;margin-right:7px;"></i>Staff Performance
