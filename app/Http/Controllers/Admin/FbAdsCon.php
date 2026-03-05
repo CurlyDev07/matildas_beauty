@@ -1474,7 +1474,167 @@ class FbAdsCon extends Controller
 
         $periodLabel = $periodLabels[$period] ?? $periodLabels['today'];
 
-        return view('admin.fbads.staff_performance', compact('staffData', 'statuses', 'period', 'periodLabel'));
+        // ── Incentives Monitoring ─────────────────────────────────────────
+        $iperiod = $request->iperiod ?? 'thismonth';
+
+        $iQuery = DB::table('incentive_entries')
+            ->join('users', 'incentive_entries.user_id', '=', 'users.id')
+            ->select(
+                DB::raw('DATE(incentive_entries.created_at) as idate'),
+                'incentive_entries.user_id',
+                DB::raw("CONCAT(users.first_name, ' ', users.last_name) as iname"),
+                'incentive_entries.type',
+                DB::raw('COUNT(*) as cnt')
+            );
+
+        switch ($iperiod) {
+            case 'yesterday':
+                $iQuery->whereDate('incentive_entries.created_at', Carbon::yesterday());
+                break;
+            case '7days':
+                $iQuery->whereBetween('incentive_entries.created_at', [
+                    Carbon::now()->subDays(6)->startOfDay(),
+                    Carbon::now()->endOfDay(),
+                ]);
+                break;
+            case '14days':
+                $iQuery->whereBetween('incentive_entries.created_at', [
+                    Carbon::now()->subDays(13)->startOfDay(),
+                    Carbon::now()->endOfDay(),
+                ]);
+                break;
+            case '30days':
+                $iQuery->whereBetween('incentive_entries.created_at', [
+                    Carbon::now()->subDays(29)->startOfDay(),
+                    Carbon::now()->endOfDay(),
+                ]);
+                break;
+            case 'lastmonth':
+                $last = Carbon::now()->subMonth();
+                $iQuery->whereYear('incentive_entries.created_at', $last->year)
+                       ->whereMonth('incentive_entries.created_at', $last->month);
+                break;
+            case 'today':
+                $iQuery->whereDate('incentive_entries.created_at', Carbon::today());
+                break;
+            default:
+                $iperiod = 'thismonth';
+                $iQuery->whereYear('incentive_entries.created_at', Carbon::now()->year)
+                       ->whereMonth('incentive_entries.created_at', Carbon::now()->month);
+        }
+
+        $iRows = $iQuery
+            ->groupBy(
+                DB::raw('DATE(incentive_entries.created_at)'),
+                'incentive_entries.user_id',
+                'users.first_name',
+                'users.last_name',
+                'incentive_entries.type'
+            )
+            ->orderBy('idate')
+            ->get();
+
+        $incentiveTypes = ['Upsell', 'InfoTxt', 'Pancake', 'Events'];
+        $incentiveDates = [];
+        $incentiveUsers = []; // user_id => name
+        $incentiveData  = []; // date => user_id => type => count
+
+        foreach ($iRows as $row) {
+            $incentiveDates[$row->idate] = true;
+            $incentiveUsers[$row->user_id] = $row->iname;
+            if (!isset($incentiveData[$row->idate][$row->user_id])) {
+                $incentiveData[$row->idate][$row->user_id] = array_fill_keys($incentiveTypes, 0);
+            }
+            $incentiveData[$row->idate][$row->user_id][$row->type] = (int) $row->cnt;
+        }
+
+        $incentiveDates = array_keys($incentiveDates);
+        sort($incentiveDates);
+
+        $iPeriodLabels = [
+            'today'     => 'Today — ' . Carbon::today()->format('M d, Y'),
+            'yesterday' => 'Yesterday — ' . Carbon::yesterday()->format('M d, Y'),
+            '7days'     => 'Last 7 Days',
+            '14days'    => 'Last 14 Days',
+            '30days'    => 'Last 30 Days',
+            'thismonth' => 'This Month — ' . Carbon::now()->format('F Y'),
+            'lastmonth' => 'Last Month — ' . Carbon::now()->subMonth()->format('F Y'),
+        ];
+        $iPeriodLabel = $iPeriodLabels[$iperiod] ?? $iPeriodLabels['thismonth'];
+
+        // ── Previous period query (for trend arrows) ──────────────────────
+        $iPrevQuery = DB::table('incentive_entries')
+            ->join('users', 'incentive_entries.user_id', '=', 'users.id')
+            ->select(
+                'incentive_entries.user_id',
+                'incentive_entries.type',
+                DB::raw('COUNT(*) as cnt')
+            );
+
+        switch ($iperiod) {
+            case 'yesterday':
+                $iPrevQuery->whereDate('incentive_entries.created_at', Carbon::now()->subDays(2));
+                break;
+            case '7days':
+                $iPrevQuery->whereBetween('incentive_entries.created_at', [
+                    Carbon::now()->subDays(13)->startOfDay(),
+                    Carbon::now()->subDays(7)->endOfDay(),
+                ]);
+                break;
+            case '14days':
+                $iPrevQuery->whereBetween('incentive_entries.created_at', [
+                    Carbon::now()->subDays(27)->startOfDay(),
+                    Carbon::now()->subDays(14)->endOfDay(),
+                ]);
+                break;
+            case '30days':
+                $iPrevQuery->whereBetween('incentive_entries.created_at', [
+                    Carbon::now()->subDays(59)->startOfDay(),
+                    Carbon::now()->subDays(30)->endOfDay(),
+                ]);
+                break;
+            case 'lastmonth':
+                $prevPrevMonth = Carbon::now()->subMonths(2);
+                $iPrevQuery->whereYear('incentive_entries.created_at', $prevPrevMonth->year)
+                           ->whereMonth('incentive_entries.created_at', $prevPrevMonth->month);
+                break;
+            case 'today':
+                $iPrevQuery->whereDate('incentive_entries.created_at', Carbon::yesterday());
+                break;
+            default: // thismonth
+                $lastM = Carbon::now()->subMonth();
+                $iPrevQuery->whereYear('incentive_entries.created_at', $lastM->year)
+                           ->whereMonth('incentive_entries.created_at', $lastM->month);
+        }
+
+        $iPrevRows = $iPrevQuery
+            ->groupBy('incentive_entries.user_id', 'incentive_entries.type')
+            ->get();
+
+        $iPrevTotals = []; // user_id => type => count
+        foreach ($iPrevRows as $row) {
+            if (!isset($iPrevTotals[$row->user_id])) {
+                $iPrevTotals[$row->user_id] = array_fill_keys($incentiveTypes, 0);
+            }
+            $iPrevTotals[$row->user_id][$row->type] = (int) $row->cnt;
+        }
+
+        $iPrevPeriodLabels = [
+            'today'     => 'vs Yesterday (' . Carbon::yesterday()->format('M d') . ')',
+            'yesterday' => 'vs ' . Carbon::now()->subDays(2)->format('M d'),
+            '7days'     => 'vs prev 7 days (' . Carbon::now()->subDays(13)->format('M d') . '–' . Carbon::now()->subDays(7)->format('M d') . ')',
+            '14days'    => 'vs prev 14 days (' . Carbon::now()->subDays(27)->format('M d') . '–' . Carbon::now()->subDays(14)->format('M d') . ')',
+            '30days'    => 'vs prev 30 days (' . Carbon::now()->subDays(59)->format('M d') . '–' . Carbon::now()->subDays(30)->format('M d') . ')',
+            'thismonth' => 'vs ' . Carbon::now()->subMonth()->format('F Y'),
+            'lastmonth' => 'vs ' . Carbon::now()->subMonths(2)->format('F Y'),
+        ];
+        $iPrevPeriodLabel = $iPrevPeriodLabels[$iperiod] ?? '';
+
+        return view('admin.fbads.staff_performance', compact(
+            'staffData', 'statuses', 'period', 'periodLabel',
+            'incentiveData', 'incentiveDates', 'incentiveUsers', 'incentiveTypes',
+            'iperiod', 'iPeriodLabel', 'iPrevTotals', 'iPrevPeriodLabel'
+        ));
     }
 
 }

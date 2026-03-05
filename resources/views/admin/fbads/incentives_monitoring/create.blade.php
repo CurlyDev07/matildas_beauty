@@ -6,7 +6,13 @@
 
     @if(session('success'))
         <div style="background:#dcfce7;border:1px solid #86efac;color:#15803d;border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:14px;font-weight:600;">
-            {{ session('success') }}
+            <i class="fas fa-check-circle" style="margin-right:6px;"></i>{{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('warning'))
+        <div style="background:#fef9c3;border:1px solid #fde047;color:#92400e;border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:14px;font-weight:600;">
+            <i class="fas fa-exclamation-triangle" style="margin-right:6px;"></i>{{ session('warning') }}
         </div>
     @endif
 
@@ -28,6 +34,29 @@
                 <div style="font-size:13px;color:#94a3b8;">Logged as</div>
                 <div style="font-size:15px;font-weight:700;color:#0f172a;">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</div>
             </div>
+        </div>
+
+        <!-- Today's type summary bar -->
+        @php
+        $todayCounts = ['Upsell' => 0, 'InfoTxt' => 0, 'Pancake' => 0, 'Events' => 0];
+        foreach ($todayEntries as $e) {
+            if (isset($todayCounts[$e->type])) $todayCounts[$e->type]++;
+        }
+        $typeBarColors = [
+            'Upsell'  => ['#fee2e2', '#b91c1c'],
+            'InfoTxt' => ['#dbeafe', '#1d4ed8'],
+            'Pancake' => ['#fef9c3', '#92400e'],
+            'Events'  => ['#dcfce7', '#15803d'],
+        ];
+        @endphp
+        <div style="padding:10px 24px 0;display:flex;gap:6px;flex-wrap:wrap;">
+            @foreach($todayCounts as $type => $count)
+            @php [$bg, $txt] = $typeBarColors[$type]; @endphp
+            <div style="background:{{ $bg }};border-radius:8px;padding:5px 10px;display:flex;align-items:center;gap:5px;flex:1;min-width:0;justify-content:center;">
+                <span style="font-size:11px;font-weight:700;color:{{ $txt }};white-space:nowrap;">{{ $type }}</span>
+                <span style="font-size:14px;font-weight:800;color:{{ $txt }};">{{ $count }}</span>
+            </div>
+            @endforeach
         </div>
 
         <form method="POST" action="{{ route('fbads.incentives.store') }}" style="padding:20px 24px 24px;">
@@ -77,6 +106,38 @@
         <a href="{{ route('fbads.incentives.index') }}" style="font-size:13px;color:#6366f1;text-decoration:none;">
             <i class="fas fa-list" style="margin-right:4px;"></i>View all entries
         </a>
+    </div>
+
+    {{-- Today's Entries --}}
+    @php
+    $typeColors = [
+        'Upsell'  => ['#fee2e2','#b91c1c'],
+        'InfoTxt' => ['#dbeafe','#1d4ed8'],
+        'Pancake' => ['#fef9c3','#92400e'],
+        'Events'  => ['#dcfce7','#15803d'],
+    ];
+    @endphp
+    <div style="margin-top:20px;">
+        <div style="font-size:13px;font-weight:700;color:#475569;margin-bottom:10px;display:flex;align-items:center;gap:6px;">
+            <i class="fas fa-clock" style="color:#7c3aed;"></i>
+            My entries today
+            <span style="background:#ede9fe;color:#7c3aed;border-radius:99px;padding:1px 8px;font-size:11px;font-weight:800;">{{ $todayEntries->count() }}</span>
+        </div>
+
+        @forelse($todayEntries as $entry)
+        @php [$tbg, $ttxt] = $typeColors[$entry->type] ?? ['#f1f5f9','#475569']; @endphp
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:10px 14px;margin-bottom:8px;display:flex;align-items:center;gap:10px;">
+            <span style="background:{{ $tbg }};color:{{ $ttxt }};border-radius:7px;padding:3px 10px;font-size:12px;font-weight:800;white-space:nowrap;">
+                {{ $entry->type }}
+            </span>
+            <span style="font-size:13px;font-weight:600;color:#0f172a;flex:1;">{{ $entry->customer_mobile }}</span>
+            <span style="font-size:11px;color:#94a3b8;">{{ $entry->created_at->format('g:i A') }}</span>
+        </div>
+        @empty
+        <div style="text-align:center;padding:20px;color:#cbd5e1;font-size:13px;background:#f8fafc;border-radius:12px;border:1px dashed #e2e8f0;">
+            No entries logged yet today
+        </div>
+        @endforelse
     </div>
 </div>
 

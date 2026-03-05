@@ -44,7 +44,7 @@
                     class="tcursor-pointer waves-block waves-effect hover:tbg-green-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/event-listener', 'tbg-green-50') }}">
                     <div class="tflex titems-center tjustify-center tpx-5 th-16">
                         <i class="fas fa-chart-bar ttext-pink-600 ttext-xl tmr-2"></i>
-                        <span>Web Metrics</span>
+                        <span>Web</span>
                     </div>
                 </li>
                 
@@ -61,7 +61,7 @@
                     class="tcursor-pointer waves-block waves-effect hover:tbg-green-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/events', 'tbg-green-50') }}">
                     <div class="tflex titems-center tjustify-center tpx-5 th-16">
                         <i class="fas fa-code-branch ttext-purple-600 ttext-xl tmr-2"></i>
-                        <span>Order Source</span>
+                        <span>Source</span>
                     </div>
                 </li>
                 

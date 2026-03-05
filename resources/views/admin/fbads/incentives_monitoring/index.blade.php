@@ -31,10 +31,33 @@ $typeColors = [
         </a>
     </div>
 
+    <!-- Today's type summary bar -->
+    @php
+    $typeBarColors = [
+        'Upsell'  => ['#fee2e2', '#b91c1c'],
+        'InfoTxt' => ['#dbeafe', '#1d4ed8'],
+        'Pancake' => ['#fef9c3', '#92400e'],
+        'Events'  => ['#dcfce7', '#15803d'],
+    ];
+    @endphp
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;">
+        @foreach($todayCounts as $type => $count)
+        @php [$bg, $txt] = $typeBarColors[$type]; @endphp
+        <div style="background:{{ $bg }};border-radius:8px;padding:5px 12px;display:flex;align-items:center;gap:6px;flex:1;min-width:0;justify-content:center;">
+            <span style="font-size:11px;font-weight:700;color:{{ $txt }};white-space:nowrap;">{{ $type }}</span>
+            <span style="font-size:14px;font-weight:800;color:{{ $txt }};">{{ $count }}</span>
+        </div>
+        @endforeach
+    </div>
+
     <!-- Entries list -->
     @forelse($entries as $entry)
-        @php $c = $typeColors[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag']; @endphp
-        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;">
+        @php
+            $c = $typeColors[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag'];
+            $dupKey = $entry->user_id . '|' . $entry->customer_mobile . '|' . $entry->created_at->toDateString();
+            $isDup = in_array($dupKey, $duplicateKeys);
+        @endphp
+        <div style="background:#fff;border:1px solid {{ $isDup ? '#fde68a' : '#e2e8f0' }};border-radius:14px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:12px;">
             <!-- Type badge -->
             <div style="flex-shrink:0;padding-top:2px;">
                 <span style="background:{{ $c['bg'] }};border:1px solid {{ $c['border'] }};color:{{ $c['text'] }};border-radius:8px;padding:5px 12px;font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;">
@@ -52,6 +75,11 @@ $typeColors = [
                     <span style="font-size:12px;color:#94a3b8;">
                         <i class="fas fa-clock" style="margin-right:3px;"></i>{{ $entry->created_at->format('M d, Y g:i A') }}
                     </span>
+                    @if($isDup)
+                        <span style="background:#fef9c3;border:1px solid #fde047;color:#92400e;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:800;letter-spacing:.3px;">
+                            <i class="fas fa-exclamation-triangle" style="font-size:10px;margin-right:3px;"></i>DUP
+                        </span>
+                    @endif
                 </div>
                 <div style="font-size:14px;color:#475569;margin-top:4px;">
                     <i class="fas fa-mobile-alt" style="color:#94a3b8;margin-right:5px;"></i>{{ $entry->customer_mobile }}
