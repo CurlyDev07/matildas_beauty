@@ -54,7 +54,7 @@
                               Google
                             </a>
                             <a href="{{ route('auth.fb') }}" class="focus:tbg-gray-300 hover:tshadow-xl focus:tbg-white t-mr-1 tbg-gray-300 tflex tml-2 tpx-4 tpy-2 trounded waves-effect waves-light">
-                              <img src="https://facebookbrand.com/wp-content/uploads/2016/05/flogo_rgb_hex-brc-site-250.png" class="tmr-2" alt="google icon" width="24" height="24">
+                              <img src="{{asset('images/icons/fb.png')}}" class="tmr-2" alt="google icon" width="24" height="24">
                               Facebook
                             </a>
                           </div>
