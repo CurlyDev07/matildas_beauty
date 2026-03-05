@@ -181,6 +181,13 @@
                         </a>
                     </li>
 
+                    <li class="tab col">
+                        <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'packaging', 'active') }}" onclick="location.href = '/admin/packaging'">
+                            <i class="fas fa-box tmr-1 fa-lg" style="color: #d97706ff"></i>
+                            <span class="tfont-medium" style="color: #4f4f4f;">Packaging</span>
+                        </a>
+                    </li>
+
                     @if (auth()->user()->isMaster())
                         <li class="tab col">
                             <a href="#" style="padding: 0px" class="{{ is_matched_return_class(admin_parent_nav(), 'sms', 'active') }}" onclick="location.href = '/admin/sms'">

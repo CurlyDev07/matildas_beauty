@@ -342,6 +342,40 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
     /*
     |--------------------------------------------------------------------------
+    | PACKAGING
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('packaging')->group(function () {
+        // Materials
+        Route::get('/', 'PackagingCon@materials')->name('packaging.materials');
+        Route::get('/materials/create', 'PackagingCon@materials_create')->name('packaging.materials.create');
+        Route::post('/materials/store', 'PackagingCon@materials_store')->name('packaging.materials.store');
+        Route::get('/materials/edit/{id}', 'PackagingCon@materials_edit')->name('packaging.materials.edit');
+        Route::post('/materials/patch', 'PackagingCon@materials_patch')->name('packaging.materials.patch');
+        Route::post('/materials/delete', 'PackagingCon@materials_delete')->name('packaging.materials.delete');
+
+        // Inventory
+        Route::get('/inventory', 'PackagingCon@inventory')->name('packaging.inventory');
+        Route::post('/inventory/manual-change', 'PackagingCon@inventory_manual_change')->name('packaging.inventory.manual-change');
+
+        // Purchases
+        Route::get('/purchases', 'PackagingCon@purchases')->name('packaging.purchases');
+        Route::get('/purchases/create', 'PackagingCon@purchases_create')->name('packaging.purchases.create');
+        Route::post('/purchases/store', 'PackagingCon@purchases_store')->name('packaging.purchases.store');
+        Route::get('/purchases/view/{id}', 'PackagingCon@purchases_view')->name('packaging.purchases.view');
+        Route::get('/purchases/edit/{id}', 'PackagingCon@purchases_edit')->name('packaging.purchases.edit');
+        Route::post('/purchases/patch', 'PackagingCon@purchases_patch')->name('packaging.purchases.patch');
+
+        // Stock Out
+        Route::get('/stock-out', 'PackagingCon@stock_out_index')->name('packaging.stock-out.index');
+        Route::get('/stock-out/create', 'PackagingCon@stock_out_create')->name('packaging.stock-out.create');
+        Route::post('/stock-out/store', 'PackagingCon@stock_out_store')->name('packaging.stock-out.store');
+        Route::get('/stock-out/view/{id}', 'PackagingCon@stock_out_view')->name('packaging.stock-out.view');
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
     | SMS
     |--------------------------------------------------------------------------
     */
