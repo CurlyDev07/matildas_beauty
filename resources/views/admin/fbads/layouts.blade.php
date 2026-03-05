@@ -73,7 +73,7 @@
                 </li> -->
 
 
-                @if (auth()->user()->role == 'master')
+                @if (auth()->user()->isMaster())
                     <li onclick="window.location.href = '/admin/fbads/staff-performance'"
                         class="tcursor-pointer waves-block waves-effect hover:tbg-purple-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/staff-performance', 'tbg-purple-50') }}">
                         <div class="tflex titems-center tjustify-center tpx-5 th-16">
