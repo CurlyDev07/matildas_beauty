@@ -72,13 +72,17 @@
                     </div>
                 </li> -->
 
-                <li onclick="window.location.href = '/admin/fbads/staff-performance'"
-                    class="tcursor-pointer waves-block waves-effect hover:tbg-purple-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/staff-performance', 'tbg-purple-50') }}">
-                    <div class="tflex titems-center tjustify-center tpx-5 th-16">
-                        <i class="fas fa-users ttext-purple-600 ttext-xl tmr-2"></i>
-                        <span>Staff</span>
-                    </div>
-                </li>
+
+                @if (auth()->user()->role == 'master')
+                    <li onclick="window.location.href = '/admin/fbads/staff-performance'"
+                        class="tcursor-pointer waves-block waves-effect hover:tbg-purple-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/staff-performance', 'tbg-purple-50') }}">
+                        <div class="tflex titems-center tjustify-center tpx-5 th-16">
+                            <i class="fas fa-users ttext-purple-600 ttext-xl tmr-2"></i>
+                            <span>Staff</span>
+                        </div>
+                    </li>   
+                @endif
+              
 
                 <li onclick="window.location.href = '/admin/fbads/jandt-reconcile'" 
                     class="tcursor-pointer waves-block waves-effect hover:tbg-orange-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/jandt-reconcile', 'tbg-orange-50') }}">
