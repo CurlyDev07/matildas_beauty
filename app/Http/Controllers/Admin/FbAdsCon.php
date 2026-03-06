@@ -542,7 +542,6 @@ class FbAdsCon extends Controller
     }
 
     public function store(){
-        // dd(request()->all());
         $order = FbAds::create(request()->all() + ['province' => '', 'city' => '', 'barangay' => '']);
         
 

@@ -1,0 +1,130 @@
+{
+  "info": {
+    "name": "Matilda's Beauty API",
+    "_postman_id": "matildas-beauty-api-v1",
+    "description": "API collection for Matilda's Beauty system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    },
+    {
+      "key": "api_key",
+      "value": "change-this-to-a-secret-key",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "FB Ads Orders",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{api_key}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Juan Dela Cruz\",\n  \"phone_number\": \"09551234567\",\n  \"address\": \"123 Main St, Manila\",\n  \"product\": \"MissTisa\",\n  \"promo\": \"MissTisa_1pc\",\n  \"total\": 499,\n  \"source_id\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/fbads/orders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "fbads", "orders"]
+            },
+            "description": "Create a new FB Ads order. Requires X-Api-Key header matching MATILDAS_BEAUTY_API_KEY in .env"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Order - Missing Key (401)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Juan Dela Cruz\",\n  \"phone_number\": \"09551234567\",\n  \"address\": \"123 Main St, Manila\",\n  \"product\": \"MissTisa\",\n  \"promo\": \"MissTisa_1pc\",\n  \"total\": 499\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/fbads/orders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "fbads", "orders"]
+            },
+            "description": "Test unauthorized request — no X-Api-Key header. Should return 401."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order Sources",
+      "item": [
+        {
+          "name": "Get Active Sources",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{api_key}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/order-sources",
+              "host": ["{{base_url}}"],
+              "path": ["api", "order-sources"]
+            },
+            "description": "Returns all active order sources (id, name, type, description, color). Use source_id from this list when creating an order."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

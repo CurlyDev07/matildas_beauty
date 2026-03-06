@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('api.key')->group(function () {
+    Route::post('/fbads/orders', 'Api\FbAdsOrderController@store');
+    Route::get('/order-sources', 'Api\OrderSourceController@index');
+});

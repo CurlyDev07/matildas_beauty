@@ -48,9 +48,6 @@
                             <option value="MissTisa|MissTisa_2pcs|849" style="color: #f43958">MissTisa 2pcs</option>
                             <option value="MissTisa Serum|MissTisaSerum_1pc|749" style="color: #ff6f00">Serum 1pc</option>
                             <option value="MissTisa Serum|MissTisaSerum_2pcs|999" style="color: #ff6f00">Serum 2pcs</option>
-                            <option value="Smart Light Holder|SmartLight_1pc|549" style="color: #12b101">Smart Light 1pc</option>
-                            <option value="Smart Light Holder|SmartLight_2pcs|899" style="color: #12b101">Smart Light 2pcs</option>
-                            <option value="Smart Light Holder|SmartLight_3pcs|1199" style="color: #12b101">Smart Light 3pcs</option>
                         </select>
                     </div>
                     <div class="tw-1/5 tpx-1">
