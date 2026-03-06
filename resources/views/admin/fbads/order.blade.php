@@ -53,7 +53,7 @@
                     </div>
                     <div class="tw-1/5 tpx-1">
                         <label for="total" class="tfont-normal ttext-sm tmb-2 ttext-black-100 active">Order Source</label>
-                        <select id="source_id" name="source_id" class="browser-default tfont-normal ttext-sm tmb-2 ttext-black-100" required>
+                        <select id="source_id" name="source_id" class="browser-default tfont-normal ttext-sm tmb-2 ttext-black-100" >
                             <option value="" style="color: #f43958">choose ....</option>
                             @foreach ($sources as $source)
 
