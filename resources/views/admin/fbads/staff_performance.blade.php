@@ -165,7 +165,12 @@ foreach ($staffData as $staff) {
                 <tr>
                     <td style="padding-left:20px;">
                         <div style="display:flex;align-items:center;">
-                            <span class="rank-badge {{ $rankCls }}">{{ $rankN }}</span>
+                            <span class="rank-badge {{ $rankCls }}">
+                                @if($rankN === 1)<i class="fas fa-trophy" style="font-size:11px;"></i>
+                                @elseif($rankN === 2)<i class="fas fa-medal" style="font-size:11px;"></i>
+                                @elseif($rankN === 3)<i class="fas fa-award" style="font-size:11px;"></i>
+                                @else{{ $rankN }}@endif
+                            </span>
                             <span style="font-weight:700;color:#0f172a;">{{ $staff['name'] }}</span>
                         </div>
                     </td>
