@@ -28,6 +28,22 @@ class BankTransactionController extends Controller
             'receipt_image'    => 'nullable',
         ]);
 
+        // Dedup: if reference_number exists, match on reference + amount + date
+        if (!empty($data["reference_number"])) {
+            $existing = BankTransaction::where("reference_number", $data["reference_number"])
+                ->where("amount", $data["amount"])
+                ->where("date", $data["date"] ?? null)
+                ->first();
+
+            if ($existing) {
+                return response()->json([
+                    "message"   => "Duplicate transaction skipped",
+                    "id"        => $existing->id,
+                    "duplicate" => true,
+                ], 200);
+            }
+        }
+
         $imagePath = null;
 
         if ($request->hasFile('receipt_image')) {
