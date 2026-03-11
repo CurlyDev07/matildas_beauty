@@ -431,6 +431,15 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         });
     });
 
+    /*
+    |--------------------------------------------------------------------------
+    | FINANCE
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('finance')->group(function () {
+        Route::get('/bank-transactions', 'FinanceCon@bank_transactions')->name('finance.bank_transactions');
+    });
+
 
 });
 
