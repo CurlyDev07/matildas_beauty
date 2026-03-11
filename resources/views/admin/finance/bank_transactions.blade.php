@@ -154,12 +154,11 @@
                     <td style="max-width:140px;">{{ $t->note ?? '—' }}</td>
                     <td>
                         @php
-                            $badge = match(strtolower($t->status ?? '')) {
-                                'pending'   => 'fin-badge-pending',
-                                'completed' => 'fin-badge-completed',
-                                'failed'    => 'fin-badge-failed',
-                                default     => 'fin-badge-default',
-                            };
+                            $s = strtolower($t->status ?? '');
+                            if ($s === 'pending')        $badge = 'fin-badge-pending';
+                            elseif ($s === 'completed')  $badge = 'fin-badge-completed';
+                            elseif ($s === 'failed')     $badge = 'fin-badge-failed';
+                            else                         $badge = 'fin-badge-default';
                         @endphp
                         <span class="fin-badge {{ $badge }}">{{ $t->status ?? '—' }}</span>
                     </td>
