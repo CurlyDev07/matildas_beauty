@@ -115,7 +115,7 @@
                             @foreach ($purchases as $purchase)
                                 <tr>
                                     <td>
-                                        <div class="chem-name">{{ $purchase->supplierInfo->name }}</div>
+                                        <div class="chem-name">{{ ($purchase->supplierInfo->name) }}</div>
                                         <div class="chem-sub">Supplier</div>
                                     </td>
 

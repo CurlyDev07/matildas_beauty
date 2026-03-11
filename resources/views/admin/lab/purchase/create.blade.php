@@ -204,8 +204,7 @@
 
             <div class="tw-1/2 tmr-2">
                 <label class="tfont-normal ttext-sm tmb-2 ttext-black-100"> Suppliers </label>
-                <select class="supplier tcursor-pointer browser-default form-control" style="padding: 6px;">
-                    <option value="" data-price="" selected="">Choose supplier ...</option>
+                <select class="supplier tcursor-pointer browser-default form-control" style="padding: 6px;" required>
                     @foreach ($suppliers as $supplier)
                         <option value="{{ $supplier['id'] }}" >{{ $supplier['name'] }} {{ $supplier['surname'] }}</option>
                     @endforeach
