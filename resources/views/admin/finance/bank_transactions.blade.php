@@ -124,12 +124,10 @@
                 <tr>
                     <th>#</th>
                     <th>Date / Time</th>
-                    <th>Bank</th>
-                    <th>Type</th>
+                    <th>Bank/Type</th>
                     <th>Amount</th>
                     <th>Sender</th>
                     <th>Receiver</th>
-                    <th>Account</th>
                     <th>Reference</th>
                     <th>Note</th>
                     <th>Status</th>
@@ -142,11 +140,11 @@
                 <tr>
                     <td style="color:#9ca3af;">{{ $t->id }}</td>
                     <td style="white-space:nowrap;">
-                        <div>{{ $t->date ?? '—' }}</div>
+                        <div>{{ $t->date ? \Carbon\Carbon::parse($t->date)->format('M d') : '—' }}</div>
                         <div style="font-size:11px;color:#9ca3af;">{{ $t->time ?? '' }}</div>
                     </td>
-                    <td>{{ $t->bank }}</td>
                     <td style="white-space:nowrap;">
+                        <div class="">{{ $t->bank }}</div>
                         <div>{{ $t->transaction_type }}</div>
                         <div style="font-size:11px;color:#9ca3af;">{{ $t->platform_type }}</div>
                     </td>
@@ -154,8 +152,10 @@
                         {{ $t->currency }} {{ number_format($t->amount, 2) }}
                     </td>
                     <td>{{ $t->sender_name ?? '—' }}</td>
-                    <td>{{ $t->receiver_name ?? '—' }}</td>
-                    <td class="fin-ref">{{ $t->receiver_account ?? '—' }}</td>
+                    <td class="">
+                        <div class="tfont-medium">{{ $t->receiver_name ?? '—' }}</div>
+                        <div class="fin-ref">{{ $t->receiver_account ?? '—' }}</div>
+                    </td>
                     <td class="fin-ref">{{ $t->reference_number ?? '—' }}</td>
                     <td style="max-width:140px;">{{ $t->note ?? '—' }}</td>
                     <td>
