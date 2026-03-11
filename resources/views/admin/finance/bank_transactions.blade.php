@@ -103,7 +103,13 @@
 </style>
 
 <div class="fin-card">
-    <p class="fin-title"><i class="fas fa-university" style="color:#ec4899;margin-right:8px;"></i>Bank Transactions</p>
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;">
+        <p class="fin-title" style="margin:0;"><i class="fas fa-university" style="color:#ec4899;margin-right:8px;"></i>Bank Transactions</p>
+        <div style="text-align:right;">
+            <div style="font-size:11px;color:#9ca3af;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Total</div>
+            <div style="font-size:22px;font-weight:700;color:#059669;">PHP {{ number_format($total, 2) }}</div>
+        </div>
+    </div>
     <p class="fin-sub">All transactions received via n8n automation — {{ $transactions->total() }} records</p>
 
     @if($transactions->isEmpty())
