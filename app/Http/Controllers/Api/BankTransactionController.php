@@ -31,30 +31,16 @@ class BankTransactionController extends Controller
         $imagePath = null;
 
         if ($request->hasFile('receipt_image')) {
-            $file = $request->file('receipt_image');
-            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('images/api/bank_transaction_image'), $filename);
-            $imagePath = 'images/api/bank_transaction_image/' . $filename;
+            $imageData = file_get_contents($request->file('receipt_image')->getRealPath());
+            $imagePath = $this->saveAsWebp($imageData);
         } elseif ($request->filled('receipt_image')) {
-            // Handle base64 encoded image from n8n
             $base64 = $request->input('receipt_image');
-
-            if (preg_match('/^data:image\/(\w+);base64,/', $base64, $matches)) {
-                $ext = $matches[1];
+            if (strpos($base64, ',') !== false) {
                 $base64 = substr($base64, strpos($base64, ',') + 1);
-            } else {
-                $ext = 'jpg';
             }
-
-            $decoded = base64_decode($base64);
-            if ($decoded !== false) {
-                $filename = time() . '_' . uniqid() . '.' . $ext;
-                $dir = public_path('images/api/bank_transaction_image');
-                if (!is_dir($dir)) {
-                    mkdir($dir, 0755, true);
-                }
-                file_put_contents($dir . '/' . $filename, $decoded);
-                $imagePath = 'images/api/bank_transaction_image/' . $filename;
+            $imageData = base64_decode($base64);
+            if ($imageData !== false) {
+                $imagePath = $this->saveAsWebp($imageData);
             }
         }
 
@@ -80,5 +66,27 @@ class BankTransactionController extends Controller
             'message' => 'Bank transaction saved',
             'id'      => $transaction->id,
         ], 201);
+    }
+
+    private function saveAsWebp(string $imageData): ?string
+    {
+        $dir = public_path('images/api/bank_transaction_image');
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+
+        $src = imagecreatefromstring($imageData);
+        if ($src === false) {
+            return null;
+        }
+
+        $filename = time() . '_' . uniqid() . '.webp';
+        $path = $dir . '/' . $filename;
+
+        // Quality 70 — smaller file size, still readable for receipt text
+        imagewebp($src, $path, 70);
+        imagedestroy($src);
+
+        return 'images/api/bank_transaction_image/' . $filename;
     }
 }
