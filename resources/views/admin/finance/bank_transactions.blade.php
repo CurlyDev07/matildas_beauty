@@ -31,15 +31,28 @@
     .fin-filter-btn.active { background: #ec4899; color: #fff; border-color: #ec4899; }
     .fin-custom-range { display: none; align-items: center; gap: 6px; flex-wrap: wrap; }
     .fin-custom-range.show { display: flex; }
-    .fin-date-input {
-        padding: 5px 10px;
-        border: 1px solid #f3e8f0;
-        border-radius: 8px;
-        font-size: 12px;
-        color: #374151;
-        outline: none;
+    /* Override Materialize CSS on date inputs */
+    .fin-date-input,
+    .fin-custom-range input[type="date"] {
+        padding: 5px 10px !important;
+        border: 1px solid #f3e8f0 !important;
+        border-radius: 8px !important;
+        border-bottom: 1px solid #f3e8f0 !important;
+        font-size: 12px !important;
+        color: #374151 !important;
+        outline: none !important;
+        box-shadow: none !important;
+        height: auto !important;
+        margin: 0 !important;
+        background-color: #fff !important;
+        box-sizing: border-box !important;
     }
-    .fin-date-input:focus { border-color: #f9a8d4; }
+    .fin-date-input:focus,
+    .fin-custom-range input[type="date"]:focus {
+        border: 1px solid #f9a8d4 !important;
+        border-bottom: 1px solid #f9a8d4 !important;
+        box-shadow: none !important;
+    }
     .fin-apply-btn {
         padding: 5px 14px;
         background: #ec4899;
