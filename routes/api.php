@@ -21,3 +21,10 @@ Route::middleware('api.key')->group(function () {
     Route::post('/fbads/orders', 'Api\FbAdsOrderController@store');
     Route::get('/order-sources', 'Api\OrderSourceController@index');
 });
+
+Route::post('/bank-transactions', function (Request $request) { 
+    return response()->json([
+        'message' => 'Bank transaction received successfully.',
+        'data' => $request->all(),
+    ], 200);
+});
