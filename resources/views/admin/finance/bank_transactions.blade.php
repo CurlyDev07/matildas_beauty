@@ -116,9 +116,9 @@
 
         <form method="GET" id="finCustomRange" class="fin-custom-range {{ $filter === 'custom' ? 'show' : '' }}">
             <input type="hidden" name="filter" value="custom">
-            <input type="date" name="date_from" class="fin-date-input" value="{{ $dateFrom ?? '' }}" required>
+            <input type="date" name="date_from" class="fin-date-input browser-default" value="{{ $dateFrom ?? '' }}" onclick="try{this.showPicker()}catch(e){}" required>
             <span style="color:#9ca3af;font-size:12px;">to</span>
-            <input type="date" name="date_to"   class="fin-date-input" value="{{ $dateTo ?? '' }}" required>
+            <input type="date" name="date_to"   class="fin-date-input browser-default" value="{{ $dateTo ?? '' }}" onclick="try{this.showPicker()}catch(e){}" required>
             <button type="submit" class="fin-apply-btn">Apply</button>
         </form>
     </div>
