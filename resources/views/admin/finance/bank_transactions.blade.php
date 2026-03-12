@@ -87,6 +87,97 @@
     .fin-lightbox.active { display: flex; }
     .fin-lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 10px; box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
     .fin-lightbox-close { position: absolute; top: 20px; right: 24px; color: #fff; font-size: 28px; cursor: pointer; line-height: 1; }
+
+    /* Action buttons */
+    .fin-btn-edit {
+        display: inline-flex; align-items: center; gap: 4px;
+        padding: 4px 10px; border-radius: 6px;
+        background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe;
+        font-size: 11px; font-weight: 600; cursor: pointer;
+        transition: all 0.15s; white-space: nowrap;
+    }
+    .fin-btn-edit:hover { background: #dbeafe; color: #1d4ed8; }
+    .fin-btn-delete {
+        display: inline-flex; align-items: center; gap: 4px;
+        padding: 4px 10px; border-radius: 6px;
+        background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3;
+        font-size: 11px; font-weight: 600; cursor: pointer;
+        transition: all 0.15s; white-space: nowrap;
+    }
+    .fin-btn-delete:hover { background: #ffe4e6; color: #be123c; }
+
+    /* Edit Modal */
+    .fin-modal-overlay {
+        display: none; position: fixed; inset: 0;
+        background: rgba(0,0,0,0.45); z-index: 8888;
+        align-items: center; justify-content: center;
+    }
+    .fin-modal-overlay.active { display: flex; }
+    .fin-modal {
+        background: #fff; border-radius: 14px;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+        width: 560px; max-width: 95vw; max-height: 90vh;
+        overflow-y: auto; padding: 28px 28px 24px;
+    }
+    .fin-modal-title {
+        font-size: 16px; font-weight: 700; color: #1f2937;
+        margin: 0 0 20px; display: flex; align-items: center; gap: 8px;
+    }
+    .fin-modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .fin-modal-field { display: flex; flex-direction: column; gap: 4px; }
+    .fin-modal-field.full { grid-column: span 2; }
+    .fin-modal-label { font-size: 11px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; }
+    .fin-modal-input {
+        padding: 7px 10px !important;
+        border: 1px solid #e5e7eb !important;
+        border-bottom: 1px solid #e5e7eb !important;
+        border-radius: 7px !important;
+        font-size: 13px !important;
+        color: #1f2937 !important;
+        outline: none !important;
+        box-shadow: none !important;
+        height: auto !important;
+        margin: 0 !important;
+        background: #fff !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        transition: border-color 0.15s !important;
+    }
+    .fin-modal-input:focus {
+        border-color: #f9a8d4 !important;
+        border-bottom-color: #f9a8d4 !important;
+        box-shadow: none !important;
+    }
+    .fin-modal-select {
+        padding: 7px 10px !important;
+        border: 1px solid #e5e7eb !important;
+        border-radius: 7px !important;
+        font-size: 13px !important;
+        color: #1f2937 !important;
+        height: auto !important;
+        margin: 0 !important;
+        background: #fff !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        cursor: pointer;
+        display: block !important;
+    }
+    .fin-modal-footer { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+    .fin-modal-cancel {
+        padding: 8px 18px; border-radius: 8px;
+        border: 1px solid #e5e7eb; background: #fff;
+        color: #6b7280; font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    .fin-modal-save {
+        padding: 8px 20px; border-radius: 8px;
+        border: none; background: #ec4899;
+        color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    .fin-modal-save:hover { background: #db2777; }
+
+    /* Flash */
+    .fin-flash { padding: 10px 16px; border-radius: 8px; margin-bottom: 14px; font-size: 13px; font-weight: 500; }
+    .fin-flash-success { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
 </style>
 
 <div class="fin-card">
@@ -100,6 +191,11 @@
         </div>
     </div>
     <p class="fin-sub">{{ $transactions->total() }} records</p>
+
+    {{-- Flash --}}
+    @if(session('success'))
+        <div class="fin-flash fin-flash-success"><i class="fas fa-check-circle" style="margin-right:6px;"></i>{{ session('success') }}</div>
+    @endif
 
     {{-- Filter bar --}}
     <div class="fin-filters">
@@ -144,6 +240,7 @@
                     <th>Status</th>
                     <th>Conf.</th>
                     <th>Receipt</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -155,14 +252,14 @@
                         <div style="font-size:11px;color:#9ca3af;">{{ $t->time ?? '' }}</div>
                     </td>
                     <td style="white-space:nowrap;">
-                        <div>{{ $t->bank }}</div>
-                        <div>{{ $t->transaction_type }}</div>
+                        <div class="tfont-medium">{{ $t->bank }}</div>
+                        <div class="ttext-xs">{{ $t->transaction_type }}</div>
                         <div style="font-size:11px;color:#9ca3af;">{{ $t->platform_type }}</div>
                     </td>
                     <td class="fin-amount">₱{{ number_format($t->amount, 0) }}</td>
                     <td>{{ $t->sender_name ?? '—' }}</td>
                     <td>
-                        <div>{{ $t->receiver_name ?? '—' }}</div>
+                        <div class="tfont-medium">{{ $t->receiver_name ?? '—' }}</div>
                         <div class="fin-ref">{{ $t->receiver_account ?? '—' }}</div>
                     </td>
                     <td class="fin-ref">{{ $t->reference_number ?? '—' }}</td>
@@ -191,6 +288,22 @@
                             <div class="fin-no-img"><i class="fas fa-image"></i></div>
                         @endif
                     </td>
+                    <td style="white-space:nowrap;">
+                        <div style="display:flex;gap:4px;">
+                            <button type="button" class="fin-btn-edit"
+                                onclick="finOpenEdit({{ json_encode($t) }})">
+                                <i class="fas fa-pen"></i> Edit
+                            </button>
+                            <form method="POST" action="/admin/finance/bank-transactions/{{ $t->id }}"
+                                onsubmit="return confirm('Delete this transaction? This cannot be undone.')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="fin-btn-delete">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -207,6 +320,82 @@
     <img id="finLightboxImg" src="" alt="Receipt">
 </div>
 
+{{-- Edit Modal --}}
+<div class="fin-modal-overlay" id="finEditModal">
+    <div class="fin-modal" onclick="event.stopPropagation()">
+        <div class="fin-modal-title">
+            <i class="fas fa-pen" style="color:#ec4899;font-size:14px;"></i>
+            Edit Transaction
+        </div>
+        <form method="POST" id="finEditForm">
+            @csrf
+            @method('PUT')
+            <div class="fin-modal-grid">
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Bank</label>
+                    <input type="text" name="bank" id="fe_bank" class="fin-modal-input browser-default" required>
+                </div>
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Platform Type</label>
+                    <input type="text" name="platform_type" id="fe_platform_type" class="fin-modal-input browser-default">
+                </div>
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Transaction Type</label>
+                    <input type="text" name="transaction_type" id="fe_transaction_type" class="fin-modal-input browser-default" required>
+                </div>
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Amount</label>
+                    <input type="number" step="0.01" name="amount" id="fe_amount" class="fin-modal-input browser-default" required>
+                </div>
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Date</label>
+                    <input type="date" name="date" id="fe_date" class="fin-modal-input browser-default" onclick="try{this.showPicker()}catch(e){}">
+                </div>
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Time</label>
+                    <input type="text" name="time" id="fe_time" class="fin-modal-input browser-default" placeholder="HH:MM:SS">
+                </div>
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Sender Name</label>
+                    <input type="text" name="sender_name" id="fe_sender_name" class="fin-modal-input browser-default">
+                </div>
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Receiver Name</label>
+                    <input type="text" name="receiver_name" id="fe_receiver_name" class="fin-modal-input browser-default">
+                </div>
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Receiver Account</label>
+                    <input type="text" name="receiver_account" id="fe_receiver_account" class="fin-modal-input browser-default">
+                </div>
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Reference Number</label>
+                    <input type="text" name="reference_number" id="fe_reference_number" class="fin-modal-input browser-default">
+                </div>
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Status</label>
+                    <select name="status" id="fe_status" class="fin-modal-select browser-default">
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                </div>
+                <div class="fin-modal-field">
+                    <label class="fin-modal-label">Currency</label>
+                    <input type="text" name="currency" id="fe_currency" class="fin-modal-input browser-default">
+                </div>
+                <div class="fin-modal-field full">
+                    <label class="fin-modal-label">Note</label>
+                    <input type="text" name="note" id="fe_note" class="fin-modal-input browser-default">
+                </div>
+            </div>
+            <div class="fin-modal-footer">
+                <button type="button" class="fin-modal-cancel" onclick="finCloseEdit()">Cancel</button>
+                <button type="submit" class="fin-modal-save"><i class="fas fa-save" style="margin-right:5px;"></i>Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script>
     function finOpenLightbox(src) {
         document.getElementById('finLightboxImg').src = src;
@@ -215,8 +404,34 @@
     function finCloseLightbox() {
         document.getElementById('finLightbox').classList.remove('active');
     }
+
+    function finOpenEdit(t) {
+        document.getElementById('finEditForm').action = '/admin/finance/bank-transactions/' + t.id;
+        document.getElementById('fe_bank').value             = t.bank || '';
+        document.getElementById('fe_platform_type').value    = t.platform_type || '';
+        document.getElementById('fe_transaction_type').value = t.transaction_type || '';
+        document.getElementById('fe_amount').value           = t.amount || '';
+        document.getElementById('fe_date').value             = t.date || '';
+        document.getElementById('fe_time').value             = t.time || '';
+        document.getElementById('fe_sender_name').value      = t.sender_name || '';
+        document.getElementById('fe_receiver_name').value    = t.receiver_name || '';
+        document.getElementById('fe_receiver_account').value = t.receiver_account || '';
+        document.getElementById('fe_reference_number').value = t.reference_number || '';
+        document.getElementById('fe_status').value           = t.status || 'pending';
+        document.getElementById('fe_currency').value         = t.currency || 'PHP';
+        document.getElementById('fe_note').value             = t.note || '';
+        document.getElementById('finEditModal').classList.add('active');
+    }
+    function finCloseEdit() {
+        document.getElementById('finEditModal').classList.remove('active');
+    }
+
+    document.getElementById('finEditModal').addEventListener('click', function(e) {
+        if (e.target === this) finCloseEdit();
+    });
+
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') finCloseLightbox();
+        if (e.key === 'Escape') { finCloseLightbox(); finCloseEdit(); }
     });
 </script>
 

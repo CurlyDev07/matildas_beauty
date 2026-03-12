@@ -32,4 +32,36 @@ class FinanceCon extends Controller
 
         return view('admin.finance.bank_transactions', compact('transactions', 'total', 'filter', 'dateFrom', 'dateTo'));
     }
+
+    public function bank_transaction_update(\Illuminate\Http\Request $request, $id)
+    {
+        $t = BankTransaction::findOrFail($id);
+
+        $data = $request->validate([
+            'bank'             => 'required|string|max:255',
+            'platform_type'    => 'nullable|string|max:100',
+            'transaction_type' => 'required|string|max:100',
+            'amount'           => 'required|numeric|min:0',
+            'currency'         => 'nullable|string|max:10',
+            'reference_number' => 'nullable|string|max:255',
+            'date'             => 'nullable|date',
+            'time'             => 'nullable|string|max:20',
+            'sender_name'      => 'nullable|string|max:255',
+            'receiver_name'    => 'nullable|string|max:255',
+            'receiver_account' => 'nullable|string|max:255',
+            'note'             => 'nullable|string',
+            'status'           => 'nullable|string|max:50',
+        ]);
+
+        $t->update($data);
+
+        return redirect()->back()->with('success', 'Transaction updated.');
+    }
+
+    public function bank_transaction_destroy($id)
+    {
+        BankTransaction::findOrFail($id)->delete();
+
+        return redirect()->back()->with('success', 'Transaction deleted.');
+    }
 }

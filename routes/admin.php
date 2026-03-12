@@ -438,6 +438,8 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     */
     Route::prefix('finance')->group(function () {
         Route::get('/bank-transactions', 'FinanceCon@bank_transactions')->name('finance.bank_transactions');
+        Route::put('/bank-transactions/{id}', 'FinanceCon@bank_transaction_update')->name('finance.bank_transactions.update');
+        Route::delete('/bank-transactions/{id}', 'FinanceCon@bank_transaction_destroy')->name('finance.bank_transactions.destroy');
     });
 
 
