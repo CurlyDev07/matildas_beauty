@@ -28,7 +28,7 @@ class FinanceCon extends Controller
         }
 
         $transactions = $query->paginate(50)->appends($request->query());
-        $total        = (clone $query->getQuery())->sum('amount');
+        $total        = (clone $query)->sum('amount');
 
         return view('admin.finance.bank_transactions', compact('transactions', 'total', 'filter', 'dateFrom', 'dateTo'));
     }
