@@ -242,13 +242,30 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
     /*
     |--------------------------------------------------------------------------
+    | STAFF
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/staff-performance', 'FbAdsCon@staff_performance')->name('staff_performance');
+
+    Route::prefix('staff')->group(function () {
+        Route::get('/incentive-rates', 'IncentiveRateCon@index')->name('staff.incentive_rates.index');
+        Route::put('/incentive-rates/{type}', 'IncentiveRateCon@update')->name('staff.incentive_rates.update');
+        Route::get('/incentive-approvals', 'IncentiveEntryCon@approvals')->name('staff.incentive_approvals');
+        Route::post('/incentive-approvals/{id}/approve', 'IncentiveEntryCon@approve')->name('staff.incentive_approvals.approve');
+        Route::get('/payouts', 'IncentivePayoutCon@index')->name('staff.payouts.index');
+        Route::get('/payouts/preview', 'IncentivePayoutCon@preview')->name('staff.payouts.preview');
+        Route::post('/payouts/release', 'IncentivePayoutCon@release')->name('staff.payouts.release');
+        Route::get('/payouts/{id}', 'IncentivePayoutCon@show')->name('staff.payouts.show');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
     | FB ADS ORDERS
     |--------------------------------------------------------------------------
     */
     Route::prefix('fbads')->group(function () {
         Route::get('/', 'FbAdsCon@index')->name('fbads.index');
         Route::get('/dashboard', 'FbAdsCon@dashboard')->name('fbads.dashboard');
-        Route::get('/staff-performance', 'FbAdsCon@staff_performance')->name('fbads.staff_performance');
 
         // Incentives Monitoring
         Route::get('/incentives', 'IncentiveEntryCon@index')->name('fbads.incentives.index');
@@ -257,6 +274,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/incentives/{id}/edit', 'IncentiveEntryCon@edit')->name('fbads.incentives.edit');
         Route::put('/incentives/{id}', 'IncentiveEntryCon@update')->name('fbads.incentives.update');
         Route::delete('/incentives/{id}', 'IncentiveEntryCon@destroy')->name('fbads.incentives.destroy');
+        Route::post('/incentives/{id}/deliver', 'IncentiveEntryCon@markDelivered')->name('fbads.incentives.deliver');
 
 
 

@@ -4,32 +4,95 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\IncentiveEntry;
+use App\IncentiveRate;
 use Illuminate\Http\Request;
 
 class IncentiveEntryCon extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $entries = IncentiveEntry::with('user')
+        $period = $request->get('period', 'today');
+        $userId = auth()->id();
+
+        [$start, $end] = $this->periodRange($period);
+
+        $analyticsRaw = IncentiveEntry::where('user_id', $userId)
+            ->whereBetween('created_at', [$start, $end])
+            ->selectRaw('type, count(*) as count')
+            ->groupBy('type')
+            ->pluck('count', 'type')
+            ->toArray();
+
+        $analytics = [];
+        foreach (['Upsell', 'InfoTxt', 'Pancake', 'Events'] as $type) {
+            $analytics[$type] = $analyticsRaw[$type] ?? 0;
+        }
+
+        $rates = IncentiveRate::pluck('rate', 'type')->toArray();
+
+        $deliveredCount = IncentiveEntry::where('user_id', $userId)
+            ->whereBetween('created_at', [$start, $end])
+            ->where('delivery_status', 'delivered')
+            ->count();
+
+        $approvedCount = IncentiveEntry::where('user_id', $userId)
+            ->whereBetween('created_at', [$start, $end])
+            ->where('approved', true)
+            ->count();
+
+        $approvedRaw = IncentiveEntry::where('user_id', $userId)
+            ->whereBetween('created_at', [$start, $end])
+            ->where('approved', true)
+            ->selectRaw('type, count(*) as count')
+            ->groupBy('type')
+            ->pluck('count', 'type')
+            ->toArray();
+
+        $approvedValue = 0;
+        foreach ($approvedRaw as $type => $count) {
+            $approvedValue += $count * ($rates[$type] ?? 0);
+        }
+
+        $myEntries = IncentiveEntry::with('payout')->where('user_id', $userId)
             ->orderBy('created_at', 'desc')
             ->get();
 
-        // Duplicate keys: same user + mobile + date logged more than once
-        $mobileCount = [];
-        foreach ($entries as $entry) {
-            $key = $entry->user_id . '|' . $entry->customer_mobile . '|' . $entry->created_at->toDateString();
-            $mobileCount[$key] = ($mobileCount[$key] ?? 0) + 1;
-        }
-        $duplicateKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
+        // Derive payout history from already-loaded entries (no extra queries)
+        $myPayouts = $myEntries->filter(function ($e) { return $e->payout_id; })
+            ->groupBy('payout_id')
+            ->map(function ($entries) use ($rates) {
+                $payout = $entries->first()->payout;
+                $myTotal = $entries->sum(function ($e) use ($rates) {
+                    return $rates[$e->type] ?? 0;
+                });
+                $byType = $entries->groupBy('type')->map->count();
+                return compact('payout', 'myTotal', 'byType');
+            })
+            ->sortByDesc(function ($row) {
+                return optional($row['payout'])->released_at;
+            });
 
-        $todayCounts = ['Upsell' => 0, 'InfoTxt' => 0, 'Pancake' => 0, 'Events' => 0];
-        foreach ($entries as $entry) {
-            if ($entry->user_id == auth()->id() && $entry->created_at->isToday() && isset($todayCounts[$entry->type])) {
-                $todayCounts[$entry->type]++;
-            }
-        }
+        return view('admin.fbads.incentives_monitoring.index', compact(
+            'myEntries', 'analytics', 'rates', 'period',
+            'deliveredCount', 'approvedCount', 'approvedValue', 'myPayouts'
+        ));
+    }
 
-        return view('admin.fbads.incentives_monitoring.index', compact('entries', 'duplicateKeys', 'todayCounts'));
+    private function periodRange($period)
+    {
+        $now = now();
+        switch ($period) {
+            case 'yesterday':
+                return [$now->copy()->subDay()->startOfDay(), $now->copy()->subDay()->endOfDay()];
+            case 'this_week':
+                return [$now->copy()->startOfWeek(), $now->copy()->endOfWeek()];
+            case 'last_week':
+                return [$now->copy()->subWeek()->startOfWeek(), $now->copy()->subWeek()->endOfWeek()];
+            case 'this_month':
+                return [$now->copy()->startOfMonth(), $now->copy()->endOfMonth()];
+            default: // today
+                return [$now->copy()->startOfDay(), $now->copy()->endOfDay()];
+        }
     }
 
     public function create()
@@ -49,7 +112,6 @@ class IncentiveEntryCon extends Controller
             'customer_mobile' => 'required|string|max:20',
         ]);
 
-        // Duplicate check: same user + mobile already logged today
         $isDuplicate = IncentiveEntry::where('user_id', auth()->id())
             ->where('customer_mobile', $request->customer_mobile)
             ->whereDate('created_at', today())
@@ -67,6 +129,41 @@ class IncentiveEntryCon extends Controller
         }
 
         return redirect()->route('fbads.incentives.create')->with('success', 'Entry added.');
+    }
+
+    public function markDelivered($id)
+    {
+        $entry = IncentiveEntry::findOrFail($id);
+
+        abort_unless($entry->user_id === auth()->id(), 403);
+
+        if (!$entry->delivery_status) {
+            $entry->update(['delivery_status' => 'delivered']);
+        }
+
+        return redirect()->route('fbads.incentives.index')->with('success', 'Entry marked as delivered.');
+    }
+
+    public function approvals()
+    {
+        abort_unless(auth()->user()->isMaster(), 403);
+
+        $entries = IncentiveEntry::with('user')
+            ->where('delivery_status', 'delivered')
+            ->where('approved', false)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('admin.staff.incentive_approvals', compact('entries'));
+    }
+
+    public function approve($id)
+    {
+        abort_unless(auth()->user()->isMaster(), 403);
+
+        IncentiveEntry::findOrFail($id)->update(['approved' => true]);
+
+        return redirect()->route('staff.incentive_approvals')->with('success', 'Incentive approved.');
     }
 
     public function edit($id)

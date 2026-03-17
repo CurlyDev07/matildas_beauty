@@ -397,16 +397,35 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
                 <a href="/admin/order-sources" class="mb-sb-child {{ request()->is('admin/order-sources') ? 'mb-active' : '' }}">
                     <i class="fas fa-code-branch mb-sb-child-icon"></i> Source
                 </a>
-                @if (auth()->user()->isMaster())
-                <a href="/admin/fbads/staff-performance" class="mb-sb-child {{ request()->is('admin/fbads/staff-performance') ? 'mb-active' : '' }}">
-                    <i class="fas fa-users mb-sb-child-icon"></i> Staff
-                </a>
-                @endif
                 <a href="/admin/fbads/jandt-reconcile" class="mb-sb-child {{ request()->is('admin/fbads/jandt-reconcile') ? 'mb-active' : '' }}">
                     <i class="fas fa-truck mb-sb-child-icon"></i> J&amp;T
                 </a>
             </div>
         </div>
+
+        @if (auth()->user()->isMaster())
+        <div class="mb-sb-group">
+            <a href="/admin/staff-performance" class="mb-sb-link {{ request()->is('admin/staff-performance') || request()->is('admin/staff/*') ? 'mb-active' : '' }}">
+                <i class="fas fa-users mb-sb-icon"></i>
+                <span>Staff</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </a>
+            <div class="mb-sb-children">
+                <a href="/admin/staff-performance" class="mb-sb-child {{ request()->is('admin/staff-performance') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> Performance
+                </a>
+                <a href="/admin/staff/incentive-rates" class="mb-sb-child {{ request()->is('admin/staff/incentive-rates') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> Incentive Rates
+                </a>
+                <a href="/admin/staff/incentive-approvals" class="mb-sb-child {{ request()->is('admin/staff/incentive-approvals') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> Verify Incentives
+                </a>
+                <a href="/admin/staff/payouts" class="mb-sb-child {{ request()->is('admin/staff/payouts*') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> Payouts
+                </a>
+            </div>
+        </div>
+        @endif
         @endif
 
         {{-- Lab & Production --}}
