@@ -1433,7 +1433,8 @@ class FbAdsCon extends Controller
                 ->select(
                     DB::raw("COALESCE(order_sources.name, 'Unknown') as source_name"),
                     DB::raw("COALESCE(order_sources.color, '#94a3b8') as source_color"),
-                    DB::raw('COUNT(*) as order_count')
+                    DB::raw('COUNT(*) as order_count'),
+                    DB::raw('SUM(fb_ads.total) as order_value')
                 )
                 ->tap($applyDate)
                 ->groupBy('order_sources.id', 'order_sources.name', 'order_sources.color')
@@ -1443,13 +1444,17 @@ class FbAdsCon extends Controller
             $labels = $rows->pluck('source_name')->toArray();
             $counts = $rows->pluck('order_count')->map(fn ($v) => (int) $v)->toArray();
             $colors = $rows->pluck('source_color')->toArray();
+            $values = $rows->pluck('order_value')->map(fn ($v) => (float) ($v ?? 0))->toArray();
             $total  = array_sum($counts);
+            $totalValue = array_sum($values);
 
             return response()->json([
-                'labels' => $labels,
-                'counts' => $counts,
-                'colors' => $colors,
-                'total'  => $total,
+                'labels'      => $labels,
+                'counts'      => $counts,
+                'colors'      => $colors,
+                'values'      => $values,      // order value (sum of total) per source
+                'total'       => $total,
+                'total_value' => $totalValue,  // grand total order value for the period
             ]);
 
         } catch (\Exception $e) {

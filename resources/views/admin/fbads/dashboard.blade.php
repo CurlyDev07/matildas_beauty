@@ -308,12 +308,31 @@
                 </div>
             </div>
 
-            <!-- Summary: total orders in the selected period -->
-            <div class="tflex tmt-6">
-                <div class="tbg-gradient-to-br tfrom-pink-500 tto-pink-600 trounded-lg tp-6">
-                    <div class="ttext-sm topacity-90">Total Orders (Period)</div>
-                    <div id="sourceTotalOrders" class="ttext-3xl tfont-bold tmt-2">0</div>
+            <!-- Summary: totals + per-source order value breakdown -->
+            <div class="tflex tgap-4 tmt-6 tflex-wrap titems-start">
+
+                <!-- Grand total cards -->
+                <div class="tflex tflex-col tgap-4">
+                    <div class="tbg-gradient-to-br tfrom-pink-500 tto-pink-600 trounded-lg tp-6 ttext-white">
+                        <div class="ttext-sm topacity-90">Total Orders (Period)</div>
+                        <div id="sourceTotalOrders" class="ttext-3xl tfont-bold tmt-2">0</div>
+                    </div>
+                    <div class="tbg-gradient-to-br tfrom-green-500 tto-green-600 trounded-lg tp-6 ttext-white">
+                        <div class="ttext-sm topacity-90">Total Order Value (Period)</div>
+                        <div id="sourceTotalValue" class="ttext-3xl tfont-bold tmt-2">₱0.00</div>
+                    </div>
                 </div>
+
+                <!-- Per-source order value list — rendered by JS -->
+                <div class="tflex-1 tmin-w-[260px]">
+                    <h4 class="ttext-sm tfont-semibold ttext-gray-500 tuppercase ttracking-wide tmb-3">
+                        Order Value per Source
+                    </h4>
+                    <div id="sourceValueList" class="tflex tflex-col tgap-2">
+                        <!-- rows injected by renderSourceValueList() -->
+                    </div>
+                </div>
+
             </div>
         </div>
         <!-- END ORDER SOURCE MONITORING -->
@@ -2038,6 +2057,36 @@
                 }
             }
 
+            // ── Render the per-source order value list below the charts ──
+            function renderSourceValueList(labels, counts, values, colors) {
+                const container = document.getElementById('sourceValueList');
+                if (!container) return;
+
+                // Helper: format peso amounts
+                const peso = n => '₱' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+                let html = '';
+                labels.forEach((label, i) => {
+                    const color = colors[i] || '#94a3b8';
+                    html += `
+                        <div class="tflex titems-center tjustify-between tpx-3 tpy-2 trounded-lg tbg-gray-50 tborder">
+                            <!-- Color dot + source name -->
+                            <div class="tflex titems-center tgap-2">
+                                <span style="width:10px;height:10px;border-radius:50%;background:${color};flex-shrink:0;display:inline-block;"></span>
+                                <span class="ttext-sm tfont-medium ttext-gray-800">${label}</span>
+                            </div>
+                            <!-- Order count + value -->
+                            <div class="tflex tgap-4 titems-center">
+                                <span class="ttext-xs ttext-gray-500">${counts[i].toLocaleString()} orders</span>
+                                <span class="ttext-sm tfont-semibold ttext-gray-900">${peso(values[i])}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            }
+
             // ── Fetch data from the API and re-render both charts ──
             function loadSourceBreakdown(filter, customDate) {
                 document.getElementById('sourceLoadingIndicator').classList.remove('thidden');
@@ -2059,8 +2108,10 @@
                         if (!data.labels || data.labels.length === 0) {
                             document.getElementById('sourceDonutChart').innerHTML =
                                 '<div class="tflex tjustify-center titems-center tpy-20 ttext-gray-500">No data for this period</div>';
-                            document.getElementById('sourceBarChart').innerHTML   = '';
+                            document.getElementById('sourceBarChart').innerHTML  = '';
+                            document.getElementById('sourceValueList').innerHTML = '';
                             document.getElementById('sourceTotalOrders').textContent = '0';
+                            document.getElementById('sourceTotalValue').textContent  = '₱0.00';
                             return;
                         }
 
@@ -2075,8 +2126,11 @@
 
                         renderSourceDonut(data.labels, data.counts, colors);
                         renderSourceBar(data.labels, data.counts, colors);
+                        renderSourceValueList(data.labels, data.counts, data.values, colors);
                         document.getElementById('sourceTotalOrders').textContent =
                             data.total.toLocaleString();
+                        document.getElementById('sourceTotalValue').textContent =
+                            '₱' + data.total_value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                     })
                     .catch(err => console.error('Order source fetch error:', err))
                     .finally(() => {
