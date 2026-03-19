@@ -238,6 +238,87 @@
         <!-- ORDERS CHARTS -->
 
 
+        <!-- ======================================================
+             ORDER SOURCE MONITORING — shows order count per source
+             (today / yesterday / 7d / 14d / 30d / custom)
+             Data is fetched via AJAX; no page reload on filter change.
+             ====================================================== -->
+        <div class="tbg-white trounded-lg tshadow-lg tp-6 tmb-6" id="orderSourceSection">
+            <!-- Header -->
+            <div class="tflex tjustify-between titems-center tmb-6 tflex-wrap tgap-4">
+                <h2 class="ttext-xl tfont-semibold ttext-gray-800">Order Source Monitoring</h2>
+
+                <div class="tflex tgap-2 titems-center tflex-wrap">
+                    <!-- Preset filter buttons -->
+                    <button onclick="filterSourceBreakdown('today')"
+                        id="source-btn-today"
+                        class="source-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-pink-600 ttext-white ttext-sm">
+                        Today
+                    </button>
+                    <button onclick="filterSourceBreakdown('yesterday')"
+                        id="source-btn-yesterday"
+                        class="source-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
+                        Yesterday
+                    </button>
+                    <button onclick="filterSourceBreakdown('7days')"
+                        id="source-btn-7days"
+                        class="source-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
+                        Last 7 Days
+                    </button>
+                    <button onclick="filterSourceBreakdown('14days')"
+                        id="source-btn-14days"
+                        class="source-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
+                        Last 14 Days
+                    </button>
+                    <button onclick="filterSourceBreakdown('30days')"
+                        id="source-btn-30days"
+                        class="source-filter-btn tpx-4 tpy-2 trounded-lg ttransition-all tbg-gray-100 ttext-gray-700 hover:tbg-gray-200 ttext-sm">
+                        Last 30 Days
+                    </button>
+
+                    <!-- Custom date range picker -->
+                    <div class="tflex tgap-2 titems-center">
+                        <input type="text"
+                            id="sourceCustomDateRange"
+                            class="form-control tpx-4 tpy-2 tborder trounded-lg ttext-sm browser-default tmx-1"
+                            placeholder="Custom Range"
+                            style="width: 200px;">
+                        <button onclick="applySourceCustomDate()"
+                            class="tpx-4 tml-1 tpy-2 tbg-blue-600 ttext-white trounded-lg hover:tbg-blue-700 ttransition-all ttext-sm browser-default">
+                            Apply
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spinner shown while fetching data -->
+            <div id="sourceLoadingIndicator" class="thidden tflex tjustify-center titems-center tpy-8">
+                <div class="tborder-4 tborder-pink-200 tborder-t-pink-600 trounded-full tw-10 th-10 tanimate-spin"></div>
+            </div>
+
+            <!-- Two-column layout: donut chart on the left, horizontal bar on the right -->
+            <div class="tflex tgap-6" style="flex-wrap: wrap;">
+                <!-- Donut chart: proportion of orders per source -->
+                <div style="flex: 1; min-width: 280px;">
+                    <div id="sourceDonutChart" style="min-height: 360px;"></div>
+                </div>
+                <!-- Horizontal bar chart: absolute order counts per source -->
+                <div style="flex: 2; min-width: 320px;">
+                    <div id="sourceBarChart" style="min-height: 360px;"></div>
+                </div>
+            </div>
+
+            <!-- Summary: total orders in the selected period -->
+            <div class="tflex tmt-6">
+                <div class="tbg-gradient-to-br tfrom-pink-500 tto-pink-600 trounded-lg tp-6">
+                    <div class="ttext-sm topacity-90">Total Orders (Period)</div>
+                    <div id="sourceTotalOrders" class="ttext-3xl tfont-bold tmt-2">0</div>
+                </div>
+            </div>
+        </div>
+        <!-- END ORDER SOURCE MONITORING -->
+
+
         <!-- Top Products Performance -->
         <div class="tbg-white trounded-lg tshadow-lg tp-6 tmb-6">
             <!-- Header -->
@@ -1842,5 +1923,205 @@
             });
         </script>
         <!-- Revenue Comparison with Smart Time Periods! 🚀 -->
+
+        <!-- ======================================================
+             ORDER SOURCE MONITORING — JavaScript
+             Handles filter buttons, custom date picker, AJAX fetch,
+             and rendering of both the donut & bar ApexCharts charts.
+             ====================================================== -->
+        <script>
+            let sourceDonutChart = null;   // ApexCharts donut instance
+            let sourceBarChart   = null;   // ApexCharts bar instance
+            let currentSourceFilter = 'today';
+
+            // ── Activate the clicked filter button, grey out others ──
+            function updateSourceButtonState(filter) {
+                document.querySelectorAll('.source-filter-btn').forEach(btn => {
+                    btn.classList.remove('tbg-pink-600', 'ttext-white');
+                    btn.classList.add('tbg-gray-100', 'ttext-gray-700');
+                });
+                const active = document.getElementById('source-btn-' + filter);
+                if (active) {
+                    active.classList.remove('tbg-gray-100', 'ttext-gray-700');
+                    active.classList.add('tbg-pink-600', 'ttext-white');
+                }
+            }
+
+            // ── Render/update the donut chart (proportions per source) ──
+            function renderSourceDonut(labels, counts, colors) {
+                const opts = {
+                    series: counts,
+                    chart:  { height: 360, type: 'donut' },
+                    labels: labels,
+                    colors: colors,
+                    legend: { position: 'bottom', fontSize: '13px' },
+                    plotOptions: {
+                        pie: {
+                            donut: {
+                                size: '65%',
+                                labels: {
+                                    show: true,
+                                    total: {
+                                        show: true,
+                                        label: 'Total Orders',
+                                        fontSize: '14px',
+                                        fontWeight: 600,
+                                        color: '#374151',
+                                        formatter: w => w.globals.seriesTotals.reduce((a, b) => a + b, 0)
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        // Show count + percentage inside each slice
+                        formatter: (val, opts) => {
+                            const count = opts.w.config.series[opts.seriesIndex];
+                            return count + ' (' + val.toFixed(1) + '%)';
+                        },
+                        style: { fontSize: '12px', fontWeight: 600 }
+                    },
+                    tooltip: { y: { formatter: val => val + ' orders' } }
+                };
+
+                if (sourceDonutChart !== null) { sourceDonutChart.destroy(); }
+                const el = document.querySelector('#sourceDonutChart');
+                if (el) {
+                    el.innerHTML = '';
+                    sourceDonutChart = new ApexCharts(el, opts);
+                    sourceDonutChart.render();
+                }
+            }
+
+            // ── Render/update the horizontal bar chart (absolute counts) ──
+            function renderSourceBar(labels, counts, colors) {
+                const opts = {
+                    series: [{ name: 'Orders', data: counts }],
+                    chart: {
+                        height: 360,
+                        type: 'bar',
+                        toolbar: { show: false },
+                        animations: { enabled: true, easing: 'easeinout', speed: 600 }
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: true,
+                            barHeight: '70%',
+                            distributed: true, // each bar gets its own color from the colors array
+                            dataLabels: { position: 'right' }
+                        }
+                    },
+                    colors: colors,
+                    dataLabels: {
+                        enabled: true,
+                        formatter: val => val + ' orders',
+                        offsetX: 5,
+                        style: { fontSize: '12px', fontWeight: 600, colors: ['#374151'] }
+                    },
+                    xaxis: {
+                        categories: labels,
+                        labels: { style: { fontSize: '12px' } }
+                    },
+                    yaxis: { labels: { style: { fontSize: '13px', fontWeight: 500 }, maxWidth: 200 } },
+                    legend: { show: false }, // legend not needed — colors match the donut
+                    grid: { borderColor: '#f1f1f1' },
+                    tooltip: { y: { formatter: val => val + ' orders' } }
+                };
+
+                if (sourceBarChart !== null) { sourceBarChart.destroy(); }
+                const el = document.querySelector('#sourceBarChart');
+                if (el) {
+                    el.innerHTML = '';
+                    sourceBarChart = new ApexCharts(el, opts);
+                    sourceBarChart.render();
+                }
+            }
+
+            // ── Fetch data from the API and re-render both charts ──
+            function loadSourceBreakdown(filter, customDate) {
+                document.getElementById('sourceLoadingIndicator').classList.remove('thidden');
+                document.getElementById('sourceDonutChart').style.opacity = '0.3';
+                document.getElementById('sourceBarChart').style.opacity   = '0.3';
+
+                let url = '{{ url("/admin/fbads/api/order-source-breakdown") }}?filter=' + filter;
+                if (customDate) url += '&date=' + encodeURIComponent(customDate);
+
+                fetch(url)
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error('Source breakdown error:', data.error);
+                            return;
+                        }
+
+                        // Handle empty state — no orders in period
+                        if (!data.labels || data.labels.length === 0) {
+                            document.getElementById('sourceDonutChart').innerHTML =
+                                '<div class="tflex tjustify-center titems-center tpy-20 ttext-gray-500">No data for this period</div>';
+                            document.getElementById('sourceBarChart').innerHTML   = '';
+                            document.getElementById('sourceTotalOrders').textContent = '0';
+                            return;
+                        }
+
+                        // Fallback palette when a source has no color configured in order_sources.color
+                        const fallbackPalette = [
+                            '#ec4899','#3b82f6','#10b981','#f59e0b','#8b5cf6',
+                            '#ef4444','#06b6d4','#84cc16','#f97316','#6366f1'
+                        ];
+                        const colors = data.colors.map((c, i) =>
+                            (c && c !== '#94a3b8') ? c : fallbackPalette[i % fallbackPalette.length]
+                        );
+
+                        renderSourceDonut(data.labels, data.counts, colors);
+                        renderSourceBar(data.labels, data.counts, colors);
+                        document.getElementById('sourceTotalOrders').textContent =
+                            data.total.toLocaleString();
+                    })
+                    .catch(err => console.error('Order source fetch error:', err))
+                    .finally(() => {
+                        document.getElementById('sourceLoadingIndicator').classList.add('thidden');
+                        document.getElementById('sourceDonutChart').style.opacity = '1';
+                        document.getElementById('sourceBarChart').style.opacity   = '1';
+                    });
+            }
+
+            // ── Called by preset filter buttons (today / yesterday / 7days etc.) ──
+            function filterSourceBreakdown(filter) {
+                currentSourceFilter = filter;
+                updateSourceButtonState(filter);
+                loadSourceBreakdown(filter);
+            }
+
+            // ── Called by the "Apply" button next to the custom date picker ──
+            function applySourceCustomDate() {
+                const val = document.getElementById('sourceCustomDateRange').value;
+                if (!val) { alert('Please select a date range'); return; }
+                currentSourceFilter = 'custom';
+                updateSourceButtonState('custom'); // no matching btn ID, just clears others
+                loadSourceBreakdown('custom', val);
+            }
+
+            // ── Wire up the daterangepicker and load initial data on page ready ──
+            window.addEventListener('load', function () {
+                // Initialize daterangepicker on the source custom input
+                $('#sourceCustomDateRange').daterangepicker({
+                    autoUpdateInput: false,
+                    locale: { cancelLabel: 'Clear', format: 'MM/DD/YYYY' }
+                });
+                $('#sourceCustomDateRange').on('apply.daterangepicker', function (ev, picker) {
+                    $(this).val(
+                        picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY')
+                    );
+                });
+                $('#sourceCustomDateRange').on('cancel.daterangepicker', function () {
+                    $(this).val('');
+                });
+
+                // Load default view (today) with a small offset so other charts init first
+                setTimeout(() => filterSourceBreakdown('today'), 600);
+            });
+        </script>
+        <!-- END ORDER SOURCE MONITORING JS -->
 
 @endsection

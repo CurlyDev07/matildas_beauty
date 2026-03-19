@@ -1380,6 +1380,85 @@ class FbAdsCon extends Controller
     }
 
     // ---------------------------------------------------------------
+    // ORDER SOURCE BREAKDOWN — used by dashboard AJAX chart
+    // ---------------------------------------------------------------
+
+    public function getOrderSourceBreakdown(Request $request)
+    {
+        try {
+            $filter     = $request->get('filter', 'today');
+            $customDate = $request->get('date');
+
+            // Build the date constraint closure
+            $applyDate = function ($query) use ($filter, $customDate) {
+                switch ($filter) {
+                    case 'yesterday':
+                        $query->whereDate('fb_ads.created_at', Carbon::yesterday());
+                        break;
+                    case '7days':
+                        $query->whereBetween('fb_ads.created_at', [
+                            Carbon::now()->subDays(6)->startOfDay(),
+                            Carbon::now()->endOfDay(),
+                        ]);
+                        break;
+                    case '14days':
+                        $query->whereBetween('fb_ads.created_at', [
+                            Carbon::now()->subDays(13)->startOfDay(),
+                            Carbon::now()->endOfDay(),
+                        ]);
+                        break;
+                    case '30days':
+                        $query->whereBetween('fb_ads.created_at', [
+                            Carbon::now()->subDays(29)->startOfDay(),
+                            Carbon::now()->endOfDay(),
+                        ]);
+                        break;
+                    case 'custom':
+                        if ($customDate) {
+                            $dates = explode(' - ', $customDate);
+                            $from  = Carbon::createFromFormat('m/d/Y', trim($dates[0]))->startOfDay();
+                            $to    = Carbon::createFromFormat('m/d/Y', trim($dates[1]))->endOfDay();
+                            $query->whereBetween('fb_ads.created_at', [$from, $to]);
+                        }
+                        break;
+                    default: // today
+                        $query->whereDate('fb_ads.created_at', Carbon::today());
+                        break;
+                }
+            };
+
+            // Orders grouped by source (labelled sources)
+            $rows = DB::table('fb_ads')
+                ->leftJoin('order_sources', 'fb_ads.source_id', '=', 'order_sources.id')
+                ->select(
+                    DB::raw("COALESCE(order_sources.name, 'Unknown') as source_name"),
+                    DB::raw("COALESCE(order_sources.color, '#94a3b8') as source_color"),
+                    DB::raw('COUNT(*) as order_count')
+                )
+                ->tap($applyDate)
+                ->groupBy('order_sources.id', 'order_sources.name', 'order_sources.color')
+                ->orderByDesc('order_count')
+                ->get();
+
+            $labels = $rows->pluck('source_name')->toArray();
+            $counts = $rows->pluck('order_count')->map(fn ($v) => (int) $v)->toArray();
+            $colors = $rows->pluck('source_color')->toArray();
+            $total  = array_sum($counts);
+
+            return response()->json([
+                'labels' => $labels,
+                'counts' => $counts,
+                'colors' => $colors,
+                'total'  => $total,
+            ]);
+
+        } catch (\Exception $e) {
+            \Log::error('Order Source Breakdown Error: ' . $e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    // ---------------------------------------------------------------
     // STAFF PERFORMANCE
     // ---------------------------------------------------------------
 

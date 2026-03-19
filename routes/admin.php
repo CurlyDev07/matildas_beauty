@@ -52,6 +52,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     Route::get('/fbads/api/top-products', 'FbAdsCon@getTopProducts');
     Route::get('/fbads/api/customer-repeat-rate', 'FbAdsCon@getCustomerRepeatRate');
     Route::get('/fbads/api/revenue-comparison', 'FbAdsCon@getRevenueComparison');
+    Route::get('/fbads/api/order-source-breakdown', 'FbAdsCon@getOrderSourceBreakdown');
     Route::get('dashboard', 'DashboardCon@index')->middleware(['masterAcess']);
     
 
