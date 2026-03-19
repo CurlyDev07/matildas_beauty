@@ -17,11 +17,6 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     z-index: 1000;
     overflow: hidden;
     box-shadow: 2px 0 16px rgba(0,0,0,0.06);
-    /* animation: mbSidebarIn 0.35s cubic-bezier(0.22,1,0.36,1); */
-}
-@keyframes mbSidebarIn {
-    from { transform: translateX(-20px); opacity: 0; }
-    to   { transform: translateX(0);     opacity: 1; }
 }
 
 /* ── Header ── */
@@ -61,10 +56,10 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     margin: 4px 14px;
 }
 
-/* ── Nav group (parent + children) ── */
+/* ── Nav group ── */
 .mb-sb-group { position: relative; }
 
-/* ── Parent link ── */
+/* ── Direct link (no children) ── */
 .mb-sb-link {
     display: flex;
     align-items: center;
@@ -88,6 +83,39 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     font-weight: 500;
     border-left-color: #ec4899;
 }
+.mb-sb-link.mb-active .mb-sb-icon { color: #ec4899; }
+.mb-sb-link:hover .mb-sb-icon { color: #f472b6; }
+
+/* ── Toggle (parent with children — click only, no href) ── */
+.mb-sb-toggle {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 10px 10px 14px;
+    margin: 0 8px;
+    color: #4b5563;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 8px;
+    line-height: 1;
+    border-left: 3px solid transparent;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    animation: mbNavIn 0.32s ease both;
+    cursor: pointer;
+    user-select: none;
+}
+.mb-sb-toggle:hover { background: #fdf2f8; color: #db2777; }
+.mb-sb-toggle:hover .mb-sb-icon { color: #f472b6; }
+
+/* active parent — when a child is active */
+.mb-sb-group:has(.mb-active) .mb-sb-toggle {
+    background: #fce7f3;
+    color: #be185d;
+    font-weight: 500;
+    border-left-color: #ec4899;
+}
+.mb-sb-group:has(.mb-active) .mb-sb-toggle .mb-sb-icon { color: #ec4899; }
+
 @keyframes mbNavIn {
     from { opacity: 0; transform: translateX(-6px); }
     to   { opacity: 1; transform: translateX(0); }
@@ -104,22 +132,17 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     line-height: 1;
     transition: color 0.15s;
 }
-.mb-sb-link:hover .mb-sb-icon   { color: #f472b6; }
-.mb-sb-link.mb-active .mb-sb-icon { color: #ec4899; }
 
-/* ── Chevron (shown only on groups with children) ── */
+/* ── Chevron ── */
 .mb-sb-chevron {
     margin-left: auto;
     font-size: 9px;
     color: #e2c8dc;
     flex-shrink: 0;
-    transition: transform 0.2s ease 0s, color 0.15s ease 0s;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
 }
-.mb-sb-group:hover .mb-sb-chevron {
-    transform: rotate(90deg);
-    color: #f472b6;
-    transition: transform 0.2s ease 0.3s, color 0.15s ease 0.5s;
-}
+.mb-sb-toggle:hover .mb-sb-chevron { color: #f472b6; }
+.mb-sb-group.mb-open .mb-sb-chevron,
 .mb-sb-group:has(.mb-active) .mb-sb-chevron {
     transform: rotate(90deg);
     color: #ec4899;
@@ -130,29 +153,42 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    transform: translateY(-6px);
-    /* close: fast fade + slide back up, no delay */
+    transform: translateY(-8px);
     transition:
-        max-height 0.18s ease 0s,
-        opacity    0.15s ease 0s,
-        transform  0.15s ease 0s;
+        max-height 0.22s ease 0s,
+        opacity    0.18s ease 0s,
+        transform  0.18s ease 0s;
 }
-/* open on hover (with 0.3s delay) */
-.mb-sb-group:hover .mb-sb-children {
-    max-height: 300px;
+/* open on click — 0.08s delay for premium feel */
+.mb-sb-group.mb-open .mb-sb-children {
+    max-height: 500px;
     opacity: 1;
     transform: translateY(0);
     transition:
-        max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
-        opacity    0.25s ease                          0.3s,
-        transform  0.28s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+        max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.08s,
+        opacity    0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s,
+        transform  0.4s  cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s;
 }
-/* stay open when any child or parent is active — no delay */
+/* active child — instant open on page load */
 .mb-sb-group:has(.mb-active) .mb-sb-children {
-    max-height: 300px;
+    max-height: 500px;
     opacity: 1;
     transform: translateY(0);
     transition: none;
+}
+
+/* staggered child fade-in when group opens */
+.mb-sb-group.mb-open .mb-sb-child:nth-child(1)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.10s both; }
+.mb-sb-group.mb-open .mb-sb-child:nth-child(2)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
+.mb-sb-group.mb-open .mb-sb-child:nth-child(3)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.20s both; }
+.mb-sb-group.mb-open .mb-sb-child:nth-child(4)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.25s both; }
+.mb-sb-group.mb-open .mb-sb-child:nth-child(5)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.28s both; }
+.mb-sb-group.mb-open .mb-sb-child:nth-child(6)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.31s both; }
+.mb-sb-group.mb-open .mb-sb-child:nth-child(7)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.34s both; }
+.mb-sb-group.mb-open .mb-sb-child:nth-child(8)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.37s both; }
+@keyframes mbChildIn {
+    from { opacity: 0; transform: translateX(-8px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
 /* ── Sub-nav links ── */
@@ -171,6 +207,7 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 }
 .mb-sb-child:hover { background: #fdf2f8; color: #db2777; text-decoration: none; }
 .mb-sb-child.mb-active { color: #be185d; font-weight: 500; }
+
 .mb-sb-child-dot {
     width: 4px; height: 4px;
     border-radius: 50%;
@@ -178,8 +215,9 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     flex-shrink: 0;
     transition: background 0.13s;
 }
-.mb-sb-child:hover .mb-sb-child-dot    { background: #f472b6; }
+.mb-sb-child:hover .mb-sb-child-dot     { background: #f472b6; }
 .mb-sb-child.mb-active .mb-sb-child-dot { background: #ec4899; }
+
 .mb-sb-child-icon {
     width: 13px;
     text-align: center;
@@ -189,7 +227,7 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     line-height: 1;
     transition: color 0.13s;
 }
-.mb-sb-child:hover .mb-sb-child-icon    { color: #f472b6; }
+.mb-sb-child:hover .mb-sb-child-icon     { color: #f472b6; }
 .mb-sb-child.mb-active .mb-sb-child-icon { color: #ec4899; }
 
 /* ── Footer ── */
@@ -244,137 +282,21 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         {{-- Dashboard --}}
         @if (auth()->user()->isMaster())
         <div class="mb-sb-group">
-            <a href="/admin/dashboard" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'dashboard', 'mb-active') }}">
+            <a href="/admin/dashboard" class="mb-sb-link {{ request()->is('admin/dashboard') ? 'mb-active' : '' }}">
                 <i class="fas fa-desktop mb-sb-icon"></i>
                 <span>Dashboard</span>
             </a>
         </div>
         @endif
 
-        {{-- Orders --}}
-        @if (auth()->user()->isMaster())
-        <div class="mb-sb-group">
-            <a href="/admin/orders" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'orders', 'mb-active') }}">
-                <i class="fas fa-shopping-cart mb-sb-icon"></i>
-                <span>Orders</span>
-                <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
-            <div class="mb-sb-children">
-                <a href="/admin/orders" class="mb-sb-child {{ request()->is('admin/orders') && !request()->is('admin/orders/*') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> All Orders
-                </a>
-                <a href="/admin/orders?status=pending" class="mb-sb-child">
-                    <span class="mb-sb-child-dot"></span> Pending
-                </a>
-                <a href="/admin/orders?status=processing" class="mb-sb-child">
-                    <span class="mb-sb-child-dot"></span> Processing
-                </a>
-            </div>
-        </div>
-        @endif
-
-        <div class="mb-sb-divider"></div>
-
-        {{-- Products --}}
-        <div class="mb-sb-group">
-            <a href="/admin/products" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'products', 'mb-active') }}">
-                <i class="fas fa-box-open mb-sb-icon"></i>
-                <span>Products</span>
-                <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
-            <div class="mb-sb-children">
-                <a href="/admin/products" class="mb-sb-child {{ request()->is('admin/products') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> All Products
-                </a>
-                <a href="/admin/products/create" class="mb-sb-child {{ request()->is('admin/products/create') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Add Product
-                </a>
-            </div>
-        </div>
-
-        {{-- Inventory --}}
-        <div class="mb-sb-group">
-            <a href="/admin/inventory" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'inventory', 'mb-active') }}">
-                <i class="fas fa-warehouse mb-sb-icon"></i>
-                <span>Inventory</span>
-                <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
-            <div class="mb-sb-children">
-                <a href="/admin/inventory" class="mb-sb-child {{ request()->is('admin/inventory') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Stock List
-                </a>
-                <a href="/admin/inventory/movements" class="mb-sb-child {{ request()->is('admin/inventory/movements') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Movements
-                </a>
-            </div>
-        </div>
-
-        {{-- Purchase --}}
-        @if (in_array(auth()->user()->role, ['master', 'inventory']))
-        <div class="mb-sb-group">
-            <a href="/admin/purchase" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'purchase', 'mb-active') }}">
-                <i class="fas fa-store-alt mb-sb-icon"></i>
-                <span>Purchase</span>
-                <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
-            <div class="mb-sb-children">
-                <a href="/admin/purchase" class="mb-sb-child {{ request()->is('admin/purchase') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> All Purchases
-                </a>
-                <a href="/admin/purchase/create" class="mb-sb-child {{ request()->is('admin/purchase/create') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Add Purchase
-                </a>
-            </div>
-        </div>
-        @endif
-
-        {{-- Suppliers --}}
-        @if (auth()->user()->isMaster())
-        <div class="mb-sb-group">
-            <a href="/admin/suppliers" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'suppliers', 'mb-active') }}">
-                <i class="fas fa-truck mb-sb-icon"></i>
-                <span>Suppliers</span>
-                <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
-            <div class="mb-sb-children">
-                <a href="/admin/suppliers" class="mb-sb-child {{ request()->is('admin/suppliers') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> All Suppliers
-                </a>
-                <a href="/admin/suppliers/create" class="mb-sb-child {{ request()->is('admin/suppliers/create') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Add Supplier
-                </a>
-            </div>
-        </div>
-        @endif
-
-        {{-- Facebook Ads --}}
+        {{-- FB Ads --}}
         @if (in_array(auth()->user()->role, ['master', 'sa', 'admin', 'sales']))
-        <div class="mb-sb-divider"></div>
-
-        @if (auth()->user()->isMaster())
         <div class="mb-sb-group">
-            <a href="/admin/fb-ads" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'rts', 'mb-active') }}">
-                <i class="fas fa-gem mb-sb-icon"></i>
-                <span>FB Products</span>
-                <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
-            <div class="mb-sb-children">
-                <a href="/admin/fb-ads" class="mb-sb-child {{ request()->is('admin/fb-ads') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> All FB Products
-                </a>
-                <a href="/admin/fb-ads/create" class="mb-sb-child {{ request()->is('admin/fb-ads/create') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Add FB Product
-                </a>
-            </div>
-        </div>
-        @endif
-
-        <div class="mb-sb-group">
-            <a href="/admin/fbads" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'fbads', 'mb-active') }}">
+            <div class="mb-sb-toggle">
                 <i class="fab fa-facebook mb-sb-icon"></i>
                 <span>FB Ads</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
+            </div>
             <div class="mb-sb-children">
                 <a href="/admin/fbads/" class="mb-sb-child {{ request()->is('admin/fbads') && !request()->is('admin/fbads/*') ? 'mb-active' : '' }}">
                     <i class="fas fa-shopping-cart mb-sb-child-icon"></i> Orders
@@ -382,7 +304,7 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
                 <a href="/admin/fbads/create" class="mb-sb-child {{ request()->is('admin/fbads/create') ? 'mb-active' : '' }}">
                     <i class="fas fa-cart-plus mb-sb-child-icon"></i> Create
                 </a>
-                <a href="/admin/fbads/incentives" class="mb-sb-child {{ request()->is('admin/fbads/incentives') ? 'mb-active' : '' }}">
+                <a href="/admin/fbads/incentives" class="mb-sb-child {{ request()->is('admin/fbads/incentives*') ? 'mb-active' : '' }}">
                     <i class="fas fa-star mb-sb-child-icon"></i> Incentives
                 </a>
                 <a href="/admin/fbads/dashboard" class="mb-sb-child {{ request()->is('admin/fbads/dashboard') ? 'mb-active' : '' }}">
@@ -402,86 +324,244 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
                 </a>
             </div>
         </div>
+        @endif
 
+        {{-- Staff --}}
         @if (auth()->user()->isMaster())
         <div class="mb-sb-group">
-            <a href="/admin/staff-performance" class="mb-sb-link {{ request()->is('admin/staff-performance') || request()->is('admin/staff/*') ? 'mb-active' : '' }}">
+            <div class="mb-sb-toggle">
                 <i class="fas fa-users mb-sb-icon"></i>
                 <span>Staff</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
+            </div>
             <div class="mb-sb-children">
                 <a href="/admin/staff-performance" class="mb-sb-child {{ request()->is('admin/staff-performance') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Performance
+                    <i class="fas fa-chart-bar mb-sb-child-icon"></i> Performance
                 </a>
                 <a href="/admin/staff/incentive-rates" class="mb-sb-child {{ request()->is('admin/staff/incentive-rates') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Incentive Rates
+                    <i class="fas fa-percentage mb-sb-child-icon"></i> Incentive Rates
                 </a>
                 <a href="/admin/staff/incentive-approvals" class="mb-sb-child {{ request()->is('admin/staff/incentive-approvals') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Verify Incentives
+                    <i class="fas fa-check-circle mb-sb-child-icon"></i> Verify Incentives
                 </a>
                 <a href="/admin/staff/payouts" class="mb-sb-child {{ request()->is('admin/staff/payouts*') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Payouts
+                    <i class="fas fa-money-bill-wave mb-sb-child-icon"></i> Payouts
                 </a>
             </div>
         </div>
         @endif
+
+        {{-- Lab & Packaging --}}
+        @if (in_array(auth()->user()->role, ['master', 'lab']))
+        <div class="mb-sb-group">
+            <div class="mb-sb-toggle">
+                <i class="fas fa-flask mb-sb-icon"></i>
+                <span>Lab</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </div>
+            <div class="mb-sb-children">
+                <a href="/admin/lab" class="mb-sb-child {{ request()->is('admin/lab') ? 'mb-active' : '' }}">
+                    <i class="fas fa-vial mb-sb-child-icon"></i> Chemicals List
+                </a>
+                <a href="/admin/lab/inventory" class="mb-sb-child {{ request()->is('admin/lab/inventory*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-boxes mb-sb-child-icon"></i> Inventory
+                </a>
+                <a href="/admin/lab/purchase" class="mb-sb-child {{ request()->is('admin/lab/purchase*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-receipt mb-sb-child-icon"></i> Purchases
+                </a>
+                <a href="/admin/lab/formulations" class="mb-sb-child {{ request()->is('admin/lab/formulations*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-scroll mb-sb-child-icon"></i> Formulations
+                </a>
+                <a href="/admin/lab/production" class="mb-sb-child {{ request()->is('admin/lab/production*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-industry mb-sb-child-icon"></i> Production
+                </a>
+                <a href="/admin/lab/batches" class="mb-sb-child {{ request()->is('admin/lab/batches*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-layer-group mb-sb-child-icon"></i> Batches
+                </a>
+            </div>
+        </div>
+
+        <div class="mb-sb-group">
+            <div class="mb-sb-toggle">
+                <i class="fas fa-box mb-sb-icon"></i>
+                <span>Packaging</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </div>
+            <div class="mb-sb-children">
+                <a href="/admin/packaging" class="mb-sb-child {{ request()->is('admin/packaging') ? 'mb-active' : '' }}">
+                    <i class="fas fa-box mb-sb-child-icon"></i> Packaging List
+                </a>
+                <a href="/admin/packaging/inventory" class="mb-sb-child {{ request()->is('admin/packaging/inventory*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-boxes mb-sb-child-icon"></i> Inventory
+                </a>
+                <a href="/admin/packaging/purchase" class="mb-sb-child {{ request()->is('admin/packaging/purchase*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-receipt mb-sb-child-icon"></i> Purchases
+                </a>
+                <a href="/admin/packaging/stock-out" class="mb-sb-child {{ request()->is('admin/packaging/stock-out*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-minus-circle mb-sb-child-icon"></i> Stock Out
+                </a>
+                <a href="/admin/packaging/movements" class="mb-sb-child {{ request()->is('admin/packaging/movements*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-exchange-alt mb-sb-child-icon"></i> Movements
+                </a>
+            </div>
+        </div>
         @endif
 
-        {{-- Lab & Production --}}
-        @if (in_array(auth()->user()->role, ['master', 'lab']))
-        <div class="mb-sb-divider"></div>
-
+        {{-- Finance --}}
         @if (auth()->user()->isMaster())
         <div class="mb-sb-group">
-            <a href="/admin/file-manager" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'file-manager', 'mb-active') }}">
+            <div class="mb-sb-toggle">
+                <i class="fas fa-university mb-sb-icon"></i>
+                <span>Finance</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </div>
+            <div class="mb-sb-children">
+                <a href="/admin/finance/bank-transactions" class="mb-sb-child {{ request()->is('admin/finance/bank-transactions*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-exchange-alt mb-sb-child-icon"></i> Bank Transactions
+                </a>
+            </div>
+        </div>
+        @endif
+
+        {{-- Orders --}}
+        @if (auth()->user()->isMaster())
+        <div class="mb-sb-group">
+            <div class="mb-sb-toggle">
+                <i class="fas fa-shopping-cart mb-sb-icon"></i>
+                <span>Orders</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </div>
+            <div class="mb-sb-children">
+                <a href="/admin/orders" class="mb-sb-child {{ request()->is('admin/orders') && !request()->is('admin/orders/*') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> All Orders
+                </a>
+                <a href="/admin/orders?status=pending" class="mb-sb-child">
+                    <span class="mb-sb-child-dot"></span> Pending
+                </a>
+                <a href="/admin/orders?status=processing" class="mb-sb-child">
+                    <span class="mb-sb-child-dot"></span> Processing
+                </a>
+            </div>
+        </div>
+        @endif
+
+        <div class="mb-sb-divider"></div>
+
+        {{-- Products --}}
+        <div class="mb-sb-group">
+            <div class="mb-sb-toggle">
+                <i class="fas fa-box-open mb-sb-icon"></i>
+                <span>Products</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </div>
+            <div class="mb-sb-children">
+                <a href="/admin/products" class="mb-sb-child {{ request()->is('admin/products') && !request()->is('admin/products/*') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> All Products
+                </a>
+                <a href="/admin/products/create" class="mb-sb-child {{ request()->is('admin/products/create') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> Add Product
+                </a>
+            </div>
+        </div>
+
+        {{-- Inventory --}}
+        <div class="mb-sb-group">
+            <div class="mb-sb-toggle">
+                <i class="fas fa-warehouse mb-sb-icon"></i>
+                <span>Inventory</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </div>
+            <div class="mb-sb-children">
+                <a href="/admin/inventory" class="mb-sb-child {{ request()->is('admin/inventory') && !request()->is('admin/inventory/*') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> Stock List
+                </a>
+                <a href="/admin/inventory/movements" class="mb-sb-child {{ request()->is('admin/inventory/movements') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> Movements
+                </a>
+            </div>
+        </div>
+
+        {{-- Purchase --}}
+        @if (in_array(auth()->user()->role, ['master', 'inventory']))
+        <div class="mb-sb-group">
+            <div class="mb-sb-toggle">
+                <i class="fas fa-store-alt mb-sb-icon"></i>
+                <span>Purchase</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </div>
+            <div class="mb-sb-children">
+                <a href="/admin/purchase" class="mb-sb-child {{ request()->is('admin/purchase') && !request()->is('admin/purchase/*') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> All Purchases
+                </a>
+                <a href="/admin/purchase/create" class="mb-sb-child {{ request()->is('admin/purchase/create') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> Add Purchase
+                </a>
+            </div>
+        </div>
+        @endif
+
+        {{-- Suppliers --}}
+        @if (auth()->user()->isMaster())
+        <div class="mb-sb-group">
+            <div class="mb-sb-toggle">
+                <i class="fas fa-truck mb-sb-icon"></i>
+                <span>Suppliers</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </div>
+            <div class="mb-sb-children">
+                <a href="/admin/suppliers" class="mb-sb-child {{ request()->is('admin/suppliers') && !request()->is('admin/suppliers/*') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> All Suppliers
+                </a>
+                <a href="/admin/suppliers/create" class="mb-sb-child {{ request()->is('admin/suppliers/create') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> Add Supplier
+                </a>
+            </div>
+        </div>
+        @endif
+
+        <div class="mb-sb-divider"></div>
+
+        {{-- FB Products --}}
+        @if (auth()->user()->isMaster())
+        <div class="mb-sb-group">
+            <div class="mb-sb-toggle">
+                <i class="fas fa-gem mb-sb-icon"></i>
+                <span>FB Products</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </div>
+            <div class="mb-sb-children">
+                <a href="/admin/fb-ads" class="mb-sb-child {{ request()->is('admin/fb-ads') && !request()->is('admin/fb-ads/*') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> All FB Products
+                </a>
+                <a href="/admin/fb-ads/create" class="mb-sb-child {{ request()->is('admin/fb-ads/create') ? 'mb-active' : '' }}">
+                    <span class="mb-sb-child-dot"></span> Add FB Product
+                </a>
+            </div>
+        </div>
+        @endif
+
+        <div class="mb-sb-divider"></div>
+
+        {{-- Gallery --}}
+        @if (auth()->user()->isMaster())
+        <div class="mb-sb-group">
+            <a href="/admin/file-manager" class="mb-sb-link {{ request()->is('admin/file-manager*') ? 'mb-active' : '' }}">
                 <i class="fas fa-images mb-sb-icon"></i>
                 <span>Gallery</span>
             </a>
         </div>
         @endif
 
-        <div class="mb-sb-group">
-            <a href="/admin/lab" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'Lab', 'mb-active') }}">
-                <i class="fas fa-flask mb-sb-icon"></i>
-                <span>Lab</span>
-                <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
-            <div class="mb-sb-children">
-                <a href="/admin/lab" class="mb-sb-child {{ request()->is('admin/lab') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Formulas
-                </a>
-                <a href="/admin/lab/batches" class="mb-sb-child {{ request()->is('admin/lab/batches') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Batches
-                </a>
-            </div>
-        </div>
-
-        <div class="mb-sb-group">
-            <a href="/admin/packaging" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'packaging', 'mb-active') }}">
-                <i class="fas fa-box mb-sb-icon"></i>
-                <span>Packaging</span>
-                <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
-            <div class="mb-sb-children">
-                <a href="/admin/packaging" class="mb-sb-child {{ request()->is('admin/packaging') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Overview
-                </a>
-                <a href="/admin/packaging/materials" class="mb-sb-child {{ request()->is('admin/packaging/materials') ? 'mb-active' : '' }}">
-                    <span class="mb-sb-child-dot"></span> Materials
-                </a>
-            </div>
-        </div>
-
+        {{-- SMS --}}
         @if (auth()->user()->isMaster())
         <div class="mb-sb-group">
-            <a href="/admin/sms" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'sms', 'mb-active') }}">
+            <div class="mb-sb-toggle">
                 <i class="fas fa-comment-dots mb-sb-icon"></i>
                 <span>SMS</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
+            </div>
             <div class="mb-sb-children">
-                <a href="/admin/sms" class="mb-sb-child {{ request()->is('admin/sms') ? 'mb-active' : '' }}">
+                <a href="/admin/sms" class="mb-sb-child {{ request()->is('admin/sms') && !request()->is('admin/sms/*') ? 'mb-active' : '' }}">
                     <span class="mb-sb-child-dot"></span> Send SMS
                 </a>
                 <a href="/admin/sms/history" class="mb-sb-child {{ request()->is('admin/sms/history') ? 'mb-active' : '' }}">
@@ -490,38 +570,19 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
             </div>
         </div>
         @endif
-        @endif
 
-        {{-- Finance --}}
-        @if (auth()->user()->isMaster())
         <div class="mb-sb-divider"></div>
 
-        <div class="mb-sb-group">
-            <a href="/admin/finance/bank-transactions" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'finance', 'mb-active') }}">
-                <i class="fas fa-university mb-sb-icon"></i>
-                <span>Finance</span>
-                <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
-            <div class="mb-sb-children">
-                <a href="/admin/finance/bank-transactions" class="mb-sb-child {{ request()->is('admin/finance/bank-transactions') ? 'mb-active' : '' }}">
-                    <i class="fas fa-exchange-alt mb-sb-child-icon"></i> Bank Transactions
-                </a>
-            </div>
-        </div>
-        @endif
-
-        {{-- System --}}
+        {{-- Users --}}
         @if (auth()->user()->isMaster())
-        <div class="mb-sb-divider"></div>
-
         <div class="mb-sb-group">
-            <a href="/admin/users" class="mb-sb-link {{ is_matched_return_class(admin_parent_nav(), 'users', 'mb-active') }}">
+            <div class="mb-sb-toggle">
                 <i class="fas fa-users-cog mb-sb-icon"></i>
                 <span>Users</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
-            </a>
+            </div>
             <div class="mb-sb-children">
-                <a href="/admin/users" class="mb-sb-child {{ request()->is('admin/users') ? 'mb-active' : '' }}">
+                <a href="/admin/users" class="mb-sb-child {{ request()->is('admin/users') && !request()->is('admin/users/*') ? 'mb-active' : '' }}">
                     <span class="mb-sb-child-dot"></span> All Users
                 </a>
                 <a href="/admin/users/create" class="mb-sb-child {{ request()->is('admin/users/create') ? 'mb-active' : '' }}">
@@ -556,3 +617,34 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     </div>
 
 </aside>
+
+<script>
+(function () {
+    // Auto-open the group whose child is currently active
+    document.querySelectorAll('.mb-sb-group').forEach(function (group) {
+        if (group.querySelector('.mb-active')) {
+            group.classList.add('mb-open');
+        }
+    });
+
+    // Click toggle — accordion: one open at a time
+    document.querySelectorAll('.mb-sb-toggle').forEach(function (toggle) {
+        toggle.addEventListener('click', function () {
+            var group = this.closest('.mb-sb-group');
+            var isOpen = group.classList.contains('mb-open');
+
+            // Close all non-active groups
+            document.querySelectorAll('.mb-sb-group.mb-open').forEach(function (g) {
+                if (!g.querySelector('.mb-active')) {
+                    g.classList.remove('mb-open');
+                }
+            });
+
+            // Open this group if it was closed and has no active child
+            if (!isOpen && !group.querySelector('.mb-active')) {
+                group.classList.add('mb-open');
+            }
+        });
+    });
+})();
+</script>
