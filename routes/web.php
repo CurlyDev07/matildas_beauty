@@ -119,6 +119,9 @@ Route::post('get-barangay', 'FbAdsCon@barangay');
 // FB ADS EVENT LISTENER
 Route::post('event-listener', 'FbAdsCon@event_listener')->name('event.listener');
 
+
+Route::post('/order-signal', 'OrderSignalController@store');
+
 Auth::routes();
 
 // http://127.0.0.1:8000/

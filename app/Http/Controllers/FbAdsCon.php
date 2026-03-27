@@ -162,6 +162,7 @@ class FbAdsCon extends Controller
         ]);
 
         $data = [
+            'order_id' => $order->id,
             "purchase" => 1,
             "promo_name" => $promo[0],
             "promo" => $promo[2],
