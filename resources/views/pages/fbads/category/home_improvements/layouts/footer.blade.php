@@ -78,7 +78,6 @@
       
         $("form").on("submit", function (e) {
             e.preventDefault();
-
             // if (!isValid()) {
             //     return;
             // }
@@ -109,7 +108,6 @@
 
                 $('#modal-promo').html(data.promo);
                 $('#modal-amount').html(data.amount);
-                $('.modal').modal('open'); // open modal
 
                 $('.loader').addClass('thidden');// HIDE LOADER
 
@@ -126,7 +124,121 @@
                     data,
                 });// Email Notif
 
-                fbq('track', 'Purchase', {currency: "PHP", value: data.amount});// send data to fb pixel
+
+                /// ========================================
+                // SESSION ORDER CONTROL (FINAL VERSION)
+                // ========================================
+
+               
+                const DOMAIN = window.location.hostname;
+                const TODAY = new Date().toISOString().slice(0, 10);
+
+                function getStorage() {
+                    try {
+                        return JSON.parse(localStorage.getItem('order_control') || '{}');
+                    } catch (e) {
+                        return {};
+                    }
+                }
+
+                function saveStorage(data) {
+                    localStorage.setItem('order_control', JSON.stringify(data));
+                }
+
+                function canOrder(promo) {
+                    const data = getStorage();
+
+                    if (!data[DOMAIN]) data[DOMAIN] = {};
+                    if (!data[DOMAIN][TODAY]) {
+                        data[DOMAIN][TODAY] = {
+                            total: 0,
+                            promos: {}
+                        };
+                    }
+
+                    const todayData = data[DOMAIN][TODAY];
+
+                    // 🔒 lock check
+                    if (todayData.locked_until) {
+                        if (new Date() < new Date(todayData.locked_until)) {
+                            return false;
+                        }
+                    }
+
+                    // 🔒 same promo only once
+                    if ((todayData.promos[promo] || 0) >= 1) {
+                        return false;
+                    }
+
+                    // 🔒 max 3 total promos
+                    if (todayData.total >= 3) {
+                        return false;
+                    }
+
+                    return true;
+                }
+
+                function recordOrder(promo) {
+                    const data = getStorage();
+
+                    if (!data[DOMAIN]) data[DOMAIN] = {};
+                    if (!data[DOMAIN][TODAY]) {
+                        data[DOMAIN][TODAY] = {
+                            total: 0,
+                            promos: {}
+                        };
+                    }
+
+                    const todayData = data[DOMAIN][TODAY];
+
+                    todayData.promos[promo] = (todayData.promos[promo] || 0) + 1;
+                    todayData.total++;
+
+                    // 🔒 lock after 3 orders
+                    if (todayData.total >= 3) {
+                        const lockDate = new Date();
+                        lockDate.setDate(lockDate.getDate() + 3);
+
+                        todayData.locked_until = lockDate.toISOString();
+                    }
+
+                    saveStorage(data);
+                }
+
+
+                // ========================================
+                // EXECUTION
+                // ========================================
+
+                if (!canOrder(data.promo_name)) {
+                    console.log("Blocked: Order limit reached");
+
+                    // Optional UX feedback (recommended)
+                    alert("Limit reached or already ordered this promo.");
+
+                    // STOP pixel only (do not break whole script)
+                } else {
+                    // record success
+                    recordOrder(data.promo_name);
+
+                    // fire FB PIXEL
+                    fbq('track', 'Purchase', {
+                        currency: "PHP",
+                        value: data.amount
+                    });
+                    $('.modal').modal('open'); // open modal
+
+                }
+
+                // clear form (always runs)
+                $('#full_name').val('');
+                $('#phone_number').val('');
+                $('#address').val('');
+
+
+               // We can Put The session Here
+
+
 
                 // ttq.track('PlaceAnOrder', { // TIKTOK PIXEL EVENT
                 //     "contents": [

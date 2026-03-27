@@ -11,6 +11,7 @@ class IncentiveEntryCon extends Controller
 {
     public function index(Request $request)
     {
+
         $period = $request->get('period', 'today');
         $userId = auth()->id();
 
@@ -135,13 +136,39 @@ class IncentiveEntryCon extends Controller
     {
         $entry = IncentiveEntry::findOrFail($id);
 
-        abort_unless($entry->user_id === auth()->id(), 403);
+        abort_unless($entry->user_id === auth()->id() || auth()->user()->isMaster(), 403);
 
         if (!$entry->delivery_status) {
             $entry->update(['delivery_status' => 'delivered']);
         }
 
         return redirect()->route('fbads.incentives.index')->with('success', 'Entry marked as delivered.');
+    }
+
+    public function allEntries(Request $request)
+    {
+        abort_unless(auth()->user()->isMaster(), 403);
+
+        $search = $request->get('search', '');
+
+        $query = IncentiveEntry::with(['user', 'payout'])
+            ->orderBy('created_at', 'desc');
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('customer_mobile', 'like', "%{$search}%")
+                  ->orWhereHas('user', function ($u) use ($search) {
+                      $u->where('first_name', 'like', "%{$search}%")
+                        ->orWhere('last_name', 'like', "%{$search}%");
+                  });
+            });
+        }
+
+        $entries = $query->limit(100)->get();
+
+        $rates = IncentiveRate::pluck('rate', 'type')->toArray();
+
+        return view('admin.staff.incentive_entries', compact('entries', 'rates', 'search'));
     }
 
     public function approvals()

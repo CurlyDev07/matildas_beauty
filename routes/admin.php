@@ -251,6 +251,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     Route::prefix('staff')->group(function () {
         Route::get('/incentive-rates', 'IncentiveRateCon@index')->name('staff.incentive_rates.index');
         Route::put('/incentive-rates/{type}', 'IncentiveRateCon@update')->name('staff.incentive_rates.update');
+        Route::get('/incentive-entries', 'IncentiveEntryCon@allEntries')->name('staff.incentive_entries');
         Route::get('/incentive-approvals', 'IncentiveEntryCon@approvals')->name('staff.incentive_approvals');
         Route::post('/incentive-approvals/{id}/approve', 'IncentiveEntryCon@approve')->name('staff.incentive_approvals.approve');
         Route::get('/payouts', 'IncentivePayoutCon@index')->name('staff.payouts.index');

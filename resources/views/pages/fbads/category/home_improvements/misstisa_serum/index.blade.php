@@ -11,7 +11,6 @@
         @include('pages.fbads.category.home_improvements.misstisa_melasma.pixels')
     @endif
 @endsection
-
 @section('content')
 
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">

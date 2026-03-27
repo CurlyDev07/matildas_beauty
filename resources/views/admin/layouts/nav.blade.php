@@ -10,7 +10,7 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     left: 0; top: 0;
     height: 100vh;
     width: var(--mb-sidebar-w);
-    background: #ffffff;
+    background: linear-gradient(180deg, #ffffff 0%, #fef8fd 100%);
     border-right: 1px solid #f3e8f0;
     display: flex;
     flex-direction: column;
@@ -27,6 +27,7 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     padding: 15px 14px 12px;
     border-bottom: 1px solid #f9eef5;
     flex-shrink: 0;
+    background: linear-gradient(135deg, #fff0f8 0%, #ffffff 100%);
 }
 .mb-sb-logo {
     width: 34px; height: 34px;
@@ -49,11 +50,23 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 .mb-sb-nav::-webkit-scrollbar { width: 3px; }
 .mb-sb-nav::-webkit-scrollbar-thumb { background: #f3e8f0; border-radius: 4px; }
 
-/* ── Divider ── */
-.mb-sb-divider {
+/* ── Section label (replaces plain divider) ── */
+.mb-sb-section-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #d8b4cc;
+    padding: 12px 18px 3px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.mb-sb-section-label::after {
+    content: '';
+    flex: 1;
     height: 1px;
     background: #f5edf3;
-    margin: 4px 14px;
 }
 
 /* ── Nav group ── */
@@ -64,13 +77,13 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     display: flex;
     align-items: center;
     gap: 9px;
-    padding: 10px 10px 10px 14px;
-    margin: 0 8px;
+    padding: 6px 10px 6px 14px;
+    margin: 1px 8px;
     color: #4b5563;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 400;
-    border-radius: 8px;
+    border-radius: 9px;
     line-height: 1;
     border-left: 3px solid transparent;
     transition: background 0.15s, color 0.15s, border-color 0.15s;
@@ -80,23 +93,21 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 .mb-sb-link.mb-active {
     background: #fce7f3;
     color: #be185d;
-    font-weight: 500;
+    font-weight: 600;
     border-left-color: #ec4899;
 }
-.mb-sb-link.mb-active .mb-sb-icon { color: #ec4899; }
-.mb-sb-link:hover .mb-sb-icon { color: #f472b6; }
 
-/* ── Toggle (parent with children — click only, no href) ── */
+/* ── Toggle (parent with children) ── */
 .mb-sb-toggle {
     display: flex;
     align-items: center;
     gap: 9px;
-    padding: 10px 10px 10px 14px;
-    margin: 0 8px;
+    padding: 6px 10px 6px 14px;
+    margin: 1px 8px;
     color: #4b5563;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 400;
-    border-radius: 8px;
+    border-radius: 9px;
     line-height: 1;
     border-left: 3px solid transparent;
     transition: background 0.15s, color 0.15s, border-color 0.15s;
@@ -105,32 +116,29 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     user-select: none;
 }
 .mb-sb-toggle:hover { background: #fdf2f8; color: #db2777; }
-.mb-sb-toggle:hover .mb-sb-icon { color: #f472b6; }
 
-/* active parent — when a child is active */
-.mb-sb-group:has(.mb-active) .mb-sb-toggle {
-    background: #fce7f3;
-    color: #be185d;
-    font-weight: 500;
-    border-left-color: #ec4899;
-}
-.mb-sb-group:has(.mb-active) .mb-sb-toggle .mb-sb-icon { color: #ec4899; }
-
-@keyframes mbNavIn {
-    from { opacity: 0; transform: translateX(-6px); }
-    to   { opacity: 1; transform: translateX(0); }
-}
-
-/* ── Icon ── */
-.mb-sb-icon {
-    width: 14px;
-    text-align: center;
-    font-size: 13px;
-    color: #d1d5db;
+/* ── Icon box (replaces flat icon) ── */
+.mb-sb-icon-box {
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    background: var(--ib-bg, #f3f4f6);
+    color: var(--ib-cl, #6b7280);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    margin-right: 5px;
-    line-height: 1;
-    transition: color 0.15s;
+    font-size: 11px;
+    transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s;
+}
+.mb-sb-toggle:hover .mb-sb-icon-box,
+.mb-sb-link:hover   .mb-sb-icon-box {
+    transform: scale(1.13);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+.mb-sb-group:has(.mb-active) .mb-sb-icon-box {
+    transform: scale(1.06);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.10);
 }
 
 /* ── Chevron ── */
@@ -145,7 +153,6 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 .mb-sb-group.mb-open .mb-sb-chevron,
 .mb-sb-group:has(.mb-active) .mb-sb-chevron {
     transform: rotate(90deg);
-    color: #ec4899;
 }
 
 /* ── Sub-nav container ── */
@@ -159,7 +166,6 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         opacity    0.18s ease 0s,
         transform  0.18s ease 0s;
 }
-/* open on click — 0.08s delay for premium feel */
 .mb-sb-group.mb-open .mb-sb-children {
     max-height: 500px;
     opacity: 1;
@@ -169,7 +175,6 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         opacity    0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.08s,
         transform  0.4s  cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s;
 }
-/* active child — instant open on page load */
 .mb-sb-group:has(.mb-active) .mb-sb-children {
     max-height: 500px;
     opacity: 1;
@@ -177,7 +182,7 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
     transition: none;
 }
 
-/* staggered child fade-in when group opens */
+/* staggered child fade-in */
 .mb-sb-group.mb-open .mb-sb-child:nth-child(1)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.10s both; }
 .mb-sb-group.mb-open .mb-sb-child:nth-child(2)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
 .mb-sb-group.mb-open .mb-sb-child:nth-child(3)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.20s both; }
@@ -186,49 +191,135 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 .mb-sb-group.mb-open .mb-sb-child:nth-child(6)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.31s both; }
 .mb-sb-group.mb-open .mb-sb-child:nth-child(7)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.34s both; }
 .mb-sb-group.mb-open .mb-sb-child:nth-child(8)  { animation: mbChildIn 0.3s cubic-bezier(0.16,1,0.3,1) 0.37s both; }
-@keyframes mbChildIn {
-    from { opacity: 0; transform: translateX(-8px); }
-    to   { opacity: 1; transform: translateX(0); }
-}
+
+@keyframes mbNavIn   { from { opacity:0; transform:translateX(-6px); } to { opacity:1; transform:translateX(0); } }
+@keyframes mbChildIn { from { opacity:0; transform:translateX(-8px); } to { opacity:1; transform:translateX(0); } }
 
 /* ── Sub-nav links ── */
 .mb-sb-child {
     display: flex;
     align-items: center;
     gap: 7px;
-    padding: 8px 10px 8px 36px;
+    padding: 7px 10px 7px 36px;
     margin: 0 8px;
     color: #6b7280;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12.5px;
     border-radius: 6px;
     line-height: 1;
     transition: background 0.13s, color 0.13s;
 }
 .mb-sb-child:hover { background: #fdf2f8; color: #db2777; text-decoration: none; }
-.mb-sb-child.mb-active { color: #be185d; font-weight: 500; }
+.mb-sb-child.mb-active { font-weight: 600; }
 
 .mb-sb-child-dot {
-    width: 4px; height: 4px;
+    width: 5px; height: 5px;
     border-radius: 50%;
     background: #e9d5f0;
     flex-shrink: 0;
-    transition: background 0.13s;
+    transition: background 0.13s, transform 0.13s;
 }
-.mb-sb-child:hover .mb-sb-child-dot     { background: #f472b6; }
-.mb-sb-child.mb-active .mb-sb-child-dot { background: #ec4899; }
+.mb-sb-child:hover .mb-sb-child-dot  { background: #f472b6; transform: scale(1.3); }
+.mb-sb-child.mb-active .mb-sb-child-dot { transform: scale(1.4); }
 
 .mb-sb-child-icon {
     width: 13px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
     color: #d1d5db;
     flex-shrink: 0;
     line-height: 1;
     transition: color 0.13s;
 }
-.mb-sb-child:hover .mb-sb-child-icon     { color: #f472b6; }
-.mb-sb-child.mb-active .mb-sb-child-icon { color: #ec4899; }
+.mb-sb-child:hover .mb-sb-child-icon { color: #f472b6; }
+
+/* ── Per-group color accents ── */
+
+/* blue — FB Ads */
+.mb-g-blue:has(.mb-active) .mb-sb-toggle  { background:#eff6ff; border-left-color:#3b82f6; color:#1d4ed8; }
+.mb-g-blue:has(.mb-active) .mb-sb-chevron { color:#3b82f6; }
+.mb-g-blue .mb-sb-child.mb-active         { color:#1d4ed8; }
+.mb-g-blue .mb-sb-child.mb-active .mb-sb-child-icon { color:#3b82f6; }
+.mb-g-blue .mb-sb-child.mb-active .mb-sb-child-dot  { background:#3b82f6; }
+
+/* purple — Staff */
+.mb-g-purple:has(.mb-active) .mb-sb-toggle  { background:#f5f3ff; border-left-color:#7c3aed; color:#5b21b6; }
+.mb-g-purple:has(.mb-active) .mb-sb-chevron { color:#7c3aed; }
+.mb-g-purple .mb-sb-child.mb-active         { color:#5b21b6; }
+.mb-g-purple .mb-sb-child.mb-active .mb-sb-child-icon { color:#7c3aed; }
+.mb-g-purple .mb-sb-child.mb-active .mb-sb-child-dot  { background:#7c3aed; }
+
+/* amber — Lab */
+.mb-g-amber:has(.mb-active) .mb-sb-toggle  { background:#fffbeb; border-left-color:#d97706; color:#92400e; }
+.mb-g-amber:has(.mb-active) .mb-sb-chevron { color:#d97706; }
+.mb-g-amber .mb-sb-child.mb-active         { color:#92400e; }
+.mb-g-amber .mb-sb-child.mb-active .mb-sb-child-icon { color:#d97706; }
+.mb-g-amber .mb-sb-child.mb-active .mb-sb-child-dot  { background:#d97706; }
+
+/* orange — Packaging */
+.mb-g-orange:has(.mb-active) .mb-sb-toggle  { background:#fff7ed; border-left-color:#ea580c; color:#9a3412; }
+.mb-g-orange:has(.mb-active) .mb-sb-chevron { color:#ea580c; }
+.mb-g-orange .mb-sb-child.mb-active         { color:#9a3412; }
+.mb-g-orange .mb-sb-child.mb-active .mb-sb-child-icon { color:#ea580c; }
+.mb-g-orange .mb-sb-child.mb-active .mb-sb-child-dot  { background:#ea580c; }
+
+/* emerald — Finance */
+.mb-g-emerald:has(.mb-active) .mb-sb-toggle  { background:#f0fdf4; border-left-color:#059669; color:#065f46; }
+.mb-g-emerald:has(.mb-active) .mb-sb-chevron { color:#059669; }
+.mb-g-emerald .mb-sb-child.mb-active         { color:#065f46; }
+.mb-g-emerald .mb-sb-child.mb-active .mb-sb-child-icon { color:#059669; }
+.mb-g-emerald .mb-sb-child.mb-active .mb-sb-child-dot  { background:#059669; }
+
+/* indigo — Orders */
+.mb-g-indigo:has(.mb-active) .mb-sb-toggle  { background:#eef2ff; border-left-color:#4f46e5; color:#3730a3; }
+.mb-g-indigo:has(.mb-active) .mb-sb-chevron { color:#4f46e5; }
+.mb-g-indigo .mb-sb-child.mb-active         { color:#3730a3; }
+.mb-g-indigo .mb-sb-child.mb-active .mb-sb-child-dot { background:#4f46e5; }
+
+/* teal — Products */
+.mb-g-teal:has(.mb-active) .mb-sb-toggle  { background:#f0fdfa; border-left-color:#0d9488; color:#0f766e; }
+.mb-g-teal:has(.mb-active) .mb-sb-chevron { color:#0d9488; }
+.mb-g-teal .mb-sb-child.mb-active         { color:#0f766e; }
+.mb-g-teal .mb-sb-child.mb-active .mb-sb-child-dot { background:#0d9488; }
+
+/* cyan — Inventory */
+.mb-g-cyan:has(.mb-active) .mb-sb-toggle  { background:#ecfeff; border-left-color:#0891b2; color:#0e7490; }
+.mb-g-cyan:has(.mb-active) .mb-sb-chevron { color:#0891b2; }
+.mb-g-cyan .mb-sb-child.mb-active         { color:#0e7490; }
+.mb-g-cyan .mb-sb-child.mb-active .mb-sb-child-dot { background:#0891b2; }
+
+/* violet — Purchase */
+.mb-g-violet:has(.mb-active) .mb-sb-toggle  { background:#faf5ff; border-left-color:#9333ea; color:#7e22ce; }
+.mb-g-violet:has(.mb-active) .mb-sb-chevron { color:#9333ea; }
+.mb-g-violet .mb-sb-child.mb-active         { color:#7e22ce; }
+.mb-g-violet .mb-sb-child.mb-active .mb-sb-child-dot { background:#9333ea; }
+
+/* slate — Suppliers */
+.mb-g-slate:has(.mb-active) .mb-sb-toggle  { background:#f8fafc; border-left-color:#475569; color:#334155; }
+.mb-g-slate:has(.mb-active) .mb-sb-chevron { color:#475569; }
+.mb-g-slate .mb-sb-child.mb-active         { color:#334155; }
+.mb-g-slate .mb-sb-child.mb-active .mb-sb-child-dot { background:#475569; }
+
+/* rose — FB Products */
+.mb-g-rose:has(.mb-active) .mb-sb-toggle  { background:#fff1f2; border-left-color:#e11d48; color:#9f1239; }
+.mb-g-rose:has(.mb-active) .mb-sb-chevron { color:#e11d48; }
+.mb-g-rose .mb-sb-child.mb-active         { color:#9f1239; }
+.mb-g-rose .mb-sb-child.mb-active .mb-sb-child-dot { background:#e11d48; }
+
+/* fuchsia — Gallery */
+.mb-g-fuchsia .mb-sb-link.mb-active { background:#fdf4ff; border-left-color:#a21caf; color:#86198f; }
+
+/* sky — SMS */
+.mb-g-sky:has(.mb-active) .mb-sb-toggle  { background:#f0f9ff; border-left-color:#0284c7; color:#075985; }
+.mb-g-sky:has(.mb-active) .mb-sb-chevron { color:#0284c7; }
+.mb-g-sky .mb-sb-child.mb-active         { color:#075985; }
+.mb-g-sky .mb-sb-child.mb-active .mb-sb-child-dot { background:#0284c7; }
+
+/* gray — Users */
+.mb-g-gray:has(.mb-active) .mb-sb-toggle  { background:#f9fafb; border-left-color:#374151; color:#1f2937; }
+.mb-g-gray:has(.mb-active) .mb-sb-chevron { color:#374151; }
+.mb-g-gray .mb-sb-child.mb-active         { color:#1f2937; }
+.mb-g-gray .mb-sb-child.mb-active .mb-sb-child-dot { background:#374151; }
 
 /* ── Footer ── */
 .mb-sb-footer {
@@ -283,7 +374,9 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         @if (auth()->user()->isMaster())
         <div class="mb-sb-group">
             <a href="/admin/dashboard" class="mb-sb-link {{ request()->is('admin/dashboard') ? 'mb-active' : '' }}">
-                <i class="fas fa-desktop mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#fce7f3;--ib-cl:#ec4899;">
+                    <i class="fas fa-desktop"></i>
+                </div>
                 <span>Dashboard</span>
             </a>
         </div>
@@ -291,9 +384,11 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 
         {{-- FB Ads --}}
         @if (in_array(auth()->user()->role, ['master', 'sa', 'admin', 'sales']))
-        <div class="mb-sb-group">
+        <div class="mb-sb-group mb-g-blue">
             <div class="mb-sb-toggle">
-                <i class="fab fa-facebook mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#dbeafe;--ib-cl:#3b82f6;">
+                    <i class="fab fa-facebook"></i>
+                </div>
                 <span>FB Ads</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -328,15 +423,20 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 
         {{-- Staff --}}
         @if (auth()->user()->isMaster())
-        <div class="mb-sb-group">
+        <div class="mb-sb-group mb-g-purple">
             <div class="mb-sb-toggle">
-                <i class="fas fa-users mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#ede9fe;--ib-cl:#7c3aed;">
+                    <i class="fas fa-users"></i>
+                </div>
                 <span>Staff</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
             <div class="mb-sb-children">
                 <a href="/admin/staff-performance" class="mb-sb-child {{ request()->is('admin/staff-performance') ? 'mb-active' : '' }}">
                     <i class="fas fa-chart-bar mb-sb-child-icon"></i> Performance
+                </a>
+                <a href="/admin/staff/incentive-entries" class="mb-sb-child {{ request()->is('admin/staff/incentive-entries*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-list mb-sb-child-icon"></i> Incentive Entries
                 </a>
                 <a href="/admin/staff/incentive-rates" class="mb-sb-child {{ request()->is('admin/staff/incentive-rates') ? 'mb-active' : '' }}">
                     <i class="fas fa-percentage mb-sb-child-icon"></i> Incentive Rates
@@ -353,9 +453,14 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 
         {{-- Lab & Packaging --}}
         @if (in_array(auth()->user()->role, ['master', 'lab']))
-        <div class="mb-sb-group">
+
+        <div class="mb-sb-section-label">Operations</div>
+
+        <div class="mb-sb-group mb-g-amber">
             <div class="mb-sb-toggle">
-                <i class="fas fa-flask mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#fef3c7;--ib-cl:#d97706;">
+                    <i class="fas fa-flask"></i>
+                </div>
                 <span>Lab</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -381,9 +486,11 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
             </div>
         </div>
 
-        <div class="mb-sb-group">
+        <div class="mb-sb-group mb-g-orange">
             <div class="mb-sb-toggle">
-                <i class="fas fa-box mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#ffedd5;--ib-cl:#ea580c;">
+                    <i class="fas fa-box"></i>
+                </div>
                 <span>Packaging</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -409,9 +516,11 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 
         {{-- Finance --}}
         @if (auth()->user()->isMaster())
-        <div class="mb-sb-group">
+        <div class="mb-sb-group mb-g-emerald">
             <div class="mb-sb-toggle">
-                <i class="fas fa-university mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#d1fae5;--ib-cl:#059669;">
+                    <i class="fas fa-university"></i>
+                </div>
                 <span>Finance</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -425,9 +534,11 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 
         {{-- Orders --}}
         @if (auth()->user()->isMaster())
-        <div class="mb-sb-group">
+        <div class="mb-sb-group mb-g-indigo">
             <div class="mb-sb-toggle">
-                <i class="fas fa-shopping-cart mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#e0e7ff;--ib-cl:#4f46e5;">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
                 <span>Orders</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -445,12 +556,14 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         </div>
         @endif
 
-        <div class="mb-sb-divider"></div>
+        <div class="mb-sb-section-label">Commerce</div>
 
         {{-- Products --}}
-        <div class="mb-sb-group">
+        <div class="mb-sb-group mb-g-teal">
             <div class="mb-sb-toggle">
-                <i class="fas fa-box-open mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#ccfbf1;--ib-cl:#0d9488;">
+                    <i class="fas fa-box-open"></i>
+                </div>
                 <span>Products</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -465,9 +578,11 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         </div>
 
         {{-- Inventory --}}
-        <div class="mb-sb-group">
+        <div class="mb-sb-group mb-g-cyan">
             <div class="mb-sb-toggle">
-                <i class="fas fa-warehouse mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#cffafe;--ib-cl:#0891b2;">
+                    <i class="fas fa-warehouse"></i>
+                </div>
                 <span>Inventory</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -483,9 +598,11 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 
         {{-- Purchase --}}
         @if (in_array(auth()->user()->role, ['master', 'inventory']))
-        <div class="mb-sb-group">
+        <div class="mb-sb-group mb-g-violet">
             <div class="mb-sb-toggle">
-                <i class="fas fa-store-alt mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#f3e8ff;--ib-cl:#9333ea;">
+                    <i class="fas fa-store-alt"></i>
+                </div>
                 <span>Purchase</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -502,9 +619,11 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 
         {{-- Suppliers --}}
         @if (auth()->user()->isMaster())
-        <div class="mb-sb-group">
+        <div class="mb-sb-group mb-g-slate">
             <div class="mb-sb-toggle">
-                <i class="fas fa-truck mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#f1f5f9;--ib-cl:#475569;">
+                    <i class="fas fa-truck"></i>
+                </div>
                 <span>Suppliers</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -519,13 +638,16 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         </div>
         @endif
 
-        <div class="mb-sb-divider"></div>
-
         {{-- FB Products --}}
         @if (auth()->user()->isMaster())
-        <div class="mb-sb-group">
+
+        <div class="mb-sb-section-label">Catalog</div>
+
+        <div class="mb-sb-group mb-g-rose">
             <div class="mb-sb-toggle">
-                <i class="fas fa-gem mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#ffe4e6;--ib-cl:#e11d48;">
+                    <i class="fas fa-gem"></i>
+                </div>
                 <span>FB Products</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -540,13 +662,16 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         </div>
         @endif
 
-        <div class="mb-sb-divider"></div>
-
         {{-- Gallery --}}
         @if (auth()->user()->isMaster())
-        <div class="mb-sb-group">
+
+        <div class="mb-sb-section-label">Tools</div>
+
+        <div class="mb-sb-group mb-g-fuchsia">
             <a href="/admin/file-manager" class="mb-sb-link {{ request()->is('admin/file-manager*') ? 'mb-active' : '' }}">
-                <i class="fas fa-images mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#fdf4ff;--ib-cl:#a21caf;">
+                    <i class="fas fa-images"></i>
+                </div>
                 <span>Gallery</span>
             </a>
         </div>
@@ -554,9 +679,11 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 
         {{-- SMS --}}
         @if (auth()->user()->isMaster())
-        <div class="mb-sb-group">
+        <div class="mb-sb-group mb-g-sky">
             <div class="mb-sb-toggle">
-                <i class="fas fa-comment-dots mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#e0f2fe;--ib-cl:#0284c7;">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
                 <span>SMS</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -571,13 +698,16 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         </div>
         @endif
 
-        <div class="mb-sb-divider"></div>
-
         {{-- Users --}}
         @if (auth()->user()->isMaster())
-        <div class="mb-sb-group">
+
+        <div class="mb-sb-section-label">System</div>
+
+        <div class="mb-sb-group mb-g-gray">
             <div class="mb-sb-toggle">
-                <i class="fas fa-users-cog mb-sb-icon"></i>
+                <div class="mb-sb-icon-box" style="--ib-bg:#f3f4f6;--ib-cl:#374151;">
+                    <i class="fas fa-users-cog"></i>
+                </div>
                 <span>Users</span>
                 <i class="fas fa-chevron-right mb-sb-chevron"></i>
             </div>
@@ -620,27 +750,23 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 
 <script>
 (function () {
-    // Auto-open the group whose child is currently active
     document.querySelectorAll('.mb-sb-group').forEach(function (group) {
         if (group.querySelector('.mb-active')) {
             group.classList.add('mb-open');
         }
     });
 
-    // Click toggle — accordion: one open at a time
     document.querySelectorAll('.mb-sb-toggle').forEach(function (toggle) {
         toggle.addEventListener('click', function () {
             var group = this.closest('.mb-sb-group');
             var isOpen = group.classList.contains('mb-open');
 
-            // Close all non-active groups
             document.querySelectorAll('.mb-sb-group.mb-open').forEach(function (g) {
                 if (!g.querySelector('.mb-active')) {
                     g.classList.remove('mb-open');
                 }
             });
 
-            // Open this group if it was closed and has no active child
             if (!isOpen && !group.querySelector('.mb-active')) {
                 group.classList.add('mb-open');
             }

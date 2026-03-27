@@ -40,6 +40,9 @@ class FbAdsCon extends Controller
     }
    
     public function misstisa_melasma(){
+        $website = 'misstisa_melasma';
+        $session_id = uuid();
+
         $title = 'MissTisa #1 Melasma Remover in the Philippines';
         $product_name = 'MissTisa Melasma';
         $notif_message = 'This is from MissTisa Melasma';
@@ -64,6 +67,8 @@ class FbAdsCon extends Controller
             'product_name' => $product_name, 
             'notif_message' => $notif_message, 
             'promos' => $promos, 
+            'website' => $website, 
+            'session_id' => $session_id, 
         ]);
     }
 
