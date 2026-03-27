@@ -214,7 +214,7 @@
                     console.log("Blocked: Order limit reached");
 
                     // Optional UX feedback (recommended)
-                    alert("Order Limit reached");
+                    alert("Order limit reached. Our team will contact you shortly to confirm or update your order.");
 
                     // STOP pixel only (do not break whole script)
                 } else {
