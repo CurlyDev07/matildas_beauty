@@ -253,6 +253,9 @@ foreach ($analytics as $type => $count) {
                         style="background:#fef9c3;border:1px solid #fde047;color:#92400e;border-radius:7px;padding:6px 9px;font-size:11px;text-decoration:none;display:flex;align-items:center;">
                         <i class="fas fa-pen"></i>
                     </a>
+                    
+                    @endif
+
                     <form method="POST" action="{{ route('fbads.incentives.destroy', $entry->id) }}" onsubmit="return confirm('Delete this entry?')">
                         @csrf
                         @method('DELETE')
@@ -260,7 +263,6 @@ foreach ($analytics as $type => $count) {
                             <i class="fas fa-trash"></i>
                         </button>
                     </form>
-                    @endif
 
                 </div>
             </div>

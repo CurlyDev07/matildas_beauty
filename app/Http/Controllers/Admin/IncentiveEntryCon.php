@@ -11,7 +11,6 @@ class IncentiveEntryCon extends Controller
 {
     public function index(Request $request)
     {
-
         $period = $request->get('period', 'today');
         $userId = auth()->id();
 
@@ -222,7 +221,7 @@ class IncentiveEntryCon extends Controller
 
     public function destroy($id)
     {
-        abort_unless(auth()->user()->isMaster(), 403);
+        // abort_unless(auth()->user()->isMaster(), 403);
 
         IncentiveEntry::findOrFail($id)->delete();
 
