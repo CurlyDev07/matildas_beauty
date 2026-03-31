@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use App\MetaCreativeMetric;
 use App\OrderSource;
+use App\OrderSignal;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
@@ -193,6 +194,143 @@ class FbAdsCon extends Controller
         'users' => $users
     ]);
 }
+
+    public function order_signals(Request $request)
+    {
+        $filterableFields = ['fingerprint', 'session_id', 'fbclid', 'user_agent', 'ip_address'];
+        $filterLabels = [
+            'fingerprint' => 'Fingerprint',
+            'session_id' => 'Session ID',
+            'fbclid' => 'FBCLID',
+            'user_agent' => 'User Agent',
+            'ip_address' => 'IP Address',
+        ];
+
+        $appliedFiltersMap = [];
+        $filterFields = (array) $request->query('filter_fields', []);
+        $filterValues = (array) $request->query('filter_values', []);
+
+        foreach ($filterFields as $index => $field) {
+            $field = trim((string) $field);
+            $value = trim((string) ($filterValues[$index] ?? ''));
+
+            if (in_array($field, $filterableFields, true) && $value !== '') {
+                $appliedFiltersMap[$field . '|' . $value] = [
+                    'field' => $field,
+                    'value' => $value,
+                ];
+            }
+        }
+
+        $newField = trim((string) $request->query('new_field'));
+        $newValue = trim((string) $request->query('new_value'));
+        if (in_array($newField, $filterableFields, true) && $newValue !== '') {
+            $appliedFiltersMap[$newField . '|' . $newValue] = [
+                'field' => $newField,
+                'value' => $newValue,
+            ];
+        }
+
+        $appliedFilters = array_values($appliedFiltersMap);
+        $groupByFields = array_values(array_unique(array_column($appliedFilters, 'field')));
+        $isGroupedMode = count($groupByFields) > 0;
+
+        $baseSignalsQuery = OrderSignal::query();
+        foreach ($appliedFilters as $filter) {
+            $baseSignalsQuery->where($filter['field'], 'LIKE', '%' . $filter['value'] . '%');
+        }
+
+        $rawSignalsCount = (clone $baseSignalsQuery)->count();
+        $orderSignals = null;
+        $rows = collect();
+
+        if ($isGroupedMode) {
+            $groupedResultsQuery = clone $baseSignalsQuery;
+            foreach ($groupByFields as $field) {
+                $groupedResultsQuery->addSelect($field);
+            }
+
+            $orderSignals = $groupedResultsQuery
+                ->selectRaw('COUNT(*) as duplicate_count')
+                ->selectRaw('MAX(id) as latest_id')
+                ->orderByDesc('duplicate_count')
+                ->orderByDesc('latest_id')
+            ;
+
+            foreach ($groupByFields as $groupByField) {
+                $orderSignals->groupBy($groupByField);
+            }
+
+            $orderSignals = $orderSignals->paginate(100);
+
+            $latestIds = collect($orderSignals->items())
+                ->pluck('latest_id')
+                ->filter()
+                ->values()
+                ->all();
+
+            $latestSignals = empty($latestIds)
+                ? collect()
+                : OrderSignal::whereIn('id', $latestIds)->get()->keyBy('id');
+
+            $rows = collect($orderSignals->items())->map(function ($groupRow) use ($latestSignals, $groupByFields) {
+                $signal = $latestSignals->get($groupRow->latest_id);
+                if (!$signal) {
+                    return null;
+                }
+
+                return [
+                    'signal' => $signal,
+                    'count' => (int) $groupRow->duplicate_count,
+                    'group_values' => collect($groupByFields)->mapWithKeys(function ($field) use ($groupRow) {
+                        return [$field => $groupRow->{$field}];
+                    })->toArray(),
+                ];
+            })->filter()->values();
+        } else {
+            $orderSignals = (clone $baseSignalsQuery)
+                ->orderBy('created_at', 'desc')
+                ->paginate(100);
+
+            $rows = collect($orderSignals->items())->map(function ($signal) {
+                return [
+                    'signal' => $signal,
+                    'count' => 1,
+                    'group_values' => [],
+                ];
+            });
+        }
+
+        $orderSignals->appends([
+            'filter_fields' => array_column($appliedFilters, 'field'),
+            'filter_values' => array_column($appliedFilters, 'value'),
+        ]);
+
+        $groupedSignals = [];
+        foreach ($filterableFields as $field) {
+            $groupedQuery = clone $baseSignalsQuery;
+            $groupedSignals[$field] = $groupedQuery
+                ->select($field, DB::raw('COUNT(*) as total'))
+                ->whereNotNull($field)
+                ->where($field, '!=', '')
+                ->groupBy($field)
+                ->orderBy('total', 'desc')
+                ->limit(10)
+                ->get();
+        }
+
+        return view('admin.fbads.order_signals', [
+            'orderSignals' => $orderSignals,
+            'filterableFields' => $filterableFields,
+            'filterLabels' => $filterLabels,
+            'appliedFilters' => $appliedFilters,
+            'groupByFields' => $groupByFields,
+            'isGroupedMode' => $isGroupedMode,
+            'rawSignalsCount' => $rawSignalsCount,
+            'rows' => $rows,
+            'groupedSignals' => $groupedSignals,
+        ]);
+    }
 
 
 
