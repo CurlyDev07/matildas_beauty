@@ -105,7 +105,7 @@
             // base payload
             const payload = {
                 website: window.location.hostname || null,
-                session_id: getSessionId(),
+                local_session_id: getSessionId(),
 
                 full_name: $('#full_name').val() || null,
                 phone_number: $('#phone_number').val() || null,

@@ -18,6 +18,7 @@ class OrderSignalController extends Controller
                 'fb_ads_id' => $request->input('fb_ads_id'),
                 'website' => $request->input('website'),
                 'session_id' => $request->input('session_id'),
+                'local_session_id' => $request->input('local_session_id'),
                 'fingerprint' => $request->input('fingerprint'),
 
                 'full_name' => $request->input('full_name'),

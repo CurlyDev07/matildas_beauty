@@ -9,6 +9,7 @@ class OrderSignal extends Model
     protected $fillable = [
         'website',
         'session_id',
+        'local_session_id',
         'fingerprint',
         'full_name',
         'phone_number',

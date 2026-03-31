@@ -23,6 +23,7 @@ class CreateOrderSignalsTable extends Migration
             // tracking
             $table->string('website')->nullable();
             $table->string('session_id')->nullable();
+            $table->string('local_session_id')->nullable();
             $table->text('fingerprint')->nullable();
 
             // identity
