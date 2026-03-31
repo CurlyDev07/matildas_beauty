@@ -449,6 +449,7 @@
                     <th>Promo</th>
                     <th>Fingerprint</th>
                     <th>Session ID</th>
+                    <th>Local Session ID</th>
                     <th>FBCLID</th>
                     <th>User Agent</th>
                     <th>IP Address</th>
@@ -471,6 +472,7 @@
                         <td><span class="os-truncate" title="{{ $signal->promo }}">{{ $signal->promo ?? '-' }}</span></td>
                         <td><span class="os-code os-truncate" title="{{ $signal->fingerprint }}">{{ \Illuminate\Support\Str::limit($signal->fingerprint, 120) }}</span></td>
                         <td><span class="os-code os-truncate" title="{{ $signal->session_id }}">{{ $signal->session_id ?? '-' }}</span></td>
+                        <td><span class="os-code os-truncate" title="{{ $signal->local_session_id }}">{{ $signal->local_session_id ?? '-' }}</span></td>
                         <td><span class="os-code os-truncate" title="{{ $signal->fbclid }}">{{ \Illuminate\Support\Str::limit($signal->fbclid, 120) }}</span></td>
                         <td><span class="os-truncate" title="{{ $signal->user_agent }}">{{ \Illuminate\Support\Str::limit($signal->user_agent, 120) }}</span></td>
                         <td><span class="os-code">{{ $signal->ip_address ?? '-' }}</span></td>
@@ -479,7 +481,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="14" class="os-empty" style="padding: 20px; text-align: center;">
+                        <td colspan="15" class="os-empty" style="padding: 20px; text-align: center;">
                             No order signals found for the current filters.
                         </td>
                     </tr>

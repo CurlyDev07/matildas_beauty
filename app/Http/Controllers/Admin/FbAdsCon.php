@@ -197,10 +197,11 @@ class FbAdsCon extends Controller
 
     public function order_signals(Request $request)
     {
-        $filterableFields = ['fingerprint', 'session_id', 'fbclid', 'user_agent', 'ip_address'];
+        $filterableFields = ['fingerprint', 'session_id', 'local_session_id', 'fbclid', 'user_agent', 'ip_address'];
         $filterLabels = [
             'fingerprint' => 'Fingerprint',
             'session_id' => 'Session ID',
+            'local_session_id' => 'Local Session ID',
             'fbclid' => 'FBCLID',
             'user_agent' => 'User Agent',
             'ip_address' => 'IP Address',
