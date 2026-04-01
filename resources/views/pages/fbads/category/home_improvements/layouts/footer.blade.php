@@ -8,6 +8,38 @@
         $('.modal').modal();
     </script>
 
+    <script>
+    let fpPromise = null;
+
+    function loadFingerprintJS() {
+        if (!fpPromise) {
+            fpPromise = import('https://openfpcdn.io/fingerprintjs/v5')
+                .then(function (FingerprintJS) {
+                    return FingerprintJS.load();
+                });
+        }
+        return fpPromise;
+    }
+
+    async function getFingerprintVisitorId() {
+        try {
+            const fp = await loadFingerprintJS();
+            const result = await fp.get();
+
+            return result.visitorId || null;
+        } catch (e) {
+            console.error('FingerprintJS error:', e);
+            return null;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', async function () {
+        const visitorId = await getFingerprintVisitorId();
+        console.log('Fingerprint Visitor ID:', visitorId);
+        alert(visitorId); // --- IGNORE ---
+    });
+    </script>
+
     <script> // SLIDE SHOW
         const slides = document.querySelectorAll(".slides img");
         let slideIndex = 0;

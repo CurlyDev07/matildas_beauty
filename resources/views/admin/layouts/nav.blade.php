@@ -501,7 +501,7 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
                 <a href="/admin/packaging/inventory" class="mb-sb-child {{ request()->is('admin/packaging/inventory*') ? 'mb-active' : '' }}">
                     <i class="fas fa-boxes mb-sb-child-icon"></i> Inventory
                 </a>
-                <a href="/admin/packaging/purchase" class="mb-sb-child {{ request()->is('admin/packaging/purchase*') ? 'mb-active' : '' }}">
+                <a href="/admin/packaging/purchases" class="mb-sb-child {{ request()->is('admin/packaging/purchase*') ? 'mb-active' : '' }}">
                     <i class="fas fa-receipt mb-sb-child-icon"></i> Purchases
                 </a>
                 <a href="/admin/packaging/stock-out" class="mb-sb-child {{ request()->is('admin/packaging/stock-out*') ? 'mb-active' : '' }}">
