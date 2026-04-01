@@ -70,7 +70,7 @@ class MissTisaCon extends Controller
 
     public function lotion(){
         $session_id = uuid();
-        $website = 'MissTisa';
+        $website = 'MissTisaLotion';
 
         $seo = [
             'title' => "MissTisa Lotion 100g SPF PA++++",

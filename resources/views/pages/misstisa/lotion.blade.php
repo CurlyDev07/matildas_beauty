@@ -2394,7 +2394,9 @@ $products_json = json_encode($products);
     <footer>
 
         {{-- /// ORDER PROCESSING SCRIPT --}}
+    <script src="{{ asset('js/fraud/fraud-shield.js') }}"></script>
     <script>
+
         // Get products data from PHP
         const products = <?= $products_json ?>;
         
@@ -2637,6 +2639,18 @@ $products_json = json_encode($products);
             } // Fire FB Purchase Pixel if order value only lessthan 3k
 
 
+            const productName = orderData?.products?.[0]?.name || 'Unknown Product';
+
+            const isAllowed = fraud.validateAndRecordOrder(productName);
+
+            if (!isAllowed) {
+                alert('Order limit reached. Our team will contact you shortly.');
+                hideLoading();// Hide loading
+                return;
+            }
+
+            console.log('orderData.products:', productName);
+
             // START =================== SUBMIT ORDER =======================
 
             // ==== Get CSRF token from meta tag ====
@@ -2674,6 +2688,18 @@ $products_json = json_encode($products);
                 } // If Order Value > 3000 = DONT Send data to FACEBOOK
                 
                 if (data.success) {
+                    fraud.sendOrderSignal({
+                        fb_ads_id: data.order_id,
+                        promo: data.promo,
+                        full_name: $('#full_name').val(),
+                        phone_number: $('#phone_number').val(),
+                        website: '{{ $website }}',
+                        session_id: '{{ $session_id }}',
+                    }).then(function (res) {
+                        console.log('sendOrderSignal console', res);
+                    });
+
+
                     showSuccessModal(data);
                     console.log(data.total)
                     
@@ -2709,6 +2735,15 @@ $products_json = json_encode($products);
         // Initialize with first product selected
         document.addEventListener('DOMContentLoaded', function() {
             updateTotal();
+
+            window.fraud = window.FraudShield.create({
+                website: '{{ $website }}',
+                sessionId: '{{ $session_id }}',
+                debug: true
+            });
+
+            window.fraud.init();
+            
         });
     </script>
 

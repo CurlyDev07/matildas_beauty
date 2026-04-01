@@ -120,6 +120,7 @@ Route::post('get-barangay', 'FbAdsCon@barangay');
 Route::post('event-listener', 'FbAdsCon@event_listener')->name('event.listener');
 
 
+// FRAUD CONTROLL ROUTES
 Route::post('/order-signal', 'OrderSignalController@store');
 Route::post('/order-signal/check-block-user', 'OrderSignalController@check_block_user')->name('order-signal.check-block-user');
 Route::post('/order-signal/attempt-count', 'OrderSignalController@attempt_count')->name('order-signal.attempt-count');

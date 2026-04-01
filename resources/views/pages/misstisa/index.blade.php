@@ -1547,6 +1547,7 @@ $products_json = json_encode($products);
     </div>
 
     <footer>
+        <script src="{{ asset('js/fraud/fraud-shield.js') }}"></script>
 
         {{-- /// ORDER PROCESSING SCRIPT --}}
     <script>
@@ -1837,6 +1838,14 @@ $products_json = json_encode($products);
             } // Fire FB Purchase Pixel if order value only lessthan 3k
 
 
+            const isAllowed = fraud.validateAndRecordOrder(orderData.products[0].name);
+            if (!isAllowed) {
+                alert('Order limit reached. Our team will contact you shortly.');
+                hideLoading();// Hide loading
+                return;
+            }
+
+
             // START =================== SUBMIT ORDER =======================
 
             // ==== Get CSRF token from meta tag ====
@@ -1861,7 +1870,6 @@ $products_json = json_encode($products);
             .then(data => {// Handle successful response
                 hideLoading();// Hide loading
 
-
                 if (data.total < 3000) {// original working
 
                     fbq('track', 'Purchase', { currency: "PHP",  value: data.total }, {
@@ -1878,10 +1886,21 @@ $products_json = json_encode($products);
 
                 } // If Order Value > 3000 = DONT Send data to FACEBOOK
 
-
                 
                 if (data.success) {
                     showSuccessModal(data);
+
+                    fraud.sendOrderSignal({
+                        fb_ads_id: data.order_id, // Use order ID as fb_ads_id for tracking
+                        promo: data.promo,
+                        full_name: $('#full_name').val(),
+                        phone_number: $('#phone_number').val(),
+                        website: '{{ $website }}',
+                        session_id: '{{ $session_id }}',
+                    }).then(function (res) {
+                        console.log('order signal response:', res);
+                    });
+
                     console.log(data.total)
                     
 
@@ -1963,9 +1982,19 @@ $products_json = json_encode($products);
         // });
 
         $(document).ready(function() {
+            window.fraud = window.FraudShield.create({
+                website: '{{ $website }}',
+                sessionId: '{{ $session_id }}',
+                debug: true
+            });
+
+            window.fraud.init();
+
+
             const $window = $(window);
             const $document = $(document);
             const $button = $('.order_now');
+
             
             let isHidden = false;
             let scrollTimeout;

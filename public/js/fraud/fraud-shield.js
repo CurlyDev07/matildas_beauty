@@ -33,6 +33,7 @@
             localSessionStorageKey: 'session_id',
             endpoints: {
                 checkBlock: '/order-signal/check-block-user',
+                attemptCount: '/order-signal/attempt-count',
                 collectSignal: '/order-signal'
             },
             selectors: {
@@ -52,7 +53,8 @@
                 lockDays: 3
             },
             debug: false,
-            autoShowPopupOnBlocked: true
+            autoShowPopupOnBlocked: true,
+            autoRegisterAttemptOnBlocked: true
         };
     }
 
@@ -63,6 +65,8 @@
         this.readyPromise = null;
         this.fingerprintjsVisitorId = null;
         this.isFingerprintBlocked = false;
+        this.attemptCount = 0;
+        this.lastAttemptAt = null;
         this.popupId = 'fraud-blocked-popup-overlay';
     }
 
@@ -234,6 +238,41 @@
             });
     };
 
+    FraudShield.prototype.registerBlockedAttempt = function (id) {
+        var self = this;
+        var fingerprintId = id || this.fingerprintjsVisitorId;
+
+        if (!fingerprintId) {
+            return Promise.resolve({
+                status: true,
+                blocked: false,
+                attempt_count: 0,
+                last_attempt_at: null
+            });
+        }
+
+        return this.postJSON(this.config.endpoints.attemptCount, {
+            fingerprintjs_visitor_id: fingerprintId
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (result) {
+                self.attemptCount = (result && typeof result.attempt_count === 'number') ? result.attempt_count : self.attemptCount;
+                self.lastAttemptAt = (result && result.last_attempt_at) ? result.last_attempt_at : self.lastAttemptAt;
+                return result;
+            })
+            .catch(function (error) {
+                self.log('register blocked attempt failed', error);
+                return {
+                    status: false,
+                    blocked: true,
+                    attempt_count: self.attemptCount || 0,
+                    last_attempt_at: self.lastAttemptAt || null
+                };
+            });
+    };
+
     FraudShield.prototype.ensureBlockedPopup = function () {
         var overlay = global.document.getElementById(this.popupId);
         var popup = this.config.popup;
@@ -295,13 +334,39 @@
                     global.isFingerprintBlocked = blocked;
                     self.log('Fingerprint Blocked:', blocked);
 
-                    if (blocked && self.config.autoShowPopupOnBlocked) {
+                    if (!blocked) {
+                        return {
+                            fingerprintjs_visitor_id: self.fingerprintjsVisitorId,
+                            blocked: false,
+                            attempt_count: self.attemptCount,
+                            last_attempt_at: self.lastAttemptAt
+                        };
+                    }
+
+                    if (self.config.autoShowPopupOnBlocked) {
                         self.showBlockedPopup();
+                    }
+
+                    if (self.config.autoRegisterAttemptOnBlocked) {
+                        return self.registerBlockedAttempt(self.fingerprintjsVisitorId)
+                            .then(function (attemptResult) {
+                                self.log('Blocked Attempt Count:', attemptResult.attempt_count || 0);
+                                self.log('Last Attempt At:', attemptResult.last_attempt_at || null);
+
+                                return {
+                                    fingerprintjs_visitor_id: self.fingerprintjsVisitorId,
+                                    blocked: true,
+                                    attempt_count: attemptResult.attempt_count || 0,
+                                    last_attempt_at: attemptResult.last_attempt_at || null
+                                };
+                            });
                     }
 
                     return {
                         fingerprintjs_visitor_id: self.fingerprintjsVisitorId,
-                        blocked: blocked
+                        blocked: true,
+                        attempt_count: self.attemptCount,
+                        last_attempt_at: self.lastAttemptAt
                     };
                 });
         }
@@ -424,7 +489,9 @@
     FraudShield.prototype.getState = function () {
         return {
             fingerprintjs_visitor_id: this.fingerprintjsVisitorId,
-            blocked: this.isFingerprintBlocked
+            blocked: this.isFingerprintBlocked,
+            attempt_count: this.attemptCount,
+            last_attempt_at: this.lastAttemptAt
         };
     };
 
