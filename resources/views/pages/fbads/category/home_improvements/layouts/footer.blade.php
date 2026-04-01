@@ -148,6 +148,36 @@
             });
         }
 
+        function registerBlockedAttempt(id) { // Increment blocked attempt count and update last_attempt_at
+            if (!id) {
+                return Promise.resolve({
+                    status: true,
+                    blocked: false,
+                    attempt_count: 0
+                });
+            }
+
+            return fetch('/order-signal/attempt-count', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                body: JSON.stringify({
+                    fingerprintjs_visitor_id: id
+                })
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(function () {
+                return {
+                    status: false,
+                    blocked: true
+                };
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             initFingerprintVisitorId().then(function (id) {
                 console.log('Fingerprint Visitor ID:', id);
@@ -159,6 +189,10 @@
 
                 if (blocked) {
                     showBlockedPopup();
+                    registerBlockedAttempt(fingerprintjs_visitor_id).then(function (result) {
+                        console.log('Blocked Attempt Count:', result.attempt_count || 0);
+                        console.log('Last Attempt At:', result.last_attempt_at || null);
+                    });
                 }
             });
 

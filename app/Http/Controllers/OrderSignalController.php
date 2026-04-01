@@ -100,4 +100,37 @@ class OrderSignalController extends Controller
             'blocked' => $isBlocked,
         ]);
     }
+
+    public function attempt_count(Request $request)
+    {
+        $request->validate([
+            'fingerprintjs_visitor_id' => 'required|string|max:255',
+        ]);
+
+        $fingerprintId = trim((string) $request->input('fingerprintjs_visitor_id'));
+        $now = time();
+
+        $blocked = OrderSignalBlockList::where('fingerprintjs_visitor_id', $fingerprintId)->first();
+
+        if (!$blocked) {
+            return response()->json([
+                'status' => true,
+                'blocked' => false,
+                'attempt_count' => 0,
+            ]);
+        }
+
+        // Atomic increment prevents race conditions under concurrent requests.
+        OrderSignalBlockList::where('id', $blocked->id)->increment('attempt_count');
+        $blocked->refresh();
+        $blocked->last_attempt_at = $now;
+        $blocked->save();
+
+        return response()->json([
+            'status' => true,
+            'blocked' => true,
+            'attempt_count' => (int) $blocked->attempt_count,
+            'last_attempt_at' => (int) $blocked->last_attempt_at,
+        ]);
+    }
 }
