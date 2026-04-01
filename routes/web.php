@@ -121,6 +121,8 @@ Route::post('event-listener', 'FbAdsCon@event_listener')->name('event.listener')
 
 
 Route::post('/order-signal', 'OrderSignalController@store');
+Route::post('/order-signal/check-block-user', 'OrderSignalController@check_block_user')->name('order-signal.check-block-user');
+Route::post('/order-signal/block-user', 'OrderSignalController@block_user')->middleware('auth')->name('order-signal.block-user');
 
 Auth::routes();
 

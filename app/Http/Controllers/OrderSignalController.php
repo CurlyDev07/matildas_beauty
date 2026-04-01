@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\OrderSignal;
+use App\OrderSignalBlockList;
 
 class OrderSignalController extends Controller
 {
@@ -51,5 +52,52 @@ class OrderSignalController extends Controller
                 'error' => $e->getMessage()
             ]);
         }
+    }
+
+    public function block_user(Request $request)
+    {
+        $request->validate([
+            'fingerprintjs_visitor_id' => 'required|string|max:255',
+        ]);
+
+        $fingerprintId = trim((string) $request->input('fingerprintjs_visitor_id'));
+
+        $blocked = OrderSignalBlockList::firstOrCreate(
+            ['fingerprintjs_visitor_id' => $fingerprintId],
+            ['user_id' => auth()->id(), 'timestamp' => time()]
+        );
+
+        if (!$blocked->timestamp) {
+            $blocked->timestamp = time();
+        }
+
+        if (!$blocked->user_id && auth()->check()) {
+            $blocked->user_id = auth()->id();
+        }
+
+        if ($blocked->isDirty()) {
+            $blocked->save();
+        }
+
+        return redirect()->back()->with('order_signal_block_message', 'User blocked successfully.');
+    }
+
+    public function check_block_user(Request $request)
+    {
+        $fingerprintId = trim((string) $request->input('fingerprintjs_visitor_id', ''));
+
+        if ($fingerprintId === '') {
+            return response()->json([
+                'status' => true,
+                'blocked' => false,
+            ]);
+        }
+
+        $isBlocked = OrderSignalBlockList::where('fingerprintjs_visitor_id', $fingerprintId)->exists();
+
+        return response()->json([
+            'status' => true,
+            'blocked' => $isBlocked,
+        ]);
     }
 }

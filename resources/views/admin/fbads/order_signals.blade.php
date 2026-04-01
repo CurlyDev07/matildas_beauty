@@ -312,6 +312,44 @@
         background: #f8fafc;
         cursor: not-allowed;
     }
+    .os-alert-success {
+        margin-bottom: 14px;
+        border: 1px solid #bbf7d0;
+        background: #f0fdf4;
+        color: #166534;
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+    .os-block-btn {
+        border: 1px solid #fecaca;
+        background: #fff1f2;
+        color: #be123c;
+        border-radius: 8px;
+        padding: 6px 10px;
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: .03em;
+    }
+    .os-block-btn:hover {
+        background: #ffe4e6;
+    }
+    .os-blocked-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        border: 1px solid #bbf7d0;
+        background: #f0fdf4;
+        color: #166534;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 5px 8px;
+        text-transform: uppercase;
+    }
 
     @media (max-width: 900px) {
         .os-body,
@@ -358,6 +396,10 @@
     </div>
 
     <div class="os-body">
+        @if (session('order_signal_block_message'))
+            <div class="os-alert-success">{{ session('order_signal_block_message') }}</div>
+        @endif
+
         <div class="os-panel">
             <p class="os-panel-title">Stackable Filter Builder</p>
             <form action="{{ route('fbads.order_signals') }}" method="GET" class="os-filter-form">
@@ -456,12 +498,14 @@
                     <th>IP Address</th>
                     <th>Timestamp</th>
                     <th>Created</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 @forelse ($rows as $row)
                     @php
                         $signal = $row['signal'];
+                        $isBlocked = in_array($signal->fingerprintjs_visitor_id, $blockedFingerprintIds ?? [], true);
                     @endphp
                     <tr>
                         <td class="os-id">{{ $signal->id }}</td>
@@ -480,10 +524,25 @@
                         <td><span class="os-code">{{ $signal->ip_address ?? '-' }}</span></td>
                         <td><span class="os-code">{{ $signal->timestamp ?? '-' }}</span></td>
                         <td><span class="os-date">{{ $signal->created_at ? $signal->created_at->format('M d, Y h:i A') : '-' }}</span></td>
+                        <td>
+                            @if (!empty($signal->fingerprintjs_visitor_id))
+                                @if ($isBlocked)
+                                    <span class="os-blocked-badge">Blocked</span>
+                                @else
+                                    <form action="{{ route('order-signal.block-user') }}" method="POST" onsubmit="return confirm('Block this fingerprint user?');">
+                                        @csrf
+                                        <input type="hidden" name="fingerprintjs_visitor_id" value="{{ $signal->fingerprintjs_visitor_id }}">
+                                        <button type="submit" class="os-block-btn">Block User</button>
+                                    </form>
+                                @endif
+                            @else
+                                <span class="os-empty">No Fingerprint ID</span>
+                            @endif
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="16" class="os-empty" style="padding: 20px; text-align: center;">
+                        <td colspan="17" class="os-empty" style="padding: 20px; text-align: center;">
                             No order signals found for the current filters.
                         </td>
                     </tr>

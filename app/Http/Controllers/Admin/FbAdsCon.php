@@ -18,6 +18,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\MetaCreativeMetric;
 use App\OrderSource;
 use App\OrderSignal;
+use App\OrderSignalBlockList;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
@@ -321,6 +322,20 @@ class FbAdsCon extends Controller
                 ->get();
         }
 
+        $rowFingerprintIds = $rows->pluck('signal.fingerprintjs_visitor_id')
+            ->filter(function ($value) {
+                return !empty($value);
+            })
+            ->unique()
+            ->values();
+
+        $blockedFingerprintIds = [];
+        if ($rowFingerprintIds->count()) {
+            $blockedFingerprintIds = OrderSignalBlockList::whereIn('fingerprintjs_visitor_id', $rowFingerprintIds->all())
+                ->pluck('fingerprintjs_visitor_id')
+                ->toArray();
+        }
+
         return view('admin.fbads.order_signals', [
             'orderSignals' => $orderSignals,
             'filterableFields' => $filterableFields,
@@ -330,6 +345,7 @@ class FbAdsCon extends Controller
             'isGroupedMode' => $isGroupedMode,
             'rawSignalsCount' => $rawSignalsCount,
             'rows' => $rows,
+            'blockedFingerprintIds' => $blockedFingerprintIds,
             'groupedSignals' => $groupedSignals,
         ]);
     }

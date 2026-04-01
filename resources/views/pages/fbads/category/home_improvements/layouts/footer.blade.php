@@ -8,10 +8,84 @@
         $('.modal').modal();
     </script>
 
+    <style>
+        .blocked-popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            padding: 16px;
+        }
+
+        .blocked-popup-card {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            padding: 24px 20px 20px;
+            text-align: center;
+        }
+
+        .blocked-popup-title {
+            margin: 0 0 8px;
+            color: #991b1b;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .blocked-popup-text {
+            margin: 0 0 16px;
+            color: #334155;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .blocked-popup-btn {
+            display: inline-block;
+            background: #1877f2;
+            color: #fff !important;
+            text-decoration: none;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+    </style>
+
     <script>
         let fpPromise = null;
         let fingerprintjs_visitor_id = null;
         let fingerprintVisitorIdPromise = null;
+        let isFingerprintBlocked = false;
+
+        function showBlockedPopup() {
+            let overlay = document.getElementById('blocked-popup-overlay');
+
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'blocked-popup-overlay';
+                overlay.className = 'blocked-popup-overlay';
+                overlay.innerHTML = `
+                    <div class="blocked-popup-card">
+                        <h3 class="blocked-popup-title">Unusual Activity Detected</h3>
+                        <p class="blocked-popup-text">
+                            We detected an unsual activity.
+                            If you still want to order, click the button below.
+                        </p>
+                        <a class="blocked-popup-btn" href="https://m.me/262215796983675" target="_blank" rel="noopener noreferrer">
+                            Order in Messenger
+                        </a>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+            }
+
+            overlay.style.display = 'flex';
+        }
 
         function loadFingerprintJS() {
             if (!fpPromise) {
@@ -50,9 +124,42 @@
             return fingerprintVisitorIdPromise;
         }
 
+
+
+        function checkFingerprintBlockStatus(id) { // Check if user has been blocked based on fingerprint visitor ID
+            return fetch('/order-signal/check-block-user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                body: JSON.stringify({
+                    fingerprintjs_visitor_id: id
+                })
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                return !!(data && data.blocked);
+            })
+            .catch(function () {
+                return false;
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             initFingerprintVisitorId().then(function (id) {
                 console.log('Fingerprint Visitor ID:', id);
+                return checkFingerprintBlockStatus(id);
+            }).then(function (blocked) {
+                isFingerprintBlocked = blocked;
+                window.isFingerprintBlocked = blocked;
+                console.log('Fingerprint Blocked:', blocked);
+
+                if (blocked) {
+                    showBlockedPopup();
+                }
             });
 
             // Dupplicate Order Handler
