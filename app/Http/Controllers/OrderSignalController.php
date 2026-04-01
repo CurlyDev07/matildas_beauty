@@ -20,6 +20,7 @@ class OrderSignalController extends Controller
                 'session_id' => $request->input('session_id'),
                 'local_session_id' => $request->input('local_session_id'),
                 'fingerprint' => $request->input('fingerprint'),
+                'fingerprintjs_visitor_id' => $request->input('fingerprintjs_visitor_id'),
 
                 'full_name' => $request->input('full_name'),
                 'phone_number' => $request->input('phone_number'),

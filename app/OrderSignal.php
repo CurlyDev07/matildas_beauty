@@ -10,6 +10,7 @@ class OrderSignal extends Model
         'website',
         'session_id',
         'local_session_id',
+        'fingerprintjs_visitor_id',
         'fingerprint',
         'full_name',
         'phone_number',

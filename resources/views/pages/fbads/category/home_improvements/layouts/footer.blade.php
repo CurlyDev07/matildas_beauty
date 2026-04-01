@@ -9,35 +9,301 @@
     </script>
 
     <script>
-    let fpPromise = null;
+        let fpPromise = null;
+        let fingerprintjs_visitor_id = null;
+        let fingerprintVisitorIdPromise = null;
 
-    function loadFingerprintJS() {
-        if (!fpPromise) {
-            fpPromise = import('https://openfpcdn.io/fingerprintjs/v5')
-                .then(function (FingerprintJS) {
-                    return FingerprintJS.load();
-                });
+        function loadFingerprintJS() {
+            if (!fpPromise) {
+                fpPromise = import('https://openfpcdn.io/fingerprintjs/v5')
+                    .then(function (FingerprintJS) {
+                        return FingerprintJS.load();
+                    });
+            }
+            return fpPromise;
         }
-        return fpPromise;
-    }
 
-    async function getFingerprintVisitorId() {
-        try {
-            const fp = await loadFingerprintJS();
-            const result = await fp.get();
+        async function getFingerprintVisitorId() {
+            try {
+                const fp = await loadFingerprintJS();
+                const result = await fp.get();
 
-            return result.visitorId || null;
-        } catch (e) {
-            console.error('FingerprintJS error:', e);
-            return null;
+                return result.visitorId || null;
+            } catch (e) {
+                console.error('FingerprintJS error:', e);
+                return null;
+            }
         }
-    }
 
-    document.addEventListener('DOMContentLoaded', async function () {
-        const visitorId = await getFingerprintVisitorId();
-        console.log('Fingerprint Visitor ID:', visitorId);
-        alert(visitorId); // --- IGNORE ---
-    });
+        function initFingerprintVisitorId() {
+            if (!fingerprintVisitorIdPromise) {
+                fingerprintVisitorIdPromise = getFingerprintVisitorId()
+                    .then(function (id) {
+                        fingerprintjs_visitor_id = id;
+                        return id;
+                    })
+                    .catch(function () {
+                        return null;
+                    });
+            }
+
+            return fingerprintVisitorIdPromise;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initFingerprintVisitorId().then(function (id) {
+                console.log('Fingerprint Visitor ID:', id);
+            });
+
+            // Dupplicate Order Handler
+            // ============== ORDER SIGNAL COLLECTOR (CLEAN) ================
+            function AntiSpamDataCollect(custom = {}) {
+
+                // helpers
+                function getParam(name) {
+                    try {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        return urlParams.get(name) || null;
+                    } catch (e) {
+                        return null;
+                    }
+                }
+
+                function getDeviceType() {
+                    const ua = navigator.userAgent.toLowerCase();
+                    if (/mobile/.test(ua)) return 'mobile';
+                    if (/tablet/.test(ua)) return 'tablet';
+                    return 'desktop';
+                }
+
+                function getSessionId() {
+                    try {
+                        let sessionId = localStorage.getItem('session_id');
+
+                        if (!sessionId) {
+                            sessionId = 'sess_' + Math.random().toString(36).substring(2) + Date.now();
+                            localStorage.setItem('session_id', sessionId);
+                        }
+
+                        return sessionId;
+                    } catch (e) {
+                        return null;
+                    }
+                }
+
+                function getFingerprint() {
+                    try {
+                        return [
+                            navigator.userAgent,
+                            screen.width,
+                            screen.height,
+                            navigator.language,
+                            new Date().getTimezoneOffset()
+                        ].join('|');
+                    } catch (e) {
+                        return null;
+                    }
+                }
+
+                // base payload
+                const payload = {
+                    website: window.location.hostname || null,
+                    local_session_id: getSessionId(),
+                    fingerprintjs_visitor_id: fingerprintjs_visitor_id,
+                    full_name: $('#full_name').val() || null,
+                    phone_number: $('#phone_number').val() || null,
+
+                    // normalize promo
+                    promo: custom.promo || custom.promo_name || null,
+
+                    fbclid: getParam('fbclid'),
+                    utm_campaign: getParam('utm_campaign'),
+                    utm_content: getParam('utm_content'),
+                    utm_medium: getParam('utm_medium'),
+
+                    fingerprint: getFingerprint(),
+                    device_type: getDeviceType(),
+                    user_agent: navigator.userAgent || null,
+
+                    timestamp: Date.now()
+                };
+
+                // merge any extra custom fields
+                const finalPayload = { ...payload, ...custom };
+
+                // debug output
+                console.log("AntiSpamDataCollect:", finalPayload);
+
+                return finalPayload;
+            }
+
+            // =================== VALIDATE + RECORD ORDER (ONE FUNCTION) =====================
+            function validateAndRecordOrder(promo) {
+                const DOMAIN = window.location.hostname;
+                const TODAY = new Date().toISOString().slice(0, 10);
+
+                function getStorage() {
+                    try {
+                        return JSON.parse(localStorage.getItem('order_control') || '{}');
+                    } catch (e) {
+                        return {};
+                    }
+                }
+
+                function saveStorage(data) {
+                    localStorage.setItem('order_control', JSON.stringify(data));
+                }
+
+                const data = getStorage();
+
+                if (!data[DOMAIN]) data[DOMAIN] = {};
+                if (!data[DOMAIN][TODAY]) {
+                    data[DOMAIN][TODAY] = {
+                        total: 0,
+                        promos: {}
+                    };
+                }
+
+                const todayData = data[DOMAIN][TODAY];
+
+                // 🔒 lock check
+                if (todayData.locked_until) {
+                    if (new Date() < new Date(todayData.locked_until)) {
+                        return false;
+                    }
+                }
+
+                // 🔒 same promo only once
+                if ((todayData.promos[promo] || 0) >= 1) {
+                    return false;
+                }
+
+                // 🔒 max 3 total promos
+                if (todayData.total >= 3) {
+                    return false;
+                }
+
+                // ======================
+                // RECORD ORDER
+                // ======================
+                todayData.promos[promo] = (todayData.promos[promo] || 0) + 1;
+                todayData.total++;
+
+                // 🔒 lock after 3 orders
+                if (todayData.total >= 3) {
+                    const lockDate = new Date();
+                    lockDate.setDate(lockDate.getDate() + 3);
+                    todayData.locked_until = lockDate.toISOString();
+                }
+
+                saveStorage(data);
+
+                return true;
+            }
+    
+
+            // SUBMIT FORM ORDER
+            $("form").on("submit", function (e) {
+                e.preventDefault();
+                // if (!isValid()) {
+                //     return;
+                // }
+
+                $('.loader').removeClass('thidden');// SHOW LOADER
+
+                let url = $(this).attr('action');
+
+                $.post(url, {
+                    full_name: $('#full_name').val(),
+                    phone_number: $('#phone_number').val(),
+                    address: $('#address').val(),
+                    promo: $('.promo:checked').val(),
+                    product_name: $('#product_name').val(),
+                    notif_message: $('#notif_message').val(),
+                })
+                .done(async function( data ) {
+
+                    // change html content of success modal
+                    $('#modal-order-number').html(data.order_number);
+
+                    if (data.amount == "1149") {
+                        $('#product_promo_name').html(data.promo_name);
+                        $('#order_success_image')
+                        .attr('data-src', 'https://matildasbeauty.com/filemanager/c895afcfbcce478096d9d9d989c3d1b2.webp')
+                        .attr('src', 'https://matildasbeauty.com/filemanager/c895afcfbcce478096d9d9d989c3d1b2.webp');
+                    }
+
+                    $('#modal-promo').html(data.promo);
+                    $('#modal-amount').html(data.amount);
+
+                    $('.loader').addClass('thidden');// HIDE LOADER
+
+                    $.post("/event-listener",{
+                        order_success: 1,
+                        website: '{{ $website }}',
+                        session_id: '{{ $session_id }}',
+                        name: $('#full_name').val(),
+                        contact_number: $('#phone_number').val(),
+                        promo_name: data.promo_name
+                    });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
+
+                    $.post("/Madella-Order-Success-Email",{
+                        data,
+                    });// Email Notif
+
+                    
+                    const resolvedFingerprintId = fingerprintjs_visitor_id || await initFingerprintVisitorId();
+
+                    const payload = AntiSpamDataCollect({
+                        fb_ads_id: data.order_id, // pass order ID for better tracking
+                        website: '{{ $website }}',
+                        session_id: '{{ $session_id }}',
+                        fingerprintjs_visitor_id: resolvedFingerprintId,
+                        full_name: $('#full_name').val(),
+                        phone_number: $('#phone_number').val(),
+                        promo: data.promo_name
+                    }); // Collect AntiOrderSpam Data
+
+                    console.log("Final Payload to send:", payload);
+                    
+                    fetch('/order-signal', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        body: JSON.stringify(payload)
+                    }).catch(() => {});
+
+
+
+                    const isValid = validateAndRecordOrder(data.promo_name);
+
+                    if (!isValid) {
+                        console.log("Blocked: Order limit reached");
+
+                        alert("Order limit reached. Our team will contact you shortly.");
+
+                        // ❌ DO NOT fire pixel
+                    } else {
+                        // fire FB PIXEL
+                        fbq('track', 'Purchase', {
+                            currency: "PHP",
+                            value: data.amount
+                        });
+                        $('.modal').modal('open'); // open modal;
+                    }
+
+                    // clear form (always runs)
+                    $('#full_name').val('');
+                    $('#phone_number').val('');
+                    $('#address').val('');
+
+                })
+            })
+
+
+        });
     </script>
 
     <script> // SLIDE SHOW
@@ -82,157 +348,6 @@
 
 
     <script>
-    
-        // Dupplicate Order Handler
-
-        // ============== ORDER SIGNAL COLLECTOR (CLEAN) ================
-        function AntiSpamDataCollect(custom = {}) {
-
-            // helpers
-            function getParam(name) {
-                try {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    return urlParams.get(name) || null;
-                } catch (e) {
-                    return null;
-                }
-            }
-
-            function getDeviceType() {
-                const ua = navigator.userAgent.toLowerCase();
-                if (/mobile/.test(ua)) return 'mobile';
-                if (/tablet/.test(ua)) return 'tablet';
-                return 'desktop';
-            }
-
-            function getSessionId() {
-                try {
-                    let sessionId = localStorage.getItem('session_id');
-
-                    if (!sessionId) {
-                        sessionId = 'sess_' + Math.random().toString(36).substring(2) + Date.now();
-                        localStorage.setItem('session_id', sessionId);
-                    }
-
-                    return sessionId;
-                } catch (e) {
-                    return null;
-                }
-            }
-
-            function getFingerprint() {
-                try {
-                    return [
-                        navigator.userAgent,
-                        screen.width,
-                        screen.height,
-                        navigator.language,
-                        new Date().getTimezoneOffset()
-                    ].join('|');
-                } catch (e) {
-                    return null;
-                }
-            }
-
-            // base payload
-            const payload = {
-                website: window.location.hostname || null,
-                local_session_id: getSessionId(),
-
-                full_name: $('#full_name').val() || null,
-                phone_number: $('#phone_number').val() || null,
-
-                // normalize promo
-                promo: custom.promo || custom.promo_name || null,
-
-                fbclid: getParam('fbclid'),
-                utm_campaign: getParam('utm_campaign'),
-                utm_content: getParam('utm_content'),
-                utm_medium: getParam('utm_medium'),
-
-                fingerprint: getFingerprint(),
-                device_type: getDeviceType(),
-                user_agent: navigator.userAgent || null,
-
-                timestamp: Date.now()
-            };
-
-            // merge any extra custom fields
-            const finalPayload = { ...payload, ...custom };
-
-            // debug output
-            console.log("📦 ORDER SIGNAL DATA:", finalPayload);
-
-            return finalPayload;
-        }
-
-        // =================== VALIDATE + RECORD ORDER (ONE FUNCTION) =====================
-        function validateAndRecordOrder(promo) {
-            const DOMAIN = window.location.hostname;
-            const TODAY = new Date().toISOString().slice(0, 10);
-
-            function getStorage() {
-                try {
-                    return JSON.parse(localStorage.getItem('order_control') || '{}');
-                } catch (e) {
-                    return {};
-                }
-            }
-
-            function saveStorage(data) {
-                localStorage.setItem('order_control', JSON.stringify(data));
-            }
-
-            const data = getStorage();
-
-            if (!data[DOMAIN]) data[DOMAIN] = {};
-            if (!data[DOMAIN][TODAY]) {
-                data[DOMAIN][TODAY] = {
-                    total: 0,
-                    promos: {}
-                };
-            }
-
-            const todayData = data[DOMAIN][TODAY];
-
-            // 🔒 lock check
-            if (todayData.locked_until) {
-                if (new Date() < new Date(todayData.locked_until)) {
-                    return false;
-                }
-            }
-
-            // 🔒 same promo only once
-            if ((todayData.promos[promo] || 0) >= 1) {
-                return false;
-            }
-
-            // 🔒 max 3 total promos
-            if (todayData.total >= 3) {
-                return false;
-            }
-
-            // ======================
-            // RECORD ORDER
-            // ======================
-            todayData.promos[promo] = (todayData.promos[promo] || 0) + 1;
-            todayData.total++;
-
-            // 🔒 lock after 3 orders
-            if (todayData.total >= 3) {
-                const lockDate = new Date();
-                lockDate.setDate(lockDate.getDate() + 3);
-                todayData.locked_until = lockDate.toISOString();
-            }
-
-            saveStorage(data);
-
-            return true;
-        }
-    
-    </script>
-
-    <script>
          $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -259,121 +374,7 @@
             }
         });// hide show ORDER BUTTON on Scroll
 
-        $("form").on("submit", function (e) {
-            e.preventDefault();
-            // if (!isValid()) {
-            //     return;
-            // }
-
-            $('.loader').removeClass('thidden');// SHOW LOADER
-
-            let url = $(this).attr('action');
-
-            $.post(url, {
-                full_name: $('#full_name').val(),
-                phone_number: $('#phone_number').val(),
-                address: $('#address').val(),
-                promo: $('.promo:checked').val(),
-                product_name: $('#product_name').val(),
-                notif_message: $('#notif_message').val(),
-            })
-            .done(function( data ) {
-                // change html content of success modal
-                $('#modal-order-number').html(data.order_number);
-
-                if (data.amount == "1149") {
-                    $('#product_promo_name').html(data.promo_name);
-                    $('#order_success_image')
-                    .attr('data-src', 'https://matildasbeauty.com/filemanager/c895afcfbcce478096d9d9d989c3d1b2.webp')
-                    .attr('src', 'https://matildasbeauty.com/filemanager/c895afcfbcce478096d9d9d989c3d1b2.webp');
-                }
-
-                $('#modal-promo').html(data.promo);
-                $('#modal-amount').html(data.amount);
-
-                $('.loader').addClass('thidden');// HIDE LOADER
-
-                $.post("/event-listener",{
-                    order_success: 1,
-                    website: '{{ $website }}',
-                    session_id: '{{ $session_id }}',
-                    name: $('#full_name').val(),
-                    contact_number: $('#phone_number').val(),
-                    promo_name: data.promo_name
-                });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
-
-                $.post("/Madella-Order-Success-Email",{
-                    data,
-                });// Email Notif
-
-                
-                const payload = AntiSpamDataCollect({
-                    fb_ads_id: data.order_id, // pass order ID for better tracking
-                    website: '{{ $website }}',
-                    session_id: '{{ $session_id }}',
-                    full_name: $('#full_name').val(),
-                    phone_number: $('#phone_number').val(),
-                    promo: data.promo_name
-                }); // Collect AntiOrderSpam Data
-
-                fetch('/order-signal', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    body: JSON.stringify(payload)
-                }).catch(() => {});
-
-
-
-                const isValid = validateAndRecordOrder(data.promo_name);
-
-                if (!isValid) {
-                    console.log("Blocked: Order limit reached");
-
-                    alert("Order limit reached. Our team will contact you shortly.");
-
-                    // ❌ DO NOT fire pixel
-                } else {
-                    // fire FB PIXEL
-                    fbq('track', 'Purchase', {
-                        currency: "PHP",
-                        value: data.amount
-                    });
-                    $('.modal').modal('open'); // open modal;
-                }
-
-
-
-              
-
-                // clear form (always runs)
-                $('#full_name').val('');
-                $('#phone_number').val('');
-                $('#address').val('');
-
-
-               // We can Put The session Here
-
-
-
-                // ttq.track('PlaceAnOrder', { // TIKTOK PIXEL EVENT
-                //     "contents": [
-                //         {
-                //             "content_id": "10225", // string. ID of the product. Example: "1077218".
-                //             "content_type": "product", // string. Either product or product_group.
-                //             "content_name": "gingerOil" // string. The name of the page or product. Example: "shirt".
-                //         }
-                //     ],
-                //     "value": data.amount, // number. Value of the order or items sold. Example: 100.
-                //     "currency": "PHP" // string. The 4217 currency code. Example: "USD".
-                // });
-
-            })
-        })
-
-        function isValid() {
+        function isValid() {   
             let full_name = $('#full_name').val();
             let phone_number = $('#phone_number').val();
             let address = $('#address').val();
