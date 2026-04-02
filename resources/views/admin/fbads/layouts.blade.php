@@ -57,13 +57,21 @@
                     </div>
                 </li>
 
-                <li onclick="window.location.href = '/admin/fbads/order-signals'" 
+                <!-- <li onclick="window.location.href = '/admin/fbads/order-signals'" 
                     class="tcursor-pointer waves-block waves-effect hover:tbg-red-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/order-signals', 'tbg-red-50') }}">
                     <div class="tflex titems-center tjustify-center tpx-5 th-16">
                         <i class="fas fa-shield-alt ttext-red-600 ttext-xl tmr-2"></i>
                         <span>Signals</span>
                     </div>
                 </li>
+
+                <li onclick="window.location.href = '/admin/fbads/order-signal-block-list'" 
+                    class="tcursor-pointer waves-block waves-effect hover:tbg-rose-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/order-signal-block-list', 'tbg-rose-50') }}">
+                    <div class="tflex titems-center tjustify-center tpx-5 th-16">
+                        <i class="fas fa-user-slash ttext-rose-600 ttext-xl tmr-2"></i>
+                        <span>Block List</span>
+                    </div>
+                </li> -->
 
                 <li onclick="window.location.href = '/admin/order-sources'" 
                     class="tcursor-pointer waves-block waves-effect hover:tbg-green-50 trounded-lg {{ is_matched_return_class(url()->current(), url('/').'/admin/fbads/events', 'tbg-green-50') }}">

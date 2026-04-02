@@ -350,6 +350,39 @@ class FbAdsCon extends Controller
         ]);
     }
 
+    public function order_signal_block_list(Request $request)
+    {
+        $search = trim((string) $request->query('search', ''));
+
+        $blockList = OrderSignalBlockList::query()
+            ->leftJoin('users', 'order_signal_block_lists.user_id', '=', 'users.id')
+            ->select([
+                'order_signal_block_lists.id',
+                'order_signal_block_lists.user_id',
+                'order_signal_block_lists.fingerprintjs_visitor_id',
+                'order_signal_block_lists.attempt_count',
+                'order_signal_block_lists.last_attempt_at',
+                'order_signal_block_lists.timestamp',
+                DB::raw("TRIM(CONCAT(COALESCE(users.first_name, ''), ' ', COALESCE(users.last_name, ''))) as blocked_by_name"),
+                'users.email as blocked_by_email',
+            ])
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where('order_signal_block_lists.fingerprintjs_visitor_id', 'LIKE', '%' . $search . '%');
+            })
+            ->orderByDesc('order_signal_block_lists.timestamp')
+            ->orderByDesc('order_signal_block_lists.id')
+            ->paginate(100);
+
+        $blockList->appends($request->query());
+
+        return view('admin.fbads.order_signal_block_list', [
+            'blockList' => $blockList,
+            'search' => $search,
+            'totalBlocked' => (int) OrderSignalBlockList::count(),
+            'totalAttempts' => (int) OrderSignalBlockList::sum('attempt_count'),
+        ]);
+    }
+
 
 
     public function dashboard(){

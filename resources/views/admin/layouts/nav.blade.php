@@ -306,6 +306,13 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 .mb-g-rose .mb-sb-child.mb-active         { color:#9f1239; }
 .mb-g-rose .mb-sb-child.mb-active .mb-sb-child-dot { background:#e11d48; }
 
+/* red — Fraud Guard */
+.mb-g-red:has(.mb-active) .mb-sb-toggle  { background:#fef2f2; border-left-color:#dc2626; color:#991b1b; }
+.mb-g-red:has(.mb-active) .mb-sb-chevron { color:#dc2626; }
+.mb-g-red .mb-sb-child.mb-active         { color:#991b1b; }
+.mb-g-red .mb-sb-child.mb-active .mb-sb-child-icon { color:#dc2626; }
+.mb-g-red .mb-sb-child.mb-active .mb-sb-child-dot  { background:#dc2626; }
+
 /* fuchsia — Gallery */
 .mb-g-fuchsia .mb-sb-link.mb-active { background:#fdf4ff; border-left-color:#a21caf; color:#86198f; }
 
@@ -416,6 +423,27 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
                 </a>
                 <a href="/admin/fbads/jandt-reconcile" class="mb-sb-child {{ request()->is('admin/fbads/jandt-reconcile') ? 'mb-active' : '' }}">
                     <i class="fas fa-truck mb-sb-child-icon"></i> J&amp;T
+                </a>
+            </div>
+        </div>
+        @endif
+
+        {{-- Fraud Guard --}}
+        @if (in_array(auth()->user()->role, ['master', 'sa', 'admin', 'sales']))
+        <div class="mb-sb-group mb-g-red">
+            <div class="mb-sb-toggle">
+                <div class="mb-sb-icon-box" style="--ib-bg:#fee2e2;--ib-cl:#dc2626;">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <span>Fraud Guard</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </div>
+            <div class="mb-sb-children">
+                <a href="/admin/fbads/order-signals" class="mb-sb-child {{ request()->is('admin/fbads/order-signals') ? 'mb-active' : '' }}">
+                    <i class="fas fa-wave-square mb-sb-child-icon"></i> Order Signals
+                </a>
+                <a href="/admin/fbads/order-signal-block-list" class="mb-sb-child {{ request()->is('admin/fbads/order-signal-block-list') ? 'mb-active' : '' }}">
+                    <i class="fas fa-user-slash mb-sb-child-icon"></i> Block List
                 </a>
             </div>
         </div>
