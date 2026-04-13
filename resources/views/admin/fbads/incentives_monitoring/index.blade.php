@@ -238,13 +238,13 @@ foreach ($analytics as $type => $count) {
 
                     {{-- Mark Delivered — visible to entry owner, only if not yet delivered/approved --}}
                     @if(!$entry->delivery_status && !$entry->approved)
-                    <form method="POST" action="{{ route('fbads.incentives.deliver', $entry->id) }}">
-                        @csrf
-                        <button type="submit" title="Mark as Delivered"
-                            style="background:#dcfce7;border:1px solid #86efac;color:#15803d;border-radius:7px;padding:6px 9px;font-size:11px;cursor:pointer;display:flex;align-items:center;">
-                            <i class="fas fa-truck"></i>
-                        </button>
-                    </form>
+                    <button type="button" title="Mark as Delivered"
+                        class="btn-deliver"
+                        data-id="{{ $entry->id }}"
+                        data-url="{{ route('fbads.incentives.deliver', $entry->id) }}"
+                        style="background:#dcfce7;border:1px solid #86efac;color:#15803d;border-radius:7px;padding:6px 9px;font-size:11px;cursor:pointer;display:flex;align-items:center;">
+                        <i class="fas fa-truck"></i>
+                    </button>
                     @endif
 
                     {{-- Master-only: edit & delete --}}
@@ -281,5 +281,59 @@ foreach ($analytics as $type => $count) {
 
     </div>
 </div>
+
+{{-- Toast --}}
+<div id="mb-toast" style="position:fixed;top:20px;left:20px;z-index:9999;display:none;align-items:center;gap:10px;background:#fff;border:1px solid #86efac;border-left:4px solid #22c55e;border-radius:10px;padding:12px 16px;box-shadow:0 4px 20px rgba(0,0,0,.1);min-width:220px;max-width:300px;">
+    <i class="fas fa-check-circle" style="color:#22c55e;font-size:16px;flex-shrink:0;"></i>
+    <span id="mb-toast-msg" style="font-size:13px;font-weight:600;color:#0f172a;"></span>
+</div>
+
+<script>
+function mbShowToast(msg) {
+    var t = document.getElementById('mb-toast');
+    document.getElementById('mb-toast-msg').textContent = msg;
+    t.style.display = 'flex';
+    setTimeout(function() {
+        t.style.display = 'none';
+    }, 3000);
+}
+
+document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.btn-deliver');
+    if (!btn) return;
+
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+
+    var url  = btn.dataset.url;
+    var csrf = document.querySelector('meta[name="csrf-token"]') 
+               ? document.querySelector('meta[name="csrf-token"]').content 
+               : '{{ csrf_token() }}';
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': csrf,
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json'
+        }
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        if (data.success) {
+            // Swap button for delivered badge
+            var badge = document.createElement('span');
+            badge.style.cssText = 'background:#dcfce7;border:1px solid #86efac;color:#15803d;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;';
+            badge.innerHTML = '<i class="fas fa-truck" style="font-size:10px;margin-right:3px;"></i>Delivered';
+            btn.parentNode.replaceChild(badge, btn);
+            mbShowToast('Marked as delivered.');
+        }
+    })
+    .catch(function() {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+    });
+});
+</script>
 
 @endsection

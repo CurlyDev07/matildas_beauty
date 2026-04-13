@@ -131,7 +131,7 @@ class IncentiveEntryCon extends Controller
         return redirect()->route('fbads.incentives.create')->with('success', 'Entry added.');
     }
 
-    public function markDelivered($id)
+    public function markDelivered(Request $request, $id)
     {
         $entry = IncentiveEntry::findOrFail($id);
 
@@ -139,6 +139,10 @@ class IncentiveEntryCon extends Controller
 
         if (!$entry->delivery_status) {
             $entry->update(['delivery_status' => 'delivered']);
+        }
+
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
         }
 
         return redirect()->route('fbads.incentives.index')->with('success', 'Entry marked as delivered.');
