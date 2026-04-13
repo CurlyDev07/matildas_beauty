@@ -30,6 +30,7 @@ $newEntries       = $myEntries->filter(fn($e) => !$e->delivery_status && !$e->ap
 $deliveredEntries = $myEntries->filter(fn($e) => $e->delivery_status === 'delivered' && !$e->approved && !$e->payout_id);
 $approvedEntries  = $myEntries->filter(fn($e) => $e->approved && !$e->payout_id);
 $paidEntries      = $myEntries->filter(fn($e) => (bool) $e->payout_id);
+$returnedEntries  = $myEntries->filter(fn($e) => $e->delivery_status === 'returned');
 
 // Dup detection
 $mobileCount = [];
@@ -189,7 +190,7 @@ $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
                 'delivered' => ['label' => 'Delivered',  'icon' => 'fa-truck',          'color' => '#15803d', 'light' => '#dcfce7', 'count' => $deliveredEntries->count()],
                 'approved'  => ['label' => 'Approved',   'icon' => 'fa-check-double',   'color' => '#7c3aed', 'light' => '#ede9fe', 'count' => $approvedEntries->count()],
                 'paid'      => ['label' => 'Paid',       'icon' => 'fa-money-bill-wave','color' => '#0d9488', 'light' => '#f0fdfa', 'count' => $paidEntries->count()],
-                'returned'  => ['label' => 'Returned',   'icon' => 'fa-undo',           'color' => '#94a3b8', 'light' => '#f1f5f9', 'count' => 0],
+                'returned'  => ['label' => 'Returned',   'icon' => 'fa-undo',           'color' => '#ef4444', 'light' => '#fee2e2', 'count' => $returnedEntries->count()],
             ];
             @endphp
 
@@ -277,13 +278,19 @@ $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
                 @endforelse
             </div>
 
-            {{-- ===== Panel: Returned (future) ===== --}}
+            {{-- ===== Panel: Returned ===== --}}
             <div id="panel-returned" style="display:none;">
-                <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px dashed #e2e8f0;">
-                    <i class="fas fa-undo" style="font-size:36px;display:block;margin-bottom:12px;color:#e2e8f0;"></i>
-                    <div style="font-size:14px;font-weight:600;color:#cbd5e1;">Coming soon</div>
-                    <div style="font-size:12px;color:#e2e8f0;margin-top:4px;">Returned entries will appear here.</div>
+                @forelse($returnedEntries as $entry)
+                @php $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
+                $dupKey = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
+                $isDup  = in_array($dupKey, $dupKeys); @endphp
+                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup'))
+                @empty
+                <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
+                    <i class="fas fa-undo" style="font-size:36px;display:block;margin-bottom:12px;color:#fca5a5;"></i>
+                    <div style="font-size:14px;font-weight:600;color:#cbd5e1;">No returned entries</div>
                 </div>
+                @endforelse
             </div>
 
         </div>
@@ -302,7 +309,7 @@ var tabColors = {
     'delivered': { color: '#15803d', light: '#dcfce7' },
     'approved':  { color: '#7c3aed', light: '#ede9fe' },
     'paid':      { color: '#0d9488', light: '#f0fdfa' },
-    'returned':  { color: '#94a3b8', light: '#f1f5f9' },
+    'returned':  { color: '#ef4444', light: '#fee2e2' },
 };
 
 function switchTab(tab) {

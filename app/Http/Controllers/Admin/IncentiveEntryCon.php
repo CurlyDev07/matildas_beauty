@@ -131,6 +131,22 @@ class IncentiveEntryCon extends Controller
         return redirect()->route('fbads.incentives.create')->with('success', 'Entry added.');
     }
 
+    public function markReturned($id)
+    {
+        abort_unless(auth()->user()->isMaster(), 403);
+
+        $entry = IncentiveEntry::findOrFail($id);
+
+        // Cannot mark returned once approved or paid
+        if ($entry->approved || $entry->payout_id) {
+            return redirect()->back()->with('error', 'Cannot mark returned — entry is already approved or paid.');
+        }
+
+        $entry->update(['delivery_status' => 'returned']);
+
+        return redirect()->route('fbads.incentives.index')->with('success', 'Entry marked as returned.');
+    }
+
     public function markDelivered(Request $request, $id)
     {
         $entry = IncentiveEntry::findOrFail($id);

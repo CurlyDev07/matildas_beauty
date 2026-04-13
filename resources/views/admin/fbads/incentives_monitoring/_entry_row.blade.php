@@ -57,8 +57,20 @@
         </button>
         @endif
 
-        {{-- Master-only: edit & delete --}}
+        {{-- Master-only: mark returned, edit & delete --}}
         @if(auth()->user()->isMaster())
+
+        {{-- Mark Returned — only if not approved or paid --}}
+        @if(!$entry->approved && !$entry->payout_id && $entry->delivery_status !== 'returned')
+        <form method="POST" action="{{ route('fbads.incentives.return', $entry->id) }}" onsubmit="return confirm('Mark this entry as returned? It will no longer be eligible for payout.')">
+            @csrf
+            <button type="submit" title="Mark as Returned"
+                style="background:#fee2e2;border:1px solid #fca5a5;color:#b91c1c;border-radius:7px;padding:6px 9px;font-size:11px;cursor:pointer;display:flex;align-items:center;">
+                <i class="fas fa-undo-alt"></i>
+            </button>
+        </form>
+        @endif
+
         <a href="{{ route('fbads.incentives.edit', $entry->id) }}"
             style="background:#fef9c3;border:1px solid #fde047;color:#92400e;border-radius:7px;padding:6px 9px;font-size:11px;text-decoration:none;display:flex;align-items:center;">
             <i class="fas fa-pen"></i>

@@ -280,6 +280,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::put('/incentives/{id}', 'IncentiveEntryCon@update')->name('fbads.incentives.update');
         Route::delete('/incentives/{id}', 'IncentiveEntryCon@destroy')->name('fbads.incentives.destroy');
         Route::post('/incentives/{id}/deliver', 'IncentiveEntryCon@markDelivered')->name('fbads.incentives.deliver');
+        Route::post('/incentives/{id}/return', 'IncentiveEntryCon@markReturned')->name('fbads.incentives.return');
 
 
 
