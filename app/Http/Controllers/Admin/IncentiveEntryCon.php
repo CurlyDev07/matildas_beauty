@@ -11,10 +11,12 @@ class IncentiveEntryCon extends Controller
 {
     public function index(Request $request)
     {
-        $period = $request->get('period', 'today');
-        $userId = auth()->id();
+        $period   = $request->get('period', 'today');
+        $dateFrom = $request->get('date_from');
+        $dateTo   = $request->get('date_to');
+        $userId   = auth()->id();
 
-        [$start, $end] = $this->periodRange($period);
+        [$start, $end] = $this->periodRange($period, $dateFrom, $dateTo);
 
         $analyticsRaw = IncentiveEntry::where('user_id', $userId)
             ->whereBetween('created_at', [$start, $end])
@@ -74,11 +76,12 @@ class IncentiveEntryCon extends Controller
 
         return view('admin.fbads.incentives_monitoring.index', compact(
             'myEntries', 'analytics', 'rates', 'period',
-            'deliveredCount', 'approvedCount', 'approvedValue', 'myPayouts'
+            'deliveredCount', 'approvedCount', 'approvedValue', 'myPayouts',
+            'dateFrom', 'dateTo'
         ));
     }
 
-    private function periodRange($period)
+    private function periodRange($period, $dateFrom = null, $dateTo = null)
     {
         $now = now();
         switch ($period) {
@@ -90,6 +93,10 @@ class IncentiveEntryCon extends Controller
                 return [$now->copy()->subWeek()->startOfWeek(), $now->copy()->subWeek()->endOfWeek()];
             case 'this_month':
                 return [$now->copy()->startOfMonth(), $now->copy()->endOfMonth()];
+            case 'custom':
+                $from = $dateFrom ? \Carbon\Carbon::parse($dateFrom)->startOfDay() : $now->copy()->startOfDay();
+                $to   = $dateTo   ? \Carbon\Carbon::parse($dateTo)->endOfDay()     : $now->copy()->endOfDay();
+                return [$from, $to];
             default: // today
                 return [$now->copy()->startOfDay(), $now->copy()->endOfDay()];
         }

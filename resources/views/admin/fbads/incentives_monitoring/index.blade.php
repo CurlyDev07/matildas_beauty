@@ -68,7 +68,7 @@ $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
                 {{-- Period filter --}}
                 <div style="padding:12px 12px 0;display:flex;flex-wrap:wrap;gap:5px;">
                     @foreach($periods as $key => $label)
-                    <a href="{{ request()->fullUrlWithQuery(['period' => $key]) }}"
+                    <a href="{{ request()->fullUrlWithQuery(['period' => $key, 'date_from' => '', 'date_to' => '']) }}"
                         style="padding:5px 11px;border-radius:8px;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap;
                             {{ $period === $key
                                 ? 'background:#ede9fe;color:#7c3aed;'
@@ -76,6 +76,36 @@ $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
                         {{ $label }}
                     </a>
                     @endforeach
+                    <button type="button" onclick="document.getElementById('custom-range').style.display=document.getElementById('custom-range').style.display==='none'?'flex':'none'"
+                        style="padding:5px 11px;border-radius:8px;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer;border:none;
+                            {{ $period === 'custom'
+                                ? 'background:#ede9fe;color:#7c3aed;'
+                                : 'background:#f8fafc;color:#94a3b8;border:1px solid #e2e8f0;' }}">
+                        <i class="fas fa-calendar-alt" style="margin-right:4px;font-size:10px;"></i>Custom
+                    </button>
+                </div>
+
+                {{-- Custom date range --}}
+                <div id="custom-range" style="display:{{ $period === 'custom' ? 'flex' : 'none' }};flex-direction:column;gap:6px;padding:8px 12px 0;">
+                    <form method="GET" action="{{ request()->url() }}" style="display:flex;flex-direction:column;gap:6px;">
+                        <input type="hidden" name="period" value="custom">
+                        <div style="display:flex;gap:6px;align-items:center;">
+                            <div style="flex:1;">
+                                <div style="font-size:10px;font-weight:700;color:#94a3b8;margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px;">From</div>
+                                <input type="date" name="date_from" value="{{ $dateFrom ?? '' }}" class="browser-default"
+                                    style="width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:6px 8px;font-size:12px;color:#0f172a;background:#f8fafc;">
+                            </div>
+                            <div style="flex:1;">
+                                <div style="font-size:10px;font-weight:700;color:#94a3b8;margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px;">To</div>
+                                <input type="date" name="date_to" value="{{ $dateTo ?? '' }}" class="browser-default"
+                                    style="width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:6px 8px;font-size:12px;color:#0f172a;background:#f8fafc;">
+                            </div>
+                        </div>
+                        <button type="submit"
+                            style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:11px;font-weight:700;cursor:pointer;text-align:center;">
+                            <i class="fas fa-search" style="margin-right:4px;"></i>Apply
+                        </button>
+                    </form>
                 </div>
 
                 {{-- Stat rows --}}
