@@ -397,4 +397,12 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
+<script>
+document.querySelectorAll('input[type="date"]').forEach(function(el) {
+    el.addEventListener('click', function() {
+        try { this.showPicker(); } catch(e) {}
+    });
+});
+</script>
+
 @endsection
