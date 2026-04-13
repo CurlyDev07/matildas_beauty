@@ -123,12 +123,12 @@ foreach ($staffData as $staff) {
             <div>
                 <div style="font-size:10px;font-weight:700;color:#94a3b8;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;">From</div>
                 <input type="date" name="date_from" value="{{ $dateFrom ?? '' }}" class="browser-default"
-                    style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;">
+                    style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;cursor:pointer;">
             </div>
             <div>
                 <div style="font-size:10px;font-weight:700;color:#94a3b8;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;">To</div>
                 <input type="date" name="date_to" value="{{ $dateTo ?? '' }}" class="browser-default"
-                    style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;">
+                    style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;cursor:pointer;">
             </div>
             <button type="submit"
                 style="background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;">
@@ -392,12 +392,12 @@ foreach ($incentiveDates as $d) {
                 <div>
                     <div style="font-size:10px;font-weight:700;color:#94a3b8;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;">From</div>
                     <input type="date" name="idate_from" value="{{ $idateFrom ?? '' }}" class="browser-default"
-                        style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;">
+                        style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;cursor:pointer;">
                 </div>
                 <div>
                     <div style="font-size:10px;font-weight:700;color:#94a3b8;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;">To</div>
                     <input type="date" name="idate_to" value="{{ $idateTo ?? '' }}" class="browser-default"
-                        style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;">
+                        style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;cursor:pointer;">
                 </div>
                 <button type="submit"
                     style="background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;">
