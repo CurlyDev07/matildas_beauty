@@ -47,15 +47,11 @@ class IncentivePayoutCon extends Controller
             'period_end'   => 'required|date|after_or_equal:period_start',
         ]);
 
-        $start = $request->period_start . ' 00:00:00';
-        $end   = $request->period_end   . ' 23:59:59';
-
         $rates = IncentiveRate::pluck('rate', 'type')->toArray();
 
         $entries = IncentiveEntry::with('user')
             ->where('approved', true)
             ->whereNull('payout_id')
-            ->whereBetween('created_at', [$start, $end])
             ->orderBy('user_id')
             ->get();
 
@@ -87,18 +83,14 @@ class IncentivePayoutCon extends Controller
             'period_end'   => 'required|date|after_or_equal:period_start',
         ]);
 
-        $start = $request->period_start . ' 00:00:00';
-        $end   = $request->period_end   . ' 23:59:59';
-
         $rates = IncentiveRate::pluck('rate', 'type')->toArray();
 
         $entries = IncentiveEntry::where('approved', true)
             ->whereNull('payout_id')
-            ->whereBetween('created_at', [$start, $end])
             ->get();
 
         if ($entries->isEmpty()) {
-            return redirect()->back()->with('error', 'No approved unpaid entries found for this period.');
+            return redirect()->back()->with('error', 'No approved unpaid entries found.');
         }
 
         $total = $entries->sum(function ($e) use ($rates) {
