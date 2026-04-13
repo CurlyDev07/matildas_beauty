@@ -1658,7 +1658,9 @@ class FbAdsCon extends Controller
 
     public function staff_performance(Request $request)
     {
-        $period = $request->period ?? 'today';
+        $period   = $request->period ?? 'today';
+        $dateFrom = $request->get('date_from');
+        $dateTo   = $request->get('date_to');
 
         $statuses = ['TO ENCODE', 'TO CALL', 'TO SHIP', 'SHIPPED', 'DUPPLICATE', 'DELIVERED'];
 
@@ -1702,6 +1704,10 @@ class FbAdsCon extends Controller
                 $query->whereYear('fb_ads.created_at', $last->year)
                       ->whereMonth('fb_ads.created_at', $last->month);
                 break;
+            case 'custom':
+                if ($dateFrom) $query->whereDate('fb_ads.created_at', '>=', $dateFrom);
+                if ($dateTo)   $query->whereDate('fb_ads.created_at', '<=', $dateTo);
+                break;
             default:
                 $period = 'today';
                 $query->whereDate('fb_ads.created_at', Carbon::today());
@@ -1742,12 +1748,17 @@ class FbAdsCon extends Controller
             '30days'    => 'Last 30 Days',
             'thismonth' => 'This Month — ' . Carbon::now()->format('F Y'),
             'lastmonth' => 'Last Month — ' . Carbon::now()->subMonth()->format('F Y'),
+            'custom'    => ($dateFrom && $dateTo)
+                ? Carbon::parse($dateFrom)->format('M d') . ' – ' . Carbon::parse($dateTo)->format('M d, Y')
+                : 'Custom Range',
         ];
 
         $periodLabel = $periodLabels[$period] ?? $periodLabels['today'];
 
         // ── Incentives Monitoring ─────────────────────────────────────────
-        $iperiod = $request->iperiod ?? 'thismonth';
+        $iperiod   = $request->iperiod ?? 'thismonth';
+        $idateFrom = $request->get('idate_from');
+        $idateTo   = $request->get('idate_to');
 
         $iQuery = DB::table('incentive_entries')
             ->join('users', 'incentive_entries.user_id', '=', 'users.id')
@@ -1788,6 +1799,10 @@ class FbAdsCon extends Controller
                 break;
             case 'today':
                 $iQuery->whereDate('incentive_entries.created_at', Carbon::today());
+                break;
+            case 'custom':
+                if ($idateFrom) $iQuery->whereDate('incentive_entries.created_at', '>=', $idateFrom);
+                if ($idateTo)   $iQuery->whereDate('incentive_entries.created_at', '<=', $idateTo);
                 break;
             default:
                 $iperiod = 'thismonth';
@@ -1831,6 +1846,9 @@ class FbAdsCon extends Controller
             '30days'    => 'Last 30 Days',
             'thismonth' => 'This Month — ' . Carbon::now()->format('F Y'),
             'lastmonth' => 'Last Month — ' . Carbon::now()->subMonth()->format('F Y'),
+            'custom'    => ($idateFrom && $idateTo)
+                ? Carbon::parse($idateFrom)->format('M d') . ' – ' . Carbon::parse($idateTo)->format('M d, Y')
+                : 'Custom Range',
         ];
         $iPeriodLabel = $iPeriodLabels[$iperiod] ?? $iPeriodLabels['thismonth'];
 
@@ -1873,6 +1891,9 @@ class FbAdsCon extends Controller
             case 'today':
                 $iPrevQuery->whereDate('incentive_entries.created_at', Carbon::yesterday());
                 break;
+            case 'custom':
+                $iPrevQuery->whereRaw('0=1'); // no meaningful prev period for custom range
+                break;
             default: // thismonth
                 $lastM = Carbon::now()->subMonth();
                 $iPrevQuery->whereYear('incentive_entries.created_at', $lastM->year)
@@ -1899,13 +1920,15 @@ class FbAdsCon extends Controller
             '30days'    => 'vs prev 30 days (' . Carbon::now()->subDays(59)->format('M d') . '–' . Carbon::now()->subDays(30)->format('M d') . ')',
             'thismonth' => 'vs ' . Carbon::now()->subMonth()->format('F Y'),
             'lastmonth' => 'vs ' . Carbon::now()->subMonths(2)->format('F Y'),
+            'custom'    => '',
         ];
         $iPrevPeriodLabel = $iPrevPeriodLabels[$iperiod] ?? '';
 
         return view('admin.fbads.staff_performance', compact(
-            'staffData', 'statuses', 'period', 'periodLabel',
+            'staffData', 'statuses', 'period', 'periodLabel', 'dateFrom', 'dateTo',
             'incentiveData', 'incentiveDates', 'incentiveUsers', 'incentiveTypes',
-            'iperiod', 'iPeriodLabel', 'iPrevTotals', 'iPrevPeriodLabel'
+            'iperiod', 'iPeriodLabel', 'iPrevTotals', 'iPrevPeriodLabel',
+            'idateFrom', 'idateTo'
         ));
     }
 

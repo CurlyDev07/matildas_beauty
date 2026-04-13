@@ -105,11 +105,36 @@ foreach ($staffData as $staff) {
     <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
         <span style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-right:4px;">Period:</span>
         @foreach($periods as $key => $label)
-            <a href="?period={{ $key }}"
+            <a href="?period={{ $key }}&iperiod={{ $iperiod }}&date_from=&date_to="
                class="period-btn {{ $period === $key ? 'active' : 'inactive' }}">
                 {{ $label }}
             </a>
         @endforeach
+        <button type="button" onclick="document.getElementById('sp-custom').style.display=document.getElementById('sp-custom').style.display==='none'?'flex':'none'"
+            class="period-btn {{ $period === 'custom' ? 'active' : 'inactive' }}" style="border:none;cursor:pointer;">
+            <i class="fas fa-calendar-alt" style="margin-right:5px;font-size:11px;"></i>Custom
+        </button>
+    </div>
+
+    <div id="sp-custom" style="display:{{ $period === 'custom' ? 'flex' : 'none' }};flex-direction:column;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid #f1f5f9;">
+        <form method="GET" action="" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;">
+            <input type="hidden" name="period" value="custom">
+            <input type="hidden" name="iperiod" value="{{ $iperiod }}">
+            <div>
+                <div style="font-size:10px;font-weight:700;color:#94a3b8;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;">From</div>
+                <input type="date" name="date_from" value="{{ $dateFrom ?? '' }}" class="browser-default"
+                    style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;">
+            </div>
+            <div>
+                <div style="font-size:10px;font-weight:700;color:#94a3b8;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;">To</div>
+                <input type="date" name="date_to" value="{{ $dateTo ?? '' }}" class="browser-default"
+                    style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;">
+            </div>
+            <button type="submit"
+                style="background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;">
+                <i class="fas fa-search" style="margin-right:5px;"></i>Apply
+            </button>
+        </form>
     </div>
 </div>
 
@@ -347,11 +372,38 @@ foreach ($incentiveDates as $d) {
         <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
             <span style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-right:4px;">Period:</span>
             @foreach($iPeriods as $key => $label)
-                <a href="?period={{ $period }}&iperiod={{ $key }}"
+                <a href="?period={{ $period }}&iperiod={{ $key }}&date_from={{ $dateFrom ?? '' }}&idate_from=&idate_to="
                    class="im-period-btn {{ $iperiod === $key ? 'active' : 'inactive' }}">
                     {{ $label }}
                 </a>
             @endforeach
+            <button type="button" onclick="document.getElementById('im-custom').style.display=document.getElementById('im-custom').style.display==='none'?'flex':'none'"
+                class="im-period-btn {{ $iperiod === 'custom' ? 'active' : 'inactive' }}" style="border:none;cursor:pointer;">
+                <i class="fas fa-calendar-alt" style="margin-right:5px;font-size:11px;"></i>Custom
+            </button>
+        </div>
+
+        <div id="im-custom" style="display:{{ $iperiod === 'custom' ? 'flex' : 'none' }};flex-direction:column;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid #f1f5f9;">
+            <form method="GET" action="" style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;">
+                <input type="hidden" name="period" value="{{ $period }}">
+                <input type="hidden" name="date_from" value="{{ $dateFrom ?? '' }}">
+                <input type="hidden" name="date_to" value="{{ $dateTo ?? '' }}">
+                <input type="hidden" name="iperiod" value="custom">
+                <div>
+                    <div style="font-size:10px;font-weight:700;color:#94a3b8;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;">From</div>
+                    <input type="date" name="idate_from" value="{{ $idateFrom ?? '' }}" class="browser-default"
+                        style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;">
+                </div>
+                <div>
+                    <div style="font-size:10px;font-weight:700;color:#94a3b8;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;">To</div>
+                    <input type="date" name="idate_to" value="{{ $idateTo ?? '' }}" class="browser-default"
+                        style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 10px;font-size:13px;color:#0f172a;background:#f8fafc;">
+                </div>
+                <button type="submit"
+                    style="background:#7c3aed;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;">
+                    <i class="fas fa-search" style="margin-right:5px;"></i>Apply
+                </button>
+            </form>
         </div>
     </div>
 
