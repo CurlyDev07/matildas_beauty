@@ -44,10 +44,11 @@
     </div>
 
     {{-- Actions --}}
+    @php $isMaster = auth()->user()->isMaster(); $tab = $tab ?? 'new'; @endphp
     <div style="display:flex;gap:4px;flex-shrink:0;margin-left:4px;">
 
-        {{-- Mark Delivered —  only if not yet delivered/approved --}}
-        @if(!$entry->delivery_status && !$entry->approved && !$entry->payout_id)
+        {{-- Mark Delivered — only if not yet delivered/approved (New tab only) --}}
+        @if($tab === 'new' && !$entry->delivery_status && !$entry->approved && !$entry->payout_id)
         <button type="button" title="Mark as Delivered"
             class="btn-deliver"
             data-id="{{ $entry->id }}"
@@ -57,11 +58,8 @@
         </button>
         @endif
 
-        {{-- Master-only: mark returned, edit & delete --}}
-        @if(auth()->user()->isMaster())
-
-        {{-- Mark Returned — only if not approved or paid --}}
-        @if(!$entry->approved && !$entry->payout_id && $entry->delivery_status !== 'returned')
+        {{-- Mark Returned — master only, not on returned/approved/paid tabs --}}
+        @if($isMaster && !in_array($tab, ['returned','approved','paid']) && !$entry->approved && !$entry->payout_id && $entry->delivery_status !== 'returned')
         <form method="POST" action="{{ route('fbads.incentives.return', $entry->id) }}" onsubmit="return confirm('Mark this entry as returned? It will no longer be eligible for payout.')">
             @csrf
             <button type="submit" title="Mark as Returned"
@@ -71,12 +69,17 @@
         </form>
         @endif
 
+        {{-- Edit — master only, not on returned tab --}}
+        @if($isMaster && $tab !== 'returned')
         <a href="{{ route('fbads.incentives.edit', $entry->id) }}"
             style="background:#fef9c3;border:1px solid #fde047;color:#92400e;border-radius:7px;padding:6px 9px;font-size:11px;text-decoration:none;display:flex;align-items:center;">
             <i class="fas fa-pen"></i>
         </a>
         @endif
 
+        {{-- Delete — master only on delivered/approved/paid/returned; anyone on new --}}
+        @if($tab === 'new' || $isMaster)
+        @if($tab !== 'returned')
         <form method="POST" action="{{ route('fbads.incentives.destroy', $entry->id) }}" onsubmit="return confirm('Delete this entry?')">
             @csrf
             @method('DELETE')
@@ -84,6 +87,8 @@
                 <i class="fas fa-trash"></i>
             </button>
         </form>
+        @endif
+        @endif
 
     </div>
 

@@ -224,7 +224,8 @@ $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
                 @php $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
                 $dupKey = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
                 $isDup  = in_array($dupKey, $dupKeys); @endphp
-                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup'))
+                @php $tab = 'new'; @endphp
+                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup','tab'))
                 @empty
                 <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
                     <i class="fas fa-inbox" style="font-size:36px;display:block;margin-bottom:12px;color:#e2e8f0;"></i>
@@ -239,7 +240,8 @@ $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
                 @php $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
                 $dupKey = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
                 $isDup  = in_array($dupKey, $dupKeys); @endphp
-                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup'))
+                @php $tab = 'delivered'; @endphp
+                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup','tab'))
                 @empty
                 <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
                     <i class="fas fa-truck" style="font-size:36px;display:block;margin-bottom:12px;color:#86efac;"></i>
@@ -254,7 +256,8 @@ $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
                 @php $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
                 $dupKey = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
                 $isDup  = in_array($dupKey, $dupKeys); @endphp
-                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup'))
+                @php $tab = 'approved'; @endphp
+                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup','tab'))
                 @empty
                 <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
                     <i class="fas fa-check-double" style="font-size:36px;display:block;margin-bottom:12px;color:#c4b5fd;"></i>
@@ -269,7 +272,8 @@ $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
                 @php $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
                 $dupKey = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
                 $isDup  = in_array($dupKey, $dupKeys); @endphp
-                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup'))
+                @php $tab = 'paid'; @endphp
+                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup','tab'))
                 @empty
                 <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
                     <i class="fas fa-money-bill-wave" style="font-size:36px;display:block;margin-bottom:12px;color:#99f6e4;"></i>
@@ -284,7 +288,8 @@ $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
                 @php $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
                 $dupKey = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
                 $isDup  = in_array($dupKey, $dupKeys); @endphp
-                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup'))
+                @php $tab = 'returned'; @endphp
+                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup','tab'))
                 @empty
                 <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
                     <i class="fas fa-undo" style="font-size:36px;display:block;margin-bottom:12px;color:#fca5a5;"></i>
