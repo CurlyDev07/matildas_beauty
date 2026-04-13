@@ -184,7 +184,14 @@ class IncentiveEntryCon extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('admin.staff.incentive_approvals', compact('entries'));
+        // Approved but not yet paid — can still be reverted
+        $approvedEntries = IncentiveEntry::with('user')
+            ->where('approved', true)
+            ->whereNull('payout_id')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('admin.staff.incentive_approvals', compact('entries', 'approvedEntries'));
     }
 
     public function approve($id)
@@ -194,6 +201,22 @@ class IncentiveEntryCon extends Controller
         IncentiveEntry::findOrFail($id)->update(['approved' => true]);
 
         return redirect()->route('staff.incentive_approvals')->with('success', 'Incentive approved.');
+    }
+
+    public function disapprove($id)
+    {
+        abort_unless(auth()->user()->isMaster(), 403);
+
+        $entry = IncentiveEntry::findOrFail($id);
+
+        // Cannot revert once included in a payout
+        if ($entry->payout_id) {
+            return redirect()->route('staff.incentive_approvals')->with('error', 'Cannot revert — entry is already part of a released payout.');
+        }
+
+        $entry->update(['approved' => false]);
+
+        return redirect()->route('staff.incentive_approvals')->with('success', 'Approval reverted.');
     }
 
     public function edit($id)
