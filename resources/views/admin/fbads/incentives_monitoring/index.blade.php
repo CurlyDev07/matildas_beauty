@@ -24,6 +24,20 @@ $totalEarnings = 0;
 foreach ($analytics as $type => $count) {
     $totalEarnings += $count * ($rates[$type] ?? 0);
 }
+
+// Segment entries into stages
+$newEntries       = $myEntries->filter(fn($e) => !$e->delivery_status && !$e->approved && !$e->payout_id);
+$deliveredEntries = $myEntries->filter(fn($e) => $e->delivery_status === 'delivered' && !$e->approved && !$e->payout_id);
+$approvedEntries  = $myEntries->filter(fn($e) => $e->approved && !$e->payout_id);
+$paidEntries      = $myEntries->filter(fn($e) => (bool) $e->payout_id);
+
+// Dup detection
+$mobileCount = [];
+foreach ($myEntries as $entry) {
+    $key = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
+    $mobileCount[$key] = ($mobileCount[$key] ?? 0) + 1;
+}
+$dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
 @endphp
 
 <div style="max-width:1100px;margin:0 auto;padding:24px 16px;">
@@ -65,8 +79,6 @@ foreach ($analytics as $type => $count) {
 
                 {{-- Stat rows --}}
                 <div style="padding:14px 20px 0;">
-
-                    {{-- Entries + Earnings (approved value) --}}
                     <div style="display:flex;gap:10px;margin-bottom:10px;">
                         <div style="flex:1;background:#f8fafc;border-radius:10px;padding:10px 12px;">
                             <div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Entries</div>
@@ -95,16 +107,15 @@ foreach ($analytics as $type => $count) {
                         </div>
                         <span style="font-size:20px;font-weight:800;color:#7c3aed;">{{ $approvedCount }}</span>
                     </div>
-
                 </div>
 
                 {{-- Type cards --}}
-                <div style="padding:14px 20px 0;;display:flex;flex-direction:column;gap:7px;">
+                <div style="padding:0 12px 14px;display:flex;flex-direction:column;gap:7px;">
                     @foreach($typeConfig as $type => $c)
                     @php
-                        $count    = $analytics[$type] ?? 0;
-                        $rate     = $rates[$type] ?? 0;
-                        $earned   = $count * $rate;
+                        $count  = $analytics[$type] ?? 0;
+                        $rate   = $rates[$type] ?? 0;
+                        $earned = $count * $rate;
                     @endphp
                     <div style="background:{{ $c['bg'] }};border:1px solid {{ $c['border'] }};border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px;">
                         <div style="width:30px;height:30px;border-radius:8px;background:{{ $c['grad'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -122,11 +133,10 @@ foreach ($analytics as $type => $count) {
                     @endforeach
                 </div>
 
-                
                 {{-- Payout History --}}
                 @if($myPayouts->isNotEmpty())
-                <div style="padding:0 12px 14px;" class="tmt-5">
-                    <div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;padding-top:4px;border-top:;">
+                <div style="padding:0 12px 14px;">
+                    <div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;padding-top:10px;border-top:1px solid #f1f5f9;">
                         <i class="fas fa-history" style="margin-right:4px;"></i>Payout History
                     </div>
                     @foreach($myPayouts as $row)
@@ -137,7 +147,7 @@ foreach ($analytics as $type => $count) {
                                 <div style="font-size:12px;font-weight:700;color:#0f172a;line-height:1.2;">{{ $p->label ?? '' }}</div>
                                 <div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:4px;">
                                     @foreach($row['byType'] as $type => $count)
-                                    @php $tc = $typeConfig[$type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag']; @endphp
+                                    @php $tc = $typeConfig[$type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569']; @endphp
                                     <span style="background:{{ $tc['bg'] }};border:1px solid {{ $tc['border'] }};color:{{ $tc['text'] }};border-radius:5px;padding:1px 6px;font-size:10px;font-weight:700;">
                                         {{ $type }} ×{{ $count }}
                                     </span>
@@ -157,11 +167,11 @@ foreach ($analytics as $type => $count) {
             </div>
         </div>
 
-        {{-- ===== RIGHT: My Entries ===== --}}
+        {{-- ===== RIGHT: My Entries (Roadmap Tabs) ===== --}}
         <div style="flex:1;min-width:0;">
 
-            {{-- Header --}}
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+            {{-- Top bar --}}
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
                 <div>
                     <div style="font-size:20px;font-weight:800;color:#0f172a;">My Entries</div>
                     <div style="font-size:13px;color:#94a3b8;margin-top:2px;">{{ $myEntries->count() }} total</div>
@@ -172,113 +182,111 @@ foreach ($analytics as $type => $count) {
                 </a>
             </div>
 
-            {{-- Entries --}}
+            {{-- ===== Roadmap Tab Bar ===== --}}
             @php
-            $mobileCount = [];
-            foreach ($myEntries as $entry) {
-                $key = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
-                $mobileCount[$key] = ($mobileCount[$key] ?? 0) + 1;
-            }
-            $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
+            $tabs = [
+                'new'       => ['label' => 'New',       'icon' => 'fa-plus-circle',    'color' => '#6366f1', 'light' => '#ede9fe', 'count' => $newEntries->count()],
+                'delivered' => ['label' => 'Delivered',  'icon' => 'fa-truck',          'color' => '#15803d', 'light' => '#dcfce7', 'count' => $deliveredEntries->count()],
+                'approved'  => ['label' => 'Approved',   'icon' => 'fa-check-double',   'color' => '#7c3aed', 'light' => '#ede9fe', 'count' => $approvedEntries->count()],
+                'paid'      => ['label' => 'Paid',       'icon' => 'fa-money-bill-wave','color' => '#0d9488', 'light' => '#f0fdfa', 'count' => $paidEntries->count()],
+                'returned'  => ['label' => 'Returned',   'icon' => 'fa-undo',           'color' => '#94a3b8', 'light' => '#f1f5f9', 'count' => 0],
+            ];
             @endphp
 
-            @forelse($myEntries as $entry)
-            @php
-                $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
+            <div style="display:flex;align-items:stretch;margin-bottom:20px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;">
+                @foreach($tabs as $tabKey => $tab)
+                @php $isLast = $loop->last; $isFirst = $loop->first; @endphp
+                <button onclick="switchTab('{{ $tabKey }}')" id="tab-{{ $tabKey }}"
+                    style="flex:1;padding:11px 6px;border:none;background:{{ $tabKey === 'new' ? $tab['light'] : '#fff' }};cursor:pointer;position:relative;border-right:{{ !$isLast ? '1px solid #f1f5f9' : 'none' }};transition:background .15s;">
+                    <div style="font-size:13px;font-weight:800;color:{{ $tabKey === 'new' ? $tab['color'] : '#94a3b8' }};">
+                        <i class="fas {{ $tab['icon'] }}" style="font-size:11px;margin-right:3px;"></i>
+                        {{ $tab['label'] }}
+                    </div>
+                    @if($tab['count'] > 0 || $tabKey === 'returned')
+                    <div id="badge-{{ $tabKey }}" style="font-size:18px;font-weight:800;color:{{ $tabKey === 'new' ? $tab['color'] : '#cbd5e1' }};line-height:1.2;margin-top:2px;">
+                        {{ $tab['count'] }}
+                    </div>
+                    @else
+                    <div id="badge-{{ $tabKey }}" style="font-size:18px;font-weight:800;color:#cbd5e1;line-height:1.2;margin-top:2px;">0</div>
+                    @endif
+                    {{-- Arrow connector --}}
+                    @if(!$isLast)
+                    <div style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);z-index:1;font-size:11px;color:#cbd5e1;pointer-events:none;">&#8250;</div>
+                    @endif
+                </button>
+                @endforeach
+            </div>
+
+            {{-- ===== Panel: New ===== --}}
+            <div id="panel-new">
+                @forelse($newEntries as $entry)
+                @php $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
                 $dupKey = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
-                $isDup = in_array($dupKey, $dupKeys);
-            @endphp
-            <div style="background:#fff;border:1px solid {{ $isDup ? '#fde68a' : '#e2e8f0' }};border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:10px;">
-
-                {{-- Type badge --}}
-                <span style="background:{{ $c['bg'] }};border:1px solid {{ $c['border'] }};color:{{ $c['text'] }};border-radius:8px;padding:5px 12px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;flex-shrink:0;">
-                    <i class="fas {{ $c['icon'] }}" style="font-size:11px;"></i>
-                    {{ $entry->type }}
-                </span>
-
-                {{-- Mobile --}}
-                <span style="font-size:14px;color:#0f172a;font-weight:600;flex:1;min-width:0;">
-                    <i class="fas fa-mobile-alt" style="color:#94a3b8;margin-right:5px;font-size:12px;"></i>{{ $entry->customer_mobile }}
-                </span>
-
-                {{-- DUP badge --}}
-                @if($isDup)
-                <span style="background:#fef9c3;border:1px solid #fde047;color:#92400e;border-radius:6px;padding:2px 8px;font-size:10px;font-weight:800;flex-shrink:0;white-space:nowrap;">
-                    <i class="fas fa-exclamation-triangle" style="font-size:9px;margin-right:2px;"></i>DUP
-                </span>
-                @endif
-
-                {{-- Delivery / Approved status badge --}}
-                @if($entry->payout_id)
-                <span style="background:#f0fdfa;border:1px solid #99f6e4;color:#0d9488;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;flex-shrink:0;white-space:nowrap;">
-                    <i class="fas fa-money-bill-wave" style="font-size:10px;margin-right:3px;"></i>Paid &middot; {{ $entry->payout->label ?? '' }}
-                </span>
-                @elseif($entry->approved)
-                <span style="background:#ede9fe;border:1px solid #c4b5fd;color:#7c3aed;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;flex-shrink:0;white-space:nowrap;">
-                    <i class="fas fa-check-double" style="font-size:10px;margin-right:3px;"></i>Approved
-                </span>
-                @elseif($entry->delivery_status === 'delivered')
-                <span style="background:#dcfce7;border:1px solid #86efac;color:#15803d;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;flex-shrink:0;white-space:nowrap;">
-                    <i class="fas fa-truck" style="font-size:10px;margin-right:3px;"></i>Delivered
-                </span>
-                @elseif($entry->delivery_status === 'shipped')
-                <span style="background:#fef9c3;border:1px solid #fde047;color:#92400e;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;flex-shrink:0;white-space:nowrap;">
-                    <i class="fas fa-shipping-fast" style="font-size:10px;margin-right:3px;"></i>Shipped
-                </span>
-                @endif
-
-                {{-- Date --}}
-                <div style="text-align:right;flex-shrink:0;">
-                    <div style="font-size:12px;color:#64748b;font-weight:500;">{{ $entry->created_at->format('M d, Y') }}</div>
-                    <div style="font-size:11px;color:#94a3b8;">{{ $entry->created_at->format('g:i A') }}</div>
+                $isDup  = in_array($dupKey, $dupKeys); @endphp
+                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup'))
+                @empty
+                <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
+                    <i class="fas fa-inbox" style="font-size:36px;display:block;margin-bottom:12px;color:#e2e8f0;"></i>
+                    <div style="font-size:14px;font-weight:600;color:#cbd5e1;">No new entries</div>
                 </div>
+                @endforelse
+            </div>
 
-                {{-- Actions --}}
-                <div style="display:flex;gap:4px;flex-shrink:0;margin-left:4px;">
+            {{-- ===== Panel: Delivered ===== --}}
+            <div id="panel-delivered" style="display:none;">
+                @forelse($deliveredEntries as $entry)
+                @php $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
+                $dupKey = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
+                $isDup  = in_array($dupKey, $dupKeys); @endphp
+                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup'))
+                @empty
+                <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
+                    <i class="fas fa-truck" style="font-size:36px;display:block;margin-bottom:12px;color:#86efac;"></i>
+                    <div style="font-size:14px;font-weight:600;color:#cbd5e1;">No delivered entries</div>
+                </div>
+                @endforelse
+            </div>
 
-                    {{-- Mark Delivered — visible to entry owner, only if not yet delivered/approved --}}
-                    @if(!$entry->delivery_status && !$entry->approved)
-                    <button type="button" title="Mark as Delivered"
-                        class="btn-deliver"
-                        data-id="{{ $entry->id }}"
-                        data-url="{{ route('fbads.incentives.deliver', $entry->id) }}"
-                        style="background:#dcfce7;border:1px solid #86efac;color:#15803d;border-radius:7px;padding:6px 9px;font-size:11px;cursor:pointer;display:flex;align-items:center;">
-                        <i class="fas fa-truck"></i>
-                    </button>
-                    @endif
+            {{-- ===== Panel: Approved ===== --}}
+            <div id="panel-approved" style="display:none;">
+                @forelse($approvedEntries as $entry)
+                @php $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
+                $dupKey = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
+                $isDup  = in_array($dupKey, $dupKeys); @endphp
+                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup'))
+                @empty
+                <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
+                    <i class="fas fa-check-double" style="font-size:36px;display:block;margin-bottom:12px;color:#c4b5fd;"></i>
+                    <div style="font-size:14px;font-weight:600;color:#cbd5e1;">No approved entries</div>
+                </div>
+                @endforelse
+            </div>
 
-                    {{-- Master-only: edit & delete --}}
-                    @if(auth()->user()->isMaster())
-                    <a href="{{ route('fbads.incentives.edit', $entry->id) }}"
-                        style="background:#fef9c3;border:1px solid #fde047;color:#92400e;border-radius:7px;padding:6px 9px;font-size:11px;text-decoration:none;display:flex;align-items:center;">
-                        <i class="fas fa-pen"></i>
-                    </a>
-                    
-                    @endif
+            {{-- ===== Panel: Paid ===== --}}
+            <div id="panel-paid" style="display:none;">
+                @forelse($paidEntries as $entry)
+                @php $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
+                $dupKey = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
+                $isDup  = in_array($dupKey, $dupKeys); @endphp
+                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup'))
+                @empty
+                <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
+                    <i class="fas fa-money-bill-wave" style="font-size:36px;display:block;margin-bottom:12px;color:#99f6e4;"></i>
+                    <div style="font-size:14px;font-weight:600;color:#cbd5e1;">No paid entries yet</div>
+                </div>
+                @endforelse
+            </div>
 
-                    <form method="POST" action="{{ route('fbads.incentives.destroy', $entry->id) }}" onsubmit="return confirm('Delete this entry?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" style="background:#fee2e2;border:1px solid #fca5a5;color:#b91c1c;border-radius:7px;padding:6px 9px;font-size:11px;cursor:pointer;display:flex;align-items:center;">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </form>
-
+            {{-- ===== Panel: Returned (future) ===== --}}
+            <div id="panel-returned" style="display:none;">
+                <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px dashed #e2e8f0;">
+                    <i class="fas fa-undo" style="font-size:36px;display:block;margin-bottom:12px;color:#e2e8f0;"></i>
+                    <div style="font-size:14px;font-weight:600;color:#cbd5e1;">Coming soon</div>
+                    <div style="font-size:12px;color:#e2e8f0;margin-top:4px;">Returned entries will appear here.</div>
                 </div>
             </div>
-            @empty
-            <div style="text-align:center;padding:64px 24px;color:#94a3b8;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
-                <i class="fas fa-inbox" style="font-size:36px;display:block;margin-bottom:12px;color:#e2e8f0;"></i>
-                <div style="font-size:15px;font-weight:600;color:#cbd5e1;">No entries yet</div>
-                <div style="font-size:13px;margin-top:6px;">
-                    <a href="{{ route('fbads.incentives.create') }}" style="color:#6366f1;text-decoration:none;font-weight:600;">Create the first one</a>
-                </div>
-            </div>
-            @endforelse
-
 
         </div>
-
     </div>
 </div>
 
@@ -289,50 +297,61 @@ foreach ($analytics as $type => $count) {
 </div>
 
 <script>
+var tabColors = {
+    'new':       { color: '#6366f1', light: '#ede9fe' },
+    'delivered': { color: '#15803d', light: '#dcfce7' },
+    'approved':  { color: '#7c3aed', light: '#ede9fe' },
+    'paid':      { color: '#0d9488', light: '#f0fdfa' },
+    'returned':  { color: '#94a3b8', light: '#f1f5f9' },
+};
+
+function switchTab(tab) {
+    var all = ['new','delivered','approved','paid','returned'];
+    all.forEach(function(t) {
+        document.getElementById('panel-' + t).style.display = t === tab ? 'block' : 'none';
+        var btn = document.getElementById('tab-' + t);
+        var badge = document.getElementById('badge-' + t);
+        if (t === tab) {
+            btn.style.background = tabColors[t].light;
+            btn.querySelector('div').style.color = tabColors[t].color;
+            badge.style.color = tabColors[t].color;
+        } else {
+            btn.style.background = '#fff';
+            btn.querySelector('div').style.color = '#94a3b8';
+            badge.style.color = '#cbd5e1';
+        }
+    });
+}
+
 function mbShowToast(msg) {
     var t = document.getElementById('mb-toast');
     document.getElementById('mb-toast-msg').textContent = msg;
     t.style.display = 'flex';
-    setTimeout(function() {
-        t.style.display = 'none';
-    }, 3000);
+    setTimeout(function() { t.style.display = 'none'; }, 3000);
 }
 
 document.addEventListener('click', function(e) {
     var btn = e.target.closest('.btn-deliver');
     if (!btn) return;
-
     btn.disabled = true;
     btn.style.opacity = '0.6';
-
     var url  = btn.dataset.url;
-    var csrf = document.querySelector('meta[name="csrf-token"]') 
-               ? document.querySelector('meta[name="csrf-token"]').content 
+    var csrf = document.querySelector('meta[name="csrf-token"]')
+               ? document.querySelector('meta[name="csrf-token"]').content
                : '{{ csrf_token() }}';
-
     fetch(url, {
         method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': csrf,
-            'X-Requested-With': 'XMLHttpRequest',
-            'Accept': 'application/json'
-        }
+        headers: { 'X-CSRF-TOKEN': csrf, 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' }
     })
     .then(function(r) { return r.json(); })
     .then(function(data) {
         if (data.success) {
-            // Swap button for delivered badge
-            var badge = document.createElement('span');
-            badge.style.cssText = 'background:#dcfce7;border:1px solid #86efac;color:#15803d;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;';
-            badge.innerHTML = '<i class="fas fa-truck" style="font-size:10px;margin-right:3px;"></i>Delivered';
-            btn.parentNode.replaceChild(badge, btn);
+            var row = btn.closest('[data-entry-row]');
+            if (row) row.remove();
             mbShowToast('Marked as delivered.');
         }
     })
-    .catch(function() {
-        btn.disabled = false;
-        btn.style.opacity = '1';
-    });
+    .catch(function() { btn.disabled = false; btn.style.opacity = '1'; });
 });
 </script>
 
