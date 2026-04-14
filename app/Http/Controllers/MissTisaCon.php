@@ -38,7 +38,7 @@ class MissTisaCon extends Controller
 
     public function b1t1(){
         $session_id = uuid();
-        $website = 'MissTisa';
+        $website = 'b1t1';
 
         $provinces = Province::orderBy('province', 'asc')->pluck('province');
         $seo = [
@@ -53,7 +53,7 @@ class MissTisaCon extends Controller
     
     public function promo_12_12(){
         $session_id = uuid();
-        $website = 'MissTisa';
+        $website = 'promo_12_12';
 
         $provinces = Province::orderBy('province', 'asc')->pluck('province');
         $seo = [
@@ -84,7 +84,7 @@ class MissTisaCon extends Controller
 
     public function melasma(){
         $session_id = uuid();
-        $website = 'MissTisa';
+        $website = 'MissTisa Melasma';
 
         $provinces = [];
         $fbads_products = FbAdsProduct::orderBy('order', 'asc')->get();
@@ -153,7 +153,7 @@ class MissTisaCon extends Controller
 
     public function misstisa_promo(){
         $session_id = uuid();
-        $website = 'MissTisa';
+        $website = 'MissTisa Promo';
 
         $provinces = Province::orderBy('province', 'asc')->pluck('province');
         $seo = [
