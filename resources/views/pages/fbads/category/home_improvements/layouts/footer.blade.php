@@ -424,7 +424,6 @@
                         console.log("Blocked: Order limit reached");
 
                         alert("Order limit reached. Our team will contact you shortly.");
-
                         // ❌ DO NOT fire pixel
                     } else {
                         // fire FB PIXEL
@@ -439,7 +438,8 @@
                     $('#full_name').val('');
                     $('#phone_number').val('');
                     $('#address').val('');
-
+                    location.reload();
+                    console.log("Form cleared and page reloaded");
                 })
             })
 

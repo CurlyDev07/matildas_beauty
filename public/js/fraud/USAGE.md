@@ -27,54 +27,56 @@ In your Blade or HTML page:
 
 ## 2) Create an instance
 
-```html
+    ```html
+
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const fraud = window.FraudShield.create({
-        website: 'matildasbeauty.com',
-        sessionId: 'sess_server_abc123',
+    document.addEventListener('DOMContentLoaded', function () {
+        const fraud = window.FraudShield.create({
+            website: 'matildasbeauty.com',
+            sessionId: 'sess_server_abc123',
 
-        endpoints: {
-            checkBlock: '/order-signal/check-block-user',
-            attemptCount: '/order-signal/attempt-count',
-            collectSignal: '/order-signal'
-        },
+            endpoints: {
+                checkBlock: '/order-signal/check-block-user',
+                attemptCount: '/order-signal/attempt-count',
+                collectSignal: '/order-signal'
+            },
 
-        selectors: {
-            fullName: '#full_name',
-            phoneNumber: '#phone_number'
-        },
+            selectors: {
+                fullName: '#full_name',
+                phoneNumber: '#phone_number'
+            },
 
-        popup: {
-            enabled: true,
-            title: 'Unusual Activity Detected',
-            message: 'We detected an unsual activity. If you still want to order, click the button below.',
-            buttonText: 'Order in Messenger',
-            buttonLink: 'https://m.me/262215796983675'
-        },
+            popup: {
+                enabled: true,
+                title: 'Unusual Activity Detected',
+                message: 'We detected an unsual activity. If you still want to order, click the button below.',
+                buttonText: 'Order in Messenger',
+                buttonLink: 'https://m.me/262215796983675'
+            },
 
-        lockRules: {
-            maxSamePromoPerDay: 1,
-            maxTotalPerDay: 3,
-            lockDays: 3
-        },
+            lockRules: {
+                maxSamePromoPerDay: 1,
+                maxTotalPerDay: 3,
+                lockDays: 3
+            },
 
-        debug: true,
-        autoShowPopupOnBlocked: true,
-        autoRegisterAttemptOnBlocked: true
+            debug: true,
+            autoShowPopupOnBlocked: true,
+            autoRegisterAttemptOnBlocked: true
+        });
+
+        fraud.init().then(function (state) {
+            console.log('Fraud state:', state);
+            // state = {
+            //   fingerprintjs_visitor_id,
+            //   blocked,
+            //   attempt_count,
+            //   last_attempt_at
+            // }
+        });
     });
-
-    fraud.init().then(function (state) {
-        console.log('Fraud state:', state);
-        // state = {
-        //   fingerprintjs_visitor_id,
-        //   blocked,
-        //   attempt_count,
-        //   last_attempt_at
-        // }
-    });
-});
 </script>
+
 ```
 
 ---

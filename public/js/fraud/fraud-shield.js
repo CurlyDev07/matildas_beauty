@@ -49,7 +49,7 @@
             },
             lockRules: {
                 maxSamePromoPerDay: 1,
-                maxTotalPerDay: 3,
+                maxTotalPerDay: 1,
                 lockDays: 3
             },
             debug: false,

@@ -782,6 +782,7 @@ $products_json = json_encode($products);
     </style>
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"  crossorigin="anonymous"></script>
+    <script src="{{ asset('js/fraud/fraud-shield.js') }}"></script>
     {{-- <script src="{{ asset('js/materialize.min.js') }}"  crossorigin="anonymous"></script> --}}
 
     @if (!request()->test)
@@ -1527,6 +1528,17 @@ $products_json = json_encode($products);
 
         // SUBMIT ORDER
         function submitOrder() {
+            // Block if fraud detected
+            if (window.fraud && !window.fraud.guardSubmitIfBlocked(null)) {
+                return;
+            }
+
+            // Local anti-spam check
+            if (window.fraud && !window.fraud.validateAndRecordOrder('MissTisa_ChristmasPromo')) {
+                alert('Order limit reached. Our team will contact you shortly.');
+                return;
+            }
+
             // Show loading before fetch
             showLoading();
 
@@ -1662,7 +1674,7 @@ $products_json = json_encode($products);
                 if (data.success) {
                     showSuccessModal(data);
                     console.log(data.total)
-                    
+
 
                     $.post("/event-listener",{
                         order_success: 1,
@@ -1672,6 +1684,11 @@ $products_json = json_encode($products);
                         session_id: '{{ $session_id }}',
                     });//  EVENT LISTENER Track SUBMIT ORDER
 
+                    window.fraud && window.fraud.sendOrderSignal({
+                        promo: 'MissTisa_ChristmasPromo',
+                        website: '{{ $website }}',
+                        session_id: '{{ $session_id }}',
+                    });
 
                 }// Show the beautiful success modal
 
@@ -1695,6 +1712,13 @@ $products_json = json_encode($products);
         // Initialize with first product selected
         document.addEventListener('DOMContentLoaded', function() {
             updateTotal();
+
+            window.fraud = window.FraudShield.create({
+                website: '{{ $website }}',
+                sessionId: '{{ $session_id }}',
+                debug: false
+            });
+            window.fraud.init();
         });
     </script>
 
