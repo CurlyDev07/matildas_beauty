@@ -9,6 +9,86 @@
     </script>
 
     <style>
+        /* Validation Popup */
+        .validation-popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            padding: 16px;
+            animation: validationFadeIn 0.2s ease;
+        }
+        .validation-popup-overlay.show {
+            display: flex;
+        }
+        .validation-popup-card {
+            width: 100%;
+            max-width: 360px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            padding: 28px 24px 20px;
+            text-align: center;
+            animation: validationSlideUp 0.25s ease;
+        }
+        .validation-popup-icon {
+            width: 56px;
+            height: 56px;
+            background: #fee2e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 26px;
+        }
+        .validation-popup-title {
+            margin: 0 0 8px;
+            color: #991b1b;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .validation-popup-text {
+            margin: 0 0 20px;
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .validation-popup-btn {
+            display: inline-block;
+            background: #e91e63;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 28px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        @keyframes validationFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes validationSlideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+
+    <!-- Validation Popup -->
+    <div id="validation-popup-overlay" class="validation-popup-overlay">
+        <div class="validation-popup-card">
+            <div class="validation-popup-icon">⚠️</div>
+            <h3 class="validation-popup-title">Invalid Mobile Number</h3>
+            <p class="validation-popup-text" id="validation-popup-message">Please enter a valid Philippine mobile number.</p>
+            <button class="validation-popup-btn" onclick="closeValidationPopup()">Try Again</button>
+        </div>
+    </div>
+
+    <style>
         .blocked-popup-overlay {
             position: fixed;
             inset: 0;
@@ -346,9 +426,9 @@
             // SUBMIT FORM ORDER
             $("form").on("submit", function (e) {
                 e.preventDefault();
-                // if (!isValid()) {
-                //     return;
-                // }
+                if (!isValid()) {
+                    return;
+                }
 
                 $('.loader').removeClass('thidden');// SHOW LOADER
 
@@ -515,35 +595,55 @@
             }
         });// hide show ORDER BUTTON on Scroll
 
-        function isValid() {   
-            let full_name = $('#full_name').val();
-            let phone_number = $('#phone_number').val();
-            let address = $('#address').val();
+        function isValidPHNumber(number) {
+            let cleaned = String(number).replace(/[\s\-\(\)]/g, '');
+            // +6309XXXXXXXXX → +639XXXXXXXXX
+            if (cleaned.startsWith('+6309')) cleaned = '+63' + cleaned.slice(4);
+            // +639XXXXXXXXX → 09XXXXXXXXX
+            if (cleaned.startsWith('+63')) cleaned = '0' + cleaned.slice(3);
+            return /^09\d{9}$/.test(cleaned);
+        }
 
-            let errors = 0
+        function showValidationPopup(message) {
+            document.getElementById('validation-popup-message').textContent = message;
+            document.getElementById('validation-popup-overlay').classList.add('show');
+        }
+
+        function closeValidationPopup() {
+            document.getElementById('validation-popup-overlay').classList.remove('show');
+        }
+
+        function isValid() {
+            let full_name = $('#full_name').val().trim();
+            let phone_number = $('#phone_number').val().trim();
+            let address = $('#address').val().trim();
 
             if (full_name == '') {
-                errors++
-            }else if (phone_number == '') {
-                errors++
-            }else if (phone_number.length != 11) {
-                $('#phone_number_validation').removeClass('thidden');
-                console.log(phone_number.length)
-                console.log('error phone number');
-                errors++
-            }else if (address == '') {
-                errors++
-            }
-            
-            if (errors != 0) {
-                $.post("/event-listener",{
-                    form_validation_error: 1,
-                    website: '{{ $website }}',
-                    session_id: '{{ $session_id }}',
-                });//  EVENT LISTENER Track SUBMIT ORDER SUCCESS
+                showValidationPopup('Please enter your full name.');
+                $.post("/event-listener", { form_validation_error: 1, website: '{{ $website }}', session_id: '{{ $session_id }}' });
                 return false;
             }
 
+            if (phone_number == '') {
+                showValidationPopup('Please enter your mobile number.');
+                $.post("/event-listener", { form_validation_error: 1, website: '{{ $website }}', session_id: '{{ $session_id }}' });
+                return false;
+            }
+
+            if (!isValidPHNumber(phone_number)) {
+                showValidationPopup('Please enter a valid Philippine mobile number.\n\nAccepted formats:\n09XX-XXX-XXXX\n+639XX-XXX-XXXX');
+                $('#phone_number_validation').removeClass('thidden');
+                $.post("/event-listener", { form_validation_error: 1, website: '{{ $website }}', session_id: '{{ $session_id }}' });
+                return false;
+            }
+
+            if (address == '') {
+                showValidationPopup('Please enter your complete address.');
+                $.post("/event-listener", { form_validation_error: 1, website: '{{ $website }}', session_id: '{{ $session_id }}' });
+                return false;
+            }
+
+            $('#phone_number_validation').addClass('thidden');
             return true;
         }// form validation
 
