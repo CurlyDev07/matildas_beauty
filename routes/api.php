@@ -23,3 +23,5 @@ Route::middleware('api.key')->group(function () {
 });
 
 Route::post('/bank-transactions', 'Api\BankTransactionController@store');
+
+Route::post('/customer-feedback', 'Api\CustomerFeedbackController@store');
