@@ -424,6 +424,9 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
                 <a href="/admin/fbads/jandt-reconcile" class="mb-sb-child {{ request()->is('admin/fbads/jandt-reconcile') ? 'mb-active' : '' }}">
                     <i class="fas fa-truck mb-sb-child-icon"></i> J&amp;T
                 </a>
+                <a href="/admin/fbads/customer-feedback" class="mb-sb-child {{ request()->is('admin/fbads/customer-feedback') ? 'mb-active' : '' }}">
+                    <i class="fas fa-comment-dots mb-sb-child-icon"></i> Customer Feedback
+                </a>
             </div>
         </div>
         @endif

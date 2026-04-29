@@ -269,6 +269,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     Route::prefix('fbads')->group(function () {
         Route::get('/', 'FbAdsCon@index')->name('fbads.index');
         Route::get('/dashboard', 'FbAdsCon@dashboard')->name('fbads.dashboard');
+        Route::get('/customer-feedback', 'CustomerFeedbackCon@index')->name('fbads.customer_feedback');
         Route::get('/order-signals', 'FbAdsCon@order_signals')->name('fbads.order_signals');
         Route::get('/order-signal-block-list', 'FbAdsCon@order_signal_block_list')->name('fbads.order_signal_block_list');
 
