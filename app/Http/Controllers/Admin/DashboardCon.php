@@ -14,7 +14,7 @@ class DashboardCon extends Controller
         $today = Carbon::today();
         $startDate = $today->copy();
         $endDate = $today->copy();
-        $quickRange = $request->query('quick_range', 'this_month');
+        $quickRange = $request->query('quick_range', 'today');
 
         switch ($quickRange) {
             case 'yesterday':
@@ -297,8 +297,13 @@ class DashboardCon extends Controller
         $trendRevenue = array_values(array_map(function ($m) { return $m['revenue']; }, $monthBuckets));
         $trendAdSpend = array_values(array_map(function ($m) { return $m['ad_spend']; }, $monthBuckets));
 
-        $ordersWeekCurrent = $this->buildFourBucketOrderCounts($rangeStart, $rangeEnd);
-        $ordersWeekPrevious = $this->buildFourBucketOrderCounts($previousRangeStart, $previousRangeEnd);
+        $thisMonthStart = Carbon::now()->startOfMonth()->startOfDay();
+        $thisMonthEnd = Carbon::now()->endOfMonth()->endOfDay();
+        $lastMonthStart = Carbon::now()->subMonthNoOverflow()->startOfMonth()->startOfDay();
+        $lastMonthEnd = Carbon::now()->subMonthNoOverflow()->endOfMonth()->endOfDay();
+
+        $ordersWeekCurrent = $this->buildFourBucketOrderCounts($thisMonthStart, $thisMonthEnd);
+        $ordersWeekPrevious = $this->buildFourBucketOrderCounts($lastMonthStart, $lastMonthEnd);
         $ordersWeekLabels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
 
         $currentRevenue = (float) $current->revenue;
