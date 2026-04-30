@@ -14,7 +14,7 @@ class DashboardCon extends Controller
         $today = Carbon::today();
         $startDate = $today->copy();
         $endDate = $today->copy();
-        $quickRange = $request->query('quick_range', 'today');
+        $quickRange = $request->query('quick_range', 'this_month');
 
         switch ($quickRange) {
             case 'yesterday':
@@ -255,7 +255,7 @@ class DashboardCon extends Controller
             ->whereBetween('date', [$startDate->toDateString(), $endDate->toDateString()])
             ->orderBy('date', 'desc')
             ->orderBy('time', 'desc')
-            ->limit(10)
+            ->limit(5)
             ->get();
 
         $monthBuckets = [];
