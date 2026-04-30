@@ -310,6 +310,8 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::post('/order/patch', 'FbAdsCon@patch')->name('fbads.order.patch');
         Route::get('/event-listener', 'FbAdsCon@event_listener')->name('fbads.event_listener');
         Route::get('/events', 'FbAdsCon@events')->name('fbads.events');
+        Route::get('/metrics', 'FbAdsMetricsCon@index')->name('fbads.metrics.index');
+        Route::post('/metrics/upload', 'FbAdsMetricsCon@store')->name('fbads.metrics.store');
         Route::post('/change-status', 'FbAdsCon@change_status');
 
         Route::get('/status-details', 'FbAdsCon@status_details')->name('fbads.status_details');

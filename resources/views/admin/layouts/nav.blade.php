@@ -418,6 +418,9 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
                 <a href="/admin/fbads/events" class="mb-sb-child {{ request()->is('admin/fbads/events') ? 'mb-active' : '' }}">
                     <i class="fas fa-globe mb-sb-child-icon"></i> Events
                 </a>
+                <a href="/admin/fbads/metrics" class="mb-sb-child {{ request()->is('admin/fbads/metrics') ? 'mb-active' : '' }}">
+                    <i class="fas fa-file-excel mb-sb-child-icon"></i> Ad Metrics
+                </a>
                 <a href="/admin/order-sources" class="mb-sb-child {{ request()->is('admin/order-sources') ? 'mb-active' : '' }}">
                     <i class="fas fa-code-branch mb-sb-child-icon"></i> Source
                 </a>

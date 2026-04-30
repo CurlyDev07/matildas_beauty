@@ -103,6 +103,112 @@
 .alert-badge { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 99px; margin-left: auto; }
 .alert-critical .alert-badge { background: #fee2e2; color: #b91c1c; }
 .alert-warning  .alert-badge { background: #fef9c3; color: #854d0e; }
+.filter-pill {
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    border-radius: 99px;
+    padding: 0 12px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    background: #fff;
+    cursor: pointer;
+}
+.filter-pill.active {
+    border-color: #7c3aed;
+    color: #7c3aed;
+    background: #f5f3ff;
+}
+#customRangeForm {
+    width: auto;
+}
+#customRangePicker {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+}
+.filter-icon-btn {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    background: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .15s ease;
+}
+.filter-icon-btn:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+.filter-icon-btn.active {
+    border-color: #7c3aed;
+    color: #7c3aed;
+    background: #f5f3ff;
+}
+.filter-icon-btn.clear {
+    border-color: #fecaca;
+    color: #b91c1c;
+    background: #fff5f5;
+}
+
+.flatpickr-calendar {
+    border: none !important;
+    border-radius: 14px !important;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.16) !important;
+    font-family: 'Poppins', 'Segoe UI', sans-serif !important;
+    overflow: hidden;
+}
+.flatpickr-months {
+    background: #fdf2f8;
+    border-bottom: 1px solid #fbcfe8;
+}
+.flatpickr-current-month {
+    padding-top: 10px;
+}
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
+    font-weight: 700;
+    color: #be185d;
+}
+.flatpickr-weekday {
+    color: #94a3b8 !important;
+    font-weight: 700 !important;
+    font-size: 11px !important;
+}
+.flatpickr-day {
+    border-radius: 9px !important;
+    font-weight: 600;
+    color: #334155;
+}
+.flatpickr-day:hover {
+    background: #fce7f3 !important;
+    border-color: #fce7f3 !important;
+    color: #be185d !important;
+}
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+    background: #ec4899 !important;
+    border-color: #ec4899 !important;
+    color: #fff !important;
+}
+.flatpickr-day.inRange {
+    background: #fce7f3 !important;
+    border-color: #fce7f3 !important;
+    box-shadow: none !important;
+    color: #be185d !important;
+}
 
 @media (max-width: 1200px) {
     .kpi-grid       { grid-template-columns: repeat(2, 1fr); }
@@ -116,69 +222,6 @@
 
 @section('content')
 @php
-$kpis = [
-    [
-        'label'  => 'Monthly Revenue',
-        'value'  => '₱485,200',
-        'change' => '+12.4%',
-        'up'     => true,
-        'sub'    => 'vs ₱431,500 last month',
-        'icon'   => 'fa-chart-line',
-        'color'  => '#7c3aed',
-        'bg'     => '#f5f3ff',
-    ],
-    [
-        'label'  => 'Total Orders',
-        'value'  => '1,247',
-        'change' => '+8.7%',
-        'up'     => true,
-        'sub'    => 'vs 1,147 last month',
-        'icon'   => 'fa-shopping-bag',
-        'color'  => '#0284c7',
-        'bg'     => '#f0f9ff',
-    ],
-    [
-        'label'  => 'Avg Order Value',
-        'value'  => '₱389',
-        'change' => '+3.4%',
-        'up'     => true,
-        'sub'    => 'vs ₱376 last month',
-        'icon'   => 'fa-tag',
-        'color'  => '#10b981',
-        'bg'     => '#f0fdf4',
-    ],
-    [
-        'label'  => 'FB Ad Spend',
-        'value'  => '₱38,500',
-        'change' => '+5.2%',
-        'up'     => false,
-        'sub'    => 'vs ₱36,600 last month',
-        'icon'   => 'fa-bullhorn',
-        'color'  => '#f59e0b',
-        'bg'     => '#fffbeb',
-    ],
-    [
-        'label'  => 'ROAS',
-        'value'  => '12.6×',
-        'change' => '-2.1%',
-        'up'     => false,
-        'sub'    => 'vs 12.9× last month',
-        'icon'   => 'fa-chart-bar',
-        'color'  => '#ef4444',
-        'bg'     => '#fff1f2',
-    ],
-    [
-        'label'  => 'Gross Margin',
-        'value'  => '68.4%',
-        'change' => '+1.2%',
-        'up'     => true,
-        'sub'    => 'vs 67.2% last month',
-        'icon'   => 'fa-percent',
-        'color'  => '#0d9488',
-        'bg'     => '#f0fdfa',
-    ],
-];
-
 $recentOrders = [
     ['id' => '#ORD-4821', 'customer' => 'Maria Santos',     'product' => 'V7 Serum × 2',          'total' => '₱1,650', 'status' => 'delivered',  'date' => 'Mar 5'],
     ['id' => '#ORD-4820', 'customer' => 'Ana Reyes',        'product' => 'Melasma Kit',             'total' => '₱2,100', 'status' => 'shipped',    'date' => 'Mar 5'],
@@ -214,16 +257,46 @@ $lowStock = [
             <i class="fas fa-chart-line" style="color:#7c3aed;margin-right:8px;font-size:18px;"></i>CEO Dashboard
         </h1>
         <p style="font-size:13px;color:#94a3b8;margin:5px 0 0;">
-            Overview for <strong style="color:#475569;">March 2026</strong> &mdash; figures compared to February 2026
+            Overview for <strong style="color:#475569;">{{ $dateSummary }}</strong>
         </p>
     </div>
-    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-        <span style="background:#f1f5f9;color:#64748b;padding:5px 14px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid #e2e8f0;">
-            <i class="fas fa-circle" style="color:#f59e0b;font-size:7px;vertical-align:middle;margin-right:4px;"></i>Demo Data
-        </span>
-        <span style="background:#7c3aed;color:#fff;padding:5px 14px;border-radius:99px;font-size:12px;font-weight:700;">
-            March 2026
-        </span>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;">
+        @php
+            $quickFilters = [
+                'yesterday' => 'Yesterday',
+                '7_days' => '7 Days',
+                '14_days' => '14 Days',
+                '30_days' => '30 Days',
+                'this_month' => 'This Month',
+                'last_month' => 'Last Month',
+            ];
+        @endphp
+        @foreach($quickFilters as $key => $label)
+            <a href="{{ url('/admin/dashboard') }}?quick_range={{ $key }}"
+               class="filter-pill {{ $quickRange === $key ? 'active' : '' }}">
+                {{ $label }}
+            </a>
+        @endforeach
+
+        <form id="customRangeForm" method="GET" action="{{ url('/admin/dashboard') }}" style="display:inline-flex;align-items:center;">
+            <input type="hidden" name="quick_range" value="custom">
+            <input type="hidden" name="start_date" id="startDateInput" value="{{ $filterStartDate }}">
+            <input type="hidden" name="end_date" id="endDateInput" value="{{ $filterEndDate }}">
+            <input
+                type="text"
+                id="customRangePicker"
+                class="{{ $quickRange === 'custom' ? 'active' : '' }}"
+                value=""
+                readonly
+            >
+            <button type="button" id="customRangeTrigger" class="filter-icon-btn {{ $quickRange === 'custom' ? 'active' : '' }}" title="Custom date range" aria-label="Custom date range">
+                <i class="fas fa-calendar-alt"></i>
+            </button>
+        </form>
+
+        <a href="{{ url('/admin/dashboard') }}?quick_range=today" class="filter-icon-btn clear" title="Remove filter" aria-label="Remove filter">
+            <i class="fas fa-times"></i>
+        </a>
     </div>
 </div>
 
@@ -238,7 +311,7 @@ $lowStock = [
         <div class="kpi-value">{{ $kpi['value'] }}</div>
         <div class="kpi-change {{ $kpi['up'] ? 'up' : 'down' }}">
             <i class="fas {{ $kpi['up'] ? 'fa-arrow-up' : 'fa-arrow-down' }}" style="font-size:10px;"></i>
-            {{ $kpi['change'] }} vs last month
+            {{ $kpi['change'] }} {{ $kpi['change_label'] }}
         </div>
         <div class="kpi-sub">{{ $kpi['sub'] }}</div>
     </div>
@@ -253,8 +326,8 @@ $lowStock = [
         </div>
         <div>
             <div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Chemicals Stock</div>
-            <div style="font-size:18px;font-weight:800;color:#0f172a;">₱125,400</div>
-            <div style="font-size:11px;color:#94a3b8;">42 active SKUs</div>
+            <div style="font-size:18px;font-weight:800;color:#0f172a;">{{ currency() }}{{ number_format($chemicalsStockTotal, 2) }}</div>
+            <div style="font-size:11px;color:#94a3b8;">{{ number_format($chemicalsBelowOneWeight) }} chemicals below 1 weight</div>
         </div>
     </div>
     <div class="dash-card" style="padding:14px 18px;margin-bottom:0;display:flex;align-items:center;gap:14px;">
@@ -263,8 +336,8 @@ $lowStock = [
         </div>
         <div>
             <div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Packaging Stock</div>
-            <div style="font-size:18px;font-weight:800;color:#0f172a;">₱48,750</div>
-            <div style="font-size:11px;color:#94a3b8;">18 active SKUs</div>
+            <div style="font-size:18px;font-weight:800;color:#0f172a;">{{ currency() }}{{ number_format($packagingStockTotal, 2) }}</div>
+            <div style="font-size:11px;color:#94a3b8;">{{ number_format($packagingSkuCount) }} total SKUs</div>
         </div>
     </div>
     <div class="dash-card" style="padding:14px 18px;margin-bottom:0;display:flex;align-items:center;gap:14px;">
@@ -273,8 +346,8 @@ $lowStock = [
         </div>
         <div>
             <div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Total Customers</div>
-            <div style="font-size:18px;font-weight:800;color:#0f172a;">8,421</div>
-            <div style="font-size:11px;color:#16a34a;">+142 this month</div>
+            <div style="font-size:18px;font-weight:800;color:#0f172a;">{{ number_format($totalCustomers) }}</div>
+            <div style="font-size:11px;color:{{ $customersMonthDiff >= 0 ? '#16a34a' : '#dc2626' }};">{{ $customersMonthDiff >= 0 ? '+' : '' }}{{ number_format($customersMonthDiff) }} this month</div>
         </div>
     </div>
     <div class="dash-card" style="padding:14px 18px;margin-bottom:0;display:flex;align-items:center;gap:14px;">
@@ -283,8 +356,11 @@ $lowStock = [
         </div>
         <div>
             <div style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;">Repeat Rate</div>
-            <div style="font-size:18px;font-weight:800;color:#0f172a;">34.7%</div>
-            <div style="font-size:11px;color:#16a34a;">+2.1% vs last month</div>
+            <div style="font-size:18px;font-weight:800;color:#0f172a;">{{ number_format($repeatRate, 1) }}%</div>
+            <div style="font-size:11px;color:{{ $repeatRateDiff >= 0 ? '#16a34a' : '#dc2626' }};">
+                {{ $repeatRateDiff >= 0 ? '+' : '' }}{{ number_format($repeatRateDiff, 1) }}% {{ $quickRange === 'today' ? 'vs yesterday' : ($quickRange === 'yesterday' ? 'vs previous day' : 'vs previous period') }}
+            </div>
+            <div style="font-size:11px;color:#94a3b8;">{{ number_format($repeatCustomersCount) }} repeat customers</div>
         </div>
     </div>
 </div>
@@ -472,8 +548,46 @@ $lowStock = [
 @endsection
 
 @section('js')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
+function formatRangeLabel(start, end) {
+    return flatpickr.formatDate(start, 'M d') + ' to ' + flatpickr.formatDate(end, 'M d');
+}
+
+var customPicker = flatpickr('#customRangePicker', {
+    mode: 'range',
+    dateFormat: 'Y-m-d',
+    defaultDate: ['{{ $filterStartDate }}', '{{ $filterEndDate }}'],
+    disableMobile: true,
+    onReady: function(selectedDates, dateStr, instance) {
+        if (selectedDates.length === 2) {
+            instance.input.value = formatRangeLabel(selectedDates[0], selectedDates[1]);
+        }
+    },
+    onChange: function(selectedDates, dateStr, instance) {
+        if (selectedDates.length === 2) {
+            instance.input.value = formatRangeLabel(selectedDates[0], selectedDates[1]);
+        }
+    },
+    onClose: function(selectedDates) {
+        if (selectedDates.length === 2) {
+            document.getElementById('startDateInput').value = flatpickr.formatDate(selectedDates[0], 'Y-m-d');
+            document.getElementById('endDateInput').value = flatpickr.formatDate(selectedDates[1], 'Y-m-d');
+            document.getElementById('customRangeForm').submit();
+        }
+    }
+});
+
+document.getElementById('customRangeTrigger').addEventListener('click', function () {
+    customPicker.open();
+});
+
+if (customPicker.selectedDates.length === 2) {
+    customPicker.input.value = formatRangeLabel(customPicker.selectedDates[0], customPicker.selectedDates[1]);
+}
+
 Chart.defaults.font.family = "'Helvetica Neue', 'Inter', Arial, sans-serif";
 Chart.defaults.plugins.legend.display = false;
 
