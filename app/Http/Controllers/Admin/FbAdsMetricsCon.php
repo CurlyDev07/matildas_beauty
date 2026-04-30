@@ -84,6 +84,7 @@ class FbAdsMetricsCon extends Controller
     {
         $request->validate([
             'excel_file' => 'required|file|mimes:xlsx,xls',
+            'exported_date' => 'required|date',
         ]);
 
         $file = $request->file('excel_file');
@@ -102,6 +103,7 @@ class FbAdsMetricsCon extends Controller
             'original_file_name' => $file->getClientOriginalName(),
             'stored_file_name' => $storedFileName,
             'file_path' => $storedPath,
+            'exported_date' => $request->exported_date,
             'uploaded_by' => optional(auth()->user())->id,
             'rows_imported' => 0,
         ]);
@@ -161,6 +163,23 @@ class FbAdsMetricsCon extends Controller
         }
 
         return redirect()->route('fbads.metrics.index')->with('success', 'File uploaded and imported successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $upload = FbAdsMetricUpload::findOrFail($id);
+
+        DB::beginTransaction();
+        try {
+            FbAdsMetric::where('upload_id', $upload->id)->delete();
+            $upload->delete();
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Delete failed: ' . $e->getMessage());
+        }
+
+        return redirect()->route('fbads.metrics.index')->with('success', 'Upload entry deleted.');
     }
 
     private function rowIsEmpty(array $row)
