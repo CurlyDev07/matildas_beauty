@@ -37,6 +37,11 @@
     grid-template-columns: 2fr 1fr;
     gap: 14px;
 }
+.chart-grid-3-eq {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+}
 
 /* KPI card */
 .kpi-card {
@@ -103,6 +108,69 @@
 .alert-badge { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 99px; margin-left: auto; }
 .alert-critical .alert-badge { background: #fee2e2; color: #b91c1c; }
 .alert-warning  .alert-badge { background: #fef9c3; color: #854d0e; }
+.leaderboard-list { display: grid; gap: 8px; }
+.leaderboard-row {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #edf2f7;
+    border-radius: 10px;
+    background: #fff;
+}
+.leaderboard-rank {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: #334155;
+    background: #f1f5f9;
+}
+.leaderboard-row.rank-1 .leaderboard-rank { background: #fef3c7; color: #92400e; }
+.leaderboard-row.rank-2 .leaderboard-rank { background: #e2e8f0; color: #334155; }
+.leaderboard-row.rank-3 .leaderboard-rank { background: #ffedd5; color: #9a3412; }
+.leaderboard-row.rank-1 .leaderboard-fill { background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%); }
+.leaderboard-row.rank-2 .leaderboard-fill { background: linear-gradient(90deg, #94a3b8 0%, #64748b 100%); }
+.leaderboard-row.rank-3 .leaderboard-fill { background: linear-gradient(90deg, #fb923c 0%, #ea580c 100%); }
+.leaderboard-row.rank-4 .leaderboard-fill { background: linear-gradient(90deg, #60a5fa 0%, #2563eb 100%); }
+.leaderboard-row.rank-5 .leaderboard-fill { background: linear-gradient(90deg, #34d399 0%, #059669 100%); }
+.leaderboard-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+.leaderboard-bar {
+    height: 6px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    overflow: hidden;
+}
+.leaderboard-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #60a5fa 0%, #2563eb 100%);
+}
+.leaderboard-title-line {
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+.leaderboard-crown {
+    font-size:12px;
+}
+.leaderboard-count {
+    font-size: 13px;
+    font-weight: 800;
+    color: #1d4ed8;
+    min-width: 44px;
+    text-align: right;
+}
 .filter-pill {
     height: 32px;
     display: inline-flex;
@@ -215,7 +283,8 @@
     .sec-grid-4     { grid-template-columns: repeat(2, 1fr); }
     .chart-grid-2-1,
     .chart-grid-2-1b,
-    .chart-grid-3   { grid-template-columns: 1fr; }
+    .chart-grid-3,
+    .chart-grid-3-eq   { grid-template-columns: 1fr; }
 }
 </style>
 @endsection
@@ -390,101 +459,145 @@ $lowStock = [
     <div class="dash-card" style="margin-bottom:0;">
         <div class="dash-title">
             <i class="fas fa-chart-pie" style="color:#7c3aed;"></i>
-            Revenue Sources
+            Order Source Monitoring
+            <small>— {{ number_format($sourceTotalOrders) }} orders</small>
         </div>
         <canvas id="sourcesChart" height="185"></canvas>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;">
-            <span style="font-size:11px;background:#f5f3ff;color:#7c3aed;padding:3px 9px;border-radius:99px;font-weight:700;">FB Ads 58%</span>
-            <span style="font-size:11px;background:#f0f9ff;color:#0284c7;padding:3px 9px;border-radius:99px;font-weight:700;">Organic 22%</span>
-            <span style="font-size:11px;background:#f0fdf4;color:#16a34a;padding:3px 9px;border-radius:99px;font-weight:700;">Resellers 12%</span>
-            <span style="font-size:11px;background:#fffbeb;color:#d97706;padding:3px 9px;border-radius:99px;font-weight:700;">Other 8%</span>
-        </div>
     </div>
     <div class="dash-card" style="margin-bottom:0;">
         <div class="dash-title">
-            <i class="fas fa-coins" style="color:#f59e0b;"></i>
-            Expense Breakdown
+            <i class="fas fa-university" style="color:#f59e0b;"></i>
+            Bank Transactions
+            <small>— sender to receiver</small>
         </div>
-        <canvas id="expenseChart" height="185"></canvas>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;">
-            <span style="font-size:11px;background:#fffbeb;color:#d97706;padding:3px 9px;border-radius:99px;font-weight:700;">Ads 45%</span>
-            <span style="font-size:11px;background:#f0fdf4;color:#16a34a;padding:3px 9px;border-radius:99px;font-weight:700;">Materials 21%</span>
-            <span style="font-size:11px;background:#f0f9ff;color:#0284c7;padding:3px 9px;border-radius:99px;font-weight:700;">Packaging 14%</span>
-            <span style="font-size:11px;background:#fdf2f8;color:#db2777;padding:3px 9px;border-radius:99px;font-weight:700;">Shipping 11%</span>
-            <span style="font-size:11px;background:#f8fafc;color:#64748b;padding:3px 9px;border-radius:99px;font-weight:700;">Ops 9%</span>
-        </div>
+        <table class="dash-table">
+            <thead>
+                <tr>
+                    <th>Sender</th>
+                    <th>Receiver</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($bankTransactions as $tx)
+                <tr>
+                    <td style="font-weight:600;color:#0f172a;">{{ \Illuminate\Support\Str::limit($tx->sender_name ?: '—', 20) }}</td>
+                    <td style="color:#64748b;">{{ \Illuminate\Support\Str::limit($tx->receiver_name ?: '—', 20) }}</td>
+                    <td style="font-weight:700;color:#16a34a;">{{ currency() }}{{ number_format($tx->amount, 2) }}</td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="3" style="text-align:center;color:#94a3b8;">No bank transactions for selected range.</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
     <div class="dash-card" style="margin-bottom:0;">
         <div class="dash-title">
             <i class="fas fa-star" style="color:#f59e0b;"></i>
-            Top 5 Products by Revenue
+            Top 10 Promos by Revenue
         </div>
         <canvas id="topProductsChart" height="215"></canvas>
     </div>
 </div>
 
 {{-- ══ ROW 3: Recent Orders + Low Stock ════════════════════ --}}
-<div class="chart-grid-2-1b" style="margin-bottom:16px;">
+<div class="chart-grid-3-eq" style="margin-bottom:16px;">
 
-    {{-- Recent Orders --}}
+    {{-- Top Callers --}}
     <div class="dash-card" style="margin-bottom:0;">
         <div class="dash-title">
-            <i class="fas fa-shopping-bag" style="color:#0284c7;"></i>
-            Recent Orders
-            <small>— latest 8 transactions</small>
+            <i class="fas fa-headset" style="color:#0284c7;"></i>
+            Top Callers
+            <small>— leaderboard</small>
+        </div>
+        @php $topCallerMax = max(1, (int) ($topCallers->max('total_rows') ?: 1)); @endphp
+        <div class="leaderboard-list">
+            @forelse($topCallers as $idx => $caller)
+                @php
+                    $rank = $idx + 1;
+                    $percent = ((int) $caller->total_rows / $topCallerMax) * 100;
+                @endphp
+                <div class="leaderboard-row rank-{{ $rank }}">
+                    <span class="leaderboard-rank">#{{ $rank }}</span>
+                    <div>
+                        <div class="leaderboard-name leaderboard-title-line">
+                            @if($rank === 1)
+                                <i class="fas fa-trophy leaderboard-crown" style="color:#d97706;"></i>
+                            @elseif($rank === 2)
+                                <i class="fas fa-medal leaderboard-crown" style="color:#64748b;"></i>
+                            @elseif($rank === 3)
+                                <i class="fas fa-award leaderboard-crown" style="color:#ea580c;"></i>
+                            @endif
+                            <span>{{ $caller->caller_name }}</span>
+                        </div>
+                        <div class="leaderboard-bar">
+                            <div class="leaderboard-fill" style="width: {{ number_format($percent, 2) }}%;"></div>
+                        </div>
+                    </div>
+                    <span class="leaderboard-count">{{ number_format($caller->total_rows) }}</span>
+                </div>
+            @empty
+                <div style="text-align:center;color:#94a3b8;font-size:12px;padding:10px;">No caller data found.</div>
+            @endforelse
+        </div>
+    </div>
+
+    {{-- Recent Production --}}
+    <div class="dash-card" style="margin-bottom:0;">
+        <div class="dash-title">
+            <i class="fas fa-industry" style="color:#0284c7;"></i>
+            Production
+            <small>— recent 10</small>
         </div>
         <table class="dash-table">
             <thead>
                 <tr>
-                    <th>Order</th>
-                    <th>Customer</th>
-                    <th>Product</th>
-                    <th>Total</th>
-                    <th>Status</th>
                     <th>Date</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Cost</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($recentOrders as $o)
+                @forelse($recentProductions as $production)
                 <tr>
-                    <td style="font-weight:700;color:#7c3aed;font-size:12px;">{{ $o['id'] }}</td>
-                    <td style="font-weight:600;">{{ $o['customer'] }}</td>
-                    <td style="color:#64748b;font-size:12px;">{{ $o['product'] }}</td>
-                    <td style="font-weight:700;">{{ $o['total'] }}</td>
-                    <td><span class="badge badge-{{ $o['status'] }}">{{ ucfirst($o['status']) }}</span></td>
-                    <td style="color:#94a3b8;font-size:12px;">{{ $o['date'] }}</td>
+                    <td style="color:#94a3b8;font-size:12px;">{{ date_f($production->date, 'M d') }}</td>
+                    <td style="font-weight:600;color:#0f172a;">{{ $production->product_name }}</td>
+                    <td style="color:#64748b;">{{ number_format($production->total_quantity, 2) }}</td>
+                    <td style="font-weight:700;color:#16a34a;">{{ currency() }}{{ number_format($production->total, 0) }}</td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="4" style="text-align:center;color:#94a3b8;">No production records found.</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 
-    {{-- Low Stock Alerts --}}
+    {{-- Lowest Packaging Stock --}}
     <div class="dash-card" style="margin-bottom:0;">
-        @php $criticalCount = count(array_filter($lowStock, function($i){ return $i['level'] === 'critical'; })); @endphp
         <div class="dash-title">
             <i class="fas fa-exclamation-triangle" style="color:#f59e0b;"></i>
-            Low Stock Alerts
-            @if($criticalCount > 0)
-                <span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:800;padding:2px 9px;border-radius:99px;margin-left:2px;">{{ $criticalCount }} critical</span>
-            @endif
+            Top 10 Lowest Packaging Stock
         </div>
-        @foreach($lowStock as $alert)
-        <div class="alert-item alert-{{ $alert['level'] }}">
-            <div style="width:32px;height:32px;background:{{ $alert['type'] === 'chemical' ? '#f5f3ff' : '#f0f9ff' }};border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <i class="fas {{ $alert['type'] === 'chemical' ? 'fa-flask' : 'fa-box' }}" style="font-size:13px;color:{{ $alert['type'] === 'chemical' ? '#7c3aed' : '#0284c7' }};"></i>
+        @forelse($lowestPackagingStocks as $stock)
+        <div class="alert-item alert-warning">
+            <div style="width:32px;height:32px;background:#f0f9ff;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <i class="fas fa-box" style="font-size:13px;color:#0284c7;"></i>
             </div>
             <div style="flex:1;min-width:0;">
-                <div class="alert-name">{{ $alert['name'] }}</div>
-                <div class="alert-sub">{{ ucfirst($alert['type']) }} &middot; {{ $alert['qty'] }} remaining</div>
+                <div class="alert-name">{{ $stock->name }}</div>
+                <div class="alert-sub">Packaging</div>
             </div>
-            <span class="alert-badge">{{ ucfirst($alert['level']) }}</span>
+            <span class="alert-badge">{{ number_format($stock->quantity, 2) }} {{ $stock->unit ?: '' }}</span>
         </div>
-        @endforeach
+        @empty
+        <div style="font-size:12px;color:#94a3b8;">No packaging inventory data found.</div>
+        @endforelse
         <div style="display:flex;gap:12px;margin-top:14px;padding-top:12px;border-top:1px solid #f1f5f9;">
-            <a href="/admin/lab/inventory" style="font-size:12px;color:#7c3aed;font-weight:700;text-decoration:none;">
-                <i class="fas fa-flask" style="font-size:10px;"></i> Chemicals
-            </a>
             <a href="/admin/packaging/inventory" style="font-size:12px;color:#0284c7;font-weight:700;text-decoration:none;">
                 <i class="fas fa-box" style="font-size:10px;"></i> Packaging
             </a>
@@ -497,52 +610,58 @@ $lowStock = [
     <div class="dash-title">
         <i class="fab fa-facebook" style="color:#1877f2;font-size:15px;"></i>
         FB Ads Campaign Performance
-        <small>— March 2026</small>
+        <small>— {{ $dateSummary }}</small>
+        <form method="GET" action="{{ url('/admin/dashboard') }}" style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+            <input type="hidden" name="quick_range" value="{{ $quickRange }}">
+            <input type="hidden" name="start_date" value="{{ $filterStartDate }}">
+            <input type="hidden" name="end_date" value="{{ $filterEndDate }}">
+            <select name="campaign_sort" onchange="this.form.submit()" class="browser-default" style="height:30px;font-size:11px;border:1px solid #dbeafe;border-radius:8px;padding:0 8px;color:#1e3a8a;background:#eff6ff;font-weight:700;min-width:160px;">
+                <option value="roas_desc" {{ $campaignSort === 'roas_desc' ? 'selected' : '' }}>ROAS: High to Low</option>
+                <option value="roas_asc" {{ $campaignSort === 'roas_asc' ? 'selected' : '' }}>ROAS: Low to High</option>
+                <option value="spend_desc" {{ $campaignSort === 'spend_desc' ? 'selected' : '' }}>Ad Spend: High to Low</option>
+                <option value="spend_asc" {{ $campaignSort === 'spend_asc' ? 'selected' : '' }}>Ad Spend: Low to High</option>
+                <option value="purchases_desc" {{ $campaignSort === 'purchases_desc' ? 'selected' : '' }}>Purchases: High to Low</option>
+                <option value="purchases_asc" {{ $campaignSort === 'purchases_asc' ? 'selected' : '' }}>Purchases: Low to High</option>
+                <option value="aov_desc" {{ $campaignSort === 'aov_desc' ? 'selected' : '' }}>AOV: High to Low</option>
+                <option value="aov_asc" {{ $campaignSort === 'aov_asc' ? 'selected' : '' }}>AOV: Low to High</option>
+            </select>
         <span class="ml-auto" style="background:#1877f2;color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;">
-            Total Spend: ₱38,500
+            Total Spend: {{ currency() }}{{ number_format($campaignTotalSpend, 2) }}
         </span>
+        </form>
     </div>
     <table class="dash-table">
         <thead>
             <tr>
-                <th>Campaign</th>
-                <th>Status</th>
-                <th>Spend</th>
-                <th>Reach</th>
-                <th>Clicks</th>
-                <th>CTR</th>
-                <th>CPC</th>
-                <th>Revenue</th>
+                <th>Campaign Name</th>
+                <th>Purchases</th>
+                <th>Cost / Purchase</th>
                 <th>ROAS</th>
+                <th>Adspent</th>
+                <th>Amount Spent</th>
+                <th>Purchases Conversion Value</th>
+                <th>AOV</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($campaigns as $c)
-            <tr>
-                <td style="font-weight:600;color:#0f172a;">{{ $c['name'] }}</td>
-                <td><span class="badge badge-{{ $c['status'] }}">{{ ucfirst($c['status']) }}</span></td>
-                <td style="font-weight:700;">{{ $c['spend'] }}</td>
-                <td style="color:#64748b;">{{ $c['reach'] }}</td>
-                <td style="color:#64748b;">{{ $c['clicks'] }}</td>
-                <td>
-                    <span style="font-weight:700;color:{{ floatval($c['ctr']) >= 3 ? '#16a34a' : '#d97706' }};">
-                        {{ $c['ctr'] }}
-                    </span>
-                </td>
-                <td style="color:#64748b;">{{ $c['cpc'] }}</td>
-                <td style="font-weight:700;color:#16a34a;">{{ $c['revenue'] }}</td>
-                <td style="font-weight:800;color:#7c3aed;">{{ $c['roas'] }}</td>
-            </tr>
-            @endforeach
+            @forelse($campaignPerformance as $row)
+                <tr>
+                    <td style="font-weight:600;color:#0f172a;">{{ $row->campaign_name }}</td>
+                    <td style="color:#64748b;">{{ number_format($row->purchases) }}</td>
+                    <td style="color:#64748b;">{{ currency() }}{{ number_format($row->cost_per_purchase_php, 2) }}</td>
+                    <td style="font-weight:800;color:#7c3aed;">{{ number_format($row->purchase_roas_return_on_ad_spend, 2) }}x</td>
+                    <td style="font-weight:700;color:#0f172a;">{{ currency() }}{{ number_format($row->amount_spent_php, 2) }}</td>
+                    <td style="font-weight:700;color:#0f172a;">{{ currency() }}{{ number_format($row->amount_spent_php, 2) }}</td>
+                    <td style="font-weight:700;color:#16a34a;">{{ currency() }}{{ number_format($row->purchases_conversion_value, 2) }}</td>
+                    <td style="font-weight:700;color:#0284c7;">{{ currency() }}{{ number_format($row->aov, 2) }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="8" style="text-align:center;color:#94a3b8;">No campaign data for selected range.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
-    <div style="display:flex;flex-wrap:wrap;gap:20px;margin-top:14px;padding-top:12px;border-top:1px solid #f1f5f9;">
-        <div style="font-size:12px;color:#64748b;"><span style="font-weight:700;color:#0f172a;">Blended ROAS:</span> <span style="color:#7c3aed;font-weight:800;">12.6×</span></div>
-        <div style="font-size:12px;color:#64748b;"><span style="font-weight:700;color:#0f172a;">Total Revenue from Ads:</span> ₱485,200</div>
-        <div style="font-size:12px;color:#64748b;"><span style="font-weight:700;color:#0f172a;">Total Reach:</span> 249,400</div>
-        <div style="font-size:12px;color:#64748b;"><span style="font-weight:700;color:#0f172a;">Total Clicks:</span> 8,250</div>
-        <div style="font-size:12px;color:#64748b;"><span style="font-weight:700;color:#0f172a;">Avg CTR:</span> <span style="color:#16a34a;font-weight:700;">3.31%</span></div>
-    </div>
 </div>
 
 @endsection
@@ -594,6 +713,9 @@ Chart.defaults.plugins.legend.display = false;
 /* ── 1. Revenue & Ad Spend Line ──────────────────────────── */
 (function () {
     var ctx = document.getElementById('revenueChart').getContext('2d');
+    var trendLabels = @json($trendLabels);
+    var trendRevenue = @json($trendRevenue);
+    var trendAdSpend = @json($trendAdSpend);
 
     var gradRev = ctx.createLinearGradient(0, 0, 0, 220);
     gradRev.addColorStop(0, 'rgba(124,58,237,0.15)');
@@ -606,11 +728,11 @@ Chart.defaults.plugins.legend.display = false;
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Oct 2025', 'Nov 2025', 'Dec 2025', 'Jan 2026', 'Feb 2026', 'Mar 2026'],
+            labels: trendLabels,
             datasets: [
                 {
                     label: 'Revenue',
-                    data: [320000, 380000, 445000, 410000, 431500, 485200],
+                    data: trendRevenue,
                     borderColor: '#7c3aed',
                     backgroundColor: gradRev,
                     borderWidth: 2.5,
@@ -622,7 +744,7 @@ Chart.defaults.plugins.legend.display = false;
                 },
                 {
                     label: 'Ad Spend',
-                    data: [22000, 28000, 35000, 29000, 36600, 38500],
+                    data: trendAdSpend,
                     borderColor: '#f59e0b',
                     backgroundColor: gradAds,
                     borderWidth: 2.5,
@@ -675,21 +797,24 @@ Chart.defaults.plugins.legend.display = false;
 /* ── 2. Orders Comparison Bar ────────────────────────────── */
 (function () {
     var ctx = document.getElementById('ordersChart').getContext('2d');
+    var ordersWeekLabels = @json($ordersWeekLabels);
+    var ordersWeekCurrent = @json($ordersWeekCurrent);
+    var ordersWeekPrevious = @json($ordersWeekPrevious);
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+            labels: ordersWeekLabels,
             datasets: [
                 {
                     label: 'This Month',
-                    data: [280, 342, 318, 307],
+                    data: ordersWeekCurrent,
                     backgroundColor: '#7c3aed',
                     borderRadius: 6,
                     barPercentage: 0.55,
                 },
                 {
                     label: 'Last Month',
-                    data: [245, 298, 305, 299],
+                    data: ordersWeekPrevious,
                     backgroundColor: '#e2e8f0',
                     borderRadius: 6,
                     barPercentage: 0.55,
@@ -722,13 +847,16 @@ Chart.defaults.plugins.legend.display = false;
 /* ── 3. Revenue Sources Doughnut ─────────────────────────── */
 (function () {
     var ctx = document.getElementById('sourcesChart').getContext('2d');
+    var sourceLabels = @json($sourceLabels);
+    var sourceCounts = @json($sourceCounts);
+    var sourceColors = @json($sourceColors);
     new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['FB Ads', 'Organic', 'Resellers', 'Other'],
+            labels: sourceLabels,
             datasets: [{
-                data: [58, 22, 12, 8],
-                backgroundColor: ['#7c3aed', '#0284c7', '#16a34a', '#f59e0b'],
+                data: sourceCounts,
+                backgroundColor: sourceColors.length ? sourceColors : ['#7c3aed'],
                 borderWidth: 0,
                 hoverOffset: 6,
             }]
@@ -739,35 +867,13 @@ Chart.defaults.plugins.legend.display = false;
             plugins: {
                 tooltip: {
                     callbacks: {
-                        label: function (ctx) { return ' ' + ctx.label + ': ' + ctx.parsed + '%'; }
-                    }
-                }
-            }
-        }
-    });
-}());
-
-/* ── 4. Expense Breakdown Doughnut ───────────────────────── */
-(function () {
-    var ctx = document.getElementById('expenseChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['FB Ads', 'Raw Materials', 'Packaging', 'Shipping', 'Operations'],
-            datasets: [{
-                data: [38500, 18000, 12000, 9500, 8000],
-                backgroundColor: ['#f59e0b', '#10b981', '#0284c7', '#db2777', '#94a3b8'],
-                borderWidth: 0,
-                hoverOffset: 6,
-            }]
-        },
-        options: {
-            responsive: true,
-            cutout: '68%',
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function (ctx) { return ' ' + ctx.label + ': ₱' + ctx.parsed.toLocaleString(); }
+                        label: function (ctx) {
+                            var dataset = ctx.dataset && ctx.dataset.data ? ctx.dataset.data : [];
+                            var total = dataset.reduce(function (a, b) { return a + Number(b || 0); }, 0);
+                            var count = Number(ctx.parsed || 0);
+                            var pct = total > 0 ? ((count / total) * 100) : 0;
+                            return ' ' + ctx.label + ': ' + count.toLocaleString() + ' orders (' + pct.toFixed(1) + '%)';
+                        }
                     }
                 }
             }
@@ -778,13 +884,15 @@ Chart.defaults.plugins.legend.display = false;
 /* ── 5. Top Products Horizontal Bar ──────────────────────── */
 (function () {
     var ctx = document.getElementById('topProductsChart').getContext('2d');
+    var topPromoLabels = @json($topPromoLabels);
+    var topPromoTotals = @json($topPromoTotals);
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['V7 Serum', 'Melasma Kit', 'Bright. Toner', 'Night Cream', 'Eye Serum'],
+            labels: topPromoLabels,
             datasets: [{
-                data: [182500, 145200, 89400, 72100, 58300],
-                backgroundColor: ['#7c3aed', '#0284c7', '#10b981', '#f59e0b', '#db2777'],
+                data: topPromoTotals,
+                backgroundColor: ['#7c3aed', '#0284c7', '#10b981', '#f59e0b', '#db2777', '#0ea5e9', '#22c55e', '#f97316', '#8b5cf6', '#e11d48'],
                 borderRadius: 6,
                 barPercentage: 0.6,
             }]

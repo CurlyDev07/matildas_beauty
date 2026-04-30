@@ -144,6 +144,10 @@ class FbAdsMetricsCon extends Controller
                     $payload[$targetColumn] = $this->transformValue($targetColumn, $value);
                 }
 
+                if ($this->shouldSkipZeroCampaignRow($payload)) {
+                    continue;
+                }
+
                 $insertRows[] = $payload;
             }
 
@@ -251,5 +255,30 @@ class FbAdsMetricsCon extends Controller
             return null;
         }
         return $cleaned + 0;
+    }
+
+    private function shouldSkipZeroCampaignRow(array $payload)
+    {
+        $campaignName = trim((string) ($payload['campaign_name'] ?? ''));
+        if ($campaignName === '') {
+            return false;
+        }
+
+        $keys = [
+            'purchases',
+            'cost_per_purchase_php',
+            'purchase_roas_return_on_ad_spend',
+            'amount_spent_php',
+            'purchases_conversion_value',
+        ];
+
+        foreach ($keys as $key) {
+            $val = isset($payload[$key]) ? (float) $payload[$key] : 0.0;
+            if ($val != 0.0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
