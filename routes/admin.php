@@ -322,6 +322,10 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
         Route::get('/jandt-reconcile', 'ExcelController@jandt_reconcile')->name("jandt_reconcile");
         Route::post('/jandt-reconcile/process', 'ExcelController@jandt_reconcile_process')->name("jandt_reconcile_process");
+        Route::get('/jandt-payouts', 'ExcelController@jandt_payouts')->name('fbads.jandt_payouts');
+        Route::get('/jandt-payouts/{id}', 'ExcelController@jandt_payouts_show')->name('fbads.jandt_payouts_show');
+        Route::post('/jandt-payouts/upload', 'ExcelController@jandt_payouts_upload')->name('fbads.jandt_payouts_upload');
+        Route::delete('/jandt-payouts/{id}', 'ExcelController@jandt_payouts_destroy')->name('fbads.jandt_payouts_destroy');
 
     });
 

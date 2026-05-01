@@ -93,6 +93,23 @@ class DashboardCon extends Controller
             ->whereBetween('reporting_starts', [$previousStart->toDateString(), $previousEnd->toDateString()])
             ->avg('purchase_roas_return_on_ad_spend');
 
+        $lastMonthStart = Carbon::now()->subMonthNoOverflow()->startOfMonth()->toDateString();
+        $lastMonthEnd = Carbon::now()->subMonthNoOverflow()->endOfMonth()->toDateString();
+        $previousMonthStart = Carbon::now()->subMonthsNoOverflow(2)->startOfMonth()->toDateString();
+        $previousMonthEnd = Carbon::now()->subMonthsNoOverflow(2)->endOfMonth()->toDateString();
+        $lastMonthLabel = Carbon::now()->subMonthNoOverflow()->format('M');
+        $previousMonthLabel = Carbon::now()->subMonthsNoOverflow(2)->format('M');
+
+        $jandtLastMonthAmount = (float) DB::table('jandt_payouts')
+            ->join('jandt_payout_uploads', 'jandt_payout_uploads.id', '=', 'jandt_payouts.upload_id')
+            ->whereBetween('jandt_payout_uploads.payout_date', [$lastMonthStart, $lastMonthEnd])
+            ->sum('jandt_payouts.amount_after_deduction');
+
+        $jandtPreviousMonthAmount = (float) DB::table('jandt_payouts')
+            ->join('jandt_payout_uploads', 'jandt_payout_uploads.id', '=', 'jandt_payouts.upload_id')
+            ->whereBetween('jandt_payout_uploads.payout_date', [$previousMonthStart, $previousMonthEnd])
+            ->sum('jandt_payouts.amount_after_deduction');
+
         // Not filter-dependent: match /admin/lab/inventory computation
         $chemicalsStockTotal = (float) DB::table('ingredients')
             ->leftJoin('ingredient_stocks', 'ingredient_stocks.ingredient_id', '=', 'ingredients.id')
@@ -378,13 +395,13 @@ class DashboardCon extends Controller
                 'bg'     => '#fff1f2',
             ],
             [
-                'label'  => 'Gross Margin',
-                'value'  => '68.4%',
-                'change' => '+1.2%',
-                'up'     => true,
-                'sub'    => 'vs 67.2% last month',
-                'change_label' => 'vs last month',
-                'icon'   => 'fa-percent',
+                'label'  => 'J&T ' . $lastMonthLabel,
+                'value'  => 'P' . number_format($jandtLastMonthAmount, 0),
+                'change' => $this->formatChange($this->computePercentChange($jandtLastMonthAmount, $jandtPreviousMonthAmount)),
+                'up'     => $jandtLastMonthAmount >= $jandtPreviousMonthAmount,
+                'sub'    => 'vs P' . number_format($jandtPreviousMonthAmount, 0) . ' (' . $previousMonthLabel . ')',
+                'change_label' => $lastMonthLabel . ' vs ' . $previousMonthLabel,
+                'icon'   => 'fa-truck',
                 'color'  => '#0d9488',
                 'bg'     => '#f0fdfa',
             ],
