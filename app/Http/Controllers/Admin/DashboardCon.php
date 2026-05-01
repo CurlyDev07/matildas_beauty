@@ -395,7 +395,7 @@ class DashboardCon extends Controller
                 'bg'     => '#fff1f2',
             ],
             [
-                'label'  => 'J&T ' . $lastMonthLabel,
+                'label'  => 'J&T Payout (Month) ' . $lastMonthLabel,
                 'value'  => 'P' . number_format($jandtLastMonthAmount, 0),
                 'change' => $this->formatChange($this->computePercentChange($jandtLastMonthAmount, $jandtPreviousMonthAmount)),
                 'up'     => $jandtLastMonthAmount >= $jandtPreviousMonthAmount,
