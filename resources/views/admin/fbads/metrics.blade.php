@@ -96,6 +96,29 @@
     cursor: pointer;
 }
 .upload-btn:hover { background: #1d4ed8; }
+.flatpickr-calendar {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.14) !important;
+}
+.flatpickr-months {
+    background: #f8fafc !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+}
+.flatpickr-current-month,
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
+    color: #0f172a !important;
+    font-weight: 700 !important;
+}
+.flatpickr-prev-month svg,
+.flatpickr-next-month svg {
+    fill: #334155 !important;
+}
+.flatpickr-weekday {
+    color: #64748b !important;
+    font-weight: 700 !important;
+}
 @media (max-width: 1100px) {
     .metrics-grid { grid-template-columns: 1fr; }
 }
