@@ -45,6 +45,16 @@
     cursor: pointer;
 }
 .delete-btn:hover { background: #fecaca; }
+.save-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    cursor: pointer;
+}
+.save-btn:hover { background: #bfdbfe; }
 .upload-box {
     border: 1px dashed #cbd5e1;
     border-radius: 14px;
@@ -131,9 +141,14 @@
                         <div style="font-size:11px;color:#64748b;">
                             Uploaded: {{ date_f($upload->created_at, 'M d, Y h:i A') }}
                         </div>
-                        <div style="font-size:11px;color:#64748b;">
-                            Exported Date: {{ $upload->exported_date ? date_f($upload->exported_date, 'M d, Y') : '—' }}
-                        </div>
+                        <form action="{{ route('fbads.metrics.update_exported_date', $upload->id) }}" method="POST" style="display:flex;align-items:center;gap:6px;margin-top:5px;">
+                            @csrf
+                            @method('PATCH')
+                            <input type="date" name="exported_date" value="{{ $upload->exported_date ? date('Y-m-d', strtotime($upload->exported_date)) : date('Y-m-d') }}" required class="browser-default js-exported-date-inline" style="height:30px;padding:0 8px;border:1px solid #dbe7f3;border-radius:8px;font-size:11px;color:#334155;cursor:pointer;">
+                            <button type="submit" class="save-btn" title="Save exported date">
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </form>
                     </div>
                     <div style="font-size:11px;color:#64748b;font-weight:700;">
                         {{ number_format($upload->rows_imported) }} rows
@@ -199,14 +214,24 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     var dateInput = document.querySelector('.js-exported-date');
-    if (!dateInput) return;
+    if (dateInput) {
+        dateInput.addEventListener('click', function () {
+            if (typeof this.showPicker === 'function') {
+                this.showPicker();
+            } else {
+                this.focus();
+            }
+        });
+    }
 
-    dateInput.addEventListener('click', function () {
-        if (typeof this.showPicker === 'function') {
-            this.showPicker();
-        } else {
-            this.focus();
-        }
+    document.querySelectorAll('.js-exported-date-inline').forEach(function (input) {
+        input.addEventListener('click', function () {
+            if (typeof this.showPicker === 'function') {
+                this.showPicker();
+            } else {
+                this.focus();
+            }
+        });
     });
 });
 </script>

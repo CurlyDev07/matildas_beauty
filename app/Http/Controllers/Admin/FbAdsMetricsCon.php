@@ -186,6 +186,19 @@ class FbAdsMetricsCon extends Controller
         return redirect()->route('fbads.metrics.index')->with('success', 'Upload entry deleted.');
     }
 
+    public function updateExportedDate(Request $request, $id)
+    {
+        $request->validate([
+            'exported_date' => 'required|date',
+        ]);
+
+        $upload = FbAdsMetricUpload::findOrFail($id);
+        $upload->exported_date = $request->input('exported_date');
+        $upload->save();
+
+        return redirect()->route('fbads.metrics.index')->with('success', 'Exported date updated.');
+    }
+
     private function rowIsEmpty(array $row)
     {
         foreach ($row as $value) {
