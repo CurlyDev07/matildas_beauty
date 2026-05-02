@@ -108,56 +108,9 @@ class FbAdsMetricsCon extends Controller
             'rows_imported' => 0,
         ]);
 
-        $spreadsheet = IOFactory::load($tempPath);
-        $sheet = $spreadsheet->getSheet(0);
-        $rows = $sheet->toArray(null, true, true, false);
-
-        if (count($rows) < 2) {
-            return redirect()->back()->with('error', 'Uploaded file is empty.');
-        }
-
-        $headerRow = array_map('trim', $rows[0]);
-        $headerIndexMap = [];
-        foreach ($headerRow as $idx => $headerText) {
-            $headerIndexMap[$headerText] = $idx;
-        }
-
         DB::beginTransaction();
         try {
-            $insertRows = [];
-            foreach (array_slice($rows, 1) as $row) {
-                if ($this->rowIsEmpty($row)) {
-                    continue;
-                }
-
-                $payload = [
-                    'upload_id' => $upload->id,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
-
-                foreach (self::HEADER_MAP as $sourceHeader => $targetColumn) {
-                    $value = null;
-                    if (array_key_exists($sourceHeader, $headerIndexMap)) {
-                        $value = $row[$headerIndexMap[$sourceHeader]];
-                    }
-                    $payload[$targetColumn] = $this->transformValue($targetColumn, $value);
-                }
-
-                if ($this->shouldSkipZeroCampaignRow($payload)) {
-                    continue;
-                }
-
-                $insertRows[] = $payload;
-            }
-
-            if (!empty($insertRows)) {
-                foreach (array_chunk($insertRows, 500) as $chunk) {
-                    FbAdsMetric::insert($chunk);
-                }
-            }
-
-            $upload->rows_imported = count($insertRows);
+            $upload->rows_imported = $this->importRowsFromSpreadsheet($tempPath, $upload->id);
             $upload->save();
 
             DB::commit();
@@ -167,6 +120,48 @@ class FbAdsMetricsCon extends Controller
         }
 
         return redirect()->route('fbads.metrics.index')->with('success', 'File uploaded and imported successfully.');
+    }
+
+    public function reupload(Request $request, $id)
+    {
+        $request->validate([
+            'excel_file' => 'required|file|mimes:xlsx,xls',
+            'exported_date' => 'nullable|date',
+        ]);
+
+        $upload = FbAdsMetricUpload::findOrFail($id);
+        $file = $request->file('excel_file');
+        $tempPath = $file->getRealPath();
+        if (!$tempPath || !file_exists($tempPath)) {
+            return redirect()->back()->with('error', 'Uploaded temporary file is missing.');
+        }
+
+        $storedFileName = uniqid('fb_metrics_', true) . '.' . $file->getClientOriginalExtension();
+        $storedPath = $file->storeAs('fb_ads_metrics', $storedFileName, 'public');
+        if (!$storedPath) {
+            return redirect()->back()->with('error', 'Failed to store uploaded file.');
+        }
+
+        DB::beginTransaction();
+        try {
+            FbAdsMetric::where('upload_id', $upload->id)->delete();
+
+            $upload->original_file_name = $file->getClientOriginalName();
+            $upload->stored_file_name = $storedFileName;
+            $upload->file_path = $storedPath;
+            if ($request->filled('exported_date')) {
+                $upload->exported_date = $request->input('exported_date');
+            }
+            $upload->rows_imported = $this->importRowsFromSpreadsheet($tempPath, $upload->id);
+            $upload->save();
+
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Reupload failed: ' . $e->getMessage());
+        }
+
+        return redirect()->route('fbads.metrics.index')->with('success', 'Upload entry replaced and re-imported.');
     }
 
     public function destroy($id)
@@ -293,5 +288,57 @@ class FbAdsMetricsCon extends Controller
         }
 
         return true;
+    }
+
+    private function importRowsFromSpreadsheet($tempPath, $uploadId)
+    {
+        $spreadsheet = IOFactory::load($tempPath);
+        $sheet = $spreadsheet->getSheet(0);
+        $rows = $sheet->toArray(null, true, true, false);
+
+        if (count($rows) < 2) {
+            throw new \RuntimeException('Uploaded file is empty.');
+        }
+
+        $headerRow = array_map('trim', $rows[0]);
+        $headerIndexMap = [];
+        foreach ($headerRow as $idx => $headerText) {
+            $headerIndexMap[$headerText] = $idx;
+        }
+
+        $insertRows = [];
+        foreach (array_slice($rows, 1) as $row) {
+            if ($this->rowIsEmpty($row)) {
+                continue;
+            }
+
+            $payload = [
+                'upload_id' => $uploadId,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+
+            foreach (self::HEADER_MAP as $sourceHeader => $targetColumn) {
+                $value = null;
+                if (array_key_exists($sourceHeader, $headerIndexMap)) {
+                    $value = $row[$headerIndexMap[$sourceHeader]];
+                }
+                $payload[$targetColumn] = $this->transformValue($targetColumn, $value);
+            }
+
+            if ($this->shouldSkipZeroCampaignRow($payload)) {
+                continue;
+            }
+
+            $insertRows[] = $payload;
+        }
+
+        if (!empty($insertRows)) {
+            foreach (array_chunk($insertRows, 500) as $chunk) {
+                FbAdsMetric::insert($chunk);
+            }
+        }
+
+        return count($insertRows);
     }
 }

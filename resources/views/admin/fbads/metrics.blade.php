@@ -56,6 +56,29 @@
     cursor: pointer;
 }
 .save-btn:hover { background: #bfdbfe; }
+.reupload-mini {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.reupload-file {
+    font-size: 10px;
+    max-width: 180px;
+}
+.reupload-btn {
+    height: 28px;
+    border: none;
+    border-radius: 8px;
+    padding: 0 10px;
+    background: #e0e7ff;
+    color: #3730a3;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.reupload-btn:hover { background: #c7d2fe; }
 .upload-box {
     border: 1px dashed #cbd5e1;
     border-radius: 14px;
@@ -110,6 +133,17 @@
 .flatpickr-current-month input.cur-year {
     color: #0f172a !important;
     font-weight: 700 !important;
+}
+.flatpickr-current-month {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month .cur-month,
+.flatpickr-current-month input.cur-year {
+    opacity: 1 !important;
+    visibility: visible !important;
+    -webkit-text-fill-color: #0f172a !important;
 }
 .flatpickr-prev-month svg,
 .flatpickr-next-month svg {
@@ -172,6 +206,12 @@
                             <button type="submit" class="save-btn" title="Save exported date">
                                 <i class="fas fa-check"></i>
                             </button>
+                        </form>
+                        <form action="{{ route('fbads.metrics.reupload', $upload->id) }}" method="POST" enctype="multipart/form-data" class="reupload-mini">
+                            @csrf
+                            <input type="hidden" name="exported_date" value="{{ $upload->exported_date ? date('Y-m-d', strtotime($upload->exported_date)) : date('Y-m-d') }}">
+                            <input type="file" name="excel_file" accept=".xlsx,.xls" required class="browser-default reupload-file">
+                            <button type="submit" class="reupload-btn">Reupload</button>
                         </form>
                     </div>
                     <div style="font-size:11px;color:#64748b;font-weight:700;">
@@ -242,7 +282,8 @@ document.addEventListener('DOMContentLoaded', function () {
         dateFormat: 'Y-m-d',
         altInput: true,
         altFormat: 'M d, Y',
-        allowInput: false
+        allowInput: false,
+        monthSelectorType: 'static'
     };
 
     document.querySelectorAll('.js-exported-date, .js-exported-date-inline').forEach(function (input) {

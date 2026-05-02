@@ -313,6 +313,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/metrics', 'FbAdsMetricsCon@index')->name('fbads.metrics.index');
         Route::post('/metrics/upload', 'FbAdsMetricsCon@store')->name('fbads.metrics.store');
         Route::patch('/metrics/{id}/exported-date', 'FbAdsMetricsCon@updateExportedDate')->name('fbads.metrics.update_exported_date');
+        Route::post('/metrics/{id}/reupload', 'FbAdsMetricsCon@reupload')->name('fbads.metrics.reupload');
         Route::delete('/metrics/{id}', 'FbAdsMetricsCon@destroy')->name('fbads.metrics.destroy');
         Route::post('/change-status', 'FbAdsCon@change_status');
 
