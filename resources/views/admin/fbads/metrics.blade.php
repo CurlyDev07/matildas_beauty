@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <style>
 .metrics-wrap {
     background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
@@ -144,7 +145,7 @@
                         <form action="{{ route('fbads.metrics.update_exported_date', $upload->id) }}" method="POST" style="display:flex;align-items:center;gap:6px;margin-top:5px;">
                             @csrf
                             @method('PATCH')
-                            <input type="date" name="exported_date" value="{{ $upload->exported_date ? date('Y-m-d', strtotime($upload->exported_date)) : date('Y-m-d') }}" required class="browser-default js-exported-date-inline" style="height:30px;padding:0 8px;border:1px solid #dbe7f3;border-radius:8px;font-size:11px;color:#334155;cursor:pointer;">
+                            <input type="text" name="exported_date" value="{{ $upload->exported_date ? date('Y-m-d', strtotime($upload->exported_date)) : date('Y-m-d') }}" required class="browser-default js-exported-date-inline" style="height:30px;padding:0 8px;border:1px solid #dbe7f3;border-radius:8px;font-size:11px;color:#334155;cursor:pointer;">
                             <button type="submit" class="save-btn" title="Save exported date">
                                 <i class="fas fa-check"></i>
                             </button>
@@ -184,7 +185,7 @@
             <label for="exported_date" style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:6px;">
                 Export Date (from FB Ads)
             </label>
-            <input type="date" name="exported_date" id="exported_date" value="{{ old('exported_date', date('Y-m-d')) }}" required class="browser-default js-exported-date metrics-date-input">
+            <input type="text" name="exported_date" id="exported_date" value="{{ old('exported_date', date('Y-m-d')) }}" required class="browser-default js-exported-date metrics-date-input">
             @error('exported_date')
                 <div style="font-size:12px;color:#dc2626;margin-bottom:10px;">{{ $message }}</div>
             @enderror
@@ -211,27 +212,20 @@
 @endsection
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    var dateInput = document.querySelector('.js-exported-date');
-    if (dateInput) {
-        dateInput.addEventListener('click', function () {
-            if (typeof this.showPicker === 'function') {
-                this.showPicker();
-            } else {
-                this.focus();
-            }
-        });
-    }
+    var pickerOptions = {
+        dateFormat: 'Y-m-d',
+        altInput: true,
+        altFormat: 'M d, Y',
+        allowInput: false
+    };
 
-    document.querySelectorAll('.js-exported-date-inline').forEach(function (input) {
-        input.addEventListener('click', function () {
-            if (typeof this.showPicker === 'function') {
-                this.showPicker();
-            } else {
-                this.focus();
-            }
-        });
+    document.querySelectorAll('.js-exported-date, .js-exported-date-inline').forEach(function (input) {
+        if (typeof flatpickr !== 'undefined') {
+            flatpickr(input, pickerOptions);
+        }
     });
 });
 </script>
