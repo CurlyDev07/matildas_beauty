@@ -119,6 +119,33 @@
     cursor: pointer;
 }
 .upload-btn:hover { background: #1d4ed8; }
+.adspend-box {
+    margin-top: 14px;
+    border-top: 1px solid #eef2f7;
+    padding-top: 12px;
+}
+.adspend-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+.adspend-table th {
+    text-align: left;
+    padding: 7px 6px;
+    color: #64748b;
+    font-size: 11px;
+    border-bottom: 1px solid #eef2f7;
+}
+.adspend-table td {
+    padding: 8px 6px;
+    border-bottom: 1px solid #f8fafc;
+    color: #334155;
+}
+.adspend-table th:last-child,
+.adspend-table td:last-child {
+    text-align: right;
+    font-weight: 700;
+}
 .flatpickr-calendar {
     border: 1px solid #e2e8f0 !important;
     border-radius: 12px !important;
@@ -235,6 +262,7 @@
         <div style="margin-top:12px;">
             {{ $uploads->links() }}
         </div>
+
     </div>
 
     <div class="metrics-card">
@@ -269,6 +297,35 @@
                 Upload File
             </button>
         </form>
+
+        <div class="adspend-box">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                <div style="font-size:13px;font-weight:800;color:#0f172a;">Total Adspent</div>
+                <div style="font-size:13px;font-weight:800;color:#16a34a;">₱{{ number_format((float) $totalAdSpend, 2) }}</div>
+            </div>
+            <table class="adspend-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Filename</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($adSpendByFile as $row)
+                        <tr>
+                            <td>{{ $row->exported_date ? date_f($row->exported_date, 'M d, Y') : '—' }}</td>
+                            <td style="max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $row->original_file_name }}</td>
+                            <td>₱{{ number_format((float) $row->total_ad_spend, 2) }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3" style="text-align:center;color:#94a3b8;">No ad spend data yet.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 </div>

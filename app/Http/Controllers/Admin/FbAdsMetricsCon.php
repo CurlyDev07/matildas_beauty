@@ -77,7 +77,26 @@ class FbAdsMetricsCon extends Controller
     public function index()
     {
         $uploads = FbAdsMetricUpload::orderBy('created_at', 'desc')->paginate(20);
-        return view('admin.fbads.metrics', compact('uploads'));
+        $adSpendByFile = DB::table('fb_ads_metric_uploads')
+            ->leftJoin('fb_ads_metrics', 'fb_ads_metrics.upload_id', '=', 'fb_ads_metric_uploads.id')
+            ->selectRaw('
+                fb_ads_metric_uploads.id,
+                fb_ads_metric_uploads.exported_date,
+                fb_ads_metric_uploads.original_file_name,
+                COALESCE(SUM(fb_ads_metrics.amount_spent_php), 0) as total_ad_spend
+            ')
+            ->groupBy(
+                'fb_ads_metric_uploads.id',
+                'fb_ads_metric_uploads.exported_date',
+                'fb_ads_metric_uploads.original_file_name'
+            )
+            ->orderBy('fb_ads_metric_uploads.exported_date', 'desc')
+            ->orderBy('fb_ads_metric_uploads.id', 'desc')
+            ->get();
+
+        $totalAdSpend = (float) $adSpendByFile->sum('total_ad_spend');
+
+        return view('admin.fbads.metrics', compact('uploads', 'adSpendByFile', 'totalAdSpend'));
     }
 
     public function store(Request $request)
