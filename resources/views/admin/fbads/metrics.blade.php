@@ -567,6 +567,7 @@
             <button type="submit" class="report-btn">Apply Filter</button>
             <button type="submit" name="column_action" value="save" class="report-btn secondary">Save Columns</button>
             <button type="submit" name="column_action" value="default" class="report-btn secondary">Default Columns</button>
+            <button type="submit" name="export" value="1" class="report-btn secondary">Export Selected Columns</button>
         </div>
 
         <div style="margin-top:10px;">

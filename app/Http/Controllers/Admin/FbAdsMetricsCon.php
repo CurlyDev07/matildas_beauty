@@ -149,6 +149,15 @@ class FbAdsMetricsCon extends Controller
             $reportEndDate = $tmp;
         }
 
+        if ($request->query('export') === '1') {
+            return $this->exportSelectedColumnsCsv(
+                $selectedColumns,
+                $availableColumns,
+                $reportStartDate,
+                $reportEndDate
+            );
+        }
+
         $reportRows = FbAdsMetric::query()
             ->select(array_merge(['id'], $selectedColumns))
             ->whereBetween('reporting_starts', [$reportStartDate, $reportEndDate])
@@ -169,6 +178,47 @@ class FbAdsMetricsCon extends Controller
             'reportEndDate',
             'reportRows'
         ));
+    }
+
+    private function exportSelectedColumnsCsv(array $selectedColumns, array $availableColumns, $reportStartDate, $reportEndDate)
+    {
+        $rows = FbAdsMetric::query()
+            ->select($selectedColumns)
+            ->whereBetween('reporting_starts', [$reportStartDate, $reportEndDate])
+            ->orderBy('reporting_starts', 'desc')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $filename = 'meta_ads_report_' . $reportStartDate . '_to_' . $reportEndDate . '.csv';
+
+        $headers = [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ];
+
+        return response()->stream(function () use ($rows, $selectedColumns, $availableColumns) {
+            $out = fopen('php://output', 'w');
+            fprintf($out, chr(0xEF).chr(0xBB).chr(0xBF));
+
+            $headerLabels = array_map(function ($col) use ($availableColumns) {
+                return $availableColumns[$col] ?? $col;
+            }, $selectedColumns);
+            fputcsv($out, $headerLabels);
+
+            foreach ($rows as $row) {
+                $line = [];
+                foreach ($selectedColumns as $col) {
+                    $val = $row->{$col};
+                    if (in_array($col, ['reporting_starts', 'reporting_ends', 'date_created', 'date_last_edited'], true)) {
+                        $line[] = $val ? date('M d, Y', strtotime($val)) : '';
+                    } else {
+                        $line[] = $val;
+                    }
+                }
+                fputcsv($out, $line);
+            }
+            fclose($out);
+        }, 200, $headers);
     }
 
     public function store(Request $request)
