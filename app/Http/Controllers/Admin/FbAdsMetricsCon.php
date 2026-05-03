@@ -15,63 +15,16 @@ class FbAdsMetricsCon extends Controller
     private const HEADER_MAP = [
         'Reporting starts' => 'reporting_starts',
         'Reporting ends' => 'reporting_ends',
-        'Ad name' => 'ad_name',
-        'Date created' => 'date_created',
-        'Date last edited' => 'date_last_edited',
-        'Last significant edit' => 'last_significant_edit',
         'Campaign name' => 'campaign_name',
-        'Campaign ID' => 'campaign_id',
-        'Ad set name' => 'ad_set_name',
-        'Ad set ID' => 'ad_set_id',
-        'Ad ID' => 'ad_id',
-        'Ad delivery' => 'ad_delivery',
-        'Ad set delivery' => 'ad_set_delivery',
-        'Attribution setting' => 'attribution_setting',
         'Amount spent (PHP)' => 'amount_spent_php',
-        'Reach' => 'reach',
-        'Impressions' => 'impressions',
-        'Frequency' => 'frequency',
-        'CPM (cost per 1,000 impressions) (PHP)' => 'cpm_php',
-        'Clicks (all)' => 'clicks_all',
-        'CTR (all)' => 'ctr_all',
-        'CPC (all) (PHP)' => 'cpc_all_php',
-        'Link clicks' => 'link_clicks',
-        'CTR (link click-through rate)' => 'ctr_link_click_through_rate',
-        'CPC (cost per link click) (PHP)' => 'cpc_cost_per_link_click_php',
-        'Landing page views' => 'landing_page_views',
-        'Cost per landing page view (PHP)' => 'cost_per_landing_page_view_php',
-        'Landing page views rate per link clicks' => 'landing_page_views_rate_per_link_clicks',
-        'Content views' => 'content_views',
-        'Content views conversion value' => 'content_views_conversion_value',
-        'Adds to cart' => 'adds_to_cart',
-        'Cost per add to cart (PHP)' => 'cost_per_add_to_cart_php',
-        'INITIATE CHECK OUT RATE' => 'initiate_check_out_rate',
+        'Profit' => 'profit',
         'Purchases' => 'purchases',
-        'Cost per purchase (PHP)' => 'cost_per_purchase_php',
-        'Purchases conversion value' => 'purchases_conversion_value',
         'Purchase ROAS (return on ad spend)' => 'purchase_roas_return_on_ad_spend',
-        '3-second video plays' => 'three_second_video_plays',
-        '3-second video plays rate per impressions' => 'three_second_video_plays_rate_per_impressions',
-        'Cost per 3-second video play (PHP)' => 'cost_per_three_second_video_play_php',
-        'ThruPlays' => 'thruplays',
-        'Cost per ThruPlay (PHP)' => 'cost_per_thruplay_php',
-        'Video plays at 25%' => 'video_plays_at_25',
-        'Video plays at 50%' => 'video_plays_at_50',
-        'Video plays at 95%' => 'video_plays_at_95',
-        'Video plays at 75%' => 'video_plays_at_75',
-        'Video plays at 100%' => 'video_plays_at_100',
-        'Video plays' => 'video_plays',
-        'Video average play time' => 'video_average_play_time',
-        'Post engagements' => 'post_engagements',
-        'Cost per post engagement (PHP)' => 'cost_per_post_engagement_php',
-        'Post reactions' => 'post_reactions',
-        'Post comments' => 'post_comments',
-        'Post saves' => 'post_saves',
-        'Post shares' => 'post_shares',
-        'Quality ranking' => 'quality_ranking',
-        'Engagement rate ranking' => 'engagement_rate_ranking',
-        'Conversion rate ranking' => 'conversion_rate_ranking',
-        'Hook Rate' => 'hook_rate',
+        'Cost per purchase (PHP)' => 'cost_per_purchase_php',
+        'AOV (Average order value)' => 'aov_average_order_value',
+        'Conversion Rate %' => 'conversion_rate_percent',
+        'Purchases conversion value' => 'purchases_conversion_value',
+        'VAT' => 'vat',
     ];
 
     public function index(Request $request)
@@ -97,45 +50,117 @@ class FbAdsMetricsCon extends Controller
 
         $totalAdSpend = (float) $adSpendByFile->sum('total_ad_spend');
 
-        $availableColumns = array_flip(self::HEADER_MAP); // db_column => label
-        $defaultColumns = [
-            'reporting_starts',
-            'reporting_ends',
-            'campaign_name',
-            'ad_name',
-            'amount_spent_php',
-            'purchases',
-            'purchases_conversion_value',
-            'cost_per_purchase_php',
-            'purchase_roas_return_on_ad_spend',
+        // Monthly analytics (12 months) for quick monitoring
+        $monthlyLabels = [];
+        $monthlyAdSpend = [];
+        $monthlyPurchases = [];
+        $monthlyPurchaseValue = [];
+        $monthlyAvgRoas = [];
+        $monthlyAvgCpp = [];
+        $monthlyAvgAov = [];
+        $monthlyAvgCr = [];
+        $kpiMonth = [
+            'ad_spend' => 0.0,
+            'purchase_value' => 0.0,
+            'purchases' => 0.0,
+            'avg_roas' => 0.0,
+            'avg_cpp' => 0.0,
+            'avg_aov' => 0.0,
+            'avg_cr' => 0.0,
+        ];
+        $kpiPrevMonth = $kpiMonth;
+        $kpiChange = [
+            'ad_spend' => 0.0,
+            'purchase_value' => 0.0,
+            'purchases' => 0.0,
+            'avg_roas' => 0.0,
+            'avg_cpp' => 0.0,
+            'avg_aov' => 0.0,
+            'avg_cr' => 0.0,
         ];
 
-        $sessionKey = 'fbads_metrics_report_columns';
-        $savedColumns = (array) session($sessionKey, []);
-        $requestedColumns = (array) $request->query('columns', []);
-        $selectedColumns = !empty($requestedColumns)
-            ? $requestedColumns
-            : (!empty($savedColumns) ? $savedColumns : $defaultColumns);
+        $startMonth = date('Y-m-01', strtotime('-11 months'));
+        $rawMonthly = FbAdsMetric::query()
+            ->selectRaw("
+                DATE_FORMAT(reporting_starts, '%Y-%m') as ym,
+                COALESCE(SUM(amount_spent_php), 0) as ad_spend,
+                COALESCE(SUM(purchases), 0) as purchases,
+                COALESCE(SUM(purchases_conversion_value), 0) as purchase_value,
+                COALESCE(AVG(purchase_roas_return_on_ad_spend), 0) as avg_roas,
+                COALESCE(AVG(cost_per_purchase_php), 0) as avg_cpp,
+                COALESCE(AVG(aov_average_order_value), 0) as avg_aov,
+                COALESCE(AVG(conversion_rate_percent), 0) as avg_cr
+            ")
+            ->whereDate('reporting_starts', '>=', $startMonth)
+            ->groupBy('ym')
+            ->orderBy('ym', 'asc')
+            ->get()
+            ->keyBy('ym');
 
-        $selectedColumns = array_values(array_filter($selectedColumns, function ($col) use ($availableColumns) {
-            return isset($availableColumns[$col]);
-        }));
-        if (empty($selectedColumns)) {
-            $selectedColumns = $defaultColumns;
+        for ($i = 0; $i < 12; $i++) {
+            $monthDate = date('Y-m-01', strtotime($startMonth . " +{$i} months"));
+            $ym = date('Y-m', strtotime($monthDate));
+            $row = $rawMonthly->get($ym);
+            $monthlyLabels[] = date('M Y', strtotime($monthDate));
+            $monthlyAdSpend[] = (float) optional($row)->ad_spend;
+            $monthlyPurchases[] = (float) optional($row)->purchases;
+            $monthlyPurchaseValue[] = (float) optional($row)->purchase_value;
+            $monthlyAvgRoas[] = (float) optional($row)->avg_roas;
+            $monthlyAvgCpp[] = (float) optional($row)->avg_cpp;
+            $monthlyAvgAov[] = (float) optional($row)->avg_aov;
+            $monthlyAvgCr[] = (float) optional($row)->avg_cr;
         }
 
-        $columnAction = $request->query('column_action');
-        if ($columnAction === 'save') {
-            session([$sessionKey => $selectedColumns]);
-            session()->flash('success', 'Meta Ads report columns saved.');
-        } elseif ($columnAction === 'default') {
-            session()->forget($sessionKey);
-            $selectedColumns = $defaultColumns;
-            session()->flash('success', 'Meta Ads report columns reset to default.');
+        $thisMonthStart = date('Y-m-01');
+        $thisMonthEnd = date('Y-m-t');
+        $prevMonthStart = date('Y-m-01', strtotime('first day of last month'));
+        $prevMonthEnd = date('Y-m-t', strtotime('last day of last month'));
+        $thisMonthLabel = date('M Y');
+        $prevMonthLabel = date('M Y', strtotime('first day of last month'));
+
+        $kpiMonth = $this->monthlyMetricSnapshot($thisMonthStart, $thisMonthEnd);
+        $kpiPrevMonth = $this->monthlyMetricSnapshot($prevMonthStart, $prevMonthEnd);
+        foreach ($kpiChange as $key => $value) {
+            $kpiChange[$key] = $this->computePercentChange((float) $kpiMonth[$key], (float) $kpiPrevMonth[$key]);
         }
+
+        $availableColumns = array_flip(self::HEADER_MAP); // db_column => label
+        $selectedColumns = array_keys($availableColumns);
 
         $reportStartDate = $request->query('report_start_date', date('Y-m-01'));
         $reportEndDate = $request->query('report_end_date', date('Y-m-d'));
+        $quickRange = (string) $request->query('quick_range', '');
+
+        switch ($quickRange) {
+            case 'today':
+                $reportStartDate = date('Y-m-d');
+                $reportEndDate = date('Y-m-d');
+                break;
+            case 'yesterday':
+                $reportStartDate = date('Y-m-d', strtotime('-1 day'));
+                $reportEndDate = date('Y-m-d', strtotime('-1 day'));
+                break;
+            case '7d':
+                $reportStartDate = date('Y-m-d', strtotime('-6 days'));
+                $reportEndDate = date('Y-m-d');
+                break;
+            case '14d':
+                $reportStartDate = date('Y-m-d', strtotime('-13 days'));
+                $reportEndDate = date('Y-m-d');
+                break;
+            case '30d':
+                $reportStartDate = date('Y-m-d', strtotime('-29 days'));
+                $reportEndDate = date('Y-m-d');
+                break;
+            case 'this_month':
+                $reportStartDate = date('Y-m-01');
+                $reportEndDate = date('Y-m-d');
+                break;
+            case 'last_month':
+                $reportStartDate = date('Y-m-01', strtotime('first day of last month'));
+                $reportEndDate = date('Y-m-t', strtotime('last day of last month'));
+                break;
+        }
         try {
             $reportStartDate = date('Y-m-d', strtotime($reportStartDate));
             $reportEndDate = date('Y-m-d', strtotime($reportEndDate));
@@ -149,6 +174,19 @@ class FbAdsMetricsCon extends Controller
             $reportEndDate = $tmp;
         }
 
+        $sortBy = (string) $request->query('sort_by', 'reporting_starts');
+        $sortDir = strtolower((string) $request->query('sort_dir', 'desc')) === 'asc' ? 'asc' : 'desc';
+        $sortableColumns = array_merge(['export_date'], $selectedColumns);
+        if (!in_array($sortBy, $sortableColumns, true)) {
+            $sortBy = 'reporting_starts';
+        }
+
+        $allowedPerPage = [50, 100, 200];
+        $perPage = (int) $request->query('per_page', 50);
+        if (!in_array($perPage, $allowedPerPage, true)) {
+            $perPage = 50;
+        }
+
         if ($request->query('export') === '1') {
             return $this->exportSelectedColumnsCsv(
                 $selectedColumns,
@@ -158,12 +196,25 @@ class FbAdsMetricsCon extends Controller
             );
         }
 
-        $reportRows = FbAdsMetric::query()
-            ->select(array_merge(['id'], $selectedColumns))
-            ->whereBetween('reporting_starts', [$reportStartDate, $reportEndDate])
-            ->orderBy('reporting_starts', 'desc')
-            ->orderBy('id', 'desc')
-            ->paginate(40)
+        $reportRowsQuery = FbAdsMetric::query()
+            ->join('fb_ads_metric_uploads', 'fb_ads_metric_uploads.id', '=', 'fb_ads_metrics.upload_id')
+            ->select(array_merge(
+                ['fb_ads_metrics.id', 'fb_ads_metric_uploads.exported_date as export_date'],
+                array_map(function ($c) {
+                    return 'fb_ads_metrics.' . $c;
+                }, $selectedColumns)
+            ))
+            ->whereBetween('reporting_starts', [$reportStartDate, $reportEndDate]);
+
+        if ($sortBy === 'export_date') {
+            $reportRowsQuery->orderBy('fb_ads_metric_uploads.exported_date', $sortDir);
+        } else {
+            $reportRowsQuery->orderBy('fb_ads_metrics.' . $sortBy, $sortDir);
+        }
+
+        $reportRows = $reportRowsQuery
+            ->orderBy('fb_ads_metrics.id', 'desc')
+            ->paginate($perPage)
             ->appends($request->query());
 
         return view('admin.fbads.metrics', compact(
@@ -172,12 +223,62 @@ class FbAdsMetricsCon extends Controller
             'adSpendByFile',
             'totalAdSpend',
             'availableColumns',
-            'defaultColumns',
             'selectedColumns',
             'reportStartDate',
             'reportEndDate',
-            'reportRows'
+            'reportRows',
+            'sortBy',
+            'sortDir',
+            'perPage',
+            'quickRange',
+            'monthlyLabels',
+            'monthlyAdSpend',
+            'monthlyPurchases',
+            'monthlyPurchaseValue',
+            'monthlyAvgRoas',
+            'monthlyAvgCpp',
+            'monthlyAvgAov',
+            'monthlyAvgCr',
+            'kpiMonth',
+            'kpiPrevMonth',
+            'kpiChange',
+            'thisMonthLabel',
+            'prevMonthLabel'
         ));
+    }
+
+    private function monthlyMetricSnapshot($start, $end)
+    {
+        $row = FbAdsMetric::query()
+            ->selectRaw("
+                COALESCE(SUM(amount_spent_php), 0) as ad_spend,
+                COALESCE(SUM(purchases_conversion_value), 0) as purchase_value,
+                COALESCE(SUM(purchases), 0) as purchases,
+                COALESCE(AVG(purchase_roas_return_on_ad_spend), 0) as avg_roas,
+                COALESCE(AVG(cost_per_purchase_php), 0) as avg_cpp,
+                COALESCE(AVG(aov_average_order_value), 0) as avg_aov,
+                COALESCE(AVG(conversion_rate_percent), 0) as avg_cr
+            ")
+            ->whereBetween('reporting_starts', [$start, $end])
+            ->first();
+
+        return [
+            'ad_spend' => (float) optional($row)->ad_spend,
+            'purchase_value' => (float) optional($row)->purchase_value,
+            'purchases' => (float) optional($row)->purchases,
+            'avg_roas' => (float) optional($row)->avg_roas,
+            'avg_cpp' => (float) optional($row)->avg_cpp,
+            'avg_aov' => (float) optional($row)->avg_aov,
+            'avg_cr' => (float) optional($row)->avg_cr,
+        ];
+    }
+
+    private function computePercentChange($current, $previous)
+    {
+        if ((float) $previous === 0.0) {
+            return (float) $current === 0.0 ? 0.0 : 100.0;
+        }
+        return (($current - $previous) / $previous) * 100;
     }
 
     private function exportSelectedColumnsCsv(array $selectedColumns, array $availableColumns, $reportStartDate, $reportEndDate)
@@ -252,6 +353,8 @@ class FbAdsMetricsCon extends Controller
         DB::beginTransaction();
         try {
             $upload->rows_imported = $this->importRowsFromSpreadsheet($tempPath, $upload->id);
+            $upload->summary_ad_spend = (float) FbAdsMetric::where('upload_id', $upload->id)->sum('amount_spent_php');
+            $upload->summary_roas = (float) FbAdsMetric::where('upload_id', $upload->id)->avg('purchase_roas_return_on_ad_spend');
             $upload->save();
 
             DB::commit();
@@ -294,6 +397,8 @@ class FbAdsMetricsCon extends Controller
                 $upload->exported_date = $request->input('exported_date');
             }
             $upload->rows_imported = $this->importRowsFromSpreadsheet($tempPath, $upload->id);
+            $upload->summary_ad_spend = (float) FbAdsMetric::where('upload_id', $upload->id)->sum('amount_spent_php');
+            $upload->summary_roas = (float) FbAdsMetric::where('upload_id', $upload->id)->avg('purchase_roas_return_on_ad_spend');
             $upload->save();
 
             DB::commit();
@@ -356,17 +461,15 @@ class FbAdsMetricsCon extends Controller
         }
 
         $numericColumns = [
-            'amount_spent_php', 'reach', 'impressions', 'frequency', 'cpm_php', 'clicks_all', 'ctr_all',
-            'cpc_all_php', 'link_clicks', 'ctr_link_click_through_rate', 'cpc_cost_per_link_click_php',
-            'landing_page_views', 'cost_per_landing_page_view_php', 'landing_page_views_rate_per_link_clicks',
-            'content_views', 'content_views_conversion_value', 'adds_to_cart', 'cost_per_add_to_cart_php',
-            'initiate_check_out_rate', 'purchases', 'cost_per_purchase_php', 'purchases_conversion_value',
-            'purchase_roas_return_on_ad_spend', 'three_second_video_plays',
-            'three_second_video_plays_rate_per_impressions', 'cost_per_three_second_video_play_php', 'thruplays',
-            'cost_per_thruplay_php', 'video_plays_at_25', 'video_plays_at_50', 'video_plays_at_95',
-            'video_plays_at_75', 'video_plays_at_100', 'video_plays', 'video_average_play_time',
-            'post_engagements', 'cost_per_post_engagement_php', 'post_reactions', 'post_comments', 'post_saves',
-            'post_shares', 'hook_rate',
+            'amount_spent_php',
+            'profit',
+            'purchases',
+            'purchase_roas_return_on_ad_spend',
+            'cost_per_purchase_php',
+            'aov_average_order_value',
+            'conversion_rate_percent',
+            'purchases_conversion_value',
+            'vat',
         ];
 
         if (in_array($column, $numericColumns, true)) {
