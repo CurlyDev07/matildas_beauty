@@ -555,7 +555,8 @@
 
     <form method="GET" action="{{ route('fbads.metrics.index') }}" class="report-controls">
         <input type="hidden" name="tab" value="reports">
-        <div style="display:flex;align-items:end;gap:10px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:end;gap:10px;flex-wrap:wrap;justify-content:space-between;">
+            <div style="display:flex;align-items:end;gap:10px;flex-wrap:wrap;">
             <div>
                 <label style="display:block;font-size:11px;color:#64748b;font-weight:700;margin-bottom:5px;">Reporting Start</label>
                 <input type="text" name="report_start_date" value="{{ $reportStartDate }}" class="browser-default js-report-date metrics-date-input" style="margin:0;width:160px;">
@@ -567,7 +568,8 @@
             <button type="submit" class="report-btn">Apply Filter</button>
             <button type="submit" name="column_action" value="save" class="report-btn secondary">Save Columns</button>
             <button type="submit" name="column_action" value="default" class="report-btn secondary">Default Columns</button>
-            <button type="submit" name="export" value="1" class="report-btn secondary">Export Selected Columns</button>
+            </div>
+            <button type="submit" name="export" value="1" class="report-btn" style="background:#0f766e;">Export Selected Columns</button>
         </div>
 
         <div style="margin-top:10px;">
