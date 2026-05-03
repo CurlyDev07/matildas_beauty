@@ -74,8 +74,9 @@ class FbAdsMetricsCon extends Controller
         'Hook Rate' => 'hook_rate',
     ];
 
-    public function index()
+    public function index(Request $request)
     {
+        $tab = $request->query('tab', 'uploads');
         $uploads = FbAdsMetricUpload::orderBy('created_at', 'desc')->paginate(20);
         $adSpendByFile = DB::table('fb_ads_metric_uploads')
             ->leftJoin('fb_ads_metrics', 'fb_ads_metrics.upload_id', '=', 'fb_ads_metric_uploads.id')
@@ -96,7 +97,78 @@ class FbAdsMetricsCon extends Controller
 
         $totalAdSpend = (float) $adSpendByFile->sum('total_ad_spend');
 
-        return view('admin.fbads.metrics', compact('uploads', 'adSpendByFile', 'totalAdSpend'));
+        $availableColumns = array_flip(self::HEADER_MAP); // db_column => label
+        $defaultColumns = [
+            'reporting_starts',
+            'reporting_ends',
+            'campaign_name',
+            'ad_name',
+            'amount_spent_php',
+            'purchases',
+            'purchases_conversion_value',
+            'cost_per_purchase_php',
+            'purchase_roas_return_on_ad_spend',
+        ];
+
+        $sessionKey = 'fbads_metrics_report_columns';
+        $savedColumns = (array) session($sessionKey, []);
+        $requestedColumns = (array) $request->query('columns', []);
+        $selectedColumns = !empty($requestedColumns)
+            ? $requestedColumns
+            : (!empty($savedColumns) ? $savedColumns : $defaultColumns);
+
+        $selectedColumns = array_values(array_filter($selectedColumns, function ($col) use ($availableColumns) {
+            return isset($availableColumns[$col]);
+        }));
+        if (empty($selectedColumns)) {
+            $selectedColumns = $defaultColumns;
+        }
+
+        $columnAction = $request->query('column_action');
+        if ($columnAction === 'save') {
+            session([$sessionKey => $selectedColumns]);
+            session()->flash('success', 'Meta Ads report columns saved.');
+        } elseif ($columnAction === 'default') {
+            session()->forget($sessionKey);
+            $selectedColumns = $defaultColumns;
+            session()->flash('success', 'Meta Ads report columns reset to default.');
+        }
+
+        $reportStartDate = $request->query('report_start_date', date('Y-m-01'));
+        $reportEndDate = $request->query('report_end_date', date('Y-m-d'));
+        try {
+            $reportStartDate = date('Y-m-d', strtotime($reportStartDate));
+            $reportEndDate = date('Y-m-d', strtotime($reportEndDate));
+        } catch (\Throwable $e) {
+            $reportStartDate = date('Y-m-01');
+            $reportEndDate = date('Y-m-d');
+        }
+        if ($reportStartDate > $reportEndDate) {
+            $tmp = $reportStartDate;
+            $reportStartDate = $reportEndDate;
+            $reportEndDate = $tmp;
+        }
+
+        $reportRows = FbAdsMetric::query()
+            ->select(array_merge(['id'], $selectedColumns))
+            ->whereBetween('reporting_starts', [$reportStartDate, $reportEndDate])
+            ->orderBy('reporting_starts', 'desc')
+            ->orderBy('id', 'desc')
+            ->paginate(40)
+            ->appends($request->query());
+
+        return view('admin.fbads.metrics', compact(
+            'tab',
+            'uploads',
+            'adSpendByFile',
+            'totalAdSpend',
+            'availableColumns',
+            'defaultColumns',
+            'selectedColumns',
+            'reportStartDate',
+            'reportEndDate',
+            'reportRows'
+        ));
     }
 
     public function store(Request $request)
