@@ -31,6 +31,11 @@ class FbAdsMetricsCon extends Controller
     {
         $tab = $request->query('tab', 'uploads');
         $uploads = FbAdsMetricUpload::orderBy('created_at', 'desc')->paginate(20);
+        $latestExportedDate = FbAdsMetricUpload::orderBy('created_at', 'desc')
+            ->value('exported_date');
+        $nextExportedDate = $latestExportedDate
+            ? date('Y-m-d', strtotime($latestExportedDate . ' +1 day'))
+            : date('Y-m-d');
         $adSpendByFile = DB::table('fb_ads_metric_uploads')
             ->leftJoin('fb_ads_metrics', 'fb_ads_metrics.upload_id', '=', 'fb_ads_metric_uploads.id')
             ->selectRaw('
@@ -220,6 +225,7 @@ class FbAdsMetricsCon extends Controller
         return view('admin.fbads.metrics', compact(
             'tab',
             'uploads',
+            'nextExportedDate',
             'adSpendByFile',
             'totalAdSpend',
             'availableColumns',

@@ -627,7 +627,7 @@
             <label for="exported_date" style="display:block;font-size:12px;font-weight:700;color:#334155;margin-bottom:6px;">
                 Export Date (from FB Ads)
             </label>
-            <input type="text" name="exported_date" id="exported_date" value="{{ old('exported_date', date('Y-m-d')) }}" required class="browser-default js-exported-date metrics-date-input">
+            <input type="text" name="exported_date" id="exported_date" value="{{ old('exported_date', $nextExportedDate ?? date('Y-m-d')) }}" required class="browser-default js-exported-date metrics-date-input">
             @error('exported_date')
                 <div style="font-size:12px;color:#dc2626;margin-bottom:10px;">{{ $message }}</div>
             @enderror
