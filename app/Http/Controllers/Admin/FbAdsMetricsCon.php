@@ -199,7 +199,8 @@ class FbAdsMetricsCon extends Controller
                 $selectedColumns,
                 $availableColumns,
                 $reportStartDate,
-                $reportEndDate
+                $reportEndDate,
+                $campaignFilter
             );
         }
 
@@ -294,14 +295,19 @@ class FbAdsMetricsCon extends Controller
         return (($current - $previous) / $previous) * 100;
     }
 
-    private function exportSelectedColumnsCsv(array $selectedColumns, array $availableColumns, $reportStartDate, $reportEndDate)
+    private function exportSelectedColumnsCsv(array $selectedColumns, array $availableColumns, $reportStartDate, $reportEndDate, $campaignFilter = '')
     {
-        $rows = FbAdsMetric::query()
+        $query = FbAdsMetric::query()
             ->select($selectedColumns)
             ->whereBetween('reporting_starts', [$reportStartDate, $reportEndDate])
             ->orderBy('reporting_starts', 'desc')
-            ->orderBy('id', 'desc')
-            ->get();
+            ->orderBy('id', 'desc');
+
+        if (trim((string) $campaignFilter) !== '') {
+            $query->where('campaign_name', 'like', '%' . trim((string) $campaignFilter) . '%');
+        }
+
+        $rows = $query->get();
 
         $filename = 'meta_ads_report_' . $reportStartDate . '_to_' . $reportEndDate . '.csv';
 
