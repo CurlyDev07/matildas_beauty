@@ -192,6 +192,8 @@ class FbAdsMetricsCon extends Controller
             $perPage = 50;
         }
 
+        $campaignFilter = trim((string) $request->query('campaign_name', ''));
+
         if ($request->query('export') === '1') {
             return $this->exportSelectedColumnsCsv(
                 $selectedColumns,
@@ -210,6 +212,10 @@ class FbAdsMetricsCon extends Controller
                 }, $selectedColumns)
             ))
             ->whereBetween('reporting_starts', [$reportStartDate, $reportEndDate]);
+
+        if ($campaignFilter !== '') {
+            $reportRowsQuery->where('fb_ads_metrics.campaign_name', 'like', '%' . $campaignFilter . '%');
+        }
 
         if ($sortBy === 'export_date') {
             $reportRowsQuery->orderBy('fb_ads_metric_uploads.exported_date', $sortDir);
@@ -237,6 +243,7 @@ class FbAdsMetricsCon extends Controller
             'sortDir',
             'perPage',
             'quickRange',
+            'campaignFilter',
             'monthlyLabels',
             'monthlyAdSpend',
             'monthlyPurchases',

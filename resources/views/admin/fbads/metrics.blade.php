@@ -708,6 +708,7 @@
         <div class="report-toolbar">
             <div class="report-left-controls">
                 <input type="text" id="report_range_display" class="browser-default range-input" value="{{ $rangeLabel }}">
+                <input type="text" name="campaign_name" value="{{ $campaignFilter ?? '' }}" class="browser-default" placeholder="Campaign name" style="height:34px;border:1px solid #dbe7f3;border-radius:10px;padding:0 10px;font-size:11px;color:#334155;min-width:180px;">
             <div>
                 <select name="per_page" class="browser-default" style="height:34px;border:1px solid #dbe7f3;border-radius:10px;padding:0 8px;font-size:11px;color:#334155;">
                     <option value="50" {{ (int)($perPage ?? 50) === 50 ? 'selected' : '' }}>50</option>
