@@ -30,7 +30,7 @@ class FbAdsMetricsCon extends Controller
     public function index(Request $request)
     {
         $tab = $request->query('tab', 'uploads');
-        $uploads = FbAdsMetricUpload::orderBy('created_at', 'desc')->paginate(20);
+        $uploads = FbAdsMetricUpload::orderBy('created_at', 'desc')->paginate(31);
         $latestExportedDate = FbAdsMetricUpload::orderBy('created_at', 'desc')
             ->value('exported_date');
         $nextExportedDate = $latestExportedDate
