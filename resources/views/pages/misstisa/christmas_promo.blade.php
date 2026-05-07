@@ -14,7 +14,22 @@ $products = [
         //         'bundle_price' => 849
         //     ]
         // ]   
-    ]
+    ],
+    [
+        'id' => 1,
+        'name' => '1 SET + GOLD SERUM + VIT C + xtra Sunscreen',
+        'price' => 999,
+        'image' => 'https://matildasbeauty.com/filemanager/62ae4f4c9d204c0481ed5fbf6f94bc50.png',
+        'description' => '1 SET + VIT C + xtra Sunscreen',
+    ],
+    [
+        'id' => 2,
+        'name' => '1 SET + VIT C + xtra Sunscreen',
+        'price' => 699,
+        'image' => 'https://matildasbeauty.com/filemanager/6cf61624c9d84b3789f0b654de02ca25.webp',
+        'description' => '1 SET + VIT C + xtra Sunscreen',
+    ],
+    
    
 ];
 
@@ -809,8 +824,12 @@ $products_json = json_encode($products);
 <body>
 
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
-
         <img  src="https://matildasbeauty.com/filemanager/0ab3ce90323b470cac1636117d95ae73.png" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
+
+        <img  src="https://matildasbeauty.com/filemanager/e6089897ea7a404281f10dd65889b1e5.webp" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
+        
+        <img  src="https://matildasbeauty.com/filemanager/62ae4f4c9d204c0481ed5fbf6f94bc50.png" width="480" height="480" class="tw-full" alt="#1 Kulubot Remover">
+
         <div class="tfont-semibold tmx-3 tmy-4  ttext-center">
             <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
         </div>
@@ -1141,23 +1160,19 @@ $products_json = json_encode($products);
                         
                         <div class="tgrid tgap-2">
                             <?php foreach ($products as $index => $product): ?>
-                            <div class="product-card <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all"  onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
-                                <div class="tflex tjustify-center tmb-1">
-                                    <div class="tflex tjustify-center trounded-md" style="height: 150px; width: 150px;">
-                                        <img loading="lazy" src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="tw-full th-full tobject-cover trounded-md" />
-                                    </div>
-                                  
-                                </div>
+                            <div class="product-card <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 trelative trounded-lg ttransition-all"  onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
                                 <div class="check-circle tabsolute tw-6 th-6 trounded-full tflex titems-center tjustify-center ttext-xs tfont-bold" style="top: 4px;right: 4px;">✓</div>
-                                <h3 class="tfont-bold ttext-center ttext-gray-800 ttext-xs tmt-3" style="font-size: 17px; line-height: 1.1rem;"><?= htmlspecialchars($product['name']) ?></h3>
-                                <div id="quantity-container-<?= $product['id'] ?>" class="tflex titems-center tjustify-center tmb-1 tmt-2 <?= $index !== 0 ? 'thidden' : '' ?>">
-                                  <div class="tmx-auto">
-                                        <span class="tfont-bold ttext-2xl ttext-pink-600 tmt-">₱<?= number_format($product['price']) ?></span>
+                                <div class="tflex titems-center tgap-3">
+                                    <div class="tflex-shrink-0 trounded-md toverflow-hidden" style="height: 110px; width: 110px;">
+                                        <img loading="lazy" src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="tw-full th-full tobject-cover" />
                                     </div>    
-                                <div class="tflex titems-center tbg-white tborder-2 tborder-pink-200 trounded-md tpx-1 tpy-1 tshadow-sm">
-                                        <button onclick="changeQuantity(<?= $product['id'] ?>, -1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">-</button>
-                                        <span id="quantity-<?= $product['id'] ?>" class="tmx-3 tfont-bold ttext-lg ttext-gray-800 tmin-w-[24px] ttext-center">1</span>
-                                        <button onclick="changeQuantity(<?= $product['id'] ?>, 1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">+</button>
+                                    <div class="tflex-1">
+                                        <h3 class="tfont-bold ttext-left ttext-gray-800" style="font-size: 17px; line-height: 1.1rem;"><?= htmlspecialchars($product['name']) ?></h3>
+                                        <div id="quantity-container-<?= $product['id'] ?>" class="tflex titems-center tjustify-between tmt-3">
+                                            <div class="tmr-3">
+                                                <span class="tfont-bold ttext-2xl ttext-pink-600">₱<?= number_format($product['price']) ?></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1368,86 +1383,41 @@ $products_json = json_encode($products);
 
 
 
-        // PRODUCT SELECTIONS
-        let firstClickMade = false;
-
+        // PRODUCT SELECTIONS (single-select only)
         function selectProduct(element, price, productIndex) {
-            // On first click, auto-deselect the default (index 0) if clicking a different product
-            if (!firstClickMade && productIndex !== 0 && selectedProducts.includes(0)) {
-                const defaultCard = document.querySelector('.product-card.product-selected');
-                if (defaultCard) {
-                    defaultCard.classList.remove('product-selected');
-                    defaultCard.classList.add('product-unselected');
-                    defaultCard.classList.remove('tborder-pink-500', 'tbg-pink-50');
-                    defaultCard.classList.add('tborder-gray-300', 'tbg-white');
-                    
-                    // Hide quantity container for default
-                    const defaultQuantityContainer = document.getElementById('quantity-container-0');
-                    if (defaultQuantityContainer) {
-                        defaultQuantityContainer.classList.add('thidden');
-                    }
-                    
-                    // Reset quantity and remove from selected products
-                    quantities[0] = 0;
-                    const defaultQuantitySpan = document.getElementById('quantity-0');
-                    if (defaultQuantitySpan) {
-                        defaultQuantitySpan.textContent = 1;
-                    }
-                    selectedProducts = selectedProducts.filter(index => index !== 0);
-                }
-                firstClickMade = true;
-            }
-            
-            // Check if this is the only selected product and prevent deselection
-            if (element.classList.contains('product-selected') && selectedProducts.length === 1) {
+            // Already selected -> keep selected (no multi-toggle)
+            if (selectedProducts.length === 1 && selectedProducts[0] === productIndex) {
                 return;
             }
-            
-            // Toggle selection
-            if (element.classList.contains('product-selected')) {
-                // Deselect product
-                element.classList.remove('product-selected');
-                element.classList.add('product-unselected');
-                element.classList.remove('tborder-pink-500', 'tbg-pink-50');
-                element.classList.add('tborder-gray-300', 'tbg-white');
-                
-                // Hide quantity container
-                const quantityContainer = document.getElementById(`quantity-container-${productIndex}`);
-                if (quantityContainer) {
-                    quantityContainer.classList.add('thidden');
-                }
-                
-                // Reset quantity and remove from selected products
-                quantities[productIndex] = 0;
-                const quantitySpan = document.getElementById(`quantity-${productIndex}`);
-                if (quantitySpan) {
-                    quantitySpan.textContent = 1;
-                }
-                selectedProducts = selectedProducts.filter(index => index !== productIndex);
-            } else {
-                // Select product
-                element.classList.remove('product-unselected');
-                element.classList.add('product-selected');
-                element.classList.remove('tborder-gray-300', 'tbg-white');
-                element.classList.add('tborder-pink-500', 'tbg-pink-50');
-                
-                // Show quantity container
-                const quantityContainer = document.getElementById(`quantity-container-${productIndex}`);
-                if (quantityContainer) {
-                    quantityContainer.classList.remove('thidden');
-                }
-                
-                // Set initial quantity and add to selected products
-                quantities[productIndex] = 1;
-                const quantitySpan = document.getElementById(`quantity-${productIndex}`);
-                if (quantitySpan) {
-                    quantitySpan.textContent = 1;
-                }
-                if (!selectedProducts.includes(productIndex)) {
-                    selectedProducts.push(productIndex);
-                }
+
+            // Clear all selections
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('product-selected', 'tborder-pink-500', 'tbg-pink-50');
+                card.classList.add('product-unselected', 'tborder-gray-300', 'tbg-white');
+            });
+
+            // Hide all quantity containers and reset quantities
+            document.querySelectorAll('[id^="quantity-container-"]').forEach(el => el.classList.add('thidden'));
+            for (let i = 0; i < quantities.length; i++) {
+                quantities[i] = 0;
             }
-            
+
+            // Select only clicked product
+            element.classList.remove('product-unselected', 'tborder-gray-300', 'tbg-white');
+            element.classList.add('product-selected', 'tborder-pink-500', 'tbg-pink-50');
+
+            const quantityContainer = document.getElementById(`quantity-container-${productIndex}`);
+            if (quantityContainer) {
+                quantityContainer.classList.remove('thidden');
+            }
+
+            quantities[productIndex] = 1;
+            const quantitySpan = document.getElementById(`quantity-${productIndex}`);
+            if (quantitySpan) {
+                quantitySpan.textContent = 1;
+            }
+            selectedProducts = [productIndex];
+
             updateTotal();
         }
 
