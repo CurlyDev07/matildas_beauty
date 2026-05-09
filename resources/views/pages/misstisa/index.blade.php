@@ -17,9 +17,9 @@ $products = [
     ],
     [
         'id' => 1, 
-        'name' => '2pcs MissTisa Set',
+        'name' => '2pcs Set + Free VITAMIN C',
         'price' => 799,
-        'image' => 'https://matildasbeauty.com/filemanager/ab38e19e27d840abbc96eb22a85f530f.png',
+        'image' => 'https://matildasbeauty.com/filemanager/f53d41cdd8c94ec2afbea9b146ce0f48.png',
         'description' => 'Advanced anti-aging and whitening serum',
     ],
     [
@@ -1201,9 +1201,9 @@ $products_json = json_encode($products);
         <h1 class="tfont-bold tpy-5 ttext-3xl ttext-center ttext-red ttext-white tmt-10" style="
             background: #ff5f29;
             background: linear-gradient(90deg, rgba(255, 95, 41, 1) 0%, rgba(253, 29, 29, 1) 40%, rgba(252, 145, 69, 1) 100%);
-        ">NEW PRODUCT!</h1>
+        ">HURRY! ENDS TOMORROW</h1>
 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/55c2868e86fc435aae2b55a4c96fe6f8.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/d8156c74d8db4d22b5e0f105a7f66ea7.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
         <img class="" src="https://matildasbeauty.com/filemanager/7463ba9ebfd44727a67b35d1777826a4.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
 
 
