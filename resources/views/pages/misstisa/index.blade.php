@@ -21,6 +21,7 @@ $products = [
         'price' => 799,
         'image' => 'https://matildasbeauty.com/filemanager/f53d41cdd8c94ec2afbea9b146ce0f48.png',
         'description' => 'Advanced anti-aging and whitening serum',
+        'badge' => 'ENDS TOMORROW'
     ],
     [
         'id' => 2,
@@ -1325,6 +1326,14 @@ $products_json = json_encode($products);
                         <div class="tgrid tgrid-cols-2 tgap-2">
                             <?php foreach ($products as $index => $product): ?>
                             <div class="product-card <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" style="height: 150px;" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
+
+                                @if (!empty($product['badge']))
+                                    <span class="tabsolute bg-gradient-purple-pink trounded-xl tpx-2 ttext-white tcursor-pointer tshadow-lg ttext-sm" style="top: -8%; right: 18%;">{{ $product['badge'] }}</span>
+                                @endif
+
+
+                                <!-- <span class="tabsolute bg-gradient-purple-pink trounded-xl tpx-2 ttext-white tcursor-pointer tshadow-lg" style="top: -8%; right: 18%;">Ends Tomorrow</span> -->
+
                                 <div class="tflex titems-center tgap-2 tmb-1">
                                     <div class="tflex titems-center tjustify-center trounded-md" style="height: 65px; width: 65px;">
                                         <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="tw-full th-full tobject-cover trounded-md" />
