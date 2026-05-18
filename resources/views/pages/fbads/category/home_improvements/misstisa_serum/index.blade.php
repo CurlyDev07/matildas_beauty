@@ -59,8 +59,8 @@
         </div><!-- Trusted Reviews -->
 
          <div class="tborder-dashed tflex titems-center tjustify-center tmx-3 tmy-4 tpx-3 tpy-3" style="border: 2px solid #000000; border-style: dashed;">
-            <span class="tfont-medium">Order Today for guaranteed </span>
-            <span class="theme-color tfont-medium tml-2"> FREE 4 Gifts</span>
+            <!-- <span class="tfont-medium">Order Today for guaranteed </span> -->
+            <span class="theme-color tfont-medium tml-2"> FREE Vitamin C & Sunscreen</span>
         </div><!-- FREE 4 Gifts -->
 
         <span class="tfont-medium">Lunas sa mga sumusunod</span>
@@ -414,55 +414,50 @@
                 </div>
 
 
-               <div class="tbg-yellow-200 tborder-2 tborder-red-500 tfont-medium tmb-2 tmt-5 tmx-4 trounded ttext-center ttext-red-700">
-
-                    <span class="ttext-lg"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Save more vs buying separately</span>
-                    
-                    <div class="ttext-lg tmt-1">
-                        <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> See results faster when used together
-                    </div> 
-                    <div class="ttext-lg tmt-1">
-                        <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Risk-free: 7-day money-back guarantee
-                    </div> 
-            
-
-                     <div class="tflex tjustify-between tmt-2 tpx-3">
-                        <div class="ttext-md tfont-bold" style="color: #ff0021;">🚨 Promo expires in </div> 
-                        <div class="ttext-md tfont-bold tflex" style="color: #ff0021;">
-                            ⏰
-                            <div id="timer">29:38</div>
-                            mins
-                        </div> 
-                    </div>
-                </div>
-
                 <!-- ORDER PROMO -->
                 <div class=" tmb-2 tp-3 trelative" >
                     
                     <div class="tflex tflex-wrap">
 
-
-
                         @foreach ($promos as $key => $promo)
-                     
                             <div class="tw-full tp-1 tmt-2 trelative">
-                                <label class="tblock tborder-2 tpb-12 tpx-3 trounded" style="border-color: #ee2a7b;">
+                                <label class="trelative tflex tblock tborder-2 tpx-3 tpy-3 trounded" style="border-color: #ee2a7b;">
+                                    <img src="{{ data_get($promo, 'image', 'https://matildasbeauty.com/filemanager/aa4c4107d452449db117a6d4712e0484.png') }}"
+                                            alt="{{ $promo['promo_text'] }}"
+                                            style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid #fbcfe8;">
+                                    <div class="tflex titems-center tw-full" style="gap: 12px;">
 
+                                   
+                                        
 
-                                    <input type="checkbox" id="{{ $key }}" name="promo" class="promo"
-                      
-                                        @if ($key == 'promo1')
-                                            checked="" 
-                                        @endif 
-                                    
-                                    value="{{ $promo['promo'] }}">
+                                        <div class="tflex-1 ttext-center">
+                                            <div class="ttext-gray-900 tfont-medium ttext-lg">{{ $promo['promo_text'] }}</div>
+                                            <!-- <div class="tfont-medium ttext-sm" style="color: #475569;">({{ $promo['each_price'] }})</div> -->
+                                            <!-- PROMO TEXT -->
 
+                                              @if ($key == 'promo1')
+                                                @if ($promo['promo_text1'])
+                                                    <span class="tfont-medium ttext-sm" style="color: #475569;">({{ $promo['promo_text1'] }})</span>
+                                                @endif
+                                                <br>
+                                                @if ($promo['promo_text2'])
+                                                    <span class="tmb-5 tfont-medium ttext-sm" style="color: #475569;">({{ $promo['promo_text2'] }})</span>
+                                                @endif
+                                            @endif
+                                           
+                                        </div>
 
-                                    <span class="ttext-gray-900 tfont-medium ttext-sm" style="top: 11px;">{{ $promo['promo_text'] }}</span>
-                                    <span class="tabsolute tfont-medium ttext-grey-900" style="bottom: 10%; left: 10%;color: #000000;">({{ $promo['each_price'] }})</span>
-                                    <span class="tabsolute misstisa-bg tw-10" style="height: 28px; bottom: 4%; width: 57px; right: 5%; order: 1px solid red; border-top-left-radius: 10px; border-top-right-radius: 10px; ">
-                                        <span class="tblock ttext-white ttext-center tfont-bold ttext-lg" style="margin-top: 1px;">₱{{ $promo['price'] }}</span>
-                                    </span>
+                                        <div class="tabsolute tinline-flex titems-center tjustify-center misstisa-bg tpx-2 tpy-1 trounded" style="min-width: 70px; bottom: 4px; right: 1%; border-bottom-left-radius: 0; border-top-right-radius: 0; border-top-left-radius: 16px;">
+                                            <span class="ttext-white tfont-bold ttext-base">₱{{ $promo['price'] }}</span>
+                                        </div>
+
+                                        <input type="checkbox" id="{{ $key }}" name="promo" class="promo tabsolute"
+                                            style="top: 10px; right: 10px; z-index: 30; width: 22px; height: 22px; opacity: 1; cursor: pointer; accent-color: #ee2a7b; border: 2px solid #ee2a7b; border-radius: 999px; box-shadow: 0 0 0 3px rgba(238, 42, 123, 0.15); background: #fff;"
+                                            @if ($key == 'promo1')
+                                                checked=""
+                                            @endif
+                                        value="{{ $promo['promo'] }}">
+                                    </div>
                                 </label>
 
                                 @if ($key == 'promo1')
@@ -471,6 +466,12 @@
                                             BEST SELLER
                                         </div>
                                     </div>  
+
+                                    <div class="tabsolute tbg-red-100 tbg-white tborder-2 tborder-red-500 tflex tfont-bold titems-center tjustify-center tml-auto trounded-lg ttext-center ttext-md tw-64" style="color: #ff0021; top: -4%; left: 0; right: 71px;">
+                                        <div class="ttext-sm tfont-bold" style="color: #ff0021;">🚨 Promo expires in &nbsp;</div> 
+                                        <div id="timer">29:38</div>
+                                        mins
+                                    </div> 
                                 @endif <!-- If promo1 SHOW BEST SELLER BADGE  -->
                             
                             </div><!-- PROMO 1-->
@@ -521,7 +522,7 @@
                     <span class="ttext-gray-900" style="font-size: 16px;">
                         <span class="tfont-medium">TOTAL:</span>
                         <span class="tfont-medium">₱</span>
-                        <span id="total" class="tfont-medium t-ml-1">1149</span>
+                        <span id="total" class="tfont-medium t-ml-1">999</span>
                     </span>
                 </div> <!-- DEFAULT VALUE NEAR BUTTON -->
                 <div class="tw-full tpx-5 tmb-5">
@@ -619,4 +620,3 @@
         updateTimer();
     </script>
 @endsection
-
