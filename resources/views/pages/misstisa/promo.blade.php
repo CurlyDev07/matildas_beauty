@@ -4,15 +4,15 @@ $products = [
     [
         'id' => 0,
         'name' => 'Starter Glow Set',
-        'price' => 499,
+        'price' => 599,
         'image' => 'https://matildasbeauty.com/filemanager/6680dcdecd7042588a0a02b32f4bf3c3.png',
         'description' => 'MissTisa Set',
-        'promo' => [
-            [
-                'qty' => 2,
-                'bundle_price' => 849
-            ]
-        ]
+        // 'promo' => [
+        //     [
+        //         'qty' => 2,
+        //         'bundle_price' => 849
+        //     ]
+        // ]
     ],
     [
         'id' => 1,

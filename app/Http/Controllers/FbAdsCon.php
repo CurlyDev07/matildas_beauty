@@ -48,10 +48,10 @@ class FbAdsCon extends Controller
         $notif_message = 'This is from MissTisa Melasma';
         $promos = [
             'promo1' => [
-                'promo' => 'MissTisaMelasma_1_Set|499|1pc',
+                'promo' => 'MissTisaMelasma_1_Set|599|1pc',
                 'promo_text' => '1 Set MissTisa',
-                'price' => 499,
-                'each_price' => '499/each'
+                'price' => 599,
+                'each_price' => '599/each'
             ], 
             'promo2' => [
                 'promo' => 'MissTisaMelasma_2_Set|849|2pcs',
@@ -82,21 +82,27 @@ class FbAdsCon extends Controller
         $promos = [
             'promo1' => [
                 'promo' => 'MissTisaSerum_2pcs_FREE_VITAMIN_C|999|3pcs',
-                'promo_text' => '2pcs Serum + FREE Vitamin C Serum',
+                'promo_text' => '2pcs Serum + FREE VIT C Serum',
                 'price' => 999,
-                'each_price' => '499/each with Free Vitamin C'
+                'each_price' => 'Why buy 1 for ₱749? | ',
+                'image' => 'https://matildasbeauty.com/filemanager/122162319f16490ba3396384302b4878.png',
+                'promo_text1' => 'Why buy 1 for ₱749?',
+                'promo_text2' => 'Add only ₱250 more Get xtra 1 Serum',
+                
             ], 
             'promo2' => [
                 'promo' => 'MissTisaSerum_1pc|749|1pc',
                 'promo_text' => '1pc MissTisa Serum',
                 'price' =>749,
-                'each_price' => '749/each'
+                'each_price' => '749/each',
+                'image' => 'https://matildasbeauty.com/filemanager/9c72afd4c22245829fa86cd13ffad855.png'
             ], 
             'promo3' => [
-                'promo' => 'Lotion+Set+Serum_FREE_VITAMIN_C|1299|4pcs',
-                'promo_text' => 'Skincare Set + Serum + Free Lotion & Vitamin C',
+                'promo' => 'Lotion+Set+Serum_FREE_VICTORIA_SECRET|1299|4pcs',
+                'promo_text' => 'Set + Serum + Free Lotion & Free Victoria Secret',
                 'price' => 1299,
-                'each_price' => 'Free Lotion & Vitamin C'
+                'each_price' => 'Free Lotion & Vitamin C',
+                'image' => 'https://matildasbeauty.com/filemanager/0bc7c0824af04bf4a64f0bed9027b118.png'
             ], 
            
         ];
