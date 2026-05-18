@@ -25,3 +25,12 @@ Route::middleware('api.key')->group(function () {
 Route::post('/bank-transactions', 'Api\BankTransactionController@store');
 
 Route::post('/customer-feedback', 'Api\CustomerFeedbackController@store');
+
+Route::prefix('mobile-auth')->group(function () {
+    Route::post('/login', 'Api\MobileAuthController@login');
+
+    Route::middleware('mobile.api.auth')->group(function () {
+        Route::get('/me', 'Api\MobileAuthController@me');
+        Route::post('/logout', 'Api\MobileAuthController@logout');
+    });
+});

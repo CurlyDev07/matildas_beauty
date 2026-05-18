@@ -144,3 +144,137 @@ The recommended flow for creating an order:
 - All orders are created with status `TO ENCODE` by default and will appear in the admin panel for staff to process.
 - The `product` field must always be `"MissTisa"` — do not change this value.
 - The `total` field is the final amount in Philippine Peso (e.g., `499`, `849`, `1149`).
+
+---
+
+## Mobile App Auth (Bearer Token, 1-Year)
+
+This auth flow is for mobile app login using existing web user credentials.
+
+### Auth Base
+```
+https://matildasbeauty.com/api/mobile-auth
+```
+
+### 1. Login
+```
+POST /api/mobile-auth/login
+```
+
+**Headers**
+```
+Content-Type: application/json
+Accept: application/json
+```
+
+**Request Body**
+| Field | Type | Required | Notes |
+|-------|------|----------|-------|
+| `email` | string | Yes | Existing user email |
+| `password` | string | Yes | Existing user password |
+| `device_name` | string | No | Example: `Android - Samsung A55` |
+
+**Example Request**
+```json
+{
+  "email": "user@example.com",
+  "password": "your-password",
+  "device_name": "Android - Samsung A55"
+}
+```
+
+**Response `200`**
+```json
+{
+  "message": "Login successful.",
+  "token_type": "Bearer",
+  "access_token": "plain_text_token_here",
+  "expires_at": "2027-05-18 10:30:45",
+  "user": {
+    "id": 1,
+    "first_name": "Reg",
+    "last_name": "User",
+    "email": "user@example.com",
+    "role": "admin"
+  }
+}
+```
+
+Store `access_token` securely on device (Keychain/Keystore).
+
+### 2. Get Current User (`me`)
+```
+GET /api/mobile-auth/me
+```
+
+**Headers**
+```
+Authorization: Bearer {access_token}
+Accept: application/json
+```
+
+**Response `200`**
+```json
+{
+  "user": {
+    "id": 1,
+    "first_name": "Reg",
+    "last_name": "User",
+    "email": "user@example.com",
+    "role": "admin"
+  }
+}
+```
+
+### 3. Logout (Revoke Current Token)
+```
+POST /api/mobile-auth/logout
+```
+
+**Headers**
+```
+Authorization: Bearer {access_token}
+Accept: application/json
+```
+
+**Response `200`**
+```json
+{
+  "message": "Logged out successfully."
+}
+```
+
+### Error Responses
+
+**Invalid login credentials**
+```json
+HTTP 401
+{
+  "message": "Invalid credentials."
+}
+```
+
+**Missing bearer token**
+```json
+HTTP 401
+{
+  "message": "Unauthorized. Missing bearer token."
+}
+```
+
+**Invalid or expired token**
+```json
+HTTP 401
+{
+  "message": "Unauthorized. Invalid or expired token."
+}
+```
+
+### Mobile Integration Flow
+```
+1. POST /api/mobile-auth/login
+2. Save access_token securely
+3. Send Authorization: Bearer {token} on protected calls
+4. On 401 invalid/expired, force re-login
+5. On user sign-out, call POST /api/mobile-auth/logout and clear local token
+```

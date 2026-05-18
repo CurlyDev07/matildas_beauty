@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'saAccess' => \App\Http\Middleware\SalesAssociatesAccess::class,
         'inventoryAccess' => \App\Http\Middleware\InventoryAccess::class,
         'api.key' => \App\Http\Middleware\ApiKeyMiddleware::class,
+        'mobile.api.auth' => \App\Http\Middleware\MobileApiTokenAuth::class,
     ];
 
     /**
