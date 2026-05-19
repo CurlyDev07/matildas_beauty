@@ -32,5 +32,6 @@ Route::prefix('mobile-auth')->group(function () {
     Route::middleware('mobile.api.auth')->group(function () {
         Route::get('/me', 'Api\MobileAuthController@me');
         Route::post('/logout', 'Api\MobileAuthController@logout');
+        Route::get('/pancake/orders', 'Api\PancakeVipOrderController@index');
     });
 });

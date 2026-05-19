@@ -278,3 +278,95 @@ HTTP 401
 4. On 401 invalid/expired, force re-login
 5. On user sign-out, call POST /api/mobile-auth/logout and clear local token
 ```
+
+---
+
+## Mobile Pancake Orders API
+
+Fetch Pancake VIP orders for mobile app.  
+Default behavior returns **today's data** (Asia/Manila timezone).
+
+### Endpoint
+```
+GET /api/mobile-auth/pancake/orders
+```
+
+### Auth
+Requires mobile bearer token from:
+```
+POST /api/mobile-auth/login
+```
+
+**Headers**
+```
+Authorization: Bearer {access_token}
+Accept: application/json
+```
+
+### Query Parameters
+| Field | Type | Required | Notes |
+|-------|------|----------|-------|
+| `date` | string | No | Format: `YYYY-MM-DD`. If omitted, API uses today's date. |
+
+### Example Requests
+
+**A) Default (today)**
+```http
+GET /api/mobile-auth/pancake/orders
+Authorization: Bearer {access_token}
+```
+
+**B) Specific date**
+```http
+GET /api/mobile-auth/pancake/orders?date=2026-05-19
+Authorization: Bearer {access_token}
+```
+
+### Response `200`
+```json
+{
+  "date": "2026-05-19",
+  "total": 2,
+  "orders": [
+    {
+      "id": 101,
+      "tracking_number": "JT0018027352301",
+      "phone_number": "+639670661711",
+      "customer": "Lyra Villanueva",
+      "product_list": "SET + SERUM + LOTION + VSPerfume x 1",
+      "workflow_stage": "sales",
+      "status": "active",
+      "created_at": "2026-05-19T01:23:45.000000Z"
+    }
+  ]
+}
+```
+
+### Validation Error `422`
+If invalid date format is sent:
+```json
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "date": [
+      "The date does not match the format Y-m-d."
+    ]
+  }
+}
+```
+
+### Unauthorized `401`
+If bearer token is missing/invalid/expired:
+```json
+{
+  "message": "Unauthorized. Invalid or expired token."
+}
+```
+
+### Recommended Mobile Implementation
+```
+1. Login once via /api/mobile-auth/login and store token securely.
+2. On screen load, call /api/mobile-auth/pancake/orders (no date) for today's list.
+3. If user picks a date, call /api/mobile-auth/pancake/orders?date=YYYY-MM-DD.
+4. If 401, redirect to login and clear local token.
+```
