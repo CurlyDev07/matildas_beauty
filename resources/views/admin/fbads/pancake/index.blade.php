@@ -57,7 +57,6 @@
         .pc-stage-sales { background:#eff6ff; color:#1d4ed8; }
         .pc-stage-production { background:#ecfeff; color:#0e7490; }
         .pc-stage-packing { background:#fff7ed; color:#c2410c; }
-        .pc-stage-handover { background:#f5f3ff; color:#6d28d9; }
         .pc-stage-shipped { background:#f0fdf4; color:#15803d; }
         .pc-status-active { background:#ecfdf5; color:#047857; }
         .pc-status-on_hold { background:#fffbeb; color:#b45309; }
@@ -85,7 +84,7 @@
     <div class="pc-hero" style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px;">
         <div>
             <h4 style="margin:0;font-weight:800;color:#fff;">Pancake Orders</h4>
-            <p style="margin:4px 0 0;color:#dbeafe;font-size:13px;">Track VIP orders from sales to J&amp;T handover.</p>
+            <p style="margin:4px 0 0;color:#dbeafe;font-size:13px;">Track VIP orders from sales to shipped.</p>
         </div>
         <button type="button" id="openPancakeImportModal" class="pc-btn pc-btn-primary">
             <i class="fas fa-file-import" style="margin-right:6px;"></i> Import Orders (Pancake)
@@ -138,7 +137,6 @@
                         <option value="sales" {{ request('workflow_stage') === 'sales' ? 'selected' : '' }}>Sales</option>
                         <option value="production" {{ request('workflow_stage') === 'production' ? 'selected' : '' }}>Production</option>
                         <option value="packing" {{ request('workflow_stage') === 'packing' ? 'selected' : '' }}>Packing</option>
-                        <option value="handover" {{ request('workflow_stage') === 'handover' ? 'selected' : '' }}>Handover</option>
                         <option value="shipped" {{ request('workflow_stage') === 'shipped' ? 'selected' : '' }}>Shipped</option>
                     </select>
                 </div>

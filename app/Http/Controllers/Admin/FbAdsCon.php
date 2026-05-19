@@ -185,9 +185,6 @@ class FbAdsCon extends Controller
         if (in_array($normalized, ['packing', 'packer', 'packaging', 'pack'], true)) {
             return 'packing';
         }
-        if (in_array($normalized, ['handover', 'hand over', 'for pickup', 'picked up', 'pickup'], true)) {
-            return 'handover';
-        }
         if (in_array($normalized, ['shipped', 'in transit', 'shipout', 'ship out'], true)) {
             return 'shipped';
         }

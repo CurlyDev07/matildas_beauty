@@ -19,7 +19,7 @@ class CreateJtPancakeVipOrdersTable extends Migration
             $table->string('phone_number')->nullable()->index();
             $table->string('customer');
             $table->text('product_list')->nullable();
-            $table->enum('workflow_stage', ['sales', 'production', 'packing', 'handover', 'shipped'])->default('sales')->index();
+            $table->enum('workflow_stage', ['sales', 'production', 'packing', 'shipped'])->default('sales')->index();
             $table->enum('status', ['active', 'on_hold', 'cancelled', 'completed'])->default('active')->index();
             $table->timestamps();
         });
@@ -35,4 +35,3 @@ class CreateJtPancakeVipOrdersTable extends Migration
         Schema::dropIfExists('jt_pancake_vip_orders');
     }
 }
-
