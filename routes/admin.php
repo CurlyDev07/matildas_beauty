@@ -311,6 +311,9 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/event-listener', 'FbAdsCon@event_listener')->name('fbads.event_listener');
         Route::get('/events', 'FbAdsCon@events')->name('fbads.events');
         Route::get('/metrics', 'FbAdsMetricsCon@index')->name('fbads.metrics.index');
+        Route::get('/pancake', 'FbAdsCon@pancake')->name('fbads.pancake.index');
+        Route::post('/pancake/import', 'FbAdsCon@pancake_import')->name('fbads.pancake.import');
+        Route::post('/pancake/bulk-action', 'FbAdsCon@pancake_bulk_action')->name('fbads.pancake.bulk_action');
         Route::post('/metrics/upload', 'FbAdsMetricsCon@store')->name('fbads.metrics.store');
         Route::patch('/metrics/{id}/exported-date', 'FbAdsMetricsCon@updateExportedDate')->name('fbads.metrics.update_exported_date');
         Route::post('/metrics/{id}/reupload', 'FbAdsMetricsCon@reupload')->name('fbads.metrics.reupload');

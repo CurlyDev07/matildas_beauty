@@ -19,11 +19,198 @@ use App\MetaCreativeMetric;
 use App\OrderSource;
 use App\OrderSignal;
 use App\OrderSignalBlockList;
+use App\JTPancakeVipOrders;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
 class FbAdsCon extends Controller
 {
+    public function pancake(Request $request)
+    {
+        $orders = JTPancakeVipOrders::query()
+            ->when($request->filled('search'), function ($q) use ($request) {
+                $search = trim((string) $request->search);
+                $q->where(function ($qq) use ($search) {
+                    $qq->where('phone_number', 'like', '%' . $search . '%')
+                        ->orWhere('tracking_number', 'like', '%' . $search . '%')
+                        ->orWhere('customer', 'like', '%' . $search . '%');
+                });
+            })
+            ->when($request->filled('status'), function ($q) use ($request) {
+                $q->where('status', $request->status);
+            })
+            ->when($request->filled('workflow_stage'), function ($q) use ($request) {
+                $q->where('workflow_stage', $request->workflow_stage);
+            })
+            ->when($request->filled('created_date'), function ($q) use ($request) {
+                $q->whereDate('created_at', $request->created_date);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(50);
+
+        return view('admin.fbads.pancake.index', [
+            'orders' => $orders,
+        ]);
+    }
+
+    public function pancake_import(Request $request)
+    {
+        $request->validate([
+            'excel_file' => 'required|file|mimes:xlsx,xls',
+        ]);
+
+        $file = $request->file('excel_file');
+        $spreadsheet = IOFactory::load($file->getRealPath());
+        $sheet = $spreadsheet->getActiveSheet();
+        $rows = array_values($sheet->toArray(null, true, true, true));
+
+        if (count($rows) < 2) {
+            return back()->with('error', 'Uploaded file is empty or has no data rows.');
+        }
+
+        $headerIndex = $this->detectPancakeHeaderRowIndex($rows);
+        if ($headerIndex === null) {
+            return back()->with('error', 'Could not detect Excel header row. Please use the expected Pancake template.');
+        }
+
+        $headerRow = $rows[$headerIndex];
+        $headerMap = $this->pancakeBuildHeaderMap($headerRow);
+        $rows = array_slice($rows, $headerIndex + 1);
+        $imported = 0;
+
+        foreach ($rows as $row) {
+            $trackingNumber = $this->pancakeCell($row, $headerMap, ['tracking_number', 'tracking', 'tracking no', 'tracking number', 'waybill', 'waybill number'], 'B');
+            $phoneNumber = $this->pancakeCell($row, $headerMap, ['phone_number', 'phone', 'mobile', 'mobile number', 'contact number'], 'C');
+            $customer = $this->pancakeCell($row, $headerMap, ['customer', 'customer name', 'name', 'consignee'], 'D');
+            $productList = $this->pancakeCell($row, $headerMap, ['product_list', 'products', 'product', 'item', 'items', 'order items', 'products list'], 'E');
+
+            if ($trackingNumber === '' && $phoneNumber === '' && $customer === '' && $productList === '') {
+                continue;
+            }
+
+            $workflowRaw = $this->pancakeCell($row, $headerMap, ['workflow_stage', 'workflow', 'stage', 'location'], 'E');
+            $statusRaw = $this->pancakeCell($row, $headerMap, ['status', 'order status', 'parcel status'], 'F');
+
+            JTPancakeVipOrders::create([
+                'tracking_number' => $trackingNumber !== '' ? $trackingNumber : null,
+                'phone_number' => $phoneNumber !== '' ? $phoneNumber : null,
+                'customer' => $customer !== '' ? $customer : 'Unknown Customer',
+                'product_list' => $productList !== '' ? $productList : null,
+                'workflow_stage' => $this->normalizePancakeWorkflowStage($workflowRaw),
+                'status' => $this->normalizePancakeStatus($statusRaw),
+            ]);
+
+            $imported++;
+        }
+
+        return redirect()->route('fbads.pancake.index')->with('success', $imported . ' orders imported successfully.');
+    }
+
+    public function pancake_bulk_action(Request $request)
+    {
+        $request->validate([
+            'selected_ids' => 'required|array|min:1',
+            'selected_ids.*' => 'integer',
+            'action' => 'required|string|in:delete_selected',
+        ]);
+
+        $ids = array_values(array_unique(array_map('intval', $request->selected_ids)));
+        if (empty($ids)) {
+            return back()->with('error', 'No valid selected records.');
+        }
+
+        $deleted = JTPancakeVipOrders::whereIn('id', $ids)->delete();
+
+        return redirect()->route('fbads.pancake.index')->with('success', $deleted . ' selected order(s) deleted.');
+    }
+
+    private function pancakeBuildHeaderMap(array $headerRow)
+    {
+        $map = [];
+        foreach ($headerRow as $column => $headerValue) {
+            $key = strtolower(trim((string) $headerValue));
+            if ($key !== '') {
+                $map[$key] = $column;
+            }
+        }
+
+        return $map;
+    }
+
+    private function detectPancakeHeaderRowIndex(array $rows)
+    {
+        $rowValues = array_values($rows);
+        $maxScan = min(count($rowValues), 10);
+
+        for ($i = 0; $i < $maxScan; $i++) {
+            $values = array_map(function ($v) {
+                return strtolower(trim((string) $v));
+            }, $rowValues[$i]);
+
+            $line = ' ' . implode(' | ', $values) . ' ';
+            $hasTracking = strpos($line, 'tracking') !== false || strpos($line, 'waybill') !== false;
+            $hasPhone = strpos($line, 'phone') !== false || strpos($line, 'mobile') !== false || strpos($line, 'contact') !== false;
+            $hasCustomer = strpos($line, 'customer') !== false || strpos($line, 'consignee') !== false || strpos($line, 'name') !== false;
+
+            if ($hasTracking && $hasPhone && $hasCustomer) {
+                return $i;
+            }
+        }
+
+        return null;
+    }
+
+    private function pancakeCell(array $row, array $headerMap, array $aliases, $fallbackColumn)
+    {
+        foreach ($aliases as $alias) {
+            $aliasKey = strtolower(trim($alias));
+            if (isset($headerMap[$aliasKey])) {
+                return trim((string) ($row[$headerMap[$aliasKey]] ?? ''));
+            }
+        }
+
+        return trim((string) ($row[$fallbackColumn] ?? ''));
+    }
+
+    private function normalizePancakeWorkflowStage($value)
+    {
+        $normalized = strtolower(trim((string) $value));
+
+        if (in_array($normalized, ['sales', 'sale', 'encoder'], true)) {
+            return 'sales';
+        }
+        if (in_array($normalized, ['production', 'prod'], true)) {
+            return 'production';
+        }
+        if (in_array($normalized, ['packing', 'packer', 'packaging', 'pack'], true)) {
+            return 'packing';
+        }
+        if (in_array($normalized, ['handover', 'hand over', 'for pickup', 'picked up', 'pickup'], true)) {
+            return 'handover';
+        }
+        if (in_array($normalized, ['shipped', 'in transit', 'shipout', 'ship out'], true)) {
+            return 'shipped';
+        }
+
+        return 'sales';
+    }
+
+    private function normalizePancakeStatus($value)
+    {
+        $normalized = strtolower(trim((string) $value));
+
+        if (in_array($normalized, ['cancel', 'cancelled', 'canceled'], true)) {
+            return 'cancelled';
+        }
+        if (in_array($normalized, ['hold', 'on hold', 'pending'], true)) {
+            return 'on_hold';
+        }
+        if (in_array($normalized, ['done', 'completed', 'complete', 'success'], true)) {
+            return 'completed';
+        }
+
+        return 'active';
+    }
 
     // public function index(Request $request){
 

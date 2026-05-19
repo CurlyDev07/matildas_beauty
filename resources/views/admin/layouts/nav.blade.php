@@ -421,6 +421,9 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
                 <a href="/admin/fbads/metrics" class="mb-sb-child {{ request()->is('admin/fbads/metrics') ? 'mb-active' : '' }}">
                     <i class="fas fa-file-excel mb-sb-child-icon"></i> Ad Metrics
                 </a>
+                <a href="/admin/fbads/pancake" class="mb-sb-child {{ request()->is('admin/fbads/pancake') ? 'mb-active' : '' }}">
+                    <i class="fas fa-layer-group mb-sb-child-icon"></i> Pancake
+                </a>
                 <a href="/admin/order-sources" class="mb-sb-child {{ request()->is('admin/order-sources') ? 'mb-active' : '' }}">
                     <i class="fas fa-code-branch mb-sb-child-icon"></i> Source
                 </a>
