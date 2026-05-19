@@ -33,5 +33,7 @@ Route::prefix('mobile-auth')->group(function () {
         Route::get('/me', 'Api\MobileAuthController@me');
         Route::post('/logout', 'Api\MobileAuthController@logout');
         Route::get('/pancake/orders', 'Api\PancakeVipOrderController@index');
+        Route::patch('/pancake/orders/{id}/workflow-stage', 'Api\PancakeVipOrderController@updateWorkflowStage');
+        Route::post('/pancake/orders/bulk-workflow-stage', 'Api\PancakeVipOrderController@bulkUpdateWorkflowStage');
     });
 });
