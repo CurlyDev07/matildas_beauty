@@ -92,21 +92,21 @@
                         <label class="wi-form-label">Category</label>
                         <select name="category_level_1_id" id="categoryLevel1" class="browser-default wi-select">
                             <option value="">No category</option>
-                            @foreach($categories->where('parent_id', null) as $r)<option value="{{ $r->id }}">{{ $r->name }}</option>@endforeach
+                            @foreach($categories->where('parent_id', null) as $r)<option value="{{ $r->id }}" {{ (string) $defaultCategoryLevel1Id === (string) $r->id ? 'selected' : '' }}>{{ $r->name }}</option>@endforeach
                         </select>
                     </div>
                     <div class="col s12 m4 tmb-3" id="categoryLevel2Wrap" style="display:none;">
                         <label class="wi-form-label">Sub Category</label>
                         <select name="category_level_2_id" id="categoryLevel2" class="browser-default wi-select">
                             <option value="">No sub category</option>
-                            @foreach($categories->where('parent_id', '!=', null) as $r)<option value="{{ $r->id }}" data-parent="{{ $r->parent_id }}">{{ $r->name }}</option>@endforeach
+                            @foreach($categories->where('parent_id', '!=', null) as $r)<option value="{{ $r->id }}" data-parent="{{ $r->parent_id }}" {{ (string) $defaultCategoryLevel2Id === (string) $r->id ? 'selected' : '' }}>{{ $r->name }}</option>@endforeach
                         </select>
                     </div>
                     <div class="col s12 m4 tmb-3" id="categoryLevel3Wrap" style="display:none;">
                         <label class="wi-form-label">3rd Level Category</label>
                         <select name="category_id" id="categoryLevel3" class="browser-default wi-select">
                             <option value="">No 3rd level</option>
-                            @foreach($categories->where('parent_id', '!=', null) as $r)<option value="{{ $r->id }}" data-parent="{{ $r->parent_id }}">{{ $r->name }}</option>@endforeach
+                            @foreach($categories->where('parent_id', '!=', null) as $r)<option value="{{ $r->id }}" data-parent="{{ $r->parent_id }}" {{ (string) $defaultCategoryLevel3Id === (string) $r->id ? 'selected' : '' }}>{{ $r->name }}</option>@endforeach
                         </select>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     <div class="col s12 m4 tmb-3">
                         <label class="wi-form-label">Unit</label>
                         <select name="unit_id" class="browser-default wi-select">
-                            @foreach($units as $r)<option value="{{ $r->id }}">{{ $r->name }} ({{ $r->short_name }})</option>@endforeach
+                            @foreach($units as $r)<option value="{{ $r->id }}" {{ (string) $defaultUnitId === (string) $r->id ? 'selected' : '' }}>{{ $r->name }} ({{ $r->short_name }})</option>@endforeach
                         </select>
                     </div>
                     <div class="col s12 m4 tmb-3">
@@ -438,6 +438,8 @@
         var level3Wrap = document.getElementById('categoryLevel3Wrap');
         var generateCreateBarcode = document.getElementById('generateCreateBarcode');
         var createBarcodeInput = document.getElementById('createBarcodeInput');
+        var defaultCategoryLevel2Id = '{{ $defaultCategoryLevel2Id }}';
+        var defaultCategoryLevel3Id = '{{ $defaultCategoryLevel3Id }}';
 
         function showModal() {
             if (modal) {
@@ -492,7 +494,7 @@
             }
         });
 
-        function filterOptions(select, parentId) {
+        function filterOptions(select, parentId, selectedValue) {
             var hasOptions = false;
             Array.prototype.forEach.call(select.options, function (option) {
                 if (!option.value) {
@@ -505,13 +507,15 @@
                     hasOptions = true;
                 }
             });
-            select.value = '';
+            select.value = selectedValue || '';
             return hasOptions;
         }
 
         if (level1 && level2 && level3) {
-            filterOptions(level2, '');
-            filterOptions(level3, '');
+            var hasDefaultLevel2 = filterOptions(level2, level1.value, defaultCategoryLevel2Id);
+            var hasDefaultLevel3 = filterOptions(level3, level2.value, defaultCategoryLevel3Id);
+            level2Wrap.style.display = hasDefaultLevel2 ? '' : 'none';
+            level3Wrap.style.display = hasDefaultLevel3 ? '' : 'none';
 
             level1.addEventListener('change', function () {
                 var hasLevel2 = filterOptions(level2, level1.value);

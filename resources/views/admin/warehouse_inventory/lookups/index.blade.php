@@ -21,6 +21,7 @@
 
     @php
         $lookupTabs = [
+            'defaults' => ['label' => 'Defaults', 'icon' => 'fas fa-cog'],
             'units' => ['label' => 'Units', 'icon' => 'fas fa-ruler-combined'],
             'categories' => ['label' => 'Categories', 'icon' => 'fas fa-folder-open'],
             'tags' => ['label' => 'Tags', 'icon' => 'fas fa-tags'],
@@ -39,6 +40,55 @@
         </div>
     </div>
 
+    @if($type === 'defaults')
+        <div class="wi-panel tp-4">
+            <div class="tflex titems-start tjustify-between tflex-wrap tmb-4" style="gap:12px;">
+                <div>
+                    <div class="tfont-bold wi-section-title">Create Item Defaults</div>
+                    <div class="ttext-xs wi-muted">These values are automatically selected when opening the Create Item form.</div>
+                </div>
+                <a href="{{ route('warehouse_inventory.items') }}" class="wi-btn-dark waves-effect">
+                    <i class="fas fa-box-open tmr-2"></i> Inventory Items
+                </a>
+            </div>
+
+            <form action="{{ route('warehouse_inventory.lookups.store', 'defaults') }}" method="POST">
+                @csrf
+                <div class="row tmb-0">
+                    <div class="col s12 m6 tmb-3">
+                        <label class="wi-form-label">Default Category</label>
+                        <select name="default_category_id" class="browser-default wi-select">
+                            <option value="">No default category</option>
+                            @foreach($categories as $category)
+                                @php
+                                    $parts = collect([$category->parent ? optional($category->parent)->parent : null, $category->parent, $category])->filter();
+                                @endphp
+                                <option value="{{ $category->id }}" {{ (string) $defaultCategoryId === (string) $category->id ? 'selected' : '' }}>
+                                    {{ $parts->pluck('name')->implode(' / ') }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col s12 m4 tmb-3">
+                        <label class="wi-form-label">Default Unit</label>
+                        <select name="default_unit_id" class="browser-default wi-select">
+                            <option value="">No default unit</option>
+                            @foreach($units as $unit)
+                                <option value="{{ $unit->id }}" {{ (string) $defaultUnitId === (string) $unit->id ? 'selected' : '' }}>
+                                    {{ $unit->name }} ({{ $unit->short_name }})
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col s12 m2 tmb-3" style="padding-top:22px;">
+                        <button class="wi-btn-primary waves-effect tw-full">
+                            <i class="fas fa-save tmr-2"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    @else
     <div class="wi-panel tp-4 tmb-5">
         <div class="tfont-bold wi-section-title tmb-3">Add New</div>
         <form action="{{ route('warehouse_inventory.lookups.store', $type) }}" method="POST">
@@ -194,5 +244,6 @@
         </div>
         <div class="tp-4">{{ $rows->links() }}</div>
     </div>
+    @endif
 </div>
 @endsection

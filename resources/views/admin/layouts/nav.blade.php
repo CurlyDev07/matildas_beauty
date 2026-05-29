@@ -579,7 +579,7 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
                 <a href="/admin/warehouse-inventory/barcodes" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/barcodes*') ? 'mb-active' : '' }}">
                     <i class="fas fa-barcode mb-sb-child-icon"></i> Barcodes
                 </a>
-                <a href="/admin/warehouse-inventory/lookups/units" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/lookups*') ? 'mb-active' : '' }}">
+                <a href="/admin/warehouse-inventory/lookups/defaults" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/lookups*') ? 'mb-active' : '' }}">
                     <i class="fas fa-sliders-h mb-sb-child-icon"></i> Inventory Settings
                 </a>
             </div>

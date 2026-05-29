@@ -8,6 +8,7 @@ use App\InventoryItem;
 use App\InventoryMovement;
 use App\InventoryMovementAudit;
 use App\InventoryMovementType;
+use App\InventorySetting;
 use App\InventoryStatus;
 use App\InventoryTag;
 use App\InventoryUnit;
@@ -16,6 +17,7 @@ use App\WarehouseInventory;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 
@@ -70,6 +72,16 @@ class WarehouseInventoryCon extends Controller
 
     public function lookups($type)
     {
+        if ($type === 'defaults') {
+            $title = 'Inventory Defaults';
+            $rows = collect();
+            $categoryOptions = InventoryCategory::with('parent.parent')->orderBy('name')->get();
+            $defaultCategoryId = $this->inventorySetting('default_category_id');
+            $defaultUnitId = $this->inventorySetting('default_unit_id');
+
+            return view('admin.warehouse_inventory.lookups.index', $this->itemViewData() + compact('rows', 'type', 'title', 'categoryOptions', 'defaultCategoryId', 'defaultUnitId'));
+        }
+
         list($model, $title) = $this->lookupMeta($type);
         $rows = $model::orderBy('name')->paginate(30);
         $categoryOptions = $type === 'categories'
@@ -80,6 +92,22 @@ class WarehouseInventoryCon extends Controller
 
     public function lookupStore(Request $request, $type)
     {
+        if ($type === 'defaults') {
+            if (!Schema::hasTable('inventory_settings')) {
+                return back()->with('error', 'Inventory settings table is not migrated yet.');
+            }
+
+            $request->validate([
+                'default_category_id' => 'nullable|exists:inventory_categories,id',
+                'default_unit_id' => 'nullable|exists:inventory_units,id',
+            ]);
+
+            $this->setInventorySetting('default_category_id', $request->default_category_id);
+            $this->setInventorySetting('default_unit_id', $request->default_unit_id);
+
+            return back()->with('success', 'Create item defaults updated.');
+        }
+
         list($model) = $this->lookupMeta($type);
         $request->validate([
             'name' => 'required|string|max:150',
@@ -814,11 +842,66 @@ class WarehouseInventoryCon extends Controller
 
     protected function itemViewData()
     {
+        $defaultCategoryId = $this->inventorySetting('default_category_id');
+        $defaultUnitId = $this->inventorySetting('default_unit_id');
+        $defaultCategoryLevels = $this->categoryLevelSelection($defaultCategoryId);
+
         return [
             'categories' => InventoryCategory::where('is_active', 1)->orderBy('name')->get(),
             'units' => InventoryUnit::where('is_active', 1)->orderBy('name')->get(),
             'tags' => InventoryTag::where('is_active', 1)->orderBy('name')->get(),
+            'defaultCategoryId' => $defaultCategoryId,
+            'defaultUnitId' => $defaultUnitId,
+            'defaultCategoryLevel1Id' => $defaultCategoryLevels['level1'],
+            'defaultCategoryLevel2Id' => $defaultCategoryLevels['level2'],
+            'defaultCategoryLevel3Id' => $defaultCategoryLevels['level3'],
         ];
+    }
+
+    protected function inventorySetting($key)
+    {
+        if (!Schema::hasTable('inventory_settings')) {
+            return null;
+        }
+
+        return InventorySetting::where('key', $key)->value('value');
+    }
+
+    protected function setInventorySetting($key, $value)
+    {
+        InventorySetting::updateOrCreate(
+            ['key' => $key],
+            ['value' => $value ?: null]
+        );
+    }
+
+    protected function categoryLevelSelection($categoryId)
+    {
+        $levels = ['level1' => null, 'level2' => null, 'level3' => null];
+        if (!$categoryId) {
+            return $levels;
+        }
+
+        $category = InventoryCategory::with('parent.parent')->find($categoryId);
+        if (!$category) {
+            return $levels;
+        }
+
+        if ($category->parent && $category->parent->parent) {
+            $levels['level1'] = $category->parent->parent->id;
+            $levels['level2'] = $category->parent->id;
+            $levels['level3'] = $category->id;
+            return $levels;
+        }
+
+        if ($category->parent) {
+            $levels['level1'] = $category->parent->id;
+            $levels['level2'] = $category->id;
+            return $levels;
+        }
+
+        $levels['level1'] = $category->id;
+        return $levels;
     }
 
     protected function resolveCategoryId(Request $request)
