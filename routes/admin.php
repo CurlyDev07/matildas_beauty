@@ -422,6 +422,36 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/movements', 'PackagingCon@movements')->name('packaging.movements');
     });
 
+    /*
+    |--------------------------------------------------------------------------
+    | WAREHOUSE INVENTORY (Independent Module)
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('warehouse-inventory')->group(function () {
+        Route::get('/dashboard', 'WarehouseInventoryCon@dashboard')->name('warehouse_inventory.dashboard');
+
+        Route::get('/lookups/{type}', 'WarehouseInventoryCon@lookups')->name('warehouse_inventory.lookups');
+        Route::post('/lookups/{type}', 'WarehouseInventoryCon@lookupStore')->name('warehouse_inventory.lookups.store');
+        Route::put('/lookups/{type}/{id}', 'WarehouseInventoryCon@lookupUpdate')->name('warehouse_inventory.lookups.update');
+        Route::delete('/lookups/{type}/{id}', 'WarehouseInventoryCon@lookupDestroy')->name('warehouse_inventory.lookups.delete');
+
+        Route::get('/items', 'WarehouseInventoryCon@items')->name('warehouse_inventory.items');
+        Route::post('/items', 'WarehouseInventoryCon@itemStore')->name('warehouse_inventory.items.store');
+        Route::put('/items/{id}', 'WarehouseInventoryCon@itemUpdate')->name('warehouse_inventory.items.update');
+        Route::delete('/items/{id}', 'WarehouseInventoryCon@itemDestroy')->name('warehouse_inventory.items.delete');
+
+        Route::get('/stocks', 'WarehouseInventoryCon@stocks')->name('warehouse_inventory.stocks');
+        Route::get('/barcodes', 'WarehouseInventoryCon@barcodes')->name('warehouse_inventory.barcodes');
+        Route::post('/barcodes/generate', 'WarehouseInventoryCon@barcodeGenerate')->name('warehouse_inventory.barcodes.generate');
+        Route::get('/barcodes/{id}/image', 'WarehouseInventoryCon@barcodeImage')->name('warehouse_inventory.barcodes.image');
+        Route::get('/movements', 'WarehouseInventoryCon@movements')->name('warehouse_inventory.movements');
+        Route::get('/movements/create', 'WarehouseInventoryCon@movementCreate')->name('warehouse_inventory.movements.create');
+        Route::post('/movements', 'WarehouseInventoryCon@movementStore')->name('warehouse_inventory.movements.store');
+        Route::get('/movements/{batchCode}/audits', 'WarehouseInventoryCon@movementAudits')->name('warehouse_inventory.movements.audits');
+        Route::get('/movements/{batchCode}/edit', 'WarehouseInventoryCon@movementEdit')->name('warehouse_inventory.movements.edit');
+        Route::put('/movements/{batchCode}', 'WarehouseInventoryCon@movementUpdate')->name('warehouse_inventory.movements.update');
+    });
+
 
     /*
     |--------------------------------------------------------------------------

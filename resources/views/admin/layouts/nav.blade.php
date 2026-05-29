@@ -554,6 +554,38 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         </div>
         @endif
 
+        @if (auth()->user()->isMaster())
+        <div class="mb-sb-group mb-g-cyan">
+            <div class="mb-sb-toggle">
+                <div class="mb-sb-icon-box" style="--ib-bg:#e0f2fe;--ib-cl:#0369a1;">
+                    <i class="fas fa-warehouse"></i>
+                </div>
+                <span>Inventory Management</span>
+                <i class="fas fa-chevron-right mb-sb-chevron"></i>
+            </div>
+            <div class="mb-sb-children">
+                <a href="/admin/warehouse-inventory/dashboard" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/dashboard') ? 'mb-active' : '' }}">
+                    <i class="fas fa-chart-pie mb-sb-child-icon"></i> Dashboard
+                </a>
+                <a href="/admin/warehouse-inventory/items" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/items') ? 'mb-active' : '' }}">
+                    <i class="fas fa-box-open mb-sb-child-icon"></i> Inventory Items
+                </a>
+                <a href="/admin/warehouse-inventory/stocks" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/stocks') ? 'mb-active' : '' }}">
+                    <i class="fas fa-layer-group mb-sb-child-icon"></i> Current Stock
+                </a>
+                <a href="/admin/warehouse-inventory/movements" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/movements') ? 'mb-active' : '' }}">
+                    <i class="fas fa-exchange-alt mb-sb-child-icon"></i> Stock Movements
+                </a>
+                <a href="/admin/warehouse-inventory/barcodes" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/barcodes*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-barcode mb-sb-child-icon"></i> Barcodes
+                </a>
+                <a href="/admin/warehouse-inventory/lookups/units" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/lookups*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-sliders-h mb-sb-child-icon"></i> Inventory Settings
+                </a>
+            </div>
+        </div>
+        @endif
+
         {{-- Finance --}}
         @if (auth()->user()->isMaster())
         <div class="mb-sb-group mb-g-emerald">
