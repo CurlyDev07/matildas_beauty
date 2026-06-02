@@ -427,7 +427,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
     | WAREHOUSE INVENTORY (Independent Module)
     |--------------------------------------------------------------------------
     */
-    Route::prefix('warehouse-inventory')->group(function () {
+    Route::prefix('warehouse-inventory')->middleware(['inventoryAccess'])->group(function () {
         Route::get('/dashboard', 'WarehouseInventoryCon@dashboard')->name('warehouse_inventory.dashboard');
 
         Route::get('/lookups/{type}', 'WarehouseInventoryCon@lookups')->name('warehouse_inventory.lookups');

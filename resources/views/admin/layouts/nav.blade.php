@@ -554,7 +554,7 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         </div>
         @endif
 
-        @if (auth()->user()->isMaster())
+        @if (auth()->user()->isMaster() || auth()->user()->isInventory())
         <div class="mb-sb-group mb-g-cyan">
             <div class="mb-sb-toggle">
                 <div class="mb-sb-icon-box" style="--ib-bg:#e0f2fe;--ib-cl:#0369a1;">

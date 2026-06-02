@@ -15,7 +15,7 @@ class InventoryAccess
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->isInventory()) {
+        if (auth()->user()->isMaster() || auth()->user()->isInventory()) {
             return $next($request);
         }else{
             return redirect()->route('products.index');
