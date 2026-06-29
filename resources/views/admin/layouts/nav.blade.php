@@ -576,6 +576,9 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
                 <a href="/admin/warehouse-inventory/movements" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/movements') ? 'mb-active' : '' }}">
                     <i class="fas fa-exchange-alt mb-sb-child-icon"></i> Stock Movements
                 </a>
+                <a href="/admin/warehouse-inventory/reports" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/reports*') ? 'mb-active' : '' }}">
+                    <i class="fas fa-chart-line mb-sb-child-icon"></i> Reports
+                </a>
                 <a href="/admin/warehouse-inventory/barcodes" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/barcodes*') ? 'mb-active' : '' }}">
                     <i class="fas fa-barcode mb-sb-child-icon"></i> Barcodes
                 </a>

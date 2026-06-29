@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 use InvalidArgumentException;
 
 class WarehouseInventoryCon extends Controller
@@ -328,6 +329,105 @@ class WarehouseInventoryCon extends Controller
             ->paginate($perPage)
             ->appends($request->only(['search', 'category_id', 'tag_id', 'per_page']));
         return view('admin.warehouse_inventory.stocks.index', $this->itemViewData() + compact('stocks', 'perPage'));
+    }
+
+    public function reports(Request $request)
+    {
+        $perPage = $this->inventoryPerPage($request);
+        $startDate = $request->filled('start_date')
+            ? Carbon::parse($request->start_date)->startOfDay()
+            : now()->startOfMonth()->startOfDay();
+        $endDate = $request->filled('end_date')
+            ? Carbon::parse($request->end_date)->endOfDay()
+            : now()->endOfDay();
+
+        if ($endDate->lt($startDate)) {
+            $endDate = $startDate->copy()->endOfDay();
+        }
+
+        if ($startDate->diffInDays($endDate) > 62) {
+            $endDate = $startDate->copy()->addDays(62)->endOfDay();
+        }
+
+        $movementEffect = in_array($request->get('movement_effect'), ['add', 'subtract', 'all'], true)
+            ? $request->get('movement_effect')
+            : 'subtract';
+
+        $itemsQuery = InventoryItem::with(['unit', 'category.parent.parent', 'tags'])->orderBy('name');
+
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $itemsQuery->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('sku', 'like', '%' . $search . '%')
+                    ->orWhere('barcode', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($request->filled('category_id')) {
+            $itemsQuery->where('category_id', $request->category_id);
+        }
+
+        if ($request->filled('tag_id')) {
+            $itemsQuery->whereHas('tags', function ($query) use ($request) {
+                $query->where('inventory_tags.id', $request->tag_id);
+            });
+        }
+
+        $items = $itemsQuery
+            ->paginate($perPage)
+            ->appends($request->only(['search', 'category_id', 'tag_id', 'movement_effect', 'start_date', 'end_date', 'per_page']));
+        $itemIds = $items->pluck('id');
+
+        $currentStocks = WarehouseInventory::select('inventory_item_id', DB::raw('SUM(quantity) as current_stock'))
+            ->whereIn('inventory_item_id', $itemIds)
+            ->groupBy('inventory_item_id')
+            ->pluck('current_stock', 'inventory_item_id');
+
+        $dailyMovementQuery = InventoryMovement::query()
+            ->leftJoin('inventory_movement_types', 'inventory_movement_types.id', '=', 'inventory_movements.movement_type_id')
+            ->select('inventory_movements.inventory_item_id')
+            ->selectRaw('DATE(inventory_movements.created_at) as movement_date')
+            ->selectRaw('SUM(inventory_movements.quantity) as total_quantity')
+            ->whereIn('inventory_movements.inventory_item_id', $itemIds)
+            ->whereBetween('inventory_movements.created_at', [$startDate, $endDate]);
+
+        if ($movementEffect !== 'all') {
+            $dailyMovementQuery->where('inventory_movement_types.stock_effect', $movementEffect);
+        }
+
+        $dailyMovements = $dailyMovementQuery
+            ->groupBy('inventory_movements.inventory_item_id', DB::raw('DATE(inventory_movements.created_at)'))
+            ->get()
+            ->groupBy('inventory_item_id')
+            ->map(function ($rows) {
+                return $rows->pluck('total_quantity', 'movement_date');
+            });
+
+        $dateColumns = collect();
+        $cursor = $startDate->copy();
+        while ($cursor->lte($endDate)) {
+            $dateColumns->push([
+                'key' => $cursor->format('Y-m-d'),
+                'label' => $cursor->format('M j'),
+                'short_label' => $cursor->format('j'),
+            ]);
+            $cursor->addDay();
+        }
+
+        $dayCount = max($dateColumns->count(), 1);
+
+        return view('admin.warehouse_inventory.reports.index', $this->itemViewData() + compact(
+            'items',
+            'perPage',
+            'startDate',
+            'endDate',
+            'movementEffect',
+            'currentStocks',
+            'dailyMovements',
+            'dateColumns',
+            'dayCount'
+        ));
     }
 
     public function barcodes(Request $request)

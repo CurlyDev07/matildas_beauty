@@ -441,6 +441,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::delete('/items/{id}', 'WarehouseInventoryCon@itemDestroy')->name('warehouse_inventory.items.delete');
 
         Route::get('/stocks', 'WarehouseInventoryCon@stocks')->name('warehouse_inventory.stocks');
+        Route::get('/reports', 'WarehouseInventoryCon@reports')->name('warehouse_inventory.reports');
         Route::get('/barcodes', 'WarehouseInventoryCon@barcodes')->name('warehouse_inventory.barcodes');
         Route::post('/barcodes/generate', 'WarehouseInventoryCon@barcodeGenerate')->name('warehouse_inventory.barcodes.generate');
         Route::get('/barcodes/{id}/image', 'WarehouseInventoryCon@barcodeImage')->name('warehouse_inventory.barcodes.image');
