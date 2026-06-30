@@ -352,8 +352,31 @@ class WarehouseInventoryCon extends Controller
         $movementEffect = in_array($request->get('movement_effect'), ['add', 'subtract', 'all'], true)
             ? $request->get('movement_effect')
             : 'subtract';
+        $sortBy = in_array($request->get('sort_by'), ['avg_sales_desc', 'avg_sales_asc', 'name'], true)
+            ? $request->get('sort_by')
+            : 'name';
+        $dayCount = max($startDate->diffInDays($endDate) + 1, 1);
 
-        $itemsQuery = InventoryItem::with(['unit', 'category.parent.parent', 'tags'])->orderBy('name');
+        $itemsQuery = InventoryItem::with(['unit', 'category.parent.parent', 'tags'])->select('inventory_items.*');
+
+        if (in_array($sortBy, ['avg_sales_desc', 'avg_sales_asc'], true)) {
+            $outboundTotalsSub = InventoryMovement::query()
+                ->leftJoin('inventory_movement_types', 'inventory_movement_types.id', '=', 'inventory_movements.movement_type_id')
+                ->select('inventory_movements.inventory_item_id')
+                ->selectRaw('SUM(inventory_movements.quantity) as total_out')
+                ->where('inventory_movement_types.stock_effect', 'subtract')
+                ->whereBetween('inventory_movements.created_at', [$startDate, $endDate])
+                ->groupBy('inventory_movements.inventory_item_id');
+
+            $itemsQuery->leftJoinSub($outboundTotalsSub, 'outbound_totals', function ($join) {
+                $join->on('outbound_totals.inventory_item_id', '=', 'inventory_items.id');
+            });
+
+            $itemsQuery->orderByRaw('COALESCE(outbound_totals.total_out, 0) ' . ($sortBy === 'avg_sales_desc' ? 'DESC' : 'ASC'))
+                ->orderBy('inventory_items.name');
+        } else {
+            $itemsQuery->orderBy('inventory_items.name');
+        }
 
         if ($request->filled('search')) {
             $search = trim($request->search);
@@ -376,13 +399,27 @@ class WarehouseInventoryCon extends Controller
 
         $items = $itemsQuery
             ->paginate($perPage)
-            ->appends($request->only(['search', 'category_id', 'tag_id', 'movement_effect', 'start_date', 'end_date', 'per_page']));
+            ->appends($request->only(['search', 'category_id', 'tag_id', 'movement_effect', 'sort_by', 'start_date', 'end_date', 'per_page']));
         $itemIds = $items->pluck('id');
 
         $currentStocks = WarehouseInventory::select('inventory_item_id', DB::raw('SUM(quantity) as current_stock'))
             ->whereIn('inventory_item_id', $itemIds)
             ->groupBy('inventory_item_id')
             ->pluck('current_stock', 'inventory_item_id');
+
+        $movementTotals = InventoryMovement::query()
+            ->leftJoin('inventory_movement_types', 'inventory_movement_types.id', '=', 'inventory_movements.movement_type_id')
+            ->select('inventory_movements.inventory_item_id', 'inventory_movement_types.stock_effect')
+            ->selectRaw('SUM(inventory_movements.quantity) as total_quantity')
+            ->whereIn('inventory_movements.inventory_item_id', $itemIds)
+            ->whereIn('inventory_movement_types.stock_effect', ['add', 'subtract'])
+            ->whereBetween('inventory_movements.created_at', [$startDate, $endDate])
+            ->groupBy('inventory_movements.inventory_item_id', 'inventory_movement_types.stock_effect')
+            ->get()
+            ->groupBy('inventory_item_id')
+            ->map(function ($rows) {
+                return $rows->pluck('total_quantity', 'stock_effect');
+            });
 
         $dailyMovementQuery = InventoryMovement::query()
             ->leftJoin('inventory_movement_types', 'inventory_movement_types.id', '=', 'inventory_movements.movement_type_id')
@@ -415,15 +452,15 @@ class WarehouseInventoryCon extends Controller
             $cursor->addDay();
         }
 
-        $dayCount = max($dateColumns->count(), 1);
-
         return view('admin.warehouse_inventory.reports.index', $this->itemViewData() + compact(
             'items',
             'perPage',
             'startDate',
             'endDate',
             'movementEffect',
+            'sortBy',
             'currentStocks',
+            'movementTotals',
             'dailyMovements',
             'dateColumns',
             'dayCount'

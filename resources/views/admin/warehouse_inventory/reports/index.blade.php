@@ -58,6 +58,14 @@
                     </select>
                 </div>
                 <div>
+                    <label class="wi-form-label">Sort</label>
+                    <select name="sort_by" class="browser-default wi-select" style="width:160px;height:41px !important;">
+                        <option value="name" {{ $sortBy === 'name' ? 'selected' : '' }}>Product A-Z</option>
+                        <option value="avg_sales_desc" {{ $sortBy === 'avg_sales_desc' ? 'selected' : '' }}>AVG sales high</option>
+                        <option value="avg_sales_asc" {{ $sortBy === 'avg_sales_asc' ? 'selected' : '' }}>AVG sales low</option>
+                    </select>
+                </div>
+                <div>
                     <label class="wi-form-label">Start</label>
                     <input type="date" name="start_date" value="{{ $startDate->format('Y-m-d') }}" class="browser-default wi-input" style="width:145px;height:41px !important;">
                 </div>
@@ -76,7 +84,7 @@
                 <button class="wi-btn-primary waves-effect" style="height:41px;padding:0 12px;">
                     <i class="fas fa-search tmr-2"></i> Filter
                 </button>
-                @if(request()->hasAny(['search', 'category_id', 'tag_id', 'movement_effect', 'start_date', 'end_date']))
+                @if(request()->hasAny(['search', 'category_id', 'tag_id', 'movement_effect', 'sort_by', 'start_date', 'end_date']))
                     <a href="{{ route('warehouse_inventory.reports', ['per_page' => $perPage]) }}" class="wi-btn-light waves-effect" style="height:41px;padding:0 12px;">
                         <i class="fas fa-times"></i>
                     </a>
@@ -90,7 +98,7 @@
             <div class="tflex titems-center tjustify-between tflex-wrap" style="gap:12px;">
                 <div>
                     <div class="tfont-bold wi-section-title">Daily Product Movement</div>
-                    <div class="ttext-xs wi-muted">Average is total selected movement divided by {{ $dayCount }} day(s), including zero days.</div>
+                    <div class="ttext-xs wi-muted">AVG Sales is Total Out divided by {{ $dayCount }} day(s), including zero days.</div>
                 </div>
                 <div class="ttext-xs tfont-bold tuppercase" style="color:#f40167;">
                     {{ $movementEffect === 'subtract' ? 'Outbound' : ($movementEffect === 'add' ? 'Inbound' : 'All') }}
@@ -103,7 +111,9 @@
                     <tr class="ttext-xs tuppercase">
                         <th class="ttext-left tpx-4 tpy-3 wi-sticky-col wi-product-col">Product</th>
                         <th class="ttext-right tpx-4 tpy-3">Current Stock</th>
-                        <th class="ttext-right tpx-4 tpy-3">AVG</th>
+                        <th class="ttext-right tpx-4 tpy-3">Total Out</th>
+                        <th class="ttext-right tpx-4 tpy-3">Total In</th>
+                        <th class="ttext-right tpx-4 tpy-3">AVG Sales</th>
                         @foreach($dateColumns as $dateColumn)
                             <th class="ttext-right tpx-3 tpy-3" title="{{ $dateColumn['label'] }}">{{ $dateColumn['short_label'] }}</th>
                         @endforeach
@@ -113,10 +123,10 @@
                     @forelse($items as $item)
                         @php
                             $daily = $dailyMovements->get($item->id, collect());
-                            $totalMovement = $dateColumns->sum(function ($dateColumn) use ($daily) {
-                                return (float) $daily->get($dateColumn['key'], 0);
-                            });
-                            $avgMovement = $totalMovement / $dayCount;
+                            $totals = $movementTotals->get($item->id, collect());
+                            $totalOut = (float) $totals->get('subtract', 0);
+                            $totalIn = (float) $totals->get('add', 0);
+                            $avgSales = $totalOut / $dayCount;
                             $stockQty = (float) $currentStocks->get($item->id, 0);
                         @endphp
                         <tr class="tborder-t tborder-gray-200">
@@ -136,8 +146,14 @@
                             <td class="tpx-4 tpy-3 ttext-right tfont-bold wi-section-title">
                                 @include('admin.warehouse_inventory.partials.quantity', ['quantity' => $stockQty, 'unit' => optional($item->unit)->short_name])
                             </td>
+                            <td class="tpx-4 tpy-3 ttext-right tfont-bold" style="color:#dc2626;">
+                                {{ $totalOut > 0 ? number_format($totalOut, $totalOut == floor($totalOut) ? 0 : 2) : '-' }}
+                            </td>
+                            <td class="tpx-4 tpy-3 ttext-right tfont-bold" style="color:#059669;">
+                                {{ $totalIn > 0 ? number_format($totalIn, $totalIn == floor($totalIn) ? 0 : 2) : '-' }}
+                            </td>
                             <td class="tpx-4 tpy-3 ttext-right tfont-bold" style="color:#f40167;">
-                                {{ number_format($avgMovement, $avgMovement == floor($avgMovement) ? 0 : 2) }}
+                                {{ number_format($avgSales, $avgSales == floor($avgSales) ? 0 : 2) }}
                             </td>
                             @foreach($dateColumns as $dateColumn)
                                 @php $qty = (float) $daily->get($dateColumn['key'], 0); @endphp
@@ -148,14 +164,14 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="{{ 3 + $dateColumns->count() }}" class="tpx-4 tpy-8 ttext-center wi-muted">No inventory items found.</td>
+                            <td colspan="{{ 5 + $dateColumns->count() }}" class="tpx-4 tpy-8 ttext-center wi-muted">No inventory items found.</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
         <div class="tp-4">
-            {{ $items->appends(request()->only(['search', 'category_id', 'tag_id', 'movement_effect', 'start_date', 'end_date', 'per_page']))->links() }}
+            {{ $items->appends(request()->only(['search', 'category_id', 'tag_id', 'movement_effect', 'sort_by', 'start_date', 'end_date', 'per_page']))->links() }}
         </div>
     </div>
 </div>
