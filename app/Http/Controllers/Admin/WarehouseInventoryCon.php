@@ -352,27 +352,30 @@ class WarehouseInventoryCon extends Controller
         $movementEffect = in_array($request->get('movement_effect'), ['add', 'subtract', 'all'], true)
             ? $request->get('movement_effect')
             : 'subtract';
-        $sortBy = in_array($request->get('sort_by'), ['avg_sales_desc', 'avg_sales_asc', 'name'], true)
+        $sortBy = in_array($request->get('sort_by'), ['avg_sales_desc', 'avg_sales_asc', 'total_in_desc', 'total_in_asc', 'name'], true)
             ? $request->get('sort_by')
-            : 'name';
+            : 'avg_sales_desc';
         $dayCount = max($startDate->diffInDays($endDate) + 1, 1);
 
         $itemsQuery = InventoryItem::with(['unit', 'category.parent.parent', 'tags'])->select('inventory_items.*');
 
-        if (in_array($sortBy, ['avg_sales_desc', 'avg_sales_asc'], true)) {
-            $outboundTotalsSub = InventoryMovement::query()
+        if (in_array($sortBy, ['avg_sales_desc', 'avg_sales_asc', 'total_in_desc', 'total_in_asc'], true)) {
+            $sortEffect = in_array($sortBy, ['total_in_desc', 'total_in_asc'], true) ? 'add' : 'subtract';
+            $sortDirection = in_array($sortBy, ['avg_sales_desc', 'total_in_desc'], true) ? 'DESC' : 'ASC';
+
+            $movementTotalsSub = InventoryMovement::query()
                 ->leftJoin('inventory_movement_types', 'inventory_movement_types.id', '=', 'inventory_movements.movement_type_id')
                 ->select('inventory_movements.inventory_item_id')
-                ->selectRaw('SUM(inventory_movements.quantity) as total_out')
-                ->where('inventory_movement_types.stock_effect', 'subtract')
+                ->selectRaw('SUM(inventory_movements.quantity) as total_sort')
+                ->where('inventory_movement_types.stock_effect', $sortEffect)
                 ->whereBetween('inventory_movements.created_at', [$startDate, $endDate])
                 ->groupBy('inventory_movements.inventory_item_id');
 
-            $itemsQuery->leftJoinSub($outboundTotalsSub, 'outbound_totals', function ($join) {
-                $join->on('outbound_totals.inventory_item_id', '=', 'inventory_items.id');
+            $itemsQuery->leftJoinSub($movementTotalsSub, 'movement_sort_totals', function ($join) {
+                $join->on('movement_sort_totals.inventory_item_id', '=', 'inventory_items.id');
             });
 
-            $itemsQuery->orderByRaw('COALESCE(outbound_totals.total_out, 0) ' . ($sortBy === 'avg_sales_desc' ? 'DESC' : 'ASC'))
+            $itemsQuery->orderByRaw('COALESCE(movement_sort_totals.total_sort, 0) ' . $sortDirection)
                 ->orderBy('inventory_items.name');
         } else {
             $itemsQuery->orderBy('inventory_items.name');

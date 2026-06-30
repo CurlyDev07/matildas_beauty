@@ -59,10 +59,12 @@
                 </div>
                 <div>
                     <label class="wi-form-label">Sort</label>
-                    <select name="sort_by" class="browser-default wi-select" style="width:160px;height:41px !important;">
-                        <option value="name" {{ $sortBy === 'name' ? 'selected' : '' }}>Product A-Z</option>
+                    <select name="sort_by" class="browser-default wi-select" style="width:175px;height:41px !important;">
                         <option value="avg_sales_desc" {{ $sortBy === 'avg_sales_desc' ? 'selected' : '' }}>AVG sales high</option>
                         <option value="avg_sales_asc" {{ $sortBy === 'avg_sales_asc' ? 'selected' : '' }}>AVG sales low</option>
+                        <option value="total_in_desc" {{ $sortBy === 'total_in_desc' ? 'selected' : '' }}>Total In high</option>
+                        <option value="total_in_asc" {{ $sortBy === 'total_in_asc' ? 'selected' : '' }}>Total In low</option>
+                        <option value="name" {{ $sortBy === 'name' ? 'selected' : '' }}>Product A-Z</option>
                     </select>
                 </div>
                 <div>
