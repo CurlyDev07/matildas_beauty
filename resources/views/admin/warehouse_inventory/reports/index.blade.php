@@ -198,21 +198,13 @@
         position: sticky;
         left: 0;
         z-index: 2;
-        background: inherit;
+        background: #fff;
         box-shadow: 1px 0 0 #e4e9f2;
     }
 
     .wi-report-table thead .wi-sticky-col {
         z-index: 3;
         background: #fff7fb;
-    }
-
-    .wi-report-table tbody tr:nth-child(even) .wi-sticky-col {
-        background: #fbfcff;
-    }
-
-    .wi-report-table tbody tr:hover .wi-sticky-col {
-        background: #fff4d8;
     }
 
     .wi-product-col {
