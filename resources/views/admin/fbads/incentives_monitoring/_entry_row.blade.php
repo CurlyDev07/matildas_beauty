@@ -8,7 +8,14 @@
 
     {{-- Mobile --}}
     <span style="font-size:14px;color:#0f172a;font-weight:600;flex:1;min-width:0;">
-        <i class="fas fa-mobile-alt" style="color:#94a3b8;margin-right:5px;font-size:12px;"></i>{{ $entry->customer_mobile }}
+        <span style="display:block;">
+            <i class="fas fa-mobile-alt" style="color:#94a3b8;margin-right:5px;font-size:12px;"></i>{{ $entry->customer_mobile }}
+        </span>
+        @if($entry->invalid && $entry->invalid_note)
+            <span style="display:block;margin-top:5px;background:#fff1f2;border:1px solid #fecdd3;color:#9f1239;border-radius:8px;padding:6px 8px;font-size:12px;font-weight:600;line-height:1.35;">
+                <i class="fas fa-sticky-note" style="margin-right:5px;"></i>{{ $entry->invalid_note }}
+            </span>
+        @endif
     </span>
 
     {{-- DUP badge --}}
@@ -22,6 +29,10 @@
     @if($entry->payout_id)
     <span style="background:#f0fdfa;border:1px solid #99f6e4;color:#0d9488;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;flex-shrink:0;white-space:nowrap;">
         <i class="fas fa-money-bill-wave" style="font-size:10px;margin-right:3px;"></i>Paid &middot; {{ $entry->payout->label ?? '' }}
+    </span>
+    @elseif($entry->invalid)
+    <span style="background:#fee2e2;border:1px solid #fca5a5;color:#b91c1c;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;flex-shrink:0;white-space:nowrap;">
+        <i class="fas fa-ban" style="font-size:10px;margin-right:3px;"></i>Invalid
     </span>
     @elseif($entry->approved)
     <span style="background:#ede9fe;border:1px solid #c4b5fd;color:#7c3aed;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;flex-shrink:0;white-space:nowrap;">

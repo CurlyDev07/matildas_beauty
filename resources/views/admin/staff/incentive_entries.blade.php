@@ -80,6 +80,10 @@ $typeConfig = [
             <span style="background:#f0fdfa;border:1px solid #99f6e4;color:#0d9488;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;">
                 <i class="fas fa-money-bill-wave" style="font-size:10px;margin-right:3px;"></i>Paid &middot; {{ $entry->payout->label ?? '' }}
             </span>
+        @elseif($entry->invalid)
+            <span style="background:#fee2e2;border:1px solid #fca5a5;color:#b91c1c;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;">
+                <i class="fas fa-ban" style="font-size:10px;margin-right:3px;"></i>Invalid
+            </span>
         @elseif($entry->approved)
             <span style="background:#ede9fe;border:1px solid #c4b5fd;color:#7c3aed;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:700;white-space:nowrap;">
                 <i class="fas fa-check-double" style="font-size:10px;margin-right:3px;"></i>Approved

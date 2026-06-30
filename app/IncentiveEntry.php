@@ -10,6 +10,7 @@ class IncentiveEntry extends Model
 
     protected $casts = [
         'approved' => 'boolean',
+        'invalid' => 'boolean',
     ];
 
     public function user()

@@ -255,6 +255,9 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
         Route::get('/incentive-approvals', 'IncentiveEntryCon@approvals')->name('staff.incentive_approvals');
         Route::post('/incentive-approvals/{id}/approve', 'IncentiveEntryCon@approve')->name('staff.incentive_approvals.approve');
         Route::post('/incentive-approvals/{id}/disapprove', 'IncentiveEntryCon@disapprove')->name('staff.incentive_approvals.disapprove');
+        Route::post('/incentive-approvals/{id}/invalid', 'IncentiveEntryCon@markInvalid')->name('staff.incentive_approvals.invalid');
+        Route::post('/incentive-approvals/{id}/valid', 'IncentiveEntryCon@markValid')->name('staff.incentive_approvals.valid');
+        Route::post('/incentive-approvals/{id}/returned', 'IncentiveEntryCon@markApprovalReturned')->name('staff.incentive_approvals.returned');
         Route::get('/payouts', 'IncentivePayoutCon@index')->name('staff.payouts.index');
         Route::get('/payouts/preview', 'IncentivePayoutCon@preview')->name('staff.payouts.preview');
         Route::post('/payouts/release', 'IncentivePayoutCon@release')->name('staff.payouts.release');

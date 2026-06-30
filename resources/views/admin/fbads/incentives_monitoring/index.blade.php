@@ -26,11 +26,12 @@ foreach ($analytics as $type => $count) {
 }
 
 // Segment entries into stages
-$newEntries       = $myEntries->filter(fn($e) => !$e->delivery_status && !$e->approved && !$e->payout_id);
-$deliveredEntries = $myEntries->filter(fn($e) => $e->delivery_status === 'delivered' && !$e->approved && !$e->payout_id);
-$approvedEntries  = $myEntries->filter(fn($e) => $e->approved && !$e->payout_id);
+$newEntries       = $myEntries->filter(fn($e) => !$e->invalid && !$e->delivery_status && !$e->approved && !$e->payout_id);
+$deliveredEntries = $myEntries->filter(fn($e) => !$e->invalid && $e->delivery_status === 'delivered' && !$e->approved && !$e->payout_id);
+$approvedEntries  = $myEntries->filter(fn($e) => !$e->invalid && $e->approved && !$e->payout_id);
 $paidEntries      = $myEntries->filter(fn($e) => (bool) $e->payout_id);
 $returnedEntries  = $myEntries->filter(fn($e) => $e->delivery_status === 'returned');
+$invalidEntries   = $myEntries->filter(fn($e) => $e->invalid && !$e->payout_id);
 
 // Dup detection
 $mobileCount = [];
@@ -221,6 +222,7 @@ $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
                 'approved'  => ['label' => 'Approved',   'icon' => 'fa-check-double',   'color' => '#7c3aed', 'light' => '#ede9fe', 'count' => $approvedEntries->count()],
                 'paid'      => ['label' => 'Paid',       'icon' => 'fa-money-bill-wave','color' => '#0d9488', 'light' => '#f0fdfa', 'count' => $paidEntries->count()],
                 'returned'  => ['label' => 'Returned',   'icon' => 'fa-undo',           'color' => '#ef4444', 'light' => '#fee2e2', 'count' => $returnedEntries->count()],
+                'invalid'   => ['label' => 'Invalid',    'icon' => 'fa-ban',            'color' => '#b91c1c', 'light' => '#fee2e2', 'count' => $invalidEntries->count()],
             ];
             @endphp
 
@@ -328,6 +330,22 @@ $dupKeys = array_keys(array_filter($mobileCount, fn($c) => $c > 1));
                 @endforelse
             </div>
 
+            {{-- ===== Panel: Invalid ===== --}}
+            <div id="panel-invalid" style="display:none;">
+                @forelse($invalidEntries as $entry)
+                @php $c = $typeConfig[$entry->type] ?? ['bg'=>'#f1f5f9','border'=>'#cbd5e1','text'=>'#475569','icon'=>'fa-tag','grad'=>'#94a3b8'];
+                $dupKey = $entry->customer_mobile . '|' . $entry->created_at->toDateString();
+                $isDup  = in_array($dupKey, $dupKeys); @endphp
+                @php $tab = 'invalid'; @endphp
+                @include('admin.fbads.incentives_monitoring._entry_row', compact('entry','c','isDup','tab'))
+                @empty
+                <div style="text-align:center;padding:48px 24px;background:#fff;border-radius:14px;border:1px solid #e2e8f0;">
+                    <i class="fas fa-ban" style="font-size:36px;display:block;margin-bottom:12px;color:#fca5a5;"></i>
+                    <div style="font-size:14px;font-weight:600;color:#cbd5e1;">No invalid entries</div>
+                </div>
+                @endforelse
+            </div>
+
         </div>
     </div>
 </div>
@@ -345,10 +363,11 @@ var tabColors = {
     'approved':  { color: '#7c3aed', light: '#ede9fe' },
     'paid':      { color: '#0d9488', light: '#f0fdfa' },
     'returned':  { color: '#ef4444', light: '#fee2e2' },
+    'invalid':   { color: '#b91c1c', light: '#fee2e2' },
 };
 
 function switchTab(tab) {
-    var all = ['new','delivered','approved','paid','returned'];
+    var all = ['new','delivered','approved','paid','returned','invalid'];
     all.forEach(function(t) {
         document.getElementById('panel-' + t).style.display = t === tab ? 'block' : 'none';
         var btn = document.getElementById('tab-' + t);

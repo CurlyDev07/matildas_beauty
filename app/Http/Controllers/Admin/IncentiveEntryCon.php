@@ -20,6 +20,7 @@ class IncentiveEntryCon extends Controller
 
         $analyticsRaw = IncentiveEntry::where('user_id', $userId)
             ->whereBetween('created_at', [$start, $end])
+            ->where('invalid', false)
             ->selectRaw('type, count(*) as count')
             ->groupBy('type')
             ->pluck('count', 'type')
@@ -35,16 +36,19 @@ class IncentiveEntryCon extends Controller
         $deliveredCount = IncentiveEntry::where('user_id', $userId)
             ->whereBetween('created_at', [$start, $end])
             ->where('delivery_status', 'delivered')
+            ->where('invalid', false)
             ->count();
 
         $approvedCount = IncentiveEntry::where('user_id', $userId)
             ->whereBetween('created_at', [$start, $end])
             ->where('approved', true)
+            ->where('invalid', false)
             ->count();
 
         $approvedRaw = IncentiveEntry::where('user_id', $userId)
             ->whereBetween('created_at', [$start, $end])
             ->where('approved', true)
+            ->where('invalid', false)
             ->selectRaw('type, count(*) as count')
             ->groupBy('type')
             ->pluck('count', 'type')
@@ -204,24 +208,41 @@ class IncentiveEntryCon extends Controller
         $entries = IncentiveEntry::with('user')
             ->where('delivery_status', 'delivered')
             ->where('approved', false)
+            ->where('invalid', false)
             ->orderBy('created_at', 'desc')
             ->get();
 
         // Approved but not yet paid — can still be reverted
         $approvedEntries = IncentiveEntry::with('user')
             ->where('approved', true)
+            ->where('invalid', false)
             ->whereNull('payout_id')
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('admin.staff.incentive_approvals', compact('entries', 'approvedEntries'));
+        $invalidEntries = IncentiveEntry::with('user')
+            ->where('invalid', true)
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        $returnedEntries = IncentiveEntry::with('user')
+            ->where('delivery_status', 'returned')
+            ->where('invalid', false)
+            ->orderBy('updated_at', 'desc')
+            ->get();
+
+        return view('admin.staff.incentive_approvals', compact('entries', 'approvedEntries', 'invalidEntries', 'returnedEntries'));
     }
 
     public function approve($id)
     {
         abort_unless(auth()->user()->isMaster(), 403);
 
-        IncentiveEntry::findOrFail($id)->update(['approved' => true]);
+        IncentiveEntry::findOrFail($id)->update([
+            'approved' => true,
+            'invalid' => false,
+            'invalid_note' => null,
+        ]);
 
         return redirect()->route('staff.incentive_approvals')->with('success', 'Incentive approved.');
     }
@@ -237,9 +258,69 @@ class IncentiveEntryCon extends Controller
             return redirect()->route('staff.incentive_approvals')->with('error', 'Cannot revert — entry is already part of a released payout.');
         }
 
-        $entry->update(['approved' => false]);
+        $entry->update([
+            'approved' => false,
+            'invalid' => false,
+            'invalid_note' => null,
+        ]);
 
-        return redirect()->route('staff.incentive_approvals')->with('success', 'Approval reverted.');
+        return redirect()->route('staff.incentive_approvals')->with('success', 'Incentive marked unapproved.');
+    }
+
+    public function markInvalid(Request $request, $id)
+    {
+        abort_unless(auth()->user()->isMaster(), 403);
+
+        $request->validate([
+            'invalid_note' => 'required|string|max:1000',
+        ]);
+
+        $entry = IncentiveEntry::findOrFail($id);
+
+        if ($entry->payout_id) {
+            return redirect()->route('staff.incentive_approvals')->with('error', 'Cannot mark invalid — entry is already part of a released payout.');
+        }
+
+        $entry->update([
+            'approved' => false,
+            'invalid' => true,
+            'invalid_note' => $request->invalid_note,
+        ]);
+
+        return redirect()->route('staff.incentive_approvals')->with('success', 'Incentive marked invalid.');
+    }
+
+    public function markValid($id)
+    {
+        abort_unless(auth()->user()->isMaster(), 403);
+
+        $entry = IncentiveEntry::findOrFail($id);
+        $entry->update([
+            'invalid' => false,
+            'invalid_note' => null,
+        ]);
+
+        return redirect()->route('staff.incentive_approvals')->with('success', 'Incentive restored to valid.');
+    }
+
+    public function markApprovalReturned($id)
+    {
+        abort_unless(auth()->user()->isMaster(), 403);
+
+        $entry = IncentiveEntry::findOrFail($id);
+
+        if ($entry->payout_id) {
+            return redirect()->route('staff.incentive_approvals')->with('error', 'Cannot mark returned — entry is already part of a released payout.');
+        }
+
+        $entry->update([
+            'delivery_status' => 'returned',
+            'approved' => false,
+            'invalid' => false,
+            'invalid_note' => null,
+        ]);
+
+        return redirect()->route('staff.incentive_approvals')->with('success', 'Incentive marked returned.');
     }
 
     public function edit($id)
