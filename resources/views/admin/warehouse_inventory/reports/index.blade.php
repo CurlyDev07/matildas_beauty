@@ -110,6 +110,7 @@
                 <thead>
                     <tr class="ttext-xs tuppercase">
                         <th class="ttext-left tpx-4 tpy-3 wi-sticky-col wi-product-col">Product</th>
+                        <th class="ttext-right tpx-4 tpy-3">Beginning Stock</th>
                         <th class="ttext-right tpx-4 tpy-3">Current Stock</th>
                         <th class="ttext-right tpx-4 tpy-3">Total Out</th>
                         <th class="ttext-right tpx-4 tpy-3">Total In</th>
@@ -128,6 +129,10 @@
                             $totalIn = (float) $totals->get('add', 0);
                             $avgSales = $totalOut / $dayCount;
                             $stockQty = (float) $currentStocks->get($item->id, 0);
+                            $sinceStartTotals = $movementsSinceStart->get($item->id, collect());
+                            $inSinceStart = (float) $sinceStartTotals->get('add', 0);
+                            $outSinceStart = (float) $sinceStartTotals->get('subtract', 0);
+                            $beginningStock = $stockQty - $inSinceStart + $outSinceStart;
                         @endphp
                         <tr class="tborder-t tborder-gray-200">
                             <td class="tpx-4 tpy-3 wi-sticky-col wi-product-col">
@@ -142,6 +147,9 @@
                                         <div class="ttext-xs wi-muted wi-truncate">{{ $item->sku ?: 'No SKU' }} · {{ optional($item->unit)->short_name ?: '-' }}</div>
                                     </div>
                                 </div>
+                            </td>
+                            <td class="tpx-4 tpy-3 ttext-right tfont-bold" style="color:#7c3aed;">
+                                @include('admin.warehouse_inventory.partials.quantity', ['quantity' => $beginningStock, 'unit' => optional($item->unit)->short_name])
                             </td>
                             <td class="tpx-4 tpy-3 ttext-right tfont-bold wi-section-title">
                                 @include('admin.warehouse_inventory.partials.quantity', ['quantity' => $stockQty, 'unit' => optional($item->unit)->short_name])
@@ -164,7 +172,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="{{ 5 + $dateColumns->count() }}" class="tpx-4 tpy-8 ttext-center wi-muted">No inventory items found.</td>
+                            <td colspan="{{ 6 + $dateColumns->count() }}" class="tpx-4 tpy-8 ttext-center wi-muted">No inventory items found.</td>
                         </tr>
                     @endforelse
                 </tbody>

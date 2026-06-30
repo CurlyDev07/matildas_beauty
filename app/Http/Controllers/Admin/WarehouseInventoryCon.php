@@ -407,6 +407,23 @@ class WarehouseInventoryCon extends Controller
             ->groupBy('inventory_item_id')
             ->pluck('current_stock', 'inventory_item_id');
 
+        $movementsSinceStart = collect();
+        if ($startDate->lte(now())) {
+            $movementsSinceStart = InventoryMovement::query()
+                ->leftJoin('inventory_movement_types', 'inventory_movement_types.id', '=', 'inventory_movements.movement_type_id')
+                ->select('inventory_movements.inventory_item_id', 'inventory_movement_types.stock_effect')
+                ->selectRaw('SUM(inventory_movements.quantity) as total_quantity')
+                ->whereIn('inventory_movements.inventory_item_id', $itemIds)
+                ->whereIn('inventory_movement_types.stock_effect', ['add', 'subtract'])
+                ->whereBetween('inventory_movements.created_at', [$startDate, now()->endOfDay()])
+                ->groupBy('inventory_movements.inventory_item_id', 'inventory_movement_types.stock_effect')
+                ->get()
+                ->groupBy('inventory_item_id')
+                ->map(function ($rows) {
+                    return $rows->pluck('total_quantity', 'stock_effect');
+                });
+        }
+
         $movementTotals = InventoryMovement::query()
             ->leftJoin('inventory_movement_types', 'inventory_movement_types.id', '=', 'inventory_movements.movement_type_id')
             ->select('inventory_movements.inventory_item_id', 'inventory_movement_types.stock_effect')
@@ -460,6 +477,7 @@ class WarehouseInventoryCon extends Controller
             'movementEffect',
             'sortBy',
             'currentStocks',
+            'movementsSinceStart',
             'movementTotals',
             'dailyMovements',
             'dateColumns',
