@@ -30,12 +30,12 @@ $products = [
     ],
     [
         'id' => 2,
-        'name' => 'Complete Glow Restoration Kit',
-        'price' => 1399,
-        'image' => 'https://matildasbeauty.com/filemanager/19b7853f1b664481bcabf940b0786a53.png',
+        'name' => '✨ DOUBLE GLOW DEAL ✨',
+        'price' => 799,
+        'image' => 'https://matildasbeauty.com/filemanager/d49337dc27b946c1bacf3279551429fc.png',
         'description' => '',
-        'promo_text_1' => 'SET•SERUM•LOTION',
-        'promo_text_2' => '🎁 FREE 3pcs VIT C',
+        'promo_text_1' => '2 Box MissTisa SET',
+        'promo_text_2' => '🎁 FREE VIT C',
         'promo_text_3' => '',
         'badge' => 'for Severe Melasma & Wrinkles',
         'stock' => '2',
@@ -835,7 +835,7 @@ $products_json = json_encode($products);
         </div>
 
 
-        <img src="https://matildasbeauty.com/filemanager/2d1059ece00b4946b78152dbede7aeb6.webp" width="480" height="480" class="tw-full" alt="BUY 1 take 1">
+        <img src="https://matildasbeauty.com/filemanager/b10c22f95bcd4efcbbd62590b29b83ee.webp" width="480" height="480" class="tw-full" alt="BUY 1 take 1">
 
         <div class="tfont-semibold ttext-center ttext-white tp-2 ttext-lg" style="background-color: black;">
             <i class="fas fa-check-circle" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
@@ -860,8 +860,8 @@ $products_json = json_encode($products);
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/32e8113fd8504c0581a3565324431709.webp" loading="lazy" width="480" height="480" alt="#1 Kulubot Remover">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/c5b58614be4248d782519b523c1d27be.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/8df82cc111f646b5b9c62e81ac24ef23.webp" loading="lazy" width="480" height="480" alt="#1 Kulubot Remover">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/c3b9456b51994b199f9afe5fbe7119eb.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
 
         {{-- <img class="tmb-3" src="https://matildasbeauty.com/filemanager/943b70fea8564d969e9275e6cdec5156.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e835b9e4bc9f4cad803cf3c3a6ef4473.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
@@ -1250,7 +1250,7 @@ $products_json = json_encode($products);
                         </h2>
 
                         <div class="tborder-dashed ttext-center tmy-2 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
-                            <span class="tfont-bold  ttext-center" style="font-size: 20px;"><i class="fas fa-gift ttext-3xl" style="color: red"></i> 12.12 Promo – Ends Soon! <i class="fas fa-gift ttext-3xl" style="color: red"></i></span>
+                            <span class="tfont-bold  ttext-center" style="font-size: 20px;"><i class="fas fa-gift ttext-3xl" style="color: red"></i> 7.7 Promo – Ends Soon! <i class="fas fa-gift ttext-3xl" style="color: red"></i></span>
                             <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
                                 ⏰
                                 <div id="timer_top">18:38</div>
