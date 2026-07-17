@@ -5,9 +5,11 @@ $products = [
     [
         'id' => 0,
         'name' => '1Pc MissTisa Set',
-        'price' => 649,
+        'price' => 599,
         'image' => 'https://matildasbeauty.com/filemanager/6680dcdecd7042588a0a02b32f4bf3c3.png',
         'description' => 'Advanced anti-aging and whitening serum',
+        'urgency' => '',
+
         // 'promo' => [
         //     [
         //         'qty' => 2,
@@ -18,9 +20,19 @@ $products = [
     [
         'id' => 1, 
         'name' => 'Buy 1 Take 1 Get Free Vitamin C',
-        'price' => 849,
-        'image' => 'https://matildasbeauty.com/filemanager/61d432d1a5144aee8cbd8be22a357f08.png',
+        'price' => 799,
+        'image' => 'https://matildasbeauty.com/filemanager/f53d41cdd8c94ec2afbea9b146ce0f48.png',
         'description' => 'Advanced anti-aging and whitening serum',
+        'urgency' => 'Ends Tomorrow!',
+    ],
+    [
+        'id' => 2, 
+        'name' => 'Set + Serum FREE VITAMIN C',
+        'price' => 999,
+        'image' => 'https://matildasbeauty.com/filemanager/9071030cb8ab448d95211aac0e9093bc.png',
+        'description' => 'Advanced anti-aging and whitening serum',
+        'urgency' => '',
+
     ],
    
 ];
@@ -1748,6 +1760,13 @@ $products_json = json_encode($products);
                                     <div class="tflex titems-center tjustify-center trounded-md" style="height: 65px; width: 65px;">
                                         <img loading="lazy" src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="tw-full th-full tobject-cover trounded-md" />
                                     </div>
+
+                                    @if ($product['urgency'])
+                                        <!-- floating Promotion on top -->
+                                        <span class="tabsolute bg-gradient-purple-pink trounded-xl tpx-2 ttext-white tcursor-pointer tshadow-lg ttext-sm" style="top: -8%; right: 18%;">ENDS TOMORROW</span>
+                                    @endif
+
+
                                     <div class="tmx-auto">
                                         <span class="tfont-bold ttext-2xl ttext-pink-600">₱<?= number_format($product['price']) ?></span>
                                     </div>
@@ -1969,85 +1988,45 @@ $products_json = json_encode($products);
 
 
 
-        // PRODUCT SELECTIONS
-        let firstClickMade = false;
-
         function selectProduct(element, price, productIndex) {
-            // On first click, auto-deselect the default (index 0) if clicking a different product
-            if (!firstClickMade && productIndex !== 0 && selectedProducts.includes(0)) {
-                const defaultCard = document.querySelector('.product-card.product-selected');
-                if (defaultCard) {
-                    defaultCard.classList.remove('product-selected');
-                    defaultCard.classList.add('product-unselected');
-                    defaultCard.classList.remove('tborder-pink-500', 'tbg-pink-50');
-                    defaultCard.classList.add('tborder-gray-300', 'tbg-white');
-                    
-                    // Hide quantity container for default
-                    const defaultQuantityContainer = document.getElementById('quantity-container-0');
-                    if (defaultQuantityContainer) {
-                        defaultQuantityContainer.classList.add('thidden');
-                    }
-                    
-                    // Reset quantity and remove from selected products
-                    quantities[0] = 0;
-                    const defaultQuantitySpan = document.getElementById('quantity-0');
-                    if (defaultQuantitySpan) {
-                        defaultQuantitySpan.textContent = 1;
-                    }
-                    selectedProducts = selectedProducts.filter(index => index !== 0);
-                }
-                firstClickMade = true;
-            }
-            
-            // Check if this is the only selected product and prevent deselection
-            if (element.classList.contains('product-selected') && selectedProducts.length === 1) {
-                return;
-            }
-            
-            // Toggle selection
-            if (element.classList.contains('product-selected')) {
-                // Deselect product
-                element.classList.remove('product-selected');
-                element.classList.add('product-unselected');
-                element.classList.remove('tborder-pink-500', 'tbg-pink-50');
-                element.classList.add('tborder-gray-300', 'tbg-white');
-                
-                // Hide quantity container
-                const quantityContainer = document.getElementById(`quantity-container-${productIndex}`);
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('product-selected');
+                card.classList.add('product-unselected');
+                card.classList.remove('tborder-pink-500', 'tbg-pink-50');
+                card.classList.add('tborder-gray-300', 'tbg-white');
+            });
+
+            quantities = quantities.map(() => 0);
+
+            products.forEach(product => {
+                const quantityContainer = document.getElementById(`quantity-container-${product.id}`);
                 if (quantityContainer) {
                     quantityContainer.classList.add('thidden');
                 }
-                
-                // Reset quantity and remove from selected products
-                quantities[productIndex] = 0;
-                const quantitySpan = document.getElementById(`quantity-${productIndex}`);
+
+                const quantitySpan = document.getElementById(`quantity-${product.id}`);
                 if (quantitySpan) {
                     quantitySpan.textContent = 1;
                 }
-                selectedProducts = selectedProducts.filter(index => index !== productIndex);
-            } else {
-                // Select product
-                element.classList.remove('product-unselected');
-                element.classList.add('product-selected');
-                element.classList.remove('tborder-gray-300', 'tbg-white');
-                element.classList.add('tborder-pink-500', 'tbg-pink-50');
-                
-                // Show quantity container
-                const quantityContainer = document.getElementById(`quantity-container-${productIndex}`);
-                if (quantityContainer) {
-                    quantityContainer.classList.remove('thidden');
-                }
-                
-                // Set initial quantity and add to selected products
-                quantities[productIndex] = 1;
-                const quantitySpan = document.getElementById(`quantity-${productIndex}`);
-                if (quantitySpan) {
-                    quantitySpan.textContent = 1;
-                }
-                if (!selectedProducts.includes(productIndex)) {
-                    selectedProducts.push(productIndex);
-                }
+            });
+
+            element.classList.remove('product-unselected');
+            element.classList.add('product-selected');
+            element.classList.remove('tborder-gray-300', 'tbg-white');
+            element.classList.add('tborder-pink-500', 'tbg-pink-50');
+
+            const quantityContainer = document.getElementById(`quantity-container-${productIndex}`);
+            if (quantityContainer) {
+                quantityContainer.classList.remove('thidden');
             }
+
+            quantities[productIndex] = 1;
+            const quantitySpan = document.getElementById(`quantity-${productIndex}`);
+            if (quantitySpan) {
+                quantitySpan.textContent = 1;
+            }
+
+            selectedProducts = [productIndex];
             
             updateTotal();
         }
