@@ -16,10 +16,11 @@
             <div class="tflex titems-center tflex-wrap">
                 <form method="GET" action="{{ route('warehouse_inventory.dashboard') }}" id="dashboardMonthFilter" class="tflex titems-center tmr-2" style="gap:8px;">
                     <label class="wi-month-filter" id="dashboardMonthPickerTrigger">
+                        <input type="month" name="month" value="{{ $selectedMonth }}" id="dashboardMonthPicker" class="browser-default wi-month-input" onchange="this.form.submit();" aria-label="Filter by month">
                         <span class="wi-month-icon"><i class="fas fa-calendar-alt"></i></span>
                         <span class="wi-month-text">
                             <span class="wi-month-label">Month</span>
-                            <input type="month" name="month" value="{{ $selectedMonth }}" id="dashboardMonthPicker" class="browser-default wi-month-input" onchange="this.form.submit();">
+                            <span class="wi-month-value">{{ $selectedMonthLabel }}</span>
                         </span>
                     </label>
                     @if($selectedMonth)
@@ -46,6 +47,7 @@
                         <div class="ttext-xs tfont-bold tuppercase" style="color:#f40167;">Total Cost Value</div>
                         <div class="tmt-2 ttext-2xl tfont-bold wi-section-title">₱{{ number_format($totalCost, 2) }}</div>
                         <div class="tmt-1 ttext-xs tfont-medium ttext-gray-700">{{ number_format($stockRowCount) }} stock balance rows</div>
+                        <div class="tmt-1 ttext-xs tfont-bold" style="color:#f40167;">{{ $stockSnapshotLabel }}</div>
                     </div>
                     <div class="wi-icon ttext-white" style="background:#f40167;">
                         <i class="fas fa-coins"></i>
@@ -61,6 +63,7 @@
                         <div class="ttext-xs tfont-bold tuppercase" style="color:#059669;">Selling Value</div>
                         <div class="tmt-2 ttext-2xl tfont-bold wi-section-title">₱{{ number_format($totalSelling, 2) }}</div>
                         <div class="tmt-1 ttext-xs tfont-medium ttext-gray-700">{{ number_format($itemCount) }} inventory items</div>
+                        <div class="tmt-1 ttext-xs tfont-bold" style="color:#059669;">{{ $stockSnapshotLabel }}</div>
                     </div>
                     <div class="wi-icon ttext-white" style="background:#10b981;">
                         <i class="fas fa-tags"></i>
@@ -76,6 +79,7 @@
                         <div class="ttext-xs tfont-bold tuppercase" style="color:#d97706;">Potential Gross Profit</div>
                         <div class="tmt-2 ttext-2xl tfont-bold wi-section-title">₱{{ number_format($potentialProfit, 2) }}</div>
                         <div class="tmt-1 ttext-xs tfont-medium ttext-gray-700">Selling minus cost value</div>
+                        <div class="tmt-1 ttext-xs tfont-bold" style="color:#d97706;">{{ $stockSnapshotLabel }}</div>
                     </div>
                     <div class="wi-icon ttext-white" style="background:#f59e0b;">
                         <i class="fas fa-chart-line"></i>
@@ -107,7 +111,7 @@
                 <div class="tflex titems-center tjustify-between tpx-4 tpy-3 tborder-b tborder-gray-200">
                     <div>
                         <div class="tfont-bold wi-section-title">Low Stock Monitor</div>
-                        <div class="ttext-xs tfont-medium ttext-gray-700">Items at or below reorder level</div>
+                        <div class="ttext-xs tfont-medium ttext-gray-700">Items at or below reorder level · {{ $stockSnapshotLabel }}</div>
                     </div>
                     <a href="{{ route('warehouse_inventory.stocks') }}" class="ttext-xs tfont-bold tpx-3 tpy-2 trounded ttext-white" style="background:#23324d;">View Stock</a>
                 </div>
@@ -151,7 +155,7 @@
             <div class="tbg-white tborder tborder-gray-200 trounded-lg tshadow-lg tmb-5">
                 <div class="tpx-4 tpy-3 tborder-b tborder-gray-200">
                     <div class="tfont-bold wi-section-title">Value by Category</div>
-                    <div class="ttext-xs tfont-medium ttext-gray-700">Top cost value contributors</div>
+                    <div class="ttext-xs tfont-medium ttext-gray-700">Top cost value contributors · {{ $stockSnapshotLabel }}</div>
                 </div>
                 <div class="tp-4">
                     @forelse($categoryValues as $row)
@@ -223,12 +227,11 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    monthTrigger.addEventListener('click', function (event) {
-        if (event.target === monthInput) {
-            return;
-        }
-
+    monthTrigger.addEventListener('mousedown', function (event) {
         event.preventDefault();
+    });
+
+    monthTrigger.addEventListener('click', function () {
         monthInput.focus();
 
         if (typeof monthInput.showPicker === 'function') {

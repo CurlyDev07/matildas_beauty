@@ -124,6 +124,7 @@
     }
 
     .wi-month-filter {
+        position: relative;
         height: 44px;
         min-width: 190px;
         display: inline-flex;
@@ -135,6 +136,8 @@
         background: linear-gradient(135deg, #ffffff 0%, #fff7fb 100%);
         box-shadow: 0 10px 26px rgba(244, 1, 103, .12);
         cursor: pointer;
+        user-select: none;
+        overflow: hidden;
         transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
 
@@ -154,6 +157,7 @@
         color: #fff;
         background: linear-gradient(135deg, #f40167, #f4ad2b);
         flex: 0 0 32px;
+        pointer-events: none;
     }
 
     .wi-month-text {
@@ -161,6 +165,7 @@
         flex-direction: column;
         gap: 1px;
         min-width: 0;
+        pointer-events: none;
     }
 
     .wi-month-label {
@@ -173,23 +178,26 @@
     }
 
     .wi-month-input {
-        width: 120px;
-        height: 22px;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        left: 12px;
+        bottom: 6px;
         border: 0 !important;
         outline: 0 !important;
         padding: 0 !important;
-        background: transparent !important;
+        background: transparent;
+        color: transparent;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .wi-month-value {
         color: #23324d;
         font-size: 13px;
         font-weight: 900;
-        line-height: 1;
-        cursor: pointer;
-    }
-
-    .wi-month-input::-webkit-calendar-picker-indicator {
-        cursor: pointer;
-        opacity: .7;
-        filter: hue-rotate(295deg) saturate(1.5);
+        line-height: 1.15;
     }
 
     .wi-month-clear {

@@ -35,6 +35,8 @@ class WarehouseInventoryCon extends Controller
     {
         $selectedMonth = $request->input('month');
         $movementPeriodLabel = 'All time';
+        $selectedMonthLabel = 'All months';
+        $stockSnapshotLabel = 'Current stock snapshot';
         $movementStartDate = null;
         $movementEndDate = null;
 
@@ -42,11 +44,16 @@ class WarehouseInventoryCon extends Controller
             $movementStartDate = Carbon::createFromFormat('Y-m', $selectedMonth)->startOfMonth();
             $movementEndDate = (clone $movementStartDate)->endOfMonth();
             $movementPeriodLabel = $movementStartDate->format('F Y');
+            $selectedMonthLabel = $movementStartDate->format('M Y');
+            $stockSnapshotLabel = 'As of ' . $movementEndDate->format('M d, Y');
         } else {
             $selectedMonth = null;
         }
 
-        $stockRows = WarehouseInventory::with(['item.category', 'item.unit', 'status'])->get();
+        $stockRows = $movementEndDate
+            ? $this->warehouseSnapshotRowsAsOf($movementEndDate)
+            : WarehouseInventory::with(['item.category', 'item.unit', 'status'])->get();
+
         $totalCost = $stockRows->sum(function ($row) {
             return (float) $row->quantity * (float) optional($row->item)->cost;
         });
@@ -64,11 +71,22 @@ class WarehouseInventoryCon extends Controller
             ];
         })->sortByDesc('total_cost_value')->take(6)->values();
 
-        $lowStocks = WarehouseInventory::with(['item.unit', 'status'])
-            ->whereColumn('quantity', '<=', 'reorder_level')
-            ->orderBy('quantity')
-            ->limit(10)
-            ->get();
+        if ($movementEndDate) {
+            $allLowStocks = $stockRows->filter(function ($row) {
+                return (float) $row->quantity <= (float) $row->reorder_level;
+            })->sortBy('quantity')->values();
+            $lowStocks = $allLowStocks->take(10)->values();
+            $stockRowCount = $stockRows->count();
+            $lowStockCount = $allLowStocks->count();
+        } else {
+            $lowStocks = WarehouseInventory::with(['item.unit', 'status'])
+                ->whereColumn('quantity', '<=', 'reorder_level')
+                ->orderBy('quantity')
+                ->limit(10)
+                ->get();
+            $stockRowCount = WarehouseInventory::count();
+            $lowStockCount = WarehouseInventory::whereColumn('quantity', '<=', 'reorder_level')->count();
+        }
 
         $movementQuery = InventoryMovement::query();
 
@@ -86,13 +104,70 @@ class WarehouseInventoryCon extends Controller
             'lowStocks' => $lowStocks,
             'categoryValues' => $categoryValues,
             'itemCount' => InventoryItem::count(),
-            'stockRowCount' => WarehouseInventory::count(),
+            'stockRowCount' => $stockRowCount,
             'movementCount' => $movementCountQuery->count(),
-            'lowStockCount' => WarehouseInventory::whereColumn('quantity', '<=', 'reorder_level')->count(),
+            'lowStockCount' => $lowStockCount,
             'recentMovements' => $recentMovementsQuery->with(['item', 'movementType'])->latest()->limit(12)->get(),
             'selectedMonth' => $selectedMonth,
+            'selectedMonthLabel' => $selectedMonthLabel,
             'movementPeriodLabel' => $movementPeriodLabel,
+            'stockSnapshotLabel' => $stockSnapshotLabel,
         ]);
+    }
+
+    protected function warehouseSnapshotRowsAsOf(Carbon $asOfDate)
+    {
+        $currentRows = WarehouseInventory::with(['item.category', 'item.unit', 'status'])->get();
+
+        $rowsByItem = $currentRows->groupBy('inventory_item_id')->map(function ($rows) {
+            $first = $rows->first();
+
+            return (object) [
+                'inventory_item_id' => $first->inventory_item_id,
+                'item' => $first->item,
+                'status' => $first->status,
+                'quantity' => (float) $rows->sum('quantity'),
+                'reorder_level' => (float) $rows->max('reorder_level'),
+            ];
+        });
+
+        $movementAdjustments = InventoryMovement::query()
+            ->leftJoin('inventory_movement_types', 'inventory_movement_types.id', '=', 'inventory_movements.movement_type_id')
+            ->select('inventory_movements.inventory_item_id', 'inventory_movement_types.stock_effect')
+            ->selectRaw('SUM(inventory_movements.quantity) as total_quantity')
+            ->whereIn('inventory_movement_types.stock_effect', ['add', 'subtract'])
+            ->where('inventory_movements.created_at', '>', $asOfDate)
+            ->groupBy('inventory_movements.inventory_item_id', 'inventory_movement_types.stock_effect')
+            ->get()
+            ->groupBy('inventory_item_id');
+
+        $itemIds = $rowsByItem->keys()
+            ->merge($movementAdjustments->keys())
+            ->unique()
+            ->values();
+
+        $items = InventoryItem::with(['category', 'unit'])
+            ->whereIn('id', $itemIds)
+            ->get()
+            ->keyBy('id');
+
+        return $itemIds->map(function ($itemId) use ($rowsByItem, $movementAdjustments, $items) {
+            $row = $rowsByItem->get($itemId);
+            $adjustments = $movementAdjustments->get($itemId, collect())->pluck('total_quantity', 'stock_effect');
+
+            $quantity = $row ? (float) $row->quantity : 0;
+            $quantity = $quantity - (float) $adjustments->get('add', 0) + (float) $adjustments->get('subtract', 0);
+
+            return (object) [
+                'inventory_item_id' => $itemId,
+                'item' => $row ? $row->item : $items->get($itemId),
+                'status' => $row ? $row->status : null,
+                'quantity' => $quantity,
+                'reorder_level' => $row ? (float) $row->reorder_level : 0,
+            ];
+        })->filter(function ($row) {
+            return $row->item && (float) $row->quantity != 0.0;
+        })->values();
     }
 
     public function lookups($type)
