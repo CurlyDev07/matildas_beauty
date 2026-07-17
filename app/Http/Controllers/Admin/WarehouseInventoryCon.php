@@ -31,8 +31,21 @@ class WarehouseInventoryCon extends Controller
         $this->movementService = $movementService;
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
+        $selectedMonth = $request->input('month');
+        $movementPeriodLabel = 'All time';
+        $movementStartDate = null;
+        $movementEndDate = null;
+
+        if ($selectedMonth && preg_match('/^\d{4}-\d{2}$/', $selectedMonth)) {
+            $movementStartDate = Carbon::createFromFormat('Y-m', $selectedMonth)->startOfMonth();
+            $movementEndDate = (clone $movementStartDate)->endOfMonth();
+            $movementPeriodLabel = $movementStartDate->format('F Y');
+        } else {
+            $selectedMonth = null;
+        }
+
         $stockRows = WarehouseInventory::with(['item.category', 'item.unit', 'status'])->get();
         $totalCost = $stockRows->sum(function ($row) {
             return (float) $row->quantity * (float) optional($row->item)->cost;
@@ -57,6 +70,15 @@ class WarehouseInventoryCon extends Controller
             ->limit(10)
             ->get();
 
+        $movementQuery = InventoryMovement::query();
+
+        if ($movementStartDate && $movementEndDate) {
+            $movementQuery->whereBetween('created_at', [$movementStartDate, $movementEndDate]);
+        }
+
+        $movementCountQuery = clone $movementQuery;
+        $recentMovementsQuery = clone $movementQuery;
+
         return view('admin.warehouse_inventory.dashboard', [
             'totalCost' => $totalCost,
             'totalSelling' => $totalSelling,
@@ -65,9 +87,11 @@ class WarehouseInventoryCon extends Controller
             'categoryValues' => $categoryValues,
             'itemCount' => InventoryItem::count(),
             'stockRowCount' => WarehouseInventory::count(),
-            'movementCount' => InventoryMovement::count(),
+            'movementCount' => $movementCountQuery->count(),
             'lowStockCount' => WarehouseInventory::whereColumn('quantity', '<=', 'reorder_level')->count(),
-            'recentMovements' => InventoryMovement::with(['item', 'movementType'])->latest()->limit(12)->get(),
+            'recentMovements' => $recentMovementsQuery->with(['item', 'movementType'])->latest()->limit(12)->get(),
+            'selectedMonth' => $selectedMonth,
+            'movementPeriodLabel' => $movementPeriodLabel,
         ]);
     }
 

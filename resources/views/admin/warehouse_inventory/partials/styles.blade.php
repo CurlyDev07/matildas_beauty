@@ -123,6 +123,95 @@
         display: inline-block;
     }
 
+    .wi-month-filter {
+        height: 44px;
+        min-width: 190px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 12px;
+        border-radius: 14px;
+        border: 1px solid #ffd6e8;
+        background: linear-gradient(135deg, #ffffff 0%, #fff7fb 100%);
+        box-shadow: 0 10px 26px rgba(244, 1, 103, .12);
+        cursor: pointer;
+        transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .wi-month-filter:hover {
+        transform: translateY(-1px);
+        border-color: #f40167;
+        box-shadow: 0 14px 32px rgba(244, 1, 103, .18);
+    }
+
+    .wi-month-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background: linear-gradient(135deg, #f40167, #f4ad2b);
+        flex: 0 0 32px;
+    }
+
+    .wi-month-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        min-width: 0;
+    }
+
+    .wi-month-label {
+        color: #f40167;
+        font-size: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        line-height: 1;
+    }
+
+    .wi-month-input {
+        width: 120px;
+        height: 22px;
+        border: 0 !important;
+        outline: 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+        color: #23324d;
+        font-size: 13px;
+        font-weight: 900;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .wi-month-input::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        opacity: .7;
+        filter: hue-rotate(295deg) saturate(1.5);
+    }
+
+    .wi-month-clear {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        color: #f40167;
+        border: 1px solid #ffd6e8;
+        box-shadow: 0 10px 24px rgba(61, 81, 112, .08);
+        transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .wi-month-clear:hover {
+        transform: translateY(-1px);
+        background: #fff7fb;
+        box-shadow: 0 14px 30px rgba(244, 1, 103, .14);
+    }
+
     .wi-type-pill {
         border-radius: 999px;
         padding: 5px 10px;

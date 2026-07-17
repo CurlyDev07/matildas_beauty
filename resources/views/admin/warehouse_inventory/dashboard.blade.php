@@ -11,9 +11,23 @@
             <div class="tmb-3">
                 <div class="ttext-xs tfont-bold tuppercase" style="color:#f40167;">Inventory Management</div>
                 <h4 class="tm-0 tfont-bold wi-section-title">Warehouse Inventory</h4>
-                <div class="ttext-sm ttext-gray-700">Independent stock control for products, materials, supplies, bundles, freebies, returns, and damaged inventory.</div>
+                <!-- <div class="ttext-sm ttext-gray-700">Independent stock control for products, materials, supplies, bundles, freebies, returns, and damaged inventory.</div> -->
             </div>
-            <div class="tflex titems-center">
+            <div class="tflex titems-center tflex-wrap">
+                <form method="GET" action="{{ route('warehouse_inventory.dashboard') }}" id="dashboardMonthFilter" class="tflex titems-center tmr-2" style="gap:8px;">
+                    <label class="wi-month-filter" id="dashboardMonthPickerTrigger">
+                        <span class="wi-month-icon"><i class="fas fa-calendar-alt"></i></span>
+                        <span class="wi-month-text">
+                            <span class="wi-month-label">Month</span>
+                            <input type="month" name="month" value="{{ $selectedMonth }}" id="dashboardMonthPicker" class="browser-default wi-month-input" onchange="this.form.submit();">
+                        </span>
+                    </label>
+                    @if($selectedMonth)
+                        <a href="{{ route('warehouse_inventory.dashboard') }}" class="wi-month-clear waves-effect" title="Clear month filter">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    @endif
+                </form>
                 <a href="{{ route('warehouse_inventory.items') }}" class="tbg-white tborder tborder-gray-300 ttext-title tfont-bold tpx-4 tpy-2 trounded tmr-2 waves-effect">
                     <i class="fas fa-box-open tmr-1"></i> Items
                 </a>
@@ -77,6 +91,7 @@
                         <div class="ttext-xs tfont-bold tuppercase" style="color:#dc2626;">Low Stock</div>
                         <div class="tmt-2 ttext-2xl tfont-bold {{ $lowStockCount > 0 ? 'ttext-red-600' : 'ttext-title' }}">{{ number_format($lowStockCount) }}</div>
                         <div class="tmt-1 ttext-xs tfont-medium ttext-gray-700">{{ number_format($movementCount) }} movement records</div>
+                        <div class="tmt-1 ttext-xs tfont-bold" style="color:#f40167;">{{ $movementPeriodLabel }}</div>
                     </div>
                     <div class="wi-icon ttext-white" style="background:{{ $lowStockCount > 0 ? '#ef4444' : '#94a3b8' }};">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -164,7 +179,7 @@
         <div class="tflex titems-center tjustify-between tpx-4 tpy-3 tborder-b tborder-gray-200">
             <div>
                 <div class="tfont-bold wi-section-title">Recent Stock Movements</div>
-                <div class="ttext-xs tfont-medium ttext-gray-700">Latest audit trail entries</div>
+                <div class="ttext-xs tfont-medium ttext-gray-700">Latest audit trail entries · {{ $movementPeriodLabel }}</div>
             </div>
             <a href="{{ route('warehouse_inventory.movements') }}" class="ttext-xs tfont-bold tpx-3 tpy-2 trounded ttext-white" style="background:#f40167;">Open Movements</a>
         </div>
@@ -198,4 +213,31 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var monthTrigger = document.getElementById('dashboardMonthPickerTrigger');
+    var monthInput = document.getElementById('dashboardMonthPicker');
+
+    if (!monthTrigger || !monthInput) {
+        return;
+    }
+
+    monthTrigger.addEventListener('click', function (event) {
+        if (event.target === monthInput) {
+            return;
+        }
+
+        event.preventDefault();
+        monthInput.focus();
+
+        if (typeof monthInput.showPicker === 'function') {
+            monthInput.showPicker();
+            return;
+        }
+
+        monthInput.click();
+    });
+});
+</script>
 @endsection
