@@ -90,13 +90,30 @@ class MissTisaCon extends Controller
         $fbads_products = FbAdsProduct::orderBy('order', 'asc')->get();
 
         $seo = [
-            'title' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
-            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
-            'description' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
+            'title' => "MissTisa Melasma Treatment | Fade Dark Spots & Hyperpigmentation",
+            'image' => 'https://matildasbeauty.com/filemanager/5b8cbd04e0d64e6baf749e2bed758b1b.png',
+            'description' => "Discover MissTisa's advanced melasma treatment formulated to visibly fade dark spots, hyperpigmentation, and uneven skin tone. Achieve a brighter, more radiant complexion with daily use.",
             'robots' => 'none',
         ];
 
         return view('pages.misstisa.melasma', ['fbads_products' => $fbads_products, 'seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
+    }
+
+    public function anti_aging(){
+        $session_id = uuid();
+        $website = 'MissTisa Anti-Aging';
+
+        $provinces = [];
+        $fbads_products = FbAdsProduct::orderBy('order', 'asc')->get();
+
+        $seo = [
+            'title' => "MissTisa Anti-Aging Skincare | Reduce Fine Lines & Restore Youthful Radiance",
+            'image' => 'https://matildasbeauty.com/filemanager/5b8cbd04e0d64e6baf749e2bed758b1b.png',
+            'description' => "Discover MissTisa Anti-Aging Skincare, expertly formulated to help reduce the appearance of fine lines, wrinkles, and signs of aging. Infused with skin-loving ingredients to boost hydration, improve elasticity, and reveal smoother, firmer, and more youthful-looking skin. Suitable for daily use and all skin types.",
+            'robots' => 'none',
+        ];
+
+        return view('pages.misstisa.anti_aging', ['fbads_products' => $fbads_products, 'seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
     }
 
     public function christmas_promo(){
