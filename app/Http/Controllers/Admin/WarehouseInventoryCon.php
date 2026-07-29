@@ -587,6 +587,60 @@ class WarehouseInventoryCon extends Controller
         ));
     }
 
+    public function poDraft(Request $request)
+    {
+        $avgRangeDays = (int) $request->input('avg_range', 14);
+        if (!in_array($avgRangeDays, [7, 14, 30], true)) {
+            $avgRangeDays = 14;
+        }
+
+        $startDate = now()->subDays($avgRangeDays - 1)->startOfDay();
+        $endDate = now()->endOfDay();
+
+        $orderRows = DB::table('fb_ads')
+            ->select('product', 'promo', DB::raw('COUNT(*) as order_count'))
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->groupBy('product', 'promo')
+            ->get();
+
+        $items = InventoryItem::query()
+            ->where('is_active', 1)
+            ->orderBy('name')
+            ->get()
+            ->map(function ($item) use ($orderRows, $avgRangeDays) {
+                $nameKey = $this->normalizePoDraftText($item->name);
+                $skuKey = $this->normalizePoDraftText($item->sku);
+
+                $orderCount = $orderRows->sum(function ($row) use ($nameKey, $skuKey) {
+                    $haystack = $this->normalizePoDraftText($row->product . ' ' . $row->promo);
+                    $matchesName = $nameKey !== '' && strpos($haystack, $nameKey) !== false;
+                    $matchesSku = $skuKey !== '' && strpos($haystack, $skuKey) !== false;
+
+                    return ($matchesName || $matchesSku) ? (int) $row->order_count : 0;
+                });
+
+                $item->po_avg_daily_orders = round($orderCount / $avgRangeDays, 2);
+                $item->po_order_count_range = $orderCount;
+
+                return $item;
+            })
+            ->sortByDesc('po_avg_daily_orders')
+            ->values();
+
+        $poItems = $items->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'name' => $item->name,
+                'sku' => $item->sku,
+                'cost' => (float) $item->cost,
+                'avg_daily_orders' => (float) $item->po_avg_daily_orders,
+                'order_count_range' => (int) $item->po_order_count_range,
+            ];
+        })->values();
+
+        return view('admin.warehouse_inventory.po_draft.index', compact('items', 'poItems', 'startDate', 'endDate', 'avgRangeDays'));
+    }
+
     public function barcodes(Request $request)
     {
         $perPage = $this->inventoryPerPage($request);
@@ -1113,6 +1167,14 @@ class WarehouseInventoryCon extends Controller
             'defaultCategoryLevel2Id' => $defaultCategoryLevels['level2'],
             'defaultCategoryLevel3Id' => $defaultCategoryLevels['level3'],
         ];
+    }
+
+    protected function normalizePoDraftText($value)
+    {
+        $value = Str::lower((string) $value);
+        $value = preg_replace('/[^a-z0-9]+/', ' ', $value);
+
+        return trim(preg_replace('/\s+/', ' ', $value));
     }
 
     protected function inventorySetting($key)
