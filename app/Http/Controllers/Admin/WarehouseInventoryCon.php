@@ -597,27 +597,24 @@ class WarehouseInventoryCon extends Controller
         $startDate = now()->subDays($avgRangeDays - 1)->startOfDay();
         $endDate = now()->endOfDay();
 
-        $orderRows = DB::table('fb_ads')
-            ->select('product', 'promo', DB::raw('COUNT(*) as order_count'))
-            ->whereBetween('created_at', [$startDate, $endDate])
-            ->groupBy('product', 'promo')
-            ->get();
+        $salesOutRows = InventoryMovement::query()
+            ->leftJoin('inventory_movement_types', 'inventory_movement_types.id', '=', 'inventory_movements.movement_type_id')
+            ->select('inventory_movements.inventory_item_id', DB::raw('SUM(inventory_movements.quantity) as total_quantity'))
+            ->whereBetween('inventory_movements.created_at', [$startDate, $endDate])
+            ->where(function ($query) {
+                $query->where('inventory_movement_types.slug', 'sales_out')
+                    ->orWhere('inventory_movement_types.name', 'Sales Out')
+                    ->orWhere('inventory_movements.movement_type', 'sales_out');
+            })
+            ->groupBy('inventory_movements.inventory_item_id')
+            ->pluck('total_quantity', 'inventory_item_id');
 
         $items = InventoryItem::query()
             ->where('is_active', 1)
             ->orderBy('name')
             ->get()
-            ->map(function ($item) use ($orderRows, $avgRangeDays) {
-                $nameKey = $this->normalizePoDraftText($item->name);
-                $skuKey = $this->normalizePoDraftText($item->sku);
-
-                $orderCount = $orderRows->sum(function ($row) use ($nameKey, $skuKey) {
-                    $haystack = $this->normalizePoDraftText($row->product . ' ' . $row->promo);
-                    $matchesName = $nameKey !== '' && strpos($haystack, $nameKey) !== false;
-                    $matchesSku = $skuKey !== '' && strpos($haystack, $skuKey) !== false;
-
-                    return ($matchesName || $matchesSku) ? (int) $row->order_count : 0;
-                });
+            ->map(function ($item) use ($salesOutRows, $avgRangeDays) {
+                $orderCount = (float) ($salesOutRows->get($item->id, 0) ?: 0);
 
                 $item->po_avg_daily_orders = round($orderCount / $avgRangeDays, 2);
                 $item->po_order_count_range = $orderCount;
