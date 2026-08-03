@@ -6,9 +6,9 @@ $products = [
         'id' => 0,
         'name' => 'Triple Action Brightening',
         'price' => 999,
-        'image' => 'https://matildasbeauty.com/filemanager/5e0aff13946b42deaf311f422d479884.png',
+        'image' => 'https://matildasbeauty.com/filemanager/f3231c212de84129ad2940ef0e6bf8b1.png',
         'description' => 'Includes Gold Serum (worth ₱799)',
-        'promo_text_1' => 'SET + SERUM + VIT C',
+        'promo_text_1' => 'SET + SERUM + VIT C + Sunblock',
         'promo_text_2' => 'Repair • Fade • Glow',
         'promo_text_3' => '⚡ Best for Faster Results',
         'badge' => '⭐ Best for Faster Results',
@@ -16,7 +16,20 @@ $products = [
         'most_recommended' => '⭐ Most Recommended for 40+ Skin',
     ],
     [
-        'id' => 1, 
+        'id' => 1,
+        'name' => 'Ultimate Sun Defense Bundle',
+        'price' => 799,
+        'image' => 'https://matildasbeauty.com/filemanager/fb370c52ea894628857991a3293dc15b.png',
+        'description' => '',
+        'promo_text_1' => '1 SET + 2 Sunscreens',
+        'promo_text_2' => '🎁 FREE SOAP',
+        'promo_text_3' => '',
+        'badge' => 'For Daily UV Protection & Glow',
+        'stock' => '2',
+        'most_recommended' => ''
+    ],
+    [
+        'id' => 2, 
         'name' => 'Melasma Brightening Duo',
         'price' => 649,
         'image' => 'https://matildasbeauty.com/filemanager/3479431c5cf54729a1d3656e47c8d86c.png',
@@ -29,7 +42,7 @@ $products = [
         'most_recommended' => ''
     ],
     [
-        'id' => 2,
+        'id' => 3,
         'name' => '✨ DOUBLE GLOW DEAL ✨',
         'price' => 799,
         'image' => 'https://matildasbeauty.com/filemanager/d49337dc27b946c1bacf3279551429fc.png',
@@ -41,6 +54,7 @@ $products = [
         'stock' => '2',
         'most_recommended' => ''
     ]
+    
 ];
 
 // Convert products to JavaScript format for frontend
@@ -835,7 +849,7 @@ $products_json = json_encode($products);
         </div>
 
 
-        <img src="https://matildasbeauty.com/filemanager/b10c22f95bcd4efcbbd62590b29b83ee.webp" width="480" height="480" class="tw-full" alt="BUY 1 take 1">
+        <img src="https://matildasbeauty.com/filemanager/5fc05dd20f63473ba8b5aed942fddf51.webp" width="480" height="480" class="tw-full" alt="BUY 1 take 1">
 
         <div class="tfont-semibold ttext-center ttext-white tp-2 ttext-lg" style="background-color: black;">
             <i class="fas fa-check-circle" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
@@ -860,8 +874,8 @@ $products_json = json_encode($products);
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/8df82cc111f646b5b9c62e81ac24ef23.webp" loading="lazy" width="480" height="480" alt="#1 Kulubot Remover">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/c3b9456b51994b199f9afe5fbe7119eb.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/8a3247c80c6d43fcb60a8994c2557706.webp" loading="lazy" width="480" height="480" alt="#1 Kulubot Remover">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/017c5b134d9246b9b11dbfc3c254c2b1.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
 
         {{-- <img class="tmb-3" src="https://matildasbeauty.com/filemanager/943b70fea8564d969e9275e6cdec5156.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e835b9e4bc9f4cad803cf3c3a6ef4473.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
@@ -1250,7 +1264,7 @@ $products_json = json_encode($products);
                         </h2>
 
                         <div class="tborder-dashed ttext-center tmy-2 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
-                            <span class="tfont-bold  ttext-center" style="font-size: 20px;"><i class="fas fa-gift ttext-3xl" style="color: red"></i> 7.7 Promo – Ends Soon! <i class="fas fa-gift ttext-3xl" style="color: red"></i></span>
+                            <span class="tfont-bold  ttext-center" style="font-size: 20px;"><i class="fas fa-gift ttext-3xl" style="color: red"></i> 8.8 Promo – Ends Soon! <i class="fas fa-gift ttext-3xl" style="color: red"></i></span>
                             <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
                                 ⏰
                                 <div id="timer_top">18:38</div>
