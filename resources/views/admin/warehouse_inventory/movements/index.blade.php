@@ -39,6 +39,17 @@
                             <input type="text" name="search" value="{{ request('search') }}" class="browser-default wi-input" placeholder="Movement ID, item, SKU" style="width:210px;height:41px !important;">
                         </div>
                         <div>
+                            <label class="wi-form-label">Type</label>
+                            <select name="movement_type_id" class="browser-default wi-select" style="width:170px;height:41px !important;">
+                                <option value="">All types</option>
+                                @foreach($movementTypes as $movementType)
+                                    <option value="{{ $movementType->id }}" {{ (string) request('movement_type_id') === (string) $movementType->id ? 'selected' : '' }}>
+                                        {{ $movementType->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div>
                             <label class="wi-form-label">Category</label>
                             <select name="category_id" class="browser-default wi-select" style="width:190px;height:41px !important;">
                                 <option value="">All categories</option>
@@ -72,17 +83,17 @@
                         <button class="wi-btn-primary waves-effect" style="height:41px;padding:0 12px;">
                             <i class="fas fa-search tmr-2"></i> Filter
                         </button>
-                        @if(request()->hasAny(['search', 'category_id', 'tag_id']))
+                        @if(request()->hasAny(['search', 'movement_type_id', 'category_id', 'tag_id']))
                             <a href="{{ route('warehouse_inventory.movements', ['display' => $displayMode, 'per_page' => $perPage]) }}" class="wi-btn-light waves-effect" style="height:41px;padding:0 12px;">
                                 <i class="fas fa-times"></i>
                             </a>
                         @endif
                     </form>
-                    <a href="{{ route('warehouse_inventory.movements', request()->only(['search', 'category_id', 'tag_id']) + ['display' => 'summary', 'per_page' => $perPage]) }}"
+                    <a href="{{ route('warehouse_inventory.movements', request()->only(['search', 'movement_type_id', 'category_id', 'tag_id']) + ['display' => 'summary', 'per_page' => $perPage]) }}"
                         class="{{ $displayMode === 'summary' ? 'wi-btn-primary' : 'wi-btn-light' }} waves-effect">
                         <i class="fas fa-layer-group tmr-2"></i> Grouped
                     </a>
-                    <a href="{{ route('warehouse_inventory.movements', request()->only(['search', 'category_id', 'tag_id']) + ['display' => 'details', 'per_page' => $perPage]) }}"
+                    <a href="{{ route('warehouse_inventory.movements', request()->only(['search', 'movement_type_id', 'category_id', 'tag_id']) + ['display' => 'details', 'per_page' => $perPage]) }}"
                         class="{{ $displayMode === 'details' ? 'wi-btn-primary' : 'wi-btn-light' }} waves-effect">
                         <i class="fas fa-list tmr-2"></i> Detailed
                     </a>
@@ -165,7 +176,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="tp-4">{{ $movements->appends(request()->only(['search', 'category_id', 'tag_id']) + ['display' => $displayMode, 'per_page' => $perPage])->links() }}</div>
+        <div class="tp-4">{{ $movements->appends(request()->only(['search', 'movement_type_id', 'category_id', 'tag_id']) + ['display' => $displayMode, 'per_page' => $perPage])->links() }}</div>
     </div>
 </div>
 @endsection

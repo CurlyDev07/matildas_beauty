@@ -121,6 +121,74 @@
         display: none;
     }
 
+    .po-saved-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 10px;
+        overflow-y: auto;
+    }
+
+    .po-saved-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 14px;
+        border: 1px solid #edf1f7;
+        border-radius: 12px;
+        background: #fff;
+    }
+
+    .po-saved-row.is-active {
+        background: #fff0f7;
+        border-color: #f40167;
+        box-shadow: 0 12px 28px rgba(244, 1, 103, .10);
+    }
+
+    .po-tabs {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px;
+        border: 1px solid #ffd6e8;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ffffff 0%, #fff7fb 100%);
+        box-shadow: 0 10px 24px rgba(244, 1, 103, .08);
+    }
+
+    .po-tab-btn {
+        border: 0;
+        height: 38px;
+        border-radius: 999px;
+        padding: 0 16px;
+        background: transparent;
+        color: #667085;
+        font-size: 12px;
+        font-weight: 900;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+    }
+
+    .po-tab-btn.is-active {
+        color: #fff;
+        background: linear-gradient(135deg, #f40167, #f4ad2b);
+        box-shadow: 0 10px 24px rgba(244, 1, 103, .18);
+    }
+
+    .po-tab-panel {
+        display: none;
+    }
+
+    .po-tab-panel.is-active {
+        display: block;
+    }
+
+    .po-tab-panel.po-draft-grid.is-active {
+        display: grid;
+    }
+
     @media (max-width: 992px) {
         .po-draft-grid {
             grid-template-columns: 1fr;
@@ -193,7 +261,7 @@
             <div class="tflex titems-center tflex-wrap" style="gap:10px;">
                 <div class="po-coverage-control">
                     <label for="poCoverageDays" class="po-coverage-label">Stock Coverage Days</label>
-                    <input type="number" min="1" step="1" value="5" id="poCoverageDays" class="browser-default wi-input po-coverage-input">
+                    <input type="number" min="1" step="1" value="{{ old('stock_coverage_days', $editingPurchaseOrder ? $editingPurchaseOrder->stock_coverage_days : 5) }}" id="poCoverageDays" class="browser-default wi-input po-coverage-input">
                 </div>
                 <div class="tflex titems-center tflex-wrap tbg-white tborder tborder-gray-200 trounded-full tpx-2 tpy-1" style="gap:6px;">
                     <span class="ttext-xs tfont-bold tuppercase tpx-2" style="color:#f40167;">AVG Filter</span>
@@ -210,63 +278,135 @@
         </div>
     </div>
 
-    <div class="po-draft-grid">
-        <div class="wi-panel">
-            <div class="tpx-4 tpy-3 tborder-b tborder-gray-200">
-                <div class="tflex titems-center tjustify-between tflex-wrap" style="gap:10px;">
-                    <div>
-                        <div class="tfont-bold wi-section-title">Product List</div>
-                        <div class="ttext-xs wi-muted">Click a product to add it to the draft.</div>
-                    </div>
-                    <span class="wi-pill">{{ number_format($items->count()) }} items</span>
-                </div>
-                <div class="tmt-3">
-                    <input type="text" id="poProductSearch" class="browser-default wi-input tw-full" placeholder="Search product or SKU" style="height:41px !important;">
-                </div>
-            </div>
+    <div class="tmb-4">
+        <div class="po-tabs po-print-hidden" role="tablist" aria-label="P.O Draft tabs">
+            <button type="button" class="po-tab-btn {{ $editingPurchaseOrder ? '' : 'is-active' }}" data-po-tab="saved">
+                <i class="fas fa-folder-open"></i> Saved P.O
+            </button>
+            <button type="button" class="po-tab-btn {{ $editingPurchaseOrder ? 'is-active' : '' }}" data-po-tab="draft">
+                <i class="fas fa-file-invoice-dollar"></i> Draft
+            </button>
+        </div>
+    </div>
 
-            <div class="po-product-list" id="poProductList">
-                @forelse($items as $item)
-                    <button type="button"
-                        class="po-product-row"
-                        data-po-product-id="{{ $item->id }}"
-                        data-search="{{ strtolower($item->name . ' ' . $item->sku) }}">
-                        <div class="tflex titems-start tjustify-between" style="gap:12px;">
-                            <div class="tmin-w-0">
-                                <div class="tfont-bold wi-section-title wi-truncate" title="{{ $item->name }}">{{ $item->name }}</div>
-                                <div class="ttext-xs wi-muted tmt-1">SKU: {{ $item->sku ?: 'No SKU' }}</div>
-                                <div class="ttext-xs tfont-bold tmt-2" style="color:#f40167;">
-	                                    Avg Daily Order ({{ $avgRangeDays }}d): {{ number_format($item->po_avg_daily_orders, 2) }}
+    <div class="wi-panel tmb-5 po-tab-panel {{ $editingPurchaseOrder ? '' : 'is-active' }}" data-po-tab-panel="saved">
+        <div class="tpx-4 tpy-3 tborder-b tborder-gray-200">
+            <div class="tflex titems-center tjustify-between tflex-wrap" style="gap:10px;">
+                <div>
+                    <div class="tfont-bold wi-section-title">Saved P.O Drafts</div>
+                    <div class="ttext-xs wi-muted">Edit or remove existing purchase order drafts.</div>
+                </div>
+                <span class="wi-pill">{{ number_format($savedPurchaseOrders->count()) }} saved</span>
+            </div>
+        </div>
+        <div class="tp-4">
+            <div class="po-saved-list">
+                @forelse($savedPurchaseOrders as $po)
+                    <div class="po-saved-row {{ $editingPurchaseOrder && $editingPurchaseOrder->id === $po->id ? 'is-active' : '' }}">
+                        <div class="tmin-w-0">
+                            <div class="tfont-bold wi-section-title">{{ $po->po_number }}</div>
+                            <div class="ttext-xs wi-muted">
+                                {{ optional($po->created_at)->format('M d, g:iA') }}
+                                · {{ number_format($po->items->count()) }} items
+                                · {{ $po->stock_coverage_days }} days
+                            </div>
+                            <div class="ttext-sm tfont-bold" style="color:#f40167;">&#8369;{{ number_format((float) $po->total_amount, 2) }}</div>
+                        </div>
+                        <span class="wi-row-actions">
+                            <a href="{{ route('warehouse_inventory.po_draft', ['po_id' => $po->id, 'avg_range' => $po->avg_range_days]) }}" class="wi-row-action-btn wi-row-action-edit" title="Edit P.O">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                            <form method="POST" action="{{ route('warehouse_inventory.po_draft.delete', $po->id) }}" onsubmit="return confirm('Delete {{ $po->po_number }}?');" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="wi-row-action-btn wi-row-action-delete" title="Delete P.O">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </span>
+                    </div>
+                @empty
+                    <div class="tpx-4 tpy-8 ttext-center wi-muted">No saved P.O drafts yet.</div>
+                @endforelse
+            </div>
+        </div>
+    </div>
+
+    <div class="po-draft-grid po-tab-panel {{ $editingPurchaseOrder ? 'is-active' : '' }}" data-po-tab-panel="draft">
+        <div>
+            <div class="wi-panel">
+                <div class="tpx-4 tpy-3 tborder-b tborder-gray-200">
+                    <div class="tflex titems-center tjustify-between tflex-wrap" style="gap:10px;">
+                        <div>
+                            <div class="tfont-bold wi-section-title">Product List</div>
+                            <div class="ttext-xs wi-muted">Click a product to add it to the draft.</div>
+                        </div>
+                        <span class="wi-pill">{{ number_format($items->count()) }} items</span>
+                    </div>
+                    <div class="tmt-3">
+                        <input type="text" id="poProductSearch" class="browser-default wi-input tw-full" placeholder="Search product or SKU" style="height:41px !important;">
+                    </div>
+                </div>
+
+                <div class="po-product-list" id="poProductList">
+                    @forelse($items as $item)
+                        <button type="button"
+                            class="po-product-row"
+                            data-po-product-id="{{ $item->id }}"
+                            data-search="{{ strtolower($item->name . ' ' . $item->sku) }}">
+                            <div class="tflex titems-start tjustify-between" style="gap:12px;">
+                                <div class="tmin-w-0">
+                                    <div class="tfont-bold wi-section-title wi-truncate" title="{{ $item->name }}">{{ $item->name }}</div>
+                                    <div class="ttext-xs wi-muted tmt-1">SKU: {{ $item->sku ?: 'No SKU' }}</div>
+                                    <div class="ttext-xs tfont-bold tmt-2" style="color:#f40167;">
+                                            Avg Daily Order ({{ $avgRangeDays }}d): {{ number_format($item->po_avg_daily_orders, 2) }}
+                                    </div>
+                                </div>
+                                <div class="ttext-right">
+                                    <div class="ttext-xs wi-muted">Cost</div>
+                                    <div class="tfont-bold wi-section-title">&#8369;{{ number_format((float) $item->cost, 2) }}</div>
+                                    <div class="ttext-xs wi-muted tmt-2">{{ number_format($item->po_order_count_range) }} orders</div>
                                 </div>
                             </div>
-                            <div class="ttext-right">
-                                <div class="ttext-xs wi-muted">Cost</div>
-                                <div class="tfont-bold wi-section-title">&#8369;{{ number_format((float) $item->cost, 2) }}</div>
-                                <div class="ttext-xs wi-muted tmt-2">{{ number_format($item->po_order_count_range) }} orders</div>
-                            </div>
-                        </div>
-                    </button>
-                @empty
-                    <div class="tpx-4 tpy-8 ttext-center wi-muted">No inventory products yet.</div>
-                @endforelse
+                        </button>
+                    @empty
+                        <div class="tpx-4 tpy-8 ttext-center wi-muted">No inventory products yet.</div>
+                    @endforelse
+                </div>
             </div>
         </div>
 
         <div class="wi-panel po-print-area" id="poPrintablePanel">
+            <form method="POST" action="{{ $editingPurchaseOrder ? route('warehouse_inventory.po_draft.update', $editingPurchaseOrder->id) : route('warehouse_inventory.po_draft.store') }}" id="poDraftForm">
+                @csrf
+                @if($editingPurchaseOrder)
+                    @method('PUT')
+                @endif
+                <input type="hidden" name="avg_range_days" value="{{ $avgRangeDays }}" class="browser-default">
+                <input type="hidden" name="stock_coverage_days" id="poCoverageDaysHidden" value="{{ $editingPurchaseOrder ? $editingPurchaseOrder->stock_coverage_days : 5 }}" class="browser-default">
+                <input type="hidden" name="items_json" id="poItemsJson" class="browser-default">
             <div class="po-print-title">
                 <div style="font-size:11px;font-weight:800;text-transform:uppercase;color:#f40167;">Purchase Planning</div>
-                <div style="font-size:24px;font-weight:800;color:#23324d;line-height:1.2;">P.O Draft</div>
+                <div style="font-size:24px;font-weight:800;color:#23324d;line-height:1.2;">{{ $editingPurchaseOrder ? $editingPurchaseOrder->po_number : 'P.O Draft' }}</div>
                 <div style="font-size:12px;color:#667085;">Generated {{ now()->format('M d, Y h:i A') }} · Avg daily orders ({{ $avgRangeDays }}d) from {{ $startDate->format('M d') }} to {{ $endDate->format('M d, Y') }} · Stock coverage: <span class="po-print-coverage-days">5</span> days</div>
             </div>
             <div class="tpx-4 tpy-3 tborder-b tborder-gray-200">
                 <div class="tflex titems-center tjustify-between tflex-wrap" style="gap:12px;">
                     <div>
-                        <div class="tfont-bold wi-section-title">Purchase Order Draft</div>
-	                        <div class="ttext-xs wi-muted">Suggested P.O Qty uses Avg Daily Order × <span class="po-print-coverage-days">5</span> stock coverage days.</div>
+                        <div class="tfont-bold wi-section-title">{{ $editingPurchaseOrder ? 'Editing ' . $editingPurchaseOrder->po_number : 'Purchase Order Draft' }}</div>
+                            <div class="ttext-xs wi-muted">Suggested P.O Qty uses Avg Daily Order × <span class="po-print-coverage-days">5</span> stock coverage days.</div>
                     </div>
                     <div class="tflex titems-center tflex-wrap" style="gap:10px;">
+                        @if($editingPurchaseOrder)
+                            <a href="{{ route('warehouse_inventory.po_draft', ['avg_range' => $avgRangeDays]) }}" class="wi-btn-light waves-effect po-print-hidden">
+                                <i class="fas fa-plus tmr-2"></i> New
+                            </a>
+                        @endif
                         <button type="button" id="poPrintButton" class="wi-btn-primary waves-effect po-print-hidden">
                             <i class="fas fa-print tmr-2"></i> Export PDF
+                        </button>
+                        <button type="submit" id="poSaveButton" class="wi-btn-dark waves-effect po-print-hidden">
+                            <i class="fas fa-save tmr-2"></i> {{ $editingPurchaseOrder ? 'Update P.O' : 'Save P.O' }}
                         </button>
                         <div class="po-summary-card">
                             <div class="ttext-xs tfont-bold tuppercase" style="color:#f40167;">Draft Total</div>
@@ -299,6 +439,11 @@
                     <tbody id="poDraftRows"></tbody>
                 </table>
             </div>
+            <div class="tpx-4 tpy-3 tborder-t tborder-gray-200 po-print-hidden">
+                <label class="wi-form-label">Notes</label>
+                <textarea name="notes" class="browser-default wi-input tw-full" rows="2" placeholder="Optional supplier note or purchase reminder">{{ old('notes', $editingPurchaseOrder ? $editingPurchaseOrder->notes : '') }}</textarea>
+            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -306,6 +451,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     var products = @json($poItems);
+    var initialSelectedProducts = @json($editingPoItems);
     var productsById = {};
     var selected = {};
     var productRows = document.querySelectorAll('.po-product-row');
@@ -315,11 +461,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var grandTotal = document.getElementById('poGrandTotal');
     var searchInput = document.getElementById('poProductSearch');
     var printButton = document.getElementById('poPrintButton');
+    var draftForm = document.getElementById('poDraftForm');
+    var itemsJsonInput = document.getElementById('poItemsJson');
+    var coverageHiddenInput = document.getElementById('poCoverageDaysHidden');
     var coverageInput = document.getElementById('poCoverageDays');
     var coverageLabels = document.querySelectorAll('.po-print-coverage-days');
+    var tabButtons = document.querySelectorAll('[data-po-tab]');
+    var tabPanels = document.querySelectorAll('[data-po-tab-panel]');
 
     products.forEach(function (product) {
         productsById[product.id] = product;
+    });
+
+    initialSelectedProducts.forEach(function (product) {
+        selected[product.id] = product;
     });
 
     function money(value) {
@@ -351,6 +506,20 @@ document.addEventListener('DOMContentLoaded', function () {
         coverageLabels.forEach(function (label) {
             label.textContent = coverageDays();
         });
+
+        if (coverageHiddenInput) {
+            coverageHiddenInput.value = coverageDays();
+        }
+    }
+
+    function syncItemsJson() {
+        if (!itemsJsonInput) {
+            return;
+        }
+
+        itemsJsonInput.value = JSON.stringify(Object.keys(selected).map(function (id) {
+            return selected[id];
+        }));
     }
 
     function showPoToast(message) {
@@ -444,6 +613,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         grandTotal.textContent = money(total);
+        syncItemsJson();
         bindDraftControls();
     }
 
@@ -463,6 +633,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         grandTotal.textContent = money(total);
+        syncItemsJson();
     }
 
     function bindDraftControls() {
@@ -502,6 +673,22 @@ document.addEventListener('DOMContentLoaded', function () {
             }[char];
         });
     }
+
+    function activatePoTab(tab) {
+        tabButtons.forEach(function (button) {
+            button.classList.toggle('is-active', button.getAttribute('data-po-tab') === tab);
+        });
+
+        tabPanels.forEach(function (panel) {
+            panel.classList.toggle('is-active', panel.getAttribute('data-po-tab-panel') === tab);
+        });
+    }
+
+    tabButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            activatePoTab(this.getAttribute('data-po-tab'));
+        });
+    });
 
     productRows.forEach(function (row) {
         row.addEventListener('click', function () {
@@ -554,6 +741,20 @@ document.addEventListener('DOMContentLoaded', function () {
         coverageInput.addEventListener('change', handleCoverageChange);
         syncCoverageLabels();
     }
+
+    if (draftForm) {
+        draftForm.addEventListener('submit', function (event) {
+            syncItemsJson();
+
+            if (!Object.keys(selected).length) {
+                event.preventDefault();
+                showPoToast('Please select at least one product before saving.');
+            }
+        });
+    }
+
+    markProductRows();
+    renderDraft();
 });
 </script>
 @endsection

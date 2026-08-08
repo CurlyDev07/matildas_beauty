@@ -14,6 +14,7 @@ use App\InventoryTag;
 use App\InventoryUnit;
 use App\Services\InventoryMovementService;
 use App\WarehouseInventory;
+use App\WarehousePurchaseOrder;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -635,7 +636,93 @@ class WarehouseInventoryCon extends Controller
             ];
         })->values();
 
-        return view('admin.warehouse_inventory.po_draft.index', compact('items', 'poItems', 'startDate', 'endDate', 'avgRangeDays'));
+        $savedPurchaseOrders = collect();
+        $editingPurchaseOrder = null;
+        $editingPoItems = collect();
+
+        if (Schema::hasTable('warehouse_purchase_orders')) {
+            $savedPurchaseOrders = WarehousePurchaseOrder::with(['items', 'creator'])
+                ->latest()
+                ->limit(20)
+                ->get();
+
+            if ($request->filled('po_id')) {
+                $editingPurchaseOrder = WarehousePurchaseOrder::with('items')->find($request->po_id);
+                if ($editingPurchaseOrder) {
+                    $editingPoItems = $editingPurchaseOrder->items->map(function ($row) {
+                        return [
+                            'id' => $row->inventory_item_id,
+                            'name' => $row->item_name,
+                            'sku' => $row->sku,
+                            'cost' => (float) $row->unit_cost,
+                            'avg_daily_orders' => (float) $row->avg_daily_orders,
+                            'order_count_range' => 0,
+                            'po_qty' => $this->formatDecimalForInput($row->quantity),
+                            'is_manual_qty' => true,
+                        ];
+                    })->values();
+                }
+            }
+        }
+
+        return view('admin.warehouse_inventory.po_draft.index', compact(
+            'items',
+            'poItems',
+            'startDate',
+            'endDate',
+            'avgRangeDays',
+            'savedPurchaseOrders',
+            'editingPurchaseOrder',
+            'editingPoItems'
+        ));
+    }
+
+    public function poDraftStore(Request $request)
+    {
+        if (!Schema::hasTable('warehouse_purchase_orders')) {
+            return back()->with('error', 'P.O Draft tables are not migrated yet.');
+        }
+
+        try {
+            $this->persistPoDraft($request);
+        } catch (InvalidArgumentException $e) {
+            return back()->withInput()->with('error', $e->getMessage());
+        }
+
+        return redirect()
+            ->route('warehouse_inventory.po_draft', ['avg_range' => $request->input('avg_range_days', 14)])
+            ->with('success', 'P.O Draft saved.');
+    }
+
+    public function poDraftUpdate(Request $request, $id)
+    {
+        if (!Schema::hasTable('warehouse_purchase_orders')) {
+            return back()->with('error', 'P.O Draft tables are not migrated yet.');
+        }
+
+        try {
+            $this->persistPoDraft($request, $id);
+        } catch (InvalidArgumentException $e) {
+            return back()->withInput()->with('error', $e->getMessage());
+        }
+
+        return redirect()
+            ->route('warehouse_inventory.po_draft', ['avg_range' => $request->input('avg_range_days', 14)])
+            ->with('success', 'P.O Draft updated.');
+    }
+
+    public function poDraftDestroy($id)
+    {
+        if (!Schema::hasTable('warehouse_purchase_orders')) {
+            return back()->with('error', 'P.O Draft tables are not migrated yet.');
+        }
+
+        $purchaseOrder = WarehousePurchaseOrder::findOrFail($id);
+        $purchaseOrder->delete();
+
+        return redirect()
+            ->route('warehouse_inventory.po_draft')
+            ->with('success', 'P.O Draft deleted.');
     }
 
     public function barcodes(Request $request)
@@ -743,17 +830,18 @@ class WarehouseInventoryCon extends Controller
             $movements = $movementsQuery->groupBy(DB::raw($batchExpression))
                 ->orderByDesc('latest_created_at')
                 ->paginate($perPage)
-                ->appends($request->only(['display', 'search', 'category_id', 'tag_id', 'per_page']));
+                ->appends($request->only(['display', 'search', 'movement_type_id', 'category_id', 'tag_id', 'per_page']));
         } else {
             $movementsQuery = InventoryMovement::with(['item', 'movementType', 'creator']);
             $this->applyMovementFilters($movementsQuery, $request, null, false);
             $movements = $movementsQuery->latest()
                 ->paginate($perPage)
-                ->appends($request->only(['display', 'search', 'category_id', 'tag_id', 'per_page']));
+                ->appends($request->only(['display', 'search', 'movement_type_id', 'category_id', 'tag_id', 'per_page']));
         }
 
         return view('admin.warehouse_inventory.movements.index', $this->itemViewData() + [
             'movements' => $movements,
+            'movementTypes' => InventoryMovementType::where('is_active', 1)->orderBy('name')->get(),
             'displayMode' => $displayMode,
             'perPage' => $perPage,
         ]);
@@ -1347,6 +1435,92 @@ class WarehouseInventoryCon extends Controller
         return in_array($perPage, $allowed, true) ? $perPage : 50;
     }
 
+    protected function persistPoDraft(Request $request, $id = null)
+    {
+        $request->validate([
+            'avg_range_days' => 'required|integer|in:7,14,30',
+            'stock_coverage_days' => 'required|integer|min:1',
+            'items_json' => 'required|string',
+            'notes' => 'nullable|string',
+        ]);
+
+        $items = json_decode($request->items_json, true);
+        if (!is_array($items) || count($items) < 1) {
+            throw new InvalidArgumentException('Please select at least one product before saving the P.O Draft.');
+        }
+
+        $normalizedItems = collect($items)->map(function ($item) {
+            $inventoryItemId = isset($item['id']) ? (int) $item['id'] : 0;
+            $inventoryItem = InventoryItem::find($inventoryItemId);
+            $quantity = isset($item['po_qty']) ? (float) $item['po_qty'] : 0;
+
+            if (!$inventoryItem || $quantity <= 0) {
+                return null;
+            }
+
+            $unitCost = isset($item['cost']) ? (float) $item['cost'] : (float) $inventoryItem->cost;
+            $avgDailyOrders = isset($item['avg_daily_orders']) ? (float) $item['avg_daily_orders'] : 0;
+
+            return [
+                'inventory_item_id' => $inventoryItem->id,
+                'item_name' => $inventoryItem->name,
+                'sku' => $inventoryItem->sku,
+                'avg_daily_orders' => $avgDailyOrders,
+                'quantity' => $quantity,
+                'unit_cost' => $unitCost,
+                'line_total' => $quantity * $unitCost,
+            ];
+        })->filter()->values();
+
+        if ($normalizedItems->isEmpty()) {
+            throw new InvalidArgumentException('Please add at least one product with a P.O Qty greater than zero.');
+        }
+
+        return DB::transaction(function () use ($request, $id, $normalizedItems) {
+            $purchaseOrder = $id
+                ? WarehousePurchaseOrder::findOrFail($id)
+                : new WarehousePurchaseOrder();
+
+            if (!$purchaseOrder->exists) {
+                $purchaseOrder->po_number = $this->nextWarehousePurchaseOrderNumber();
+                $purchaseOrder->created_by = auth()->id();
+            }
+
+            $avgRangeDays = (int) $request->avg_range_days;
+            $purchaseOrder->avg_range_days = $avgRangeDays;
+            $purchaseOrder->stock_coverage_days = (int) $request->stock_coverage_days;
+            $purchaseOrder->range_start = now()->subDays($avgRangeDays - 1)->startOfDay();
+            $purchaseOrder->range_end = now()->endOfDay();
+            $purchaseOrder->total_amount = $normalizedItems->sum('line_total');
+            $purchaseOrder->notes = $request->notes;
+            $purchaseOrder->save();
+
+            $purchaseOrder->items()->delete();
+            foreach ($normalizedItems as $item) {
+                $purchaseOrder->items()->create($item);
+            }
+
+            return $purchaseOrder;
+        });
+    }
+
+    protected function nextWarehousePurchaseOrderNumber()
+    {
+        $latestId = (int) WarehousePurchaseOrder::max('id');
+        return 'WPO-' . str_pad($latestId + 1, 5, '0', STR_PAD_LEFT);
+    }
+
+    protected function formatDecimalForInput($value)
+    {
+        $value = round((float) $value, 3);
+
+        if (fmod($value, 1.0) === 0.0) {
+            return (string) (int) $value;
+        }
+
+        return rtrim(rtrim(number_format($value, 3, '.', ''), '0'), '.');
+    }
+
     protected function applyMovementFilters($query, Request $request, $batchExpression = null, $isSummary = false)
     {
         if ($request->filled('search')) {
@@ -1379,6 +1553,10 @@ class WarehouseInventoryCon extends Controller
                     $itemQuery->where('category_id', $request->category_id);
                 });
             }
+        }
+
+        if ($request->filled('movement_type_id')) {
+            $query->where('inventory_movements.movement_type_id', $request->movement_type_id);
         }
 
         if ($request->filled('tag_id')) {
