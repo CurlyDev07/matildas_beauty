@@ -380,7 +380,6 @@ class WarehouseInventoryCon extends Controller
             'cost' => $request->cost ?: 0,
             'selling_price' => $request->selling_price ?: 0,
             'description' => $request->description,
-            'is_active' => $request->has('is_active') ? 1 : 0,
         ];
 
         if ($request->hasFile('image')) {

@@ -411,11 +411,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="wi-modal-footer tflex titems-center tjustify-between tflex-wrap">
-                        <label class="tinline-flex titems-center tmb-2">
-                            <input type="checkbox" name="is_active" {{ $item->is_active ? 'checked' : '' }} class="browser-default">
-                            <span class="tml-2 tfont-bold wi-section-title">Active item</span>
-                        </label>
+                    <div class="wi-modal-footer tflex titems-center tjustify-end tflex-wrap">
                         <button class="wi-btn-primary waves-effect tmb-2">
                             <i class="fas fa-save tmr-2"></i> Save Changes
                         </button>
