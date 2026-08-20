@@ -276,8 +276,8 @@
                                     </button>
                                     <form action="{{ route('warehouse_inventory.items.delete', $item->id) }}" method="POST" class="tinline-block tm-0">
                                         @csrf @method('DELETE')
-                                        <button class="wi-row-action-btn wi-row-action-delete" onclick="return confirm('Delete item?')" title="Delete item">
-                                            <i class="fas fa-trash"></i>
+                                        <button class="wi-row-action-btn wi-row-action-delete" onclick="return confirm('Deactivate this item? It will be hidden from item lists, P.O Draft, current stock, and new stock movements.')" title="Deactivate item">
+                                            <i class="fas fa-ban"></i>
                                         </button>
                                     </form>
                                 </div>

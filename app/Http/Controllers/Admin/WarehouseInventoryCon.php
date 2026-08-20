@@ -104,7 +104,7 @@ class WarehouseInventoryCon extends Controller
             'potentialProfit' => $totalSelling - $totalCost,
             'lowStocks' => $lowStocks,
             'categoryValues' => $categoryValues,
-            'itemCount' => InventoryItem::count(),
+            'itemCount' => InventoryItem::where('is_active', 1)->count(),
             'stockRowCount' => $stockRowCount,
             'movementCount' => $movementCountQuery->count(),
             'lowStockCount' => $lowStockCount,
@@ -291,7 +291,9 @@ class WarehouseInventoryCon extends Controller
     public function items(Request $request)
     {
         $perPage = $this->inventoryPerPage($request);
-        $itemsQuery = InventoryItem::with(['unit', 'category.parent.parent', 'tags'])->latest();
+        $itemsQuery = InventoryItem::with(['unit', 'category.parent.parent', 'tags'])
+            ->where('is_active', 1)
+            ->latest();
 
         if ($request->filled('search')) {
             $search = trim($request->search);
@@ -393,15 +395,19 @@ class WarehouseInventoryCon extends Controller
     public function itemDestroy($id)
     {
         $item = InventoryItem::findOrFail($id);
-        $this->deleteInventoryImage($item->image_path);
-        $item->delete();
-        return back()->with('success', 'Item deleted.');
+        $item->is_active = 0;
+        $item->save();
+
+        return back()->with('success', 'Item deactivated. It will no longer appear in item lists, P.O Draft, current stock, or new stock movements.');
     }
 
     public function stocks(Request $request)
     {
         $perPage = $this->inventoryPerPage($request);
-        $stocksQuery = WarehouseInventory::with(['item.category.parent.parent', 'item.unit', 'item.tags', 'status']);
+        $stocksQuery = WarehouseInventory::with(['item.category.parent.parent', 'item.unit', 'item.tags', 'status'])
+            ->whereHas('item', function ($query) {
+                $query->where('is_active', 1);
+            });
 
         if ($request->filled('search')) {
             $search = trim($request->search);
@@ -457,7 +463,9 @@ class WarehouseInventoryCon extends Controller
             : 'avg_sales_desc';
         $dayCount = max($startDate->diffInDays($endDate) + 1, 1);
 
-        $itemsQuery = InventoryItem::with(['unit', 'category.parent.parent', 'tags'])->select('inventory_items.*');
+        $itemsQuery = InventoryItem::with(['unit', 'category.parent.parent', 'tags'])
+            ->select('inventory_items.*')
+            ->where('inventory_items.is_active', 1);
 
         if (in_array($sortBy, ['avg_sales_desc', 'avg_sales_asc', 'total_in_desc', 'total_in_asc'], true)) {
             $sortEffect = in_array($sortBy, ['total_in_desc', 'total_in_asc'], true) ? 'add' : 'subtract';
@@ -728,7 +736,9 @@ class WarehouseInventoryCon extends Controller
     public function barcodes(Request $request)
     {
         $perPage = $this->inventoryPerPage($request);
-        $itemsQuery = InventoryItem::with(['category.parent.parent', 'tags'])->latest();
+        $itemsQuery = InventoryItem::with(['category.parent.parent', 'tags'])
+            ->where('is_active', 1)
+            ->latest();
 
         if ($request->filled('search')) {
             $search = trim($request->search);
@@ -761,8 +771,12 @@ class WarehouseInventoryCon extends Controller
             ->paginate($perPage)
             ->appends($request->only(['search', 'category_id', 'tag_id', 'barcode_status', 'per_page']));
 
-        $barcodeCount = InventoryItem::whereNotNull('barcode')->where('barcode', '!=', '')->count();
-        $missingBarcodeCount = InventoryItem::whereNull('barcode')->orWhere('barcode', '')->count();
+        $barcodeCount = InventoryItem::where('is_active', 1)->whereNotNull('barcode')->where('barcode', '!=', '')->count();
+        $missingBarcodeCount = InventoryItem::where('is_active', 1)
+            ->where(function ($query) {
+                $query->whereNull('barcode')->orWhere('barcode', '');
+            })
+            ->count();
 
         return view('admin.warehouse_inventory.barcodes.index', $this->itemViewData() + compact('items', 'perPage', 'barcodeCount', 'missingBarcodeCount'));
     }
@@ -777,7 +791,7 @@ class WarehouseInventoryCon extends Controller
         $generated = 0;
         $skipped = 0;
 
-        $items = InventoryItem::whereIn('id', $request->item_ids)->get();
+        $items = InventoryItem::where('is_active', 1)->whereIn('id', $request->item_ids)->get();
         foreach ($items as $item) {
             if (trim((string) $item->barcode) !== '') {
                 $skipped++;
@@ -850,7 +864,7 @@ class WarehouseInventoryCon extends Controller
     public function movementCreate()
     {
         return view('admin.warehouse_inventory.movements.create', [
-            'items' => InventoryItem::orderBy('name')->get(),
+            'items' => InventoryItem::where('is_active', 1)->orderBy('name')->get(),
             'movementTypes' => InventoryMovementType::where('is_active', 1)
                 ->whereIn('stock_effect', ['add', 'subtract', 'none'])
                 ->orderBy('name')
@@ -880,6 +894,8 @@ class WarehouseInventoryCon extends Controller
         $movementTypeCode = $movementType->slug;
 
         try {
+            $this->ensureActiveInventoryItems($request->items);
+
             DB::transaction(function () use ($request, $movementType, $movementTypeCode) {
                 $batchCode = $this->generateMovementBatchCode($movementTypeCode);
                 $createdMovements = collect();
@@ -924,7 +940,7 @@ class WarehouseInventoryCon extends Controller
         $firstMovement = $movements->first();
 
         return view('admin.warehouse_inventory.movements.create', [
-            'items' => InventoryItem::orderBy('name')->get(),
+            'items' => InventoryItem::where('is_active', 1)->orderBy('name')->get(),
             'movementTypes' => InventoryMovementType::where('is_active', 1)
                 ->whereIn('stock_effect', ['add', 'subtract', 'none'])
                 ->orderBy('name')
@@ -969,6 +985,8 @@ class WarehouseInventoryCon extends Controller
         $beforeSnapshot = $this->movementSnapshot($oldMovements);
 
         try {
+            $this->ensureActiveInventoryItems($request->items);
+
             DB::transaction(function () use ($request, $oldMovements, $currentBatchCode, $movementType, $movementTypeCode, $beforeSnapshot, $oldBatchCode) {
                 foreach ($oldMovements as $oldMovement) {
                     $this->movementService->reverseMovement($oldMovement);
@@ -1435,6 +1453,27 @@ class WarehouseInventoryCon extends Controller
         return in_array($perPage, $allowed, true) ? $perPage : 50;
     }
 
+    protected function ensureActiveInventoryItems($items)
+    {
+        $itemIds = collect((array) $items)
+            ->pluck('inventory_item_id')
+            ->filter()
+            ->unique()
+            ->values();
+
+        if ($itemIds->isEmpty()) {
+            return;
+        }
+
+        $activeCount = InventoryItem::whereIn('id', $itemIds)
+            ->where('is_active', 1)
+            ->count();
+
+        if ($activeCount !== $itemIds->count()) {
+            throw new InvalidArgumentException('One or more selected inventory items are inactive. Reactivate the item first before creating a stock movement.');
+        }
+    }
+
     protected function persistPoDraft(Request $request, $id = null)
     {
         $request->validate([
@@ -1451,7 +1490,7 @@ class WarehouseInventoryCon extends Controller
 
         $normalizedItems = collect($items)->map(function ($item) {
             $inventoryItemId = isset($item['id']) ? (int) $item['id'] : 0;
-            $inventoryItem = InventoryItem::find($inventoryItemId);
+            $inventoryItem = InventoryItem::where('is_active', 1)->find($inventoryItemId);
             $quantity = isset($item['po_qty']) ? (float) $item['po_qty'] : 0;
 
             if (!$inventoryItem || $quantity <= 0) {
