@@ -64,11 +64,53 @@ $typeConfig = [
                 @endforeach
             </select>
         </div>
+        <div>
+            <label style="display:block;font-size:11px;font-weight:800;color:#64748b;margin-bottom:5px;text-transform:uppercase;">Delivery</label>
+            <select name="delivery_status" class="browser-default"
+                style="display:block!important;opacity:1!important;position:static!important;pointer-events:auto!important;width:135px;padding:9px 32px 9px 12px;border:1px solid #e2e8f0;border-radius:10px;font-size:13px;color:#0f172a;outline:none;box-sizing:border-box;height:41px;background:#fff;appearance:auto!important;-webkit-appearance:menulist!important;">
+                <option value="">All</option>
+                @foreach(['shipped' => 'Shipped', 'delivered' => 'Delivered', 'returned' => 'Returned'] as $value => $label)
+                    <option value="{{ $value }}" {{ $deliveryStatus === $value ? 'selected' : '' }}>{{ $label }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div>
+            <label style="display:block;font-size:11px;font-weight:800;color:#64748b;margin-bottom:5px;text-transform:uppercase;">Approved</label>
+            <select name="approved" class="browser-default"
+                style="display:block!important;opacity:1!important;position:static!important;pointer-events:auto!important;width:135px;padding:9px 32px 9px 12px;border:1px solid #e2e8f0;border-radius:10px;font-size:13px;color:#0f172a;outline:none;box-sizing:border-box;height:41px;background:#fff;appearance:auto!important;-webkit-appearance:menulist!important;">
+                <option value="">All</option>
+                <option value="1" {{ (string) $approved === '1' ? 'selected' : '' }}>Approved</option>
+                <option value="0" {{ (string) $approved === '0' ? 'selected' : '' }}>Not Approved</option>
+            </select>
+        </div>
+        <div>
+            <label style="display:block;font-size:11px;font-weight:800;color:#64748b;margin-bottom:5px;text-transform:uppercase;">User</label>
+            <select name="user_id" class="browser-default"
+                style="display:block!important;opacity:1!important;position:static!important;pointer-events:auto!important;width:175px;padding:9px 32px 9px 12px;border:1px solid #e2e8f0;border-radius:10px;font-size:13px;color:#0f172a;outline:none;box-sizing:border-box;height:41px;background:#fff;appearance:auto!important;-webkit-appearance:menulist!important;">
+                <option value="">All Users</option>
+                @foreach($users as $filterUser)
+                    @php $filterUserName = trim($filterUser->first_name . ' ' . $filterUser->last_name); @endphp
+                    <option value="{{ $filterUser->id }}" {{ (string) $userId === (string) $filterUser->id ? 'selected' : '' }}>
+                        {{ $filterUserName ?: 'User #' . $filterUser->id }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div>
+            <label style="display:block;font-size:11px;font-weight:800;color:#64748b;margin-bottom:5px;text-transform:uppercase;">Type</label>
+            <select name="type" class="browser-default"
+                style="display:block!important;opacity:1!important;position:static!important;pointer-events:auto!important;width:135px;padding:9px 32px 9px 12px;border:1px solid #e2e8f0;border-radius:10px;font-size:13px;color:#0f172a;outline:none;box-sizing:border-box;height:41px;background:#fff;appearance:auto!important;-webkit-appearance:menulist!important;">
+                <option value="">All Types</option>
+                @foreach($types as $filterType)
+                    <option value="{{ $filterType }}" {{ $type === $filterType ? 'selected' : '' }}>{{ $filterType }}</option>
+                @endforeach
+            </select>
+        </div>
         <button type="submit"
             style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;height:41px;">
             Search
         </button>
-        @if($search || $dateFrom || $dateTo)
+        @if($search || $dateFrom || $dateTo || $deliveryStatus || (string) $approved !== '' || $userId || $type)
         <a href="{{ route('staff.incentive_entries') }}"
             style="background:#f1f5f9;color:#64748b;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:5px;white-space:nowrap;height:41px;">
             <i class="fas fa-times" style="font-size:11px;"></i> Clear

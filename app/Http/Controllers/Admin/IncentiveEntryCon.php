@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\IncentiveEntry;
 use App\IncentiveRate;
+use App\User;
 use Illuminate\Http\Request;
 
 class IncentiveEntryCon extends Controller
@@ -182,6 +183,10 @@ class IncentiveEntryCon extends Controller
         $search = $request->get('search', '');
         $dateFrom = $request->get('date_from');
         $dateTo = $request->get('date_to');
+        $deliveryStatus = $request->get('delivery_status', '');
+        $approved = $request->get('approved', '');
+        $userId = $request->get('user_id', '');
+        $type = $request->get('type', '');
         $perPage = (int) $request->get('per_page', 50);
         $perPage = in_array($perPage, [50, 100, 200], true) ? $perPage : 50;
 
@@ -206,12 +211,39 @@ class IncentiveEntryCon extends Controller
             $query->whereDate('created_at', '<=', $dateTo);
         }
 
+        if (in_array($deliveryStatus, ['shipped', 'delivered', 'returned'], true)) {
+            $query->where('delivery_status', $deliveryStatus);
+        }
+
+        if ($approved !== '' && in_array((string) $approved, ['0', '1'], true)) {
+            $query->where('approved', (int) $approved);
+        }
+
+        if ($userId !== '' && ctype_digit((string) $userId)) {
+            $query->where('user_id', (int) $userId);
+        }
+
+        if ($type !== '') {
+            $query->where('type', $type);
+        }
+
         $entries = $query->paginate($perPage)
-            ->appends($request->only(['search', 'date_from', 'date_to', 'per_page']));
+            ->appends($request->only(['search', 'date_from', 'date_to', 'delivery_status', 'approved', 'user_id', 'type', 'per_page']));
+
+        $users = User::whereIn('id', IncentiveEntry::whereNotNull('user_id')->select('user_id'))
+            ->orderBy('first_name')
+            ->orderBy('last_name')
+            ->get(['id', 'first_name', 'last_name']);
+
+        $types = IncentiveEntry::whereNotNull('type')
+            ->where('type', '!=', '')
+            ->distinct()
+            ->orderBy('type')
+            ->pluck('type');
 
         $rates = IncentiveRate::pluck('rate', 'type')->toArray();
 
-        return view('admin.staff.incentive_entries', compact('entries', 'rates', 'search', 'dateFrom', 'dateTo', 'perPage'));
+        return view('admin.staff.incentive_entries', compact('entries', 'rates', 'search', 'dateFrom', 'dateTo', 'deliveryStatus', 'approved', 'userId', 'type', 'types', 'users', 'perPage'));
     }
 
     public function approvals()
