@@ -22,29 +22,55 @@ $typeConfig = [
             <div style="font-size:22px;font-weight:800;color:#0f172a;">Incentive Entries</div>
             <div style="font-size:13px;color:#94a3b8;margin-top:2px;">
                 @if($search)
-                    Showing results for <strong>"{{ $search }}"</strong> &mdash; {{ $entries->count() }} found
+                    Showing results for <strong>"{{ $search }}"</strong> &mdash; {{ number_format($entries->total()) }} found
                 @else
-                    Latest 100 entries
+                    Showing {{ number_format($entries->total()) }} entries
                 @endif
             </div>
         </div>
     </div>
 
     {{-- Search --}}
-    <form method="GET" action="{{ route('staff.incentive_entries') }}" style="margin-bottom:18px;display:flex;gap:8px;">
-        <div style="flex:1;position:relative;">
+    <form method="GET" action="{{ route('staff.incentive_entries') }}" style="margin-bottom:18px;display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;">
+        <div style="flex:1;min-width:230px;position:relative;">
+            <label style="display:block;font-size:11px;font-weight:800;color:#64748b;margin-bottom:5px;text-transform:uppercase;">Search</label>
             <i class="fas fa-search" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:13px;pointer-events:none;"></i>
             <input type="text" name="search" value="{{ $search }}"
                 placeholder="Search by mobile number or staff name…"
                 style="width:100%;padding:10px 12px 10px 34px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;color:#0f172a;outline:none;box-sizing:border-box;">
         </div>
+        <div>
+            <label style="display:block;font-size:11px;font-weight:800;color:#64748b;margin-bottom:5px;text-transform:uppercase;">Date From</label>
+            <div class="ie-date-picker" onclick="ieOpenDatePicker(this)" style="width:155px;border:1px solid #e2e8f0;border-radius:10px;height:41px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 10px;box-sizing:border-box;cursor:pointer;">
+                <i class="fas fa-calendar-alt" style="font-size:12px;color:#8b5cf6;pointer-events:none;"></i>
+                <input type="date" name="date_from" value="{{ $dateFrom }}"
+                    style="width:100%;padding:0;border:none;font-size:13px;color:#0f172a;outline:none;box-sizing:border-box;height:39px;background:transparent;cursor:pointer;pointer-events:none;text-align:center;line-height:39px;">
+            </div>
+        </div>
+        <div>
+            <label style="display:block;font-size:11px;font-weight:800;color:#64748b;margin-bottom:5px;text-transform:uppercase;">Date To</label>
+            <div class="ie-date-picker" onclick="ieOpenDatePicker(this)" style="width:155px;border:1px solid #e2e8f0;border-radius:10px;height:41px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 10px;box-sizing:border-box;cursor:pointer;">
+                <i class="fas fa-calendar-alt" style="font-size:12px;color:#8b5cf6;pointer-events:none;"></i>
+                <input type="date" name="date_to" value="{{ $dateTo }}"
+                    style="width:100%;padding:0;border:none;font-size:13px;color:#0f172a;outline:none;box-sizing:border-box;height:39px;background:transparent;cursor:pointer;pointer-events:none;text-align:center;line-height:39px;">
+            </div>
+        </div>
+        <div>
+            <label style="display:block;font-size:11px;font-weight:800;color:#64748b;margin-bottom:5px;text-transform:uppercase;">Show</label>
+            <select name="per_page" class="browser-default"
+                style="display:block!important;opacity:1!important;position:static!important;pointer-events:auto!important;width:125px;padding:9px 32px 9px 12px;border:1px solid #e2e8f0;border-radius:10px;font-size:13px;color:#0f172a;outline:none;box-sizing:border-box;height:41px;background:#fff;appearance:auto!important;-webkit-appearance:menulist!important;">
+                @foreach([50, 100, 200] as $option)
+                    <option value="{{ $option }}" {{ (int) $perPage === $option ? 'selected' : '' }}>{{ $option }} rows</option>
+                @endforeach
+            </select>
+        </div>
         <button type="submit"
-            style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">
+            style="background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;height:41px;">
             Search
         </button>
-        @if($search)
+        @if($search || $dateFrom || $dateTo)
         <a href="{{ route('staff.incentive_entries') }}"
-            style="background:#f1f5f9;color:#64748b;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:5px;white-space:nowrap;">
+            style="background:#f1f5f9;color:#64748b;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:5px;white-space:nowrap;height:41px;">
             <i class="fas fa-times" style="font-size:11px;"></i> Clear
         </a>
         @endif
@@ -152,7 +178,20 @@ $typeConfig = [
     </div>
     @endforelse
 
+    @if($entries->hasPages())
+        <div style="margin-top:18px;">
+            {{ $entries->links() }}
+        </div>
+    @endif
+
 </div>
+
+<style>
+.ie-date-picker input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+</style>
 
 <script>
 var _token = '{{ csrf_token() }}';
@@ -168,6 +207,20 @@ function ieToast(msg, ok) {
         t.style.opacity = '0';
         setTimeout(function () { t.style.display = 'none'; }, 300);
     }, 2500);
+}
+
+function ieOpenDatePicker(wrapper) {
+    var input = wrapper.querySelector('input[type="date"]');
+    if (!input) return;
+
+    input.focus();
+
+    if (typeof input.showPicker === 'function') {
+        input.showPicker();
+        return;
+    }
+
+    input.click();
 }
 
 function ieDeliver(id, btn) {

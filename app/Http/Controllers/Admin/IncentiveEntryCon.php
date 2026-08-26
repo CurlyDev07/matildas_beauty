@@ -180,6 +180,10 @@ class IncentiveEntryCon extends Controller
         abort_unless(auth()->user()->isMaster(), 403);
 
         $search = $request->get('search', '');
+        $dateFrom = $request->get('date_from');
+        $dateTo = $request->get('date_to');
+        $perPage = (int) $request->get('per_page', 50);
+        $perPage = in_array($perPage, [50, 100, 200], true) ? $perPage : 50;
 
         $query = IncentiveEntry::with(['user', 'payout'])
             ->orderBy('created_at', 'desc');
@@ -194,11 +198,20 @@ class IncentiveEntryCon extends Controller
             });
         }
 
-        $entries = $query->limit(100)->get();
+        if ($dateFrom) {
+            $query->whereDate('created_at', '>=', $dateFrom);
+        }
+
+        if ($dateTo) {
+            $query->whereDate('created_at', '<=', $dateTo);
+        }
+
+        $entries = $query->paginate($perPage)
+            ->appends($request->only(['search', 'date_from', 'date_to', 'per_page']));
 
         $rates = IncentiveRate::pluck('rate', 'type')->toArray();
 
-        return view('admin.staff.incentive_entries', compact('entries', 'rates', 'search'));
+        return view('admin.staff.incentive_entries', compact('entries', 'rates', 'search', 'dateFrom', 'dateTo', 'perPage'));
     }
 
     public function approvals()
