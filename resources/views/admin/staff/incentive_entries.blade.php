@@ -118,6 +118,18 @@ $typeConfig = [
         @endif
     </form>
 
+    <div style="margin:-6px 0 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:#64748b;font-size:12px;font-weight:700;">
+        <span style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:999px;padding:6px 12px;display:inline-flex;align-items:center;gap:6px;">
+            <i class="fas fa-filter" style="font-size:11px;color:#8b5cf6;"></i>
+            {{ number_format($entries->total()) }} result{{ $entries->total() == 1 ? '' : 's' }}
+        </span>
+        @if($entries->total() > 0)
+            <span style="color:#94a3b8;">
+                Showing {{ number_format($entries->firstItem()) }}-{{ number_format($entries->lastItem()) }} of {{ number_format($entries->total()) }}
+            </span>
+        @endif
+    </div>
+
     {{-- Entries list --}}
     @forelse($entries as $entry)
     @php
