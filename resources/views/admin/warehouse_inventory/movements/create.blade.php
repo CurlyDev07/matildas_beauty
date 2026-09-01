@@ -138,9 +138,8 @@
                     <div class="wi-product-scroll" id="movementProductCatalog">
                         @foreach($items as $item)
                             @php
-                                $remainingStock = $item->stocks->filter(function ($stock) {
-                                    $status = optional($stock->status);
-                                    return strtolower((string) $status->slug) === 'available' || strtolower((string) $status->name) === 'available';
+                                $remainingStock = $item->stocks->filter(function ($stock) use ($defaultStockStatusId) {
+                                    return (int) $stock->inventory_status_id === (int) $defaultStockStatusId;
                                 })->sum('quantity');
                                 $remainingStock = (float) $remainingStock;
                                 $remainingFormatted = fmod($remainingStock, 1.0) === 0.0 ? number_format($remainingStock, 0) : number_format($remainingStock, 3);

@@ -873,6 +873,7 @@ class WarehouseInventoryCon extends Controller
             'selectedMovementTypeId' => null,
             'selectedNotes' => null,
             'selectedItems' => [],
+            'defaultStockStatusId' => $this->defaultInventoryStatusId(),
         ]);
     }
 
@@ -937,6 +938,7 @@ class WarehouseInventoryCon extends Controller
     {
         $movements = $this->movementBatchRows($batchCode);
         $firstMovement = $movements->first();
+        $defaultStockStatusId = $this->defaultInventoryStatusId();
 
         return view('admin.warehouse_inventory.movements.create', [
             'items' => InventoryItem::with(['stocks.status', 'unit'])->where('is_active', 1)->orderBy('name')->get(),
@@ -948,11 +950,10 @@ class WarehouseInventoryCon extends Controller
             'batchCode' => $firstMovement->batch_code ?: $firstMovement->id,
             'selectedMovementTypeId' => $firstMovement->movement_type_id,
             'selectedNotes' => $firstMovement->notes,
-            'selectedItems' => $movements->map(function ($movement) {
+            'selectedItems' => $movements->map(function ($movement) use ($defaultStockStatusId) {
                 $availableStock = optional($movement->item)->stocks
-                    ? $movement->item->stocks->filter(function ($stock) {
-                        $status = optional($stock->status);
-                        return strtolower((string) $status->slug) === 'available' || strtolower((string) $status->name) === 'available';
+                    ? $movement->item->stocks->filter(function ($stock) use ($defaultStockStatusId) {
+                        return (int) $stock->inventory_status_id === (int) $defaultStockStatusId;
                     })->sum('quantity')
                     : 0;
 
@@ -967,6 +968,7 @@ class WarehouseInventoryCon extends Controller
                     'stock' => (float) $availableStock,
                 ];
             })->values(),
+            'defaultStockStatusId' => $defaultStockStatusId,
         ]);
     }
 
