@@ -3,6 +3,85 @@
 @section('content')
 @include('admin.warehouse_inventory.partials.styles')
 
+<style>
+    .wi-stock-pill {
+        font-weight: 800;
+    }
+
+    .wi-stock-good {
+        color: #16a34a;
+    }
+
+    .wi-stock-low {
+        color: #dc2626;
+    }
+
+    .wi-stock-zero {
+        color: #94a3b8;
+    }
+
+    .wi-catalog-item-empty {
+        background: #f8fafc !important;
+        border-color: #e5e7eb !important;
+        opacity: .72;
+        cursor: not-allowed !important;
+    }
+
+    .wi-catalog-item-empty .wi-section-title,
+    .wi-catalog-item-empty .wi-muted {
+        color: #94a3b8 !important;
+    }
+
+    .wi-catalog-item-empty:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    .wi-selected-item-stock-error {
+        background: #fef2f2 !important;
+        border: 1px solid #fecaca !important;
+        border-radius: 12px !important;
+    }
+
+    .wi-selected-item-stock-error .movement-qty {
+        border-color: #ef4444 !important;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, .14) !important;
+        color: #b91c1c !important;
+        font-weight: 800;
+    }
+
+    .wi-selected-item-stock-depleted {
+        background: #fffbeb !important;
+        border: 1px solid #fde68a !important;
+        border-radius: 12px !important;
+    }
+
+    .wi-selected-item-stock-depleted .movement-qty {
+        border-color: #f59e0b !important;
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, .14) !important;
+        color: #92400e !important;
+        font-weight: 800;
+    }
+
+    .wi-stock-warning {
+        display: none;
+        margin-top: 5px;
+        color: #dc2626;
+        font-size: 11px;
+        font-weight: 800;
+        line-height: 1.25;
+    }
+
+    .wi-selected-item-stock-error .wi-stock-warning {
+        display: block;
+    }
+
+    .wi-selected-item-stock-depleted .wi-stock-warning {
+        display: block;
+        color: #b45309;
+    }
+</style>
+
 <div class="wi-page">
     @include('admin.warehouse_inventory.partials.toast')
 
@@ -36,7 +115,7 @@
                     <select name="movement_type_id" class="browser-default wi-select" required>
                         <option value="">Select movement type</option>
                         @foreach($movementTypes as $movementType)
-                            <option value="{{ $movementType->id }}" {{ (string) $selectedMovementTypeId === (string) $movementType->id ? 'selected' : '' }}>{{ $movementType->name }}</option>
+                            <option value="{{ $movementType->id }}" data-stock-effect="{{ $movementType->stock_effect }}" {{ (string) $selectedMovementTypeId === (string) $movementType->id ? 'selected' : '' }}>{{ $movementType->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -58,6 +137,15 @@
                     </div>
                     <div class="wi-product-scroll" id="movementProductCatalog">
                         @foreach($items as $item)
+                            @php
+                                $remainingStock = $item->stocks->filter(function ($stock) {
+                                    $status = optional($stock->status);
+                                    return strtolower((string) $status->slug) === 'available' || strtolower((string) $status->name) === 'available';
+                                })->sum('quantity');
+                                $remainingStock = (float) $remainingStock;
+                                $remainingFormatted = fmod($remainingStock, 1.0) === 0.0 ? number_format($remainingStock, 0) : number_format($remainingStock, 3);
+                                $stockClass = $remainingStock <= 0 ? 'wi-stock-zero' : ($remainingStock < 10 ? 'wi-stock-low' : 'wi-stock-good');
+                            @endphp
                             <button type="button"
                                 class="wi-catalog-item"
                                 data-id="{{ $item->id }}"
@@ -66,6 +154,7 @@
                                 data-barcode="{{ $item->barcode }}"
                                 data-cost="{{ $item->cost }}"
                                 data-image="{{ $item->image_path ? asset($item->image_path) : '' }}"
+                                data-stock="{{ $remainingStock }}"
                                 data-search="{{ strtolower(trim($item->name . ' ' . $item->sku . ' ' . $item->barcode)) }}">
                                 @if($item->image_path)
                                     <img src="{{ asset($item->image_path) }}" alt="{{ $item->name }}" class="wi-item-photo tmr-3">
@@ -74,7 +163,12 @@
                                 @endif
                                 <span style="min-width:0;">
                                     <span class="tfont-bold wi-section-title wi-truncate">{{ $item->name }}</span>
-                                    <span class="ttext-xs wi-muted wi-truncate">SKU: {{ $item->sku ?: '-' }} · Barcode: {{ $item->barcode ?: '-' }}</span>
+                                    <span class="ttext-xs wi-muted wi-truncate">
+                                        SKU: {{ $item->sku ?: '-' }} · Barcode: {{ $item->barcode ?: '-' }}
+                                        · <span class="wi-stock-pill {{ $stockClass }}">
+                                            {{ $remainingStock <= 0 ? 'Out of stock' : 'Stock: ' . $remainingFormatted . ' ' . optional($item->unit)->short_name }}
+                                        </span>
+                                    </span>
                                 </span>
                             </button>
                         @endforeach
@@ -106,6 +200,7 @@
         var searchInput = document.getElementById('movementProductSearch');
         var catalog = document.getElementById('movementProductCatalog');
         var clearButton = document.getElementById('clearMovementItems');
+        var movementTypeSelect = document.querySelector('select[name="movement_type_id"]');
         var preloadItems = {!! json_encode($selectedItems) !!};
 
         setTimeout(function () {
@@ -142,9 +237,12 @@
         function addSelectedData(data) {
             var quantityValue = parseFloat(data.quantity || 1);
             quantityValue = quantityValue % 1 === 0 ? quantityValue.toFixed(0) : quantityValue.toString();
+            var availableStock = parseFloat(data.stock || 0);
+            var availableLabel = availableStock % 1 === 0 ? availableStock.toFixed(0) : availableStock.toString();
 
             var row = document.createElement('div');
             row.className = 'wi-selected-item';
+            row.setAttribute('data-stock', availableStock);
             row.appendChild(imageNode(data));
 
             var info = document.createElement('div');
@@ -165,10 +263,34 @@
             fields.className = 'wi-selected-fields';
             fields.innerHTML =
                 '<input type="hidden" class="browser-default movement-item-id" value="' + data.id + '">' +
-                '<div><label class="wi-form-label">Qty</label><input type="number" step="0.001" min="0.001" value="' + quantityValue + '" required class="browser-default wi-input movement-qty"></div>' +
+                '<div><label class="wi-form-label">Qty</label><input type="number" step="0.001" min="0.001" value="' + quantityValue + '" required class="browser-default wi-input movement-qty"><div class="wi-stock-warning"></div></div>' +
                 '<div><label class="wi-form-label">Unit Cost</label><input type="number" step="0.01" min="0" value="' + parseFloat(data.cost || 0).toFixed(2) + '" class="browser-default wi-input movement-unit-cost"></div>' +
                 '<span class="wi-row-actions"><button type="button" class="wi-row-action-btn wi-row-action-remove remove-movement-row" title="Remove product"><i class="fas fa-trash"></i></button></span>';
             row.appendChild(fields);
+
+            var quantityInput = fields.querySelector('.movement-qty');
+
+            function validateQuantity() {
+                var requestedQty = parseFloat(quantityInput.value || 0);
+                var selectedType = movementTypeSelect ? movementTypeSelect.options[movementTypeSelect.selectedIndex] : null;
+                var stockEffect = selectedType ? selectedType.getAttribute('data-stock-effect') : '';
+                var shouldLimitByStock = stockEffect === 'subtract';
+                var hasError = shouldLimitByStock && requestedQty > availableStock;
+                var willDeplete = shouldLimitByStock && requestedQty === availableStock;
+                var warning = fields.querySelector('.wi-stock-warning');
+
+                row.classList.toggle('wi-selected-item-stock-error', hasError);
+                row.classList.toggle('wi-selected-item-stock-depleted', !hasError && willDeplete);
+                if (warning) {
+                    warning.textContent = hasError
+                        ? 'Only ' + availableLabel + ' available.'
+                        : (willDeplete ? 'This will leave 0 stock.' : '');
+                }
+                quantityInput.setCustomValidity(hasError ? 'Quantity cannot be greater than current stock.' : '');
+            }
+
+            quantityInput.addEventListener('input', validateQuantity);
+            quantityInput.addEventListener('change', validateQuantity);
 
             fields.querySelector('.remove-movement-row').addEventListener('click', function () {
                 row.parentNode.removeChild(row);
@@ -176,10 +298,31 @@
             });
 
             rowsContainer.appendChild(row);
+            validateQuantity();
             updateSelectedState();
         }
 
+        function currentStockEffect() {
+            var selectedType = movementTypeSelect ? movementTypeSelect.options[movementTypeSelect.selectedIndex] : null;
+            return selectedType ? selectedType.getAttribute('data-stock-effect') : '';
+        }
+
+        function refreshCatalogStockState() {
+            var stockEffect = currentStockEffect();
+            Array.prototype.forEach.call(catalog.querySelectorAll('.wi-catalog-item'), function (option) {
+                var remainingStock = parseFloat(option.getAttribute('data-stock') || 0);
+                option.classList.toggle('wi-catalog-item-empty', stockEffect === 'subtract' && remainingStock <= 0);
+            });
+        }
+
         function addSelectedItem(option) {
+            var remainingStock = parseFloat(option.getAttribute('data-stock') || 0);
+            var stockEffect = currentStockEffect();
+
+            if (stockEffect === 'subtract' && remainingStock <= 0) {
+                return;
+            }
+
             addSelectedData({
                 id: option.getAttribute('data-id'),
                 name: option.getAttribute('data-name') || '',
@@ -187,7 +330,8 @@
                 barcode: option.getAttribute('data-barcode') || '-',
                 quantity: 1,
                 cost: option.getAttribute('data-cost') || '0',
-                image: option.getAttribute('data-image') || ''
+                image: option.getAttribute('data-image') || '',
+                stock: remainingStock
             });
         }
 
@@ -196,6 +340,15 @@
                 addSelectedItem(option);
             });
         });
+
+        if (movementTypeSelect) {
+            movementTypeSelect.addEventListener('change', function () {
+                refreshCatalogStockState();
+                Array.prototype.forEach.call(rowsContainer.querySelectorAll('.movement-qty'), function (input) {
+                    input.dispatchEvent(new Event('input'));
+                });
+            });
+        }
 
         searchInput.addEventListener('input', function () {
             var query = searchInput.value.toLowerCase().trim();
@@ -216,6 +369,7 @@
             addSelectedData(item);
         });
 
+        refreshCatalogStockState();
         updateSelectedState();
     })();
 </script>

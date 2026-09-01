@@ -863,7 +863,7 @@ class WarehouseInventoryCon extends Controller
     public function movementCreate()
     {
         return view('admin.warehouse_inventory.movements.create', [
-            'items' => InventoryItem::where('is_active', 1)->orderBy('name')->get(),
+            'items' => InventoryItem::with(['stocks.status', 'unit'])->where('is_active', 1)->orderBy('name')->get(),
             'movementTypes' => InventoryMovementType::where('is_active', 1)
                 ->whereIn('stock_effect', ['add', 'subtract', 'none'])
                 ->orderBy('name')
@@ -939,7 +939,7 @@ class WarehouseInventoryCon extends Controller
         $firstMovement = $movements->first();
 
         return view('admin.warehouse_inventory.movements.create', [
-            'items' => InventoryItem::where('is_active', 1)->orderBy('name')->get(),
+            'items' => InventoryItem::with(['stocks.status', 'unit'])->where('is_active', 1)->orderBy('name')->get(),
             'movementTypes' => InventoryMovementType::where('is_active', 1)
                 ->whereIn('stock_effect', ['add', 'subtract', 'none'])
                 ->orderBy('name')
@@ -949,6 +949,13 @@ class WarehouseInventoryCon extends Controller
             'selectedMovementTypeId' => $firstMovement->movement_type_id,
             'selectedNotes' => $firstMovement->notes,
             'selectedItems' => $movements->map(function ($movement) {
+                $availableStock = optional($movement->item)->stocks
+                    ? $movement->item->stocks->filter(function ($stock) {
+                        $status = optional($stock->status);
+                        return strtolower((string) $status->slug) === 'available' || strtolower((string) $status->name) === 'available';
+                    })->sum('quantity')
+                    : 0;
+
                 return [
                     'id' => $movement->inventory_item_id,
                     'name' => optional($movement->item)->name ?: '',
@@ -957,6 +964,7 @@ class WarehouseInventoryCon extends Controller
                     'quantity' => $movement->quantity,
                     'cost' => $movement->unit_cost !== null ? $movement->unit_cost : optional($movement->item)->cost,
                     'image' => optional($movement->item)->image_path ? asset($movement->item->image_path) : '',
+                    'stock' => (float) $availableStock,
                 ];
             })->values(),
         ]);
@@ -1066,7 +1074,7 @@ class WarehouseInventoryCon extends Controller
     protected function movementBatchRows($batchCode)
     {
         $decodedBatchCode = urldecode($batchCode);
-        $query = InventoryMovement::with(['item', 'movementType']);
+        $query = InventoryMovement::with(['item.stocks.status', 'movementType']);
 
         if (is_numeric($decodedBatchCode)) {
             $query->where('id', $decodedBatchCode);
