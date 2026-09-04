@@ -4,7 +4,7 @@
 $products = [
      [
         'id' => 0,
-        'name' => 'Triple Action Brightening',
+        'name' => '3X BRIGHTENING GLASS SKIN',
         'price' => 999,
         'image' => 'https://matildasbeauty.com/filemanager/f3231c212de84129ad2940ef0e6bf8b1.png',
         'description' => 'Includes Gold Serum (worth ₱799)',
@@ -13,16 +13,16 @@ $products = [
         'promo_text_3' => '⚡ Best for Faster Results',
         'badge' => '⭐ Best for Faster Results',
         'stock' => '4',
-        'most_recommended' => '⭐ Most Recommended for 40+ Skin',
+        'most_recommended' => '⭐ Most Recommended for faster results',
     ],
     [
         'id' => 1,
-        'name' => 'Ultimate Sun Defense Bundle',
-        'price' => 799,
-        'image' => 'https://matildasbeauty.com/filemanager/fb370c52ea894628857991a3293dc15b.png',
+        'name' => 'Glass Skin Starter Set',
+        'price' => 599,
+        'image' => 'https://matildasbeauty.com/filemanager/039e6a163080491180101a5372348a3b.webp',
         'description' => '',
-        'promo_text_1' => '1 SET + 2 Sunscreens',
-        'promo_text_2' => '🎁 FREE SOAP',
+        'promo_text_1' => '1 SET',
+        'promo_text_2' => '🎁 FREE SHIPPING',
         'promo_text_3' => '',
         'badge' => 'For Daily UV Protection & Glow',
         'stock' => '2',
@@ -30,7 +30,7 @@ $products = [
     ],
     [
         'id' => 2, 
-        'name' => 'Melasma Brightening Duo',
+        'name' => 'Brightening Glass Skin Duo',
         'price' => 649,
         'image' => 'https://matildasbeauty.com/filemanager/3479431c5cf54729a1d3656e47c8d86c.png',
         'description' => '',
@@ -3400,10 +3400,10 @@ $ingredientFeature = [
                 </div>
             </div> <!-- Modal  --> --}}
 
-            <!-- <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
+            <button class="order_now tabsolute  tbottom-0 tfixed tfont-medium tmb-5 tmt-4 tpy-3 trounded-full ttext-lg ttext-white tw-10/12 waves-effect zoom-in-out-box" 
                 style="position: fixed; max-width: 480px; z-index: 999; opacity: 1; margin-left: auto; margin-right: auto; left: 0; right: 0;background-color: #ee2a7b;">
                 ORDER NOW!
-            </button> -->
+            </button>
         </div>
     </div>
 
