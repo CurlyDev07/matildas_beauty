@@ -28,9 +28,9 @@ class MissTisaCon extends Controller
 
         $seo = [
             'title' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
-            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'image' => 'https://matildasbeauty.com/filemanager/bb8a80d9254f4648b1c42d7bebb86c6c.png',
             'description' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
-            'robots' => 'none',
+            'robots' => 'index, follow',
         ];
 
         return view('pages.misstisa.index', ['fbads_products' => $fbads_products, 'seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
@@ -43,9 +43,9 @@ class MissTisaCon extends Controller
         $provinces = Province::orderBy('province', 'asc')->pluck('province');
         $seo = [
             'title' => "MissTisa Melasma Remover Skincare Set",
-            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'image' => 'https://matildasbeauty.com/filemanager/bb8a80d9254f4648b1c42d7bebb86c6c.png',
             'description' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
-            'robots' => 'none',
+            'robots' => 'index, follow',
         ];
 
         return view('pages.misstisa.buy1_take1', ['seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
@@ -58,13 +58,29 @@ class MissTisaCon extends Controller
         $provinces = Province::orderBy('province', 'asc')->pluck('province');
         $seo = [
             'title' => "MissTisa Melasma Remover Skincare Set",
-            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'image' => 'https://matildasbeauty.com/filemanager/bb8a80d9254f4648b1c42d7bebb86c6c.png',
             'description' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
-            'robots' => 'none',
+            'robots' => 'index, follow',
         ];
 
         return view('pages.misstisa.promo_12_12', ['seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
     }
+
+     public function glass_skin(){
+        $session_id = uuid();
+        $website = 'glass_skin';
+
+        $provinces = Province::orderBy('province', 'asc')->pluck('province');
+        $seo = [
+            'title' => "MissTisa Pinkish Glass Skin Skincare Set Philippines",
+            'image' => 'https://matildasbeauty.com/filemanager/bb8a80d9254f4648b1c42d7bebb86c6c.png',
+            'description' => "Achieve brighter, smoother and glowing-looking skin with the MissTisa Pinkish Glass Skin Skincare Set. A complete daily skincare routine for Filipina skin.",
+            'robots' => 'index, follow',
+        ];
+
+        return view('pages.misstisa.glass_skin', ['seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
+    }
+    
 
 
 
@@ -74,7 +90,7 @@ class MissTisaCon extends Controller
 
         $seo = [
             'title' => "MissTisa Lotion 100g SPF PA++++",
-            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'image' => 'https://matildasbeauty.com/filemanager/bb8a80d9254f4648b1c42d7bebb86c6c.png',
             'description' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
             'robots' => 'none',
         ];
@@ -125,7 +141,7 @@ class MissTisaCon extends Controller
 
         $seo = [
             'title' => "MissTisa Christmas Promo Free Luxury Perfume",
-            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'image' => 'https://matildasbeauty.com/filemanager/bb8a80d9254f4648b1c42d7bebb86c6c.png',
             'description' => "MissTisa Christmas Promo Free Luxury Perfume",
             'robots' => 'none',
         ];
@@ -142,7 +158,7 @@ class MissTisaCon extends Controller
 
         $seo = [
             'title' => "Madella Enterprises Inc - Ecommerce Website",
-            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'image' => 'https://matildasbeauty.com/filemanager/bb8a80d9254f4648b1c42d7bebb86c6c.png',
             'description' => "Madella Enterprises Inc - Ecommerce Website",
             'robots' => 'none',
         ];
@@ -159,7 +175,7 @@ class MissTisaCon extends Controller
 
         $seo = [
             'title' => "Premium Beef Tallow",
-            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'image' => 'https://matildasbeauty.com/filemanager/bb8a80d9254f4648b1c42d7bebb86c6c.png',
             'description' => "Premium Beef Tallow",
             'robots' => 'none',
         ];
@@ -175,7 +191,7 @@ class MissTisaCon extends Controller
         $provinces = Province::orderBy('province', 'asc')->pluck('province');
         $seo = [
             'title' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
-            'image' => 'https://cdn.pancake.vn/1/s1500x950/fwebp/a1/f1/28/bf/c2c8c32fdae997c5e50d5a204c5d8a48e55551144b88e41087e698c0.png',
+            'image' => 'https://matildasbeauty.com/filemanager/bb8a80d9254f4648b1c42d7bebb86c6c.png',
             'description' => "MissTisa Melasma Remover Rejuvenating Skincare Set",
             'robots' => 'none',
         ];

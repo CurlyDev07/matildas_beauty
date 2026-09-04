@@ -80,8 +80,10 @@ Route::post('BeefTallow-Submit', 'TallowCapiCon@storeTallow')->name('beef_tallow
 
 // MissTisa Lotion
 Route::get('MissTisa-Lotion', 'MissTisaCon@lotion')->name('misstisa.lotion');
+
 Route::get('MissTisa-Melasma', 'MissTisaCon@melasma')->name('misstisa.melasma');
 Route::get('MissTisa-Anti-Aging', 'MissTisaCon@anti_aging')->name('misstisa.anti_aging');
+Route::get('MissTisa-Glass-Skin', 'MissTisaCon@glass_skin')->name('misstisa.glass_skin');
 
 Route::get('MissTisa-Promo', 'MissTisaCon@misstisa_promo')->name('misstisa_promo'); // Working But not in use
 Route::post('MissTisa-Submit', 'MissTisaCon@store')->name('miss_tisa_submit');
