@@ -1276,7 +1276,7 @@ $products_json = json_encode($products);
 
 
                 <!-- ORDER PROMO -->
-                <div class="th-full tflex tflex-col tmax-w-2xl tmx-auto tbg-white tp-3">
+                <div id="order-promp-form" class="th-full tflex tflex-col tmax-w-2xl tmx-auto tbg-white tp-3">
                     <!-- Header -->
                     
                     <h1 class="ttext-center ttext-xl tfont-black ttext-gray-900 tmb-3 ttracking-wide">ORDER FORM</h1>
@@ -2009,12 +2009,12 @@ $products_json = json_encode($products);
             let scrollTimeout;
             let isScrolling = false;
             
-            // Cache the calculation that doesn't change frequently
-            let hideThreshold = $document.height() - 550;
-            
-            // Function to recalculate page dimensions
+            // Hide the floating buttons whenever the order form is in view.
             function recalculateThreshold() {
-                hideThreshold = $document.height() - 550;
+                const form = document.getElementById('order-promp-form');
+                if (!form) return;
+                const bounds = form.getBoundingClientRect();
+                toggleButton(!(bounds.top < window.innerHeight && bounds.bottom > 0));
             }
             
             // Recalculate on various events that might change page height
@@ -2059,13 +2059,14 @@ $products_json = json_encode($products);
             $window.on('scroll', function() {
                 clearTimeout(scrollTimeout);
                 scrollTimeout = setTimeout(function() {
-                    const scrollPosition = $window.height() + $window.scrollTop();
-                    toggleButton(scrollPosition <= hideThreshold);
+                    recalculateThreshold();
                 }, 16);
             });
             
-            // Improved scroll to bottom function with lazy load support
-            function scrollToBottom() {
+            recalculateThreshold();
+
+            // Scroll to the order form with lazy load support
+            function scrollToOrderForm() {
                 isScrolling = true;
                 
                 // Force lazy images to load by triggering scroll events
@@ -2074,7 +2075,7 @@ $products_json = json_encode($products);
                 
                 // Small delay to allow lazy loading to trigger
                 setTimeout(function() {
-                    const $target = $('#submit_btn');
+                    const $target = $('#order-promp-form');
                     let targetOffset;
                     
                     // Recalculate page height in case images loaded
@@ -2130,7 +2131,7 @@ $products_json = json_encode($products);
             // Order button click handler
             $button.on('click', function(e) {
                 e.preventDefault();
-                scrollToBottom();
+                scrollToOrderForm();
                 
                 // Event tracking
                 $.post('/event-listener', {
