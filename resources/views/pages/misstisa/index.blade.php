@@ -1047,41 +1047,7 @@ $products_json = json_encode($products);
                 </div>
             </section>
             
-            <!-- Customer Information Form -->
-            <div class="tmb-3">
-                <div class="tgrid tgrid-cols-2 tgap-2 tmb-2">
-                    <div>
-                        <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Full Name</label>
-                        <input 
-                            type="text" 
-                            id="full_name"
-                            class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
-                            placeholder="Enter your full name"
-                            name="full_name"
-                        >
-                    </div>
-                    <div>
-                        <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Contact Number</label>
-                        <input 
-                            type="tel" 
-                            id="phone_number"
-                            class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
-                            placeholder="Enter your contact number"
-                            name="phone_number" 
-                        >
-                    </div>
-                </div>
-                <div>
-                    <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Complete Address <span class="ttext-md ttext-gray-500">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</span> </label>
-                    <input 
-                        type="text" 
-                        id="address"
-                        class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
-                        placeholder="Enter your complete address"
-                        name="address"
-                    >
-                </div>
-            </div>
+
 
             <!-- Product Selection -->
             <div class="tflex tflex-col">
@@ -1119,6 +1085,42 @@ $products_json = json_encode($products);
                         </div>
                     </div>
                     <?php endforeach; ?>
+                </div>
+            </div>
+
+                        <!-- Customer Information Form -->
+            <div class="tmb-3">
+                <div class="tgrid tgrid-cols-2 tgap-2 tmb-2">
+                    <div>
+                        <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Full Name</label>
+                        <input 
+                            type="text" 
+                            id="full_name"
+                            class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
+                            placeholder="Enter your full name"
+                            name="full_name"
+                        >
+                    </div>
+                    <div>
+                        <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Contact Number</label>
+                        <input 
+                            type="tel" 
+                            id="phone_number"
+                            class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
+                            placeholder="Enter your contact number"
+                            name="phone_number" 
+                        >
+                    </div>
+                </div>
+                <div>
+                    <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Complete Address <span class="ttext-md ttext-gray-500">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</span> </label>
+                    <input 
+                        type="text" 
+                        id="address"
+                        class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
+                        placeholder="Enter your complete address"
+                        name="address"
+                    >
                 </div>
             </div>
 

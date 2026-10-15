@@ -48,8 +48,8 @@
                 buttonLink: 'https://m.me/262215796983675'
             },
             lockRules: {
-                maxSamePromoPerDay: 1,
-                maxTotalPerDay: 1,
+                maxSamePromoPerDay: 3,
+                maxTotalPerDay: 3,
                 lockDays: 3
             },
             debug: false,
