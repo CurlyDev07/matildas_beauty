@@ -2861,7 +2861,7 @@ $ingredientFeature = [
 
         </section>
 
-                <section class="routine-feature-section tmb-3" aria-label="4-step routine for pinkish glass skin">
+        <section class="routine-feature-section tmb-3" aria-label="4-step routine for pinkish glass skin">
             <div class="routine-feature-header">
                 <h2 class="routine-feature-title">{{ $routineFeature['title'] }}</h2>
                 <div class="routine-feature-subtitle">{{ $routineFeature['subtitle'] }}</div>

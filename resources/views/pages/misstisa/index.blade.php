@@ -808,6 +808,8 @@ $products_json = json_encode($products);
         <!-- End Meta Pixel Code -->
     @endif
 
+    @include('pages.misstisa.partials.customer_ingredients_styles')
+    @include('pages.misstisa.partials.routine_styles')
 </head>
 <body>
     <div style="scroll-behavior: smooth;max-width: 480px;" class="tmx-auto" id="body">
@@ -1141,6 +1143,8 @@ $products_json = json_encode($products);
             </button>
         </div> 
         <!-- ORDER FOROM AND PROMO -->
+        @include('pages.misstisa.partials.customer_ingredients')
+        @include('pages.misstisa.partials.routine')
 
         
 
