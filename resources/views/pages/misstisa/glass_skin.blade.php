@@ -28,19 +28,19 @@ $products = [
         'stock' => '2',
         'most_recommended' => ''
     ],
-    [
-        'id' => 2, 
-        'name' => 'Brightening Glass Skin Duo',
-        'price' => 649,
-        'image' => 'https://matildasbeauty.com/filemanager/3479431c5cf54729a1d3656e47c8d86c.png',
-        'description' => '',
-        'promo_text_1' => 'MissTisa SET + VIT C',
-        'promo_text_2' => 'Fade • Brighten • Glow',
-        'promo_text_3' => '',
-        'badge' => 'Good for Maintenance Glow',
-        'stock' => '22',
-        'most_recommended' => ''
-    ],
+    // [
+    //     'id' => 2, 
+    //     'name' => 'Brightening Glass Skin Duo',
+    //     'price' => 649,
+    //     'image' => 'https://matildasbeauty.com/filemanager/3479431c5cf54729a1d3656e47c8d86c.png',
+    //     'description' => '',
+    //     'promo_text_1' => 'MissTisa SET + VIT C',
+    //     'promo_text_2' => 'Fade • Brighten • Glow',
+    //     'promo_text_3' => '',
+    //     'badge' => 'Good for Maintenance Glow',
+    //     'stock' => '22',
+    //     'most_recommended' => ''
+    // ],
     [
         'id' => 3,
         'name' => '✨ DOUBLE GLOW DEAL ✨',
@@ -2525,6 +2525,164 @@ $ingredientFeature = [
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
+
+
+
+        <!-- ORDER PROMO -->
+        <div id="glass-skin-order-promo" class="th-full tflex tflex-col tmax-w-2xl tmx-auto tbg-white tp-3">
+            <!-- Header -->
+
+            <!-- Product Selection -->
+            <div class="tflex tflex-col">
+                <h2 class="ttext-center ttext-base tfont-bold ttext-gray-800 tmb-2">
+                    <span class="ttext-lg">🌟</span> MissTisa Beauty Collection
+                </h2>
+
+                <div class="tborder-dashed ttext-center tmy-2 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
+                    <span class="tfont-bold  ttext-center" style="font-size: 20px;"><i class="fas fa-gift ttext-3xl" style="color: red"></i> Payday Promo – Ends Soon! <i class="fas fa-gift ttext-3xl" style="color: red"></i></span>
+                    <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
+                        ⏰
+                        <div id="timer_top">18:38</div>
+                        mins
+                    </span>
+                    {{-- <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span> --}}
+                </div><!-- BUY 1 TAKE 1 -->
+                
+                
+
+                <div class="tgrid tgap-2 tmt-5">
+                    <?php foreach ($products as $index => $product): ?>
+                    <div class="product-card tgrid tgrid-cols-2 tgap-2 trelative <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
+                        <div class="tcol-span-2">
+                            <h2 class="ttext-2xl ttext-misstisa-pink tfont-semibold ttext-center"><?= htmlspecialchars($product['name']) ?></h2>
+                        </div>
+                        <div class="trelative tcol-span-1">
+                            <div class="trounded-md" style="">
+                                <img style="height: 135px!important;" src="<?= htmlspecialchars($product['image']) ?>" alt="BUY 1 TAKE 1" class="trounded-md">
+                            </div>
+                            <div class="tabsolute tmx-auto tpx-3 trounded-md" style="left: -6%;bottom: -4%; background: #e91e63;">
+                                <span class="tfont-bold ttext-3xl ttext-white" style="">₱<?= number_format($product['price']) ?></span>
+                            </div><!-- PRICE -->
+                        </div>    
+                        
+                        <div class="tcol-span-1">
+                            <span class="tbg-pink-600 ttext-white tpx-2 tpy-1 trounded-md ttext-xs">{{ $product['badge'] }}</span>
+                            <div class="tmt-4">
+                                <!-- TITLE -->
+                                <!-- <h3 class="tfont-bold ttext-center ttext-gray-800 ttext-xs" style="font-size: 17px;"><?= htmlspecialchars($product['name']) ?></h3> -->
+                                <p class="ttext-gray-700 tfont-semibold">{{ $product['promo_text_1'] }}</p>
+                                <p class="ttext-gray-700 ">{{ $product['promo_text_2'] }}</p>
+                                <span style="font-size: 11px;">{{ $product['description'] }}</span>
+                                <!-- <p class="ttext-gray-700 ">{{ $product['promo_text_3'] }}</p> -->
+                            </div>
+                            
+                            <!-- CIRCLE RADIO BUTTON -->
+                            <div class="check-circle tabsolute tw-6 th-6 trounded-full tflex titems-center tjustify-center ttext-xs tfont-bold" style="top: 4px;right: 4px;">✓</div>
+                            
+                            <!-- QUANTITY -->
+                            <div id="quantity-container-<?= $product['id'] ?>" class="tflex titems-center tjustify-center tmb-1 tmt-2 <?= $index !== 0 ? 'thidden' : '' ?>">
+                                <div class="tflex titems-center tbg-white tborder-2 tborder-pink-200 trounded-md tpx-1 tpy-1 tshadow-sm">
+                                    <button onclick="changeQuantity(<?= $product['id'] ?>, -1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">-</button>
+                                    <span id="quantity-<?= $product['id'] ?>" class="tmx-3 tfont-bold ttext-lg ttext-gray-800 tmin-w-[24px] ttext-center">1</span>
+                                    <button onclick="changeQuantity(<?= $product['id'] ?>, 1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">+</button>
+                                </div>
+                            </div>
+                        </div>    
+
+                        <p style="color: red; bottom: 2%; left: 41%; font-weight: 500;" class="ttext-sm ttext-center tabsolute">(Only {{ $product['stock'] }} Left!)</p>
+
+                        @if ($product['most_recommended'])
+                            <span class="tabsolute tbg-white tborder-2 tborder-pink-600 tpx-3 trounded-md ttext-sm" 
+                            style="top: -6%; left: 23%; top: 5;">{{ $product['most_recommended'] }}</span>
+                        @endif
+
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+
+            </div>
+            
+                                <h1 class="ttext-center ttext-xl tfont-black ttext-gray-900 tmb-3 ttracking-wide">ORDER FORM</h1>
+            
+            <!-- Customer Information Form -->
+            <div class="tmb-3">
+                <div class="tgrid tgrid-cols-2 tgap-2 tmb-2">
+                    <div>
+                        <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Full Name</label>
+                        <input 
+                            type="text" 
+                            id="full_name"
+                            class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
+                            placeholder="Enter your full name"
+                            name="full_name"
+                        >
+                    </div>
+                    <div>
+                        <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Contact Number</label>
+                        <input 
+                            type="tel" 
+                            id="phone_number"
+                            class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
+                            placeholder="Enter your contact number"
+                            name="phone_number" 
+                        >
+                    </div>
+                </div>
+                <div>
+                    <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Complete Address <span class="ttext-md ttext-gray-500">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</span> </label>
+                    <input 
+                        type="text" 
+                        id="address"
+                        class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
+                        placeholder="Enter your complete address"
+                        name="address"
+                    >
+                </div>
+            </div>
+
+            <!-- Total and Buy Button -->
+            <button 
+                id="submit_btn"
+                onclick="submitOrder()"
+                class="bg-gradient-purple-pink trounded-xl tp-4 ttext-white tmt-3 tw-full tflex tjustify-between titems-center hover:opacity-90 ttransition-all tduration-300 tcursor-pointer tshadow-lg hover:tshadow-xl hover:transform hover:tscale-105 active:tscale-95"
+                style="box-shadow: 0 8px 25px rgba(185, 36, 147, 0.3); transition: all 0.3s ease;"
+            >
+                <div>
+                    <div class="ttext-sm tfont-medium">Total Amount:</div>
+                    <div class="ttext-2xl tfont-bold" id="total">₱ <span><?= number_format($products[0]['price']) ?></span> </div>
+                </div>
+                <div class="tbg-white tpx-6 tpy-3 trounded-lg ttext-xl tfont-black ttracking-wide tshadow-md" style="color: rgb(185, 36, 147);">
+                    BUY NOW
+                </div>
+            </button>
+
+
+        </div> 
+        <!-- ORDER FOROM AND PROMO -->
+
+
+         <section class="tflex titems-baseline tmt-5 tmb-5">
+                <div class="ttext-center">
+                    <i class="fas fa-truck ttext-4xl" style="color: #009f5dff; line-height: 1.2;"></i>
+                    <span class="tinline-block tmt-1">Free Shipping</span>
+                </div>
+                <div class="ttext-center">
+                    <i class="fas fa-shield-alt ttext-4xl" style="color: #15803D; line-height: 1.2;" ></i>
+                    <span class="tinline-block tmt-1">Moneyback Guarantee</span>
+                </div>
+                <div class="ttext-center">
+                    <i class="fas fa-money-bill-wave ttext-4xl" style="color: #2b72e4ff; line-height: 1.2;" ></i>
+                    <span class="tinline-block tmt-1">Cash on Delivery</span>
+                </div>
+                <div class="ttext-center">
+                    <i class="fas fa-lightbulb ttext-4xl" style="color: #ff8800ff; line-height: 1.2;"></i>
+                    <span class="tinline-block tmt-1">Unlimited SkincareTips</span>
+                </div>
+            </section>
+
+
+
+
         <section class="glow-concern-section" aria-label="Why your skin glow is missing">
             <div class="glow-concern-header">
                 <span class="glow-concern-eyebrow tmb-5">{{ $glowConcernFeature['eyebrow'] }}</span>
@@ -3079,12 +3237,12 @@ $ingredientFeature = [
 
 
         <div class="tmx-auto trelative tborder tpb-5">
-            <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
+            <!-- <div class="tflex tjustify-center tflex-wrap tfont-medium titems-center ttext-center">
                 <img src="{{ asset('images\icons\free-shipping.png') }}" class="tmy-3" alt="free shipping" width="200" height="123">
                 <span class="tmb-1">Nationwide Luzon, Visayas & Mindanao </span>
-            </div>
+            </div> -->
 
-            <section class="tflex titems-baseline tmt-5 tmb-3">
+            <!-- <section class="tflex titems-baseline tmt-5 tmb-3">
                 <div class="ttext-center">
                     <i class="fas fa-truck ttext-4xl" style="color: #ee2aa9; line-height: 1.2;"></i>
                     <span class="tinline-block tmt-1">Fast delivery nationwide</span>
@@ -3101,7 +3259,7 @@ $ingredientFeature = [
                     <i class="fas fa-headset ttext-4xl" style="color: #ee2aa9; line-height: 1.2;"></i>
                     <span class="tinline-block tmt-1">Unlimited SkincareTips</span>
                 </div>
-            </section>
+            </section> -->
 
             {{-- <img src="https://matildasbeauty.com/filemanager/30ab80a0c85a4df69f8917950955e48f.webp" width="480" height="480" alt="buy 2 take 2"> --}}
 
@@ -3154,136 +3312,7 @@ $ingredientFeature = [
 
 
 
-                <!-- ORDER PROMO -->
-                <div class="th-full tflex tflex-col tmax-w-2xl tmx-auto tbg-white tp-3">
-                    <!-- Header -->
 
-                    <!-- Product Selection -->
-                    <div class="tflex tflex-col">
-                        <h2 class="ttext-center ttext-base tfont-bold ttext-gray-800 tmb-2">
-                            <span class="ttext-lg">🌟</span> MissTisa Beauty Collection
-                        </h2>
-
-                        <div class="tborder-dashed ttext-center tmy-2 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
-                            <span class="tfont-bold  ttext-center" style="font-size: 20px;"><i class="fas fa-gift ttext-3xl" style="color: red"></i> 8.8 Promo – Ends Soon! <i class="fas fa-gift ttext-3xl" style="color: red"></i></span>
-                            <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
-                                ⏰
-                                <div id="timer_top">18:38</div>
-                                mins
-                            </span>
-                            {{-- <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span> --}}
-                        </div><!-- BUY 1 TAKE 1 -->
-                        
-                        
-
-                        <div class="tgrid tgap-2 tmt-5">
-                            <?php foreach ($products as $index => $product): ?>
-                            <div class="product-card tgrid tgrid-cols-2 tgap-2 trelative <?= $index === 0 ? 'product-selected' : '' ?> tmb-3 tbg-white tborder-2 tborder-gray-300 tcursor-pointer tduration-200 tp-2 tpb-1 trelative trounded-lg ttransition-all" onclick="selectProduct(this, <?= $product['price'] ?>, <?= $product['id'] ?>)">
-                                <div class="tcol-span-2">
-                                    <h2 class="ttext-2xl ttext-misstisa-pink tfont-semibold ttext-center"><?= htmlspecialchars($product['name']) ?></h2>
-                                </div>
-                                <div class="trelative tcol-span-1">
-                                    <div class="trounded-md" style="">
-                                        <img style="height: 135px!important;" src="<?= htmlspecialchars($product['image']) ?>" alt="BUY 1 TAKE 1" class="trounded-md">
-                                    </div>
-                                    <div class="tabsolute tmx-auto tpx-3 trounded-md" style="left: -6%;bottom: -4%; background: #e91e63;">
-                                        <span class="tfont-bold ttext-3xl ttext-white" style="">₱<?= number_format($product['price']) ?></span>
-                                    </div><!-- PRICE -->
-                                </div>    
-                                
-                                <div class="tcol-span-1">
-                                    <span class="tbg-pink-600 ttext-white tpx-2 tpy-1 trounded-md ttext-xs">{{ $product['badge'] }}</span>
-                                    <div class="tmt-4">
-                                        <!-- TITLE -->
-                                        <!-- <h3 class="tfont-bold ttext-center ttext-gray-800 ttext-xs" style="font-size: 17px;"><?= htmlspecialchars($product['name']) ?></h3> -->
-                                        <p class="ttext-gray-700 tfont-semibold">{{ $product['promo_text_1'] }}</p>
-                                        <p class="ttext-gray-700 ">{{ $product['promo_text_2'] }}</p>
-                                        <span style="font-size: 11px;">{{ $product['description'] }}</span>
-                                        <!-- <p class="ttext-gray-700 ">{{ $product['promo_text_3'] }}</p> -->
-                                    </div>
-                                   
-                                    <!-- CIRCLE RADIO BUTTON -->
-                                    <div class="check-circle tabsolute tw-6 th-6 trounded-full tflex titems-center tjustify-center ttext-xs tfont-bold" style="top: 4px;right: 4px;">✓</div>
-                                    
-                                    <!-- QUANTITY -->
-                                    <div id="quantity-container-<?= $product['id'] ?>" class="tflex titems-center tjustify-center tmb-1 tmt-2 <?= $index !== 0 ? 'thidden' : '' ?>">
-                                        <div class="tflex titems-center tbg-white tborder-2 tborder-pink-200 trounded-md tpx-1 tpy-1 tshadow-sm">
-                                            <button onclick="changeQuantity(<?= $product['id'] ?>, -1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">-</button>
-                                            <span id="quantity-<?= $product['id'] ?>" class="tmx-3 tfont-bold ttext-lg ttext-gray-800 tmin-w-[24px] ttext-center">1</span>
-                                            <button onclick="changeQuantity(<?= $product['id'] ?>, 1); event.stopPropagation();" class="tw-6 th-6 tbg-gradient-to-r tfrom-pink-400 tto-pink-500 trounded-md tflex titems-center tjustify-center hover:tfrom-pink-500 hover:tto-pink-600 ttext-white tfont-bold tshadow-sm ttransition-all tduration-200 active:tscale-95">+</button>
-                                        </div>
-                                    </div>
-                                </div>    
-
-                                <p style="color: red; bottom: 2%; left: 31%; font-weight: 500;" class="ttext-sm ttext-center tabsolute">(Only {{ $product['stock'] }} Left!)</p>
-
-                                @if ($product['most_recommended'])
-                                    <span class="tabsolute tbg-white tborder-2 tborder-pink-600 tpx-3 trounded-md ttext-sm" 
-                                    style="top: -6%; left: 23%; top: 5;">{{ $product['most_recommended'] }}</span>
-                                @endif
-
-                            </div>
-                            <?php endforeach; ?>
-                        </div>
-
-                    </div>
-                    
-                                        <h1 class="ttext-center ttext-xl tfont-black ttext-gray-900 tmb-3 ttracking-wide">ORDER FORM</h1>
-                    
-                    <!-- Customer Information Form -->
-                    <div class="tmb-3">
-                        <div class="tgrid tgrid-cols-2 tgap-2 tmb-2">
-                            <div>
-                                <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Full Name</label>
-                                <input 
-                                    type="text" 
-                                    id="full_name"
-                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
-                                    placeholder="Enter your full name"
-                                    name="full_name"
-                                >
-                            </div>
-                            <div>
-                                <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Contact Number</label>
-                                <input 
-                                    type="tel" 
-                                    id="phone_number"
-                                    class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
-                                    placeholder="Enter your contact number"
-                                    name="phone_number" 
-                                >
-                            </div>
-                        </div>
-                        <div>
-                            <label class="tblock ttext-xs tfont-medium ttext-gray-700 tmb-1">Complete Address <span class="ttext-md ttext-gray-500">(St./House No. | blk & lot/ Subdv / Barangay / City / Province)</span> </label>
-                            <input 
-                                type="text" 
-                                id="address"
-                                class="browser-default tw-full tp-2 tborder-2 tborder-red-400 trounded-lg tfocus:outline-none tfocus:tborder-purple-400 ttransition-colors ttext-md"
-                                placeholder="Enter your complete address"
-                                name="address"
-                            >
-                        </div>
-                    </div>
-
-                    <!-- Total and Buy Button -->
-                    <button 
-                        id="submit_btn"
-                        onclick="submitOrder()"
-                        class="bg-gradient-purple-pink trounded-xl tp-4 ttext-white tmt-3 tw-full tflex tjustify-between titems-center hover:opacity-90 ttransition-all tduration-300 tcursor-pointer tshadow-lg hover:tshadow-xl hover:transform hover:tscale-105 active:tscale-95"
-                        style="box-shadow: 0 8px 25px rgba(185, 36, 147, 0.3); transition: all 0.3s ease;"
-                    >
-                        <div>
-                            <div class="ttext-sm tfont-medium">Total Amount:</div>
-                            <div class="ttext-2xl tfont-bold" id="total">₱ <span><?= number_format($products[0]['price']) ?></span> </div>
-                        </div>
-                        <div class="tbg-white tpx-6 tpy-3 trounded-lg ttext-xl tfont-black ttracking-wide tshadow-md" style="color: rgb(185, 36, 147);">
-                            BUY NOW
-                        </div>
-                    </button>
-
-
-                </div> <!-- ORDER FOROM AND PROMO -->
 
                 <div id="validationModal" class="modal-overlay">
                     <div class="modal-content">
@@ -3851,12 +3880,12 @@ $ingredientFeature = [
             let scrollTimeout;
             let isScrolling = false;
             
-            // Cache the calculation that doesn't change frequently
-            let hideThreshold = $document.height() - 550;
-            
-            // Function to recalculate page dimensions
+            // Hide the floating buttons while the order form is visible.
             function recalculateThreshold() {
-                hideThreshold = $document.height() - 550;
+                const form = document.getElementById('glass-skin-order-promo');
+                if (!form) return;
+                const bounds = form.getBoundingClientRect();
+                toggleButton(!(bounds.top < window.innerHeight && bounds.bottom > 0));
             }
             
             // Recalculate on various events that might change page height
@@ -3901,11 +3930,12 @@ $ingredientFeature = [
             $window.on('scroll', function() {
                 clearTimeout(scrollTimeout);
                 scrollTimeout = setTimeout(function() {
-                    const scrollPosition = $window.height() + $window.scrollTop();
-                    toggleButton(scrollPosition <= hideThreshold);
+                    recalculateThreshold();
                 }, 16);
             });
             
+            recalculateThreshold();
+
             // Improved scroll to bottom function with lazy load support
             function scrollToBottom() {
                 isScrolling = true;
@@ -3916,7 +3946,7 @@ $ingredientFeature = [
                 
                 // Small delay to allow lazy loading to trigger
                 setTimeout(function() {
-                    const $target = $('#submit_btn');
+                    const $target = $('#glass-skin-order-promo');
                     let targetOffset;
                     
                     // Recalculate page height in case images loaded
