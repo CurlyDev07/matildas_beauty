@@ -73,6 +73,14 @@
                             </select>
                         </div>
                         <div>
+                            <label class="wi-form-label">Sort</label>
+                            <select name="sort" class="browser-default wi-select" style="width:170px;height:41px !important;">
+                                <option value="">Recently updated</option>
+                                <option value="qty_desc" {{ request('sort') === 'qty_desc' ? 'selected' : '' }}>Qty: High to Low</option>
+                                <option value="qty_asc" {{ request('sort') === 'qty_asc' ? 'selected' : '' }}>Qty: Low to High</option>
+                            </select>
+                        </div>
+                        <div>
                             <label class="wi-form-label">Per Page</label>
                             <select name="per_page" class="browser-default wi-select" style="width:100px;height:41px !important;">
                                 @foreach([25, 50, 100, 200] as $option)
@@ -83,7 +91,7 @@
                         <button class="wi-btn-primary waves-effect" style="height:41px;padding:0 12px;">
                             <i class="fas fa-search tmr-2"></i> Filter
                         </button>
-                        @if(request()->hasAny(['search', 'category_id', 'tag_id']))
+                        @if(request()->hasAny(['search', 'category_id', 'tag_id', 'sort']))
                             <a href="{{ route('warehouse_inventory.stocks', ['per_page' => $perPage]) }}" class="wi-btn-light waves-effect" style="height:41px;padding:0 12px;">
                                 <i class="fas fa-times"></i>
                             </a>

@@ -429,10 +429,16 @@ class WarehouseInventoryCon extends Controller
             });
         }
 
+        $quantitySort = $request->input('sort');
+        if (in_array($quantitySort, ['qty_desc', 'qty_asc'], true)) {
+            $stocksQuery->orderBy('quantity', $quantitySort === 'qty_desc' ? 'desc' : 'asc');
+        }
+
         $stocks = $stocksQuery
             ->orderBy('updated_at', 'desc')
+            ->orderBy('id', 'desc')
             ->paginate($perPage)
-            ->appends($request->only(['search', 'category_id', 'tag_id', 'per_page']));
+            ->appends($request->only(['search', 'category_id', 'tag_id', 'per_page', 'sort']));
         return view('admin.warehouse_inventory.stocks.index', $this->itemViewData() + compact('stocks', 'perPage'));
     }
 

@@ -17,11 +17,11 @@ $products = [
     ],
     [
         'id' => 1, 
-        'name' => '2pcs Set + Free VITAMIN C',
+        'name' => '2 Set + Free vitamin c',
         'price' => 799,
         'image' => 'https://matildasbeauty.com/filemanager/f53d41cdd8c94ec2afbea9b146ce0f48.png',
         'description' => 'Advanced anti-aging and whitening serum',
-        'badge' => 'ENDS TOMORROW'
+        'badge' => '+200 Get 1 Set + VIT C'
     ],
     [
         'id' => 2,
