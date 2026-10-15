@@ -940,26 +940,32 @@ class FbAdsCon extends Controller
     }
 
     public function event_listener(Request $request){
-        $events = FbEventListener::groupBy('data')->select('data', DB::raw('count(*) as total'))
-        ->when(!$request->date, function($q){
-            return $q->whereDate('created_at', now());
-        })// Show DEFAULT DATA For Today
-        ->when($request->date, function($q){
-            $date = explode(" - ",request()->date);
-            $from = carbon($date[0]);
-            $to = carbon($date[1]);
+        $from = now()->startOfDay();
+        $to = now()->endOfDay();
+        if ($request->filled('date')) {
+            $date = explode(' - ', $request->date);
+            abort_unless(count($date) === 2, 422, 'Invalid date range.');
+            $from = carbon($date[0])->startOfDay();
+            $to = carbon($date[1])->endOfDay();
+        }
 
-            if ($from == $to) {
-                return $q->whereDate('created_at', $from);
-            }
-
-            return $q->whereBetween('created_at', [$from, $to]);
-        })// FILTER DATE
+        $dateQuery = FbEventListener::whereBetween('created_at', [$from, $to]);
+        $events = (clone $dateQuery)->groupBy('data')->select('data', DB::raw('count(*) as total'))
         ->orderBy('data', 'desc')
         ->get();
 
+        $websiteConversions = (clone $dateQuery)
+            ->whereIn('data', ['visitors', 'order_success'])
+            ->select('website')
+            ->selectRaw("SUM(CASE WHEN data = 'visitors' THEN 1 ELSE 0 END) AS total_visitors")
+            ->selectRaw("SUM(CASE WHEN data = 'order_success' THEN 1 ELSE 0 END) AS total_orders")
+            ->selectRaw("ROUND(SUM(CASE WHEN data = 'order_success' THEN 1 ELSE 0 END) * 100.0 / NULLIF(SUM(CASE WHEN data = 'visitors' THEN 1 ELSE 0 END), 0), 2) AS conversion_rate")
+            ->groupBy('website')
+            ->orderBy('conversion_rate', 'desc')
+            ->orderBy('website')
+            ->get();
 
-        return view('admin.fbads.event_listener', ['events' => $events]);
+        return view('admin.fbads.event_listener', compact('events', 'websiteConversions'));
     }
 
     public function events(Request $request)

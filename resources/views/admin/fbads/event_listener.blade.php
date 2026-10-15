@@ -77,6 +77,36 @@
             
         </div><!-- TABLE -->
 
+        <div class="tmx-5 tmt-3 tborder trounded-lg" style="border-color:#e5e7eb;overflow:hidden;">
+            <div class="tpx-4 tpy-3 tborder-b" style="border-color:#e5e7eb;">
+                <h6 class="tm-0 tfont-bold" style="color:#201827;">Website Conversion Performance</h6>
+            </div>
+            <div style="overflow-x:auto;">
+                <table class="tw-full ttext-sm">
+                    <thead style="background:#f9fafb;color:#64748b;">
+                        <tr>
+                            <th class="tpx-4 tpy-3 ttext-left">Website</th>
+                            <th class="tpx-4 tpy-3 ttext-right">Visitors</th>
+                            <th class="tpx-4 tpy-3 ttext-right">Orders</th>
+                            <th class="tpx-4 tpy-3 ttext-right">Conversion Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($websiteConversions as $website)
+                            <tr class="tborder-t" style="border-color:#f1f5f9;">
+                                <td class="tpx-4 tpy-3 tfont-medium">{{ $website->website === null || trim($website->website) === '' ? 'Unknown website' : $website->website }}</td>
+                                <td class="tpx-4 tpy-3 ttext-right">{{ number_format($website->total_visitors) }}</td>
+                                <td class="tpx-4 tpy-3 ttext-right">{{ number_format($website->total_orders) }}</td>
+                                <td class="tpx-4 tpy-3 ttext-right tfont-bold" style="color:#15803d;">{{ $website->conversion_rate === null ? '—' : number_format($website->conversion_rate, 2) . '%' }}</td>
+                            </tr>
+                        @empty
+                            <tr><td colspan="4" class="tpx-4 tpy-5 ttext-center" style="color:#64748b;">No visitor or order events for the selected dates.</td></tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 @endsection
 
@@ -110,6 +140,8 @@
     $('#form_validation_error_rate').html(NanReplacer(form_validation_error_rate));
 
     $('input[name="date"]').daterangepicker({
+        startDate: @json(request('date') ? explode(' - ', request('date'))[0] : now()->format('m/d/Y')),
+        endDate: @json(request('date') ? explode(' - ', request('date'))[1] : now()->format('m/d/Y')),
         maxDate: moment(),
         ranges: {
             'Today': [moment(), moment()],
