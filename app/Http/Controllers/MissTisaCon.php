@@ -80,6 +80,21 @@ class MissTisaCon extends Controller
 
         return view('pages.misstisa.glass_skin', ['seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
     }
+
+    public function stories(){
+        $session_id = uuid();
+        $website = 'stories';
+
+        $provinces = Province::orderBy('province', 'asc')->pluck('province');
+        $seo = [
+            'title' => "MissTisa Pinkish Glass Skin Skincare Set Philippines",
+            'image' => 'https://matildasbeauty.com/filemanager/bb8a80d9254f4648b1c42d7bebb86c6c.png',
+            'description' => "Achieve brighter, smoother and glowing-looking skin with the MissTisa Pinkish Glass Skin Skincare Set. A complete daily skincare routine for Filipina skin.",
+            'robots' => 'index, follow',
+        ];
+
+        return view('pages.misstisa.stories', ['seo' => $seo, 'provinces' => $provinces, 'session_id' => $session_id, 'website' => $website]);
+    }
     
 
 

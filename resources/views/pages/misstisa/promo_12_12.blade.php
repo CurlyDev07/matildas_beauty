@@ -849,7 +849,7 @@ $products_json = json_encode($products);
         </div>
 
 
-        <img src="https://matildasbeauty.com/filemanager/5fc05dd20f63473ba8b5aed942fddf51.webp" width="480" height="480" class="tw-full" alt="BUY 1 take 1">
+        <img src="https://matildasbeauty.com/filemanager/20057766b6414ff9b9e2bc22948a6c7a.webp" width="480" height="480" class="tw-full" alt="BUY 1 take 1">
 
         <div class="tfont-semibold ttext-center ttext-white tp-2 ttext-lg" style="background-color: black;">
             <i class="fas fa-check-circle" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
