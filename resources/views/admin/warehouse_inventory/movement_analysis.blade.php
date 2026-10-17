@@ -26,7 +26,7 @@
             <div>
                 <label for="analysisPeriod" class="wi-form-label">Period</label>
                 <select id="analysisPeriod" name="period" class="browser-default wi-select" style="height:41px;width:175px;">
-                    @foreach(['2_weeks' => '2 Weeks', '1_month' => '1 Month', '2_months' => '2 Months', '3_months' => '3 Months', 'custom' => 'Custom Date Range'] as $value => $label)
+                    @foreach(['2_weeks' => '2 Weeks', '1_month' => '1 Month', '2_months' => '2 Months', '3_months' => '3 Months', '6_months' => '6 Months', '1_year' => '1 Year', 'custom' => 'Custom Date Range'] as $value => $label)
                         <option value="{{ $value }}" {{ $period === $value ? 'selected' : '' }}>{{ $label }}</option>
                     @endforeach
                 </select>
@@ -85,7 +85,18 @@
                 <tbody>
                     @forelse($rows as $row)
                         <tr>
-                            <td><div class="tfont-bold">{{ $row->name }}</div><div class="ttext-xs wi-muted">{{ $row->sku ?: '—' }}</div></td>
+                            <td>
+                                <div class="tflex titems-center" style="gap:10px;">
+                                    @if($row->image_path)
+                                        <button type="button" data-analysis-image="{{ asset($row->image_path) }}" aria-label="Preview {{ $row->name }}" style="padding:0;border:0;background:transparent;cursor:zoom-in;flex-shrink:0;">
+                                            <img src="{{ asset($row->image_path) }}" alt="{{ $row->name }}" loading="lazy" style="width:40px;height:40px;object-fit:contain;border:1px solid #e5e7eb;border-radius:6px;background:#fff;">
+                                        </button>
+                                    @else
+                                        <span class="wi-item-photo-placeholder" style="width:40px;height:40px;flex-shrink:0;"><i class="fas fa-image"></i></span>
+                                    @endif
+                                    <div><div class="tfont-bold">{{ $row->name }}</div><div class="ttext-xs wi-muted">{{ $row->sku ?: '—' }}</div></div>
+                                </div>
+                            </td>
                             <td class="ttext-right">@include('admin.warehouse_inventory.partials.quantity', ['quantity' => $row->stock_out_qty, 'unit' => $row->short_name])</td>
                             <td class="ttext-right tfont-bold">@include('admin.warehouse_inventory.partials.quantity', ['quantity' => $row->current_stock, 'unit' => $row->short_name]) <span class="ttext-xs wi-muted">{{ $row->short_name }}</span></td>
                             <td>{{ $row->last_stock_out_date ? \Carbon\Carbon::parse($row->last_stock_out_date)->format('M d, Y') : 'Never' }}</td>
@@ -101,6 +112,9 @@
         <div class="tp-4">{{ $rows->links() }}</div>
     </div>
 </div>
+<div id="analysisImagePreview" hidden style="position:fixed;z-index:10000;pointer-events:none;padding:8px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;box-shadow:0 12px 32px rgba(0,0,0,.16);">
+    <img alt="" style="display:block;width:220px;height:220px;object-fit:contain;">
+</div>
 <script>
 document.getElementById('analysisPeriod').addEventListener('change', function () {
     var custom = this.value === 'custom';
@@ -108,5 +122,25 @@ document.getElementById('analysisPeriod').addEventListener('change', function ()
         field.style.display = custom ? '' : 'none';
     });
 });
+var imagePreview = document.getElementById('analysisImagePreview');
+document.querySelectorAll('[data-analysis-image]').forEach(function (button) {
+    function showPreview() {
+        var rect = button.getBoundingClientRect();
+        var size = Math.min(238, window.innerWidth - 16, window.innerHeight - 16);
+        var image = imagePreview.querySelector('img');
+        image.src = button.getAttribute('data-analysis-image');
+        image.alt = button.querySelector('img').alt;
+        image.style.width = image.style.height = (size - 18) + 'px';
+        imagePreview.style.left = Math.max(8, Math.min(rect.right + 12, window.innerWidth - size - 8)) + 'px';
+        imagePreview.style.top = Math.max(8, Math.min(rect.top, window.innerHeight - size - 8)) + 'px';
+        imagePreview.hidden = false;
+    }
+    button.addEventListener('mouseenter', showPreview);
+    button.addEventListener('focus', showPreview);
+    button.addEventListener('mouseleave', function () { imagePreview.hidden = true; });
+    button.addEventListener('blur', function () { imagePreview.hidden = true; });
+});
+window.addEventListener('scroll', function () { imagePreview.hidden = true; }, true);
+window.addEventListener('resize', function () { imagePreview.hidden = true; });
 </script>
 @endsection

@@ -445,7 +445,7 @@ class WarehouseInventoryCon extends Controller
     public function movementAnalysis(Request $request)
     {
         $request->validate([
-            'period' => 'nullable|in:2_weeks,1_month,2_months,3_months,custom',
+            'period' => 'nullable|in:2_weeks,1_month,2_months,3_months,6_months,1_year,custom',
             'threshold' => 'nullable|numeric|min:0',
             'movement' => 'nullable|in:all,non_moving,slow_moving',
             'sort' => 'nullable|in:stock_desc,stock_asc,out_desc,out_asc,value_desc',
@@ -463,7 +463,7 @@ class WarehouseInventoryCon extends Controller
             $startDate = Carbon::parse($request->start_date)->startOfDay();
             $endDate = Carbon::parse($request->end_date)->endOfDay();
         } elseif ($period !== '2_weeks') {
-            $months = ['1_month' => 1, '2_months' => 2, '3_months' => 3];
+            $months = ['1_month' => 1, '2_months' => 2, '3_months' => 3, '6_months' => 6, '1_year' => 12];
             $startDate = now()->subMonthsNoOverflow($months[$period])->addDay()->startOfDay();
         }
 
@@ -487,7 +487,7 @@ class WarehouseInventoryCon extends Controller
             })
             ->leftJoin('inventory_units as units', 'units.id', '=', 'items.unit_id')
             ->where('items.is_active', 1)
-            ->select('items.id', 'items.name', 'items.sku', 'units.short_name', 'outs.last_stock_out_date')
+            ->select('items.id', 'items.name', 'items.sku', 'items.image_path', 'units.short_name', 'outs.last_stock_out_date')
             ->selectRaw('COALESCE(balances.current_stock, 0) AS current_stock')
             ->selectRaw('COALESCE(outs.stock_out_qty, 0) AS stock_out_qty')
             ->selectRaw('COALESCE(balances.current_stock, 0) * COALESCE(items.cost, 0) AS inventory_value');
