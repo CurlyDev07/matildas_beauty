@@ -442,6 +442,77 @@ class WarehouseInventoryCon extends Controller
         return view('admin.warehouse_inventory.stocks.index', $this->itemViewData() + compact('stocks', 'perPage'));
     }
 
+    public function movementAnalysis(Request $request)
+    {
+        $request->validate([
+            'period' => 'nullable|in:2_weeks,1_month,2_months,3_months,custom',
+            'threshold' => 'nullable|numeric|min:0',
+            'movement' => 'nullable|in:all,non_moving,slow_moving',
+            'sort' => 'nullable|in:stock_desc,stock_asc,out_desc,out_asc,value_desc',
+            'start_date' => 'required_if:period,custom|nullable|date_format:Y-m-d',
+            'end_date' => 'required_if:period,custom|nullable|date_format:Y-m-d|after_or_equal:start_date',
+        ]);
+
+        $period = $request->input('period', '2_weeks');
+        $threshold = $request->input('threshold', 10);
+        $movement = $request->input('movement', 'all');
+        $sort = $request->input('sort', 'stock_desc');
+        $endDate = now()->endOfDay();
+        $startDate = now()->subDays(13)->startOfDay();
+        if ($period === 'custom') {
+            $startDate = Carbon::parse($request->start_date)->startOfDay();
+            $endDate = Carbon::parse($request->end_date)->endOfDay();
+        } elseif ($period !== '2_weeks') {
+            $months = ['1_month' => 1, '2_months' => 2, '3_months' => 3];
+            $startDate = now()->subMonthsNoOverflow($months[$period])->addDay()->startOfDay();
+        }
+
+        $stockTotals = DB::table('warehouse_inventory')
+            ->select('inventory_item_id')->selectRaw('SUM(quantity) AS current_stock')
+            ->groupBy('inventory_item_id');
+        $stockOuts = DB::table('inventory_movements as im')
+            ->join('inventory_movement_types as mt', 'mt.id', '=', 'im.movement_type_id')
+            ->where('mt.stock_effect', 'subtract')
+            ->select('im.inventory_item_id')
+            ->selectRaw('SUM(CASE WHEN im.created_at BETWEEN ? AND ? THEN im.quantity ELSE 0 END) AS stock_out_qty', [$startDate, $endDate])
+            ->selectRaw('MAX(im.created_at) AS last_stock_out_date')
+            ->groupBy('im.inventory_item_id');
+
+        $products = DB::table('inventory_items as items')
+            ->leftJoinSub($stockTotals, 'balances', function ($join) {
+                $join->on('balances.inventory_item_id', '=', 'items.id');
+            })
+            ->leftJoinSub($stockOuts, 'outs', function ($join) {
+                $join->on('outs.inventory_item_id', '=', 'items.id');
+            })
+            ->leftJoin('inventory_units as units', 'units.id', '=', 'items.unit_id')
+            ->where('items.is_active', 1)
+            ->select('items.id', 'items.name', 'items.sku', 'units.short_name', 'outs.last_stock_out_date')
+            ->selectRaw('COALESCE(balances.current_stock, 0) AS current_stock')
+            ->selectRaw('COALESCE(outs.stock_out_qty, 0) AS stock_out_qty')
+            ->selectRaw('COALESCE(balances.current_stock, 0) * COALESCE(items.cost, 0) AS inventory_value');
+        $query = DB::query()->fromSub($products, 'analysis')
+            ->where('stock_out_qty', '<=', $threshold);
+        if ($movement === 'non_moving') {
+            $query->where('stock_out_qty', 0);
+        } elseif ($movement === 'slow_moving') {
+            $query->where('stock_out_qty', '>', 0);
+        }
+        $totalInventoryValue = (clone $query)->sum('inventory_value');
+        $sorts = [
+            'stock_desc' => ['current_stock', 'desc'], 'stock_asc' => ['current_stock', 'asc'],
+            'out_desc' => ['stock_out_qty', 'desc'], 'out_asc' => ['stock_out_qty', 'asc'],
+            'value_desc' => ['inventory_value', 'desc'],
+        ];
+        $perPage = $this->inventoryPerPage($request);
+        $rows = $query->orderBy($sorts[$sort][0], $sorts[$sort][1])->orderBy('id')
+            ->paginate($perPage)->appends($request->except('page'));
+
+        return view('admin.warehouse_inventory.movement_analysis', compact(
+            'rows', 'totalInventoryValue', 'period', 'threshold', 'movement', 'sort', 'startDate', 'endDate', 'perPage'
+        ));
+    }
+
     public function reports(Request $request)
     {
         $perPage = $this->inventoryPerPage($request);

@@ -579,6 +579,9 @@ body { font-family: 'Poppins', 'Segoe UI', sans-serif; margin: 0; padding: 0; }
                 <a href="/admin/warehouse-inventory/reports" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/reports*') ? 'mb-active' : '' }}">
                     <i class="fas fa-chart-line mb-sb-child-icon"></i> Reports
                 </a>
+                <a href="/admin/warehouse-inventory/movement-analysis" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/movement-analysis') ? 'mb-active' : '' }}">
+                    <i class="fas fa-chart-bar mb-sb-child-icon"></i> Movement Analysis
+                </a>
                 <a href="/admin/warehouse-inventory/po-draft" class="mb-sb-child {{ request()->is('admin/warehouse-inventory/po-draft*') ? 'mb-active' : '' }}">
                     <i class="fas fa-file-invoice-dollar mb-sb-child-icon"></i> P.O Draft
                 </a>

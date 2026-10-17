@@ -445,6 +445,7 @@ Route::middleware('auth:web')->namespace('Admin')->group(function () {
 
         Route::get('/stocks', 'WarehouseInventoryCon@stocks')->name('warehouse_inventory.stocks');
         Route::get('/reports', 'WarehouseInventoryCon@reports')->name('warehouse_inventory.reports');
+        Route::get('/movement-analysis', 'WarehouseInventoryCon@movementAnalysis')->name('warehouse_inventory.movement_analysis');
         Route::get('/po-draft', 'WarehouseInventoryCon@poDraft')->name('warehouse_inventory.po_draft');
         Route::post('/po-draft', 'WarehouseInventoryCon@poDraftStore')->name('warehouse_inventory.po_draft.store');
         Route::put('/po-draft/{id}', 'WarehouseInventoryCon@poDraftUpdate')->name('warehouse_inventory.po_draft.update');

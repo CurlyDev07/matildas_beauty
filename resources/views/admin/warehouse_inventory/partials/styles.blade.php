@@ -70,14 +70,13 @@
     }
 
     .wi-table thead tr {
-        background: #fff7fb;
         color: #344054;
     }
 
     .wi-table thead th {
         font-weight: 800;
         white-space: nowrap;
-        border-bottom: 1px solid #ffd6e8;
+        /* border-bottom: 1px solid #fd358cff; */
     }
 
     .wi-table tbody tr:nth-child(even) {
