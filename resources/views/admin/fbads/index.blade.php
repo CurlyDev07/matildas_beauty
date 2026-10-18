@@ -228,11 +228,13 @@
                             <td class="ttext-sm ttext-center tpy-1">
                                 <select data-id="{{ $order->id }}" class="change_status tfont-medium browser-default tborder-gray-300 th-8 tpx-2 trounded-full ttext-center {{ status_color($order->status) }}">
                                     @foreach ($order_status as $status)
+                                        @if ($status !== 'DELETE' || optional(auth()->user())->role === 'master')
                                         <option value="{{ $status }}"
                                             @if ($order->status == $status)
                                                 selected
                                             @endif
                                         >{{ $status }}</option>
+                                        @endif
                                     @endforeach
                                     
                                 </select>
