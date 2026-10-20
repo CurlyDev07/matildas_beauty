@@ -80,7 +80,7 @@
             </div><!-- Left Filter -->
 
             <div class="tw-full xl:tw-4/5 tpt-5 t-mx-2 tflex tflex-wrap">
-                @foreach ($products as $product)
+                <!-- @foreach ($products as $product)
                 
                     <div class="product tpx-1 tw-1/2 sm:tw-1/3 lg:tw-1/4 tmb-8">
                         <div class="product-hover hover:tshadow-xl tbg-white tshadow-md trounded-lg toverflow-hidden">
@@ -117,15 +117,15 @@
                             </div>
                         </div>
                     </div> --}}
-                @endforeach
+                @endforeach -->
             </div><!-- Right Products -->
         </div>
 
-        @if ($products->hasMorePages())
+        <!-- @if ($products->hasMorePages())
             <div class="tbg-white tflex tjustify-end tpb-1 tpt-5">
                 {{ $products->onEachSide(1)->appends(request()->except('page'))->links() }}
             </div>
-        @endif
+        @endif -->
         
 
     </div>
