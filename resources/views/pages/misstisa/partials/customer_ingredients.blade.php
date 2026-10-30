@@ -1,16 +1,43 @@
 <?php
 $customerTestimonials = [
+    [
+        'label' => 'Marlyn B.',
+        'name' => 'Marlyn B.',
+        'stars' => 5,
+        'comment' => 'Nawala ung Pimples Marks ko at Pekas',
+        'before_image' => 'https://matildasbeauty.com/filemanager/4f20f068c23b4b17a862cc30793b7598.webp',
+        'after_image' => 'https://matildasbeauty.com/filemanager/54ef1025e6fc4baf91bbaf2702f2e985.webp',
+    ],
+
      [
-        'label' => 'Ashley T.',
-        'name' => 'Ashley T.',
+        'label' => 'Michelle C.',
+        'name' => 'Michelle C.',
+        'stars' => 5,
+        'comment' => 'Mas maganda pala ako kapag mas Glowing',
+        'before_image' => 'https://matildasbeauty.com/filemanager/fd4ad05ca8bd4b8ba2d60ef486a7c6f6.webp',
+        'after_image' => 'https://matildasbeauty.com/filemanager/3b23cce3c4a5407db951e3283038a3a5.webp',
+    ],
+    [
+        'label' => 'Shiela M.',
+        'name' => 'Shiela M.',
+        'stars' => 5,
+        'comment' => 'Hindi lang nawala pekas nag glowing pa.',
+        'before_image' => 'https://matildasbeauty.com/filemanager/c31c5283a72641988fd5043d8d89e6ee.webp',
+        'after_image' => 'https://matildasbeauty.com/filemanager/22ddd50829614fc5a09faa6d1d86ecb9.webp',
+    ],
+
+
+     [
+        'label' => 'Precy A.',
+        'name' => 'Precy A.',
         'stars' => 5,
         'comment' => 'Mas glowing at fresh na ang skin ko!',
         'before_image' => 'https://matildasbeauty.com/filemanager/a4f96ab1ec0d475e8cfe8330eacbf1d7.webp',
         'after_image' => 'https://matildasbeauty.com/filemanager/7e3f77204741472cb4d27c0f7be16737.webp',
     ],
      [
-        'label' => 'Ashley T.',
-        'name' => 'Ashley T.',
+        'label' => 'Princess C.',
+        'name' => 'Princess C.',
         'stars' => 5,
         'comment' => 'Mas glowing at fresh na ang skin ko!',
         'before_image' => 'https://matildasbeauty.com/filemanager/53050eb5513e47e2943b369c02023522.webp',
@@ -24,22 +51,22 @@ $customerTestimonials = [
         'before_image' => 'https://matildasbeauty.com/filemanager/0cf424c1ba1148e0a4cdc0cd626fbe72.webp',
         'after_image' => 'https://matildasbeauty.com/filemanager/588dc9c8b6c4481793def250d5a2fafb.webp',
     ],
-    [
-        'label' => 'Liza M.',
-        'name' => 'Liza',
-        'stars' => 5,
-        'comment' => 'Mas smooth at bright tingnan ang skin ko.',
-        'before_image' => 'https://matildasbeauty.com/filemanager/26b26176b48c4cb9b6cac53767c840e0.webp',
-        'after_image' => 'https://matildasbeauty.com/filemanager/4cd5b0955bda482a89a599223cf062e6.webp',
-    ],
-    [
-        'label' => 'Girley O.',
-        'name' => 'Girley',
-        'stars' => 5,
-        'comment' => 'Fresh na fresh ang glow kahit simple lang routine.',
-        'before_image' => 'https://matildasbeauty.com/filemanager/aebf25c4c423422f85051b7087a1164e.webp',
-        'after_image' => 'https://matildasbeauty.com/filemanager/4f7d82251c904b31b2b2197541877fb8.webp',
-    ],
+    // [
+    //     'label' => 'Liza M.',
+    //     'name' => 'Liza',
+    //     'stars' => 5,
+    //     'comment' => 'Mas smooth at bright tingnan ang skin ko.',
+    //     'before_image' => 'https://matildasbeauty.com/filemanager/26b26176b48c4cb9b6cac53767c840e0.webp',
+    //     'after_image' => 'https://matildasbeauty.com/filemanager/4cd5b0955bda482a89a599223cf062e6.webp',
+    // ],
+    // [
+    //     'label' => 'Girley O.',
+    //     'name' => 'Girley',
+    //     'stars' => 5,
+    //     'comment' => 'Fresh na fresh ang glow kahit simple lang routine.',
+    //     'before_image' => 'https://matildasbeauty.com/filemanager/aebf25c4c423422f85051b7087a1164e.webp',
+    //     'after_image' => 'https://matildasbeauty.com/filemanager/4f7d82251c904b31b2b2197541877fb8.webp',
+    // ],
 ];
 
 $ingredientFeature = [

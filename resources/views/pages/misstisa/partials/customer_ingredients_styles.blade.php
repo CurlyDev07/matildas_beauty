@@ -362,7 +362,7 @@
             margin: 0;
             color: #ff0060;
             font-family: "Cormorant Garamond", Georgia, serif;
-            font-size: 36px;
+            font-size: 28px;
             line-height: .88;
             letter-spacing: .04em;
             text-transform: uppercase;

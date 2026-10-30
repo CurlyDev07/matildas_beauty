@@ -1,5 +1,6 @@
 <?php
 
+
 // Products array - easy to manage and update
 $products = [
     [
