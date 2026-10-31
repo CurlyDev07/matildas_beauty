@@ -1477,6 +1477,8 @@ $products_json = json_encode($products);
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/d8156c74d8db4d22b5e0f105a7f66ea7.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
         <img class="" src="https://matildasbeauty.com/filemanager/7463ba9ebfd44727a67b35d1777826a4.webp" loading="lazy" width="480" height="480" alt="pmelo serum">
 
+        @include('pages.misstisa.partials.shop_reviews')
+
 
 
 
