@@ -849,7 +849,7 @@ $products_json = json_encode($products);
         </div>
 
 
-        <img src="https://matildasbeauty.com/filemanager/20057766b6414ff9b9e2bc22948a6c7a.webp" width="480" height="480" class="tw-full" alt="BUY 1 take 1">
+        <img src="https://matildasbeauty.com/filemanager/602db9b4843f48acbdfc1225ba91d725.webp" width="480" height="480" class="tw-full" alt="BUY 1 take 1">
 
         <div class="tfont-semibold ttext-center ttext-white tp-2 ttext-lg" style="background-color: black;">
             <i class="fas fa-check-circle" style="color: #12bc39;"></i> LEGIT | 🚚 Fast Delivery | 💸 COD | <i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> FDA 
@@ -874,8 +874,8 @@ $products_json = json_encode($products);
             <div class="tw-full"><i class="fas fa-check-circle tmb-2" style="color: #12bc39;"></i> Proven & tested by many users</div>
         </div>
 
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/8a3247c80c6d43fcb60a8994c2557706.webp" loading="lazy" width="480" height="480" alt="#1 Kulubot Remover">
-        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/017c5b134d9246b9b11dbfc3c254c2b1.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/3b804eac56094c7382a207619bd5b752.webp" loading="lazy" width="480" height="480" alt="#1 Kulubot Remover">
+        <img class="tmb-3" src="https://matildasbeauty.com/filemanager/84d290ee97b4412a8df2cef4d0dfc16d.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
 
         {{-- <img class="tmb-3" src="https://matildasbeauty.com/filemanager/943b70fea8564d969e9275e6cdec5156.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
         <img class="tmb-3" src="https://matildasbeauty.com/filemanager/e835b9e4bc9f4cad803cf3c3a6ef4473.webp" loading="lazy" width="480" height="480" alt="mudra before & After">
@@ -1264,10 +1264,10 @@ $products_json = json_encode($products);
                         </h2>
 
                         <div class="tborder-dashed ttext-center tmy-2 tpy-1" style="border: 2px solid #ee2a7b; border-style: dashed;">
-                            <span class="tfont-bold  ttext-center" style="font-size: 20px;"><i class="fas fa-gift ttext-3xl" style="color: red"></i> 8.8 Promo – Ends Soon! <i class="fas fa-gift ttext-3xl" style="color: red"></i></span>
+                            <span class="tfont-bold  ttext-center" style="font-size: 20px;"><i class="fas fa-gift ttext-3xl" style="color: red"></i> 11.11 Promo – Ends Soon! <i class="fas fa-gift ttext-3xl" style="color: red"></i></span>
                             <span class="ttext-md tfont-bold tflex tjustify-center" style="color: #ff0021;">
-                                ⏰
-                                <div id="timer_top">18:38</div>
+                                ⏰ 7 Days 2hrs 
+                                <div id="timer_top"> 96:38</div>
                                 mins
                             </span>
                             {{-- <span class="theme-color tfont-medium tml-2"> FREE 2 Gifts</span> --}}
